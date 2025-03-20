@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-03-13T00:00:00.000Z</updated>
+    <updated>2025-03-20T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,39 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.3.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.1"/>
+        <updated>2025-03-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2451---2025-03-18">Browsertime 24.5.1</a> with a fix for using <code>--browsertime.userTimingBlockList</code>.</li>
+</ul>
+ <ul>
+<li>Safer check for InfluxDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4487">#4487</a> that fixes <a href="https://github.com/sitespeedio/sitespeed.io/issues/4485">#4485</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.5.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.1"/>
+        <updated>2025-03-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bugfix for <code>--userTimingBlockList</code> <a href="https://github.com/sitespeedio/browsertime/pull/2272">#2272</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 37.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0</id>
@@ -233,34 +266,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>There was a bug in the InfluxDB plugin and loading the cli parameters failed <a href="https://github.com/sitespeedio/sitespeed.io/pull/4463">#4463</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 37.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.0"/>
-        <updated>2025-03-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Support for getting CLI options from plugins as long as you use <code>--help --plugins.add</code>. This is start to separate CLI options from the monsterous CLI file and instead have them in each plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4450">#4450</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4452">#4452</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4455">#4455</a>.</li>
-</ul>
- <ul>
-<li>You can now set the exact minimum log level using <code>--logLevel</code><a href="https://github.com/sitespeedio/sitespeed.io/pull/4459">#4459</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Replace the junit-report-builder package <a href="https://github.com/sitespeedio/sitespeed.io/pull/4448">#4448</a>.</li>
-</ul>
- <ul>
-<li>Remove Tape dependencies <a href="https://github.com/sitespeedio/sitespeed.io/pull/4447">#4447</a>.</li>
-</ul>
- <ul>
-<li>Catch if the browser fails to open a broken page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4457">#4457</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -640,21 +645,6 @@
 </ul>
  <ul>
 <li>Fix so you cannot use gnirehtet with webpagereplay <a href="https://github.com/sitespeedio/browsertime/pull/2230">#2230</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.4.5]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.5</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.5"/>
-        <updated>2024-12-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Change bottom margin from 10 to 14 pixel when recording a video on mobile, se bug <a href="https://github.com/sitespeedio/browsertime/issues/2224">#2224</a> and PR <a href="https://github.com/sitespeedio/browsertime/pull/2225">#2225</a>.</li>
 </ul>
 ]]></summary>
         <author>
