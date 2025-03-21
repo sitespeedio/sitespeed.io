@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+# 37.3.2 - 2025-03-21
+### Fixed
+* Updated to Browsertime 24.5.2 with a fix for getting delta FCP (FCP-TTFB).
+
 # 37.3.1 - 2025-03-20
 ### Fixed
 * Updated to [Browsertime 24.5.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2451---2025-03-18) with a fix for using `--browsertime.userTimingBlockList`.
