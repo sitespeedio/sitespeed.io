@@ -3,7 +3,7 @@
 
 ## 37.4.0 - 2025-04-09
 ### Added
-* Updated Doker container with Firefox 137, Chrome 135 and Edge 135 [#4494](https://github.com/sitespeedio/sitespeed.io/pull/4494).
+* Updated Docker container with Firefox 137, Chrome 135 and Edge 135 [#4494](https://github.com/sitespeedio/sitespeed.io/pull/4494).
 
 ## 37.3.2 - 2025-03-21
 ### Fixed
