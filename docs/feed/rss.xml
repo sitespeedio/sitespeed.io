@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 09 Apr 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 10 Apr 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,13 +16,25 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 37.4.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.1</guid>
+            <pubDate>Thu, 10 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If testing one page fails, make sure that we still can genereate the HTML <a href="https://github.com/sitespeedio/sitespeed.io/pull/4495">#4495</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 37.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.0</guid>
             <pubDate>Wed, 09 Apr 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Updated Doker container with Firefox 137, Chrome 135 and Edge 135 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4494">#4494</a>.</li>
+<li>Updated Docker container with Firefox 137, Chrome 135 and Edge 135 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4494">#4494</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -218,18 +230,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Sending annotations to Graphite failed because of InfluxDB check <a href="https://github.com/sitespeedio/sitespeed.io/pull/4469">#4469</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 37.0.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.3</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.3</guid>
-            <pubDate>Thu, 06 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Hopefully the last fix for getting --help to work with global plugins <a href="https://github.com/sitespeedio/sitespeed.io/pull/4466">#4466</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
