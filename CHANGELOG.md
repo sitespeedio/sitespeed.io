@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.4.1 - 2025-04-10
+### Fixed
+* If testing one page fails, make sure that we still can genereate the HTML [#4495](https://github.com/sitespeedio/sitespeed.io/pull/4495).
+
 ## 37.4.0 - 2025-04-09
 ### Added
 * Updated Docker container with Firefox 137, Chrome 135 and Edge 135 [#4494](https://github.com/sitespeedio/sitespeed.io/pull/4494).
