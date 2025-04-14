@@ -20,6 +20,8 @@ You can run it with:
 docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.remove @sitespeed.io/plugin-lighthouse
 ``` 
 
+You would also need to add the `--gpsi.key YOUR_GPSI_KEY` to sitespeed.io. The GPSI key is provided by Google and you can get it [here](https://cloud.google.com/docs/authentication/api-keys).
+
 The container also includes Lighthouse. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored.
 
 The plugin will send a request to the Google Page Speed Servers and parse the result. The result will look something like this:
