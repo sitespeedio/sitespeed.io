@@ -1,10 +1,16 @@
 #output
 //- When we inline the data, we cut the HAR to just be one
 //- specific run (the median run) in summaryPageHAR.
-//- Inline script tags breaks the output
-- dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
-- dahar = JSON.stringify(dahar.log).split('</script>').join('&lt;/script&gt;')
-
+//- Inline script tags break the output
+- var dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
+- if (dahar && dahar.log && Array.isArray(dahar.log.entries)) {
+-    dahar.log.entries.forEach(function(entry) {
+-      if (entry && entry.response && entry.response.content && entry.response.content.text) {
+-         entry.response.content.text = "replaced";
+-      }
+-    });
+- }
+- dahar = JSON.stringify(dahar.log)
 script(src= assetsPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
   const outputHolderEl = document.getElementById("output");
