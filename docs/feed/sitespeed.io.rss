@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Thu, 10 Apr 2025 17:03:46 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 19 Apr 2025 11:19:54 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,21 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 37.4.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.2</guid>
+            <pubDate>Sat, 19 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>s3: If you add Expires to your object using the API, it was broken since the upgrade to v3. This fix change so we allways use a Date when setting Expires <a href="https://github.com/sitespeedio/sitespeed.io/pull/4503">#4503</a>.</li>
+</ul>
+ <ul>
+<li>Make sure that HAR files included in the HTML excludes closing script tags in the body of an response <a href="https://github.com/sitespeedio/sitespeed.io/pull/4500">#4500</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 37.4.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.1</link>
@@ -127,18 +142,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Simplified logic for uploading files to S3 since we have reports that it do not work 100% <a href="https://github.com/sitespeedio/sitespeed.io/pull/4472">#4472</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 37.0.4]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.4</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.4</guid>
-            <pubDate>Fri, 07 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Sending annotations to Graphite failed because of InfluxDB check <a href="https://github.com/sitespeedio/sitespeed.io/pull/4469">#4469</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
