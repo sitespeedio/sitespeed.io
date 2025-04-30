@@ -1,5 +1,9 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
+## 37.4.2 - 2025-04-19
+### Fixed
+* s3: If you add Expires to your object using the API, it was broken since the upgrade to v3. This fix change so we allways use a Date when setting Expires [#4503](https://github.com/sitespeedio/sitespeed.io/pull/4503).
+* Make sure that HAR files included in the HTML excludes closing script tags in the body of an response [#4500](https://github.com/sitespeedio/sitespeed.io/pull/4500).
 
 ## 37.4.1 - 2025-04-10
 ### Fixed
