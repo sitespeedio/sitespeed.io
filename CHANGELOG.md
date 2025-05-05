@@ -1,5 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
+
+## 37.5.0 - 2025-04-30
+### Added
+* Upgraded to Firefox 138 and Chrome 136 in the Docker container [#4507](https://github.com/sitespeedio/sitespeed.io/pull/4507). 
+
+### Fixed
+* Updated to latest Browsertime with a fix for Firefox 138 [#4506](https://github.com/sitespeedio/sitespeed.io/pull/4506).
+
 ## 37.4.2 - 2025-04-19
 ### Fixed
 * s3: If you add Expires to your object using the API, it was broken since the upgrade to v3. This fix change so we allways use a Date when setting Expires [#4503](https://github.com/sitespeedio/sitespeed.io/pull/4503).
