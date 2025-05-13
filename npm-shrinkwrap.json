@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
-        "browsertime": "24.6.0",
+        "browsertime": "24.7.0",
         "coach-core": "8.1.1",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -1789,9 +1789,9 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "134.0.6998-35",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-134.0.6998-35.tgz",
-      "integrity": "sha512-cdhBecDT3or0YrSOpfbRC5zw3zivmcmKs6ihefVjtvXZfhMMEW92tro9otIWbkxXOFlMBhfzZHt8SQxeijol0A==",
+      "version": "136.0.7103-92",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-136.0.7103-92.tgz",
+      "integrity": "sha512-3zU0GjgDy3UCOecQHq3TcX3SEFqAXNDpA/CEggl3quQ1KhOmOBk6ECIdd/zqe6ITT77xDh56qctL2xlS/K2lvw==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.9",
@@ -1799,9 +1799,9 @@
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
-      "version": "134.0.3124-51",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-134.0.3124-51.tgz",
-      "integrity": "sha512-NiCrPLKHm14YghPzyh+NeBYAM90WzMqtULWVVVb/KareCGl60oYGegCjGULkP8uJUng/cAwxUSr3777MAcwIrQ==",
+      "version": "136.0.3240-64",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-136.0.3240-64.tgz",
+      "integrity": "sha512-bYtRtTgow6ugjW/bGPxFBMTcyPmvP5tI9Cw055oXNzz+nQ18ltxOXUwnq/eCAM0rGelGH9ti+hdX7IwiPNMQ+A==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.9",
@@ -3231,13 +3231,13 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.6.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.6.0.tgz",
-      "integrity": "sha512-2Ue23C8Yz9o1fcxOZmCvhUkOknA8Qdu64UcR14pgJGismCayc5iOlNQdDtOmxYXsYKQ7asXXXHDRw7kvSEWcjQ==",
+      "version": "24.7.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.7.0.tgz",
+      "integrity": "sha512-bAawScodErRKmhF9HDlp2v5ps6ag/WJqje00Dez6sTYJDEaW7Y7lrbg5vkDnzOsAR1ViphhD2ufCQq1Gx091oQ==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
-        "@sitespeed.io/chromedriver": "134.0.6998-35",
-        "@sitespeed.io/edgedriver": "134.0.3124-51",
+        "@sitespeed.io/chromedriver": "136.0.7103-92",
+        "@sitespeed.io/edgedriver": "136.0.3240-64",
         "@sitespeed.io/geckodriver": "0.36.0",
         "@sitespeed.io/log": "0.2.6",
         "@sitespeed.io/throttle": "5.0.1",
@@ -3248,7 +3248,7 @@
         "fast-stats": "0.0.7",
         "ff-test-bidi-har-export": "0.0.17",
         "lodash.merge": "4.6.2",
-        "selenium-webdriver": "4.29.0",
+        "selenium-webdriver": "4.32.0",
         "yargs": "17.7.2"
       },
       "bin": {
@@ -8059,9 +8059,9 @@
       }
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.29.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.29.0.tgz",
-      "integrity": "sha512-8XPGtDoji5xk7ZUCzFT1rqHmCp67DCzESsttId7DzmrJmlTRmRLF6X918rbwclcH89amcBNM4zB3lVPj404I0g==",
+      "version": "4.32.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.32.0.tgz",
+      "integrity": "sha512-dG48JJnB96Aea1iVaZOKGmd6yT6aemeI1heWI/i8DtfD3pDX7uIlwpDBoGauNhtXAaFaamP+U4hIab8zZkg3Ag==",
       "funding": [
         {
           "type": "github",
@@ -8083,9 +8083,9 @@
       }
     },
     "node_modules/selenium-webdriver/node_modules/ws": {
-      "version": "8.18.1",
-      "resolved": "https://registry.npmjs.org/ws/-/ws-8.18.1.tgz",
-      "integrity": "sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w==",
+      "version": "8.18.2",
+      "resolved": "https://registry.npmjs.org/ws/-/ws-8.18.2.tgz",
+      "integrity": "sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==",
       "engines": {
         "node": ">=10.0.0"
       },

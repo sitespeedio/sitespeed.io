@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.5.1 - 2025-05-05
+### Fixed
+* Updated to [Browsertime 24.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2460---2025-05-05) that fixes a problem using --preURL and --pageCompleteCheckNetworkIdle.
+
 ## 37.5.0 - 2025-04-30
 ### Added
 * Upgraded to Firefox 138 and Chrome 136 in the Docker container [#4507](https://github.com/sitespeedio/sitespeed.io/pull/4507). 
