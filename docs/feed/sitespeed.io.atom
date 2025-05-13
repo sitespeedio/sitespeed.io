@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-05-05T13:11:24.703Z</updated>
+    <updated>2025-05-13T17:09:12.054Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.6.0"/>
+        <updated>2025-05-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Added Edge 136, Edgedriver and Chromedriver 136 by updating to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#browsertime-changelog-we-do-semantic-versioning">Browsertime 24.7.0</a> in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4514">#4514</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 37.5.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.5.1</id>
@@ -154,21 +169,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2440---2025-03-11">Browsertime 24.4.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4478">#4478</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 37.1.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.2"/>
-        <updated>2025-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Show just the filename instead of the full path to the file in the HTML <a href="https://github.com/sitespeedio/sitespeed.io/pull/4477">#4477</a>.</li>
 </ul>
 ]]></summary>
         <author>
