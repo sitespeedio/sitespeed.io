@@ -8,7 +8,7 @@ elif [[ `which chromium-browser` ]]; then
 fi
 
 if [[ `which firefox` ]]; then
-   firefox --version
+   firefox --version 2>/dev/null
 fi
 
 if [[ `which microsoft-edge` ]]; then

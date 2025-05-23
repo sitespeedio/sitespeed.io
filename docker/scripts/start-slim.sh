@@ -1,6 +1,6 @@
 #!/bin/bash
 
-firefox --version
+firefox --version 2>/dev/null
 
 SITESPEEDIO=/usr/src/app/bin/sitespeed.js
 
