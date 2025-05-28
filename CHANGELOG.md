@@ -1,8 +1,12 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.7.0 - 2025-05-28
+### Added
+* Added Chrome 137 and Firefox 139 in the Docker container [#4520](https://github.com/sitespeedio/sitespeed.io/pull/4520).
+
 ## 37.6.0 - 2025-05-13
-### Fixed
+### Added
 * Added Edge 136, Edgedriver and Chromedriver 136 by updating to [Browsertime 24.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#browsertime-changelog-we-do-semantic-versioning) in [#4514](https://github.com/sitespeedio/sitespeed.io/pull/4514).
 
 ## 37.5.1 - 2025-05-05
