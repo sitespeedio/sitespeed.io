@@ -1,6 +1,14 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.8.0 - 2025-06-01
+### Added
+* Updated to Browsertime 24.8.0 and then 24.8.1 with Chromedriver 137, Edgedriver 137 and [a couple of fixes and new commands](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2480---2025-05-30) in [4524](https://github.com/sitespeedio/sitespeed.io/pull/4524) and [#4525](https://github.com/sitespeedio/sitespeed.io/pull/4525).
+* Updated to Edge 137 in the Docker container [#4522](https://github.com/sitespeedio/sitespeed.io/pull/4522).
+
+### Fixed
+* Updated dependencies: node-scp, ora, dayjs, axe-core, @slack/webhook, @google-cloud/storage, @aws-sdk/client-s3 [#4523](https://github.com/sitespeedio/sitespeed.io/pull/4523).
+
 ## 37.7.0 - 2025-05-28
 ### Added
 * Added Chrome 137 and Firefox 139 in the Docker container [#4520](https://github.com/sitespeedio/sitespeed.io/pull/4520).
