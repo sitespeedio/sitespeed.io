@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 28 May 2025 05:33:09 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 01 Jun 2025 04:54:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,25 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 37.8.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.8.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.8.0</guid>
+            <pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 24.8.0 and then 24.8.1 with Chromedriver 137, Edgedriver 137 and <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2480---2025-05-30">a couple of fixes and new commands</a> in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4524">4524</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4525">#4525</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Edge 137 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4522">#4522</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies: node-scp, ora, dayjs, axe-core, @slack/webhook, @google-cloud/storage, @aws-sdk/client-s3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4523">#4523</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 37.7.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.7.0</link>
@@ -130,18 +149,6 @@
 </ul>
  <ul>
 <li>Safer check for InfluxDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4487">#4487</a> that fixes <a href="https://github.com/sitespeedio/sitespeed.io/issues/4485">#4485</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 37.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0</guid>
-            <pubDate>Thu, 13 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2450---2025-03-13">Browsertime 24.5.0</a> that updates to Geckodriver 0.36.0 (for Firefox) and fixes a bug for running test on Safari on iOS (reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/4479">#4479</a>) fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4480">#4480</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
