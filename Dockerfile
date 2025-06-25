@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-137.0-firefox-139.0-edge-137.0
+FROM sitespeedio/webbrowsers:chrome-138.0-firefox-140.0-edge-137.0
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -29,7 +29,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
-RUN npm install --production && npm cache clean --force 
+RUN npm install --production && npm cache clean --force
 
 COPY ./bin/ /usr/src/app/bin/
 COPY ./lib/ /usr/src/app/lib/
