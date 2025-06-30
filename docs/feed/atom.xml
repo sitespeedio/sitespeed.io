@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-05-28T00:00:00.000Z</updated>
+    <updated>2025-06-30T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,107 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.9.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.9.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.9.0"/>
+        <updated>2025-06-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Docker containers to include Chrome/Edge 138, Firefox 140. Edgedriver and Chromedriver 138. Browsertime 24.9.0. <a href="https://github.com/sitespeedio/sitespeed.io/pull/4528">#452</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4530">#4530</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.8.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2"/>
+        <updated>2025-06-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for serverTiming - thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2301">#2301</a>.</li>
+</ul>
+ <ul>
+<li>Cleanup how we get the navigation timing metrics <a href="https://github.com/sitespeedio/browsertime/pull/2300">#2300</a>.</li>
+</ul>
+ <ul>
+<li>Fix depercation warnings in visual metrics. Thank you <a href="https://github.com/emmanuel-ferdman">Emmanuel Ferdman</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2297">#2297</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.8.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.8.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.8.0"/>
+        <updated>2025-06-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 24.8.0 and then 24.8.1 with Chromedriver 137, Edgedriver 137 and <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2480---2025-05-30">a couple of fixes and new commands</a> in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4524">4524</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4525">#4525</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Edge 137 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4522">#4522</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies: node-scp, ora, dayjs, axe-core, @slack/webhook, @google-cloud/storage, @aws-sdk/client-s3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4523">#4523</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.8.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1"/>
+        <updated>2025-06-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>[Visual Elements] Fix split for selector to include full value with &#39;:&#39;` - thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2298">#2298</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.8.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.0"/>
+        <updated>2025-05-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 137 and Firefox 139 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2284">#2284</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Edge/Edgedriver 137 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2289">#2289</a>.</li>
+</ul>
+ <ul>
+<li>New command: <code>wait.byXpathAndVisible(...)</code> - thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2286">#2286</a>.</li>
+</ul>
+ <ul>
+<li>New command: <code>wait.bySelectorAndVisible(...)</code> PR <a href="https://github.com/sitespeedio/browsertime/pull/2288">#2288</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies: selenium, usb-power-profiling, execa and dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2290">#2290</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2291">#2291</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2294">#2294</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2295">#2295</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 37.7.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.7.0</id>
@@ -202,24 +303,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 37.3.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.1"/>
-        <updated>2025-03-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2451---2025-03-18">Browsertime 24.5.1</a> with a fix for using <code>--browsertime.userTimingBlockList</code>.</li>
-</ul>
- <ul>
-<li>Safer check for InfluxDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4487">#4487</a> that fixes <a href="https://github.com/sitespeedio/sitespeed.io/issues/4485">#4485</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 24.5.2]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.2</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.2"/>
@@ -242,21 +325,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Bugfix for <code>--userTimingBlockList</code> <a href="https://github.com/sitespeedio/browsertime/pull/2272">#2272</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 37.3.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0"/>
-        <updated>2025-03-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2450---2025-03-13">Browsertime 24.5.0</a> that updates to Geckodriver 0.36.0 (for Firefox) and fixes a bug for running test on Safari on iOS (reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/4479">#4479</a>) fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4480">#4480</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -343,21 +411,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Show only the script name and not the full path <a href="https://github.com/sitespeedio/onlinetest/pull/144">#144</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0"/>
-        <updated>2025-03-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add support for manually setting the log level using <code>--logLevel</code> <a href="https://github.com/sitespeedio/browsertime/pull/2264">#2264</a>.2264</li>
 </ul>
 ]]></summary>
         <author>
@@ -470,21 +523,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 24.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.2.0"/>
-        <updated>2025-02-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated Chromedriver and Chromne to 133 and Firefox to 135 <a href="https://github.com/sitespeedio/browsertime/pull/2261">#2261</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2262">#2262</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[server 1.4.0]]></title>
         <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.4.0</id>
         <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.4.0"/>
@@ -555,21 +593,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Make sure failing tests with a result is accessible <a href="https://github.com/sitespeedio/onlinetest/pull/126">#126</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.1.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.1"/>
-        <updated>2025-01-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to sitespeedio/log 0.2.6 <a href="https://github.com/sitespeedio/browsertime/pull/2260">#2260</a>.</li>
 </ul>
 ]]></summary>
         <author>

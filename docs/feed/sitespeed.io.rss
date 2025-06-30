@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 01 Jun 2025 04:54:42 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 30 Jun 2025 09:33:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 37.9.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.9.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.9.0</guid>
+            <pubDate>Mon, 30 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Docker containers to include Chrome/Edge 138, Firefox 140. Edgedriver and Chromedriver 138. Browsertime 24.9.0. <a href="https://github.com/sitespeedio/sitespeed.io/pull/4528">#452</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4530">#4530</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 37.8.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.8.0</link>
@@ -134,21 +146,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated to Browsertime 24.5.2 with a fix for getting delta FCP (FCP-TTFB).</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 37.3.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.1</guid>
-            <pubDate>Thu, 20 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2451---2025-03-18">Browsertime 24.5.1</a> with a fix for using <code>--browsertime.userTimingBlockList</code>.</li>
-</ul>
- <ul>
-<li>Safer check for InfluxDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4487">#4487</a> that fixes <a href="https://github.com/sitespeedio/sitespeed.io/issues/4485">#4485</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

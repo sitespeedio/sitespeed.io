@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>testrunner-release-feed</id>
     <title>testrunner release feed</title>
-    <updated>2025-02-13T21:09:57.201Z</updated>
+    <updated>2025-02-12T12:20:48.626Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
