@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.5",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.3",
-        "browsertime": "24.8.1",
+        "browsertime": "24.9.0",
         "coach-core": "8.1.1",
         "dayjs": "1.11.13",
         "fast-crc32c": "2.0.0",
@@ -1768,9 +1768,9 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "137.0.7151-55",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-137.0.7151-55.tgz",
-      "integrity": "sha512-3o1UNjUBu1xsn6fTGIUf/wZWXi8tgZawZKjQDcsyzjUjb8JbGi64zDgNDAIXuJIHcDwrYY2RPohaONBBmas0bQ==",
+      "version": "138.0.7204-49",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-138.0.7204-49.tgz",
+      "integrity": "sha512-+/72oFBcp2/bYvCwZcs0PuDGf3Eg+hAoOHhUhAltgh82safMm/RtNpcsIgGBmYEvonW6r2x1Cge63aINyC2H8Q==",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -1779,9 +1779,9 @@
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
-      "version": "137.0.3296-52",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-137.0.3296-52.tgz",
-      "integrity": "sha512-/0tZRg6fQdqd70/PSUfp8MTiw7ktjMlk3mnkecAqHcBSD0AxXaBQx1wUwyIiTZlxwrZ/IT5hyZEnwv9w0pD4uw==",
+      "version": "138.0.3351-55",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-138.0.3351-55.tgz",
+      "integrity": "sha512-r54KlvZZF654+csWAiONsvupPs2z9YfSy6ihqzTj7+jJhDGziJpTaOovr9kd2Xsr7NThA5eZLNLpUfNsj/9pCQ==",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -3272,14 +3272,14 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.8.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.8.1.tgz",
-      "integrity": "sha512-b2oEcexKmib6Ke18osAUblApOEoEUTDwPG3qmCW1U3cdOlJiQPABruzxindDb5KG8RgFQ8ZEuyhjNnMNPeQhYQ==",
+      "version": "24.9.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.9.0.tgz",
+      "integrity": "sha512-50aa8cWDxzdBOHY/t+7f630Zby5j0xaWQkQ5PnG35+/BzzLmCrB0+QXzKkQNfpmMW7SuO143aSnnsnl4xRsNGw==",
       "license": "MIT",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
-        "@sitespeed.io/chromedriver": "137.0.7151-55",
-        "@sitespeed.io/edgedriver": "137.0.3296-52",
+        "@sitespeed.io/chromedriver": "138.0.7204-49",
+        "@sitespeed.io/edgedriver": "138.0.3351-55",
         "@sitespeed.io/geckodriver": "0.36.0",
         "@sitespeed.io/log": "0.2.6",
         "@sitespeed.io/throttle": "5.0.1",
@@ -3290,7 +3290,7 @@
         "fast-stats": "0.0.7",
         "ff-test-bidi-har-export": "0.0.17",
         "lodash.merge": "4.6.2",
-        "selenium-webdriver": "4.33.0",
+        "selenium-webdriver": "4.34.0",
         "yargs": "17.7.2"
       },
       "bin": {
@@ -8144,9 +8144,9 @@
       }
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.33.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.33.0.tgz",
-      "integrity": "sha512-5vRhk4iI0B9nYbEitfnCjPDXBfG6o9DNhj5DG2355eQo8idETknhj1tigqqlkHsGephSZwLZqEm/d+3e1stGUA==",
+      "version": "4.34.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.34.0.tgz",
+      "integrity": "sha512-zGfQFcsASAv3KrYzYh+iw4fFqB7iZAgHW7BU6rRz7isK1i1X4x3LvjmZad4bUUgHDwTnAhlqTzDh21byB+zHMg==",
       "funding": [
         {
           "type": "github",
@@ -8162,16 +8162,16 @@
         "@bazel/runfiles": "^6.3.1",
         "jszip": "^3.10.1",
         "tmp": "^0.2.3",
-        "ws": "^8.18.0"
+        "ws": "^8.18.2"
       },
       "engines": {
-        "node": ">= 18.20.5"
+        "node": ">= 20.0.0"
       }
     },
     "node_modules/selenium-webdriver/node_modules/ws": {
-      "version": "8.18.2",
-      "resolved": "https://registry.npmjs.org/ws/-/ws-8.18.2.tgz",
-      "integrity": "sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==",
+      "version": "8.18.3",
+      "resolved": "https://registry.npmjs.org/ws/-/ws-8.18.3.tgz",
+      "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
       "license": "MIT",
       "engines": {
         "node": ">=10.0.0"
