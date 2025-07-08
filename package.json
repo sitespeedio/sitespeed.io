@@ -60,7 +60,7 @@
     "postinstall": "node tools/postinstall.js"
   },
   "engines": {
-    "node": ">=14.19.1"
+    "node": ">=20.0.0"
   },
   "devDependencies": {
     "ava": "6.1.3",
