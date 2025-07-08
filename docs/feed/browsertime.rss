@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Sun, 01 Jun 2025 04:39:20 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 30 Jun 2025 09:32:03 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,24 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 24.8.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</guid>
+            <pubDate>Sun, 22 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for serverTiming - thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2301">#2301</a>.</li>
+</ul>
+ <ul>
+<li>Cleanup how we get the navigation timing metrics <a href="https://github.com/sitespeedio/browsertime/pull/2300">#2300</a>.</li>
+</ul>
+ <ul>
+<li>Fix depercation warnings in visual metrics. Thank you <a href="https://github.com/emmanuel-ferdman">Emmanuel Ferdman</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2297">#2297</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 24.8.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1</link>
@@ -158,18 +176,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Fix how to get server timings (from main request) as reported on Slack <a href="https://github.com/sitespeedio/browsertime/pull/2268">#2268</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.3.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</guid>
-            <pubDate>Mon, 03 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add support for manually setting the log level using <code>--logLevel</code> <a href="https://github.com/sitespeedio/browsertime/pull/2264">#2264</a>.2264</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

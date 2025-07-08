@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "37.8.0",
+  "version": "37.9.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "37.8.0",
+      "version": "37.9.0",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -55,7 +55,7 @@
         "sass": "1.77.6"
       },
       "engines": {
-        "node": ">=14.19.1"
+        "node": ">=20.0.0"
       }
     },
     "node_modules/@aws-crypto/crc32": {

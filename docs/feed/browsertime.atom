@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-06-01T04:39:20.540Z</updated>
+    <updated>2025-06-30T09:32:03.152Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.8.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2"/>
+        <updated>2025-06-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for serverTiming - thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2301">#2301</a>.</li>
+</ul>
+ <ul>
+<li>Cleanup how we get the navigation timing metrics <a href="https://github.com/sitespeedio/browsertime/pull/2300">#2300</a>.</li>
+</ul>
+ <ul>
+<li>Fix depercation warnings in visual metrics. Thank you <a href="https://github.com/emmanuel-ferdman">Emmanuel Ferdman</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2297">#2297</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 24.8.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1</id>
@@ -182,21 +203,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Fix how to get server timings (from main request) as reported on Slack <a href="https://github.com/sitespeedio/browsertime/pull/2268">#2268</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0"/>
-        <updated>2025-03-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add support for manually setting the log level using <code>--logLevel</code> <a href="https://github.com/sitespeedio/browsertime/pull/2264">#2264</a>.2264</li>
 </ul>
 ]]></summary>
         <author>
