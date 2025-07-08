@@ -55,7 +55,7 @@
         "sass": "1.77.6"
       },
       "engines": {
-        "node": ">=14.19.1"
+        "node": ">=20.0.0"
       }
     },
     "node_modules/@aws-crypto/crc32": {
