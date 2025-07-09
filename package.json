@@ -81,7 +81,7 @@
   },
   "exports": "./lib/sitespeed.js",
   "dependencies": {
-    "@aws-sdk/client-s3": "3.820.0",
+    "@aws-sdk/client-s3": "3.842.0",
     "@google-cloud/storage": "7.16.0",
     "@sitespeed.io/log": "0.2.6",
     "@sitespeed.io/plugin": "1.0.0",
