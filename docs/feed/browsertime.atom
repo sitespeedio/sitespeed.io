@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-06-30T09:32:03.152Z</updated>
+    <updated>2025-07-16T12:54:28.157Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,50 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 25.0.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0"/>
+        <updated>2025-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Yargs 18.0.0 <a href="https://github.com/sitespeedio/browsertime/pull/2305">#2305</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2308">#2308</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2309">#2309</a>.</li>
+</ul>
+ <ul>
+<li>Updated Edge dependency so it uses the new Microsoft domain for downloading <a href="https://github.com/sitespeedio/browsertime/pull/2312">#2312</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.9.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.9.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.9.0"/>
+        <updated>2025-06-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update Docker container to use Chrome/edge 138, Firefox 140. Add Edgedriver and Chromedrinver 138 <a href="https://github.com/sitespeedio/browsertime/pull/2303">#2303</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update Selenium webdriver to 4.34.0 <a href="https://github.com/sitespeedio/browsertime/pull/2304">#2304</a>.</li>
+</ul>
+ <ul>
+<li>Add extra try/catch if main document timings is missing when generating the HAR <a href="https://github.com/sitespeedio/browsertime/pull/2302">#2302</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 24.8.2]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</id>
@@ -162,47 +206,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Bugfix for <code>--userTimingBlockList</code> <a href="https://github.com/sitespeedio/browsertime/pull/2272">#2272</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.5.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.0"/>
-        <updated>2025-03-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Geckodriver 0.36.0 <a href="https://github.com/sitespeedio/browsertime/pull/2270">#2270</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix running tests on Safari on iOS that has been broken by some refactoring <a href="https://github.com/sitespeedio/browsertime/pull/2271">#2271</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.4.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.4.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.4.0"/>
-        <updated>2025-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edgedriver 134 <a href="https://github.com/sitespeedio/browsertime/pull/2269">#2269</a>.</li>
-</ul>
- <ul>
-<li>Chromedriver 134, updated chrome-remote-interfaces and webdriver <a href="https://github.com/sitespeedio/browsertime/pull/2266">#2266</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix how to get server timings (from main request) as reported on Slack <a href="https://github.com/sitespeedio/browsertime/pull/2268">#2268</a>.</li>
 </ul>
 ]]></summary>
         <author>
