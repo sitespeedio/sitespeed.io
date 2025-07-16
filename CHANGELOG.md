@@ -1,12 +1,12 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 38.0.0 - UNRELEASED
+## 38.0.0 - 2025-06-30
 ### Breaking
-* Support NodeJS 20 or later for sitespeed.io [#4532](https://github.com/sitespeedio/sitespeed.io/pull/4532).
+* Support only NodeJS 20 or later for sitespeed.io [#4532](https://github.com/sitespeedio/sitespeed.io/pull/4532).
 
 ### Added
-* Yargs 18 [#4531](https://github.com/sitespeedio/sitespeed.io/pull/4531)
+* Upgrade to Yargs 18 [#4531](https://github.com/sitespeedio/sitespeed.io/pull/4531).
 
 ### Fixed
 * Update S3 client [#4533](https://github.com/sitespeedio/sitespeed.io/pull/4533).
