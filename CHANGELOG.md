@@ -1,6 +1,18 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.0.0 - UNRELEASED
+### Breaking
+* Support NodeJS 20 or later for sitespeed.io [#4532](https://github.com/sitespeedio/sitespeed.io/pull/4532).
+
+### Added
+* Yargs 18 [#4531](https://github.com/sitespeedio/sitespeed.io/pull/4531)
+
+### Fixed
+* Update S3 client [#4533](https://github.com/sitespeedio/sitespeed.io/pull/4533).
+* Update developer dependencies [#4534](https://github.com/sitespeedio/sitespeed.io/pull/4534).
+* Updated to [Browsertime 25](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2500---2025-07-16) [#4536](https://github.com/sitespeedio/sitespeed.io/pull/4536) with NodeJS to 20 and a fix for Edgedriver download.
+
 ## 37.9.0 - 2025-06-30
 ### Added
 * Updated Docker containers to include Chrome/Edge 138, Firefox 140. Edgedriver and Chromedriver 138. Browsertime 24.9.0. [#452](https://github.com/sitespeedio/sitespeed.io/pull/4528) and [#4530](https://github.com/sitespeedio/sitespeed.io/pull/4530).
