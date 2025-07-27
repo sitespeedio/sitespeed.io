@@ -106,6 +106,8 @@
   },
   "overrides": {
     "minimist": "^1.2.6",
-    "whatwg-url": "^14.0.0"
+    "whatwg-url": "^14.0.0",
+    "form-data@2.5.2": "2.5.5",
+    "form-data@4.0.2": "4.0.4"
   }
 }
