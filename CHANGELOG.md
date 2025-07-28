@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.1.0 - 2025-07-28
+### Added
+* Firefox 141 in the Docker container [#4538](https://github.com/sitespeedio/sitespeed.io/pull/4538).
+
+### Fixed
+* Bumped form-data dependency for security warnings [#4539](https://github.com/sitespeedio/sitespeed.io/pull/4539).
+
 ## 38.0.0 - 2025-06-30
 ### Breaking
 * Support only NodeJS 20 or later for sitespeed.io [#4532](https://github.com/sitespeedio/sitespeed.io/pull/4532).
