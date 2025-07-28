@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-07-16T13:58:25.586Z</updated>
+    <updated>2025-07-28T18:20:46.500Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,25 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 38.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.0"/>
+        <updated>2025-07-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 141 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4538">#4538</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Bumped form-data dependency for security warnings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4539">#4539</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 38.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.0.0</id>
@@ -168,21 +187,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>If testing one page fails, make sure that we still can genereate the HTML <a href="https://github.com/sitespeedio/sitespeed.io/pull/4495">#4495</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 37.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.0"/>
-        <updated>2025-04-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated Docker container with Firefox 137, Chrome 135 and Edge 135 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4494">#4494</a>.</li>
 </ul>
 ]]></summary>
         <author>
