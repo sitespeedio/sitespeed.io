@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 28 Jul 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 01 Aug 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,36 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 38.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.1</guid>
+            <pubDate>Fri, 01 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to coach core 8.1.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4540">#4540</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.1.2]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</guid>
+            <pubDate>Fri, 01 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Don&#39;t check svg images in avoidScalingImages check, thank you <a href="https://github.com/M-arcus">Marcus Müller</a> for PR <a href="https://github.com/sitespeedio/coach-core/pull/129">#129</a>.</li>
+</ul>
+ <ul>
+<li>Add zstd to encoding check, thank you <a href="https://github.com/M-arcus">Marcus Müller</a> for PR <a href="https://github.com/sitespeedio/coach-core/pull/128">#128</a>.</li>
+</ul>
+ <ul>
+<li>Make sure we use wappalyzer that is MIT <a href="https://github.com/sitespeedio/coach-core/pull/133">#133</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 38.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.0</link>
@@ -290,18 +320,6 @@
 </ul>
  <ul>
 <li>Make sure that HAR files included in the HTML excludes closing script tags in the body of an response <a href="https://github.com/sitespeedio/sitespeed.io/pull/4500">#4500</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 37.4.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.4.1</guid>
-            <pubDate>Thu, 10 Apr 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>If testing one page fails, make sure that we still can genereate the HTML <a href="https://github.com/sitespeedio/sitespeed.io/pull/4495">#4495</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -900,18 +918,6 @@
 <li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>. You can read <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Sindre Sorhus ESM package guide</a>.</li>
 </ul>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.1.1]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.1</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.1</guid>
-            <pubDate>Wed, 13 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to PageXray 4.4.1 and Third Party Web 0.15.0.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.1]]></title>
