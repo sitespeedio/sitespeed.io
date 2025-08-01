@@ -89,7 +89,7 @@
     "@slack/webhook": "7.0.5",
     "axe-core": "4.10.3",
     "browsertime": "25.0.0",
-    "coach-core": "8.1.1",
+    "coach-core": "8.1.2",
     "dayjs": "1.11.13",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.7",
