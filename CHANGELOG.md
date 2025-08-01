@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.1.1 - 2025-08-01
+### Fixed
+* Upgraded to coach core 8.1.2 [#4540](https://github.com/sitespeedio/sitespeed.io/pull/4540).
+
 ## 38.1.0 - 2025-07-28
 ### Added
 * Firefox 141 in the Docker container [#4538](https://github.com/sitespeedio/sitespeed.io/pull/4538).
