@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.1.2 - 2025-08-04
+### Fixed
+* Upgraded to coach core 8.1.3 [#4551](https://github.com/sitespeedio/sitespeed.io/pull/4541) (there was a bug introduced in 8.1.2).
+
 ## 38.1.1 - 2025-08-01
 ### Fixed
 * Upgraded to coach core 8.1.2 [#4540](https://github.com/sitespeedio/sitespeed.io/pull/4540).
