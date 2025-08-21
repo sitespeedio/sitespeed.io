@@ -3,10 +3,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>The sitespeed.io blog</title>
+    <title>Sitespeed.io Blog</title>
     <description>The latest news from the sitespeed.io world.</description>
     <link>https://www.sitespeed.io</link>
-    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="{{ site.url }}/feed/blog.xml" rel="self" type="application/rss+xml" />
     {% for post in site.posts limit:10 %}
     <item>
       <title>{{ post.title | xml_escape }}</title>
