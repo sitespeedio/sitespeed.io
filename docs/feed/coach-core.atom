@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>coach-core-release-feed</id>
     <title>coach-core release feed</title>
-    <updated>2025-08-01T05:01:31.017Z</updated>
+    <updated>2025-08-31T14:30:33.326Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
