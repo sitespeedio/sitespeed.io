@@ -4,6 +4,34 @@ Sitespeed.io continues to evolve thanks to people who contributes, so please ple
 ## Making changes
 If you want help out, that's great! Before taking the time to code something big, feel free to open an issue first proposing your idea to other contributors, that way you can get feedback on the idea before taking time to write precious code.
 
+### AI-Assisted Contributions
+
+When using AI tools like ChatGPT to assist with development, please a) disclose it in your commits and pull requests.
+
+#### Commits
+
+When writing a commit message for a change that was assisted by an AI, please add the `AI-assisted-by:` trailer to the commit message body.
+
+**Example:**
+
+```
+Add Cumulative Layout Shift metric to the summary page
+
+Add the Cumulative Layout Shift (CLS) introduced by Google on
+the summary page. Show both median and p75.
+
+AI-assisted-by: ChatGPT
+```
+
+#### Pull Requests
+
+When creating a pull request that includes AI-assisted work, please mention it in the pull request description.
+
+**Example:**
+
+> This pull request implements user profile caching with assistance from ChatGPT.
+
+
 ## Add a defect
 Please make sure you run the [latest version](https://www.npmjs.com/package/sitespeed.io) of sitespeed.io. Then check the [defect/bug list](https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&page=1&state=open) to make sure that it hasn't been filed yet.
 
