@@ -29,7 +29,7 @@ When creating a pull request that includes AI-assisted work, please mention it i
 
 **Example:**
 
-> This pull request implements user profile caching with assistance from ChatGPT.
+> This pull request implements Cumulative Layout Shift with assistance from ChatGPT.
 
 
 ## Add a defect
