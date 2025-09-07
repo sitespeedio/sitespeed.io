@@ -1,9 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.3.0 - 2025-09-07
+### Added
+* Upgraded to Chrome/Chromedriver 140 [#4549](https://github.com/sitespeedio/sitespeed.io/pull/4549) and [#4548](https://github.com/sitespeedio/sitespeed.io/pull/4548).
+
 ## 38.2.0 - 2025-08-31
 ### Added
-* Upgraded to Firefox 132 [#4545](https://github.com/sitespeedio/sitespeed.io/pull/4545) and Chrome/Edge 139 in the Docker container [#4552](https://github.com/sitespeedio/sitespeed.io/pull/4542).
+* Upgraded to Firefox 142 [#4545](https://github.com/sitespeedio/sitespeed.io/pull/4545) and Chrome/Edge 139 in the Docker container [#4552](https://github.com/sitespeedio/sitespeed.io/pull/4542).
 
 ## 38.1.2 - 2025-08-04
 ### Fixed
