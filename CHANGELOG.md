@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.4.0 - UNRELEASED
+### Added
+* Upgraded to Chrome/Edge 141 [#4551](https://github.com/sitespeedio/sitespeed.io/pull/4551).
+
 ## 38.3.0 - 2025-09-07
 ### Added
 * Upgraded to Chrome/Chromedriver 140 [#4549](https://github.com/sitespeedio/sitespeed.io/pull/4549) and [#4548](https://github.com/sitespeedio/sitespeed.io/pull/4548).
