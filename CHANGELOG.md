@@ -4,6 +4,8 @@
 ## 38.4.0 - UNRELEASED
 ### Added
 * Upgraded to Chrome/Edge 141 [#4551](https://github.com/sitespeedio/sitespeed.io/pull/4551).
+* +1 container users will get Lighthouse 13.
+* Browsertime 25.2 with latest Chrome/Edgedrivers [#4552](https://github.com/sitespeedio/sitespeed.io/pull/4552).
 
 ## 38.3.0 - 2025-09-07
 ### Added
