@@ -1,7 +1,7 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 38.4.0 - UNRELEASED
+## 38.4.0 - 2025-10-12
 ### Added
 * Upgraded to Chrome/Edge 141 [#4551](https://github.com/sitespeedio/sitespeed.io/pull/4551).
 * +1 container users will get Lighthouse 13.
