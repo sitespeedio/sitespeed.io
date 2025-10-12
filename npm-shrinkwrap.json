@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.5",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.3",
-        "browsertime": "25.1.0",
+        "browsertime": "25.2.0",
         "coach-core": "8.1.3",
         "dayjs": "1.11.13",
         "fast-crc32c": "2.0.0",
@@ -944,10 +944,9 @@
       }
     },
     "node_modules/@bazel/runfiles": {
-      "version": "6.3.1",
-      "resolved": "https://registry.npmjs.org/@bazel/runfiles/-/runfiles-6.3.1.tgz",
-      "integrity": "sha512-1uLNT5NZsUVIGS4syuHwTzZ8HycMPyr6POA3FCE4GbMtc4rhoJk8aZKtNIRthJYfL+iioppi+rTfH3olMPr9nA==",
-      "license": "Apache-2.0"
+      "version": "6.5.0",
+      "resolved": "https://registry.npmjs.org/@bazel/runfiles/-/runfiles-6.5.0.tgz",
+      "integrity": "sha512-RzahvqTkfpY2jsDxo8YItPX+/iZ6hbiikw1YhE0bA9EKBR5Og8Pa6FHn9PO9M0zaXRVsr0GFQLKbB/0rzy9SzA=="
     },
     "node_modules/@devicefarmer/adbkit": {
       "version": "3.3.8",
@@ -1789,20 +1788,19 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "140.0.7339-80",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-140.0.7339-80.tgz",
-      "integrity": "sha512-YkkeyRIQXCahWeMJQSqiCfuzCl2gC5FWahFv4fo8Mi3Lmd70lFVJIFZ1/PEOgLF/8L70/RFXHSzi/IC8+S1Idg==",
+      "version": "141.0.7390-76",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-141.0.7390-76.tgz",
+      "integrity": "sha512-oTFOLDQODprhbIf2eekqU0KFLxtgvTMNZFZuwlnUmM69jeasyu+tyj+/VPb39/yWWOzlZnu7DjnCtiBlNPM2jg==",
       "hasInstallScript": true,
-      "license": "MIT",
       "dependencies": {
         "node-downloader-helper": "2.1.9",
         "node-stream-zip": "1.15.0"
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
-      "version": "138.0.3351-83",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-138.0.3351-83.tgz",
-      "integrity": "sha512-wSYyMlmIpyatg2CeFK40K87KwBcL/JmPAjPwgn7NC0dxYQ46IDx5a2LRjVcKk03A54hE3ppePvFYUcL8UhJCPQ==",
+      "version": "141.0.3537-71",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-141.0.3537-71.tgz",
+      "integrity": "sha512-YWVcIgU8BqMZGzrXprojQD1wCyFv0iA3krkuUyrk1rmi0DGuOom81hGu34EynSzUzsoX50aNjH95akX771MkTw==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.9",
@@ -3424,14 +3422,13 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "25.1.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-25.1.0.tgz",
-      "integrity": "sha512-isrjTCtU9SgUSFzCRKcRPlhw5ewEOONLzViUfiNyxmZnmsEW7hq9Z3SENxJrsyf8Etv9u1aZJCZWHFdprHQRCg==",
-      "license": "MIT",
+      "version": "25.2.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-25.2.0.tgz",
+      "integrity": "sha512-LQih146jyp7QhGKE/nj7ytO7ujUay+Tz9FPYP0aeSqbK4GLVFL+tfdctbaNHpy3qK27loGOQJvlrEBTnawc+sg==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
-        "@sitespeed.io/chromedriver": "140.0.7339-80",
-        "@sitespeed.io/edgedriver": "138.0.3351-83",
+        "@sitespeed.io/chromedriver": "141.0.7390-76",
+        "@sitespeed.io/edgedriver": "141.0.3537-71",
         "@sitespeed.io/geckodriver": "0.36.0",
         "@sitespeed.io/log": "0.2.6",
         "@sitespeed.io/throttle": "5.0.1",
@@ -3440,9 +3437,9 @@
         "chrome-remote-interface": "0.33.3",
         "execa": "9.6.0",
         "fast-stats": "0.0.7",
-        "ff-test-bidi-har-export": "0.0.17",
+        "ff-test-bidi-har-export": "0.0.18",
         "lodash.merge": "4.6.2",
-        "selenium-webdriver": "4.35.0",
+        "selenium-webdriver": "4.36.0",
         "yargs": "18.0.0"
       },
       "bin": {
@@ -4079,8 +4076,7 @@
     "node_modules/core-util-is": {
       "version": "1.0.3",
       "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz",
-      "integrity": "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==",
-      "license": "MIT"
+      "integrity": "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ=="
     },
     "node_modules/cpu-features": {
       "version": "0.0.10",
@@ -5041,9 +5037,9 @@
       }
     },
     "node_modules/ff-test-bidi-har-export": {
-      "version": "0.0.17",
-      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.17.tgz",
-      "integrity": "sha512-TDqBPeJOW+aQaEU5U3dPruCjM1hauMNa3pq+4F7a9PDCB/owfmF5T5mx8L/0S1PMCiWJikV2SQaJY7/9EaRR3g=="
+      "version": "0.0.18",
+      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.18.tgz",
+      "integrity": "sha512-9Id/mF6o0src/I4kCbLhkqSlLHMrbEi7cwI6yLpjsSK+xqdgo5J80tbkV7YkLV4NhNalJ5O+jPjZklz1pSurAQ=="
     },
     "node_modules/figures": {
       "version": "6.1.0",
@@ -5737,8 +5733,7 @@
     "node_modules/immediate": {
       "version": "3.0.6",
       "resolved": "https://registry.npmjs.org/immediate/-/immediate-3.0.6.tgz",
-      "integrity": "sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==",
-      "license": "MIT"
+      "integrity": "sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ=="
     },
     "node_modules/immutable": {
       "version": "4.0.0",
@@ -6025,8 +6020,7 @@
     "node_modules/isarray": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
-      "integrity": "sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==",
-      "license": "MIT"
+      "integrity": "sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ=="
     },
     "node_modules/isexe": {
       "version": "2.0.0",
@@ -6290,7 +6284,6 @@
       "version": "3.10.1",
       "resolved": "https://registry.npmjs.org/jszip/-/jszip-3.10.1.tgz",
       "integrity": "sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==",
-      "license": "(MIT OR GPL-3.0-or-later)",
       "dependencies": {
         "lie": "~3.3.0",
         "pako": "~1.0.2",
@@ -6302,7 +6295,6 @@
       "version": "2.3.8",
       "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.8.tgz",
       "integrity": "sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==",
-      "license": "MIT",
       "dependencies": {
         "core-util-is": "~1.0.0",
         "inherits": "~2.0.3",
@@ -6466,7 +6458,6 @@
       "version": "3.3.0",
       "resolved": "https://registry.npmjs.org/lie/-/lie-3.3.0.tgz",
       "integrity": "sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==",
-      "license": "MIT",
       "dependencies": {
         "immediate": "~3.0.5"
       }
@@ -6904,7 +6895,6 @@
       "version": "2.1.9",
       "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.9.tgz",
       "integrity": "sha512-FSvAol2Z8UP191sZtsUZwHIN0eGoGue3uEXGdWIH5228e9KH1YHXT7fN8Oa33UGf+FbqGTQg3sJfrRGzmVCaJA==",
-      "license": "MIT",
       "bin": {
         "ndh": "bin/ndh"
       },
@@ -7278,8 +7268,7 @@
     "node_modules/pako": {
       "version": "1.0.11",
       "resolved": "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz",
-      "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==",
-      "license": "(MIT AND Zlib)"
+      "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw=="
     },
     "node_modules/parent-module": {
       "version": "1.0.1",
@@ -7626,8 +7615,7 @@
     "node_modules/process-nextick-args": {
       "version": "2.0.1",
       "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz",
-      "integrity": "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==",
-      "license": "MIT"
+      "integrity": "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
     },
     "node_modules/promise": {
       "version": "7.3.1",
@@ -8275,9 +8263,9 @@
       }
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.35.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.35.0.tgz",
-      "integrity": "sha512-Baaeiuyu7BIIsSYf0SI7Mi55gsNmdI00KM0Hcofw1RnAY+0QEVpdh5yAxueDxgTZS8vcbGZFU0NJ6Qc1riIrLg==",
+      "version": "4.36.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.36.0.tgz",
+      "integrity": "sha512-rZGqjXiqNVL6QNqKNEk5DPaIMPbvApcmAS9QsXyt5wT3sfTSHGCh4AX/YKeDTOwei1BOZDlPOKBd82WCosUt9w==",
       "funding": [
         {
           "type": "github",
@@ -8288,12 +8276,11 @@
           "url": "https://opencollective.com/selenium"
         }
       ],
-      "license": "Apache-2.0",
       "dependencies": {
         "@bazel/runfiles": "^6.3.1",
         "jszip": "^3.10.1",
-        "tmp": "^0.2.3",
-        "ws": "^8.18.2"
+        "tmp": "^0.2.5",
+        "ws": "^8.18.3"
       },
       "engines": {
         "node": ">= 20.0.0"
@@ -8303,7 +8290,6 @@
       "version": "8.18.3",
       "resolved": "https://registry.npmjs.org/ws/-/ws-8.18.3.tgz",
       "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
-      "license": "MIT",
       "engines": {
         "node": ">=10.0.0"
       },
@@ -8449,8 +8435,7 @@
     "node_modules/setimmediate": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz",
-      "integrity": "sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==",
-      "license": "MIT"
+      "integrity": "sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA=="
     },
     "node_modules/shebang-command": {
       "version": "2.0.0",
@@ -8997,7 +8982,6 @@
       "version": "0.2.5",
       "resolved": "https://registry.npmjs.org/tmp/-/tmp-0.2.5.tgz",
       "integrity": "sha512-voyz6MApa1rQGUxT3E+BK7/ROe8itEx7vD8/HEvt4xwXucvQ5G5oeEiHkmHZJuBO21RpOf+YYm9MOivj709jow==",
-      "license": "MIT",
       "engines": {
         "node": ">=14.14"
       }
