@@ -54,6 +54,8 @@ android
       --android.pretestPowerPress, --androidPretestPowerPress                                      Press the power button on the phone before a test starts.  [boolean] [default: false]
       --android.pretestPressHomeButton, --androidPretestPressHomeButton                            Press the home button on the phone before a test starts.  [boolean] [default: false]
       --android.verifyNetwork, --androidVerifyNetwork                                              Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
+      --android.ndk, --androidNDK                                                                  Path to the Android NDK (required for simpleperf profiling).  [string]
+      --android.perfettoTrace, --androidPerfettoTrace                                              Collect a perfetto trace with the given configuration.  [default: false]
       --android.gnirehtet, --gnirehtet                                                             Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
 
 firefox
@@ -79,7 +81,7 @@ firefox
       --firefox.geckoProfilerParams.interval    Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
       --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 13107200]
       --firefox.perfStats                       Collect gecko performance statistics as measured internally by the firefox browser. See https://searchfox.org/mozilla-central/source/tools/performance/PerfStats.h#24-33  [boolean] [default: false]
-      --firefox.perfStatsParams.mask            Mask to decide which features to enable  [number] [default: 4294967295]
+      --firefox.perfStatsParams.features        Comma-separated list of PerfStats features to enable. If not provided, all features will be enabled.  [string]
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
       --firefox.powerConsumption                Enable power consumption collection (in Wh). To get the consumption you also need to set firefox.geckoProfilerParams.features to include power.  [boolean] [default: false]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
