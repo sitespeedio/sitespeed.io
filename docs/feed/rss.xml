@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 07 Sep 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 12 Oct 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,42 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 38.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0</guid>
+            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to Chrome/Edge 141 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4551">#4551</a>.</li>
+</ul>
+ <ul>
+<li>+1 container users will get Lighthouse 13.</li>
+</ul>
+ <ul>
+<li>Browsertime 25.2 with latest Chrome/Edgedrivers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4552">#4552</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 25.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</guid>
+            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver/Edge/Edgedriver 141, Firefox 143 <a href="https://github.com/sitespeedio/browsertime/pull/2325">#2325</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2323">#2323</a>.</li>
+</ul>
+ <ul>
+<li>Updated webdriver and bidi-har <a href="https://github.com/sitespeedio/browsertime/pull/2322">#2322</a>.</li>
+</ul>
+ <ul>
+<li>Added simpleperf and perfetto support for Android, thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR  <a href="https://github.com/sitespeedio/browsertime/pull/2315">#2315</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 38.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0</guid>
@@ -26,6 +62,21 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 25.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.1.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.1.0</guid>
+            <pubDate>Fri, 05 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 140, Firefox 142 <a href="https://github.com/sitespeedio/browsertime/pull/2318">#2318</a>.</li>
+</ul>
+ <ul>
+<li>Selenium webdriver 4.35.0 <a href="https://github.com/sitespeedio/browsertime/pull/2317">#2317</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 38.2.0]]></title>
@@ -256,18 +307,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 37.6.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.6.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.6.0</guid>
-            <pubDate>Tue, 13 May 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added Edge 136, Edgedriver and Chromedriver 136 by updating to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#browsertime-changelog-we-do-semantic-versioning">Browsertime 24.7.0</a> in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4514">#4514</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 24.7.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.7.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.7.0</guid>
@@ -313,30 +352,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix for running privileged script in Firefox 138 <a href="https://github.com/sitespeedio/browsertime/pull/2274">#2274</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.5.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.2</guid>
-            <pubDate>Thu, 20 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bugfix for the missing FCP delta with TTFB <a href="https://github.com/sitespeedio/browsertime/pull/2273">#2273</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.5.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.1</guid>
-            <pubDate>Tue, 18 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bugfix for <code>--userTimingBlockList</code> <a href="https://github.com/sitespeedio/browsertime/pull/2272">#2272</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

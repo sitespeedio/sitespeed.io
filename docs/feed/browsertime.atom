@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-09-07T06:14:30.657Z</updated>
+    <updated>2025-10-12T13:58:29.204Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,45 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 25.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0"/>
+        <updated>2025-10-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver/Edge/Edgedriver 141, Firefox 143 <a href="https://github.com/sitespeedio/browsertime/pull/2325">#2325</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2323">#2323</a>.</li>
+</ul>
+ <ul>
+<li>Updated webdriver and bidi-har <a href="https://github.com/sitespeedio/browsertime/pull/2322">#2322</a>.</li>
+</ul>
+ <ul>
+<li>Added simpleperf and perfetto support for Android, thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR  <a href="https://github.com/sitespeedio/browsertime/pull/2315">#2315</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 25.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.1.0"/>
+        <updated>2025-09-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 140, Firefox 142 <a href="https://github.com/sitespeedio/browsertime/pull/2318">#2318</a>.</li>
+</ul>
+ <ul>
+<li>Selenium webdriver 4.35.0 <a href="https://github.com/sitespeedio/browsertime/pull/2317">#2317</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 25.0.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0</id>
@@ -176,36 +215,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix for running privileged script in Firefox 138 <a href="https://github.com/sitespeedio/browsertime/pull/2274">#2274</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.5.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.2"/>
-        <updated>2025-03-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bugfix for the missing FCP delta with TTFB <a href="https://github.com/sitespeedio/browsertime/pull/2273">#2273</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.5.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.1"/>
-        <updated>2025-03-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bugfix for <code>--userTimingBlockList</code> <a href="https://github.com/sitespeedio/browsertime/pull/2272">#2272</a>.</li>
 </ul>
 ]]></summary>
         <author>

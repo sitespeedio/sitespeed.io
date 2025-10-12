@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-09-07T06:32:57.408Z</updated>
+    <updated>2025-10-12T14:46:12.806Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 38.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0"/>
+        <updated>2025-10-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to Chrome/Edge 141 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4551">#4551</a>.</li>
+</ul>
+ <ul>
+<li>+1 container users will get Lighthouse 13.</li>
+</ul>
+ <ul>
+<li>Browsertime 25.2 with latest Chrome/Edgedrivers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4552">#4552</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 38.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0</id>
@@ -165,21 +186,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Added Chrome 137 and Firefox 139 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4520">#4520</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 37.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.6.0"/>
-        <updated>2025-05-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added Edge 136, Edgedriver and Chromedriver 136 by updating to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#browsertime-changelog-we-do-semantic-versioning">Browsertime 24.7.0</a> in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4514">#4514</a>.</li>
 </ul>
 ]]></summary>
         <author>
