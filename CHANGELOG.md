@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.4.1 - 2025-10-14
+### Fixed
+* Set max width 400 pixel of the screenshot showing in the Grafana annotation (Grafana changed how they render the annotation long time ago) [#4553](https://github.com/sitespeedio/sitespeed.io/pull/4553) and [the fix](https://github.com/sitespeedio/sitespeed.io/commit/dbcdc72bedd0a2be5c9031675783fe3f3b73f288).
+
 ## 38.4.0 - 2025-10-12
 ### Added
 * Upgraded to Chrome/Edge 141 [#4551](https://github.com/sitespeedio/sitespeed.io/pull/4551).
