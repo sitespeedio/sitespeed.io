@@ -87,7 +87,7 @@
     "@sitespeed.io/plugin": "1.0.0",
     "@tgwf/co2": "0.16.4",
     "@slack/webhook": "7.0.5",
-    "axe-core": "4.10.3",
+    "axe-core": "4.11.0",
     "browsertime": "25.2.0",
     "coach-core": "8.1.3",
     "dayjs": "1.11.13",
