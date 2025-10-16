@@ -83,7 +83,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.911.0",
     "@google-cloud/storage": "7.17.2",
-    "@sitespeed.io/log": "0.2.6",
+    "@sitespeed.io/log": "1.0.0",
     "@sitespeed.io/plugin": "1.0.0",
     "@tgwf/co2": "0.16.9",
     "@slack/webhook": "7.0.6",
