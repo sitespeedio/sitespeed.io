@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 31.x
+title: Documentation sitespeed.io 38.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v34
+# Documentation v38
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
@@ -18,7 +18,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 ## Start
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
- * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS. 
+ * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS.
  * [Compare plugin](compare/) - use Mann Whitney U or Wilcox statistical methods to know if you have a regression.
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
