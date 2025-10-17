@@ -207,6 +207,7 @@ Options:
       --har                                        Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
       --skipHar                                    Pass --skipHar to not collect a HAR file.  [boolean]
       --gzipHar                                    Pass --gzipHar to gzip the HAR file  [boolean]
+      --cleanSensitiveHeaders                      Pass --cleanSensitiveHeaders to remove sensitive headers in the HAR file  [boolean]
       --config                                     Path to JSON config file. You can also use a .browsertime.json file that will automatically be found by Browsertime using find-up.
       --viewPort                                   Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
       --resultDir                                  Set result directory for the files produced by Browsertime
