@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-10-12T13:58:29.204Z</updated>
+    <updated>2025-10-17T21:23:26.081Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,31 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 25.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.0"/>
+        <updated>2025-10-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make it possible to strip cookie and auth headers in the HAR file for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2329">#2329</a> and Chrome <a href="https://github.com/sitespeedio/browsertime/pull/2330">#2330</a>. Use <code>--cleanSensitiveHeaders</code> to remove a <a href="https://github.com/sitespeedio/browsertime/blob/main/lib/support/har/index.js#L11-L24">couple of headers</a>.</li>
+</ul>
+ <ul>
+<li>Firefox 144 <a href="https://github.com/sitespeedio/browsertime/pull/2331">#2331</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated developer dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2326">#2326</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2327">#2327</a>.</li>
+</ul>
+ <ul>
+<li>Updated log dependency <a href="https://github.com/sitespeedio/b23272327rowsertime/pull/2328">#2328</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 25.2.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</id>
@@ -200,21 +225,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>PreURL and pageCompleteCheckNetworkIdle didn&#39;t work together as reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/4509">sitespeed.io #4509</a>. Fixed in <a href="https://github.com/sitespeedio/browsertime/pull/2278">#2278</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.5.3]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.3</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.3"/>
-        <updated>2025-04-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for running privileged script in Firefox 138 <a href="https://github.com/sitespeedio/browsertime/pull/2274">#2274</a>.</li>
 </ul>
 ]]></summary>
         <author>
