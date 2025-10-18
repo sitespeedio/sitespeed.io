@@ -1,6 +1,17 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.5.0 - 2025-10-18
+### Added
+* Updated the Docker container to use Firefox 144 [#4554](https://github.com/sitespeedio/sitespeed.io/pull/4554).
+* Added Browsertime 25.3 [#4559](https://github.com/sitespeedio/sitespeed.io/pull/4559) with support for removing some headers in the HAR file (more info about that soon).
+
+### Fixed
+* Updated dev dependencies [#4556](https://github.com/sitespeedio/sitespeed.io/pull/4556).
+* Updated to Axe-core 4.11.0 [#4555)](https://github.com/sitespeedio/sitespeed.io/pull/4555).
+* Updated Ora dependency [#4557](https://github.com/sitespeedio/sitespeed.io/pull/4557).
+* Updated the log dependency [#4558](https://github.com/sitespeedio/sitespeed.io/pull/4558). The new version remove the color for error logs.
+
 ## 38.4.1 - 2025-10-14
 ### Fixed
 * Set max width 400 pixel of the screenshot showing in the Grafana annotation (Grafana changed how they render the annotation long time ago) [#4553](https://github.com/sitespeedio/sitespeed.io/pull/4553) and [the fix](https://github.com/sitespeedio/sitespeed.io/commit/dbcdc72bedd0a2be5c9031675783fe3f3b73f288).
