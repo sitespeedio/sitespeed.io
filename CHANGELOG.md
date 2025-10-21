@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.5.1 - 2025-10-21
+### Fixed
+* The +1 container has a updated configuration for the GPSI plugin to remove the PWA category. Thank you [ThimoCode](https://github.com/ThimoCode) for PR [#58](https://github.com/sitespeedio/plugin-gpsi/pull/58).
+
 ## 38.5.0 - 2025-10-18
 ### Added
 * Updated the Docker container to use Firefox 144 [#4554](https://github.com/sitespeedio/sitespeed.io/pull/4554).
