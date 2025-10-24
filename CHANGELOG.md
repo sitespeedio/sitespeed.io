@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.5.2 - 2025-10-24
+### Fixed
+* Upgrade to [Browsetime 25.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2531---2025-10-24) [#4562](https://github.com/sitespeedio/sitespeed.io/pull/4562).
+
 ## 38.5.1 - 2025-10-21
 ### Fixed
 * The +1 container has a updated configuration for the GPSI plugin to remove the PWA category. Thank you [ThimoCode](https://github.com/ThimoCode) for PR [#58](https://github.com/sitespeedio/plugin-gpsi/pull/58).
