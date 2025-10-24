@@ -4,13 +4,38 @@
         <title>server release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of server</description>
-        <lastBuildDate>Tue, 11 Mar 2025 12:53:02 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 22 Oct 2025 22:03:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/server.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[server 1.7.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.1</guid>
+            <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for the search qyuery parameter <a href="https://github.com/sitespeedio/onlinetest/pull/162">#162</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.7.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.0</guid>
+            <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated dependencies (too many PRs).</li>
+</ul>
+ <ul>
+<li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[server 1.6.5]]></title>
             <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.5</link>
@@ -103,31 +128,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Changed default text size to medium from large <a href="https://github.com/sitespeedio/onlinetest/pull/135">#135</a> and <a href="https://github.com/sitespeedio/onlinetest/pull/136">#136</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.4.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.4.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.4.0</guid>
-            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make sure completed tests are linked to the result <a href="https://github.com/sitespeedio/onlinetest/pull/132">#132</a>.</li>
-</ul>
- <ul>
-<li>When hover the result link, show when the test was added, when it run and the connectivity <a href="https://github.com/sitespeedio/onlinetest/pull/133">#133</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.3.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.3.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.3.0</guid>
-            <pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add link to active test in search <a href="https://github.com/sitespeedio/onlinetest/pull/129">#129</a>.</li>
 </ul>
 ]]></description>
         </item>

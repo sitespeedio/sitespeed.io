@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>testrunner-release-feed</id>
     <title>testrunner release feed</title>
-    <updated>2025-02-12T12:20:48.626Z</updated>
+    <updated>2025-10-22T21:28:22.870Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.2.0]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0"/>
+        <updated>2025-10-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to sitespeed.io 38 <a href="https://github.com/sitespeedio/onlinetest/pull/158">#158</a></li>
+</ul>
+ <ul>
+<li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies (too many PRs).</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[testrunner 1.1.0]]></title>
         <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</id>
@@ -150,21 +172,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[testrunner 0.5.6]]></title>
-        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6</id>
-        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6"/>
-        <updated>2024-09-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
 </ul>
 ]]></summary>
         <author>
