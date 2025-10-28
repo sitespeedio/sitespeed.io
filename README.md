@@ -194,7 +194,7 @@ With these insights, you can make informed decisions about optimizations and tra
 
 ### Video Performance Analysis
 
-For visual feedback, `sitespeed.io` can generate videos, making it easier to see how your site loads in real-time. Here's an sample video:
+For visual feedback, `sitespeed.io` can generate videos, making it easier to see how your site loads in real-time. Here's a sample video:
 
 ![Video Analysis](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif)
 
