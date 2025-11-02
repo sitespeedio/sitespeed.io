@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 38.6.0 - 2025-11-02
+### Added
+* Browsertime 25.4.0 [#4566](https://github.com/sitespeedio/sitespeed.io/pull/4566).
+* Chrome 142 [#4565](https://github.com/sitespeedio/sitespeed.io/pull/4565).
+
 ## 38.5.2 - 2025-10-24
 ### Fixed
 * Upgrade to [Browsetime 25.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2531---2025-10-24) [#4562](https://github.com/sitespeedio/sitespeed.io/pull/4562).
