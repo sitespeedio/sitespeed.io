@@ -113,7 +113,7 @@ video
       --videoParams.threads            Number of threads to use for video recording. Default is determined by ffmpeg.  [default: 0]
 
 edge
-      --edge.edgedriverPath  Path to custom msedgedriver version (need to match your Egde version).
+      --edge.edgedriverPath  Path to custom msedgedriver version (need to match your Edge version).
       --edge.binaryPath      Path to custom Edge binary
 
 safari
