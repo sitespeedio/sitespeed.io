@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-10-24T00:00:00.000Z</updated>
+    <updated>2025-11-02T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,39 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 38.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.6.0"/>
+        <updated>2025-11-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Browsertime 25.4.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4566">#4566</a>.</li>
+</ul>
+ <ul>
+<li>Chrome 142 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4565">#4565</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 25.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0"/>
+        <updated>2025-11-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome and Chromedriver 142 <a href="https://github.com/sitespeedio/browsertime/pull/2335">#2335</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 38.5.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.5.2</id>
@@ -331,25 +364,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.0"/>
-        <updated>2025-07-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 141 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4538">#4538</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Bumped form-data dependency for security warnings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4539">#4539</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 25.0.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0"/>
@@ -450,31 +464,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Updated dependencies: selenium, usb-power-profiling, execa and dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2290">#2290</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2291">#2291</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2294">#2294</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2295">#2295</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.7.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.7.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.7.0"/>
-        <updated>2025-05-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added Edge and Edgedriver 136 <a href="https://github.com/sitespeedio/browsertime/pull/2282">#2282</a>.</li>
-</ul>
- <ul>
-<li>Add commands to start/stop and collect PerfStats performance counters for Firefox, thank you <a href="https://github.com/dpalmeiro">Denis Palmeiro</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2279">#2279</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Selenium 4.32.0 <a href="https://github.com/sitespeedio/browsertime/pull/2281">#2281</a>.</li>
-</ul>
- <ul>
-<li>Chromedriver 136 <a href="https://github.com/sitespeedio/browsertime/pull/2280">#2280</a>.</li>
 </ul>
 ]]></summary>
         <author>
