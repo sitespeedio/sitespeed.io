@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.0",
-        "browsertime": "25.3.1",
+        "browsertime": "25.4.0",
         "coach-core": "8.1.3",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
@@ -2337,9 +2337,9 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "141.0.7390-76",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-141.0.7390-76.tgz",
-      "integrity": "sha512-oTFOLDQODprhbIf2eekqU0KFLxtgvTMNZFZuwlnUmM69jeasyu+tyj+/VPb39/yWWOzlZnu7DjnCtiBlNPM2jg==",
+      "version": "142.0.7444-59",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-142.0.7444-59.tgz",
+      "integrity": "sha512-Nfsl35/mdZ5WrVo6gileOOWXdIvz/4azQVXJbOAKQtDlBWj2efPNGxLqWnwt7ynW1Lg69KV0KYUyaV9CwsDEdQ==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.9",
@@ -4060,12 +4060,12 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "25.3.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-25.3.1.tgz",
-      "integrity": "sha512-xCUCim9rTwBUxw3XYnuQbT5II81Z42ed6LrKGGc2CVexBjrBXasaVrcTJpLU8efJ66OiiI6F4MvSYTpAuhRtkA==",
+      "version": "25.4.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-25.4.0.tgz",
+      "integrity": "sha512-X685LO1es9M71JVjxV0FxonHFC+V4b/geD9TZ0DkxwNbcPUfR7Yy5sqC2BE/8PMUUPAqEcfA4Z3sqNUbFcF0AQ==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
-        "@sitespeed.io/chromedriver": "141.0.7390-76",
+        "@sitespeed.io/chromedriver": "142.0.7444-59",
         "@sitespeed.io/edgedriver": "141.0.3537-71",
         "@sitespeed.io/geckodriver": "0.36.0",
         "@sitespeed.io/log": "1.0.0",
@@ -4077,7 +4077,7 @@
         "fast-stats": "0.0.7",
         "ff-test-bidi-har-export": "0.0.18",
         "lodash.merge": "4.6.2",
-        "selenium-webdriver": "4.36.0",
+        "selenium-webdriver": "4.38.0",
         "yargs": "18.0.0"
       },
       "bin": {
@@ -8869,9 +8869,9 @@
       }
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.36.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.36.0.tgz",
-      "integrity": "sha512-rZGqjXiqNVL6QNqKNEk5DPaIMPbvApcmAS9QsXyt5wT3sfTSHGCh4AX/YKeDTOwei1BOZDlPOKBd82WCosUt9w==",
+      "version": "4.38.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.38.0.tgz",
+      "integrity": "sha512-5/UXXFSQmn7FGQkbcpAqvfhzflUdMWtT7QqpEgkFD6Q6rDucxB5EUfzgjmr6JbUj30QodcW3mDXehzoeS/Vy5w==",
       "funding": [
         {
           "type": "github",
