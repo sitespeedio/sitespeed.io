@@ -126,13 +126,12 @@ safari
       --safari.useSimulator          If the value of useSimulator is true, safaridriver will only use iOS Simulator hosts. If the value of safari:useSimulator is false, safaridriver will not use iOS Simulator hosts. NOTE: An Xcode installation is required in order to run WebDriver tests on iOS Simulator hosts.  [boolean] [default: false]
 
 Screenshot
-      --screenshot                             Save one screenshot per iteration.  [boolean] [default: false]
-      --screenshotLCP                          Save one screenshot per iteration that shows the largest contentful paint element (if the browser supports LCP).  [boolean] [default: false]
-      --screenshotLS                           Save one screenshot per iteration that shows the layout shift elements (if the browser supports layout shift).  [boolean] [default: false]
-      --screenshotParams.type                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "jpg"]
-      --screenshotParams.png.compressionLevel  zlib compression level  [default: 6]
-      --screenshotParams.jpg.quality           Quality of the JPEG screenshot. 1-100  [default: 80]
-      --screenshotParams.maxSize               The max size of the screenshot (width and height).  [default: 2000]
+      --screenshot                    Save one screenshot per iteration.  [boolean] [default: false]
+      --screenshotLCP                 Save one screenshot per iteration that shows the largest contentful paint element (if the browser supports LCP).  [boolean] [default: false]
+      --screenshotLS                  Save one screenshot per iteration that shows the layout shift elements (if the browser supports layout shift).  [boolean] [default: false]
+      --screenshotParams.type         Set the file type of the screenshot  [choices: "png", "jpg"] [default: "jpg"]
+      --screenshotParams.jpg.quality  Quality of the JPEG screenshot. 1-100  [default: 80]
+      --screenshotParams.maxSize      The max size of the screenshot (width and height).  [default: 2000]
 
 PageLoad
       --pageCompleteCheck             Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
