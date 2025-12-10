@@ -3,7 +3,7 @@
 
 # write files owned by the user who runs the container
 # if your volume is mounted at /browsertime, use it as CWD
-[[ -d /sitespeedio && "$PWD" = "/" ]] && cd /sitespeedio
+[[ -d /sitespeed.io && "$PWD" = "/" ]] && cd /sitespeed.io
 
 uid=$(stat -c '%u' . 2>/dev/null || echo 0)
 gid=$(stat -c '%g' . 2>/dev/null || echo 0)
