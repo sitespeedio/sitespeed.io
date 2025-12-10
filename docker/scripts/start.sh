@@ -1,8 +1,8 @@
 #!/bin/bash
-#
+set -e
 
 # write files owned by the user who runs the container
-# if your volume is mounted at /browsertime, use it as CWD
+# if your volume is mounted at /sitespeed.io, use it as CWD
 [[ -d /sitespeed.io && "$PWD" = "/" ]] && cd /sitespeed.io
 
 uid=$(stat -c '%u' . 2>/dev/null || echo 0)
