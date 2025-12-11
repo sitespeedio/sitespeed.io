@@ -1,4 +1,4 @@
-FROM node:22.13.0-bookworm-slim
+FROM node:24.11.0-bookworm-slim
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -15,7 +15,7 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /
     apt-get install -y --no-install-recommends firefox tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
     # Cleanup
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/* /tmp/* 
+    && rm -rf /var/lib/apt/lists/* /tmp/*
 
 # Install sitespeed.io
 RUN mkdir -p /usr/src/app

@@ -1,5 +1,30 @@
 #!/bin/bash
-#
+set -e
+
+# write files owned by the user who runs the container
+# if your volume is mounted at /sitespeed.io, use it as CWD
+[[ -d /sitespeed.io && "$PWD" = "/" ]] && cd /sitespeed.io
+
+uid=$(stat -c '%u' . 2>/dev/null || echo 0)
+gid=$(stat -c '%g' . 2>/dev/null || echo 0)
+
+if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
+  if ! getent group "$gid" >/dev/null 2>&1; then
+    groupadd -g "$gid" sitespeedio-host 2>/dev/null || true
+  fi
+  if ! getent passwd "$uid" >/dev/null 2>&1; then
+    useradd -u "$uid" -g "$gid" -M -d /tmp -s /bin/bash sitespeedio-host 2>/dev/null || true
+  fi
+fi
+
+run_as_host() {
+  if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
+    HOME=/tmp chroot --skip-chdir --userspec="+${uid}:+${gid}" / "$@"
+  else
+    HOME=/tmp "$@"
+  fi
+}
+
 # All browsers do not exist in all architectures.
 if [[ `which google-chrome` ]]; then
    google-chrome --version
@@ -40,20 +65,12 @@ else
   WPR_HTTPS_PORT=${WPR_HTTPS_PORT:-443}
 fi
 
-WORKDIR_UID=$(stat -c "%u" .)
-WORKDIR_GID=$(stat -c "%g" .)
-
-# Create user with the same UID and GID as the owner of the working directory, which will be used
-# to execute node. This is partly for security and partly so output files won't be owned by root.
-groupadd --non-unique --gid $WORKDIR_GID sitespeedio
-useradd --non-unique --uid $WORKDIR_UID --gid $WORKDIR_GID --home-dir /tmp sitespeedio
-
 # Need to explictly override the HOME directory to prevent dconf errors like:
 # (firefox:2003): dconf-CRITICAL **: 00:31:23.379: unable to create directory '/root/.cache/dconf': Permission denied.  dconf will not work properly.
 export HOME=/tmp
 
 function execNode(){
-  chroot --skip-chdir --userspec='sitespeedio:sitespeedio' / node "$@"
+  run_as_host node "$@"
 }
 
 # If we run Chrome on Android, we need to start the ADB server
@@ -111,7 +128,7 @@ function runWebPageReplay() {
           execNode --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO --browsertime.firefox.preference security.OCSP.enabled:0 --browsertime.firefox.acceptInsecureCerts true --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.webPageReplayHostResolver --browsertime.chrome.webPageReplayHTTPPort $WPR_HTTP_PORT --browsertime.chrome.webPageReplayHTTPSPort $WPR_HTTPS_PORT --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --replay --browsertime.connectivity.profile custom --browsertime.connectivity.rtt $LATENCY "$@" &
 
           PID=$!
-          
+
           trap shutdown SIGTERM SIGINT
           wait $PID
           EXIT_STATUS=$?
