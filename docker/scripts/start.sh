@@ -8,6 +8,15 @@ set -e
 uid=$(stat -c '%u' . 2>/dev/null || echo 0)
 gid=$(stat -c '%g' . 2>/dev/null || echo 0)
 
+if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
+  if ! getent group "$gid" >/dev/null 2>&1; then
+    groupadd -g "$gid" sitespeedio-host 2>/dev/null || true
+  fi
+  if ! getent passwd "$uid" >/dev/null 2>&1; then
+    useradd -u "$uid" -g "$gid" -M -d /tmp -s /bin/bash sitespeedio-host 2>/dev/null || true
+  fi
+fi
+
 run_as_host() {
   if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
     HOME=/tmp chroot --skip-chdir --userspec="+${uid}:+${gid}" / "$@"
