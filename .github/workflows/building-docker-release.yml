@@ -5,7 +5,7 @@ on:
       - 'v*.*.*'
 jobs:
   docker:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       -
           name: Checkout
@@ -29,13 +29,13 @@ jobs:
         run: |
             VERSION_TAG=${GITHUB_REF#refs/tags/}
             echo "Git tag: $VERSION_TAG"
-  
+
             VERSION=${VERSION_TAG#v}
             echo "Full version without 'v': $VERSION"
-  
+
             MAJOR_VERSION=${VERSION%%.*}
             echo "Major version: $MAJOR_VERSION"
-  
+
             echo "SITESPEED_VERSION=$VERSION" >> $GITHUB_OUTPUT
             echo "SITESPEED_MAJOR_VERSION=$MAJOR_VERSION" >> $GITHUB_OUTPUT
       -
@@ -60,7 +60,7 @@ jobs:
           build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
           push: true
           provenance: false
-          tags: | 
+          tags: |
             sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-plus1
             sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-plus1
       -
@@ -73,6 +73,6 @@ jobs:
           build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
           push: true
           provenance: false
-          tags: | 
+          tags: |
             sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-slim
             sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-slim
