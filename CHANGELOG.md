@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.1.0 - 2025-12-15
+### Added
+* Upgrade the Docker container: Chrome and Edge 143, Firefox 146 [#4572](https://github.com/sitespeedio/sitespeed.io/pull/4572).
+
 ## 39.0.0 - 2025-12-15
 
 ### Breaking
