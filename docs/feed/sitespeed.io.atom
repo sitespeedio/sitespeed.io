@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-11-02T14:37:33.909Z</updated>
+    <updated>2025-12-15T04:36:00.438Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0"/>
+        <updated>2025-12-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--browsertime.screenshotParams.png.compressionLevel</code>  <a href="https://github.com/sitespeedio/sitespeed.io/pull/4570">#4570</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 38.6.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.6.0</id>
@@ -169,21 +184,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Upgraded to coach core 8.1.3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4541">#4551</a> (there was a bug introduced in 8.1.2).</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.1"/>
-        <updated>2025-08-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to coach core 8.1.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4540">#4540</a>.</li>
 </ul>
 ]]></summary>
         <author>

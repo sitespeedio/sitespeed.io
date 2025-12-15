@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-11-02T14:18:25.789Z</updated>
+    <updated>2025-12-11T18:07:02.769Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,58 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 26.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0"/>
+        <updated>2025-12-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 146 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2351">#2351</a>.</li>
+</ul>
+ <ul>
+<li>Chrome 143 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2350">#2350</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure the user in the Docker container has the correct user rights <a href="https://github.com/sitespeedio/browsertime/pull/2349">#2349</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 26.0.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1"/>
+        <updated>2025-12-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Remove extra console.log entry :)</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 26.0.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0"/>
+        <updated>2025-12-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--screenshotParams.png.compressionLevel</code>   <a href="https://github.com/sitespeedio/browsertime/pull/2342">#2342</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 25.4.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0</id>
@@ -150,70 +202,6 @@
 </ul>
  <ul>
 <li>Add extra try/catch if main document timings is missing when generating the HAR <a href="https://github.com/sitespeedio/browsertime/pull/2302">#2302</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.8.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2"/>
-        <updated>2025-06-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for serverTiming - thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2301">#2301</a>.</li>
-</ul>
- <ul>
-<li>Cleanup how we get the navigation timing metrics <a href="https://github.com/sitespeedio/browsertime/pull/2300">#2300</a>.</li>
-</ul>
- <ul>
-<li>Fix depercation warnings in visual metrics. Thank you <a href="https://github.com/emmanuel-ferdman">Emmanuel Ferdman</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2297">#2297</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.8.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1"/>
-        <updated>2025-06-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>[Visual Elements] Fix split for selector to include full value with &#39;:&#39;` - thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2298">#2298</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.8.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.0"/>
-        <updated>2025-05-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome/Chromedriver 137 and Firefox 139 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2284">#2284</a>.</li>
-</ul>
- <ul>
-<li>Updated to Edge/Edgedriver 137 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2289">#2289</a>.</li>
-</ul>
- <ul>
-<li>New command: <code>wait.byXpathAndVisible(...)</code> - thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2286">#2286</a>.</li>
-</ul>
- <ul>
-<li>New command: <code>wait.bySelectorAndVisible(...)</code> PR <a href="https://github.com/sitespeedio/browsertime/pull/2288">#2288</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies: selenium, usb-power-profiling, execa and dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2290">#2290</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2291">#2291</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2294">#2294</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2295">#2295</a>.</li>
 </ul>
 ]]></summary>
         <author>

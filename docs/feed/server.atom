@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>server-release-feed</id>
     <title>server release feed</title>
-    <updated>2025-10-22T22:03:43.179Z</updated>
+    <updated>2025-10-25T17:02:07.343Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
