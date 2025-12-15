@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>chrome-har-release-feed</id>
     <title>chrome-har release feed</title>
-    <updated>2025-10-22T20:47:44.399Z</updated>
+    <updated>2024-12-27T07:52:02.791Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,36 +15,6 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 1.1.1]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1"/>
-        <updated>2025-10-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The option to clean header values was broken, this has been reverted for now.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 1.1.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0"/>
-        <updated>2025-10-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add option to clean header values <a href="https://github.com/sitespeedio/chrome-har/pull/141">#141</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
     <entry>
         <title type="html"><![CDATA[chrome-har 1.0.1]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</id>
@@ -164,6 +134,21 @@
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
         <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0"/>
         <updated>2020-10-29T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.11.12]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12"/>
+        <updated>2020-09-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Removed test directory from the release, thank you <a href="https://github.com/yurynix">Yury Michurin</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/75">#75</a>.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
