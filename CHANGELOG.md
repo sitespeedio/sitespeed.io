@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.1.1 - 2025-12-16
+### Fixed
+* Safer handling for broken URLs. This logs the actual root cause [#4573](https://github.com/sitespeedio/sitespeed.io/pull/4573).
+
 ## 39.1.0 - 2025-12-15
 ### Added
 * Upgrade the Docker container: Chrome and Edge 143, Firefox 146 [#4572](https://github.com/sitespeedio/sitespeed.io/pull/4572).
