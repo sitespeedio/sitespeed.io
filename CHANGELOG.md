@@ -1,6 +1,15 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.0.0 - 2025-12-15
+
+### Breaking
+* We removed support for setting the compression level for png screenshots, see the added section why.
+
+### Added
+* Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots `--browsertime.screenshotParams.png.compressionLevel`  [#4570](https://github.com/sitespeedio/sitespeed.io/pull/4570).
+
+
 ## 38.6.0 - 2025-11-02
 ### Added
 * Browsertime 25.4.0 [#4566](https://github.com/sitespeedio/sitespeed.io/pull/4566).
