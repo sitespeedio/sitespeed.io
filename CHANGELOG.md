@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.1.2 - 2025-12-17
+### Fixed
+* Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure [#4574](https://github.com/sitespeedio/sitespeed.io/pull/4574).
+
 ## 39.1.1 - 2025-12-16
 ### Fixed
 * Safer handling for broken URLs. This logs the actual root cause [#4573](https://github.com/sitespeedio/sitespeed.io/pull/4573).
