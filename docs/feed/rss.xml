@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 16 Dec 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 18 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,49 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 39.2.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</guid>
+            <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix <a href="https://github.com/sitespeedio/sitespeed.io/pull/4575">#4575</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 26.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</guid>
+            <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Chromedriver and Edgedriver to 143 <a href="https://github.com/sitespeedio/browsertime/pull/2354">#2354</a> and<a href="https://github.com/sitespeedio/browsertime/pull/2355">#2355</a>.</li>
+</ul>
+ <ul>
+<li>Updated webdriver to 4.39.0 <a href="https://github.com/sitespeedio/browsertime/pull/2356">#2356</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Try to tune the XVFB handling to make it safer that xvfb is always stopped <a href="https://github.com/sitespeedio/browsertime/pull/2353">#2353</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 39.1.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2</guid>
+            <pubDate>Wed, 17 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure <a href="https://github.com/sitespeedio/sitespeed.io/pull/4574">#4574</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 39.1.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.1</link>
@@ -52,6 +95,49 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[browsertime 26.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</guid>
+            <pubDate>Thu, 11 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 146 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2351">#2351</a>.</li>
+</ul>
+ <ul>
+<li>Chrome 143 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2350">#2350</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure the user in the Docker container has the correct user rights <a href="https://github.com/sitespeedio/browsertime/pull/2349">#2349</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 26.0.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</guid>
+            <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Remove extra console.log entry :)</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 26.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</guid>
+            <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--screenshotParams.png.compressionLevel</code>   <a href="https://github.com/sitespeedio/browsertime/pull/2342">#2342</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 38.6.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.6.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.6.0</guid>
@@ -77,6 +163,17 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 1.2.1]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</guid>
+            <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Tests running in the Docker container has the wrong path to the scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 38.5.2]]></title>
@@ -223,24 +320,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 38.4.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0</guid>
-            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Chrome/Edge 141 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4551">#4551</a>.</li>
-</ul>
- <ul>
-<li>+1 container users will get Lighthouse 13.</li>
-</ul>
- <ul>
-<li>Browsertime 25.2 with latest Chrome/Edgedrivers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4552">#4552</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 25.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</guid>
@@ -257,18 +336,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 38.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0</guid>
-            <pubDate>Sun, 07 Sep 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Chrome/Chromedriver 140 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4549">#4549</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4548">#4548</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 25.1.0]]></title>
@@ -318,80 +385,6 @@
 </ul>
  <ul>
 <li>Updated Edge dependency so it uses the new Microsoft domain for downloading <a href="https://github.com/sitespeedio/browsertime/pull/2312">#2312</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.9.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.9.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.9.0</guid>
-            <pubDate>Mon, 30 Jun 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update Docker container to use Chrome/edge 138, Firefox 140. Add Edgedriver and Chromedrinver 138 <a href="https://github.com/sitespeedio/browsertime/pull/2303">#2303</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Update Selenium webdriver to 4.34.0 <a href="https://github.com/sitespeedio/browsertime/pull/2304">#2304</a>.</li>
-</ul>
- <ul>
-<li>Add extra try/catch if main document timings is missing when generating the HAR <a href="https://github.com/sitespeedio/browsertime/pull/2302">#2302</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.8.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.2</guid>
-            <pubDate>Sun, 22 Jun 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for serverTiming - thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2301">#2301</a>.</li>
-</ul>
- <ul>
-<li>Cleanup how we get the navigation timing metrics <a href="https://github.com/sitespeedio/browsertime/pull/2300">#2300</a>.</li>
-</ul>
- <ul>
-<li>Fix depercation warnings in visual metrics. Thank you <a href="https://github.com/emmanuel-ferdman">Emmanuel Ferdman</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2297">#2297</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.8.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.1</guid>
-            <pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>[Visual Elements] Fix split for selector to include full value with &#39;:&#39;` - thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2298">#2298</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 24.8.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.8.0</guid>
-            <pubDate>Fri, 30 May 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome/Chromedriver 137 and Firefox 139 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2284">#2284</a>.</li>
-</ul>
- <ul>
-<li>Updated to Edge/Edgedriver 137 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2289">#2289</a>.</li>
-</ul>
- <ul>
-<li>New command: <code>wait.byXpathAndVisible(...)</code> - thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2286">#2286</a>.</li>
-</ul>
- <ul>
-<li>New command: <code>wait.bySelectorAndVisible(...)</code> PR <a href="https://github.com/sitespeedio/browsertime/pull/2288">#2288</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies: selenium, usb-power-profiling, execa and dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2290">#2290</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2291">#2291</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2294">#2294</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2295">#2295</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -614,17 +607,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fixed the release flow so the Docker containers get the correct tag.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.0]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.0</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.0</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
 </ul>
 ]]></description>
         </item>

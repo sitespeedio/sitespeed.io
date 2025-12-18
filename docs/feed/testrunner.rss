@@ -12,6 +12,17 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/testrunner.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[testrunner 1.2.1]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</guid>
+            <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Tests running in the Docker container has the wrong path to the scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[testrunner 1.2.0]]></title>
             <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0</link>
             <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0</guid>
@@ -121,17 +132,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fixed the release flow so the Docker containers get the correct tag.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.0]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.0</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.0</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
 </ul>
 ]]></description>
         </item>
