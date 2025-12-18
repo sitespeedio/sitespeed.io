@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.2.0 - 2025-12-18
+### Added
+* Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix [#4575](https://github.com/sitespeedio/sitespeed.io/pull/4575).
+
 ## 39.1.2 - 2025-12-17
 ### Fixed
 * Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure [#4574](https://github.com/sitespeedio/sitespeed.io/pull/4574).
