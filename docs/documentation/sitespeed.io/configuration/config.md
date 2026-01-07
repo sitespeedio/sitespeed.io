@@ -197,11 +197,10 @@ Budget
       --budget.removeWorkingResult, --budget.removePassingResult  Remove the result of URLs that pass the budget. You can use this if you many URL and only care about the ones that fails your budget. All videos/HTML for the working URLs will be removed if you pass this on.  [boolean]
 
 Screenshot
-      --browsertime.screenshot                                                                Set to false to disable screenshots  [boolean] [default: true]
-      --browsertime.screenshotParams.type, --screenshot.type                                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
-      --browsertime.screenshotParams.png.compressionLevel, --screenshot.png.compressionLevel  zlib compression level  [default: 6]
-      --browsertime.screenshotParams.jpg.quality, --screenshot.jpg.quality                    Quality of the JPEG screenshot. 1-100  [default: 80]
-      --browsertime.screenshotParams.maxSize, --screenshot.maxSize                            The max size of the screenshot (width and height).  [default: 2000]
+      --browsertime.screenshot                                              Set to false to disable screenshots  [boolean] [default: true]
+      --browsertime.screenshotParams.type, --screenshot.type                Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
+      --browsertime.screenshotParams.jpg.quality, --screenshot.jpg.quality  Quality of the JPEG screenshot. 1-100  [default: 80]
+      --browsertime.screenshotParams.maxSize, --screenshot.maxSize          The max size of the screenshot (width and height).  [default: 2000]
 
 Metrics
       --metrics.list        List all possible metrics in the data folder (metrics.txt).  [boolean] [default: false]

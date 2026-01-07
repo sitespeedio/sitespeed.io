@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-11-02T14:37:33.909Z</updated>
+    <updated>2025-12-18T09:22:06.219Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,81 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0"/>
+        <updated>2025-12-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix <a href="https://github.com/sitespeedio/sitespeed.io/pull/4575">#4575</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.1.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2"/>
+        <updated>2025-12-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure <a href="https://github.com/sitespeedio/sitespeed.io/pull/4574">#4574</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.1.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.1"/>
+        <updated>2025-12-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Safer handling for broken URLs. This logs the actual root cause <a href="https://github.com/sitespeedio/sitespeed.io/pull/4573">#4573</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.0"/>
+        <updated>2025-12-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgrade the Docker container: Chrome and Edge 143, Firefox 146 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4572">#4572</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0"/>
+        <updated>2025-12-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--browsertime.screenshotParams.png.compressionLevel</code>  <a href="https://github.com/sitespeedio/sitespeed.io/pull/4570">#4570</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 38.6.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.6.0</id>
@@ -103,87 +178,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Set max width 400 pixel of the screenshot showing in the Grafana annotation (Grafana changed how they render the annotation long time ago) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4553">#4553</a> and <a href="https://github.com/sitespeedio/sitespeed.io/commit/dbcdc72bedd0a2be5c9031675783fe3f3b73f288">the fix</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.0"/>
-        <updated>2025-10-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Chrome/Edge 141 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4551">#4551</a>.</li>
-</ul>
- <ul>
-<li>+1 container users will get Lighthouse 13.</li>
-</ul>
- <ul>
-<li>Browsertime 25.2 with latest Chrome/Edgedrivers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4552">#4552</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.3.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.3.0"/>
-        <updated>2025-09-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Chrome/Chromedriver 140 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4549">#4549</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4548">#4548</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.2.0"/>
-        <updated>2025-08-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Firefox 142 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4545">#4545</a> and Chrome/Edge 139 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4542">#4552</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.1.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.2"/>
-        <updated>2025-08-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to coach core 8.1.3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4541">#4551</a> (there was a bug introduced in 8.1.2).</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.1.1"/>
-        <updated>2025-08-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to coach core 8.1.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4540">#4540</a>.</li>
 </ul>
 ]]></summary>
         <author>

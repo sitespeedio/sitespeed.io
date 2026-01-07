@@ -1,6 +1,31 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.2.0 - 2025-12-18
+### Added
+* Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix [#4575](https://github.com/sitespeedio/sitespeed.io/pull/4575).
+
+## 39.1.2 - 2025-12-17
+### Fixed
+* Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure [#4574](https://github.com/sitespeedio/sitespeed.io/pull/4574).
+
+## 39.1.1 - 2025-12-16
+### Fixed
+* Safer handling for broken URLs. This logs the actual root cause [#4573](https://github.com/sitespeedio/sitespeed.io/pull/4573).
+
+## 39.1.0 - 2025-12-15
+### Added
+* Upgrade the Docker container: Chrome and Edge 143, Firefox 146 [#4572](https://github.com/sitespeedio/sitespeed.io/pull/4572).
+
+## 39.0.0 - 2025-12-15
+
+### Breaking
+* We removed support for setting the compression level for png screenshots, see the added section why.
+
+### Added
+* Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots `--browsertime.screenshotParams.png.compressionLevel`  [#4570](https://github.com/sitespeedio/sitespeed.io/pull/4570).
+
+
 ## 38.6.0 - 2025-11-02
 ### Added
 * Browsertime 25.4.0 [#4566](https://github.com/sitespeedio/sitespeed.io/pull/4566).
