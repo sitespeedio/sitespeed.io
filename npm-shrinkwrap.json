@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.0",
-        "browsertime": "26.2.0",
+        "browsertime": "26.3.0",
         "coach-core": "8.1.3",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
@@ -4418,9 +4418,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "26.2.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-26.2.0.tgz",
-      "integrity": "sha512-QufX86HrK06ATeDV/OjtbskyboRvITdm6SlsFlesk4dL9mBzrsiUh1eCblSa0YW1PUYVW6dKycIGTMoNwgTmGA==",
+      "version": "26.3.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-26.3.0.tgz",
+      "integrity": "sha512-6nYPA22+aUzniwaGyq24fWA3YbDQy0/7KNzc7huLpdxECbsv6X2Ms/B3x22LhEddT2WORDLojPVYBFbUJcY/Hg==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "143.0.7499",
@@ -4433,7 +4433,7 @@
         "chrome-remote-interface": "0.33.3",
         "execa": "9.6.0",
         "fast-stats": "0.0.7",
-        "ff-test-bidi-har-export": "0.0.18",
+        "ff-test-bidi-har-export": "0.0.20",
         "lodash.merge": "4.6.2",
         "selenium-webdriver": "4.39.0",
         "yargs": "18.0.0"
@@ -6005,9 +6005,9 @@
       }
     },
     "node_modules/ff-test-bidi-har-export": {
-      "version": "0.0.18",
-      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.18.tgz",
-      "integrity": "sha512-9Id/mF6o0src/I4kCbLhkqSlLHMrbEi7cwI6yLpjsSK+xqdgo5J80tbkV7YkLV4NhNalJ5O+jPjZklz1pSurAQ=="
+      "version": "0.0.20",
+      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.20.tgz",
+      "integrity": "sha512-1Mt6RwIAW5kNm6WXMBb4m3/YV2uK1V/zaACfGnRcJXJW0LQ4Erv2Vtu+C3ZbQVtCogtPBoD0mnqkjRA+GRJ6Kw=="
     },
     "node_modules/figures": {
       "version": "6.1.0",
