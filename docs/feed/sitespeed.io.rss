@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Thu, 18 Dec 2025 09:22:06 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 10 Jan 2026 21:40:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,22 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 39.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</guid>
+            <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 26.3 with and updated version of bidi-har that makes it possible to get response bodies in the HAR file for Firefox <a href="https://github.com/sitespeedio/sitespeed.io/pull/4578">#4578</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed typo in iteration detail page for the cpuConsumption metric, thank you <a href="https://github.com/byte55">Michael Walter</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4577">#4577</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 39.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</link>
@@ -139,18 +155,6 @@
 </ul>
  <ul>
 <li>Updated the log dependency <a href="https://github.com/sitespeedio/sitespeed.io/pull/4558">#4558</a>. The new version remove the color for error logs.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 38.4.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.1</guid>
-            <pubDate>Tue, 14 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Set max width 400 pixel of the screenshot showing in the Grafana annotation (Grafana changed how they render the annotation long time ago) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4553">#4553</a> and <a href="https://github.com/sitespeedio/sitespeed.io/commit/dbcdc72bedd0a2be5c9031675783fe3f3b73f288">the fix</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

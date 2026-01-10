@@ -160,19 +160,4 @@
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
-    <entry>
-        <title type="html"><![CDATA[server 1.5.0]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.5.0</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.5.0"/>
-        <updated>2025-02-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Changed default text size to medium from large <a href="https://github.com/sitespeedio/onlinetest/pull/135">#135</a> and <a href="https://github.com/sitespeedio/onlinetest/pull/136">#136</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
 </feed>
