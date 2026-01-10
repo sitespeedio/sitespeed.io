@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.3.0 - 2026-01-10
+### Added
+* Updated to Browsertime 26.3 with and updated version of bidi-har that makes it possible to get response bodies in the HAR file for Firefox [#4578](https://github.com/sitespeedio/sitespeed.io/pull/4578).
+
+### Fixed
+* Fixed typo in iteration detail page for the cpuConsumption metric, thank you [Michael Walter](https://github.com/byte55) for PR [#4577](https://github.com/sitespeedio/sitespeed.io/pull/4577).
+
 ## 39.2.0 - 2025-12-18
 ### Added
 * Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix [#4575](https://github.com/sitespeedio/sitespeed.io/pull/4575).
