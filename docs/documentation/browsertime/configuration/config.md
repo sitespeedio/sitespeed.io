@@ -54,7 +54,7 @@ android
       --android.pretestPowerPress, --androidPretestPowerPress                                      Press the power button on the phone before a test starts.  [boolean] [default: false]
       --android.pretestPressHomeButton, --androidPretestPressHomeButton                            Press the home button on the phone before a test starts.  [boolean] [default: false]
       --android.verifyNetwork, --androidVerifyNetwork                                              Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
-      --android.ndk, --androidNDK                                                                  Path to the Android NDK (required for simpleperf profiling).  [string]
+      --android.simpleperf, --androidSimpleperf                                                    Path to the Simpleperf profiler from the Android NDK.  [string]
       --android.perfettoTrace, --androidPerfettoTrace                                              Collect a perfetto trace with the given configuration.  [default: false]
       --android.gnirehtet, --gnirehtet                                                             Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
 
@@ -68,7 +68,7 @@ firefox
       --firefox.developer                       Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --firefox.preference                      Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
       --firefox.args                            Extra command line arguments to pass to the Firefox process (e.g. --MOZ_LOG). To add multiple arguments to Firefox, repeat --firefox.args once per argument.
-      --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
+      --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all"] [default: "none"]
       --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
       --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
       --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]

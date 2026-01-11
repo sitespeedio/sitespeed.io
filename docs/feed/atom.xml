@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-12-18T00:00:00.000Z</updated>
+    <updated>2026-01-10T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,47 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0"/>
+        <updated>2026-01-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 26.3 with and updated version of bidi-har that makes it possible to get response bodies in the HAR file for Firefox <a href="https://github.com/sitespeedio/sitespeed.io/pull/4578">#4578</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed typo in iteration detail page for the cpuConsumption metric, thank you <a href="https://github.com/byte55">Michael Walter</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4577">#4577</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 26.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0"/>
+        <updated>2026-01-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Get response bodies in the HAR for Firefox. Thank you <a href="https://github.com/juliandescottes">Julian Descottes</a> and the rest of the Mozilla team that made this possible in bidi-har-export. Added in <a href="https://github.com/sitespeedio/browsertime/pull/2359">#2359</a>. The Firefox HAR has missed this functionality since we did the switch to bidi-har.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Restructure server timings so the timing name does not get lost for InfluxDB/Graphite. Thank you <a href="https://github.com/TimOldenburg">Tim Oldenburg</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2358">#2358</a>.</li>
+</ul>
+ <ul>
+<li>Add Simpleperf app_profiler options and use <code>--android.simpleperf</code>. Thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2352">#2352</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 39.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</id>
@@ -372,21 +413,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 38.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.4.1"/>
-        <updated>2025-10-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Set max width 400 pixel of the screenshot showing in the Grafana annotation (Grafana changed how they render the annotation long time ago) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4553">#4553</a> and <a href="https://github.com/sitespeedio/sitespeed.io/commit/dbcdc72bedd0a2be5c9031675783fe3f3b73f288">the fix</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 25.2.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0"/>
@@ -439,28 +465,6 @@
 </ul>
  <ul>
 <li>Make sure we use wappalyzer that is MIT <a href="https://github.com/sitespeedio/coach-core/pull/133">#133</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 25.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0"/>
-        <updated>2025-07-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Yargs 18.0.0 <a href="https://github.com/sitespeedio/browsertime/pull/2305">#2305</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2308">#2308</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2309">#2309</a>.</li>
-</ul>
- <ul>
-<li>Updated Edge dependency so it uses the new Microsoft domain for downloading <a href="https://github.com/sitespeedio/browsertime/pull/2312">#2312</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -595,21 +599,6 @@
 </ul>
  <ul>
 <li>Safer trap for WPR processes when running NodeJS Testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/139">#139</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 1.5.0]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.5.0</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.5.0"/>
-        <updated>2025-02-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Changed default text size to medium from large <a href="https://github.com/sitespeedio/onlinetest/pull/135">#135</a> and <a href="https://github.com/sitespeedio/onlinetest/pull/136">#136</a>.</li>
 </ul>
 ]]></summary>
         <author>
