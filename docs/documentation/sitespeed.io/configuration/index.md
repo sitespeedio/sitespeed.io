@@ -162,7 +162,8 @@ By default we will categorise the current main domain as first party and the res
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --firstParty ".ryanair.com" https://www.ryanair.com/us/en/
 ~~~
 
-This is a JavaScript regex and if you need help you should test it out at [https://regexr.com](https://regexr.com) to see that it will match.
+This is a JavaScript regex and if you need help you should test it out at [https://regexr.com](https://regexr.com) or [https://www.cyrilex.com](https://www.cyrilex.com) to see that it will match.
+
 
 ### Output folder or where to store the result
 You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behaviour and put the output in a specific location:
