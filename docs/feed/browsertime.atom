@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-12-18T08:58:23.824Z</updated>
+    <updated>2026-01-09T21:34:42.934Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 26.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0"/>
+        <updated>2026-01-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Get response bodies in the HAR for Firefox. Thank you <a href="https://github.com/juliandescottes">Julian Descottes</a> and the rest of the Mozilla team that made this possible in bidi-har-export. Added in <a href="https://github.com/sitespeedio/browsertime/pull/2359">#2359</a>. The Firefox HAR has missed this functionality since we did the switch to bidi-har.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Restructure server timings so the timing name does not get lost for InfluxDB/Graphite. Thank you <a href="https://github.com/TimOldenburg">Tim Oldenburg</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2358">#2358</a>.</li>
+</ul>
+ <ul>
+<li>Add Simpleperf app_profiler options and use <code>--android.simpleperf</code>. Thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2352">#2352</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 26.2.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</id>
@@ -180,28 +202,6 @@
 </ul>
  <ul>
 <li>Selenium webdriver 4.35.0 <a href="https://github.com/sitespeedio/browsertime/pull/2317">#2317</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 25.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.0.0"/>
-        <updated>2025-07-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Yargs 18.0.0 <a href="https://github.com/sitespeedio/browsertime/pull/2305">#2305</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2308">#2308</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2309">#2309</a>.</li>
-</ul>
- <ul>
-<li>Updated Edge dependency so it uses the new Microsoft domain for downloading <a href="https://github.com/sitespeedio/browsertime/pull/2312">#2312</a>.</li>
 </ul>
 ]]></summary>
         <author>
