@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.4.0 - 2026-01-18
+### Added
+* Chrome 144 and Firefox 147 in the Docker container [#4582](https://github.com/sitespeedio/sitespeed.io/pull/4582).
+
 ## 39.3.1 - 2026-01-11
 ### Fixed
 * There where something broken in Browsertime 26.3.0 together with the new bidi-har 0.0.20 for Firefox so I reverted to 0.0.18 until its been fixed with Browsertime/bidi-har [#4579](https://github.com/sitespeedio/sitespeed.io/pull/4579).
