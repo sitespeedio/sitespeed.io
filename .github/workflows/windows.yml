@@ -21,6 +21,9 @@ jobs:
       env:
         CHROMEDRIVER_SKIP_DOWNLOAD: true
         GECKODRIVER_SKIP_DOWNLOAD: true
+    - name: Install sitespeed.io
+      run: npm install sitespeed.io -g
+      shell: bash
     - run: choco outdated
     - name: Show versions
       run: powershell "Get-AppxPackage -Name *MicrosoftEdge.* | Foreach Version"
@@ -33,6 +36,9 @@ jobs:
     - name: Run Edge test with scripting
       run: node bin/sitespeed.js -b edge --multi test/prepostscripts/multiWindows.cjs -n 1
       shell: cmd
+    - name: Test devtools error
+      run: sitespeed.io -b edge --multi test/prepostscripts/windows.cjs -n 1
+      shell: bash
     - name: Run Edge test with config
       run: node bin/sitespeed.js -b edge --config test/exampleConfig.json https://www.sitespeed.io/
       shell: cmd
