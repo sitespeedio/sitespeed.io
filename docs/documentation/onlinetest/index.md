@@ -362,7 +362,7 @@ The communication between the server and test runners uses a Redis-like system. 
 
 You should make sure to configure your message broker to remove old data. If you use Redis you can set the max memory limit (adjust it to the RAM - OS of your server) and a remove strategy.
 
-Checkout the *redis.conf* file. It looks something like this
+Checkout the *redis.conf* file. It looks something like this:
 
 ```bash
 # The default port
@@ -474,8 +474,39 @@ You also have the following options:
 
 - `--api.json` - Output the result as JSON.
 
-# Setup for production
-This is a minimal production oriented flow that starts from a tagged release. It assumes you will run the server, dependencies and one or more testrunners in Docker (but you can also use the NodeJS services directly if you prefer!).
+# Deployment
+Depending on your needs you can deploy the online test on one server or use multiple servers. One dedicated server is easier and probably works fine for some testing.
+
+## One dedicated server
+
+ If you want to keep everything on a single server, you can run all services together.
+
+1. **Clone the repository and checkout a tag:**
+
+    ```bash
+    git clone https://github.com/sitespeedio/onlinetest.git
+    cd onlinetest
+    git fetch --tags
+    git checkout <tag>
+    ```
+
+2. **Configure environment variables:**
+
+    Copy `.env.example` to `.env` and adjust values for your environment (database credentials, S3/MinIO, public URLs, and version pins). At minimum:
+    - Replace all `CHANGE_ME_*` passwords (`REDIS_PASSWORD`, `POSTGRESQL_PASSWORD`, `MINIO_PASSWORD`) with your own passwords.
+    - Change `RESULT_BASE_URL` `SITESPEED.IO_HTML_HOMEURL` and `SITESPEED_IO_S3_ENDPOINT`. They need to point to that domain (or IP) that you will use.
+    - Verify `SITESPEED_IO_SERVER_VERSION`, and `SITESPEED_IO_TESTRUNNER_VERSION`.
+
+3. **Start the server, dependencies and one testrunner:**
+
+   ```bash
+   sudo modprobe ifb numifbs=1
+   docker compose -f docker-compose.dependencies.yml -f docker-compose.server.yml -f docker-compose.testrunner.yml up -d
+  ```
+
+## Multiple servers
+
+This is a minimal production oriented flow that starts from a tagged release. It assumes you will run the server, dependencies and one or more testrunners in Docker.
 
 We use a couple of standalone compose files that will override some settings in the default compose like open ports and changing some dependencies.
 
@@ -509,12 +540,6 @@ We use a couple of standalone compose files that will override some settings in 
 
     ```bash
     docker compose -f docker-compose.testrunner.yml -f standalone/docker-compose.testrunner.standalone.yml up -d
-    ```
-
-    If you want to keep everything on a single server, you can also run all services together and then make sure
-
-    ```bash
-    docker compose -f docker-compose.dependencies.yml -f docker-compose.server.yml -f docker-compose.testrunner.yml up -d
     ```
 
 5. **Setup a firewall**
