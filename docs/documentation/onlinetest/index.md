@@ -151,7 +151,7 @@ sitespeed.io-server --config path/to/file
 
 Or if you use Docker:
 ```bash
-docker run --rm -v "$(pwd)":/config sitespeedio/server:{% include version/server.txt %} --config /config/config.yml
+docker run --rm -v "$(pwd)":/config sitespeedio/server:{% include version/onlinetest.txt %} --config /config/config.yml
 ```
 
 ### Database and message broker
@@ -259,7 +259,7 @@ sitespeed.io-testrunner --config path/to/file
 If you use Docker, you can start it like this:
 
 ```bash
-docker run -v "$(pwd)":/config --cap-add=NET_ADMIN -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp sitespeedio/testrunner:{% include version/testrunner.txt %} --config /config/config.json
+docker run -v "$(pwd)":/config --cap-add=NET_ADMIN -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp sitespeedio/testrunner:{% include version/onlinetest.txt %} --config /config/config.json
 ```
 
 
