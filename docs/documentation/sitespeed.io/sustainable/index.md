@@ -81,6 +81,16 @@ By default the hosting data (knowing if a host is green) is collected from a loc
 
 You can also disable the hosting match (all hosts will be treated as grey hosting) with `--sustainable.disableHosting`.
 
+### Country-based electricity data
+
+You can optionally specify a country code to calculate carbon emissions using a specific electricity grid mix (via electricitymaps):
+example:-
+```bash
+sitespeed.io https://example.com \
+  --plugins.add sustainable \
+  --sustainable.countryCode IN
+```
+
 ## How it works
 
 ### Short version 
