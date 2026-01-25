@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 18 Jan 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 24 Jan 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,79 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 39.4.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.1</guid>
+            <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime with the new bidi-har that fixes the response har problem for Firefox <a href="https://github.com/sitespeedio/sitespeed.io/pull/4589">#4589</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 2.0.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</guid>
+            <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Docker containers now uses NodeJS 24 <a href="https://github.com/sitespeedio/onlinetest/pull/173">#173</a>.</li>
+</ul>
+ <ul>
+<li>German translations, thank you <a href="https://github.com/WBT112">Tobi</a> for PR <a href="https://github.com/sitespeedio/onlinetest/pull/174">#174</a>.</li>
+</ul>
+ <ul>
+<li>Translations: Arabic, Bengali, Spanish, French, Hindi, Portuguese, Russian, Urdu, Simplified Chinese thank you <a href="https://github.com/WBT112">Tobi</a> for PR <a href="https://github.com/sitespeedio/onlinetest/pull/181">#181</a>.</li>
+</ul>
+ <ul>
+<li>Basic Auth for admin now uses .env file and will warn in the logs if no auth is setup <a href="https://github.com/sitespeedio/onlinetest/pull/205">#205</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure the configuratiomn (nconf) is never accessed before configuration files is read <a href="https://github.com/sitespeedio/onlinetest/pull/177">#177</a>.</li>
+</ul>
+ <ul>
+<li>Bump Postgres to latest version <a href="https://github.com/sitespeedio/onlinetest/pull/172">#172</a></li>
+</ul>
+ <ul>
+<li>Fix correct path to scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
+</ul>
+ <ul>
+<li>Update to sitespeed.io 39 <a href="https://github.com/sitespeedio/onlinetest/pull/171">#171</a>.</li>
+</ul>
+ <ul>
+<li>Use Trixie as base image <a href="https://github.com/sitespeedio/onlinetest/pull/185">#185</a>.</li>
+</ul>
+ <ul>
+<li>Simplify how we do releases <a href="https://github.com/sitespeedio/onlinetest/pull/206">#206</a></li>
+</ul>
+ <ul>
+<li>The webserver port was hardcoded, fixed in <a href="https://github.com/sitespeedio/onlinetest/pull/204">#204</a>.</li>
+</ul>
+ <ul>
+<li>Renamed the default yaml files for server and testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/199">#199</a></li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Rename defaulLocale configuration to locale <a href="https://github.com/sitespeedio/onlinetest/pull/178">#178</a>. If you used <code>localization:defaultLocale</code> that is now <code>localization:locale</code>.</li>
+</ul>
+ <ul>
+<li>Updated minio to latest release. There are some changes on startup so check the PR and update your docker compose accordingly <a href="https://github.com/sitespeedio/onlinetest/pull/163">#163</a>.</li>
+</ul>
+ <ul>
+<li>Switched to default use Redis instead of KeyDB since Redis is Open Source again <a href="https://github.com/sitespeedio/onlinetest/pull/169">#169</a>.</li>
+</ul>
+ <ul>
+<li>Reworked the docker compose files <a href="https://github.com/sitespeedio/onlinetest/pull/200">#200</a> <a href="https://github.com/sitespeedio/onlinetest/pull/202">#202</a> <a href="https://github.com/sitespeedio/onlinetest/pull/203">#203</a></li>
+</ul>
+ <ul>
+<li>Always use .env if it exists for both the server and the testrunner (and the compose files) <a href="https://github.com/sitespeedio/onlinetest/pull/190">#190</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 39.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.0</link>
@@ -38,6 +111,18 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 26.3.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</guid>
+            <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release <a href="https://github.com/sitespeedio/browsertime/pull/2360">#2360</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 39.3.0]]></title>
@@ -224,29 +309,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[testrunner 1.2.1]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</guid>
-            <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Tests running in the Docker container has the wrong path to the scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 38.5.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.5.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#38.5.2</guid>
-            <pubDate>Fri, 24 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgrade to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2531---2025-10-24">Browsetime 25.3.1</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4562">#4562</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 25.3.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.1</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.1</guid>
@@ -262,9 +324,9 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[server 1.7.1]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.1</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.1</guid>
+            <title><![CDATA[onlinetest 1.7.1]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</guid>
             <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -273,9 +335,9 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[server 1.7.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.7.0</guid>
+            <title><![CDATA[onlinetest 1.7.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</guid>
             <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
@@ -283,24 +345,6 @@
 </ul>
  <ul>
 <li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.2.0]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0</guid>
-            <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update to sitespeed.io 38 <a href="https://github.com/sitespeedio/onlinetest/pull/158">#158</a></li>
-</ul>
- <ul>
-<li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies (too many PRs).</li>
 </ul>
 ]]></description>
         </item>
@@ -345,21 +389,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.1.0</guid>
-            <pubDate>Fri, 05 Sep 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome/Chromedriver 140, Firefox 142 <a href="https://github.com/sitespeedio/browsertime/pull/2318">#2318</a>.</li>
-</ul>
- <ul>
-<li>Selenium webdriver 4.35.0 <a href="https://github.com/sitespeedio/browsertime/pull/2317">#2317</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[coach-core 8.1.2]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</link>
             <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</guid>
@@ -378,9 +407,9 @@
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[server 1.6.5]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.5</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.5</guid>
+            <title><![CDATA[onlinetest 1.6.5]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</guid>
             <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -389,9 +418,9 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[server 1.6.4]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.4</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.4</guid>
+            <title><![CDATA[onlinetest 1.6.4]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</guid>
             <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -400,9 +429,9 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[server 1.6.3]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</guid>
+            <title><![CDATA[onlinetest 1.6.3]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</guid>
             <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -411,9 +440,9 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[server 1.6.3]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</guid>
+            <title><![CDATA[onlinetest 1.6.3]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</guid>
             <pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -422,9 +451,9 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[server 1.6.2]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</guid>
+            <title><![CDATA[onlinetest 1.6.2]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</guid>
             <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -433,93 +462,13 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[server 1.6.1]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</guid>
+            <title><![CDATA[onlinetest 1.6.1]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</guid>
             <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.6.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</guid>
-            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add functionality to: edit/add alias to a finished test, rerun a test with the exact same configuration and change the URL of a test and rerun with the same configuration <a href="https://github.com/sitespeedio/onlinetest/pull/137">#137</a>.</li>
-</ul>
- <ul>
-<li>You can now configure which favicons that is used <a href="https://github.com/sitespeedio/onlinetest/pull/140">#140</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Update to latest sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.1.0]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</guid>
-            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to sitespeed.io 36 as default version <a href="https://github.com/sitespeedio/onlinetest/pull/134">#134</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Use latest version of sitespeed.io/logs <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
-</ul>
- <ul>
-<li>Safer trap for WPR processes when running NodeJS Testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/139">#139</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.7]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7</guid>
-            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix to make sure WPR always is killed whatever happens <a href="https://github.com/sitespeedio/onlinetest/pull/131">#131</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.6]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.6</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.6</guid>
-            <pubDate>Fri, 31 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Disable verbose logging from GUI <a href="https://github.com/sitespeedio/onlinetest/pull/130">#130</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.5]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.5</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.5</guid>
-            <pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure failing tests with a result is accessible <a href="https://github.com/sitespeedio/onlinetest/pull/126">#126</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.4]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.4</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.4</guid>
-            <pubDate>Sat, 25 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Replace Intel log with @sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/117">#117</a>.</li>
 </ul>
 ]]></description>
         </item>
@@ -553,39 +502,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.3]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.3</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.3</guid>
-            <pubDate>Wed, 18 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix killing WebPageReplay correctly and correct path to WebPageReplay files <a href="https://github.com/sitespeedio/onlinetest/pull/108">#108</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.2]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.2</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.2</guid>
-            <pubDate>Wed, 18 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix broken path to the WebPageReplay script when running as npm package and fix so you also can run desktop test using WebPageReplay when you use npm <a href="https://github.com/sitespeedio/onlinetest/pull/107">#107</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 1.0.1]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.1</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.1</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed the release flow so the Docker containers get the correct tag.</li>
-</ul>
-]]></description>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.0.1]]></title>

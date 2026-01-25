@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "39.4.0",
+  "version": "39.4.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "39.4.0",
+      "version": "39.4.1",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.0",
-        "browsertime": "26.3.1",
+        "browsertime": "26.3.2",
         "coach-core": "8.1.3",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
@@ -4422,9 +4422,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "26.3.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-26.3.1.tgz",
-      "integrity": "sha512-NyISTxP3tZV9JoFvMHTqDQ0dR7QOO417BvmyNyTz+F0YHR70K5nJbWbdpaqBf+VGJu1YpD5cF5ta1u/7Nt2Rzw==",
+      "version": "26.3.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-26.3.2.tgz",
+      "integrity": "sha512-afQ4bf/1RAJxEZpWUHhIUdpC8ck2bwgvU9Bf3fSCUJtOF3LVAuki884LQ1NNmzFUGAACweL7xZWbC51Hhm7I9Q==",
       "license": "MIT",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
@@ -4438,7 +4438,7 @@
         "chrome-remote-interface": "0.33.3",
         "execa": "9.6.0",
         "fast-stats": "0.0.7",
-        "ff-test-bidi-har-export": "0.0.18",
+        "ff-test-bidi-har-export": "0.0.22",
         "lodash.merge": "4.6.2",
         "selenium-webdriver": "4.39.0",
         "yargs": "18.0.0"
@@ -6011,9 +6011,9 @@
       }
     },
     "node_modules/ff-test-bidi-har-export": {
-      "version": "0.0.18",
-      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.18.tgz",
-      "integrity": "sha512-9Id/mF6o0src/I4kCbLhkqSlLHMrbEi7cwI6yLpjsSK+xqdgo5J80tbkV7YkLV4NhNalJ5O+jPjZklz1pSurAQ==",
+      "version": "0.0.22",
+      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.22.tgz",
+      "integrity": "sha512-B7Mr9zLM75mgrG/xxiB4BRLpb2KJFIPjqf7mB1rcCj+66m6RQz9vzf5lTtlIcG5BzWS+9/AcLKu3mhnn3YVOyg==",
       "license": "MPL-2.0"
     },
     "node_modules/figures": {

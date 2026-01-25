@@ -26,17 +26,17 @@ The online test is the simplest way to deploy your own version of sitespeed.io. 
 
 This method is ideal for small, medium, and large companies and organizations that also wants a GUI for running performance tests.
 
-To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis/KeyDB, PostgreSQL, and a place to store the result pages).
+To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis, PostgreSQL, and a place to store the result pages).
 
 ![The setup]({{site.baseurl}}/img/onlinetestsetup.png)
 {: .img-thumbnail}
 
 ## Installation
 
-For small businesses needing to test one or a few websites, you can deploy everything on a single dedicated server. For large companies planning to run many many tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and KeyDB are located together in the same region since the web GUI is the one that do the most communication with KeyDB and the database.
+For small businesses needing to test one or a few websites, you can deploy everything on a single dedicated server. For large companies planning to run many many tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and Redis are located together in the same region since the web GUI is the one that do the most communication with Redis and the database.
 
 ### Using Docker
-It's easy to get the Docker version running on your local Linux or Mac OS machine. Make sure you have [Docker](https://www.docker.com) and [docker compose](https://docs.docker.com/compose/) installed. 
+It's easy to get the Docker version running on your local Linux or Mac OS machine. Make sure you have [Docker](https://www.docker.com) and [docker compose](https://docs.docker.com/compose/) installed.
 
 1. **Clone the repository:**
 
@@ -49,18 +49,22 @@ It's easy to get the Docker version running on your local Linux or Mac OS machin
     ```bash
     cd onlinetest
     ```
+3. **Copy the example environment file:**
+    ```bash
+    cp .env.example .env
+    ```
 
-3. **Start the Docker containers (KeyDB/PostgreSQL/Minio/sitespeed.io server and testrunner):**
+4. **Start the Docker containers (Redis/PostgreSQL/Minio/sitespeed.io server and testrunner):**
 
     ```bash
-    docker compose -f docker-compose.yml -f docker-compose.app.yml up
+    docker compose -f docker-compose.dependencies.yml -f docker-compose.server.yml -f docker-compose.testrunner.yml up
     ```
 
 Now you can open your web browser and navigate to [http://127.0.0.1:3000](http://127.0.0.1:3000) to run your first test.
 
 If you are on Linux you need to run `sudo modprobe ifb numifbs=1` to be able to set different connectivities inside of Docker. On Mac you can only run native connectivity when you run inside of Docker.
 
-### Using NodeJS 
+### Using NodeJS
 
 To get the server and test runner running, you need to install [NodeJS](https://nodejs.org/). Please follow the instructions on [NodeJS](https://nodejs.org/) for your operating system. Install the LTS version (currently, that is NodeJS 20).
 
@@ -84,22 +88,22 @@ The test runner can either use our [pre-made sitespeed.io Docker container](http
 
 
 #### Install the dependencies
-You need to have KeyDB (or a similar message broker that follow the Redis APIs), PostgreSQL and somewhere to store the HTML result. If you don't want to handle the dependencies yourself you can use [our docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml). You need to have Docker and Docker compose installed to run it.
+You need to have Redis (or a similar message broker that follow the Redis APIs), PostgreSQL and somewhere to store the HTML result. If you don't want to handle the dependencies yourself you can use [our docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml). You need to have Docker and Docker compose installed to run it.
 
 To get the Docker Compose file, the easiest way for testing is to clone the repository:
 
 ```bash
 git clone https://github.com/sitespeedio/onlinetest.git
 cd onlinetest
-docker compose up
+docker compose -f docker-compose.dependencies.yml -f standalone/docker-compose.dependencies.standalone.yml  -f  -d
 ```
 
-In the repository you also have a *.env* file that sets up username/passwords for the different services. For KeyDB there's also a *keydb.conf* file that also holds the password.
+In the repository you also have a *.env.example* file that sets up username/passwords for the different services. For Redis there's also a *redis.conf* file that also holds the password.
 
 ## Configuration
 The [.env](https://github.com/sitespeedio/onlinetest/blob/main/.env) is the key for the setup if you use Docker/Docker compose. Most things for your everyday tests can be setup there.
 
-You also have specific [configuration files for the server](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the [test runner](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml). 
+You also have specific [configuration files for the server](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the [test runner](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml).
 
 You can override that configuration with command line parameters, or you can replace the configuration by using your own configuration file. Take a copy of the default ones and reconfigure them the way you need. When you start the server and the testrunnner you add `--config /path/to/file` to your new files and these will be used.
 
@@ -147,12 +151,12 @@ sitespeed.io-server --config path/to/file
 
 Or if you use Docker:
 ```bash
-docker run --rm -v "$(pwd)":/config sitespeedio/server:{% include version/server.txt %} --config /config/config.yml
+docker run --rm -v "$(pwd)":/config sitespeedio/server:{% include version/onlinetest.txt %} --config /config/config.yml
 ```
 
 ### Database and message broker
 
-The first thing you need to do is configure the PostgreSQL and KeyDB connections to match your setup. The default setup uses localhost and default passwords. Make sure to change these settings to match your specific configuration.
+The first thing you need to do is configure the PostgreSQL and Redis connections to match your setup. The default setup uses localhost and default passwords. Make sure to change these settings to match your specific configuration.
 
 ### HTTPS
 
@@ -162,7 +166,7 @@ If you want your server behind HTTPS, you can set up a reverse proxy or configur
 server:
   # Configure SSL. Add the path to the key and certificate file
   ssl:
-    key: 
+    key:
     cert:
 ```
 
@@ -221,7 +225,7 @@ html:
 
 Set the path to where you host the files on the server. They will then be accessible through */extras/*.
 
-### Waiting on tests to finish 
+### Waiting on tests to finish
 You can choose what the user will see while waiting for the test to finish. By default, the log from sitespeed.io will be streamed on the wait screen so users can follow the progress of the test.
 
 If you are not interested in that, you can choose to show random AI-generated images. You do that with:
@@ -255,7 +259,7 @@ sitespeed.io-testrunner --config path/to/file
 If you use Docker, you can start it like this:
 
 ```bash
-docker run -v "$(pwd)":/config --cap-add=NET_ADMIN -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp sitespeedio/testrunner:{% include version/testrunner.txt %} --config /config/config.json
+docker run -v "$(pwd)":/config --cap-add=NET_ADMIN -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp sitespeedio/testrunner:{% include version/onlinetest.txt %} --config /config/config.json
 ```
 
 
@@ -265,7 +269,7 @@ Your testrunner needs to be able to connect to your Redis-like broker, so make s
 ### Configuring test environments
 You need to configure what kind of tests you want to run.
 
-#### Desktop/emulated mobile 
+#### Desktop/emulated mobile
 In most cases, the default configuration will be sufficient. It looks like this:
 
 ```yaml
@@ -330,11 +334,11 @@ If you want to have multiple phones of the same model work on the same queue (to
 
 If you choose to use Docker, set `useDocker` to true in the configuration. Then all you need to do is make sure Docker is installed on the server.
 
-You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:35.0.0`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use `sitespeedio/sitespeed.io:35` as the tag. Ensure that you update the container once per day with:
+You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:39.0.0`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use `sitespeedio/sitespeed.io:39` as the tag. Ensure that you update the container once per day with:
 
 ```yaml
 docker:
-  container: "sitespeedio/sitespeed.io:35"
+  container: "sitespeedio/sitespeed.io:39"
 ```
 
 If you try out the Docker containers locally on your machine, you need to remember remember that localhost inside the container isn't automatically the same as localhost on the server. You can read about it [here](https://www.sitespeed.io/documentation/sitespeed.io/docker/#access-localhost).
@@ -354,30 +358,33 @@ To ensure the smooth operation of your sitespeed.io server and test runners, the
 
 ### Message broker
 
-The communication between the server and test runners uses a Redis-like system. The default setting uses [KeyDb](https://docs.keydb.dev), but you can probably use anything that follows the Redis "standard". When the server and a test runner are started, they need access to the message broker.
+The communication between the server and test runners uses a Redis-like system. The default setting uses [Redis](https://redis.io), but you can probably use anything that follows the Redis "standard". When the server and a test runner are started, they need access to the message broker.
 
-You should make sure to configure your message broker to remove old data. If you use KeyDB you can set the max memory limit (adjust it to the RAM - OS of your server) and a remove strategy. 
+You should make sure to configure your message broker to remove old data. If you use Redis you can set the max memory limit (adjust it to the RAM - OS of your server) and a remove strategy.
 
-Checkout the *keydb.conf* file. It looks something like this
+Checkout the *redis.conf* file. It looks something like this:
 
 ```bash
-# You can read more about keydb configuration: https://docs.keydb.dev/docs/config-file/
 # The default port
 port 6379
 # Your password, make sure to change this
-requirepass YOUR_PASSWORD_THAT_YOU_NEED_TO_CHANGE
+requirepass CHANGE_ME_REDIS_PASSWORD
 
-# Choose max memory, adjust this to the server where you run keydb
-# You can also choose how many objects that should stay in keydb
+# Choose max memory, adjust this to the server where you run Redis
+# You can also choose how many objects that should stay in Redis
 # by changing removeOnComplete in the server configuration
 maxmemory 6GB
 maxmemory-policy allkeys-lru
 
-# You can configure to store the the data so that queued tests will survive 
+# You can configure to store the the data so that queued tests will survive
 # a restart
 appendonly yes
 appendfilename appendonly.aof
 appendfsync everysec
+
+dir /data
+bind 0.0.0.0
+protected-mode no
 ```
 
 ### Database
@@ -421,7 +428,7 @@ docker:
 Here's a checklist of things to consider when pushing to production:
 
 1. **Change all the default passwords**:
-   - Do this for KeyDB, PostgreSQL, Admin, Minio (or what you use) and Basic Auth.
+   - Do this for Redis, PostgreSQL, Admin, Minio (or what you use) and Basic Auth.
 2. **Change settings for where you upload your result**
    - Remember to change the [default settings](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) on where you upload the data and how you access it.
 3. **Limit your instance**:
@@ -466,3 +473,78 @@ You also have the following options:
 - `--api.priority` - The priority of the test. Highest priority is 1. The default is 10.
 
 - `--api.json` - Output the result as JSON.
+
+# Deployment
+Depending on your needs you can deploy the online test on one server or use multiple servers. One dedicated server is easier and probably works fine for some testing.
+
+## One dedicated server
+
+ If you want to keep everything on a single server, you can run all services together.
+
+1. **Clone the repository and checkout a tag:**
+
+    ```bash
+    git clone https://github.com/sitespeedio/onlinetest.git
+    cd onlinetest
+    git fetch --tags
+    git checkout <tag>
+    ```
+
+2. **Configure environment variables:**
+
+    Copy `.env.example` to `.env` and adjust values for your environment (database credentials, S3/MinIO, public URLs, and version pins). At minimum:
+    - Replace all `CHANGE_ME_*` passwords (`REDIS_PASSWORD`, `POSTGRESQL_PASSWORD`, `MINIO_PASSWORD`) with your own passwords.
+    - Change `RESULT_BASE_URL` `SITESPEED.IO_HTML_HOMEURL` and `SITESPEED_IO_S3_ENDPOINT`. They need to point to that domain (or IP) that you will use.
+    - Verify `SITESPEED_IO_SERVER_VERSION`, and `SITESPEED_IO_TESTRUNNER_VERSION`.
+
+3. **Start the server, dependencies and one testrunner:**
+
+   ```bash
+   sudo modprobe ifb numifbs=1
+   docker compose -f docker-compose.dependencies.yml -f docker-compose.server.yml -f docker-compose.testrunner.yml up -d
+  ```
+
+## Multiple servers
+
+This is a minimal production oriented flow that starts from a tagged release. It assumes you will run the server, dependencies and one or more testrunners in Docker.
+
+We use a couple of standalone compose files that will override some settings in the default compose like open ports and changing some dependencies.
+
+1. **Clone the repository and checkout a tag:**
+
+    ```bash
+    git clone https://github.com/sitespeedio/onlinetest.git
+    cd onlinetest
+    git fetch --tags
+    git checkout <tag>
+    ```
+
+2. **Configure environment variables:**
+
+    Copy `.env.example` to `.env` and adjust values for your environment (database credentials, S3/MinIO, public URLs, and version pins). At minimum:
+    - Replace all `CHANGE_ME_*` passwords (`REDIS_PASSWORD`, `POSTGRESQL_PASSWORD`, `MINIO_PASSWORD`) with your own passwords.
+    - Change `RESULT_BASE_URL` `SITESPEED.IO_HTML_HOMEURL` and `SITESPEED_IO_S3_ENDPOINT`. They need to point to that domain (or IP) that you will use.
+    - Verify `SITESPEED_IO_SERVER_VERSION`, and `SITESPEED_IO_TESTRUNNER_VERSION`.
+
+3. **Deploy the core services (server + dependencies):**
+
+    On your primary host, start the dependencies and the server:
+
+    ```bash
+    docker compose -f docker-compose.dependencies.yml -f standalone/docker-compose.dependencies.standalone.yml  docker-compose.server.yml -f standalone/docker-compose.server.standalone.yml up -f  -d
+    ```
+
+4. **Deploy the testrunner(s):**
+
+    Run one or more testrunners on separate machines for isolation and scale. On each testrunner host you need to give Docker the right to change connectivity by running `sudo modprobe ifb numifbs=1` and then start the testrunner:
+
+    ```bash
+    docker compose -f docker-compose.testrunner.yml -f standalone/docker-compose.testrunner.standalone.yml up -d
+    ```
+
+5. **Setup a firewall**
+    If you deploy on multiple servers you need to setup a firewall so only the servers has access to Redis, Minio and Postgres Do that with *iptables* since UFW (Uncomplicated Firewall) do not work with Docker.
+
+6. **Verify connectivity:**
+
+    Confirm the server can reach the testrunner(s) and that results are written to your configured storage. Use the UI or API to submit a test and ensure it completes end to end.
