@@ -474,6 +474,12 @@ You also have the following options:
 
 - `--api.json` - Output the result as JSON.
 
+You can then pass on the testing so it don't happen locally and instead is done on your onlinetest servers.
+
+```bash
+sitespeed.io -b chrome https://www.sitespeed.io --api.hostname YOUR_HOST --api.location THE_LOCATION --api.key YOUR_KEY
+```
+
 # Deployment
 Depending on your needs you can deploy the online test on one server or use multiple servers. One dedicated server is easier and probably works fine for some testing.
 
