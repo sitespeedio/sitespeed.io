@@ -83,6 +83,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.911.0",
     "@google-cloud/storage": "7.17.2",
+    "@opensearch-project/opensearch": "^2.0.0",
     "@sitespeed.io/log": "1.0.0",
     "@sitespeed.io/plugin": "1.0.0",
     "@tgwf/co2": "0.16.9",
