@@ -1,0 +1,21 @@
+{
+  "name": "sitespeed-opensearch-plugin",
+  "version": "1.0.0",
+  "description": "Custom Sitespeed.io plugin to send metrics to OpenSearch",
+  "type": "module",
+  "main": "index.js",
+  "keywords": [
+    "sitespeed",
+    "opensearch",
+    "performance",
+    "plugin"
+  ],
+  "author": "Shivaram",
+  "license": "MIT",
+  "dependencies": {
+    "@opensearch-project/opensearch": "^2.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
