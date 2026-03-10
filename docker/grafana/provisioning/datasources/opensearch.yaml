@@ -1,0 +1,19 @@
+apiVersion: 1
+
+datasources:
+  - name: OpenSearch
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    uid: sitespeed-opensearch
+    url: http://opensearch:9200
+    isDefault: false
+    jsonData:
+      database: sitespeed-pagesummary-*
+      timeField: "@timestamp"
+      version: "2.0.0"
+      flavor: opensearch
+      logMessageField: message
+      logLevelField: level
+    version: 1
+    editable: true

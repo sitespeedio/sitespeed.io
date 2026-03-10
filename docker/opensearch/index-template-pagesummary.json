@@ -1,0 +1,69 @@
+{
+  "index_patterns": ["sitespeed-pagesummary-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "plugins.index_state_management.policy_id": "sitespeed-default-retention"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp":  { "type": "date" },
+        "url":         { "type": "keyword" },
+        "group":       { "type": "keyword" },
+        "alias":       { "type": "keyword" },
+        "browser":     { "type": "keyword" },
+        "connectivity":{ "type": "keyword" },
+        "slug":        { "type": "keyword" },
+        "type":        { "type": "keyword" },
+        "resultUrl":   { "type": "keyword" },
+        "deviceType":  { "type": "keyword" },
+        "iterations":  { "type": "integer" },
+        "name":        { "type": "keyword" },
+        "timings": {
+          "properties": {
+            "firstPaint":       { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "fcp":              { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "lcp":              { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "ttfb":             { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "fullyLoaded":      { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "loadEventEnd":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "timeToInteractive":{ "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        },
+        "visualMetrics": {
+          "properties": {
+            "speedIndex":           { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "perceptualSpeedIndex": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "firstVisualChange":    { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "lastVisualChange":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "visualComplete85":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "visualComplete95":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "visualComplete99":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        },
+        "googleWebVitals": {
+          "properties": {
+            "lcp": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "cls": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "inp": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "fid": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        },
+        "cpu": {
+          "properties": {
+            "longTasksTotalDuration": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "longTasksCount":        { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        },
+        "pageInfo": {
+          "properties": {
+            "cumulativeLayoutShift": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "domElements":           { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        }
+      }
+    }
+  }
+}
