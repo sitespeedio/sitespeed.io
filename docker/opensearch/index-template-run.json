@@ -1,0 +1,69 @@
+{
+  "index_patterns": ["sitespeed-run-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "plugins.index_state_management.policy_id": "sitespeed-run-retention"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp":  { "type": "date" },
+        "url":         { "type": "keyword" },
+        "group":       { "type": "keyword" },
+        "alias":       { "type": "keyword" },
+        "browser":     { "type": "keyword" },
+        "connectivity":{ "type": "keyword" },
+        "slug":        { "type": "keyword" },
+        "type":        { "type": "keyword" },
+        "resultUrl":   { "type": "keyword" },
+        "deviceType":  { "type": "keyword" },
+        "iterations":  { "type": "integer" },
+        "iteration":   { "type": "integer" },
+        "name":        { "type": "keyword" },
+        "timings": {
+          "properties": {
+            "firstPaint":  { "type": "float" },
+            "fcp":         { "type": "float" },
+            "lcp":         { "type": "float" },
+            "ttfb":        { "type": "float" },
+            "fullyLoaded": { "type": "float" },
+            "loadEventEnd":{ "type": "float" }
+          }
+        },
+        "visualMetrics": {
+          "properties": {
+            "speedIndex":           { "type": "float" },
+            "perceptualSpeedIndex": { "type": "float" },
+            "firstVisualChange":    { "type": "float" },
+            "lastVisualChange":     { "type": "float" },
+            "visualComplete85":     { "type": "float" },
+            "visualComplete95":     { "type": "float" },
+            "visualComplete99":     { "type": "float" }
+          }
+        },
+        "googleWebVitals": {
+          "properties": {
+            "lcp": { "type": "float" },
+            "cls": { "type": "float" },
+            "inp": { "type": "float" },
+            "fid": { "type": "float" }
+          }
+        },
+        "cpu": {
+          "properties": {
+            "longTasksTotalDuration": { "type": "float" },
+            "longTasksCount":         { "type": "float" }
+          }
+        },
+        "pageInfo": {
+          "properties": {
+            "cumulativeLayoutShift": { "type": "float" },
+            "domElements":           { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}
