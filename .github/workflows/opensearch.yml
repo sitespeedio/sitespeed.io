@@ -1,0 +1,45 @@
+name: OpenSearch
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+    - name: Install sitespeed.io
+      run: npm ci
+    - name: Install Chrome
+      run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        sudo apt-get update
+        sudo apt-get --only-upgrade install google-chrome-stable
+        google-chrome --version
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
+    - name: Start OpenSearch
+      run: docker compose -f test/docker/docker-compose.opensearch.yml up -d
+    - name: Wait for OpenSearch
+      run: |
+        timeout 90 bash -c \
+          'until curl -sf http://localhost:9200/_cluster/health | grep -q "\"status\":\"green\"\|\"status\":\"yellow\""; do
+            echo "Waiting for OpenSearch..."; sleep 3
+          done'
+    - name: Apply OpenSearch index templates
+      run: docker/opensearch/setup.sh http://localhost:9200
+    - name: Run test with OpenSearch
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --opensearch.host 127.0.0.1 --xvfb
+    - name: Run test with OpenSearch including runs
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --opensearch.host 127.0.0.1 --opensearch.includeRuns --xvfb

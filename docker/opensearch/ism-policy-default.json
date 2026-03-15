@@ -1,0 +1,25 @@
+{
+  "policy": {
+    "description": "Delete sitespeed summary indices after 90 days. Page summaries, pagexray and compare data are kept longer for trend analysis.",
+    "default_state": "hot",
+    "states": [
+      {
+        "name": "hot",
+        "actions": [],
+        "transitions": [
+          {
+            "state_name": "delete",
+            "conditions": {
+              "min_index_age": "90d"
+            }
+          }
+        ]
+      },
+      {
+        "name": "delete",
+        "actions": [{ "delete": {} }],
+        "transitions": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,501 @@
+{
+  "annotations": { "list": [] },
+  "description": "sitespeed.io page summary metrics stored in OpenSearch. Shows timings, Core Web Vitals, and visual metrics per URL.",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100,
+      "title": "Core Web Vitals",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 2500 },
+              { "color": "red", "value": 4000 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 1 },
+      "id": 1,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "LCP median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.lcp.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "LCP p90",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "4", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.lcp.p90", "id": "3", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Largest Contentful Paint (LCP)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "short",
+          "min": 0,
+          "decimals": 3,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 0.1 },
+              { "color": "red", "value": 0.25 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 1 },
+      "id": 2,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "CLS median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "googleWebVitals.cls.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Cumulative Layout Shift (CLS)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 200 },
+              { "color": "red", "value": 500 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 1 },
+      "id": 3,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "INP median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "googleWebVitals.inp.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Interaction to Next Paint (INP)",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 9 },
+      "id": 101,
+      "title": "Timings",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 10 },
+      "id": 4,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "TTFB median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.ttfb.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "TTFB p90",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "4", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.ttfb.p90", "id": "3", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Time to First Byte (TTFB)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 10 },
+      "id": 5,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "FCP median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.fcp.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "First Contentful Paint (FCP)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 10 },
+      "id": 6,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "Fully Loaded median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.fullyLoaded.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Fully Loaded p90",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "4", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "timings.fullyLoaded.p90", "id": "3", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Fully Loaded",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 18 },
+      "id": 102,
+      "title": "Visual Metrics (requires video)",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 19 },
+      "id": 7,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "Speed Index median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "visualMetrics.speedIndex.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Speed Index",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 19 },
+      "id": 8,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "First Visual Change median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "visualMetrics.firstVisualChange.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Last Visual Change median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "4", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "visualMetrics.lastVisualChange.median", "id": "3", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Visual Change",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "ms",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 19 },
+      "id": 9,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "Perceptual Speed Index median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "visualMetrics.perceptualSpeedIndex.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Perceptual Speed Index",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 27 },
+      "id": 103,
+      "title": "Page Weight",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "decbytes",
+          "min": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 28 },
+      "id": 10,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "Transfer size median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "transferSize.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp",
+          "index": "sitespeed-pagexray-*"
+        }
+      ],
+      "title": "Transfer Size",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 },
+          "unit": "short",
+          "min": 0,
+          "decimals": 0
+        }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 28 },
+      "id": 11,
+      "options": { "tooltip": { "mode": "multi", "sort": "none" } },
+      "targets": [
+        {
+          "alias": "Requests median",
+          "bucketAggs": [
+            { "field": "@timestamp", "id": "2", "settings": { "interval": "auto", "min_doc_count": "1" }, "type": "date_histogram" }
+          ],
+          "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+          "metrics": [{ "field": "requests.median", "id": "1", "settings": {}, "type": "avg" }],
+          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "refId": "A",
+          "timeField": "@timestamp",
+          "index": "sitespeed-pagexray-*"
+        }
+      ],
+      "title": "Requests",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 38,
+  "tags": ["sitespeed.io", "opensearch", "performance"],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+        "definition": "{\"find\": \"terms\", \"field\": \"url\"}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "URL",
+        "multi": false,
+        "name": "url",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"url\"}",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+        "definition": "{\"find\": \"terms\", \"field\": \"browser\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Browser",
+        "multi": false,
+        "name": "browser",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"browser\"}",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+        "definition": "{\"find\": \"terms\", \"field\": \"connectivity\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Connectivity",
+        "multi": false,
+        "name": "connectivity",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"connectivity\"}",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
+        "definition": "{\"find\": \"terms\", \"field\": \"deviceType\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device type",
+        "multi": false,
+        "name": "deviceType",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"deviceType\"}",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": { "from": "now-7d", "to": "now" },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "sitespeed.io Page Summary (OpenSearch)",
+  "uid": "sitespeed-opensearch-pagesummary",
+  "version": 1
+}
