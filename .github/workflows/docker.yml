@@ -41,3 +41,7 @@ jobs:
       run: docker run -v "$(pwd)":/sitespeed.io  -v "$(pwd)":/baseline sitespeedio/sitespeed.io  https://www.sitespeed.io/ -n 1 --compare.saveBaseline --compare.id start_page --compare.baselinePath /baseline
     - name: Compare a baseline for a URL
       run: docker run -v "$(pwd)":/sitespeed.io  -v "$(pwd)":/baseline sitespeedio/sitespeed.io  https://www.sitespeed.io/ -n 1 --compare.id start_page --compare.baselinePath /baseline
+    - name: Collect a baseline for scripting
+      run: docker run -v "$(pwd)":/sitespeed.io  -v "$(pwd)":/baseline sitespeedio/sitespeed.io  test/prepostscripts/multiWindows.cjs ---multi -n 1 --compare.saveBaseline --compare.id scripting --compare.baselinePath /baseline
+    - name: Compare a baseline for scripting
+      run: docker run -v "$(pwd)":/sitespeed.io  -v "$(pwd)":/baseline sitespeedio/sitespeed.io  test/prepostscripts/multiWindows.cjs --multi -n 1 --compare.id scripting --compare.baselinePath /baseline
