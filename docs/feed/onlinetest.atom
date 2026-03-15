@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>onlinetest-release-feed</id>
+    <title>onlinetest release feed</title>
+    <updated>2026-01-24T14:04:22.320Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/onlinetest.atom"/>
+    <subtitle>New releases and changelog feed of onlinetest</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 2.0.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0"/>
+        <updated>2026-01-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Docker containers now uses NodeJS 24 <a href="https://github.com/sitespeedio/onlinetest/pull/173">#173</a>.</li>
+</ul>
+ <ul>
+<li>German translations, thank you <a href="https://github.com/WBT112">Tobi</a> for PR <a href="https://github.com/sitespeedio/onlinetest/pull/174">#174</a>.</li>
+</ul>
+ <ul>
+<li>Translations: Arabic, Bengali, Spanish, French, Hindi, Portuguese, Russian, Urdu, Simplified Chinese thank you <a href="https://github.com/WBT112">Tobi</a> for PR <a href="https://github.com/sitespeedio/onlinetest/pull/181">#181</a>.</li>
+</ul>
+ <ul>
+<li>Basic Auth for admin now uses .env file and will warn in the logs if no auth is setup <a href="https://github.com/sitespeedio/onlinetest/pull/205">#205</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure the configuratiomn (nconf) is never accessed before configuration files is read <a href="https://github.com/sitespeedio/onlinetest/pull/177">#177</a>.</li>
+</ul>
+ <ul>
+<li>Bump Postgres to latest version <a href="https://github.com/sitespeedio/onlinetest/pull/172">#172</a></li>
+</ul>
+ <ul>
+<li>Fix correct path to scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
+</ul>
+ <ul>
+<li>Update to sitespeed.io 39 <a href="https://github.com/sitespeedio/onlinetest/pull/171">#171</a>.</li>
+</ul>
+ <ul>
+<li>Use Trixie as base image <a href="https://github.com/sitespeedio/onlinetest/pull/185">#185</a>.</li>
+</ul>
+ <ul>
+<li>Simplify how we do releases <a href="https://github.com/sitespeedio/onlinetest/pull/206">#206</a></li>
+</ul>
+ <ul>
+<li>The webserver port was hardcoded, fixed in <a href="https://github.com/sitespeedio/onlinetest/pull/204">#204</a>.</li>
+</ul>
+ <ul>
+<li>Renamed the default yaml files for server and testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/199">#199</a></li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Rename defaulLocale configuration to locale <a href="https://github.com/sitespeedio/onlinetest/pull/178">#178</a>. If you used <code>localization:defaultLocale</code> that is now <code>localization:locale</code>.</li>
+</ul>
+ <ul>
+<li>Updated minio to latest release. There are some changes on startup so check the PR and update your docker compose accordingly <a href="https://github.com/sitespeedio/onlinetest/pull/163">#163</a>.</li>
+</ul>
+ <ul>
+<li>Switched to default use Redis instead of KeyDB since Redis is Open Source again <a href="https://github.com/sitespeedio/onlinetest/pull/169">#169</a>.</li>
+</ul>
+ <ul>
+<li>Reworked the docker compose files <a href="https://github.com/sitespeedio/onlinetest/pull/200">#200</a> <a href="https://github.com/sitespeedio/onlinetest/pull/202">#202</a> <a href="https://github.com/sitespeedio/onlinetest/pull/203">#203</a></li>
+</ul>
+ <ul>
+<li>Always use .env if it exists for both the server and the testrunner (and the compose files) <a href="https://github.com/sitespeedio/onlinetest/pull/190">#190</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.7.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1"/>
+        <updated>2025-10-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for the search qyuery parameter <a href="https://github.com/sitespeedio/onlinetest/pull/162">#162</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.7.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0"/>
+        <updated>2025-10-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated dependencies (too many PRs).</li>
+</ul>
+ <ul>
+<li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.6.5]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5"/>
+        <updated>2025-03-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>And another fix for script names <a href="https://github.com/sitespeedio/onlinetest/pull/146">#146</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.6.4]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4"/>
+        <updated>2025-03-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another fix for showing the script name <a href="https://github.com/sitespeedio/onlinetest/pull/145">#145</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.6.3]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3"/>
+        <updated>2025-03-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Show only the script name and not the full path <a href="https://github.com/sitespeedio/onlinetest/pull/144">#144</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.6.3]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3"/>
+        <updated>2025-02-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL <a href="https://github.com/sitespeedio/onlinetest/pull/142">#142</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.6.2]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2"/>
+        <updated>2025-02-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another label fix.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 1.6.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1"/>
+        <updated>2025-02-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

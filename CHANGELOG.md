@@ -1,6 +1,14 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.4.2 - 2026-01-31
+### Fixed
+* The +1 container has an updated gpsi-plugin with change [#60](https://github.com/sitespeedio/plugin-gpsi/pull/60) contributed by [Tim Oldenburg](https://github.com/TimOldenburg) and lighthouse plugin bumped to 13.0.1 in [#141](https://github.com/sitespeedio/plugin-lighthouse/pull/141).
+
+## 39.4.1 - 2026-01-24
+### Fixed
+* Updated Browsertime with the new bidi-har that fixes the response har problem for Firefox [#4589](https://github.com/sitespeedio/sitespeed.io/pull/4589).
+
 ## 39.4.0 - 2026-01-18
 ### Added
 * Chrome 144 and Firefox 147 in the Docker container [#4582](https://github.com/sitespeedio/sitespeed.io/pull/4582).
