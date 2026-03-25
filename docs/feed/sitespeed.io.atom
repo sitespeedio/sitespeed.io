@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-01-31T14:32:13.589Z</updated>
+    <updated>2026-03-25T03:54:05.955Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 39.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0"/>
+        <updated>2026-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome 146 and Edge 146, Firefox 148 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4590">#4590</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4596">#4596</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4599">#4599</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated s3 and gcs packages <a href="https://github.com/sitespeedio/sitespeed.io/pull/4603">#4603</a>.</li>
+</ul>
+ <ul>
+<li>Updated wpr binaries <a href="https://github.com/sitespeedio/sitespeed.io/pull/4602">#4602</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 39.4.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.2</id>
@@ -148,21 +170,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Upgrade the Docker container: Chrome and Edge 143, Firefox 146 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4572">#4572</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0"/>
-        <updated>2025-12-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--browsertime.screenshotParams.png.compressionLevel</code>  <a href="https://github.com/sitespeedio/sitespeed.io/pull/4570">#4570</a>.</li>
 </ul>
 ]]></summary>
         <author>

@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Sat, 24 Jan 2026 14:04:22 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 24 Jan 2026 12:29:35 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,13 +17,25 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 26.3.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.2</guid>
+            <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Hello the new and fixed bidi-har 0.0.22 that fixes the response body <a href="https://github.com/sitespeedio/browsertime/pull/2361">#2361</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[browsertime 26.3.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</guid>
             <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release <a href="https://github.com/sitespeedio/browsertime/pull/2360">#2360</a></li>
+<li>Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release <a href="https://github.com/sitespeedio/browsertime/pull/2360">#2360</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -154,24 +166,6 @@
 </ul>
  <ul>
 <li>Updated log dependency <a href="https://github.com/sitespeedio/b23272327rowsertime/pull/2328">#2328</a></li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 25.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</guid>
-            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome/Chromedriver/Edge/Edgedriver 141, Firefox 143 <a href="https://github.com/sitespeedio/browsertime/pull/2325">#2325</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2323">#2323</a>.</li>
-</ul>
- <ul>
-<li>Updated webdriver and bidi-har <a href="https://github.com/sitespeedio/browsertime/pull/2322">#2322</a>.</li>
-</ul>
- <ul>
-<li>Added simpleperf and perfetto support for Android, thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR  <a href="https://github.com/sitespeedio/browsertime/pull/2315">#2315</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
