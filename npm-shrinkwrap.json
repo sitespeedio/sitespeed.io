@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "39.4.2",
+  "version": "39.5.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "39.4.2",
+      "version": "39.5.0",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
