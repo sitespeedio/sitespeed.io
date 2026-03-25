@@ -1,6 +1,17 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 39.5.0 - 2026-03-25
+### Added
+* Chrome 146 and Edge 146, Firefox 148 in the Docker container [#4590](https://github.com/sitespeedio/sitespeed.io/pull/4590), [#4596](https://github.com/sitespeedio/sitespeed.io/pull/4596), [#4599](https://github.com/sitespeedio/sitespeed.io/pull/4599).
+
+### Fixed
+* Updated s3 and gcs packages [#4603](https://github.com/sitespeedio/sitespeed.io/pull/4603).
+* Updated wpr binaries [#4602](https://github.com/sitespeedio/sitespeed.io/pull/4602).
+
+### Tech
+* Refactored the CLI file into smaller, more manageable modules [#4600](https://github.com/sitespeedio/sitespeed.io/pull/4600).
+
 ## 39.4.2 - 2026-01-31
 ### Fixed
 * The +1 container has an updated gpsi-plugin with change [#60](https://github.com/sitespeedio/plugin-gpsi/pull/60) contributed by [Tim Oldenburg](https://github.com/TimOldenburg) and lighthouse plugin bumped to 13.0.1 in [#141](https://github.com/sitespeedio/plugin-lighthouse/pull/141).
