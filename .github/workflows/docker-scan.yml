@@ -11,15 +11,15 @@ jobs:
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
       - name: Build an image from Dockerfile
         run: |
           docker buildx install
           docker buildx build --load --platform linux/amd64 -t docker.io/sitespeedio/sitespeed.io:${{ github.sha }} .
-      
+
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
         with:
           image-ref: 'docker.io/sitespeedio/sitespeed.io:${{ github.sha }}'
           format: 'table'
