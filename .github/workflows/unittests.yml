@@ -14,6 +14,10 @@ jobs:
       matrix:
         node-version: [20.x, 22.x, 24.x]
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
+      with:
+        egress-policy: audit
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
