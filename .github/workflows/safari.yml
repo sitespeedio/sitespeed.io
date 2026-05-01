@@ -20,7 +20,8 @@ jobs:
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '22.x'
-    - name: Install dependencies 
+        cache: 'npm'
+    - name: Install dependencies
       run: |
         sudo safaridriver --enable 
         npm ci
