@@ -22,14 +22,7 @@ jobs:
     - name: Install sitespeed.io
       run: npm install sitespeed.io -g
       shell: bash
-    - name: Install ffmpeg
-      uses: AnimMouse/setup-ffmpeg@ae28d57dabbb148eff63170b6bf7f2b60062cbae # v1.2.3
-      with:
-        version: '7.1'
-    - name: Set up Python
-      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
-      with:
-        python-version: '3.12'
+    # ffmpeg, Python, and Chrome are preinstalled on the windows-2025 runner image
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip setuptools
