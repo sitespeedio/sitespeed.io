@@ -19,20 +19,130 @@ if (options.html.showAllWaterfallSummary === true)
   p Choose HAR:
   select#page-selector
 
-#legend-holder
+style.
+  .waterfall-card {
+    background: #fdfdfe;
+    border: 1px solid #e3e7ed;
+    border-radius: 12px;
+    padding: 14px 16px 18px;
+    margin: 0.5em 0 1.25em;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.04);
+  }
+  .waterfall-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.75em 1em;
+    margin-bottom: 0.5em;
+  }
+  .waterfall-controls { display: flex; flex-wrap: wrap; gap: 0.4em; font-size: 0.85em; }
+  .waterfall-controls label {
+    display: inline-flex; align-items: center; gap: 0.4em;
+    padding: 0.3em 0.85em; border: 1px solid #d6dbe0; border-radius: 999px;
+    background: #f5f7fa; color: #3a4250; cursor: pointer; user-select: none;
+    transition: background 120ms, border-color 120ms, color 120ms, box-shadow 120ms;
+  }
+  .waterfall-controls label:hover { background: #eaf0f7; border-color: #b8c4d2; }
+  .waterfall-controls label:has(input:checked) {
+    background: #0095d2; border-color: #0095d2; color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 149, 210, 0.25);
+  }
+  .waterfall-controls input { margin: 0; accent-color: #fff; }
+  .waterfall-legend { display: flex; flex-wrap: wrap; gap: 0.4em 1.1em; margin: 0 0 0.75em; font-size: 0.78em; color: #5b6370; letter-spacing: 0.01em; }
+  .waterfall-legend > span { display: inline-flex; align-items: center; gap: 0.4em; }
+  .waterfall-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+  .waterfall-legend .swatch.dashed { height: 0; border-top: 2px dashed currentColor; width: 16px; border-radius: 0; }
+  .waterfall-canvas-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #ecedf0;
+  }
+  .waterfall-canvas-wrap > #output { display: block; }
+  .waterfall-canvas-wrap > #output > canvas { display: block; }
+  .waterfall-card .downloads { margin-top: 0.85em; display: flex; gap: 0.5em; flex-wrap: wrap; }
+  .waterfall-card .downloads .button-download {
+    display: inline-flex; align-items: center;
+    padding: 0.4em 1em; border-radius: 8px;
+    background: #0095d2; color: #fff; text-decoration: none;
+    font-size: 0.85em; font-weight: 500; letter-spacing: 0.02em;
+    border: 1px solid transparent;
+    transition: background 120ms, transform 80ms;
+  }
+  .waterfall-card .downloads .button-download:hover { background: #007aae; }
+  .waterfall-card .downloads .button-download:active { transform: translateY(1px); }
+  .waterfall-user-timings {
+    margin-top: 0.85em;
+    padding-top: 0.65em;
+    border-top: 1px dashed #e3e7ed;
+    font-size: 0.78em;
+    color: #5b6370;
+    line-height: 1.6;
+  }
+  .waterfall-user-timings .label { font-weight: 500; color: #3a4250; margin-right: 0.55em; }
+  .waterfall-user-timings .list { display: inline-flex; flex-wrap: wrap; gap: 0.25em 0.95em; }
+  .waterfall-user-timings .list > span { white-space: nowrap; }
+  .waterfall-user-timings .name { color: #3a4250; }
+  .waterfall-user-timings .time {
+    margin-left: 0.3em; padding: 0 0.4em; border-radius: 4px;
+    color: rgb(105, 0, 158); background: rgba(105, 0, 158, 0.07);
+    font-variant-numeric: tabular-nums;
+  }
 
-if options.html.fetchHARFiles
-  include ./fetchHAR.pug
-else
-  include ./includeHARinHTML.pug
+.waterfall-card
+  .waterfall-card-header
+    .waterfall-controls
+      label
+        input(type='checkbox', id='wt-show-page-metrics', checked)
+        span Page metrics
+      label
+        input(type='checkbox', id='wt-show-marks')
+        span User timing marks
+      label
+        input(type='checkbox', id='wt-show-longtasks', checked)
+        span Long tasks
+      label
+        input(type='checkbox', id='wt-connection-view')
+        span Connection view
 
-a#download-HAR
-.downloads
-  - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
-  - const harName = 'data/browsertime' + harEnding
-  - const harDownloadName = downloadName + harEnding
-  
-  a.button.button-download(href=harName, download=harDownloadName) Download HAR
-  if (options.html && options.html.compareURL && options.resultBaseURL)
-    - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl, daurlAlias) + harName
-    a.button.button-download(href=compareURL) Compare
+  .waterfall-legend(aria-label='Page metric colors')
+    span(title='First Paint')
+      span.swatch(style='background: rgb(40,188,0)')
+      | First paint
+    span(title='First Contentful Paint')
+      span.swatch(style='background: rgb(57,230,0)')
+      | FCP
+    span(title='Largest Contentful Paint (dashed)', style='color: rgb(0,128,0)')
+      span.swatch.dashed
+      span(style='color: #5b6370') LCP
+    span(title='DOMContentLoaded')
+      span.swatch(style='background: rgb(216,136,223)')
+      | DOMContentLoaded
+    span(title='DOM Interactive')
+      span.swatch(style='background: rgb(255,198,26)')
+      | DOM interactive
+    span(title='Load event end')
+      span.swatch(style='background: rgb(0,0,255)')
+      | Load
+
+  .waterfall-canvas-wrap
+    if options.html.fetchHARFiles
+      include ./fetchHAR.pug
+    else
+      include ./includeHARinHTML.pug
+
+  .waterfall-user-timings#wt-user-timings(hidden)
+    span.label User timings
+    span.list#wt-user-timings-list
+
+  a#download-HAR
+  .downloads
+    - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
+    - const harName = 'data/browsertime' + harEnding
+    - const harDownloadName = downloadName + harEnding
+
+    a.button.button-download(href=harName, download=harDownloadName) Download HAR
+    a.button.button-download(href='#', id='wt-save-image', data-filename=downloadName + '-waterfall.png') Save image
+    if (options.html && options.html.compareURL && options.resultBaseURL)
+      - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl, daurlAlias) + harName
+      a.button.button-download(href=compareURL) Compare
+
+#wt-tooltip(style='position: fixed; pointer-events: none; background: rgba(15, 23, 42, 0.92); color: #fff; padding: 5px 9px; font-size: 12px; border-radius: 6px; z-index: 1000; max-width: 600px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: none; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);')

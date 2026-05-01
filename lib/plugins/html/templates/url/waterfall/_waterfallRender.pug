@@ -1,0 +1,223 @@
+//- Shared waterfall rendering. Expects window.__waterfallBufferPromise to
+//- resolve to an ArrayBuffer/Uint8Array containing HAR bytes.
+script(src= assetsPath + 'js/waterfall-tools.min.js')
+script(type='text/javascript').
+  (async function () {
+    const rawBuffer = await window.__waterfallBufferPromise;
+    // waterfall-tools reads page metrics from page-root fields, but
+    // chrome-har emits them in pageTimings under different names.
+    // Lift them so the renderer draws FCP/LCP/firstPaint/interactive lines.
+    // Visual-complete percentiles that are too close to neighbouring
+    // markers to add waterfall value — keep _visualComplete85 (typical
+    // "looks loaded") and _visuallyComplete (full), drop the in-between
+    // 95 / 99 percentiles which just clutter the timeline.
+    const DROP_PAGE_TIMING_FIELDS = new Set([
+      '_visualComplete95',
+      '_visualComplete99'
+    ]);
+    let renderBuffer = rawBuffer;
+    try {
+      const har = JSON.parse(new TextDecoder().decode(rawBuffer));
+      for (const page of (har.log && har.log.pages) || []) {
+        const t = page.pageTimings || {};
+        if (page._render === undefined && t._firstPaint != null) page._render = t._firstPaint;
+        if (page._firstContentfulPaint === undefined && t._firstContentfulPaint != null) page._firstContentfulPaint = t._firstContentfulPaint;
+        if (page._LargestContentfulPaint === undefined && t._largestContentfulPaint != null) page._LargestContentfulPaint = t._largestContentfulPaint;
+        if (page._domInteractive === undefined && t._domInteractiveTime != null) page._domInteractive = t._domInteractiveTime;
+        for (const k of DROP_PAGE_TIMING_FIELDS) delete t[k];
+      }
+      renderBuffer = new TextEncoder().encode(JSON.stringify(har));
+    } catch (e) {
+      // not JSON, pass the original bytes through
+    }
+    const wt = new WaterfallTools();
+    await wt.loadBuffer(renderBuffer);
+    const har = wt.getHar();
+    const pages = (har.log && har.log.pages) || [];
+    const initialPageId = (pages[#{harIndex}] || pages[0] || {}).id;
+    const container = document.getElementById('output');
+    container.classList.remove('loader');
+
+    const tooltip = document.getElementById('wt-tooltip');
+    const controls = {
+      showPageMetrics: document.getElementById('wt-show-page-metrics'),
+      showMarks: document.getElementById('wt-show-marks'),
+      showLongtasks: document.getElementById('wt-show-longtasks'),
+      connectionView: document.getElementById('wt-connection-view')
+    };
+    const readOptions = () => {
+      const o = {};
+      for (const k of Object.keys(controls)) {
+        if (controls[k]) o[k] = controls[k].checked;
+      }
+      return o;
+    };
+    const onHover = payload => {
+      if (!tooltip) return;
+      if (!payload || !payload.request) {
+        tooltip.style.display = 'none';
+        return;
+      }
+      let url = payload.request.url || payload.request._URL || '';
+      if (url.length > 120) {
+        url = url.slice(0, 60) + ' … ' + url.slice(-55);
+      }
+      tooltip.textContent = url;
+      tooltip.style.display = 'block';
+      if (payload.event) {
+        let x = payload.event.clientX + 14;
+        let y = payload.event.clientY + 14;
+        if (x + tooltip.offsetWidth > window.innerWidth) x = window.innerWidth - tooltip.offsetWidth - 8;
+        if (y + tooltip.offsetHeight > window.innerHeight) y = window.innerHeight - tooltip.offsetHeight - 8;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+      }
+    };
+
+    const renderer = await wt.renderTo(container, {
+      ...WaterfallTools.getDefaultOptions(),
+      ...readOptions(),
+      pageId: initialPageId,
+      onHover
+    });
+
+    // User-timing marks key — the canvas draws unlabelled vertical lines for
+    // each entry in `pageTimings._userTimings`; pair them with a small
+    // chronological list so users can match line position → mark name.
+    // Visibility is tied to the same `User timing marks` toggle that gates
+    // the canvas lines, so list and lines appear/hide together.
+    const userTimingsEl = document.getElementById('wt-user-timings');
+    const userTimingsList = document.getElementById('wt-user-timings-list');
+    const fmt = ms => ms < 1000 ? Math.round(ms) + 'ms' : (ms / 1000).toFixed(2) + 's';
+    const updateUserTimingsVisibility = () => {
+      if (!userTimingsEl || !userTimingsList) return;
+      const hasItems = userTimingsList.children.length > 0;
+      const showMarks = controls.showMarks ? controls.showMarks.checked : true;
+      userTimingsEl.hidden = !hasItems || !showMarks;
+    };
+    const populateUserTimings = pageId => {
+      if (!userTimingsEl || !userTimingsList) return;
+      const page = pages.find(p => p.id === pageId) || pages[0];
+      const ut = (page && page.pageTimings && page.pageTimings._userTimings) || {};
+      userTimingsList.replaceChildren();
+      const entries = Object.entries(ut).sort((a, b) => a[1] - b[1]);
+      for (const [name, time] of entries) {
+        const item = document.createElement('span');
+        const n = document.createElement('span');
+        n.className = 'name';
+        n.textContent = name;
+        const t = document.createElement('span');
+        t.className = 'time';
+        t.textContent = fmt(time);
+        item.appendChild(n);
+        item.appendChild(t);
+        userTimingsList.appendChild(item);
+      }
+      updateUserTimingsVisibility();
+    };
+    populateUserTimings(initialPageId);
+
+    // Extension-metric legend — any `_`-prefixed numeric pageTimings field
+    // not in the named-event map gets rendered by the canvas as an
+    // `ext_<name>` vertical line with a deterministic auto-colour. Mirror
+    // the canvas's hash → palette here so the legend swatch matches the
+    // line on screen pixel-for-pixel. KNOWN_EXTENSIONS lists the field
+    // names that are already represented by the static legend chips
+    // (First paint / FCP / LCP / DOMContentLoaded / DOM interactive /
+    // Load) so they don't get a duplicate auto-coloured chip.
+    const EXT_PALETTE = [
+      [102, 110, 175], [33, 158, 188], [231, 111, 81], [255, 159, 28],
+      [180, 90, 178], [80, 130, 80], [200, 80, 130], [110, 76, 191],
+      [70, 165, 200], [220, 130, 60], [120, 165, 110], [160, 100, 100]
+    ];
+    const KNOWN_EXTENSIONS = new Set([
+      '_firstPaint', '_firstContentfulPaint',
+      '_largestContentfulPaint', '_LargestContentfulPaint',
+      '_domInteractiveTime', '_domInteractive', '_domContentLoadedTime'
+    ]);
+    const extColorFor = name => {
+      let h = 0;
+      for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+      return EXT_PALETTE[Math.abs(h) % EXT_PALETTE.length];
+    };
+    const humanize = field => field
+      .replace(/^_+/, '')
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/(\d+)/g, ' $1')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/^./, c => c.toUpperCase());
+    const legendEl = document.querySelector('.waterfall-legend');
+    const populateExtLegend = pageId => {
+      if (!legendEl) return;
+      // Remove any previously-added extension chips so page-selector changes
+      // refresh cleanly without leaving stale entries from the prior page.
+      for (const n of legendEl.querySelectorAll('[data-ext]')) n.remove();
+      const page = pages.find(p => p.id === pageId) || pages[0];
+      const pt = (page && page.pageTimings) || {};
+      for (const field in pt) {
+        if (!field.startsWith('_') || KNOWN_EXTENSIONS.has(field)) continue;
+        const value = pt[field];
+        if (typeof value !== 'number' || value <= 0) continue;
+        const color = extColorFor('ext_' + field.slice(1));
+        const item = document.createElement('span');
+        item.dataset.ext = '1';
+        item.title = field;
+        const swatch = document.createElement('span');
+        swatch.className = 'swatch';
+        swatch.style.background = 'rgb(' + color.join(',') + ')';
+        item.appendChild(swatch);
+        item.appendChild(document.createTextNode(humanize(field)));
+        legendEl.appendChild(item);
+      }
+    };
+    populateExtLegend(initialPageId);
+
+    // Save-as-image — `<canvas>.toBlob` captures the full canvas pixel
+    // buffer (DPR-aware, so retina displays produce 2× sharp images),
+    // not just what's visible after horizontal scroll.
+    const saveBtn = document.getElementById('wt-save-image');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', ev => {
+        ev.preventDefault();
+        const canvas = container.querySelector('canvas');
+        if (!canvas) return;
+        canvas.toBlob(blob => {
+          if (!blob) return;
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = saveBtn.dataset.filename || 'waterfall.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        }, 'image/png');
+      });
+    }
+
+    for (const k of Object.keys(controls)) {
+      if (controls[k]) {
+        controls[k].addEventListener('change', () => {
+          renderer.updateOptions(readOptions());
+          if (k === 'showMarks') updateUserTimingsVisibility();
+        });
+      }
+    }
+
+    const selector = document.getElementById('page-selector');
+    if (selector && pages.length > 1) {
+      for (const page of pages) {
+        const opt = document.createElement('option');
+        opt.value = page.id;
+        opt.textContent = page.title || page.id;
+        if (page.id === initialPageId) opt.selected = true;
+        selector.appendChild(opt);
+      }
+      selector.addEventListener('change', () => {
+        renderer.updateOptions({ pageId: selector.value });
+        populateUserTimings(selector.value);
+        populateExtLegend(selector.value);
+      });
+    }
+  })();
