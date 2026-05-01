@@ -20,12 +20,12 @@ jobs:
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '20.x'
+        cache: 'npm'
     - name: Install sitespeed.io
       run: npm ci
       env:
         CHROMEDRIVER_SKIP_DOWNLOAD: true
         GECKODRIVER_SKIP_DOWNLOAD: true
-    - run: choco outdated
     - name: Show versions
       run: powershell "Get-AppxPackage -Name *MicrosoftEdge.* | Foreach Version"
       shell: cmd
