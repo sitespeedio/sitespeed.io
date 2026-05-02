@@ -31,11 +31,13 @@
   text-decoration: none;
   color: $color--white;
   display: block;
+  border-radius: $radius--md $radius--md 0 0;
+  transition: background-color $motion--fast;
   &:hover {
-   background-color: #0073b0;
+   background-color: $color--blue-dark;
   }
   &.active {
-   background-color: #0073b0;
+   background-color: $color--blue-dark;
    color: $color--white;
    cursor: default;
   }

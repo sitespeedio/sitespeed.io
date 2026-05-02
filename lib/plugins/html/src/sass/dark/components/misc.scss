@@ -7,16 +7,19 @@
 /** Labels */
 
 .label {
- display: inline;
- padding: 0.2em 0.6em 0.3em;
- font-size: 75%;
- font-weight: bold;
- line-height: 1;
- color: #fff;
+ display: inline-flex;
+ align-items: center;
+ padding: 0.25em 0.75em;
+ font-size: 1rem;
+ font-weight: $font--weight--semibold;
+ line-height: 1.4;
+ color: $color--surface;
  text-align: center;
  white-space: nowrap;
  vertical-align: baseline;
- border-radius: 0.25em;
+ border-radius: $radius--pill;
+ letter-spacing: 0.01em;
+ font-variant-numeric: tabular-nums;
 }
 
 .normal {
@@ -24,13 +27,13 @@
 }
 
 .ok {
- background-color: #468847;
+ background-color: $color--ok;
 }
 .warning {
- background-color: #f0ad4e;
+ background-color: $color--warning;
 }
 .error {
- background-color: #d9534f;
+ background-color: $color--error;
 }
 
 .info {
@@ -44,13 +47,18 @@ ul.menu {
 }
 
 .errors {
- margin-bottom: 1.333em;
- background: lightpink;
- padding-left: 1em;
+ margin-bottom: 1.5rem;
+ background: $color--error-bg;
+ border: 1px solid $color--error-border;
+ border-radius: $radius--md;
+ padding: 1rem 1.25rem;
+ color: $color--error;
 }
 
 .subtableheader {
- background: #ffe3eb;
+ background: $color--surface;
+ color: $color--text-secondary;
+ font-weight: $font--weight--semibold;
 }
 
 /* Large */

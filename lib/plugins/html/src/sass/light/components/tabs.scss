@@ -13,31 +13,34 @@ http://codepen.io/oknoblich/pen/tfjFl
 
 section {
  display: block;
- padding: 20px 0 0;
- border-top: 1px solid #ddd;
+ padding: 24px 0 0;
+ border-top: 1px solid $color--border;
 }
 
 #tabs {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 4px;
+ border-bottom: 1px solid $color--border;
+
  a {
   display: inline-block;
   margin: 0 0 -1px;
-  padding: 15px 22px;
-  font-weight: 600;
+  padding: 12px 18px;
+  font-weight: $font--weight--medium;
   text-align: center;
-  color: #bbb;
+  color: $color--text-muted;
   border: 1px solid transparent;
+  border-radius: $radius--md $radius--md 0 0;
   text-decoration: none;
-  text-transform: uppercase;
- }
-
- a:before {
-  //font-family: fontawesome;
-  font-weight: normal;
-  // margin-right: 10px;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: color $motion--fast, background-color $motion--fast;
  }
 
  a:hover {
-  color: #888;
+  color: $color--text-secondary;
+  background-color: $color--surface;
   cursor: pointer;
  }
 
@@ -46,10 +49,11 @@ section {
  }
 
  a[selected] {
-  color: #555;
-  border: 1px solid #ddd;
+  color: $color--blue;
+  border: 1px solid $color--border;
   border-top: 2px solid $color--blue;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid $color--surface-card;
+  background-color: $color--surface-card;
  }
 }
 

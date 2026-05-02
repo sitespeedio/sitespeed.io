@@ -5,46 +5,46 @@
 
 table {
   width: 100%;
-  margin-bottom: 2.5rem;
-  border-collapse: separate;
-  border-spacing: 1px;
-  background-color: $color--grey;
+  margin-bottom: 2rem;
+  border-collapse: collapse;
+  background-color: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  overflow: hidden;
 }
 
 th,
 td {
-  padding: 4px 1rem;
+  padding: 10px 14px;
   vertical-align: top;
   text-align: left;
+  border-bottom: 1px solid $color--border;
 }
 
-th:first-child,
-td:first-child {
-  padding-left: 1rem;
+tbody tr:last-child td {
+  border-bottom: none;
 }
 
-th:last-child,
-td:last-child {
-  padding-right: 1rem;
-}
+tbody tr {
+  background: $color--surface-card;
+  transition: background-color $motion--fast;
 
-tr {
-  &:nth-child(odd) {
-    background: darken($color--white, 2%);
+  &:hover {
+    background: $color--surface;
   }
-  &:nth-child(even) {
-    background: $color--white;
-  }
-  &.odd {
-    background: darken($color--white, 2%);
-  }
-  &.even {
-    background: $color--white;
+
+  &.odd, &.even {
+    background: $color--surface-card;
   }
 }
 
 th {
-  background: lighten($color--blue, 56%);
+  background: $color--surface;
+  color: $color--text-secondary;
+  font-weight: $font--weight--semibold;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 td.number, th.number {
@@ -82,8 +82,9 @@ td.break {
 }
 
 td.extraheader {
-  font-weight: bold;
-  background: whitesmoke;
+  font-weight: $font--weight--semibold;
+  background: $color--surface;
+  color: $color--text-secondary;
 }
 
 /** Responsive tables, wrap them in a div

@@ -1,51 +1,66 @@
 //
 // SUMMARY BOX
-// ===============
-// Boxes on the start summary page
+// ===========
+// Status cards on the start summary page.
 //
 
 .summarybox {
-  padding: 15px;
+  padding: 18px 20px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  border: 1px solid $color--border;
+  background-color: $color--surface-card;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  transition: box-shadow $motion--med, transform $motion--med;
 
   &.ok {
-    color: #468847;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
+    color: $color--ok;
+    background-color: $color--ok-bg;
+    border-color: $color--ok-border;
   }
 
   &.warning {
-    color: #c09853;
-    background-color: #fcf8e3;
-    border-color: #fbeed5;
+    color: $color--warning;
+    background-color: $color--warning-bg;
+    border-color: $color--warning-border;
   }
 
   &.error {
-    color: #b94a48;
-    background-color: #f2dede;
-    border-color: #eed3d7;
+    color: $color--error;
+    background-color: $color--error-bg;
+    border-color: $color--error-border;
   }
 
   &.info {
-    background-color: #D9EDF7;
-    border-color: #BCE8F1;
-    color: #3A87AD;
+    background-color: $color--info-bg;
+    border-color: $color--info-border;
+    color: $color--info;
   }
 }
 
 a.summaries {
   text-decoration: none;
+  display: block;
+
+  .summarybox:hover {
+    box-shadow: $shadow--md;
+    transform: translateY(-1px);
+  }
 }
 
 .summarynumber {
-  font-size: 2rem;
+  font-size: 2.25rem;
   line-height: 1;
-  font-weight: bold;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 }
 
 .summarysmall {
-  font-size: 1rem;
-  line-height: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: $font--weight--medium;
+  margin-top: 6px;
+  display: block;
+  opacity: 0.85;
 }
