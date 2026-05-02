@@ -1,68 +1,44 @@
 //
-// TYPOGRAPHY
-// ===============
+// TYPOGRAPHY — light
+// ==================
 //
 
-//
-// BASE STYLES
-//
 html {
  font-size: $base--font-size;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ text-rendering: optimizeLegibility;
 }
 
 body {
- font-size: 1em;
+ font-size: 1rem;
  line-height: $base--line-height;
  font-weight: $base--font-weight;
  font-family: $base--font-family;
- color: $color--black;
+ color: $color--text;
+ background-color: $color--surface;
+ font-feature-settings: "kern" 1;
 }
 
 //
 // HEADINGS
 //
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
- margin-top: 1rem;
- margin-bottom: 2rem;
- font-weight: 300;
-}
-
-h1 {
- font-size: 3rem;
- line-height: 1.2;
-}
-
-h2 {
- font-size: 2.8rem;
+h1, h2, h3, h4, h5, h6 {
+ margin-top: 1.5rem;
+ margin-bottom: 1rem;
+ font-weight: $font--weight--semibold;
  line-height: 1.25;
+ letter-spacing: -0.01em;
+ color: $color--text;
 }
 
-h3 {
- font-size: 2.6rem;
- line-height: 1.3;
-}
-
-h4 {
- font-size: 2.4rem;
- line-height: 1.35;
-}
-
-h5 {
- font-size: 1.8rem;
- line-height: 1.5;
-}
-
-h6 {
- font-size: 1.5rem;
- line-height: 1.6;
- letter-spacing: 0;
-}
+h1 { font-size: 2rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.625rem; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; font-weight: $font--weight--medium; }
+h6 { font-size: 0.875rem; font-weight: $font--weight--medium; text-transform: uppercase; letter-spacing: 0.04em; color: $color--text-muted; }
 
 p {
  margin-top: 0;
@@ -74,35 +50,49 @@ p {
 
 a {
  color: $color--blue;
+ text-decoration-color: rgba(0, 149, 210, 0.4);
+ text-underline-offset: 2px;
+ transition: color $motion--fast;
 }
 
 a:hover {
- color: darken($color--blue, 10%);
+ color: $color--blue-dark;
+ text-decoration-color: $color--blue-dark;
 }
 
-pre,
-blockquote,
-dl,
-p {
- margin-bottom: 2.5rem;
+pre, blockquote, dl, p {
+ margin-bottom: 1.5rem;
 }
 
 //
-// PRE-FORMATTED TEXT / CODE BLOCKS
+// CODE
 //
 code {
- padding: 0.2rem 0.5rem;
- margin: 0 0.2rem;
- font-size: 0.9rem;
+ padding: 0.15rem 0.4rem;
+ margin: 0 0.1rem;
+ font-size: 0.875em;
+ font-family: $font--mono;
  white-space: nowrap;
- background: darken($color--white, 2);
- border: 1px solid $color--grey;
- border-radius: 4px;
+ background: $color--surface-card;
+ border: 1px solid $color--border;
+ border-radius: $radius--sm;
+ color: $color--text;
 }
 
 pre > code {
  display: block;
- padding: 1rem 1.5rem;
+ padding: 1rem 1.25rem;
  white-space: pre;
  overflow: auto;
+ line-height: 1.5;
+}
+
+//
+// NUMERIC METRICS — tabular figures everywhere they show
+//
+.summarynumber,
+.metricNumber,
+table td,
+table th {
+ font-variant-numeric: tabular-nums;
 }

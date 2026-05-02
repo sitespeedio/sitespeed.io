@@ -1,28 +1,47 @@
+//
+// BUTTONS — dark
+// ==============
+//
+
 .button {
- display: inline-block;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
  height: 38px;
- padding: 0 30px;
+ padding: 0 18px;
  margin-bottom: 1rem;
- color: $color--white;
+ color: $color--text;
  text-align: center;
- font-size: 80%;
- font-weight: 600;
- line-height: 38px;
- letter-spacing: 0.1rem;
- text-transform: uppercase;
+ font-size: 0.9rem;
+ font-weight: $font--weight--medium;
+ line-height: 1;
+ letter-spacing: 0;
+ text-transform: none;
  text-decoration: none;
  white-space: nowrap;
- background-color: transparent;
- border-radius: 4px;
- border: 1px solid $color--grey;
+ background-color: $color--surface-card;
+ border-radius: $radius--pill;
+ border: 1px solid $color--border-strong;
  cursor: pointer;
+ transition: background-color $motion--fast, border-color $motion--fast,
+  color $motion--fast, transform $motion--fast;
 
  &:hover,
  &:focus,
  &:active {
-  color: $color--white;
-  border-color: darken($color--grey, 20%);
+  color: $color--text;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: $color--text-secondary;
   outline: 0;
+ }
+
+ &:focus-visible {
+  outline: 2px solid $color--blue;
+  outline-offset: 2px;
+ }
+
+ &:active {
+  transform: translateY(1px);
  }
 }
 
@@ -35,23 +54,23 @@
  &:focus,
  &:active {
   color: $color--black;
-  background-color: darken($color--blue, 4%);
-  border-color: darken($color--blue, 4%);
+  background-color: $color--blue-dark;
+  border-color: $color--blue-dark;
  }
 }
 
 .button-download {
  color: $color--black;
- background-color: #ec971f;
- border-color: #eb9316;
- padding: 0 10px;
- margin-right: 1rem;
+ background-color: $color--warning;
+ border-color: $color--warning;
+ padding: 0 16px;
+ margin-right: 0.75rem;
 
  &:hover,
  &:focus,
  &:active {
   color: $color--black;
-  background-color: darken(#ec971f, 4%);
-  border-color: darken(#eb9316, 4%);
+  background-color: darken($color--warning, 6%);
+  border-color: darken($color--warning, 6%);
  }
 }

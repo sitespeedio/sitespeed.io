@@ -1,32 +1,65 @@
 //
-// SETTINGS
-// ========
-// Specific settings which can be changed to modify the basic look and
-// feel of the project with little effort.
-//
-// 1. COLOURS
-// 2. TYPEFACES
-// 3. BASE STYLES
+// SETTINGS — light theme
+// ======================
+// Tokens consumed across foundations and components. Keep names stable;
+// component files import only from here.
 //
 
 //
-// 1. COLOURS
+// 1. CORE PALETTE
 //
-$color--blue: #0095d2;
+$color--blue: #0095d2; // sitespeed brand
+$color--blue-dark: #0073a6;
+$color--blue-tint: #e6f4fa;
+
 $color--white: #ffffff;
-$color--grey: #e1e1e1;
-$color--black: #222222;
+$color--black: #111827;
+$color--grey: #e5e7eb;
+
+// Surface / neutral scale
+$color--surface: #f7f9fb; // page background
+$color--surface-card: #ffffff;
+$color--border: #e5e7eb;
+$color--border-strong: #d1d5db;
+
+// Text
+$color--text: #111827;
+$color--text-secondary: #4b5563;
+$color--text-muted: #6b7280;
+
+// Status (chosen for WCAG AA contrast on white text and on the light tints below)
+// ok    : 4.6:1 white-on-bg, 5.4:1 text-on-bg
+// warn  : 4.7:1 / 6.7:1
+// error : 6.0:1 / 8.4:1
+// info  : 5.4:1 / 5.4:1 (uses blue-dark to clear AA on small text)
+$color--ok: #15803d;
+$color--ok-bg: #f0fdf4;
+$color--ok-border: #bbf7d0;
+$color--warning: #b45309;
+$color--warning-bg: #fffbeb;
+$color--warning-border: #fde68a;
+$color--error: #b91c1c;
+$color--error-bg: #fef2f2;
+$color--error-border: #fecaca;
+$color--info: $color--blue-dark;
+$color--info-bg: $color--blue-tint;
+$color--info-border: #bae6fd;
 
 //
 // 2. TYPEFACES
 //
 
-$font--versions: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
- Arial, sans-serif;
+// System-UI stack — modern Apple, Windows, Linux fall-through.
+$font--versions: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+ Roboto, "Helvetica Neue", Arial, sans-serif;
+$font--mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+ "Liberation Mono", monospace;
 
 $font--weight--light: 300;
 $font--weight--regular: 400;
-$font--weight--heavy: 800;
+$font--weight--medium: 500;
+$font--weight--semibold: 600;
+$font--weight--heavy: 700;
 
 //
 // 3. BASE STYLES
@@ -34,8 +67,23 @@ $font--weight--heavy: 800;
 
 $base--font-family: $font--versions;
 $base--font-weight: $font--weight--regular;
-$base--font-color: $color--black;
+$base--font-color: $color--text;
 $base--font-size: 100%;
-$base--line-height: 1.6;
+$base--line-height: 1.55;
 $base--spacing: 20px;
-$base--body-bg: $color--white;
+$base--body-bg: $color--surface;
+
+//
+// 4. RADIUS / SHADOW / MOTION
+//
+$radius--sm: 6px;
+$radius--md: 10px;
+$radius--lg: 14px;
+$radius--pill: 999px;
+
+$shadow--sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+$shadow--md: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+$shadow--lg: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+$motion--fast: 120ms ease-out;
+$motion--med: 180ms ease-out;
