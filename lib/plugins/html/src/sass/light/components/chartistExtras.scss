@@ -1,156 +1,125 @@
+//
+// CHARTIST OVERRIDES — light
+// ==========================
+// Theme-aware overrides on top of upstream Chartist base. Palette aligned
+// with the rest of the report; labels and grid retuned for AA contrast.
+//
 
-// chartist-plugin-tooltip
-.chartist-tooltip {
-  background: $color--blue;
-  color: white;
-}
+//
+// 1. SERIES PALETTE
+//
+// Distinct colours that work as graphical-object strokes/fills (~3:1+
+// against white) and stay readable next to one another. Nine slots cover
+// every chart sitespeed.io renders.
+//
+$chart--series: (
+  "a": #0095d2, // brand blue
+  "b": #16a34a, // green-600
+  "c": #d97706, // amber-600
+  "d": #dc2626, // red-600
+  "e": #7c3aed, // violet-600
+  "f": #0d9488, // teal-600
+  "g": #db2777, // pink-600
+  "h": #475569, // slate-600
+  "i": #ca8a04  // yellow-600
+);
+$chart--series-keys: ("a", "b", "c", "d", "e", "f", "g", "h", "i");
 
-.chartist-tooltip:before {
-  border-top-color: $color--blue;
-}
-
-// chartist
-.ct-bar {
- stroke-width: 16px;
-}
-
-.ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
-  stroke: #82b5fc;
-}
-
-.ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
-  fill: #6BB863;
-}
-
-
-.ct-series-b .ct-point, .ct-series-b .ct-line, .ct-series-b .ct-bar, .ct-series-b .ct-slice-donut {
-  stroke: #b2ea94;
-}
-
-.ct-series-b .ct-slice-pie, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-area {
-  fill: #EECA5E;
-}
-
-.ct-series-c .ct-point, .ct-series-c .ct-line, .ct-series-c .ct-bar, .ct-series-c .ct-slice-donut {
-  stroke: #EECA5E;
-}
-
-.ct-series-c .ct-slice-pie, .ct-series-c .ct-slice-donut-solid, .ct-series-c .ct-area {
-  fill: #E55761;
-}
-
-.ct-series-d .ct-point, .ct-series-d .ct-line, .ct-series-d .ct-bar, .ct-series-d .ct-slice-donut {
-  stroke: #c49ae8;
-}
-
-.ct-series-d .ct-slice-pie, .ct-series-d .ct-slice-donut-solid, .ct-series-d .ct-area {
-  fill: #c49ae8;
-}
-
-.ct-series-e .ct-point, .ct-series-e .ct-line, .ct-series-e .ct-bar, .ct-series-e .ct-slice-donut {
-  stroke: #E55761;
-}
-
-.ct-series-e .ct-slice-pie, .ct-series-e .ct-slice-donut-solid, .ct-series-e .ct-area {
-  fill: #E55761;
-}
-
-.ct-series-f .ct-point, .ct-series-f .ct-line, .ct-series-f .ct-bar, .ct-series-f .ct-slice-donut {
-  stroke: #c4c4c4;
-}
-
-.ct-series-f .ct-slice-pie, .ct-series-f .ct-slice-donut-solid, .ct-series-f .ct-area {
-  fill: #c4c4c4;
-}
-
-.ct-series-g .ct-point, .ct-series-g .ct-line, .ct-series-g .ct-bar, .ct-series-g .ct-slice-donut {
-  stroke: #c4c4c4;
-}
-
-.ct-series-g .ct-slice-pie, .ct-series-g .ct-slice-donut-solid, .ct-series-g .ct-area {
-  fill: #c4c4c4;
-}
-
-.ct-series-h .ct-point, .ct-series-h .ct-line, .ct-series-h .ct-bar, .ct-series-h .ct-slice-donut {
-  stroke: #c4c4c4;
-}
-
-.ct-series-h .ct-slice-pie, .ct-series-h .ct-slice-donut-solid, .ct-series-h .ct-area {
-  fill: #c4c4c4;
-}
-
-.ct-series-i .ct-point, .ct-series-i .ct-line, .ct-series-i .ct-bar, .ct-series-i .ct-slice-donut {
-  stroke: #EECA5E;
-}
-
-.ct-series-i .ct-slice-pie, .ct-series-i .ct-slice-donut-solid, .ct-series-i .ct-area {
-  fill: #EECA5E;
-}
-
-.ct-chart {  
-  .ct-legend {      
-      position: relative;
-      z-index: 10;
-      list-style: none;
-      text-align: left;
-      line-height: 0.8;
-      font-size: 0.8em;
-
-      li {
-          padding-left: 23px;
-          margin-right: 10px;
-          margin-bottom: 3px;
-          cursor: pointer;
-
-          &:before {
-              width: 12px;
-              height: 12px;
-              //position: absolute;
-              left: 0;
-              content: '';
-              border: 3px solid transparent;
-              border-radius: 2px;
-              margin-right: 5px;
-          }
-          .inactive:before {
-              background: transparent;
-          }
-
-          &:nth-child(1)::before{
-              background-color: #6BB863;
-          }    
-          
-          &:nth-child(2)::before{
-              background-color: #EECA5E;
-          }
-      
-          &:nth-child(3)::before{
-              background-color: #E55761;
-          }
-      
-      }
-
-      .ct-legend-inside {
-          position: absolute;
-          top: 0;
-          right: 0;
-      }
+@each $letter, $hex in $chart--series {
+  .ct-series-#{$letter} {
+    .ct-point, .ct-line, .ct-bar, .ct-slice-donut {
+      stroke: $hex;
+    }
+    .ct-slice-pie, .ct-slice-donut-solid, .ct-area {
+      fill: $hex;
+    }
   }
+}
+
+//
+// 2. AXIS LABELS / GRID
+//
+.ct-label {
+  fill: $color--text-muted;
+  color: $color--text-muted;
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+}
+
+.ct-grid {
+  stroke: $color--border;
+  stroke-dasharray: 2px 4px;
+}
+
+//
+// 3. BARS
+//
+.ct-bar {
+  stroke-width: 14px;
+  stroke-linecap: round;
+}
+
+//
+// 4. CHART CONTAINER + LEGEND
+//
+.ct-chart {
+  .ct-legend {
+    position: relative;
+    z-index: 10;
+    list-style: none;
+    text-align: left;
+    line-height: 1.4;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      padding-left: 0;
+      margin-right: 14px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      color: $color--text-secondary;
+
+      &:before {
+        width: 12px;
+        height: 12px;
+        content: '';
+        border-radius: 3px;
+        margin-right: 6px;
+        flex: 0 0 auto;
+      }
+
+      &.inactive {
+        color: $color--text-muted;
+        opacity: 0.5;
+      }
+    }
+
+    @each $letter, $hex in $chart--series {
+      $i: index($chart--series-keys, $letter);
+      li:nth-child(#{$i})::before {
+        background-color: $hex;
+      }
+    }
+
+    .ct-legend-inside {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  // Some chartist setups assign series by sibling order only (no
+  // `.ct-series-*` class). Mirror the rules above for the same slots.
   g:not(.ct-grids):not(.ct-labels) g {
-      &:nth-child(1){
-          .ct-point,.ct-line {
-              stroke: #6BB863;        
-          }
+    @each $letter, $hex in $chart--series {
+      $i: index($chart--series-keys, $letter);
+      &:nth-child(#{$i}) {
+        .ct-point, .ct-line { stroke: $hex; }
       }
-      &:nth-child(2){
-          .ct-point,.ct-line {
-              stroke: #EECA5E;      
-          }
-      }
-      &:nth-child(3){
-          .ct-point,.ct-line {
-              stroke: #E55761;       
-          }
-      }
+    }
   }
 }

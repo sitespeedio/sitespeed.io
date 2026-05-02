@@ -1,34 +1,46 @@
+//
+// CHARTIST TOOLTIP — light
+// ========================
+// Modern dark surface with white text. Replaces the upstream yellow-slab
+// styling that ships with chartist-plugin-tooltip.
+//
+
 .chartist-tooltip {
   position: absolute;
   display: inline-block;
   opacity: 0;
-  min-width: 5em;
-  padding: .5em;
-  background: #F4C63D;
-  color: #453D3F;
-  font-family: Oxygen,Helvetica,Arial,sans-serif;
-  font-weight: 700;
+  min-width: 4em;
+  padding: 0.4em 0.7em;
+  background: $color--text;
+  color: $color--white;
+  font-family: $base--font-family;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
   text-align: center;
   pointer-events: none;
   z-index: 1;
-  -webkit-transition: opacity .2s linear;
-  -moz-transition: opacity .2s linear;
-  -o-transition: opacity .2s linear;
-  transition: opacity .2s linear; }
-  .chartist-tooltip:before {
+  border-radius: $radius--sm;
+  box-shadow: $shadow--md;
+  transition: opacity $motion--fast, transform $motion--fast;
+
+  &:before {
     content: "";
     position: absolute;
     top: 100%;
     left: 50%;
     width: 0;
     height: 0;
-    margin-left: -15px;
-    border: 15px solid transparent;
-    border-top-color: #F4C63D; }
-  .chartist-tooltip.tooltip-show {
-    opacity: 1; }
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: $color--text;
+  }
+
+  &.tooltip-show {
+    opacity: 1;
+  }
+}
 
 .ct-area, .ct-line {
-  pointer-events: none; }
-
-/*# sourceMappingURL=chartist-plugin-tooltip.css.map */
+  pointer-events: none;
+}

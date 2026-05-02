@@ -1,32 +1,67 @@
+//
+// FILMSTRIP — light
+// =================
+// Frame grid showing visual progress over time. Each cell is a thumbnail
+// + timestamp + (optional) milestone names.
+//
 
 .filmstrip {
-    padding-bottom: 20px;
+    padding-bottom: 24px;
 }
 
 .videoframe {
     vertical-align: top;
-    display: inline-block;
+    display: block;
     padding: 4px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width:100%;
+    background-color: $color--surface-card;
+    border: 1px solid $color--border;
+    border-radius: $radius--md;
+    width: 100%;
+    transition: border-color $motion--fast, box-shadow $motion--fast,
+        transform $motion--fast;
 }
 
+a:hover .videoframe {
+    border-color: $color--border-strong;
+    box-shadow: $shadow--sm;
+    transform: translateY(-1px);
+}
+
+// Frames that mark a paint / interaction milestone get a brand-tint outline
+// instead of the neutral border so the eye can scan to them quickly.
 .videoframe.blue {
     border: 2px solid $color--blue;
+    padding: 3px;
+}
+
+a:hover .videoframe.blue {
+    border-color: $color--blue-dark;
 }
 
 .videoframetime {
- text-align: center;
- display: block;
+    display: block;
+    text-align: center;
+    margin-top: 6px;
+    font-size: 0.95rem;
+    font-weight: $font--weight--semibold;
+    font-variant-numeric: tabular-nums;
+    color: $color--text;
 }
 
 .videoframetext {
-    text-align: left;
     display: block;
-    line-height: 1.2em;
-    font-size: 0.8em;
+    text-align: left;
+    line-height: 1.35;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+    color: $color--text;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    margin-bottom: 0.2em;
+
+    b {
+        color: $color--text;
+        font-weight: $font--weight--semibold;
+        font-variant-numeric: tabular-nums;
+    }
 }
