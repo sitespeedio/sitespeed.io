@@ -52,7 +52,18 @@ ul.menu {
  border: 1px solid $color--error-border;
  border-radius: $radius--md;
  padding: 1rem 1.25rem;
- color: $color--error;
+ color: $color--text;
+
+ b {
+  color: $color--error;
+  font-weight: $font--weight--semibold;
+  display: block;
+  margin-bottom: 0.5rem;
+ }
+
+ ul {
+  margin-bottom: 0;
+ }
 }
 
 .subtableheader {
