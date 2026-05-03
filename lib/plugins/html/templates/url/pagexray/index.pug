@@ -2,69 +2,78 @@ include ../../_tableMixins
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 
-small 
-    || 
-    a(href='#pagexray-summary') Summary 
+small
+  ||
+  a(href='#pagexray-summary') Summary
+  | &nbsp;|&nbsp;
+  a(href='#largest-assets') Largest responses
+  | &nbsp;|&nbsp;
+  a(href='#requests-and-sizes-per-content-type') Per content type
+  | &nbsp;|&nbsp;
+  a(href='#data-per-domain') Per domain
+  | &nbsp;|&nbsp;
+  a(href='#expires-and-last-modified-stats') Expires & last-modified
+  | &nbsp;|&nbsp;
+  if pageInfo.data.browsertime && pageInfo.data.browsertime.console
+    a(href='#console-log') Console
     | &nbsp;|&nbsp;
-    a(href='#largest-assets') Largest responses 
+  if pagexray.afterOnLoad.requests > 0
+    a(href='#requests-after-onload') After onLoad
     | &nbsp;|&nbsp;
-    a(href='#requests-and-sizes-per-content-type') Requests and sizes per content type 
+  if pagexray.renderBlocking
+    a(href='#requests-render-blocking') Render-blocking
     | &nbsp;|&nbsp;
-    a(href='#data-per-domain') Data per domain
-    | &nbsp;|&nbsp;
-    a(href='#expires-and-last-modified-stats') Expires and last modified statistics 
-    | &nbsp;|&nbsp;
-    if pageInfo.data.browsertime && pageInfo.data.browsertime.console
-      a(href='#console-log') Console log 
-      | &nbsp;|&nbsp;
-    if pagexray.afterOnLoad.requests > 0
-      a(href='#requests-after-onload') Requests loaded after onLoad event 
-      | &nbsp;|&nbsp;
-    if pagexray.renderBlocking
-      a(href='#requests-render-blocking') Render blocking requests 
-      | &nbsp;|&nbsp;
 
-h3 
 a
 h2 PageXray
 p.small How the page is built.
-a#pagexray-summary
-.row
-  .one-half.column
-    table
-      th(colspan='2') Summary
-        tr
-          td HTTP version
-          td.right #{pagexray.httpVersion}
-        tr
-          td Total requests
-          +numberCell('', pagexray.requests)
-        tr
-          td Total domains
-          +numberCell('', pagexray.totalDomains)
-        tr
-          td Total transfer size
-          +sizeCell('', pagexray.transferSize)
-        tr
-          td Total content size
-          +sizeCell('', pagexray.contentSize)
-        tr
-          td Responses missing compression
-          +numberCell('', pagexray.missingCompression)
-        tr
-          td Number of cookies
-          +numberCell('', pagexray.cookies)
-        tr
-          td Third party cookies
-          +numberCell('', pagexray.cookieNamesThirdParties.length)
 
-  .one-half.column
-    table
-      th(colspan='2') Requests per response code
-      each total, code in pagexray.responseCodes
-        tr
-          td #{code}
-          td #{total}
+a#pagexray-summary
+
+//- Summary stats as KPI tiles instead of two side-by-side tables.
+- const cookieCount = pagexray.cookies != null ? pagexray.cookies : 0
+- const thirdPartyCookies = pagexray.cookieNamesThirdParties ? pagexray.cookieNamesThirdParties.length : 0
+.pagexray-kpis
+  .pagexray-kpi.info
+    span.pagexray-kpi-label HTTP version
+    span.pagexray-kpi-value-text #{pagexray.httpVersion}
+  .pagexray-kpi
+    span.pagexray-kpi-label Total requests
+    span.pagexray-kpi-value #{pagexray.requests}
+  .pagexray-kpi
+    span.pagexray-kpi-label Total domains
+    span.pagexray-kpi-value #{pagexray.totalDomains}
+  .pagexray-kpi
+    span.pagexray-kpi-label Transfer size
+    span.pagexray-kpi-value #{h.size.format(pagexray.transferSize)}
+  .pagexray-kpi
+    span.pagexray-kpi-label Content size
+    span.pagexray-kpi-value #{h.size.format(pagexray.contentSize)}
+  if pagexray.missingCompression !== undefined
+    .pagexray-kpi(class=pagexray.missingCompression > 0 ? 'warning' : 'ok')
+      span.pagexray-kpi-label Missing compression
+      span.pagexray-kpi-value #{pagexray.missingCompression}
+  if cookieCount > 0
+    .pagexray-kpi(class=thirdPartyCookies > 0 ? 'warning' : 'info')
+      span.pagexray-kpi-label Cookies
+      span.pagexray-kpi-value #{cookieCount}
+      span.pagexray-kpi-sub #{thirdPartyCookies} third-party
+
+//- Response codes as a bar list — bigger codes (errors / redirects)
+//- read at a glance against 2xx counts.
+- const responseTotal = Object.values(pagexray.responseCodes).reduce((s, v) => s + v, 0)
+- const codeClass = (code) => { const c = String(code); if (c.startsWith('5') || c === '0') return 'error'; if (c.startsWith('4')) return 'warning'; if (c.startsWith('3')) return 'info'; return 'ok'; }
+if responseTotal > 0
+  h3.pagexray-section-heading Response codes
+  .pagexray-codes
+    each total, code in pagexray.responseCodes
+      - const pct = responseTotal > 0 ? (total / responseTotal * 100) : 0
+      .pagexray-code-row
+        span.pagexray-code-pill(class=codeClass(code)) #{code}
+        .pagexray-code-track
+          span.pagexray-code-fill(class=codeClass(code), style='width: ' + pct.toFixed(2) + '%')
+        span.pagexray-code-value #{total}
+        span.pagexray-code-pct #{pct.toFixed(1)}%
 
 include ./largest.pug
 
@@ -73,7 +82,7 @@ include ./perContentType.pug
 include ./perDomain.pug
 
 a#expires-and-last-modified-stats
-h3 Expires and last modified statistics
+h3 Expires & last-modified statistics
 - expire = pagexray.expireStats
 - lastModified = pagexray.lastModifiedStats
 .responsive
@@ -93,7 +102,7 @@ h3 Expires and last modified statistics
         +durationCell('max', lastModified.max)
 
 if pageInfo.data.browsertime && pageInfo.data.browsertime.console
-    include ./console.pug
+  include ./console.pug
 
 include ./after.pug
 
