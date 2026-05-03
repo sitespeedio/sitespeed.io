@@ -3,16 +3,57 @@ include _tableMixins
 
 block content
   include runInfo
+
+  //- Surface the four Core-Web-Vitals-class metrics in a hero band so the
+  //- page leads with the same scanning treatment as index.html instead of
+  //- making the reader sort through every metric to find them. Threshold
+  //- helpers + `find` over the metrics list keep this resilient to the
+  //- exact set of metrics being collected — anything missing is simply
+  //- skipped rather than rendered as an empty tile.
+  - const lcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+  - const fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+  - const clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+  - const inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const findMetric = (name) => metrics.find(m => m.name === name)
+  - const lcpMetric = findMetric('Largest Contentful Paint')
+  - const fcpMetric = findMetric('First Contentful Paint')
+  - const clsMetric = findMetric('Cumulative Layout Shift')
+  - const inpMetric = findMetric('Interaction to Next Paint')
+
+  if (lcpMetric && lcpMetric.node) || (fcpMetric && fcpMetric.node) || (clsMetric && clsMetric.node) || (inpMetric && inpMetric.node)
+    .detailed-kpis
+      if fcpMetric && fcpMetric.node
+        .detailed-kpi(class=fcpClass(fcpMetric.node.median))
+          span.detailed-kpi-label FCP
+          span.detailed-kpi-value #{fcpMetric.h(fcpMetric.node.median)}
+          span.detailed-kpi-sub p90 #{fcpMetric.h(fcpMetric.node.p90)}
+      if lcpMetric && lcpMetric.node
+        .detailed-kpi(class=lcpClass(lcpMetric.node.median))
+          span.detailed-kpi-label LCP
+          span.detailed-kpi-value #{lcpMetric.h(lcpMetric.node.median)}
+          span.detailed-kpi-sub p90 #{lcpMetric.h(lcpMetric.node.p90)}
+      if clsMetric && clsMetric.node
+        .detailed-kpi(class=clsClass(clsMetric.node.median))
+          span.detailed-kpi-label CLS
+          span.detailed-kpi-value #{clsMetric.h(clsMetric.node.median)}
+          span.detailed-kpi-sub p90 #{clsMetric.h(clsMetric.node.p90)}
+      if inpMetric && inpMetric.node
+        .detailed-kpi(class=inpClass(inpMetric.node.median))
+          span.detailed-kpi-label INP
+          span.detailed-kpi-value #{inpMetric.h(inpMetric.node.median)}
+          span.detailed-kpi-sub p90 #{inpMetric.h(inpMetric.node.p90)}
+
+  p.small Every collected metric, with min / median / mean / p90 / max across all runs. Click any column header to sort.
   .responsive
     table(data-sortable, id='detailed')
       thead
         tr
-          th name
-          th min
-          th median
-          th mean
-          th p90
-          th max
+          th Name
+          th.number min
+          th.number median
+          th.number mean
+          th.number p90
+          th.number max
       each metric in metrics
         if metric.node && (metric.node.min  || metric.node.min === 0)
           tr
@@ -22,8 +63,8 @@ block content
                 a(href=url) #{metric.name}
               else
                 | #{metric.name}
-            td(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
-            td(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
-            td(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
-            td(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
-            td(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
+            td.number(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
+            td.number(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
+            td.number(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
+            td.number(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
+            td.number(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
