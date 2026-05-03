@@ -1,120 +1,133 @@
 small
-    | | 
-    a(href='#sustainable-per-domain') Per domain
-    | &nbsp;|&nbsp;
-    a(href='#dirtiest-assets') Dirtiest assets
-    | &nbsp;|&nbsp;
-    a(href='#sustainible-per-content-type') Per Content Type
-    | &nbsp;|&nbsp;
+  | |
+  a(href='#sustainable-per-domain') Per domain
+  | &nbsp;|&nbsp;
+  a(href='#dirtiest-assets') Dirtiest assets
+  | &nbsp;|&nbsp;
+  a(href='#sustainible-per-content-type') Per content type
+  | &nbsp;|&nbsp;
 
 h1 Sustainable Web
 
 - let sustainable = pageInfo.data.sustainable.run ? pageInfo.data.sustainable.run : pageInfo.data.sustainable.pageSummary
 
-p The sustainable metrics is calculated using 
-    a(href='https://github.com/thegreenwebfoundation/co2.js') @tgwf/co2
-    | &nbsp;version #{sustainable.co2Version} using model #{options.sustainable.model} #{options.sustainable.model === 'swd' ? 'version ' + options.sustainable.modelVersion : ''}.
+p.small Estimated using
+  |
+  a(href='https://github.com/thegreenwebfoundation/co2.js') @tgwf/co2
+  |  v#{sustainable.co2Version} · model #{options.sustainable.model}#{options.sustainable.model === 'swd' ? ' v' + options.sustainable.modelVersion : ''}.
 
-p We know that using the internet means using electricity, and because most of that electricity comes from fossil fuels, it means that more data we send, the more fossil fuels we end up burning.
-
-p This is terrible news for the climate, and  
-    a(href='https://www.w3.org/2001/tag/doc/ethical-web-principles/') building a sustainable web is the 9th of the W3C's Ethical Web Principles.
-
-p If you build for the web, much of what you know about making sites faster and more accessible also makes them greener. If you're interested in learning more, you can find out at  
-    a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation.
+p Using the internet means using electricity, and most of that electricity still comes from fossil fuels — so the more data we send, the more we burn.
+  |
+  a(href='https://www.w3.org/2001/tag/doc/ethical-web-principles/') Building a sustainable web is the 9th W3C Ethical Web Principle.
+  |  Much of what makes sites faster also makes them greener — see
+  |
+  a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation.
 
 if !options.sustainable.pageViews
-    p Use
-        code --sustainable.pageViews
-        | to configure the number of page views and calculate total CO2 emission.
+  p.sustainable-hint Pass
+    |
+    code --sustainable.pageViews
+    |
+    | to project total CO₂ emissions across an estimated traffic volume.
 
-if (sustainable.hostingInfo)
-    p #{sustainable.hostingInfo.url} #{sustainable.hostingInfo.green === true ? 'is hosted green! This means the servers running the site use green energy' : 'does not appear to be running on green energy.'}
-
-    p This information comes from The Green Web Foundation's datasets, which are published as open data. If you have questions, corrections or want to use this data yourself, please visit 
-    a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation website.
-
+//- Top KPI band — the most important numbers up front.
 - const co2FirstParty = sustainable.co2FirstParty.median || sustainable.co2FirstParty
 - const co2ThirdParty = sustainable.co2ThirdParty.median === 0 ? 0 : sustainable.co2ThirdParty.median || sustainable.co2ThirdParty
 - const co2PerPageView = sustainable.co2PerPageView.median || sustainable.co2PerPageView
 - const totalCO2 = sustainable.totalCO2.median || sustainable.totalCO2
 - const totalTransfer = sustainable.totalTransfer.median || sustainable.totalTransfer
 - const firstPartyTransferPerPage = sustainable.firstPartyTransferPerPage.median || sustainable.firstPartyTransferPerPage
-- const thirdPartyTransferPerPage =  sustainable.thirdPartyTransferPerPage === undefined ? 0 : sustainable.thirdPartyTransferPerPage.median || sustainable.thirdPartyTransferPerPage
+- const thirdPartyTransferPerPage = sustainable.thirdPartyTransferPerPage === undefined ? 0 : sustainable.thirdPartyTransferPerPage.median || sustainable.thirdPartyTransferPerPage
+- const co2Total = co2FirstParty + co2ThirdParty
+- const firstPartyPct = co2Total > 0 ? (co2FirstParty / co2Total * 100) : 0
+- const thirdPartyPct = co2Total > 0 ? (co2ThirdParty / co2Total * 100) : 0
 
-table
-    tr
-        th Page views
-        th Estimated CO2 emissions #{sustainable.co2PerPageView.median ?  '(median)':''}
-        th Transfer Size
-    tr
-        td 1 page view total
-        td #{h.co2(co2PerPageView)}
-        td #{h.size.format(totalTransfer)}
+.sustainable-kpis
+  .sustainable-kpi.info
+    span.sustainable-kpi-label CO₂ per page view
+    span.sustainable-kpi-value #{h.co2(co2PerPageView)}
+  .sustainable-kpi
+    span.sustainable-kpi-label Transfer per page
+    span.sustainable-kpi-value #{h.size.format(totalTransfer)}
+  if options.sustainable && options.sustainable.pageViews
+    .sustainable-kpi.info
+      span.sustainable-kpi-label CO₂ across #{options.sustainable.pageViews.toLocaleString()} views
+      span.sustainable-kpi-value #{h.co2(totalCO2)}
+  if sustainable.hostingInfo
+    - const isGreen = sustainable.hostingInfo.green === true
+    .sustainable-kpi(class=isGreen ? 'ok' : 'warning')
+      span.sustainable-kpi-label Hosting
+      span.sustainable-kpi-value-text #{isGreen ? 'Green' : 'Not green'}
+      span.sustainable-kpi-sub= sustainable.hostingInfo.url
 
-    tr
-        td 1 page view first party
-        td #{h.co2(co2FirstParty)} (#{Number(co2FirstParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
-        td #{h.size.format(firstPartyTransferPerPage)}
-    tr
-        td 1 page view third party
-        td #{h.co2(co2ThirdParty)} (#{Number(co2ThirdParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
-        td #{h.size.format(thirdPartyTransferPerPage)}
+if sustainable.hostingInfo
+  p.small Hosting info from
+    |
+    a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation
+    | 's open dataset.
 
-    if (options.sustainable && options.sustainable.pageViews)
-        tr
-            td #{options.sustainable.pageViews.toLocaleString()} page views
-            td #{h.co2(totalCO2)}
-            td #{h.size.format(totalTransfer * options.sustainable.pageViews)}
+//- First-party vs third-party CO2 split — stacked bar, same visual
+//- language as the CrUx distribution rows.
+if co2Total > 0
+  h3.sustainable-section-heading First vs third party CO₂
+  .sustainable-split
+    .sustainable-split-bar
+      if firstPartyPct > 0
+        span.sustainable-split-segment.sustainable-first-party(style='flex: ' + firstPartyPct.toFixed(2) + ' 0 0', title='First party: ' + h.co2(co2FirstParty))
+      if thirdPartyPct > 0
+        span.sustainable-split-segment.sustainable-third-party(style='flex: ' + thirdPartyPct.toFixed(2) + ' 0 0', title='Third party: ' + h.co2(co2ThirdParty))
+    .sustainable-split-legend
+      .sustainable-split-legend-item
+        span.sustainable-split-swatch.sustainable-first-party
+        span.sustainable-split-name First party
+        span.sustainable-split-value #{h.co2(co2FirstParty)} (#{firstPartyPct.toFixed(2)}%) · #{h.size.format(firstPartyTransferPerPage)}
+      .sustainable-split-legend-item
+        span.sustainable-split-swatch.sustainable-third-party
+        span.sustainable-split-name Third party
+        span.sustainable-split-value #{h.co2(co2ThirdParty)} (#{thirdPartyPct.toFixed(2)}%) · #{h.size.format(thirdPartyTransferPerPage)}
+
 - sustainable = pageInfo.data.sustainable.pageSummary ? pageInfo.data.sustainable.pageSummary.firstRun : sustainable
+- const sectionLabel = pageInfo.data.sustainable.pageSummary ? ' (first run)' : ''
+
+//- Per-domain / dirtiest assets / per content type as horizontal bar
+//- lists. Each row: label · track · CO₂ + transfer.
+mixin co2BarRow(label, co2, transferSize, total, isGreen)
+  - const pct = total > 0 ? (co2 / total * 100) : 0
+  .sustainable-bar-row
+    .sustainable-bar-label
+      span.sustainable-bar-name= label
+      if isGreen
+        span.label.ok green
+    .sustainable-bar-track
+      span.sustainable-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+    .sustainable-bar-meta
+      span.sustainable-bar-co2 #{h.co2(co2)}
+      span.sustainable-bar-pct #{pct.toFixed(2)}%
+      span.sustainable-bar-size #{h.size.format(transferSize)}
+
 a#sustainable-per-domain
-h2 Per domain
-    if pageInfo.data.sustainable.pageSummary
-        | (first run)
-table
-    thead
-        tr
-            th Domain
-            th Estimated CO2 emissions
-            th Transfer Size
-    each data in sustainable.co2PerDomain
-        tr
-            td #{data.domain} 
-                - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
-                    span(class='label normal ok') green
-            - const percentage = (data.co2 / co2PerPageView) * 100
-            td.number #{h.co2(data.co2)} (#{Number(percentage).toFixed(2)} %)
-            td.number #{h.size.format(data.transferSize)}
+h2 Per domain#{sectionLabel}
+.sustainable-bars
+  each data in sustainable.co2PerDomain
+    +co2BarRow(data.domain, data.co2, data.transferSize, co2PerPageView, sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
+
 a#dirtiest-assets
-h2 Dirtiest assets
-    if pageInfo.data.sustainable.pageSummary
-        | (first run)
-table
-    thead
-        tr
-            th Asset
-            th Estimated CO2 emissions
-            th Transfer Size
-    each resource in sustainable.dirtiestResources
-        tr
-            td.url.assetsurl(data-title='URL')
-                a(href=resource.url)= h.shortAsset(resource.url)
-            - const percentage = (resource.co2 / co2PerPageView) * 100
-            td.number #{h.co2(resource.co2)} (#{Number(percentage).toFixed(2)} %)
-            td.number= h.size.format(resource.transferSize)
+h2 Dirtiest assets#{sectionLabel}
+.sustainable-bars
+  each resource in sustainable.dirtiestResources
+    .sustainable-bar-row
+      - const pct = co2PerPageView > 0 ? (resource.co2 / co2PerPageView * 100) : 0
+      .sustainable-bar-label
+        a.sustainable-bar-asset(href=resource.url)= h.shortAsset(resource.url)
+      .sustainable-bar-track
+        span.sustainable-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+      .sustainable-bar-meta
+        span.sustainable-bar-co2 #{h.co2(resource.co2)}
+        span.sustainable-bar-pct #{pct.toFixed(2)}%
+        span.sustainable-bar-size #{h.size.format(resource.transferSize)}
+
 a#sustainible-per-content-type
-h2 Per Content Type
-    if pageInfo.data.sustainable.pageSummary
-        | (first run)
-table
-    thead
-        tr
-            th Content Type
-            th Estimated CO2 emissions
-            th Transfer Size
-    each t in sustainable.co2PerContentType
-        tr
-            td #{t.type}
-            - const percentage = (t.co2 / co2PerPageView) * 100
-            td.number #{h.co2(t.co2)} (#{Number(percentage).toFixed(2)} %)
-            td.number= h.size.format(t.transferSize)
+h2 Per content type#{sectionLabel}
+.sustainable-bars
+  each t in sustainable.co2PerContentType
+    +co2BarRow(t.type, t.co2, t.transferSize, co2PerPageView, false)
