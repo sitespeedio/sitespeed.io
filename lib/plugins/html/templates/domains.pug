@@ -4,7 +4,8 @@ include _tableMixins
 mixin rows(domainStats)
   each domain in domainStats
     tr
-      td.url.assetsurl(data-title='Domain') #{domain.domainName}
+      td.url.assetsurl(data-title='Domain')
+        span.domain-name #{domain.domainName}
       +statsCell(domain.blocked, 'Blocked', 'max')
       +statsCell(domain.dns, 'DNS', 'max')
       +statsCell(domain.connect, 'Connect', 'max')
@@ -18,13 +19,13 @@ mixin rows(domainStats)
 block content
   include runInfo
   if topDomains
-    if count < fullCount
-      div Showing top #{count} domains out of #{fullCount}
-    else
-      div Showing all #{fullCount} domains
+    .domains-summary
+      span.domains-summary-value #{count < fullCount ? count : fullCount}
+      span.domains-summary-label of #{fullCount} domains shown
+    p.small Per-phase timings (max). Click any column header to sort.
     .responsive
       table(data-sortable, id='domains')
         +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
         +rows(topDomains)
   else
-    p We are missing domain information, the HAR file wasn't generated.
+    p.domains-empty No domain information available — the HAR file wasn't generated.
