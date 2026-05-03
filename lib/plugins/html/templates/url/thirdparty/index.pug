@@ -3,89 +3,127 @@ include ../../_tableMixins
 if pageInfo.data.coach
     - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
     - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run;
+    - const tpHasCategories = thirdparty.category && Object.keys(thirdparty.category).length > 0
+    - const tpHasAssets = thirdparty.assets && Object.keys(thirdparty.assets).length > 0
+    - const tpUnmatched = thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0
 
     small
-        || 
-        if thirdparty.category && Object.keys(thirdparty.category).length > 0
-            a(href='#third-party-categories') Categories |
+        ||
+        if tpHasCategories
+            a(href='#third-party-categories') Categories
             | &nbsp;|&nbsp;
-        if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
-            a(href='#third-party-tools') Tools |
+        if tpHasAssets
+            a(href='#third-party-tools') Tools
             | &nbsp;|&nbsp;
         if pagexray.cookieNamesThirdParties.length > 0
-            a(href='#third-party-cookies') Cookies |
+            a(href='#third-party-cookies') Cookies
             | &nbsp;|&nbsp;
-        if pagexray.firstParty.requests || options.firstParty
+        if pagexray.firstParty.requests || options.firstParty
             a(href='#first-vs-third') First vs third
             | &nbsp;|&nbsp;
     a#third-party
     a#third-party-categories
     h2 Third party
 
-    - const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion; 
-    p Third party requests categorised by 
+    - const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion;
+    p Third party requests categorised by
         a(href='https://github.com/patrickhulce/third-party-web') Third party web
         | &nbsp;version #{thirdPartyWebVersion}.
 
-    if thirdparty.category && Object.keys(thirdparty.category).length > 0
-        .row
-            .one-half.column
-                table(data-sortable, id='thirdPartyCategories')
-                    +rowHeading(['Category', 'Requests'])
-                    each metric, category in thirdparty.category
-                        if (category !== 'unknown')
-                            tr 
-                                td(data-title='Category') #{category} 
-                                +numberCell('requests', metric.requests ? metric.requests.median : metric)
-            .one-half.column
-                table(data-sortable, id='thirdPartyTools')
-                    +rowHeading(['Category', 'Number of tools'])
-                    each metric, category in thirdparty.category
-                        if (category !== 'unknown')
-                            tr 
-                                td(data-title='Category') #{category}     
-                                +numberCell('Tools', metric.tools ? metric.tools.median :Object.keys(thirdparty.toolsByCategory[category]).length)
+    //- Headline KPIs: total third-party requests, categories, tools and
+    //- third-party cookies, so users can scan the size of the third-party
+    //- footprint at a glance before drilling into the lists below.
+    - let tpTotalRequests = 0
+    - let tpToolsTotal = 0
+    if tpHasCategories
+        - tpTotalRequests = Object.entries(thirdparty.category).filter(e => e[0] !== 'unknown').reduce((s, e) => s + (e[1] && e[1].requests ? e[1].requests.median : e[1]), 0)
+    if thirdparty.toolsByCategory
+        - const tpToolsSet = new Set()
+        - Object.values(thirdparty.toolsByCategory).forEach(tools => Object.keys(tools).forEach(t => tpToolsSet.add(t)))
+        - tpToolsTotal = tpToolsSet.size
+    - const tpCategoryCount = tpHasCategories ? Object.keys(thirdparty.category).filter(c => c !== 'unknown').length : 0
+    - const tpCookieCount = pagexray.cookieNamesThirdParties ? pagexray.cookieNamesThirdParties.length : 0
 
-    if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
+    if tpTotalRequests || tpToolsTotal || tpCookieCount
+        .tp-kpis
+            if tpTotalRequests
+                .tp-kpi
+                    span.tp-kpi-label Third-party requests
+                    span.tp-kpi-value #{tpTotalRequests}
+            if tpToolsTotal
+                .tp-kpi
+                    span.tp-kpi-label Tools
+                    span.tp-kpi-value #{tpToolsTotal}
+            if tpCategoryCount
+                .tp-kpi
+                    span.tp-kpi-label Categories
+                    span.tp-kpi-value #{tpCategoryCount}
+            if tpCookieCount
+                .tp-kpi
+                    span.tp-kpi-label Third-party cookies
+                    span.tp-kpi-value #{tpCookieCount}
+
+    //- Categories as a horizontal bar list (replaces two tiny side-by-side
+    //- tables). Each row shows requests share + tool count for the category.
+    if tpHasCategories
+        h3 Categories
+        - const tpCatEntries = Object.entries(thirdparty.category).filter(e => e[0] !== 'unknown').map(e => ({name: e[0], requests: (e[1] && e[1].requests ? e[1].requests.median : e[1])})).sort((a, b) => b.requests - a.requests)
+        - const tpCatMax = tpCatEntries.length > 0 ? tpCatEntries[0].requests : 0
+        .tp-bars
+            each entry in tpCatEntries
+                - const pct = tpCatMax > 0 ? (entry.requests / tpCatMax * 100) : 0
+                - const toolCount = thirdparty.toolsByCategory && thirdparty.toolsByCategory[entry.name] ? Object.keys(thirdparty.toolsByCategory[entry.name]).length : 0
+                .tp-bar-row
+                    span.tp-bar-label #{entry.name}
+                    .tp-bar-track
+                        span.tp-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+                    span.tp-bar-value #{entry.requests} req · #{toolCount} #{toolCount === 1 ? 'tool' : 'tools'}
+
+    //- Tools per category as <details> cards. Replaces the old
+    //- toggleRow() JS with native disclosure: collapsed by default,
+    //- expand to see the deduped tool list and the underlying URLs.
+    if tpHasAssets
         a#third-party-tools
         h3 Third party requests and tools
-        button.hidden-small.button.button--primary(onclick='toggleRow(this);') Show/hide third party URLs
-        table
+        .tp-tools
             each category in Object.keys(thirdparty.assets)
-                tr
-                    td(style='text-transform: uppercase;') 
-                        b #{category} 
-                        | (#{thirdparty.assets[category].length} requests) 
-                - let oldNames = [];    
-                each asset in thirdparty.assets[category]  
-                    if (!oldNames.includes(asset.entity.name)) 
-                        - oldNames.push(asset.entity.name)
-                        tr
-                            td
-                                if asset.entity.homepage
-                                    a(href=asset.entity.homepage) #{asset.entity.name}  
-                                else 
-                                    span #{asset.entity.name}         
+                - const assets = thirdparty.assets[category]
+                - const seen = new Set()
+                - const tools = []
+                each asset in assets
+                    if !seen.has(asset.entity.name)
+                        - seen.add(asset.entity.name)
+                        - tools.push(asset.entity)
+                details.tp-tool-card
+                    summary.tp-tool-summary
+                        span.tp-tool-category #{category}
+                        span.tp-tool-meta #{assets.length} requests · #{tools.length} #{tools.length === 1 ? 'tool' : 'tools'}
+                    .tp-tool-body
+                        ul.tp-tool-entities
+                            each tool in tools
+                                li
+                                    if tool.homepage
+                                        a(href=tool.homepage) #{tool.name}
+                                    else
+                                        span #{tool.name}
+                        ul.tp-tool-urls
+                            each asset in assets
+                                li
+                                    a(href=asset.url) #{h.shortAsset(asset.url, true)}
+                                    span.tp-tool-urls-entity (#{asset.entity.name})
 
-                tr.u-hideable
-                    td.url.offendingurl
-                        ul
-                            each asset in thirdparty.assets[category]
-                                li 
-                                    a(href=asset.url) #{h.shortAsset(asset.url, true)}  
-                                    b (#{asset.entity.name})
-
-    if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0 
+    //- Unmatched third-party domains: short, scannable list rather than a
+    //- full-width table.
+    if tpUnmatched
         h3 Unmatched third party domains
-        p Here's a list of domains that didn't match any tool in 
+        p Domains that didn't match any tool in
             a(href='https://github.com/patrickhulce/third-party-web') Third party web
-            | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using 
+            | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using
             code --firstParty
             | .
-        table
-                each domain in thirdparty.possibileMissedThirdPartyDomains 
-                    tr 
-                        td #{domain}
+        ul.tp-unmatched
+            each domain in thirdparty.possibileMissedThirdPartyDomains
+                li.tp-unmatched-item #{domain}
 
     include ./thirdPartyCookies.pug
 

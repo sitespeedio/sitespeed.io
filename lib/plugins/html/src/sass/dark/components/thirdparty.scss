@@ -1,0 +1,225 @@
+//
+// THIRD PARTY — dark
+// ==================
+//
+
+.tp-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+}
+
+.tp-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+}
+
+.tp-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+}
+
+.tp-kpi-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: $color--text;
+}
+
+.tp-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.tp-bar-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 2fr minmax(140px, auto);
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.tp-bar-label {
+  color: $color--text-secondary;
+  word-break: break-word;
+  text-transform: capitalize;
+}
+
+.tp-bar-track {
+  height: 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+}
+
+.tp-bar-fill {
+  display: block;
+  height: 100%;
+  background: $color--blue;
+}
+
+.tp-bar-value {
+  text-align: right;
+  color: $color--text;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  white-space: nowrap;
+}
+
+.tp-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.tp-tool-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  overflow: hidden;
+  transition: box-shadow $motion--med;
+  &[open] { box-shadow: $shadow--sm; }
+}
+
+.tp-tool-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  transition: background-color $motion--fast;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { display: none; }
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid $color--text-muted;
+    border-bottom: 2px solid $color--text-muted;
+    transform: rotate(45deg);
+    margin-left: auto;
+    transition: transform $motion--fast;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.tp-tool-card[open] > .tp-tool-summary::after {
+  transform: rotate(225deg);
+}
+
+.tp-tool-category {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+
+.tp-tool-meta {
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+
+.tp-tool-body {
+  padding: 12px 14px;
+  border-top: 1px solid $color--border;
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 18px;
+  row-gap: 8px;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tp-tool-entities {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+
+  li {
+    color: $color--text;
+  }
+
+  a {
+    color: $color--text;
+    border-bottom: 1px dotted $color--border;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom-color: $color--text-muted;
+  }
+}
+
+.tp-tool-urls {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.85rem;
+  min-width: 0;
+
+  li {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    color: $color--text-secondary;
+  }
+}
+
+.tp-tool-urls-entity {
+  color: $color--text-muted;
+  font-size: 0.8rem;
+  margin-left: 6px;
+}
+
+.tp-unmatched {
+  list-style: none;
+  margin: 0 0 1.5rem 0;
+  padding: 8px 12px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tp-unmatched-item {
+  font-family: $font--mono;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  word-break: break-word;
+}
