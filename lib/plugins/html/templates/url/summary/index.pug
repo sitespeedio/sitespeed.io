@@ -73,180 +73,177 @@ block content
 
       a#summary
       h2 Summary
+
+      //- Pull all values once up front so the markup below is just rendering.
+      - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
+      - totalTransferSize = get(d, 'pagexray.pageSummary.transferSize')
+      - memory = get(d, 'browsertime.pageSummary.memory')
+      - powerConsumption = get(d, 'browsertime.pageSummary.statistics.powerConsumption.median')
+      - requests = get(d, 'pagexray.pageSummary.requests')
+      - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
+      - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
+      - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
+      - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median')
+      - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
+      - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
+      - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
+      - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
+      - mpFID = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median')
+      - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
+      - maxLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max')
+      - lastLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask.median')
+      - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
+      - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
+      - visualComplete85 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median')
+      - visualComplete99 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median')
+      - lastVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median')
+      - cruxFCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_contentful_paint.percentiles.p75')
+      - cruxLCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.largest_contentful_paint.percentiles.p75')
+      - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75')
+      - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75')
+
+      //- Threshold helpers shared by hero band and inline badges.
+      - lcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+      - fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+      - clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+      - inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+      - perfClass = (v) => v == null ? '' : (typeof h.scoreLabel === 'function' ? h.scoreLabel(v) : 'info')
+
       .row
         .one-half.column
-          table
-            tr
-              th Metric
-              th Value
-            - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
-            tr
-              th(colspan='2') Page metrics
-            if performanceScore
-              tr
-                td Performance Score
-                td #{performanceScore}
-            - totalTransferSize = get(d, 'pagexray.pageSummary.transferSize')
-            if totalTransferSize
-              tr
-                td Total Page Transfer Size
-                td #{h.size.format(totalTransferSize)}
-            - memory = get(d, 'browsertime.pageSummary.memory')
-            if memory
-              tr
-                td Memory
-                td #{h.size.format(memory)}
-            - powerConsumption = get(d, 'browsertime.pageSummary.statistics.powerConsumption.median')
-            if powerConsumption 
-              tr
-                td Firefox CPU Power Consumption
-                td #{powerConsumption * 1000} mWh
-            - requests = get(d, 'pagexray.pageSummary.requests')
-            if requests
-              tr
-                td Requests
-                td #{requests}
-            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
-            tr
-              th(colspan='2') Timing metrics
-            if ttfb
-              tr
-                td TTFB [median]
-                td #{h.time.ms(ttfb)}
-            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
-            if firstPaint
-              tr
-                td First Paint [median]
-                td #{h.time.ms(firstPaint)}  
-            - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
-            if fullyLoaded  
-              tr
-                td Fully Loaded [median]
-                td #{h.time.ms(fullyLoaded)}
-            - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
-            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
-            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
-            - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
-            if lcp
-              tr
-                th(colspan='2') Google Web Vitals     
-            if ttfb
-              tr
-                td TTFB [median]
-                td #{h.time.ms(ttfb)}
+          //- Hero KPIs (Core Web Vitals + Coach perf score), median across runs.
+          .iter-kpis
             if fcp
-              tr
-                td First Contentful Paint (FCP) [median]
-                td #{h.time.ms(fcp)}         
+              .iter-kpi(class=fcpClass(fcp))
+                span.iter-kpi-label FCP
+                span.iter-kpi-value #{h.time.ms(fcp)}
             if lcp
-              tr
-                td Largest Contentful Paint (LCP) [median]
-                td #{h.time.ms(lcp)}
-            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
+              .iter-kpi(class=lcpClass(lcp))
+                span.iter-kpi-label LCP
+                span.iter-kpi-value #{h.time.ms(lcp)}
             if cls || cls === 0
-                tr
-                  td Cumulative Layout Shift (CLS) [median]
-                  td #{cls.toFixed(2)}
-            if inp
-                tr
-                  td Interaction To Next Paint (INP) [median]
-                  td #{h.time.ms(inp)}
-            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
-            if tbt  
-              tr
-                td Total Blocking Time [median]
-                td #{h.time.ms(tbt)}
-            - mpFID = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median')
-            if mpFID
-              tr
-                td Max Potential FID [median]
-                td #{h.time.ms(mpFID)}
-            - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
-            if longTasks
-              tr
-                th(colspan='2') CPU metrics
-              tr
-                td CPU long tasks [median]
-                td #{longTasks}
-            - maxLongTask= get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max') 
-            if maxLongTask 
-              tr
-                td CPU longest task duration
-                td #{h.time.ms(maxLongTask)}
-            - lastLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask.median') 
-            if lastLongTask 
-              tr
-                td CPU last long task happens at
-                td #{h.time.ms(lastLongTask)}
-            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
-            if firstVisualChange
-              tr
-                th(colspan='2') Visual Metrics
-              tr
-                td First Visual Change [median]
-                td #{h.time.ms(firstVisualChange)}
-            - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
-            if speedIndex
-              tr
-                td Speed Index [median]
-                td #{h.time.ms(speedIndex)}
-            - visualComplete85 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median')
-            if visualComplete85
-              tr
-                td Visual Complete 85% [median]
-                td #{h.time.ms(visualComplete85)}
-            - visualComplete99 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median')
-            if visualComplete99
-              tr
-                td Visual Complete 99% [median]
-                td #{h.time.ms(visualComplete99)}
-            - lastVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median')
-            if lastVisualChange
-              tr
-                td Last Visual Change [median]
-                td #{h.time.ms(lastVisualChange)}
-            - cruxFCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_contentful_paint.percentiles.p75');
-            if cruxFCP
-              tr
-                th(colspan='2') Chrome User Experience Report (CRUX)
-              tr
-                td First Contentful Paint [p75]
-                td #{h.time.ms(cruxFCP)}
-            - cruxLCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.largest_contentful_paint.percentiles.p75');
-            if cruxLCP
-              tr
-                td Largest Contentful Paint (LCP) [p75]
-                td #{h.time.ms(cruxLCP)}
-            - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75');
-            if cruxFID
-              tr
-                td First Input Delay (FID) [p75]
-                td #{h.time.ms(cruxFID)}
-            - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75');
-            if cruxCLS || cruxCLS === 0
-              tr
-                td Cumulative Layout Shift (CLS) [p75]
-                td #{Number(cruxCLS).toFixed(2)}
-            if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime
-              - const cruxMetrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
-              each name, key in cruxMetrics
-                if d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key]
-                  tr 
-                    td Fast #{name} (CrUx overall)
-                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
-                  tr 
-                    td Moderate #{name} (CrUx overall)
-                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
-                  tr 
-                    td Slow #{name} (CrUx overall)
-                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
+              .iter-kpi(class=clsClass(cls))
+                span.iter-kpi-label CLS
+                span.iter-kpi-value #{cls.toFixed(3)}
+            if typeof performanceScore === 'number'
+              .iter-kpi(class=perfClass(performanceScore))
+                span.iter-kpi-label Coach
+                span.iter-kpi-value #{performanceScore}
+
+          if ttfb || firstPaint || fullyLoaded || inp || tbt || mpFID
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Loading & responsiveness (median)
+              dl.iter-group-list
+                if ttfb
+                  dt TTFB
+                  dd #{h.time.ms(ttfb)}
+                if firstPaint
+                  dt First Paint
+                  dd #{h.time.ms(firstPaint)}
+                if fullyLoaded
+                  dt Fully Loaded
+                  dd #{h.time.ms(fullyLoaded)}
+                if inp
+                  dt Interaction to Next Paint
+                  dd
+                    span.label(class=inpClass(inp)) #{h.time.ms(inp)}
+                if tbt
+                  dt Total Blocking Time
+                  dd #{h.time.ms(tbt)}
+                if mpFID
+                  dt Max Potential FID
+                  dd #{h.time.ms(mpFID)}
+
+          if totalTransferSize || memory || powerConsumption || requests
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Page weight & requests
+              dl.iter-group-list
+                if totalTransferSize
+                  dt Total transfer size
+                  dd #{h.size.format(totalTransferSize)}
+                if requests
+                  dt Requests
+                  dd #{requests}
+                if memory
+                  dt Memory
+                  dd #{h.size.format(memory)}
+                if powerConsumption
+                  dt Firefox CPU power
+                  dd #{(powerConsumption * 1000).toFixed(1)} mWh
+
+          if longTasks || maxLongTask || lastLongTask
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title CPU
+              dl.iter-group-list
+                if longTasks
+                  dt CPU long tasks
+                  dd #{longTasks}
+                if maxLongTask
+                  dt CPU longest task duration
+                  dd #{h.time.ms(maxLongTask)}
+                if lastLongTask
+                  dt CPU last long task at
+                  dd #{h.time.ms(lastLongTask)}
+
+          if firstVisualChange || speedIndex || visualComplete85 || visualComplete99 || lastVisualChange
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Visual progress
+              dl.iter-group-list
+                if firstVisualChange
+                  dt First Visual Change
+                  dd #{h.time.ms(firstVisualChange)}
+                if speedIndex
+                  dt Speed Index
+                  dd #{h.time.ms(speedIndex)}
+                if visualComplete85
+                  dt Visual Complete 85%
+                  dd #{h.time.ms(visualComplete85)}
+                if visualComplete99
+                  dt Visual Complete 99%
+                  dd #{h.time.ms(visualComplete99)}
+                if lastVisualChange
+                  dt Last Visual Change
+                  dd #{h.time.ms(lastVisualChange)}
+
+          if cruxFCP || cruxLCP || cruxFID || (cruxCLS || cruxCLS === 0) || (d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime)
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Chrome UX Report (CrUx p75)
+              dl.iter-group-list
+                if cruxFCP
+                  dt First Contentful Paint
+                  dd #{h.time.ms(cruxFCP)}
+                if cruxLCP
+                  dt Largest Contentful Paint
+                  dd #{h.time.ms(cruxLCP)}
+                if cruxFID
+                  dt First Input Delay
+                  dd #{h.time.ms(cruxFID)}
+                if cruxCLS || cruxCLS === 0
+                  dt Cumulative Layout Shift
+                  dd #{Number(cruxCLS).toFixed(3)}
+                if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime
+                  - cruxMetrics = {first_contentful_paint:'First Contentful Paint', largest_contentful_paint: 'Largest Contentful Paint', first_input_delay:'First Input Delay', cumulative_layout_shift: 'Cumulative Layout Shift'}
+                  each name, key in cruxMetrics
+                    if d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key]
+                      dt Fast #{name}
+                      dd #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
+                      dt Moderate #{name}
+                      dd #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
+                      dt Slow #{name}
+                      dd #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
+
         .one-half.column
-            if hasScreenShots
-              - const width = options.mobile ? 150 : '100%';
-              - const screenshotNo = medianRun ? medianRun.runIndex : 1
-              - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
-              a(href=screenshotName)
-                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
+          if hasScreenShots
+            - const width = options.mobile ? 150 : '100%';
+            - const screenshotNo = medianRun ? medianRun.runIndex : 1
+            - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
+            a(href=screenshotName)
+              img.screenshot.iter-screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
       include ./summaryBox.pug
 
       #downloads
