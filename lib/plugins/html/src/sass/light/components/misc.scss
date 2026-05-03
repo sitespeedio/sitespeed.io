@@ -72,6 +72,18 @@ ul.menu {
  font-weight: $font--weight--semibold;
 }
 
+// Secondary "from page" link in the assets table — small muted glyph+text
+// that opens the page detail for the asset's host page.
+a.from-page {
+ font-size: 0.85em;
+ color: $color--text-muted;
+ white-space: nowrap;
+
+ &:hover {
+  color: $color--blue;
+ }
+}
+
 /* Large */
 
 .large {
