@@ -1,0 +1,47 @@
+//
+// DETAILED SUMMARY — dark
+// =======================
+//
+
+.detailed-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 0 0 18px 0;
+}
+
+.detailed-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+}
+
+.detailed-kpi-label {
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.detailed-kpi-value {
+  font-size: 1.75rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.detailed-kpi-sub {
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
