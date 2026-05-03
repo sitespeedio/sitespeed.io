@@ -1,85 +1,70 @@
 if timings.largestContentfulPaint
+  - const lcp = timings.largestContentfulPaint
+  - const lcpRender = lcp.renderTime || 0
+  - const lcpLabel = (() => { if (lcpRender >= 4000) return 'error'; if (lcpRender >= 2500) return 'warning'; return 'ok'; })()
+  - const phases = [{ key: 'ttfb', name: 'TTFB', value: lcp.ttfb || 0 }, { key: 'resource-delay', name: 'Resource load delay', value: lcp.resourceLoadDelay || 0 }, { key: 'resource-load', name: 'Resource load duration', value: lcp.resourceLoadDuration || 0 }, { key: 'render-delay', name: 'Element render delay', value: lcp.elementRenderDelay || 0 }]
+  - const phaseTotal = phases.reduce((s, p) => s + p.value, 0)
   a#largestContentfulPaint
   h3 Largest Contentful Paint
-  p When in time the page main content is rendered (collected using the Largest Contentful Paint API). Read more about 
+  p When the page main content is rendered, collected via the Largest Contentful Paint API. Read more about
+    |
     a(href='https://web.dev/largest-contentful-paint') Largest Contentful Paint
     | .
-  .row
-    .one-half.column
-        table
-            if timings.largestContentfulPaint.tagName 
-              tr
-                td 
-                  b Element type
-                td #{timings.largestContentfulPaint.tagName}
-            if timings.largestContentfulPaint.tag 
-              tr
-                td 
-                  b Element/tag
-                td.url.pagesurl #{timings.largestContentfulPaint.tag}
-            tr
-              td 
-                b Render time 
-              td #{h.time.ms(timings.largestContentfulPaint.renderTime)}
-            tr
-              td 
-                b Element render delay
-              td #{h.time.ms(timings.largestContentfulPaint.elementRenderDelay)}
-            tr
-              td 
-                b TTFB
-              td #{h.time.ms(timings.largestContentfulPaint.ttfb)}
-            tr
-              td 
-                b Resource delay
-              td #{h.time.ms(timings.largestContentfulPaint.resourceLoadDelay)}
-            tr
-              td 
-                b Resource load duration
-              td #{h.time.ms(timings.largestContentfulPaint.resourceLoadDuration)}
-            if renderBlocking && renderBlocking.recalculateStyle.beforeLCP
-              tr 
-                td
-                  b Elements that needed recalculate style before LCP
-                td #{renderBlocking.recalculateStyle.beforeLCP.elements}    
-              tr
-                td 
-                  b Time spent in recalculate style before LCP
-                td #{h.time.ms(renderBlocking.recalculateStyle.beforeLCP.durationInMillis)}  
+  .lcp-card
+    .row
+      .one-half.column
+        .lcp-headline
+          span.lcp-render-time(class=lcpLabel) #{h.time.ms(lcpRender)}
+          span.lcp-headline-sub LCP render time
+        if phaseTotal > 0
+          h4.lcp-phases-heading Phase breakdown
+          .lcp-bar
+            each phase in phases
+              if phase.value > 0
+                - const pct = (phase.value / phaseTotal * 100)
+                span.lcp-bar-segment(class='lcp-' + phase.key, style='flex: ' + pct.toFixed(2) + ' 0 0', title=phase.name + ': ' + h.time.ms(phase.value))
+          ul.lcp-legend
+            each phase in phases
+              li
+                span.lcp-legend-swatch(class='lcp-' + phase.key)
+                span.lcp-legend-label= phase.name
+                span.lcp-legend-value #{h.time.ms(phase.value)}
 
-            if timings.largestContentfulPaint.id !== ''
-              tr 
-                td 
-                  b Element id
-                td #{timings.largestContentfulPaint.id}
-            tr
-              td 
-                b Load time
-              td #{h.time.ms(timings.largestContentfulPaint.loadTime)}
-            if timings.largestContentfulPaint.url !== ''  
-              tr 
-                td 
-                  b URL 
-                td 
-                  a(href=timings.largestContentfulPaint.url) #{h.shortAsset(timings.largestContentfulPaint.url)}
-            if timings.largestContentfulPaint.size
-              tr 
-                td 
-                  b Size (width*height)
-                td #{timings.largestContentfulPaint.size}
-            tr
-              td(colspan='2')
-               b DOM path
-            tr
-              td.url.pagesurl(colspan='2')
-                #{timings.largestContentfulPaint.domPath}
-    .one-half.column
-      - const screenshotNo = medianRun ? medianRun.runIndex : (Number(runIndex) + 1)
-      - const screenshotName = 'data/screenshots/' + screenshotNo + '/largestContentfulPaint.' + screenShotType
-      a(href=screenshotName)
-        img.screenshot(src=screenshotName, alt='LCP', style='max-width:100%; height: auto')
-      p.small The largest contentful paint is highlighted in the image. If no element is highlighted the element was removed before the screenshot or the LCP API couldn't find the element.
-      if timings.largestContentfulPaint.url !== ''
-        p.small The Largest Contentful Paint API highlighted this image as a part of the LCP.  
-        a(href=timings.largestContentfulPaint.url) 
-          img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='max-width:100%; height: auto')
+        h4.lcp-section-heading Element
+        dl.lcp-meta
+          if lcp.tagName
+            dt Element type
+            dd
+              code &lt;#{lcp.tagName.toLowerCase()}&gt;
+          if lcp.id !== ''
+            dt Element id
+            dd
+              code= lcp.id
+          if lcp.size
+            dt Size (w × h)
+            dd #{lcp.size}
+          if lcp.url !== ''
+            dt URL
+            dd
+              a(href=lcp.url) #{h.shortAsset(lcp.url)}
+          dt Load time
+          dd #{h.time.ms(lcp.loadTime)}
+          if renderBlocking && renderBlocking.recalculateStyle.beforeLCP
+            dt Recalculate-style elements before LCP
+            dd #{renderBlocking.recalculateStyle.beforeLCP.elements} (#{h.time.ms(renderBlocking.recalculateStyle.beforeLCP.durationInMillis)})
+
+        if lcp.domPath
+          h4.lcp-section-heading DOM path
+          pre.lcp-dompath
+            code= lcp.domPath
+
+      .one-half.column
+        - const screenshotNo = medianRun ? medianRun.runIndex : (Number(runIndex) + 1)
+        - const screenshotName = 'data/screenshots/' + screenshotNo + '/largestContentfulPaint.' + screenShotType
+        a(href=screenshotName)
+          img.screenshot.lcp-screenshot(src=screenshotName, alt='LCP')
+        p.small The LCP element is highlighted in the screenshot. If nothing is highlighted the element was removed before the screenshot or the LCP API couldn't find it.
+        if lcp.url !== ''
+          p.small The Largest Contentful Paint API matched this image:
+          a(href=lcp.url)
+            img.screenshot.lcp-screenshot(src=lcp.url, alt='LCP element')
