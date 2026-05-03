@@ -406,3 +406,165 @@ $lcp--render-delay: #7c3aed;
   border: 1px solid $color--border;
   margin-bottom: 8px;
 }
+
+//
+// CLS card — hero score (with web-vitals threshold colour) +
+// per-element shift list, paired with the layout-shift screenshot.
+//
+.cls-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.cls-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cls-score {
+  font-size: 2.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  padding: 4px 14px;
+  border-radius: $radius--md;
+  line-height: 1.1;
+
+  &.ok { color: $color--ok; background: $color--ok-bg; border: 1px solid $color--ok-border; }
+  &.warning { color: $color--warning; background: $color--warning-bg; border: 1px solid $color--warning-border; }
+  &.error { color: $color--error; background: $color--error-bg; border: 1px solid $color--error-border; }
+}
+
+.cls-headline-sub {
+  color: $color--text-muted;
+  font-size: 0.95rem;
+}
+
+.cls-no-shifts {
+  color: $color--text-muted;
+  font-style: italic;
+}
+
+.cls-section-heading {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 4px 0;
+}
+
+.cls-section-help {
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.cls-shifts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cls-shift {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  min-width: 0;          // allow shrinking inside the .one-half.column
+  overflow: hidden;
+  overflow-wrap: anywhere;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.cls-shift-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.cls-shift-rank {
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  flex: 0 0 auto;
+}
+
+.cls-shift-score {
+  color: $color--text;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+  flex: 0 0 auto;
+}
+
+.cls-shift-tags {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  code {
+    // Override the global `code { white-space: nowrap }` so a long tag
+    // string (`<div class="...">,<div ...>,…`) wraps inside the card
+    // instead of pushing the whole .one-half.column wider than its
+    // 48% slot.
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 1em;
+  }
+}
+
+.cls-shift-dompath {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 8px 10px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+  font-family: $font--mono;
+  color: $color--text;
+  overflow-x: auto;
+
+  code {
+    // Same override — without it the global `code { white-space: nowrap }`
+    // re-collapses the wrapping the wrapper `pre` already enabled.
+    white-space: inherit;
+    word-break: inherit;
+    overflow-wrap: inherit;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+}
+
+.cls-screenshot {
+  max-width: 100%;
+  height: auto;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  margin-bottom: 8px;
+}
