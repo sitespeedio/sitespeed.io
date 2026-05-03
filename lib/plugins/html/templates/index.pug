@@ -1,22 +1,39 @@
 extends ./layout.pug
 
-mixin box(box)
+//- Hero KPIs picked by their help-anchor name. Order here = display order.
+//- Anything not in this list flows into the regular summary grid below.
+- const HERO_URLS = ['FirstContentfulPaint', 'LargestContentfulPaint', 'CumulativeLayoutShift', 'CoachPerformanceScore'];
+
+mixin box(box, hero)
+  - const cls = (hero ? 'summarybox hero ' : 'summarybox ') + (box.label || '')
   if (box.url)
     - url = 'help.html#' + box.url
     a.summaries(href=url)
-      .summarybox(class=box.label)= box.name
+      div(class=cls)
+        span.summarytitle= box.name
         .summarynumber #{box.median}&nbsp;
           span.summarysmall (#{box.p90})
   else
-    .summarybox(class=box.label)= box.name
+    div(class=cls)
+      span.summarytitle= box.name
       .summarynumber #{box.median}&nbsp;
         span.summarysmall (#{box.p90})
 
 block content
     include runInfo
 
-    .summary-grid
-      each box in boxes
-        +box(box)
+    - const heroByUrl = Object.fromEntries(boxes.filter(b => HERO_URLS.includes(b.url)).map(b => [b.url, b]));
+    - const heroBoxes = HERO_URLS.map(u => heroByUrl[u]).filter(Boolean);
+    - const restBoxes = boxes.filter(b => !HERO_URLS.includes(b.url));
+
+    if heroBoxes.length > 0
+      .summary-hero
+        each box in heroBoxes
+          +box(box, true)
+
+    if restBoxes.length > 0
+      .summary-grid
+        each box in restBoxes
+          +box(box, false)
 
     p.small * The value inside of the parentheses are the 90th percentile (90% of the time, the number is below this amount)

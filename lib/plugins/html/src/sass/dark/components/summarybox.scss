@@ -15,6 +15,38 @@
   margin-bottom: 0;
 }
 
+.summary-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.summary-hero > .summaries,
+.summary-hero > .summarybox {
+  margin-bottom: 0;
+}
+
+.summarybox.hero {
+  min-height: 7.5rem;
+  padding: 18px 20px;
+
+  .summarytitle {
+    font-size: 0.95rem;
+    font-weight: $font--weight--medium;
+    opacity: 0.85;
+  }
+
+  .summarynumber {
+    font-size: 2.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .summarysmall {
+    font-size: 1rem;
+  }
+}
+
 .summarybox {
   display: flex;
   flex-direction: column;
