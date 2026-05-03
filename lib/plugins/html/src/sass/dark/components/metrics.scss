@@ -58,3 +58,89 @@
   padding: 8px 14px 14px 14px;
   border-top: 1px solid $color--border;
 }
+
+.et-list {
+  border-top: 1px solid $color--border;
+  padding: 12px 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.et-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 14px;
+  padding: 12px;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+
+  &:not(:has(> .et-thumb)) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.et-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+  }
+}
+
+.et-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.et-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.et-id {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.et-tag {
+  font-family: $font--mono;
+  font-size: 0.75rem;
+  color: $color--text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 8px;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  background: $color--surface;
+}
+
+.et-tile--wide {
+  grid-column: 1 / -1;
+}
+
+.et-card .metric-tiles {
+  border-top: 0;
+  padding: 0;
+}

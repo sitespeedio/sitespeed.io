@@ -1,30 +1,33 @@
 if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
     a#elementTimings
-    h3 Element timings
-    table
-        tr
-          th Id
-          th URL
-          th Image
-          th Tag 
-          th Render time
-          th Load time
-          th Natural width
-          th Natural height
-        each value, name in browsertime.timings.elementTimings
-          tr
-            td  #{name}
-            if value.url !== ''    
-              td  
-                a(href=value.url) #{value.url}
-              td 
-                a(href=value.url)
-                  img.screenshot(src=value.url, alt='LCP', style='width:200px')
-            else
-              td
-              td
-            td  #{value.tagName}
-            td  #{h.time.ms(value.renderTime)}
-            td  #{h.time.ms(value.loadTime)} 
-            td  #{value.naturalWidth}  
-            td  #{value.naturalHeight}  
+    details.iter-group(open)
+        summary.iter-group-summary
+            span.iter-group-title Element timings
+            span.iter-group-count #{Object.keys(browsertime.timings.elementTimings).length}
+        .et-list
+            each value, name in browsertime.timings.elementTimings
+                .et-card
+                    if value.url
+                        a.et-thumb(href=value.url, title=value.url)
+                            img(src=value.url, alt=name, loading='lazy')
+                    .et-body
+                        .et-header
+                            span.et-id #{name}
+                            if value.tagName
+                                span.et-tag #{value.tagName}
+                        .metric-tiles
+                            .metric-tile
+                                span.metric-tile-label Render time
+                                span.metric-tile-value #{h.time.ms(value.renderTime)}
+                            .metric-tile
+                                span.metric-tile-label Load time
+                                span.metric-tile-value #{h.time.ms(value.loadTime)}
+                            if value.naturalWidth
+                                .metric-tile
+                                    span.metric-tile-label Natural size
+                                    span.metric-tile-value #{value.naturalWidth} × #{value.naturalHeight}
+                            if value.url
+                                .metric-tile.et-tile--wide
+                                    span.metric-tile-label URL
+                                    span.metric-tile-value
+                                        a(href=value.url) #{h.shortAsset(value.url, true)}
