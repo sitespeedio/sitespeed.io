@@ -1,0 +1,121 @@
+//
+// PAGEXRAY — dark
+// ===============
+//
+
+.pagexray-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+}
+
+.pagexray-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+  &.info { background: $color--info-bg; border-color: $color--info-border; color: $color--info; }
+}
+
+.pagexray-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.pagexray-kpi-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.pagexray-kpi-value-text {
+  font-size: 1.2rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.pagexray-kpi-sub {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.pagexray-section-heading {
+  margin-top: 1.5rem;
+}
+
+//
+// Response code bar list
+//
+.pagexray-codes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.pagexray-code-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 60px 60px;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.pagexray-code-pill {
+  font-family: $font--mono;
+  font-weight: $font--weight--semibold;
+  text-align: center;
+  padding: 2px 8px;
+  border-radius: $radius--pill;
+  font-size: 0.8rem;
+
+  &.ok { background: $color--ok-bg; color: $color--ok; border: 1px solid $color--ok-border; }
+  &.warning { background: $color--warning-bg; color: $color--warning; border: 1px solid $color--warning-border; }
+  &.error { background: $color--error-bg; color: $color--error; border: 1px solid $color--error-border; }
+  &.info { background: $color--info-bg; color: $color--info; border: 1px solid $color--info-border; }
+}
+
+.pagexray-code-track {
+  height: 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+}
+
+.pagexray-code-fill {
+  display: block;
+  height: 100%;
+  &.ok { background: $color--ok; }
+  &.warning { background: $color--warning; }
+  &.error { background: $color--error; }
+  &.info { background: $color--blue; }
+}
+
+.pagexray-code-value {
+  text-align: right;
+  color: $color--text;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+}
+
+.pagexray-code-pct {
+  text-align: right;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
