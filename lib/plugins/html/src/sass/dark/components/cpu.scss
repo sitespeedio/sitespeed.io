@@ -1,0 +1,191 @@
+//
+// CPU — dark
+// ==========
+//
+
+.cpu-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+}
+
+.cpu-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+}
+
+.cpu-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.cpu-kpi-value {
+  font-size: 1.4rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.cpu-section-heading {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 18px 0 8px 0;
+}
+
+.cpu-no-tasks {
+  color: $color--ok;
+  font-weight: $font--weight--medium;
+  margin: 0 0 1.5rem 0;
+  padding: 14px 16px;
+  background: $color--ok-bg;
+  border: 1px solid $color--ok-border;
+  border-radius: $radius--md;
+}
+
+//
+// Long-tasks-by-phase definition list
+//
+.cpu-phase-list {
+  display: grid;
+  grid-template-columns: minmax(200px, auto) auto;
+  column-gap: 16px;
+  row-gap: 6px;
+  margin: 0 0 1.5rem 0;
+  font-size: 0.95rem;
+
+  dt {
+    color: $color--text-secondary;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    display: inline-flex;
+    gap: 12px;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.cpu-phase-count {
+  color: $color--text;
+  font-weight: $font--weight--semibold;
+  min-width: 2.5em;
+  text-align: right;
+}
+
+.cpu-phase-time {
+  color: $color--text-muted;
+}
+
+//
+// First Input Delay card
+//
+.cpu-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 14px 16px;
+  margin-bottom: 1.5rem;
+}
+
+.cpu-card-header {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cpu-card-title {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+}
+
+.cpu-fi-meta {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 6px;
+  margin: 0;
+  font-size: 0.95rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+//
+// Bar lists for categories / events / per-request / per-tool
+//
+.cpu-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.cpu-bar-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 2fr minmax(80px, auto);
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.cpu-bar-label {
+  color: $color--text-secondary;
+  word-break: break-word;
+}
+
+.cpu-bar-asset {
+  color: $color--text;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+}
+
+.cpu-bar-track {
+  height: 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+}
+
+.cpu-bar-fill {
+  display: block;
+  height: 100%;
+  background: $color--blue;
+}
+
+.cpu-bar-value {
+  text-align: right;
+  color: $color--text;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  white-space: nowrap;
+}
