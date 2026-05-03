@@ -1,0 +1,231 @@
+//
+// COACH — light
+// =============
+// Score tiles + per-advice expandable cards for the Coach tab.
+//
+
+//
+// 1. Top summary band — small mascot + 4 score tiles
+//
+.coach-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.coach-summary-mascot {
+  flex: 0 0 auto;
+}
+
+.coach-mascot {
+  width: 96px;
+  height: auto;
+  display: block;
+}
+
+.coach-summary-scores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.coach-score-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+  text-decoration: none;
+  transition: box-shadow $motion--med, transform $motion--med;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+  &.info { background: $color--info-bg; border-color: $color--info-border; color: $color--info; }
+
+  // Anchor variants get hover affordance; the non-link Overall tile stays static.
+  &[href]:hover {
+    box-shadow: $shadow--md;
+    transform: translateY(-1px);
+  }
+}
+
+.coach-score-label {
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.coach-score-value {
+  font-size: 2rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  .coach-summary {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .coach-summary-mascot {
+    margin: 0 auto;
+  }
+  .coach-mascot {
+    width: 72px;
+  }
+}
+
+//
+// 2. Per-category section — header strip + advice cards
+//
+.coach-section {
+  margin-bottom: 28px;
+}
+
+.coach-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.coach-section-title {
+  margin: 0;
+}
+
+.coach-section-clear {
+  color: $color--ok;
+  font-weight: $font--weight--medium;
+  margin: 0;
+  padding: 14px 16px;
+  background: $color--ok-bg;
+  border: 1px solid $color--ok-border;
+  border-radius: $radius--md;
+}
+
+//
+// 3. Advice cards — native <details>/<summary> for disclosure
+//
+.coach-advices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.coach-advice {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  overflow: hidden;
+  transition: box-shadow $motion--med;
+
+  &[open] {
+    box-shadow: $shadow--sm;
+  }
+}
+
+.coach-advice-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  transition: background-color $motion--fast;
+
+  // Hide native disclosure marker; use a CSS chevron instead.
+  &::-webkit-details-marker { display: none; }
+  &::marker { display: none; }
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid $color--text-muted;
+    border-bottom: 2px solid $color--text-muted;
+    transform: rotate(45deg);
+    margin-left: auto;
+    transition: transform $motion--fast;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    background: $color--surface;
+  }
+}
+
+.coach-advice[open] > .coach-advice-summary::after {
+  transform: rotate(225deg);
+}
+
+.coach-advice-title {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.coach-advice-rule {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-family: $font--mono;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.coach-advice-body {
+  padding: 0 16px 16px 16px;
+  border-top: 1px solid $color--border;
+  margin-top: 0;
+}
+
+.coach-advice-text {
+  margin: 14px 0 8px 0;
+  color: $color--text;
+}
+
+.coach-advice-desc {
+  margin: 0 0 12px 0;
+  color: $color--text-secondary;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.coach-offenders-title {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 14px 0 8px 0;
+}
+
+.coach-offenders-table {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.coach-offenders-list {
+  margin: 0 0 0 1rem;
+  padding: 0;
+  font-size: 0.9rem;
+
+  li {
+    margin-bottom: 4px;
+    overflow-wrap: anywhere;
+  }
+}

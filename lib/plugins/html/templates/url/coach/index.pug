@@ -1,124 +1,100 @@
 include ../../_tableMixins
 
-mixin adviceInfo(name, id, perfectScore, node)
+//- Each advice category renders as a collection of `<details>` cards
+//- sorted by score ascending — most-urgent first. Native `<details>`
+//- gives per-card disclosure with no JS, accessible by default.
+mixin adviceCategory(name, id, perfectMessage, node)
   a(id=id)
-  h3 #{name} (#{node.score})
-  if node.score < 100
-    button.hidden-small.button.button--primary(onclick='toggleRow(this);') Show/hide details
-    .responsive
-      table
-        thead
-          tr
-            th Title
-            th Advice
-            th Score
-        tbody
-          each adviceName, idx in Object.getOwnPropertyNames(node.adviceList).filter(e => node.adviceList[e].score < 100)
-            - const advice = node.adviceList[adviceName]
-            tr(class=idx % 2 == 0 ? 'odd' : 'even')
-              td(data-title='Title') 
-                b #{advice.title} (#{adviceName})
-              td.url(data-title='Advice') #{advice.advice}
-              td.number(data-title='Score') #{advice.score}
-            tr.u-hideable
-                td(colspan='3')
-                  b Description: 
-                  i #{advice.description}
-            if (advice.offending.length > 0)
-              tr.u-hideable
-                td.url.offendingurl(colspan='3')
-                  b Offenders: 
-                  if advice.offending[0].url
-                    table
-                      thead
+  - const advices = Object.entries(node.adviceList).filter(([, a]) => a.score < 100).sort(([, a], [, b]) => a.score - b.score)
+  .coach-section
+    .coach-section-header
+      h3.coach-section-title #{name}
+      span.label(class=h.scoreLabel(node.score)) #{node.score}
+    if advices.length === 0
+      p.coach-section-clear ✓ #{perfectMessage}
+    else
+      .coach-advices
+        each entry in advices
+          - const adviceName = entry[0]
+          - const advice = entry[1]
+          details.coach-advice
+            summary.coach-advice-summary
+              span.label(class=h.scoreLabel(advice.score)) #{advice.score}
+              span.coach-advice-title #{advice.title}
+              code.coach-advice-rule #{adviceName}
+            .coach-advice-body
+              p.coach-advice-text #{advice.advice}
+              if advice.description
+                p.coach-advice-desc #{advice.description}
+              if advice.offending && advice.offending.length > 0
+                h5.coach-offenders-title Offenders
+                if advice.offending[0].url
+                  table.coach-offenders-table
+                    thead
+                      tr
+                        th URL
+                        th.number Transfer
+                        th.number Content
+                    tbody
+                      each offender in advice.offending
                         tr
-                          th URL
-                          th Transfer size
-                          th Content size 
-                      tbody
-                      each offender in advice.offending 
-                        tr
-                          td 
-                            a(href=offender.url) #{h.shortAsset(offender.url, true)} 
-                          td #{h.size.format(offender.transferSize)}
-                          td #{h.size.format(offender.contentSize)}   
-                  else
-                    ul 
-                    each offender in advice.offending    
-                      if offender.startsWith('http')
+                          td
+                            a(href=offender.url) #{h.shortAsset(offender.url, true)}
+                          td.number #{h.size.format(offender.transferSize)}
+                          td.number #{h.size.format(offender.contentSize)}
+                else
+                  ul.coach-offenders-list
+                    each offender in advice.offending
+                      if typeof offender === 'string' && offender.startsWith('http')
                         li
-                          a(href=offender) #{h.shortAsset(offender, true)}  
-                      else 
+                          a(href=offender) #{h.shortAsset(offender, true)}
+                      else
                         li #{offender}
-  else
-    p #{perfectScore}
 
 - const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 - const coachVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.version : pageInfo.data.coach.pageSummary.version;
 
-small 
-    if advice
-        || 
-        a(href='#coach-perf') Performance advice
-        | &nbsp;|&nbsp;
-        a(href='#coach-bestpractice') Best practice advice
-        | &nbsp;|&nbsp;
-        a(href='#coach-privacy') Privacy advice
-        | &nbsp;|&nbsp;
-        a(href='#page-info') Page info
-        | &nbsp;|&nbsp;
-    if advice.info.technology && advice.info.technology.length > 0 ||  (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
-        a(href='#technology') Technologies
-        | &nbsp;|&nbsp;
+small
+  if advice
+    ||
+    a(href='#coach-perf') Performance advice
+    | &nbsp;|&nbsp;
+    a(href='#coach-bestpractice') Best practice advice
+    | &nbsp;|&nbsp;
+    a(href='#coach-privacy') Privacy advice
+    | &nbsp;|&nbsp;
+    a(href='#page-info') Page info
+    | &nbsp;|&nbsp;
+  if advice.info.technology && advice.info.technology.length > 0 || (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
+    a(href='#technology') Technologies
+    | &nbsp;|&nbsp;
 
 h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach
   | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on privacy and best practices. Tested using Coach-core version #{coachVersion}.
 
-script(type='text/javascript').
-  function toggleRow(toggleElement) {
-    const rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
-    for (let i = 0; i < rows.length; ++i) {
-      const status = rows[i].currentStyle ? rows[i].currentStyle.display :
-                              getComputedStyle(rows[i], null).display;
-      rows[i].style.display = (status === 'none') ? "table-row" : "none";
-    }
-  }
+.coach-summary
+  .coach-summary-mascot
+    a(href='https://github.com/sitespeedio/coach')
+      img.coach-mascot(src= assetsPath + 'img/coach.png', alt='I am the coach')
+  .coach-summary-scores
+    .coach-score-tile(class=h.scoreLabel(advice.score))
+      span.coach-score-label Overall
+      span.coach-score-value #{advice.score}
+    a.coach-score-tile(class=h.scoreLabel(advice.performance.score), href='#coach-perf')
+      span.coach-score-label Performance
+      span.coach-score-value #{advice.performance.score}
+    a.coach-score-tile(class=h.scoreLabel(advice.bestpractice.score), href='#coach-bestpractice')
+      span.coach-score-label Best practice
+      span.coach-score-value #{advice.bestpractice.score}
+    a.coach-score-tile(class=h.scoreLabel(advice.privacy.score), href='#coach-privacy')
+      span.coach-score-label Privacy
+      span.coach-score-value #{advice.privacy.score}
 
-.row
-  .column
-    .row
-      .four.columns
-        a(href='https://github.com/sitespeedio/coach')
-          img.u-max-full-width(src= assetsPath + 'img/coach.png', alt='I am the coach')
-      .eight.columns
-        h3 Coach score
-        ul
-          - sLabel = 'label normal ' + h.scoreLabel(advice.score)
-          - pLabel = 'label normal ' + h.scoreLabel(advice.performance.score)
-          - prLabel = 'label normal ' + h.scoreLabel(advice.privacy.score)
-          - bLabel = 'label normal ' +  h.scoreLabel(advice.bestpractice.score)
-          li.group-item Total score&nbsp;
-            span(class=sLabel) #{advice.score}
-          li.group-item 
-            a(href='#coach-perf') Performance score
-            | &nbsp;
-            span(class=pLabel) #{advice.performance.score}
-          li.group-item 
-            a(href='#coach-privacy') Privacy score
-            | &nbsp;
-            span(class=prLabel) #{advice.privacy.score}  
-          li.group-item 
-            a(href='#coach-bestpractice') Best practice score
-            | &nbsp;
-            span(class=bLabel) #{advice.bestpractice.score}
-    .row
-      .twelve.columns
-        +adviceInfo('Performance advice','coach-perf','You have a perfect Performance score!', advice.performance)
++adviceCategory('Performance advice', 'coach-perf', 'You have a perfect Performance score!', advice.performance)
++adviceCategory('Best practice advice', 'coach-bestpractice', 'Your best practice score is perfect!', advice.bestpractice)
++adviceCategory('Privacy advice', 'coach-privacy', 'Your privacy score is perfect!', advice.privacy)
 
-        +adviceInfo('Best practice advice','coach-bestpractice','Your best practice score is perfect!', advice.bestpractice)
-
-        +adviceInfo('Privacy advice','coach-privacy','Your privacy score is perfect!', advice.privacy)
-    include ./pageInfo.pug
-    include ./technology.pug
+include ./pageInfo.pug
+include ./technology.pug
