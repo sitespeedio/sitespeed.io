@@ -72,6 +72,17 @@ ul.menu {
  font-weight: $font--weight--semibold;
 }
 
+// Secondary "from page" link in the assets table.
+a.from-page {
+ font-size: 0.85em;
+ color: $color--text-muted;
+ white-space: nowrap;
+
+ &:hover {
+  color: $color--blue;
+ }
+}
+
 /* Large */
 
 .large {

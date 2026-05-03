@@ -15,18 +15,8 @@ mixin box(box)
 block content
     include runInfo
 
-    each rows in boxes
-      .row
-        each box in rows
-          - const length = rows.length
-          case length
-            when 3
-              .one-third.column
-                +box(box)
-            when 2
-              .one-half.column
-                +box(box)
-            default
-              +box(box)
+    .summary-grid
+      each box in boxes
+        +box(box)
 
     p.small * The value inside of the parentheses are the 90th percentile (90% of the time, the number is below this amount)
