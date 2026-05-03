@@ -1,19 +1,24 @@
 if browsertime.timings.firstInput !== undefined
+    - const fi = browsertime.timings.firstInput
     a#firstInput
     h3 First Input Delay
-    p Measured First Input Delay
-    table
-        tr
-            th Name
-            th Delay
-            th Duration
-            th Start Time
-            th Processing Start
-            th Processing End
-        tr
-            td  #{browsertime.timings.firstInput.name}
-            td  #{h.time.ms(browsertime.timings.firstInput.delay)}
-            td  #{h.time.ms(browsertime.timings.firstInput.duration)}
-            td  #{h.time.ms(browsertime.timings.firstInput.startTime)}
-            td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
-            td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
+    p Measured First Input Delay.
+    details.iter-group(open)
+        summary.iter-group-summary
+            span.iter-group-title #{fi.name}
+        .metric-tiles
+            .metric-tile
+                span.metric-tile-label Delay
+                span.metric-tile-value #{h.time.ms(fi.delay)}
+            .metric-tile
+                span.metric-tile-label Duration
+                span.metric-tile-value #{h.time.ms(fi.duration)}
+            .metric-tile
+                span.metric-tile-label Start time
+                span.metric-tile-value #{h.time.ms(fi.startTime)}
+            .metric-tile
+                span.metric-tile-label Processing start
+                span.metric-tile-value #{h.time.ms(fi.processingStart)}
+            .metric-tile
+                span.metric-tile-label Processing end
+                span.metric-tile-value #{h.time.ms(fi.processingEnd)}

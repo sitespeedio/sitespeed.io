@@ -1,23 +1,30 @@
-- const browsertime = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] : pageInfo.data.browsertime.run 
+- const browsertime = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] : pageInfo.data.browsertime.run
 
 if browsertime
-  - const timings = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].timings : pageInfo.data.browsertime.run.timings 
-  - const visualMetrics = medianRun ? pageInfo.data.browsertime.pageSummary.visualMetrics[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.visualMetrics 
+  - const timings = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].timings : pageInfo.data.browsertime.run.timings
+  - const visualMetrics = medianRun ? pageInfo.data.browsertime.pageSummary.visualMetrics[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.visualMetrics
   - const googleWebVitals = medianRun ? pageInfo.data.browsertime.pageSummary.googleWebVitals[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.googleWebVitals
   - const cpu = medianRun ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cpu
-  - const fullyLoaded = medianRun ? pageInfo.data.browsertime.pageSummary.fullyLoaded[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.fullyLoaded 
-  - const extras = medianRun ? pageInfo.data.browsertime.pageSummary.extras[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.extras 
+  - const fullyLoaded = medianRun ? pageInfo.data.browsertime.pageSummary.fullyLoaded[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.fullyLoaded
+  - const extras = medianRun ? pageInfo.data.browsertime.pageSummary.extras[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.extras
   - const custom = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].custom : pageInfo.data.browsertime.run.custom
   - const cdp = medianRun ? pageInfo.data.browsertime.pageSummary.cdp[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cdp
   - const renderBlocking = medianRun ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.renderBlocking
-  - const loaf = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].pageinfo.loaf : pageInfo.data.browsertime.run.pageinfo.loaf 
+  - const loaf = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].pageinfo.loaf : pageInfo.data.browsertime.run.pageinfo.loaf
 
-  small 
-    | | 
-    a(href='#browsermetrics') Browser metrics
-    | &nbsp;|&nbsp;
+  //- Section ordering follows the perf-debugging story: visual progress
+  //- first (what the user actually saw), then the Web Vitals headline,
+  //- then the deep-dive cards for the three "loaf-shaped" Vitals (LCP /
+  //- CLS / INP), then the lower-level browser timings, and finally the
+  //- diagnostic surfaces (long animation frames, element timings, custom
+  //- scripts, CDP).
+  small
+    | |
     if (options.browsertime.visualMetrics)
       a(href='#visualmetrics') Visual Metrics
+      | &nbsp;|&nbsp;
+    if googleWebVitals
+      a(href='#google-web-vitals') Google Web Vitals
       | &nbsp;|&nbsp;
     if timings.largestContentfulPaint
       a(href='#largestContentfulPaint') Largest Contentful Paint
@@ -28,6 +35,8 @@ if browsertime
     if timings.interactionToNextPaint
       a(href='#interactionToNextPaint') Interaction To Next Paint
       | &nbsp;|&nbsp;
+    a(href='#browsermetrics') Browser metrics
+    | &nbsp;|&nbsp;
     if loaf
       a(href='#longAnimationFrames') Long Aninimation Frames
       | &nbsp;|&nbsp;
@@ -58,292 +67,337 @@ if browsertime
 
   - baseHelpURL = rootPath + 'help.html#';
 
+  //- Threshold helpers used to colour the Google Web Vitals pills below.
+  - gwvFcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+  - gwvLcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+  - gwvClsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+  - gwvInpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - gwvTtfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
+  - gwvTbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+
+  //- 1. Visual Metrics — the milestones list and the visual-progress chart.
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
   if (options.browsertime.visualMetrics && visualMetrics)
     a#visualmetrics
     h3 Visual Metrics
     .row
       .one-half.column
-        table 
-          tr
-            th(colspan='2') Visual Metrics
-          tr
-            td
-              a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
-            td.number #{h.time.ms(visualMetrics.FirstVisualChange.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'SpeedIndex') Speed Index
-            td.number #{h.time.ms(visualMetrics.SpeedIndex.toFixed(0))}
-          if visualMetrics.PerceptualSpeedIndex
-            tr
-              td
-                a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
-              td.number #{h.time.ms(visualMetrics.PerceptualSpeedIndex.toFixed(0))}
-          if visualMetrics.ContentfulSpeedIndex  
-            tr
-              td
-                a(href=baseHelpURL + 'ContentfulSpeedIndex') Contentful Speed Index
-              td.number #{h.time.ms(visualMetrics.ContentfulSpeedIndex.toFixed(0))}
-          if visualMetrics.LargestImage
-            tr
-              td
-                a(href=baseHelpURL + 'LargestImage') Largest Image
-              td.number #{h.time.ms(visualMetrics.LargestImage.toFixed(0))}
-          if visualMetrics.Heading
-            tr
-              td
-                a(href=baseHelpURL + 'Heading') Heading
-              td.number #{h.time.ms(visualMetrics.Heading.toFixed(0))}
-          each name in Object.keys(visualMetrics)
-            if (!defaultVisualMetrics.includes(name))
-              tr
-                td #{name}
-                td.number #{h.time.ms(visualMetrics[name].toFixed(0))}
-          if visualMetrics.LastMeaningfulPaint
-            tr
-              td
-                a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
-              td.number #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
-          if visualMetrics.LargestContentfulPaint
-            tr
-              td
-                a(href=baseHelpURL + 'LargestContentfulPaint') Largest Contentful Paint
-              td.number #{h.time.ms(visualMetrics.LargestContentfulPaint.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
-            td.number #{h.time.ms(visualMetrics.VisualComplete85.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'VisualComplete95') Visual Complete 95%
-            td.number #{h.time.ms(visualMetrics.VisualComplete95.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'VisualComplete99') Visual Complete 99%
-            td.number #{h.time.ms(visualMetrics.VisualComplete99.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
-            td.number #{h.time.ms(visualMetrics.LastVisualChange.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
-            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))} 
+        details.iter-group(open)
+          summary.iter-group-summary
+            span.iter-group-title Visual milestones
+          .metric-tiles
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
+              span.metric-tile-value #{h.time.ms(visualMetrics.FirstVisualChange.toFixed(0))}
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'SpeedIndex') Speed Index
+              span.metric-tile-value #{h.time.ms(visualMetrics.SpeedIndex.toFixed(0))}
+            if visualMetrics.PerceptualSpeedIndex
+              .metric-tile
+                span.metric-tile-label
+                  a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
+                span.metric-tile-value #{h.time.ms(visualMetrics.PerceptualSpeedIndex.toFixed(0))}
+            if visualMetrics.ContentfulSpeedIndex
+              .metric-tile
+                span.metric-tile-label
+                  a(href=baseHelpURL + 'ContentfulSpeedIndex') Contentful Speed Index
+                span.metric-tile-value #{h.time.ms(visualMetrics.ContentfulSpeedIndex.toFixed(0))}
+            if visualMetrics.LargestImage
+              .metric-tile
+                span.metric-tile-label
+                  a(href=baseHelpURL + 'LargestImage') Largest Image
+                span.metric-tile-value #{h.time.ms(visualMetrics.LargestImage.toFixed(0))}
+            if visualMetrics.Heading
+              .metric-tile
+                span.metric-tile-label
+                  a(href=baseHelpURL + 'Heading') Heading
+                span.metric-tile-value #{h.time.ms(visualMetrics.Heading.toFixed(0))}
+            each name in Object.keys(visualMetrics)
+              if (!defaultVisualMetrics.includes(name))
+                .metric-tile
+                  span.metric-tile-label #{name}
+                  span.metric-tile-value #{h.time.ms(visualMetrics[name].toFixed(0))}
+            if visualMetrics.LastMeaningfulPaint
+              .metric-tile
+                span.metric-tile-label
+                  a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
+                span.metric-tile-value #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
+            if visualMetrics.LargestContentfulPaint
+              .metric-tile
+                span.metric-tile-label
+                  a(href=baseHelpURL + 'LargestContentfulPaint') Largest Contentful Paint
+                span.metric-tile-value #{h.time.ms(visualMetrics.LargestContentfulPaint.toFixed(0))}
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
+              span.metric-tile-value #{h.time.ms(visualMetrics.VisualComplete85.toFixed(0))}
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'VisualComplete95') Visual Complete 95%
+              span.metric-tile-value #{h.time.ms(visualMetrics.VisualComplete95.toFixed(0))}
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'VisualComplete99') Visual Complete 99%
+              span.metric-tile-value #{h.time.ms(visualMetrics.VisualComplete99.toFixed(0))}
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
+              span.metric-tile-value #{h.time.ms(visualMetrics.LastVisualChange.toFixed(0))}
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
+              span.metric-tile-value #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))}
       .one-half.column
-        .ct-chart.ct-minor-sixth#ct-visualprogress
+        details.iter-group(open)
+          summary.iter-group-summary
+            span.iter-group-title Visual progress
+          .metric-chart
+            .ct-chart.ct-minor-sixth#ct-visualprogress
         include ./visualProgress.pug
 
-  a#browsermetrics
-  h3 Browser Metrics
-  .row
-    .one-half.column
-      table
-        tr
-          th(colspan='2') Navigation Timing
-        each value, name in timings.pageTimings
-          tr
-            - url = baseHelpURL + name
-            td
-              a(href=url) #{name}
-            td.number #{h.time.ms(value)}
-    .one-half.column
-      if (googleWebVitals)
-        table
-          tr
-            th(colspan='2') Google Web Vitals
-          if (timings.ttfb)
-            tr
-              td
-                a(href=baseHelpURL + 'ttfb') Time to first byte (TTFB)
-              td.number #{h.time.ms(timings.ttfb.toFixed(0))}
-          if (timings.paintTiming && timings.paintTiming['first-contentful-paint'])
-            tr
-              td
-                a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (FCP)
-              td.number #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
-          if (timings.largestContentfulPaint) 
-            tr
-              td
-                a(href='#largestContentfulPaint') Largest Contentful Paint (LCP)
-              td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
-          if (browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift)
-            tr
-              td
-                a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
-              td.number #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
-          if (timings.interactionToNextPaint) 
-           tr
-              td
-                a(href='#interactionToNextPaint') Interaction to next paint (INP)
-              td.number #{h.time.ms(timings.interactionToNextPaint)}
-          if timings.firstInput !== undefined
-            tr 
-              td
-                a(href=baseHelpURL + 'firstInputDelay')  First Input Delay (FID)
-              td.number #{h.time.ms(timings.firstInput.delay)}
-          else if (cpu && cpu.longTasks)
-            tr 
-              td
-                a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
-              td.number #{h.time.ms(cpu.longTasks.totalBlockingTime)}
-      
-      if renderBlocking && renderBlocking.recalculateStyle.beforeFCP
-        table
-          tr
-            th(colspan='2') First Contentful Paint info
-          tr 
-            td Elements that needed recalculate style before FCP
-                td #{renderBlocking.recalculateStyle.beforeFCP.elements}    
-          tr
-            td Time spent in recalculate style before FCP
-                td #{h.time.ms(renderBlocking.recalculateStyle.beforeFCP.durationInMillis)}  
-      table
-        tr
-          th(colspan='2') Extra timings
-        tr
-          td
-            a(href=baseHelpURL + 'ttfb') TTFB
-          td.number #{h.time.ms(timings.ttfb.toFixed(0))}
-        if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
-          - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"},  "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
-          each value, name in timings.paintTiming
-            if name === 'first-contentful-paint' && googleWebVitals
-              // do nada
-            else 
-              tr
-                td 
-                  a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
-                td.number #{h.time.ms(value.toFixed(0))}
-        else if timings.firstPaint > -1
-          tr
-            td
-              a(href=baseHelpURL + 'firstPaint') First paint
-            td.number #{h.time.ms(timings.firstPaint.toFixed(0))}
-        if timings.timeToDomContentFlushed
-         tr
-            td
-              a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
-            td.number #{h.time.ms(timings.timeToDomContentFlushed.toFixed(0))}
-        if timings.timeToContentfulPaint
-         tr
-            td
-              a(href=baseHelpURL + 'timeToContentfulPaint') Time To Contentful Paint
-            td.number #{h.time.ms(timings.timeToContentfulPaint.toFixed(0))}
-        if timings.timeToFirstInteractive
-         tr
-            td
-              a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
-            td.number #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}         
-        if (!googleWebVitals && timings.largestContentfulPaint) 
-           tr
-            td
-              a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
-            td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
-        tr
-          td
-            a(href=baseHelpURL + 'loadEventEnd') Load Event End
-          td.number #{h.time.ms(timings.loadEventEnd.toFixed(0))}
-        if (fullyLoaded) 
-          tr
-            td
-              a(href=baseHelpURL + 'fullyLoaded') Fully loaded
-            td.number #{h.time.ms(fullyLoaded.toFixed(0))}
-      if (Object.keys(timings.userTimings.marks).length > 0)
-        table
-          tr
-            th(colspan='2') User Timing marks
-          if (Object.keys(timings.userTimings.marks).length > 0)
-            each value, name in timings.userTimings.marks
-              tr
-                td #{value.name}
-                td.number #{h.time.ms(value.startTime.toFixed(0))}
-      if (Object.keys(timings.userTimings.measures).length > 0)
-        table
-          tr
-            th(colspan='3') User Timing measures
-          tr
-            th Name
-            th Start time
-            th Duration  
-          each value, name in timings.userTimings.measures
-            tr
-              td #{value.name}
-              td.number #{h.time.ms(value.startTime.toFixed(0))}
-              td.number #{h.time.ms(value.duration.toFixed(0))} 
+  //- 2. Google Web Vitals — headline scoreboard with threshold-coloured
+  //- pills, sits right under the visual progress so the eye lands on the
+  //- numbers that matter most before the deep-dive cards.
+  if googleWebVitals
+    a#google-web-vitals
+    details.iter-group.metrics-vitals(open)
+      summary.iter-group-summary
+        span.iter-group-title Google Web Vitals
+      .metric-tiles
+        if timings.ttfb
+          .metric-tile
+            span.metric-tile-label
+              a(href=baseHelpURL + 'ttfb') Time to first byte (TTFB)
+            span.metric-tile-value
+              span.label(class=gwvTtfbClass(timings.ttfb)) #{h.time.ms(timings.ttfb.toFixed(0))}
+        if timings.paintTiming && timings.paintTiming['first-contentful-paint']
+          .metric-tile
+            span.metric-tile-label
+              a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (FCP)
+            span.metric-tile-value
+              span.label(class=gwvFcpClass(timings.paintTiming['first-contentful-paint'])) #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
+        if timings.largestContentfulPaint
+          - const lcpVal = Math.max(timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.loadTime)
+          .metric-tile
+            span.metric-tile-label
+              a(href='#largestContentfulPaint') Largest Contentful Paint (LCP)
+            span.metric-tile-value
+              span.label(class=gwvLcpClass(lcpVal)) #{h.time.ms(lcpVal)}
+        if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
+          .metric-tile
+            span.metric-tile-label
+              a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
+            span.metric-tile-value
+              span.label(class=gwvClsClass(browsertime.pageinfo.cumulativeLayoutShift)) #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
+        if timings.interactionToNextPaint
+          .metric-tile
+            span.metric-tile-label
+              a(href='#interactionToNextPaint') Interaction to next paint (INP)
+            span.metric-tile-value
+              span.label(class=gwvInpClass(timings.interactionToNextPaint)) #{h.time.ms(timings.interactionToNextPaint)}
+        if timings.firstInput !== undefined
+          .metric-tile
+            span.metric-tile-label
+              a(href=baseHelpURL + 'firstInputDelay') First Input Delay (FID)
+            span.metric-tile-value #{h.time.ms(timings.firstInput.delay)}
+        else if cpu && cpu.longTasks
+          .metric-tile
+            span.metric-tile-label
+              a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
+            span.metric-tile-value
+              span.label(class=gwvTbtClass(cpu.longTasks.totalBlockingTime)) #{h.time.ms(cpu.longTasks.totalBlockingTime)}
+
+  //- 3-5. The three "interactive" Web Vitals each get their own deep-dive
+  //- card from a sub-template (LCP phase breakdown, CLS shift list, INP
+  //- interaction trace).
   include ./lcp.pug
-  include ./firstInput.pug
   include ./layoutShift.pug
   include ./inp.pug
+
+  //- 6. Browser Metrics — the lower-level navigation/timing tables grouped
+  //- into collapsible cards. Web Vitals were lifted out and shown above
+  //- so this section is now strictly the supporting timeline.
+  a#browsermetrics
+  h3 Browser Metrics
+
+  details.iter-group(open)
+    summary.iter-group-summary
+      span.iter-group-title Navigation Timing
+    .metric-tiles
+      each value, name in timings.pageTimings
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + name) #{name}
+          span.metric-tile-value #{h.time.ms(value)}
+
+  if renderBlocking && renderBlocking.recalculateStyle.beforeFCP
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title First Contentful Paint info
+      .metric-tiles
+        .metric-tile
+          span.metric-tile-label Elements that needed recalculate style before FCP
+          span.metric-tile-value #{renderBlocking.recalculateStyle.beforeFCP.elements}
+        .metric-tile
+          span.metric-tile-label Time spent in recalculate style before FCP
+          span.metric-tile-value #{h.time.ms(renderBlocking.recalculateStyle.beforeFCP.durationInMillis)}
+
+  details.iter-group(open)
+    summary.iter-group-summary
+      span.iter-group-title Extra timings
+    .metric-tiles
+      .metric-tile
+        span.metric-tile-label
+          a(href=baseHelpURL + 'ttfb') TTFB
+        span.metric-tile-value #{h.time.ms(timings.ttfb.toFixed(0))}
+      if timings.paintTiming && Object.keys(timings.paintTiming).length > 0
+        - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"}, "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
+        each value, name in timings.paintTiming
+          if name === 'first-contentful-paint' && googleWebVitals
+            //- Already shown in the Web Vitals card.
+          else
+            .metric-tile
+              span.metric-tile-label
+                a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
+              span.metric-tile-value #{h.time.ms(value.toFixed(0))}
+      else if timings.firstPaint > -1
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + 'firstPaint') First paint
+          span.metric-tile-value #{h.time.ms(timings.firstPaint.toFixed(0))}
+      if timings.timeToDomContentFlushed
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
+          span.metric-tile-value #{h.time.ms(timings.timeToDomContentFlushed.toFixed(0))}
+      if timings.timeToContentfulPaint
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + 'timeToContentfulPaint') Time To Contentful Paint
+          span.metric-tile-value #{h.time.ms(timings.timeToContentfulPaint.toFixed(0))}
+      if timings.timeToFirstInteractive
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
+          span.metric-tile-value #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}
+      if !googleWebVitals && timings.largestContentfulPaint
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
+          span.metric-tile-value #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
+      .metric-tile
+        span.metric-tile-label
+          a(href=baseHelpURL + 'loadEventEnd') Load Event End
+        span.metric-tile-value #{h.time.ms(timings.loadEventEnd.toFixed(0))}
+      if fullyLoaded
+        .metric-tile
+          span.metric-tile-label
+            a(href=baseHelpURL + 'fullyLoaded') Fully loaded
+          span.metric-tile-value #{h.time.ms(fullyLoaded.toFixed(0))}
+
+  if Object.keys(timings.userTimings.marks).length > 0
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title User Timing marks
+      .metric-tiles
+        each value, name in timings.userTimings.marks
+          .metric-tile
+            span.metric-tile-label #{value.name}
+            span.metric-tile-value #{h.time.ms(value.startTime.toFixed(0))}
+
+  if Object.keys(timings.userTimings.measures).length > 0
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title User Timing measures
+      .metric-tiles
+        each value, name in timings.userTimings.measures
+          .metric-tile
+            span.metric-tile-label #{value.name}
+            span.metric-tile-value #{h.time.ms(value.startTime.toFixed(0))}
+            span.metric-tile-sub duration #{h.time.ms(value.duration.toFixed(0))}
+
+  //- 7+. Diagnostic surfaces — long animation frames, element/server
+  //- timings, custom scripts, CDP, visual elements. Most page reports
+  //- skip these so each block guards on the data being present.
   include ./loaf.pug
+  include ./firstInput.pug
   include ./elementTimings.pug
   include ./serverTimings.pug
 
-  a#custom-scripts
-  h3 Custom metrics collected through JavaScript
   if custom
-    table
-      tr
-        th name
-        th value
-      each value, name in custom
-        tr
-          td #{name}
-          td #{value}
+    a#custom-scripts
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Custom metrics collected through JavaScript
+        span.iter-group-count #{Object.keys(custom).length}
+      .metric-tiles
+        each value, name in custom
+          .metric-tile
+            span.metric-tile-label #{name}
+            span.metric-tile-value #{value}
   else
+    a#custom-scripts
+    h3 Custom metrics collected through JavaScript
     p There are no custom configured scripts.
 
-  a#extra-metrics
-  h3 Extra metrics collected using scripting
   if extras && Object.keys(extras).length > 0
-    table
-      tr
-        th name
-        th value
-      each value, name in extras
-        tr
-          td #{name}
-          td #{value}
+    a#extra-metrics
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Extra metrics collected using scripting
+        span.iter-group-count #{Object.keys(extras).length}
+      .metric-tiles
+        each value, name in extras
+          .metric-tile
+            span.metric-tile-label #{name}
+            span.metric-tile-value #{value}
   else
+    a#extra-metrics
+    h3 Extra metrics collected using scripting
     p There are no custom extra metrics from scripting.
 
   if cdp && cdp.performance
     a#cdp-performance
-    h3 CDP Performance
-    table
-      tr
-        th name
-        th value
-      each value, name in cdp.performance
-        tr
-          td #{name}
-          td #{value.toFixed(0)}
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title CDP Performance
+        span.iter-group-count #{Object.keys(cdp.performance).length}
+      .metric-tiles
+        each value, name in cdp.performance
+          .metric-tile
+            span.metric-tile-label #{name}
+            span.metric-tile-value #{value.toFixed(0)}
 
   if options.browsertime.visualElements
-   a#visual-elements
-   h3 Visual Elements
-   table
-      tr
-       th Name
-       th Display Time
-       th X 
-       th Y
-       th Width
-       th Height
-      each element in browsertime.pageinfo.visualElements.heroes
-       tr
-        td  #{element.name}
-         if (element.filename)
-          | (#{element.filename})
-        if element && visualMetrics && visualMetrics[element.name]
-          td #{visualMetrics[element.name] ? h.time.ms(visualMetrics[element.name].toFixed(0)): ''}
-        else 
-          td
-        td  #{element.x}
-        td  #{element.y}
-        td  #{element.width}
-        td  #{element.height}
-        tr 
-          td.url.pagesurl(colspan=6) #{element.html}
+    a#visual-elements
+    h3 Visual Elements
+    .responsive
+      table(data-sortable)
+        thead
+          tr
+            th Name
+            th.number Display Time
+            th.number X
+            th.number Y
+            th.number Width
+            th.number Height
+        each element in browsertime.pageinfo.visualElements.heroes
+          tr
+            td
+              | #{element.name}
+              if (element.filename)
+                | (#{element.filename})
+            if element && visualMetrics && visualMetrics[element.name]
+              td.number #{visualMetrics[element.name] ? h.time.ms(visualMetrics[element.name].toFixed(0)): ''}
+            else
+              td
+            td.number #{element.x}
+            td.number #{element.y}
+            td.number #{element.width}
+            td.number #{element.height}
+          tr
+            td.url.pagesurl(colspan=6) #{element.html}
 else
   p Missing data from Browsertime.
