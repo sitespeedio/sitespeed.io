@@ -1,0 +1,53 @@
+//
+// SCREENSHOTS — dark
+// ==================
+//
+
+.screenshots-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 0 0 1.5rem 0;
+}
+
+.screenshot-card {
+  display: flex;
+  flex-direction: column;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow $motion--med, transform $motion--fast;
+
+  &:hover {
+    box-shadow: $shadow--sm;
+    transform: translateY(-1px);
+  }
+}
+
+.screenshot-card-thumb-wrap {
+  background: $color--surface;
+  border-bottom: 1px solid $color--border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.screenshot-card-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+.screenshot-card-caption {
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  word-break: break-all;
+  font-variant-numeric: tabular-nums;
+}
