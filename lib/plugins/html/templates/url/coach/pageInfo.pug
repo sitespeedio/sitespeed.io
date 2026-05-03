@@ -2,46 +2,47 @@ a#page-info
 h2 Page info
 .row
     .one-half.column
-        table
-            tr
-                th(colspan='2') Page info
-            tr
-                td Title
-                td.right #{advice.info.documentTitle}
-            if advice.info.generator    
-                tr
-                    td Generator
-                    td.right #{advice.info.generator}    
-            tr
-                td Width
-                td.number #{advice.info.documentWidth}
-            tr
-                td Height
-                td.number #{advice.info.documentHeight}
-            tr
-                td DOM elements
-                td.number #{advice.info.domElements}
-            tr
-                td Avg DOM depth
-                td.number #{advice.info.domDepth.avg}
-            tr
-                td Max DOM depth
-                td.number #{advice.info.domDepth.max}
-            tr
-                td Iframes
-                td.number #{advice.info.iframes}
-            tr
-                td Script tags
-                td.number #{advice.info.scripts}
-            tr
-                td Local storage
-                +sizeCell('', advice.info.localStorageSize)
-            tr
-                td Session storage
-                +sizeCell('', advice.info.sessionStorageSize)
-            tr
-                td Network Information API
-                td.right #{advice.info.networkConnectionType ? advice.info.networkConnectionType:'unknown'}
+        details.iter-group(open)
+            summary.iter-group-summary
+                span.iter-group-title Page info
+            .metric-tiles
+                .metric-tile
+                    span.metric-tile-label Title
+                    span.metric-tile-value #{advice.info.documentTitle}
+                if advice.info.generator
+                    .metric-tile
+                        span.metric-tile-label Generator
+                        span.metric-tile-value #{advice.info.generator}
+                .metric-tile
+                    span.metric-tile-label Width
+                    span.metric-tile-value #{advice.info.documentWidth}
+                .metric-tile
+                    span.metric-tile-label Height
+                    span.metric-tile-value #{advice.info.documentHeight}
+                .metric-tile
+                    span.metric-tile-label DOM elements
+                    span.metric-tile-value #{advice.info.domElements}
+                .metric-tile
+                    span.metric-tile-label Avg DOM depth
+                    span.metric-tile-value #{advice.info.domDepth.avg}
+                .metric-tile
+                    span.metric-tile-label Max DOM depth
+                    span.metric-tile-value #{advice.info.domDepth.max}
+                .metric-tile
+                    span.metric-tile-label Iframes
+                    span.metric-tile-value #{advice.info.iframes}
+                .metric-tile
+                    span.metric-tile-label Script tags
+                    span.metric-tile-value #{advice.info.scripts}
+                .metric-tile
+                    span.metric-tile-label Local storage
+                    span.metric-tile-value #{h.size.format(advice.info.localStorageSize)}
+                .metric-tile
+                    span.metric-tile-label Session storage
+                    span.metric-tile-value #{h.size.format(advice.info.sessionStorageSize)}
+                .metric-tile
+                    span.metric-tile-label Network Information API
+                    span.metric-tile-value #{advice.info.networkConnectionType ? advice.info.networkConnectionType:'unknown'}
 
     .one-half.column
         if advice.info && advice.info.resourceHints

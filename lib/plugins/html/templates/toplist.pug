@@ -21,19 +21,19 @@ block content
   if (assetsBySize)
     - const topLists = ['javascript', 'image', 'css', 'html'];
     - const contentTypeNames = {javascript: 'JavaScript', image: 'image' , css: 'CSS', html : 'HTML'}
-    ul
-      li.group-item.active Quick links
+    small
+      ||
       each type in topLists
         if (assetsBySize[type] && assetsBySize[type].length > 1)
-          li.group-item
-            a(href='#' + type) Largest #{contentTypeNames[type]} files
-      li.group-item
-        a(href='#slowest') Slowest responses
+          a(href='#' + type) Largest #{contentTypeNames[type]} files
+          | &nbsp;|&nbsp;
+      a(href='#slowest') Slowest responses
+      | &nbsp;|&nbsp;
       if options.firstParty
-        li.group-item
-          a(href='#slowestThirdParty') Slowest third party responses
-        li.group-item
-          a(href='#largestThirdParty') Largest third party responses
+        a(href='#largestThirdParty') Largest 3rd party responses
+        | &nbsp;|&nbsp;
+        a(href='#slowestThirdParty') Slowest 3rd party responses
+        | &nbsp;|&nbsp;
     each type in topLists
       if (assetsBySize[type] && assetsBySize[type].length > 1)
         h3(id=type) Largest #{contentTypeNames[type]} files
