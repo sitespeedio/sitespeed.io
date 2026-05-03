@@ -1,53 +1,55 @@
 if loaf
     a#longAnimationFrames
     h3 Long Animation Frames
-    p Read more about the Long Animation Frames API here 
-        a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') here.  
-    p The top 10 longest animation frames entries
-    
-    each oneLoaf in loaf
-        table 
-            tr 
-                th Blocking duration 
-                th Work duration
-                th Render duration
-                th PreLayout Duration
-                th Style And Layout Duration
-            tr 
-                td #{h.time.ms(h.decimals(oneLoaf.blockingDuration))}
-                td #{h.time.ms(h.decimals(oneLoaf.workDuration))}
-                td #{h.time.ms(h.decimals(oneLoaf.renderDuration))}
-                td #{h.time.ms(h.decimals(oneLoaf.preLayoutDuration))}
-                td #{h.time.ms(h.decimals(oneLoaf.styleAndLayoutDuration))}
+    p A long animation frame (LOAF) is a frame that took ≥ 50 ms from input to the next paint. The breakdown shows where that time went. Read more about
+        |
+        a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') the Long Animation Frames API
+        | .
+    p Showing the top 10 longest animation frames.
 
-            if oneLoaf.scripts.length > 0  
-                each theScript in oneLoaf.scripts 
-                    if theScript.sourceURL !== ''
-                        tr 
-                            td.url.assetsurl(colspan=5)
-                                 a(href=theScript.sourceURL)= theScript.sourceURL
-                    tr 
-                        td(colspan=5)
+    each oneLoaf, loafIdx in loaf
+        - const total = oneLoaf.blockingDuration + oneLoaf.workDuration + oneLoaf.renderDuration
+        - const phaseLabel = (() => { if (total >= 200) return 'error'; if (total >= 100) return 'warning'; return 'ok'; })()
+        - const phases = [{ key: 'blocking', name: 'Blocking', value: oneLoaf.blockingDuration }, { key: 'work', name: 'Work', value: oneLoaf.workDuration }, { key: 'render', name: 'Render', value: oneLoaf.renderDuration }, { key: 'pre-layout', name: 'Pre-layout', value: oneLoaf.preLayoutDuration }, { key: 'style-layout', name: 'Style & layout', value: oneLoaf.styleAndLayoutDuration }]
+        .loaf-card
+            .loaf-header
+                .loaf-rank Long animation frame ##{loafIdx + 1}
+                span.label(class=phaseLabel) #{h.time.ms(h.decimals(total))}
+            .loaf-bar
+                each phase in phases
+                    if phase.value > 0
+                        - const pct = total > 0 ? (phase.value / total * 100) : 0
+                        span.loaf-bar-segment(class='loaf-' + phase.key, style='flex: ' + pct.toFixed(2) + ' 0 0', title=phase.name + ': ' + h.time.ms(h.decimals(phase.value)))
+            ul.loaf-legend
+                each phase in phases
+                    li
+                        span.loaf-legend-swatch(class='loaf-' + phase.key)
+                        span.loaf-legend-label= phase.name
+                        span.loaf-legend-value #{h.time.ms(h.decimals(phase.value))}
+
+            if oneLoaf.scripts.length > 0
+                h4.loaf-scripts-heading Scripts that ran during this frame
+                each theScript in oneLoaf.scripts
+                    .loaf-script
+                        if theScript.sourceURL && theScript.sourceURL !== ''
+                            .loaf-script-url
+                                a(href=theScript.sourceURL)= theScript.sourceURL
+                        dl.loaf-script-meta
                             if theScript.forcedStyleAndLayoutDuration !== 0
-                                p Forced Style And Layout Duration:  #{h.time.ms(h.decimals(theScript.forcedStyleAndLayoutDuration))}
-                            p 
-                                b Invoker: 
-                                | #{theScript.invoker}
-                                br
-                                b Invoker Type: 
-                                | #{theScript.invokerType}
-                                br
-                                if theScript.sourceFunctionName
-                                    b Source Function Name: 
-                                    | #{theScript.sourceFunctionName}
-                                    br
-                                if theScript.windowAttribution
-                                    b Window attribution: 
-                                    | #{theScript.windowAttribution}
-                                    br
-                                if theScript.sourceCharPosition
-                                    b Source char position: 
-                                    | #{theScript.sourceCharPosition}
+                                dt Forced style and layout
+                                dd #{h.time.ms(h.decimals(theScript.forcedStyleAndLayoutDuration))}
+                            dt Invoker
+                            dd= theScript.invoker
+                            dt Invoker type
+                            dd= theScript.invokerType
+                            if theScript.sourceFunctionName
+                                dt Source function
+                                dd= theScript.sourceFunctionName
+                            if theScript.windowAttribution
+                                dt Window attribution
+                                dd= theScript.windowAttribution
+                            if theScript.sourceCharPosition
+                                dt Source char position
+                                dd= theScript.sourceCharPosition
             else
-                tr 
-                    td(colspan=5) No availible script information.
+                p.loaf-no-scripts No script attribution available for this frame.

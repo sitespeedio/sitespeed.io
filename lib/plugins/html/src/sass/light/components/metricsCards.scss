@@ -1,0 +1,235 @@
+//
+// METRICS CARDS — light
+// =====================
+// Per-metric cards on the page detail "Metrics" tab. Currently used by:
+// - Long Animation Frame entries (LOAF) — 5-phase stacked bar + script
+//   attribution
+// - Interaction to Next Paint (INP) — hero latency number + event metadata
+//
+
+//
+// LOAF — palette per timing phase. Keep these distinct enough to read in
+// the stacked bar and the legend swatches without relying on hue alone.
+//
+$loaf--blocking: #b91c1c;        // red — the "bad" portion (input-blocked)
+$loaf--work: #d97706;            // amber — script work
+$loaf--render: #16a34a;          // green — rendering
+$loaf--pre-layout: #0095d2;      // brand blue — pre-layout overhead
+$loaf--style-layout: #7c3aed;    // violet — style + layout
+
+.loaf-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.loaf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.loaf-rank {
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  font-size: 0.95rem;
+}
+
+.loaf-bar {
+  display: flex;
+  width: 100%;
+  height: 14px;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  margin-bottom: 12px;
+}
+
+.loaf-bar-segment {
+  display: block;
+  height: 100%;
+
+  &.loaf-blocking { background: $loaf--blocking; }
+  &.loaf-work { background: $loaf--work; }
+  &.loaf-render { background: $loaf--render; }
+  &.loaf-pre-layout { background: $loaf--pre-layout; }
+  &.loaf-style-layout { background: $loaf--style-layout; }
+}
+
+.loaf-legend {
+  list-style: none;
+  margin: 0 0 14px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.85rem;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+  }
+}
+
+.loaf-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  flex: 0 0 auto;
+
+  &.loaf-blocking { background: $loaf--blocking; }
+  &.loaf-work { background: $loaf--work; }
+  &.loaf-render { background: $loaf--render; }
+  &.loaf-pre-layout { background: $loaf--pre-layout; }
+  &.loaf-style-layout { background: $loaf--style-layout; }
+}
+
+.loaf-legend-label {
+  color: $color--text-secondary;
+}
+
+.loaf-legend-value {
+  color: $color--text;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+}
+
+.loaf-scripts-heading {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 12px 0 8px 0;
+}
+
+.loaf-script {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: $color--surface;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.loaf-script-url {
+  margin-bottom: 6px;
+  word-break: break-all;
+  font-family: $font--mono;
+  font-size: 0.85rem;
+}
+
+.loaf-script-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  row-gap: 4px;
+  margin: 0;
+  font-size: 0.85rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    word-break: break-word;
+  }
+}
+
+.loaf-no-scripts {
+  margin-top: 8px;
+  color: $color--text-muted;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+//
+// INP card — hero latency + event metadata
+//
+.inp-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.inp-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $color--border;
+}
+
+.inp-latency {
+  font-size: 2.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  padding: 4px 14px;
+  border-radius: $radius--md;
+  line-height: 1.1;
+
+  &.ok {
+    color: $color--ok;
+    background: $color--ok-bg;
+    border: 1px solid $color--ok-border;
+  }
+  &.warning {
+    color: $color--warning;
+    background: $color--warning-bg;
+    border: 1px solid $color--warning-border;
+  }
+  &.error {
+    color: $color--error;
+    background: $color--error-bg;
+    border: 1px solid $color--error-border;
+  }
+}
+
+.inp-headline-sub {
+  color: $color--text-muted;
+  font-size: 0.95rem;
+}
+
+.inp-meta {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  margin: 0;
+  font-size: 0.95rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    word-break: break-word;
+  }
+
+  code {
+    font-size: 0.85em;
+  }
+}

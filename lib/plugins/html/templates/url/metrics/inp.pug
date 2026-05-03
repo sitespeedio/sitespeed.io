@@ -1,29 +1,30 @@
 if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== undefined
+  - const inpInfo = browsertime.pageinfo.interactionToNextPaintInfo
+  - const inpLatency = inpInfo.latency
+  - const inpLabel = (() => { if (inpLatency >= 500) return 'error'; if (inpLatency >= 200) return 'warning'; return 'ok'; })()
   a#interactionToNextPaint
   h3 Interaction to Next Paint
-  p Interaction to Next Paint (INP) is a metric that try to measure responsiveness. It's useful if you are testing user journeys. Read more about 
+  p Interaction to Next Paint (INP) measures responsiveness — the time from a user interaction to the next painted frame. Read more about
+    |
     a(href='https://web.dev/inp/') Interaction to Next Paint
     | .
-  .row
-    p The measured latency was #{h.time.ms(browsertime.pageinfo.interactionToNextPaintInfo.latency)}.
-    table
-      tr
-        td 
-          b Event type
-        td #{browsertime.pageinfo.interactionToNextPaintInfo.eventType}
-      tr
-        td 
-          b Element type
-        td #{browsertime.pageinfo.interactionToNextPaintInfo.tagName}
-      tr
-        td 
-          b Element class name
-        td #{browsertime.pageinfo.interactionToNextPaintInfo.className}
-      tr
-        td 
-          b Event target
-        td #{browsertime.pageinfo.interactionToNextPaintInfo.eventTarget}
-      tr
-        td 
-          b Load state when the event happened
-        td #{browsertime.pageinfo.interactionToNextPaintInfo.loadState}
+  .inp-card
+    .inp-headline
+      span.inp-latency(class=inpLabel) #{h.time.ms(inpLatency)}
+      span.inp-headline-sub measured INP latency
+    dl.inp-meta
+      dt Event type
+      dd
+        code= inpInfo.eventType
+      dt Element
+      dd
+        code &lt;#{inpInfo.tagName.toLowerCase()}&gt;
+      if inpInfo.className
+        dt Element class name
+        dd
+          code= inpInfo.className
+      dt Event target
+      dd
+        code= inpInfo.eventTarget
+      dt Page load state when fired
+      dd= inpInfo.loadState
