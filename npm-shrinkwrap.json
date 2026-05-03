@@ -18,7 +18,7 @@
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.0",
         "browsertime": "27.0.2",
-        "coach-core": "8.1.3",
+        "coach-core": "9.0.0-alpha.1",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.7",
@@ -4637,6 +4637,12 @@
       "resolved": "https://registry.npmjs.org/assert-never/-/assert-never-1.2.1.tgz",
       "integrity": "sha512-TaTivMB6pYI1kXwrFlEhLeGfOqoDNdTxjCdwRfFFkEA30Eu+k48W34nlok2EYWJfFFzqaEmichdNM7th6M5HNw=="
     },
+    "node_modules/async": {
+      "version": "0.9.2",
+      "resolved": "https://registry.npmjs.org/async/-/async-0.9.2.tgz",
+      "integrity": "sha512-l6ToIJIotphWahxxHyzK9bnLR6kM4jJIIgLShZeqLY7iboHoGkdgFl7W2/Ivi4SkMJYGKqW8vSuk0uKUj6qsSw==",
+      "license": "MIT"
+    },
     "node_modules/async-retry": {
       "version": "1.3.3",
       "resolved": "https://registry.npmjs.org/async-retry/-/async-retry-1.3.3.tgz",
@@ -5580,9 +5586,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "8.1.3",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-8.1.3.tgz",
-      "integrity": "sha512-ZDe4FXOUVyA3TqVWtXLhaxvXvyQ2XJ+fJDejqhETkkG4ZgZ3Pnpn6ZHzETATPbtyNelNIfnXQXI0YLpK6jd17A==",
+      "version": "9.0.0-alpha.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.0-alpha.1.tgz",
+      "integrity": "sha512-QDDKburPAk15UrBYpANNIWYC7FL/la3NTPMiF+9bnAFG4Pn//pdoQg/wfUUCJvSZJAcfxL7UyEna7xOO5mC0iw==",
       "license": "MIT",
       "dependencies": {
         "filter-files": "0.4.0",
@@ -5591,11 +5597,11 @@
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
         "pagexray": "4.4.4",
-        "third-party-web": "0.26.2",
+        "third-party-web": "0.29.0",
         "wappalyzer-core": "6.10.54"
       },
       "engines": {
-        "node": ">=18.0.0"
+        "node": ">=20.0.0"
       }
     },
     "node_modules/code-excerpt": {
@@ -6834,7 +6840,7 @@
     "node_modules/filter-files": {
       "version": "0.4.0",
       "resolved": "https://registry.npmjs.org/filter-files/-/filter-files-0.4.0.tgz",
-      "integrity": "sha1-uTS5eBoaL42qghGzS7iQlwauuRQ=",
+      "integrity": "sha512-GdvMk8r98FmuSLErSnWzfRIylY1OWLMxlN6YmG6/JZp3dIBZUzcEGyoiSu+hM+bnwGuUS1msQ7raGB5iWeSP/g==",
       "dependencies": {
         "async": "^0.9.0",
         "is-directory": "^0.2.2"
@@ -6842,11 +6848,6 @@
       "engines": {
         "node": ">=0.10.0"
       }
-    },
-    "node_modules/filter-files/node_modules/async": {
-      "version": "0.9.2",
-      "resolved": "https://registry.npmjs.org/async/-/async-0.9.2.tgz",
-      "integrity": "sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0="
     },
     "node_modules/find-line-column": {
       "version": "0.5.2",
@@ -7617,7 +7618,7 @@
     "node_modules/is-directory": {
       "version": "0.2.3",
       "resolved": "https://registry.npmjs.org/is-directory/-/is-directory-0.2.3.tgz",
-      "integrity": "sha1-DBbs98rGahrib9ewyAfXUzZoPe0=",
+      "integrity": "sha512-XbnAq9Uw37vufdlDOgjxcw1DSnq864NssIgtD7WN4SJtLxUXtJlHtAfBBPO3CdCgdKbqIKTZrmvzwxNnU4LhHQ==",
       "engines": {
         "node": ">=0.10.0"
       }
@@ -8037,6 +8038,7 @@
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/json-stable-stringify/-/json-stable-stringify-1.0.2.tgz",
       "integrity": "sha512-eunSSaEnxV12z+Z73y/j5N37/In40GK4GmsSy+tEHJMxknvqnA7/djeYtAgW0GsWHUfg+847WJjKaEylk2y09g==",
+      "license": "MIT",
       "dependencies": {
         "jsonify": "^0.0.1"
       },
@@ -8054,6 +8056,7 @@
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/jsonify/-/jsonify-0.0.1.tgz",
       "integrity": "sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==",
+      "license": "Public Domain",
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
       }
@@ -8292,7 +8295,8 @@
     "node_modules/lodash.groupby": {
       "version": "4.6.0",
       "resolved": "https://registry.npmjs.org/lodash.groupby/-/lodash.groupby-4.6.0.tgz",
-      "integrity": "sha1-Cwih3PaDl8OXhVwyOXg4Mt90A9E="
+      "integrity": "sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==",
+      "license": "MIT"
     },
     "node_modules/lodash.merge": {
       "version": "4.6.2",
@@ -8307,7 +8311,8 @@
     "node_modules/lodash.sortby": {
       "version": "4.7.0",
       "resolved": "https://registry.npmjs.org/lodash.sortby/-/lodash.sortby-4.7.0.tgz",
-      "integrity": "sha1-7dFMgk4sycHgsKG0K7UhBRakJDg="
+      "integrity": "sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==",
+      "license": "MIT"
     },
     "node_modules/log-symbols": {
       "version": "7.0.1",
@@ -8967,6 +8972,7 @@
       "version": "4.4.4",
       "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-4.4.4.tgz",
       "integrity": "sha512-eMeJzhtEUBDq8mI3DWD8n1iMFYt90lWE7gP5WfNoXFqFoTQZyj5DAg2O/W7VdRYqZYGpwswC7c0mFToeJfMwDg==",
+      "license": "MIT",
       "dependencies": {
         "minimist": "1.2.8"
       },
@@ -8975,14 +8981,6 @@
       },
       "engines": {
         "node": ">=8.9.0"
-      }
-    },
-    "node_modules/pagexray/node_modules/minimist": {
-      "version": "1.2.8",
-      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz",
-      "integrity": "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==",
-      "funding": {
-        "url": "https://github.com/sponsors/ljharb"
       }
     },
     "node_modules/pako": {
@@ -10803,9 +10801,10 @@
       }
     },
     "node_modules/third-party-web": {
-      "version": "0.26.2",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.26.2.tgz",
-      "integrity": "sha512-taJ0Us0lKoYBqcbccMuDElSUPOxmBfwlHe1OkHQ3KFf+RwovvBHdXhbFk9XJVQE2vHzxbTwvwg5GFsT9hbDokQ=="
+      "version": "0.29.0",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.29.0.tgz",
+      "integrity": "sha512-nBDSJw5B7Sl1YfsATG2XkW5qgUPODbJhXw++BKygi9w6O/NKS98/uY/nR/DxDq2axEjL6halHW1v+jhm/j1DBQ==",
+      "license": "MIT"
     },
     "node_modules/through": {
       "version": "2.3.8",
@@ -11146,7 +11145,8 @@
         {
           "url": "https://github.com/sponsors/aliasio"
         }
-      ]
+      ],
+      "license": "MIT"
     },
     "node_modules/waterfall-tools": {
       "version": "0.2.0",
