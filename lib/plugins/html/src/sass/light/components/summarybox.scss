@@ -19,6 +19,42 @@
   margin-bottom: 0;  // gap handles spacing; per-box margin would double up
 }
 
+// Hero KPI band — top-of-page band with oversized numbers for the few
+// metrics most readers want at a glance (LCP, TBT, FCP, Coach perf
+// score by default; see HERO_URLS in index.pug). 4-up at desktop,
+// auto-fits down to 2 on smaller widths.
+.summary-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.summary-hero > .summaries,
+.summary-hero > .summarybox {
+  margin-bottom: 0;
+}
+
+.summarybox.hero {
+  min-height: 7.5rem;
+  padding: 18px 20px;
+
+  .summarytitle {
+    font-size: 0.95rem;
+    font-weight: $font--weight--medium;
+    opacity: 0.85;
+  }
+
+  .summarynumber {
+    font-size: 2.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .summarysmall {
+    font-size: 1rem;
+  }
+}
+
 .summarybox {
   // Flex column so the number always sits at the bottom of the box
   // regardless of whether the title wraps to one or two lines, and a
