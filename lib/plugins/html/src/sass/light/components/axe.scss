@@ -1,0 +1,217 @@
+//
+// AXE — light
+// ===========
+// Per-iteration violations as expandable cards grouped by impact, plus
+// a median-count tile grid for the page-summary view.
+//
+
+.axe-clear {
+  color: $color--ok;
+  font-weight: $font--weight--medium;
+  margin: 0 0 1.5rem 0;
+  padding: 14px 16px;
+  background: $color--ok-bg;
+  border: 1px solid $color--ok-border;
+  border-radius: $radius--md;
+}
+
+//
+// Median tile grid (page-summary view)
+//
+.axe-medians {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.axe-median-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.info { background: $color--info-bg; border-color: $color--info-border; color: $color--info; }
+}
+
+.axe-median-label {
+  font-size: 0.8rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.axe-median-count {
+  font-size: 2rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.axe-median-sub {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+//
+// Per-iteration violations
+//
+.axe-violations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.axe-impact-heading {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 18px 0 4px 0;
+}
+
+.axe-violation {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  overflow: hidden;
+  transition: box-shadow $motion--med;
+  &[open] { box-shadow: $shadow--sm; }
+}
+
+.axe-violation-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  transition: background-color $motion--fast;
+  min-width: 0;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { display: none; }
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid $color--text-muted;
+    border-bottom: 2px solid $color--text-muted;
+    transform: rotate(45deg);
+    margin-left: auto;
+    transition: transform $motion--fast;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    background: $color--surface;
+  }
+}
+
+.axe-violation[open] > .axe-violation-summary::after {
+  transform: rotate(225deg);
+}
+
+.axe-violation-title {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.axe-violation-rule {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-family: $font--mono;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.axe-violation-body {
+  padding: 0 16px 16px 16px;
+  border-top: 1px solid $color--border;
+}
+
+.axe-violation-desc {
+  margin: 14px 0 12px 0;
+  color: $color--text;
+}
+
+.axe-violation-tags {
+  margin: 0 0 12px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.axe-tag {
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 2px 8px;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+  white-space: nowrap;
+}
+
+.axe-violation-help {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.axe-nodes-heading {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 14px 0 6px 0;
+}
+
+.axe-nodes-failure {
+  margin: 0 0 10px 0;
+  white-space: pre-wrap;
+  color: $color--text-secondary;
+  font-size: 0.9rem;
+}
+
+.axe-nodes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  li {
+    margin: 0;
+  }
+}
+
+.axe-node-html {
+  display: block;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 8px 10px;
+  font-family: $font--mono;
+  font-size: 0.78rem;
+  color: $color--text;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
