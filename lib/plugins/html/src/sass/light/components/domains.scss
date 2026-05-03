@@ -1,0 +1,39 @@
+//
+// DOMAINS — light
+// ===============
+//
+
+.domains-summary {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 14px;
+  margin: 0 0 12px 0;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  font-variant-numeric: tabular-nums;
+}
+
+.domains-summary-value {
+  font-size: 1.4rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+}
+
+.domains-summary-label {
+  color: $color--text-muted;
+  font-size: 0.95rem;
+}
+
+.domain-name {
+  font-family: $font--mono;
+  font-size: 0.9em;
+  color: $color--text;
+  word-break: break-word;
+}
+
+.domains-empty {
+  color: $color--text-muted;
+  font-style: italic;
+}
