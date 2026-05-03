@@ -1,0 +1,137 @@
+//
+// ITERATION SUMMARY — light
+// =========================
+// Per-run summary tab. Hero KPI tiles + collapsible metric groups +
+// screenshot column. Same visual language as the index-page hero
+// and the metrics-card series.
+//
+
+//
+// Hero KPI tiles
+//
+.iter-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+  list-style: none;
+  padding: 0;
+}
+
+.iter-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+  &.info { background: $color--info-bg; border-color: $color--info-border; color: $color--info; }
+}
+
+.iter-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.iter-kpi-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+//
+// Grouped metric cards (<details> + 2-col dl)
+//
+.iter-group {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: box-shadow $motion--med;
+
+  &[open] {
+    box-shadow: $shadow--sm;
+  }
+}
+
+.iter-group-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  transition: background-color $motion--fast;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { display: none; }
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid $color--text-muted;
+    border-bottom: 2px solid $color--text-muted;
+    transform: rotate(45deg);
+    margin-left: auto;
+    transition: transform $motion--fast;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    background: $color--surface;
+  }
+}
+
+.iter-group[open] > .iter-group-summary::after {
+  transform: rotate(225deg);
+}
+
+.iter-group-title {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  font-size: 1rem;
+}
+
+.iter-group-list {
+  margin: 0;
+  padding: 8px 14px 14px 14px;
+  border-top: 1px solid $color--border;
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 6px;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+    font-size: 0.95rem;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+}
+
+.iter-screenshot {
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  max-width: 100%;
+  height: auto;
+}

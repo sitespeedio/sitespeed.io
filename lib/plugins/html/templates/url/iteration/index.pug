@@ -33,7 +33,7 @@ block content
       b Errors
       ul
         each error in d.browsertime.run.errors
-          li #{error} 
+          li #{error}
 
   .index-link
     a.button.button--primary(href=urlLink) Back to summary
@@ -43,145 +43,150 @@ block content
   #tabSections
     section#summary-panel
       h2 Summary
+
+      //- Pull all values once up front so the markup below is just rendering.
+      - performanceScore = get(d, 'coach.run.advice.performance.score')
+      - totalTransferSize = get(d, 'pagexray.run.transferSize')
+      - memory = get(d, 'browsertime.run.memory')
+      - cpuConsumption = get(d, 'browsertime.run.cpuConsumption')
+      - requests = get(d, 'pagexray.run.requests')
+      - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime')
+      - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
+      - fullyLoaded = get(d, 'browsertime.run.fullyLoaded')
+      - fcp = get(d, 'browsertime.run.timings.paintTiming["first-contentful-paint"]')
+      - lcp = get(d, 'browsertime.run.timings.largestContentfulPaint.renderTime')
+      - cls = get(d, 'browsertime.run.pageinfo.cumulativeLayoutShift')
+      - inp = get(d, 'browsertime.run.timings.interactionToNextPaint')
+      - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
+      - mpFID = get(d, 'browsertime.run.cpu.longTasks.maxPotentialFid')
+      - longTasks = get(d, 'browsertime.run.cpu.longTasks.tasks')
+      - maxLongTask = get(d, 'browsertime.run.cpu.longTasks.durations.max')
+      - lastLongTask = get(d, 'browsertime.run.cpu.longTasks.lastLongTask')
+      - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
+      - speedIndex = get(d, 'browsertime.run.visualMetrics.SpeedIndex')
+      - visualComplete85 = get(d, 'browsertime.run.visualMetrics.VisualComplete85')
+      - visualComplete99 = get(d, 'browsertime.run.visualMetrics.VisualComplete99')
+      - lastVisualChange = get(d, 'browsertime.run.visualMetrics.LastVisualChange')
+
+      //- Threshold helpers shared by the hero band and inline badges.
+      - lcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+      - fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+      - clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+      - inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+      - perfClass = (v) => v == null ? '' : (typeof h.scoreLabel === 'function' ? h.scoreLabel(v) : 'info')
+
       .row
         .one-half.column
-          table
-            tr
-              th Metric
-              th Value
-            tr
-              th(colspan='2') Page metrics
-            - performanceScore = get(d, 'coach.run.advice.performance.score')
-            if performanceScore
-              tr
-                td Performance score
-                td #{performanceScore}
-            - totalTransferSize = get(d, 'pagexray.run.transferSize')
-            if totalTransferSize
-              tr
-                td Total page size
-                td #{h.size.format(totalTransferSize)}
-            - memory = get(d, 'browsertime.run.memory')
-            if memory
-              tr
-                td Memory
-                td #{h.size.format(memory)}
-            - cpuConsumption = get(d, 'browsertime.run.cpuConsumption')
-            if cpuConsumption
-              tr
-                td Firefox CPU power consumption 
-                td #{cpuConsumption * 1000} mWh
-            - requests = get(d, 'pagexray.run.requests')
-            if (requests)
-              tr
-                td Requests
-                td #{requests}
-            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
-            tr
-              th(colspan='2') Timing metrics
-            if ttfb
-              tr
-                td TTFB
-                td #{h.time.ms(ttfb)}
-            - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
-            if firstPaint
-              tr
-                td First Paint
-                td #{h.time.ms(firstPaint)} 
-            - fullyLoaded = get(d, 'browsertime.run.fullyLoaded') 
-            if fullyLoaded
-              tr
-                td Fully Loaded
-                td #{h.time.ms(fullyLoaded.toFixed(0))} 
-            - fcp = get(d, 'browsertime.run.timings.paintTiming["first-contentful-paint"]') 
-            - lcp = get(d, 'browsertime.run.timings.largestContentfulPaint.renderTime')
-            if lcp
-              tr
-                th(colspan='2') Google Web Vitals
-            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
-            if ttfb
-              tr
-                td TTFB
-                td #{h.time.ms(ttfb)}
+          //- Hero KPIs (Core Web Vitals + Coach perf score). Matches the
+          //- index page's hero treatment so per-iteration scanning feels
+          //- the same as the executive summary.
+          .iter-kpis
             if fcp
-              tr
-                td First Contentful Paint (FCP) 
-                td #{h.time.ms(fcp)}         
+              .iter-kpi(class=fcpClass(fcp))
+                span.iter-kpi-label FCP
+                span.iter-kpi-value #{h.time.ms(fcp)}
             if lcp
-              tr
-                td Largest Contentful Paint (LCP) 
-                td #{h.time.ms(lcp)}
-            - cls = get(d, 'browsertime.run.pageinfo.cumulativeLayoutShift')
-            if cls || cls === 0
-                tr
-                  td Cumulative Layout Shift (CLS) 
-                  td #{cls.toFixed(2)}
-            - inp = get(d, 'browsertime.run.timings.interactionToNextPaint')
-            if inp
-              tr
-                td #{h.time.ms(inp)}
-            - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
-            if tbt  
-              tr
-                td Total Blocking Time
-                td #{h.time.ms(tbt)}
-            - mpFID = get(d, 'browsertime.run.cpu.longTasks.maxPotentialFid')
-            if mpFID
-              tr
-                td Max Potential FID
-                td #{h.time.ms(mpFID)}
-            - longTasks = get(d, 'browsertime.run.cpu.longTasks.tasks')
-            if longTasks
-              tr
-                th(colspan='2') CPU metrics
-              tr
-                td CPU long tasks
-                td #{longTasks}
-            - maxLongTask= get(d, 'browsertime.run.cpu.longTasks.durations.max') 
-            if maxLongTask 
-              tr
-                td CPU longest task duration
-                td #{h.time.ms(maxLongTask)}
-            - lastLongTask= get(d, 'browsertime.run.cpu.longTasks.lastLongTask') 
-            if lastLongTask 
-              tr
-                td CPU last long task happens at
-                td #{h.time.ms(lastLongTask)}
+              .iter-kpi(class=lcpClass(lcp))
+                span.iter-kpi-label LCP
+                span.iter-kpi-value #{h.time.ms(lcp)}
+            if cls || cls === 0
+              .iter-kpi(class=clsClass(cls))
+                span.iter-kpi-label CLS
+                span.iter-kpi-value #{cls.toFixed(3)}
+            if typeof performanceScore === 'number'
+              .iter-kpi(class=perfClass(performanceScore))
+                span.iter-kpi-label Coach
+                span.iter-kpi-value #{performanceScore}
 
-            - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
-            if firstVisualChange
-              tr
-                th(colspan='2') Visual Metrics
-              tr
-                td First Visual Change
-                td #{h.time.ms(firstVisualChange)}
-            - speedIndex = get(d, 'browsertime.run.visualMetrics.SpeedIndex')
-            if speedIndex
-              tr
-                td Speed Index
-                td #{h.time.ms(speedIndex)}
-            - visualComplete85 = get(d, 'browsertime.run.visualMetrics.VisualComplete85')
-            if visualComplete85
-              tr
-                td Visual Complete 85%
-                td #{h.time.ms(visualComplete85)}
-            - visualComplete99 = get(d, 'browsertime.run.visualMetrics.VisualComplete99')
-            if visualComplete99
-              tr
-                td Visual Complete 99%
-                td #{h.time.ms(visualComplete99)}  
-            - lastVisualChange = get(d, 'browsertime.run.visualMetrics.LastVisualChange')
-            if lastVisualChange
-              tr
-                td Last Visual Change
-                td #{h.time.ms(lastVisualChange)}
+          //- Grouped metric sections. Each is a card with a title and a
+          //- 2-column dl; only renders when at least one of its metrics
+          //- is present. <details open> lets readers collapse a group
+          //- without losing the at-a-glance default view.
+          if ttfb || firstPaint || fullyLoaded || inp || tbt || mpFID
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Loading & responsiveness
+              dl.iter-group-list
+                if ttfb
+                  dt TTFB
+                  dd #{h.time.ms(ttfb)}
+                if firstPaint
+                  dt First Paint
+                  dd #{h.time.ms(firstPaint)}
+                if fullyLoaded
+                  dt Fully Loaded
+                  dd #{h.time.ms(fullyLoaded.toFixed(0))}
+                if inp
+                  dt Interaction to Next Paint
+                  dd
+                    span.label(class=inpClass(inp)) #{h.time.ms(inp)}
+                if tbt
+                  dt Total Blocking Time
+                  dd #{h.time.ms(tbt)}
+                if mpFID
+                  dt Max Potential FID
+                  dd #{h.time.ms(mpFID)}
+
+          if totalTransferSize || memory || cpuConsumption || requests
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Page weight & requests
+              dl.iter-group-list
+                if totalTransferSize
+                  dt Total transfer size
+                  dd #{h.size.format(totalTransferSize)}
+                if requests
+                  dt Requests
+                  dd #{requests}
+                if memory
+                  dt Memory
+                  dd #{h.size.format(memory)}
+                if cpuConsumption
+                  dt Firefox CPU power
+                  dd #{(cpuConsumption * 1000).toFixed(1)} mWh
+
+          if longTasks || maxLongTask || lastLongTask
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title CPU
+              dl.iter-group-list
+                if longTasks
+                  dt CPU long tasks
+                  dd #{longTasks}
+                if maxLongTask
+                  dt CPU longest task duration
+                  dd #{h.time.ms(maxLongTask)}
+                if lastLongTask
+                  dt CPU last long task at
+                  dd #{h.time.ms(lastLongTask)}
+
+          if firstVisualChange || speedIndex || visualComplete85 || visualComplete99 || lastVisualChange
+            details.iter-group(open)
+              summary.iter-group-summary
+                span.iter-group-title Visual progress
+              dl.iter-group-list
+                if firstVisualChange
+                  dt First Visual Change
+                  dd #{h.time.ms(firstVisualChange)}
+                if speedIndex
+                  dt Speed Index
+                  dd #{h.time.ms(speedIndex)}
+                if visualComplete85
+                  dt Visual Complete 85%
+                  dd #{h.time.ms(visualComplete85)}
+                if visualComplete99
+                  dt Visual Complete 99%
+                  dd #{h.time.ms(visualComplete99)}
+                if lastVisualChange
+                  dt Last Visual Change
+                  dd #{h.time.ms(lastVisualChange)}
 
         .one-half.column
-            if hasScreenShots
-              - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
-              - const width = options.mobile ? 150 : '100%';
-              a(href=screenshotName)
-                img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+          if hasScreenShots
+            - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
+            - const width = options.mobile ? 150 : '100%';
+            a(href=screenshotName)
+              img.screenshot.iter-screenshot(src=screenshotName, width=width, alt='Screenshot')
       .downloads
         include ./downloads.pug
         include ./tcpdump.pug
@@ -195,7 +200,7 @@ block content
 
     if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
       section#filmstrip-panel
-        include ../filmstrip/index.pug        
+        include ../filmstrip/index.pug
 
     if d.coach && d.coach.run
       section#coach-panel
@@ -211,8 +216,8 @@ block content
 
     if options.cpu || (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks) || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime &&options.browsertime.enableProfileRun)
       section#cpu-panel
-        include ../cpu/index.pug     
-    
+        include ../cpu/index.pug
+
     if d.thirdparty && d.thirdparty.run
       section#thirdparty-panel
         include ../thirdparty/index.pug
@@ -222,6 +227,6 @@ block content
         include ../screenshots/index.pug
 
     each pageRun in pageRuns
-      - const panelName = pageRun.id + '-panel'
+      - panelName = pageRun.id + '-panel'
       section(id=panelName)
         p !{pugs[pageRun.id]}
