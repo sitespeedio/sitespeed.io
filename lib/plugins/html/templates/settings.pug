@@ -6,118 +6,236 @@ block content
 
   if usingBrowsertime
     h2 Runtime settings
-    table
-      tr 
-        td Sitespeed.io version
-        td #{version}
-      tr 
-        td Browsertime version
-        td #{browsertimeVersion}
-      tr 
-        td Test time
-        td #{timestamp}
-      tr
-        td Browser 
-        td #{h.cap(get(browser, 'name'))} #{get(browser, 'version', 'unknown')}
-      tr 
-        td User Agent
-        td #{get(browser, 'userAgent')}
-      if options.mobile
-        tr 
-          td Emulated mobile
-          td Yes
-      if hostname
-         tr
-          td Hostname
-          td #{hostname}
-      if cpuBenchmark
-        tr
-          td CPU benchmark
-          td #{cpuBenchmark} (first run)
-      if options.replay || options.webpagereplay
-        tr
-          td Using WebPageReplay 
-          td Yes
-      if options.multi
-        tr
-          td Using multi mode
-          td Yes
-      if options.preURL 
-        tr 
-          td Using preURL 
-          td #{h.short(options.preURL, 60)}     
-      if !options.mobile && !ios && !android
-        tr
-          td View port
-          td #{options.viewPort}
-      else
-        tr
-          td Window size
-          td #{windowSize}
-      tr 
-        td Connectivity
-        td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down', '')} Up: ${get(connectivity, 'settings.up', '')} RTT: ${get(connectivity, 'settings.rtt', '')})`}
-      tr 
-        td Number of runs
-        td #{get(options, 'browsertime.iterations')}
-      if get(browser, 'traceCategories') !== undefined
-        tr
-          td Trace categories
-          td #{get(browser, 'traceCategories')}
-      if get(options, 'browsertime.enableProfileRun') !== undefined
-        tr 
-          td Enabled profile run
-          td Yes
-      if get(browser, 'preference') !== undefined
-        tr
-          td browser.preference
-          td #{get(browser, 'preference')}
-      if get(browser, 'args') !== undefined
-        tr
-          td browser.args
-          td #{get(browser, 'args')}
-      if get(browser, 'geckoProfilerFeatures') !== undefined
-        tr
-          td Gecko Profiler Features
-          td #{get(browser, 'geckoProfilerFeatures')}
-      tr 
-        td OS
-        td #{android ? 'Android' : (ios ? 'iOS' :  (options.browsertime.docker ? 'Docker using ' + os: os)) }
-      if android
-        if android.model
-          tr 
-            td Phone model
-            td #{android.model}
-        if android.id
-          tr
-            td Id
-            td #{android.id}
-        if android.androidVersion
-          tr 
-            td Android version
-            td #{android.androidVersion}
-        if android.wifi
-          tr 
-            td Wifi
-            td #{android.wifi}
-        tr
-          td Using gnirehtet
-          td #{get(options, 'browsertime.android.gnirehtet', 'No')}
-        tr
-          td Rooted phone
-          td #{get(options, 'browsertime.android.rooted', 'No')}
-        if android.batteryTemperature
-          tr 
-            td Battery temperature
-            td Start: #{android.batteryTemperature.start} °C Stop: #{android.batteryTemperature.stop} °C
-      if ios
-        if ios.deviceName
-          tr 
-            td Device
-            td #{ios.deviceName}
-        if ios.deviceUDID
-          tr 
-            td UUID
-            td #{ios.deviceUDID}
-  else 
+
+    //- Versions, browser, network/device, modes and OS info are split into
+    //- collapsible cards. Each card flows multi-column tiles so a quick
+    //- scan finds the value without trawling a long two-column table.
+
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Versions and more
+      .settings-tiles
+        .settings-tile
+          span.settings-tile-label Sitespeed.io
+          span.settings-tile-value #{version}
+        .settings-tile
+          span.settings-tile-label Browsertime
+          span.settings-tile-value #{browsertimeVersion}
+        .settings-tile
+          span.settings-tile-label Test time
+          span.settings-tile-value #{timestamp}
+        .settings-tile
+          span.settings-tile-label Number of runs
+          span.settings-tile-value #{get(options, 'browsertime.iterations')}
+
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Browser
+      .settings-tiles
+        .settings-tile
+          span.settings-tile-label Browser
+          span.settings-tile-value #{h.cap(get(browser, 'name'))} #{get(browser, 'version', 'unknown')}
+        if get(browser, 'binaryPath') || get(browser, 'binary')
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label Binary
+            span.settings-tile-value #{get(browser, 'binaryPath') || get(browser, 'binary')}
+        if get(browser, 'profile')
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label Profile
+            span.settings-tile-value #{get(browser, 'profile')}
+        if get(browser, 'extensions')
+          .settings-tile
+            span.settings-tile-label Extensions loaded
+            span.settings-tile-value #{get(browser, 'extensions')}
+        if get(browser, 'androidPackage')
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label Android package
+            span.settings-tile-value #{get(browser, 'androidPackage')}
+        if get(browser, 'androidActivity')
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label Android activity
+            span.settings-tile-value #{get(browser, 'androidActivity')}
+        .settings-tile.settings-tile--wide
+          span.settings-tile-label User Agent
+          span.settings-tile-value #{get(browser, 'userAgent')}
+        if get(browser, 'traceCategories') !== undefined
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label Trace categories
+            span.settings-tile-value #{get(browser, 'traceCategories')}
+        if get(browser, 'geckoProfilerFeatures') !== undefined
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label Gecko Profiler Features
+            span.settings-tile-value #{get(browser, 'geckoProfilerFeatures')}
+
+    //- Mobile emulation (Chrome only) — recorded by Browsertime 27 from the
+    //- effective configuration, not just user-supplied flags. Skip the card
+    //- if no profile is in effect.
+    if get(browser, 'mobileEmulation')
+      details.iter-group(open)
+        summary.iter-group-summary
+          span.iter-group-title Mobile emulation
+        .settings-tiles
+          - const me = get(browser, 'mobileEmulation')
+          if me.deviceName
+            .settings-tile
+              span.settings-tile-label Device
+              span.settings-tile-value #{me.deviceName}
+          if me.deviceMetrics && me.deviceMetrics.width
+            .settings-tile
+              span.settings-tile-label Width
+              span.settings-tile-value #{me.deviceMetrics.width} px
+          if me.deviceMetrics && me.deviceMetrics.height
+            .settings-tile
+              span.settings-tile-label Height
+              span.settings-tile-value #{me.deviceMetrics.height} px
+          if me.deviceMetrics && me.deviceMetrics.pixelRatio
+            .settings-tile
+              span.settings-tile-label Pixel ratio
+              span.settings-tile-value #{me.deviceMetrics.pixelRatio}
+          if me.userAgent
+            .settings-tile.settings-tile--wide
+              span.settings-tile-label User Agent override
+              span.settings-tile-value #{me.userAgent}
+
+    //- Effective browser args. Browsertime 27 records the full set, not
+    //- just what was passed via --chrome.args / --firefox.args, so this
+    //- is the actual command-line the browser saw.
+    if get(browser, 'args') !== undefined
+      details.iter-group
+        summary.iter-group-summary
+          span.iter-group-title Browser args
+          - const argsList = Array.isArray(get(browser, 'args')) ? get(browser, 'args') : [get(browser, 'args')]
+          span.iter-group-count #{argsList.length}
+        ul.settings-args
+          each arg in argsList
+            li.settings-args-item
+              code #{arg}
+
+    //- Effective browser preferences (Chrome `prefs` / Firefox `user_prefs`).
+    //- Browsertime 27 records both what the user passed and what
+    //- browsertime applied internally, surfaced as a flat key/value map.
+    if get(browser, 'preferences') && Object.keys(get(browser, 'preferences')).length > 0
+      details.iter-group
+        summary.iter-group-summary
+          span.iter-group-title Browser preferences
+          span.iter-group-count #{Object.keys(get(browser, 'preferences')).length}
+        .settings-tiles
+          each value, name in get(browser, 'preferences')
+            .settings-tile
+              span.settings-tile-label #{name}
+              span.settings-tile-value #{typeof value === 'object' ? JSON.stringify(value) : String(value)}
+    else if get(browser, 'preference') !== undefined
+      details.iter-group(open)
+        summary.iter-group-summary
+          span.iter-group-title Browser preferences
+        .settings-tiles
+          .settings-tile.settings-tile--wide
+            span.settings-tile-label browser.preference
+            span.settings-tile-value #{get(browser, 'preference')}
+
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Network & device
+      .settings-tiles
+        if !options.mobile && !ios && !android
+          .settings-tile
+            span.settings-tile-label View port
+            span.settings-tile-value #{options.viewPort}
+        else
+          .settings-tile
+            span.settings-tile-label Window size
+            span.settings-tile-value #{windowSize}
+        if options.mobile
+          .settings-tile
+            span.settings-tile-label Emulated mobile
+            span.settings-tile-value Yes
+        if hostname
+          .settings-tile
+            span.settings-tile-label Hostname
+            span.settings-tile-value #{hostname}
+        if cpuBenchmark
+          .settings-tile
+            span.settings-tile-label CPU benchmark
+            span.settings-tile-value #{cpuBenchmark}
+            span.settings-tile-sub first run
+        .settings-tile.settings-tile--wide
+          span.settings-tile-label Connectivity
+          span.settings-tile-value #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down', '')} Up: ${get(connectivity, 'settings.up', '')} RTT: ${get(connectivity, 'settings.rtt', '')})`}
+
+    if options.replay || options.webpagereplay || options.multi || options.preURL || get(options, 'browsertime.enableProfileRun') !== undefined
+      details.iter-group(open)
+        summary.iter-group-summary
+          span.iter-group-title Modes
+        .settings-tiles
+          if options.replay || options.webpagereplay
+            .settings-tile
+              span.settings-tile-label WebPageReplay
+              span.settings-tile-value Yes
+          if options.multi
+            .settings-tile
+              span.settings-tile-label Multi mode
+              span.settings-tile-value Yes
+          if options.preURL
+            .settings-tile.settings-tile--wide
+              span.settings-tile-label preURL
+              span.settings-tile-value #{h.short(options.preURL, 60)}
+          if get(options, 'browsertime.enableProfileRun') !== undefined
+            .settings-tile
+              span.settings-tile-label Profile run
+              span.settings-tile-value Yes
+
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Operating system
+      .settings-tiles
+        .settings-tile.settings-tile--wide
+          span.settings-tile-label OS
+          span.settings-tile-value #{android ? 'Android' : (ios ? 'iOS' : (options.browsertime.docker ? 'Docker using ' + os : os)) }
+
+    if android
+      details.iter-group(open)
+        summary.iter-group-summary
+          span.iter-group-title Android device
+        .settings-tiles
+          if android.model
+            .settings-tile
+              span.settings-tile-label Phone model
+              span.settings-tile-value #{android.model}
+          if android.id
+            .settings-tile
+              span.settings-tile-label Id
+              span.settings-tile-value #{android.id}
+          if android.androidVersion
+            .settings-tile
+              span.settings-tile-label Android version
+              span.settings-tile-value #{android.androidVersion}
+          if android.wifi
+            .settings-tile
+              span.settings-tile-label Wifi
+              span.settings-tile-value #{android.wifi}
+          .settings-tile
+            span.settings-tile-label Using gnirehtet
+            span.settings-tile-value #{get(options, 'browsertime.android.gnirehtet', 'No')}
+          .settings-tile
+            span.settings-tile-label Rooted phone
+            span.settings-tile-value #{get(options, 'browsertime.android.rooted', 'No')}
+          if android.batteryTemperature
+            .settings-tile.settings-tile--wide
+              span.settings-tile-label Battery temperature
+              span.settings-tile-value Start: #{android.batteryTemperature.start} °C · Stop: #{android.batteryTemperature.stop} °C
+
+    if ios
+      details.iter-group(open)
+        summary.iter-group-summary
+          span.iter-group-title iOS device
+        .settings-tiles
+          if ios.deviceName
+            .settings-tile
+              span.settings-tile-label Device
+              span.settings-tile-value #{ios.deviceName}
+          if ios.deviceUDID
+            .settings-tile.settings-tile--wide
+              span.settings-tile-label UUID
+              span.settings-tile-value #{ios.deviceUDID}
+  else
     p No runtime settings if you do not run Browsertime.

@@ -1,0 +1,90 @@
+//
+// SETTINGS — dark
+// ===============
+//
+
+.settings-tiles {
+  margin: 0;
+  padding: 8px 14px 14px 14px;
+  border-top: 1px solid $color--border;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 16px;
+  row-gap: 12px;
+}
+
+.settings-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+
+  &--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.settings-tile-label {
+  font-size: 0.72rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+}
+
+.settings-tile-value {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  word-break: break-word;
+}
+
+.settings-tile-sub {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+}
+
+.iter-group-count {
+  margin-left: auto;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+}
+
+.iter-group .iter-group-summary:has(.iter-group-count)::after {
+  margin-left: 0;
+}
+
+.settings-args {
+  list-style: none;
+  margin: 0;
+  padding: 8px 14px 14px 14px;
+  border-top: 1px solid $color--border;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-args-item {
+  font-size: 0.85rem;
+
+  code {
+    background: $color--surface;
+    padding: 2px 6px;
+    border-radius: $radius--sm;
+    border: 1px solid $color--border;
+    color: $color--text;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
+  }
+}
