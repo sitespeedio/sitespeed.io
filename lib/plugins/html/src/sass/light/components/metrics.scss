@@ -1,0 +1,72 @@
+//
+// METRICS — light
+// ===============
+// Browser Metrics tab cards (Navigation Timing, Google Web Vitals, Extra
+// timings, User Timing marks/measures). Each metric is rendered as a
+// label-over-value tile so the cards flow in multiple columns instead of
+// one row per metric.
+//
+
+.metric-tiles {
+  margin: 0;
+  padding: 8px 14px 14px 14px;
+  border-top: 1px solid $color--border;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  column-gap: 16px;
+  row-gap: 10px;
+}
+
+.metric-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+// Label takes the remaining vertical space inside the tile so that when
+// the grid stretches every tile to the row's tallest, the value lines up
+// at the bottom regardless of how many lines the label wraps to.
+.metric-tile-label {
+  flex: 1;
+  font-size: 0.72rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+
+  a {
+    color: inherit;
+    border-bottom: 1px dotted $color--border;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom-color: $color--text-muted;
+  }
+}
+
+.metric-tile-value {
+  font-size: 1.05rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+  word-break: break-word;
+}
+
+.metric-tile-sub {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+}
+
+//
+// Visual progress chart sits inside an iter-group card just like the
+// metric tiles — match the body padding so the chart doesn't crash into
+// the card's edge.
+//
+.metric-chart {
+  padding: 8px 14px 14px 14px;
+  border-top: 1px solid $color--border;
+}
