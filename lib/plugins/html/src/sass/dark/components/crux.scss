@@ -1,0 +1,196 @@
+//
+// CRUX — dark
+// ===========
+//
+
+$crux--good: $color--ok;
+$crux--ni: $color--warning;
+$crux--poor: $color--error;
+
+.crux-experience-heading {
+  margin-top: 1.5rem;
+}
+
+.crux-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.crux-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $color--border;
+}
+
+.crux-card-title { margin: 0; }
+
+.crux-card-period {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.crux-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+}
+
+.crux-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+}
+
+.crux-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.crux-kpi-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.crux-section-heading {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 18px 0 8px 0;
+}
+
+.crux-distros {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  margin: 0;
+
+  dt {
+    color: $color--text-secondary;
+    font-weight: $font--weight--medium;
+    font-size: 0.95rem;
+    align-self: center;
+  }
+  dd { margin: 0; }
+}
+
+.crux-distro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crux-distro-bar {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  flex: 1 1 auto;
+}
+
+.crux-distro-segment {
+  display: block;
+  height: 100%;
+  &.crux-good { background: $crux--good; }
+  &.crux-ni { background: $crux--ni; }
+  &.crux-poor { background: $crux--poor; }
+}
+
+.crux-distro-legend {
+  display: inline-flex;
+  gap: 10px;
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+
+  .crux-distro-good { color: $crux--good; }
+  .crux-distro-ni { color: $crux--ni; }
+  .crux-distro-poor { color: $crux--poor; }
+}
+
+.crux-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0;
+}
+
+.crux-bar-row {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr 60px;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.crux-bar-label { color: $color--text-secondary; }
+
+.crux-bar-track {
+  height: 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+}
+
+.crux-bar-fill {
+  display: block;
+  height: 100%;
+  background: $color--blue;
+}
+
+.crux-bar-value {
+  text-align: right;
+  color: $color--text;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+
+.crux-image-breakdown {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 4px;
+  margin: 0;
+  font-size: 0.9rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+  dd {
+    margin: 0;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+  }
+}
