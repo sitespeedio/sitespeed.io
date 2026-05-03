@@ -1,9 +1,5 @@
 extends ./layout.pug
 
-//- Hero KPIs picked by their help-anchor name. Order here = display order.
-//- Anything not in this list flows into the regular summary grid below.
-- const HERO_URLS = ['FirstContentfulPaint', 'LargestContentfulPaint', 'CumulativeLayoutShift', 'CoachPerformanceScore'];
-
 mixin box(box, hero)
   - const cls = (hero ? 'summarybox hero ' : 'summarybox ') + (box.label || '')
   if (box.url)
@@ -22,6 +18,9 @@ mixin box(box, hero)
 block content
     include runInfo
 
+    //- Hero KPIs picked by their help-anchor name. Order here = display order.
+    //- Anything not in this list flows into the regular summary grid below.
+    - const HERO_URLS = ['FirstContentfulPaint', 'LargestContentfulPaint', 'CumulativeLayoutShift', 'CoachPerformanceScore'];
     - const heroByUrl = Object.fromEntries(boxes.filter(b => HERO_URLS.includes(b.url)).map(b => [b.url, b]));
     - const heroBoxes = HERO_URLS.map(u => heroByUrl[u]).filter(Boolean);
     - const restBoxes = boxes.filter(b => !HERO_URLS.includes(b.url));
