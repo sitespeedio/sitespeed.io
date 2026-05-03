@@ -1,0 +1,83 @@
+//
+// HELP PAGE — light
+// =================
+// The help page is a long flat reference doc — h2 section headers and
+// h5 entries with paragraph descriptions. Style it as a readable
+// definition-list rather than a wall of headings: cap line length,
+// give each entry breathing room, and make the section headers stand
+// out as anchors.
+//
+
+.help-page {
+  max-width: 880px;
+  margin: 0 auto;
+
+  h2 {
+    margin: 32px 0 14px 0;
+    padding-top: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $color--border;
+    font-weight: $font--weight--semibold;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    color: $color--text;
+  }
+
+  h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  // Each h5 + adjacent p is one "entry". Treat the h5 like a definition
+  // term and the following p like its description so the eye groups
+  // them together.
+  h5 {
+    margin: 18px 0 4px 0;
+    font-size: 1rem;
+    font-weight: $font--weight--semibold;
+    color: $color--text;
+    scroll-margin-top: 64px;
+  }
+
+  // Permalink-on-hover for entries with an id.
+  h5[id]::after {
+    content: '#';
+    margin-left: 8px;
+    color: $color--text-muted;
+    opacity: 0;
+    font-weight: $font--weight--medium;
+    transition: opacity $motion--fast;
+  }
+
+  h5[id]:hover::after {
+    opacity: 1;
+  }
+
+  p {
+    margin: 0 0 6px 0;
+    color: $color--text-secondary;
+    line-height: 1.6;
+  }
+
+  p code {
+    font-family: $font--mono;
+    font-size: 0.9em;
+    padding: 1px 6px;
+    border: 1px solid $color--border;
+    border-radius: $radius--sm;
+    background: $color--surface;
+    color: $color--text;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  i {
+    font-family: $font--mono;
+    font-style: normal;
+    font-size: 0.9em;
+    padding: 1px 6px;
+    border-radius: $radius--sm;
+    background: $color--surface;
+    color: $color--text;
+  }
+}
