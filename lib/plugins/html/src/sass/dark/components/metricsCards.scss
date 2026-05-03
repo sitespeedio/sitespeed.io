@@ -366,6 +366,19 @@ $lcp--render-delay: #a78bfa;
   margin-bottom: 8px;
 }
 
+.lcp-element-image {
+  display: block;
+  max-width: 240px;
+  max-height: 180px;
+  width: auto;
+  height: auto;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  margin-bottom: 8px;
+  object-fit: contain;
+  background: $color--surface;
+}
+
 //
 // CLS card — dark
 //

@@ -407,6 +407,23 @@ $lcp--render-delay: #7c3aed;
   margin-bottom: 8px;
 }
 
+// The matched LCP element image is the actual asset (often the original
+// 1200×800+ hero photo); cap its preview so it stops dwarfing the rest
+// of the column. The full asset is still one click away via the wrapping
+// anchor.
+.lcp-element-image {
+  display: block;
+  max-width: 240px;
+  max-height: 180px;
+  width: auto;
+  height: auto;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  margin-bottom: 8px;
+  object-fit: contain;
+  background: $color--surface;
+}
+
 //
 // CLS card — hero score (with web-vitals threshold colour) +
 // per-element shift list, paired with the layout-shift screenshot.
