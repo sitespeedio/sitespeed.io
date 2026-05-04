@@ -31,9 +31,18 @@ jobs:
         sudo apt-get --only-upgrade install google-chrome-stable
         google-chrome --version
     - name: Setup SSH/SCP container
+      # Use a pre-built linuxserver/openssh-server image instead of an
+      # apt-build on every CI run — Ubuntu's public mirrors have flaked
+      # repeatedly during `apt-get update` here. The user's home is
+      # /config (linuxserver convention), which is why the test below
+      # uses --scp.destinationPath /config/ rather than /home/scpuser/.
       run: |
-          docker build --load -t ssh-server-password --file test/docker/Dockerfile.scp .
-          docker run -d -p 2222:22 ssh-server-password
+          docker run -d -p 2222:2222 \
+            -e PUID=1000 -e PGID=1000 \
+            -e USER_NAME=scpuser \
+            -e USER_PASSWORD=password \
+            -e PASSWORD_ACCESS=true \
+            lscr.io/linuxserver/openssh-server:latest
     - name: Setup GCS container
       run: |
           docker run -d -p 8081:8081 fsouza/fake-gcs-server:1.50 -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
@@ -48,7 +57,7 @@ jobs:
     - name: Start local HTTP server
       run: (serve test/data/html/ -l 3001&)
     - name: Run Chrome test sending data using scp
-      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username scpuser --scp.password password --scp.destinationPath /home/scpuser/
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username scpuser --scp.password password --scp.destinationPath /config/
     - name: Run Chrome test sending data to GCS
       run: STORAGE_EMULATOR_HOST="http://localhost:8081" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.projectId sitespeed
     - name: Run Chrome test sending data to S3
