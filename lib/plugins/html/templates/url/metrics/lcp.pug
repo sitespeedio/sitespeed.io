@@ -35,14 +35,14 @@ if timings.largestContentfulPaint
             dt Element type
             dd
               code &lt;#{lcp.tagName.toLowerCase()}&gt;
-          if lcp.id !== ''
+          if lcp.id
             dt Element id
             dd
               code= lcp.id
           if lcp.size
             dt Size (w × h)
             dd #{lcp.size}
-          if lcp.url !== ''
+          if lcp.url
             dt URL
             dd
               a(href=lcp.url) #{h.shortAsset(lcp.url)}
@@ -63,7 +63,7 @@ if timings.largestContentfulPaint
         a(href=screenshotName)
           img.screenshot.lcp-screenshot(src=screenshotName, alt='LCP')
         p.small The LCP element is highlighted in the screenshot. If nothing is highlighted the element was removed before the screenshot or the LCP API couldn't find it.
-        if lcp.url !== ''
+        if lcp.url
           p.small The Largest Contentful Paint API matched this image:
           a(href=lcp.url)
             img.screenshot.lcp-element-image(src=lcp.url, alt='LCP element')
