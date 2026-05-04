@@ -164,3 +164,94 @@
   border-top: 0;
   padding: 0;
 }
+
+//
+// Visual elements — heroes detected by visualElements (logo, heading,
+// hero image). Each gets a card with display time, position, size and
+// an optional collapsible HTML snippet.
+//
+.ve-list {
+  border-top: 1px solid $color--border;
+  padding: 12px 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ve-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+}
+
+.ve-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.ve-name {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  font-size: 1rem;
+}
+
+.ve-filename {
+  font-family: $font--mono;
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  padding: 1px 8px;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  background: $color--surface;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.ve-card .metric-tiles {
+  border-top: 0;
+  padding: 0;
+}
+
+.ve-html {
+  margin-top: 4px;
+  font-size: 0.85rem;
+
+  > summary {
+    cursor: pointer;
+    color: $color--text-muted;
+    user-select: none;
+    list-style: revert;
+  }
+
+  &[open] > summary {
+    color: $color--text-secondary;
+  }
+}
+
+.ve-html-pre {
+  margin: 6px 0 0 0;
+  padding: 8px 10px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow-x: auto;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: $color--text-secondary;
+
+  code {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+  }
+}
