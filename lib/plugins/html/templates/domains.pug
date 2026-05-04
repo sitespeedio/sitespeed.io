@@ -19,13 +19,21 @@ mixin rows(domainStats)
 block content
   include runInfo
   if topDomains
-    .domains-summary
-      span.domains-summary-value #{count < fullCount ? count : fullCount}
-      span.domains-summary-label of #{fullCount} domains shown
-    p.small Per-phase timings (max). Click any column header to sort.
-    .responsive
-      table(data-sortable, id='domains')
-        +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
-        +rows(topDomains)
+    //- The old `.domains-summary` count panel collapses into the card
+    //- header's meta slot — same information, but consistent with the
+    //- rest of the report's card-driven layout.
+    - const shownDomains = count < fullCount ? count : fullCount
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Domains
+        if count < fullCount
+          span.listing-card-meta Top #{count} of #{fullCount}
+        else
+          span.listing-card-meta #{fullCount} #{fullCount === 1 ? 'domain' : 'domains'}
+      p.listing-card-help Per-phase timings (max). Click any column header to sort.
+      .responsive
+        table(data-sortable, id='domains')
+          +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
+          +rows(topDomains)
   else
     p.domains-empty No domain information available — the HAR file wasn't generated.

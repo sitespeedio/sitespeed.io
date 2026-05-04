@@ -13,17 +13,24 @@ mixin rows(assets)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.size)
       +numberCell('count', asset.requestCount)
+
 block content
   include runInfo
   if fullCount > 0
-    if count < fullCount
-      div Showing top #{count} assets out of #{fullCount}
-    else
-      div Showing all #{fullCount} assets
-
-    .responsive
-      table(data-sortable, id='assets')
-        +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
-        +rows(topAssets)
+    //- Top-N assets across the run, framed as a card so the page reads
+    //- in the same idiom as Toplist / Pages / Detailed. The "showing N
+    //- of M" hint moves into the header meta when truncated, otherwise
+    //- the chip just shows the total count.
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Assets
+        if count < fullCount
+          span.listing-card-meta Top #{count} of #{fullCount}
+        else
+          span.listing-card-meta #{fullCount} #{fullCount === 1 ? 'asset' : 'assets'}
+      .responsive
+        table(data-sortable, id='assets')
+          +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
+          +rows(topAssets)
   else
     p We are missing assets metrics, the HAR was not created.
