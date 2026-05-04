@@ -40,6 +40,19 @@
  background-color: $color--blue;
 }
 
+// Solid warning pill — the `$color--warning` palette value is a
+// yellow/amber-700 that doubles as a foreground text colour elsewhere
+// in the report (warning labels in summary boxes, threshold pills inside
+// the metric tiles). On a solid pill against white text it reads as
+// orange-brown rather than yellow. Override the `.label.warning`
+// pairing specifically with a bright yellow-400 background and dark
+// yellow text so the warning state is unambiguously yellow without
+// touching the rest of the palette.
+.label.warning {
+ background-color: #facc15;
+ color: #422006;
+}
+
 ul.menu {
  list-style: none;
  font-size: 125%;
