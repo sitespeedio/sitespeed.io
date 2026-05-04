@@ -50,28 +50,37 @@ block content
           span.detailed-kpi-value #{inpMetric.h(inpMetric.node.median)}
           span.detailed-kpi-sub p90 #{inpMetric.h(inpMetric.node.p90)}
 
-  p.small Every collected metric, with min / median / mean / p90 / max across all runs. Click any column header to sort.
-  .responsive
-    table(data-sortable, id='detailed')
-      thead
-        tr
-          th Name
-          th.number min
-          th.number median
-          th.number mean
-          th.number p90
-          th.number max
-      each metric in metrics
-        if metric.node && (metric.node.min  || metric.node.min === 0)
+  //- Full metrics table sits in its own card so it gets the same frame
+  //- as the rest of the modernised report. Help text moves into the
+  //- card header's right-hand meta slot so it doesn't compete with the
+  //- hero band above.
+  - const visibleMetricCount = metrics.filter(m => m.node && (m.node.min || m.node.min === 0)).length
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title All metrics
+      span.listing-card-meta #{visibleMetricCount} #{visibleMetricCount === 1 ? 'metric' : 'metrics'}
+    p.listing-card-help Every collected metric, with min / median / mean / p90 / max across all runs. Click any column header to sort.
+    .responsive
+      table(data-sortable, id='detailed')
+        thead
           tr
-            td(data-title='Metric', data-value=metric.name)
-              if (metric.metricName)
-                - url = 'help.html#' + metric.metricName
-                a(href=url) #{metric.name}
-              else
-                | #{metric.name}
-            td.number(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
-            td.number(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
-            td.number(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
-            td.number(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
-            td.number(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
+            th Name
+            th.number min
+            th.number median
+            th.number mean
+            th.number p90
+            th.number max
+        each metric in metrics
+          if metric.node && (metric.node.min  || metric.node.min === 0)
+            tr
+              td(data-title='Metric', data-value=metric.name)
+                if (metric.metricName)
+                  - url = 'help.html#' + metric.metricName
+                  a(href=url) #{metric.name}
+                else
+                  | #{metric.name}
+              td.number(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
+              td.number(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
+              td.number(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
+              td.number(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
+              td.number(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}

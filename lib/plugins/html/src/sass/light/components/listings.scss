@@ -1,0 +1,84 @@
+//
+// LISTINGS — light
+// ================
+// Shared card shell for the data-table-heavy result pages (Pages,
+// Toplist, Detailed). Same visual idiom as .inp-card / .lcp-card on
+// the metrics tab, but tuned for sortable tables that may already be
+// wrapped in `.responsive` for mobile stacking — the card just frames
+// them with a header strip and a consistent surface.
+//
+
+.listing-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 16px 18px 18px 18px;
+  margin: 0 0 18px 0;
+  box-shadow: $shadow--sm;
+  scroll-margin-top: 16px;
+}
+
+.listing-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color--border;
+}
+
+.listing-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: $font--weight--semibold;
+}
+
+// Right-side meta strip — usually a row count, but also used for short
+// hints like "Click any column header to sort" so the help text doesn't
+// take a whole row.
+.listing-card-meta {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.listing-card-help {
+  margin: 0 0 12px 0;
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  max-width: 80ch;
+}
+
+// Quicklinks row above the cards on Toplist — a compact list of jump
+// anchors to the named cards, replacing the old `| A | B | C |` strip
+// of inline `<small>` text.
+.listing-quicklinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin: 0 0 18px 0;
+  list-style: none;
+  padding: 0;
+
+  li { margin: 0; }
+
+  a {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: $radius--pill;
+    border: 1px solid $color--border;
+    background: $color--surface;
+    color: $color--text-secondary;
+    font-size: 0.85rem;
+    font-weight: $font--weight--medium;
+    text-decoration: none;
+
+    &:hover {
+      background: $color--surface-card;
+      border-color: $color--border-strong;
+      color: $color--text;
+    }
+  }
+}

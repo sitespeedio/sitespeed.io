@@ -53,18 +53,26 @@ block content
       if (friendlyNames[tool] && friendlyNames[tool][k] && friendlyNames[tool][k][v])
         - headingText = friendlyNames[tool][k][v].name
     - headings.push(headingText)
+  - const pageCount = Object.keys(pages).length
   .row
     .column
       include runInfo
-      .responsive
-        table(data-sortable, id='pages')
-          +rowHeading(headings)
-          +rows(pages, true)
-          if removedUrls.length > 0
-            tr
-              td(colspan=headings.length) 
-                b The following pages metrics/data was removed because they passed the budget configuration.
-            each url in removedUrls
+      //- One card framing the per-URL table. The budget-removed list is
+      //- rendered as extra rows in the same table so the count chip in
+      //- the header reflects only the URLs that have data.
+      .listing-card
+        .listing-card-header
+          h3.listing-card-title Pages tested
+          span.listing-card-meta #{pageCount} #{pageCount === 1 ? 'page' : 'pages'}
+        .responsive
+          table(data-sortable, id='pages')
+            +rowHeading(headings)
+            +rows(pages)
+            if removedUrls.length > 0
               tr
+                td(colspan=headings.length)
+                  b The following pages metrics/data was removed because they passed the budget configuration.
+              each url in removedUrls
+                tr
                   td.url.pagesurl(data-title='URL', colspan=headings.length)
                     a(href= url)= decodeURIComponent(url)
