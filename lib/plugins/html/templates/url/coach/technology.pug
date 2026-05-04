@@ -1,5 +1,7 @@
 - const wappalyserVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.wappalyzerVersion : pageInfo.data.coach.pageSummary.wappalyzerVersion;
 - const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion;
+- const webappanalyzerVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.webappanalyzerVersion : pageInfo.data.coach.pageSummary.webappanalyzerVersion;
+- const webappanalyzerSyncedAt = webappanalyzerVersion && webappanalyzerVersion.syncedAt ? webappanalyzerVersion.syncedAt : '2024-12-27';
 
 a#technology
 h2 Technologies used to build the page
@@ -11,7 +13,7 @@ p.small
   |  version #{wappalyserVersion}. With updated code from
   |
   a(href='https://github.com/enthec/webappanalyzer') Webappanalyzer
-  |  2024-12-27. Use
+  |  #{webappanalyzerSyncedAt}. Use
   |
   code --browsertime.firefox.includeResponseBodies html
   |  or
