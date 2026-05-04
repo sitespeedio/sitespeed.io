@@ -1,13 +1,24 @@
-//- Visual-progress curve as a self-contained inline SVG. The previous
-//- implementation used chartist; pulling in the chartist runtime + 3
-//- plugins on every per-page report just for this one chart wasn't
-//- worth the ~50 KB. Same shape (filled area under the line) without
-//- the JS dependency.
+//- Visual-progress curve as a self-contained inline SVG, with optional
+//- filmstrip thumbnails along the X axis and vertical markers for
+//- FCP / LCP / VisualComplete85 drawn over the curve. Filmstrip + markers are
+//- additive — when the data isn't available (no `--video --visualMetrics`,
+//- no paint-timing entries) the chart degrades to just the curve.
 
 - const vpData = (visualMetrics && visualMetrics.VisualProgress) || []
 
 if vpData.length > 0
-  - const vpMax = Math.max(vpData[vpData.length - 1].timestamp, 100)
+  - const vpFilmstrip = (typeof filmstrip !== 'undefined' && filmstrip) || []
+  - const vpVideoIndex = medianRun ? medianRun.runIndex : iteration
+  - const vpFilmstripBase = 'data/filmstrip/' + vpVideoIndex + '/'
+  - const vpFrameLast = vpFilmstrip.length ? vpFilmstrip[vpFilmstrip.length - 1].time * 1000 : 0
+  - const vpMax = Math.max(vpData[vpData.length - 1].timestamp, vpFrameLast, 100)
+
+  //- Pick up to 8 evenly time-spaced frames so the strip stays readable
+  //- on dense runs that capture 60+ frames.
+  - let vpThumbs = []
+  - if (vpFilmstrip.length <= 8) { vpThumbs = vpFilmstrip.slice() }
+  - else { for (let i = 0; i < 8; i++) { vpThumbs.push(vpFilmstrip[Math.round(i * (vpFilmstrip.length - 1) / 7)]) } }
+
   - let vpFill = 'M 0 100'
   - let vpStroke = ''
   - let vpLastPercent = 0
@@ -15,12 +26,33 @@ if vpData.length > 0
   - const vpFinalY = (100 - vpLastPercent).toFixed(2)
   - vpFill += ' L 100 ' + vpFinalY + ' L 100 100 Z'
   - vpStroke += 'L 100 ' + vpFinalY
+
+  //- Page-event markers — same palette the waterfall card uses.
+  - const vpMarkers = []
+  - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { vpMarkers.push({label: 'FCP', value: timings.paintTiming['first-contentful-paint'], color: 'rgb(57, 230, 0)'}) }
+  - if (timings.largestContentfulPaint) { const lcp = Math.max(timings.largestContentfulPaint.loadTime || 0, timings.largestContentfulPaint.renderTime || 0); if (lcp > 0) vpMarkers.push({label: 'LCP', value: lcp, color: 'rgb(0, 128, 0)'}) }
+  - if (visualMetrics && visualMetrics.VisualComplete85 > 0) { vpMarkers.push({label: 'VC85', value: visualMetrics.VisualComplete85, color: 'rgb(216, 136, 223)'}) }
+
   - const vpTicks = Array.from({length: 6}, (_, i) => ({ pct: i * 20, sec: (i * 20 / 100 * vpMax) / 1000 }))
 
   .vp-chart
-    svg.vp-svg(aria-hidden='true')&attributes({viewBox: '0 0 100 100', preserveAspectRatio: 'none'})
-      path.vp-fill(d=vpFill)
-      path.vp-stroke(d=vpStroke, fill='none')
+    if vpThumbs.length > 0
+      .vp-thumbs
+        each frame in vpThumbs
+          - const left = (frame.time * 1000 / vpMax * 100).toFixed(2)
+          .vp-thumb(style='left: ' + left + '%')
+            a(href=vpFilmstripBase + frame.file, target='_blank', rel='noopener')
+              img(src=vpFilmstripBase + frame.file, alt='Visual progress at ' + frame.time + ' s', loading='lazy')
+            span.vp-thumb-time #{Number(frame.time).toFixed(1)}s
+    .vp-curve-wrap
+      svg.vp-svg(aria-hidden='true')&attributes({viewBox: '0 0 100 100', preserveAspectRatio: 'none'})
+        path.vp-fill(d=vpFill)
+        path.vp-stroke(d=vpStroke, fill='none')
+      each m in vpMarkers
+        - const mLeft = (m.value / vpMax * 100).toFixed(2)
+        .vp-marker(style='left: ' + mLeft + '%; --vp-marker-color: ' + m.color + ';')
+          span.vp-marker-label #{m.label}
+          span.vp-marker-time #{(m.value / 1000).toFixed(2)}s
     .vp-axis
       each tick in vpTicks
         span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
