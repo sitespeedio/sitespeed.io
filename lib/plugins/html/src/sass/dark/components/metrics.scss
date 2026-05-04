@@ -54,9 +54,44 @@
   font-variant-numeric: tabular-nums;
 }
 
-.metric-chart {
-  padding: 8px 14px 14px 14px;
+.vp-chart {
+  padding: 12px 14px 14px 14px;
   border-top: 1px solid $color--border;
+}
+
+.vp-svg {
+  display: block;
+  width: 100%;
+  height: 140px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+}
+
+.vp-fill {
+  fill: rgba(0, 149, 210, 0.22);
+  stroke: none;
+}
+
+.vp-stroke {
+  stroke: $color--blue;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.vp-axis {
+  position: relative;
+  height: 16px;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.vp-axis-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
 }
 
 .et-list {

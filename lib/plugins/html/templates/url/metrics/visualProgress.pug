@@ -1,70 +1,26 @@
-- const seriesVisualProgress = [];
-- let oldPercent = -1;
-- let oldValue = -1;
-each eachRow in visualMetrics.VisualProgress
-  - const newValue = eachRow.timestamp
-  - const percent = eachRow.percent
-  //- Sometimes VisualMetrics report the same percentage multiple times after each other
-  // and since the original time is in ms we wanna remove entries on the same 0.1 s
-  if percent !== oldPercent &&  newValue !== oldValue
-    - oldPercent = percent
-    - oldValue = newValue
-    - seriesVisualProgress.push({x: newValue, y: percent})
-script(type='text/javascript').
-  document.addEventListener("DOMContentLoaded", function() {
-      const visualProgressChart = new Chartist.Line('#ct-visualprogress', {
-        series: [!{JSON.stringify(seriesVisualProgress)}],
-        }, {
-        classNames: {
-          label: 'ct-label ct-custom-label'
-        },
-        showArea: true,
-        showPoint: true,
-        chartPadding: {
-          top: 10,
-          right: 0,
-          bottom: 30,
-          left: 10
-        },
-        axisX: {
-          type: Chartist.AutoScaleAxis,
-          onlyInteger: false,
-        },
-        lineSmooth: Chartist.Interpolation.step({
-          postpone: true,
-          fillHoles: false
-        }),
-        axisY: {
-          onlyInteger: true
-        },
-        plugins: [
-          Chartist.plugins.ctAxisTitle({
-            axisX: {
-              axisTitle: 'Time (milliseconds)',
-              axisClass: 'ct-axis-title',
-              offset: {
-                x: 0,
-                y: 50
-              },
-              textAnchor: 'middle'
-            },
-            axisY: {
-              axisTitle: 'Visual progress %',
-              axisClass: 'ct-axis-title',
-              offset: {
-                x: 0,
-                y: -4
-              },
-              textAnchor: 'middle',
-              flipTitle: false
-            }
-            }),
-            Chartist.plugins.tooltip({
-              transformTooltipTextFnc: function(text) {
-                const m = text.split(',');
-                return m[0] + 's ' + m[1] + '%';
-              }
-            })
-          ]
-        });
-      });
+//- Visual-progress curve as a self-contained inline SVG. The previous
+//- implementation used chartist; pulling in the chartist runtime + 3
+//- plugins on every per-page report just for this one chart wasn't
+//- worth the ~50 KB. Same shape (filled area under the line) without
+//- the JS dependency.
+
+- const vpData = (visualMetrics && visualMetrics.VisualProgress) || []
+
+if vpData.length > 0
+  - const vpMax = Math.max(vpData[vpData.length - 1].timestamp, 100)
+  - let vpFill = 'M 0 100'
+  - let vpStroke = ''
+  - let vpLastPercent = 0
+  - for (let i = 0; i < vpData.length; i++) { const r = vpData[i]; const x = (r.timestamp / vpMax * 100).toFixed(2); const y = (100 - r.percent).toFixed(2); vpFill += ' L ' + x + ' ' + y; vpStroke += (i === 0 ? 'M ' : 'L ') + x + ' ' + y + ' '; vpLastPercent = r.percent }
+  - const vpFinalY = (100 - vpLastPercent).toFixed(2)
+  - vpFill += ' L 100 ' + vpFinalY + ' L 100 100 Z'
+  - vpStroke += 'L 100 ' + vpFinalY
+  - const vpTicks = Array.from({length: 6}, (_, i) => ({ pct: i * 20, sec: (i * 20 / 100 * vpMax) / 1000 }))
+
+  .vp-chart
+    svg.vp-svg(aria-hidden='true')&attributes({viewBox: '0 0 100 100', preserveAspectRatio: 'none'})
+      path.vp-fill(d=vpFill)
+      path.vp-stroke(d=vpStroke, fill='none')
+    .vp-axis
+      each tick in vpTicks
+        span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
