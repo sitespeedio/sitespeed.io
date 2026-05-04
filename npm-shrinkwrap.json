@@ -17,8 +17,8 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.0",
-        "browsertime": "27.0.2",
-        "coach-core": "9.0.0-alpha.1",
+        "browsertime": "27.0.3",
+        "coach-core": "9.0.0-alpha.2",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.7",
@@ -5132,9 +5132,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "27.0.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-27.0.2.tgz",
-      "integrity": "sha512-ZtsqlGqrZyCquwjllhOuJP86cQUJAt/M61kqln+PKDf/l81ewmEP2sV8IWlL5ExPRhl8jgDgSkTzVRNVOISbwQ==",
+      "version": "27.0.3",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-27.0.3.tgz",
+      "integrity": "sha512-saZv4DjgxDdSIvz17cgRme+pSDTXZLaQEQpxBdHmMx5uuI+skCgnBMHfuIHyGVLOXM4ECSSlpTCvVtSY8pytLA==",
       "license": "MIT",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
@@ -5586,9 +5586,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "9.0.0-alpha.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.0-alpha.1.tgz",
-      "integrity": "sha512-QDDKburPAk15UrBYpANNIWYC7FL/la3NTPMiF+9bnAFG4Pn//pdoQg/wfUUCJvSZJAcfxL7UyEna7xOO5mC0iw==",
+      "version": "9.0.0-alpha.2",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.0-alpha.2.tgz",
+      "integrity": "sha512-5IukOg/9W+9YNj8iX/TSt4p7ozqX/XPI8cZ7qiJ5yyBKYOghLmHEAP5s0HzhisUY8AKAN/u8AlQEOlPZmS4wlA==",
       "license": "MIT",
       "dependencies": {
         "filter-files": "0.4.0",
