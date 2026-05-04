@@ -223,3 +223,62 @@
   color: $color--text-secondary;
   word-break: break-word;
 }
+
+.tpc-list {
+  border-top: 1px solid $color--border;
+  padding: 12px 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tpc-domain {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tpc-domain-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed $color--border;
+}
+
+.tpc-domain-name {
+  font-family: $font--mono;
+  font-size: 0.9rem;
+  color: $color--text;
+  font-weight: $font--weight--medium;
+  word-break: break-word;
+}
+
+.tpc-domain-count {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+}
+
+.tpc-cookie-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+
+  li {
+    font-family: $font--mono;
+    font-size: 0.8rem;
+    padding: 2px 9px;
+    border: 1px solid $color--border;
+    border-radius: $radius--pill;
+    background: $color--surface;
+    color: $color--text;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+  }
+}
