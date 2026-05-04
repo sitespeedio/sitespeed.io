@@ -1,0 +1,75 @@
+//
+// LISTINGS — dark
+// ===============
+// See light variant for layout notes; this file mirrors that structure
+// with the dark theme's tokens.
+//
+
+.listing-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 16px 18px 18px 18px;
+  margin: 0 0 18px 0;
+  box-shadow: $shadow--sm;
+  scroll-margin-top: 16px;
+}
+
+.listing-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color--border;
+}
+
+.listing-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: $font--weight--semibold;
+}
+
+.listing-card-meta {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.listing-card-help {
+  margin: 0 0 12px 0;
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  max-width: 80ch;
+}
+
+.listing-quicklinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin: 0 0 18px 0;
+  list-style: none;
+  padding: 0;
+
+  li { margin: 0; }
+
+  a {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: $radius--pill;
+    border: 1px solid $color--border;
+    background: $color--surface;
+    color: $color--text-secondary;
+    font-size: 0.85rem;
+    font-weight: $font--weight--medium;
+    text-decoration: none;
+
+    &:hover {
+      background: $color--surface-card;
+      border-color: $color--border-strong;
+      color: $color--text;
+    }
+  }
+}
