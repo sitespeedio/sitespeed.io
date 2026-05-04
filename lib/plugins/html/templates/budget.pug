@@ -6,25 +6,37 @@ mixin row(budget)
     each result in results
       tr
         td
-          if (urlOrAlias &&  urlOrAlias.startsWith('http')) 
+          if (urlOrAlias && urlOrAlias.startsWith('http'))
             a(href=urlOrAlias)= urlOrAlias
-          else 
-            a(href=aliasToUrl[urlOrAlias])= urlOrAlias 
+          else
+            a(href=aliasToUrl[urlOrAlias])= urlOrAlias
             p #{aliasToUrl[urlOrAlias]}
-        td #{result.metric} with value #{result.friendlyValue || result.value} limit #{result.limitType} #{result.friendlyLimit || result.limit}
+        td #{result.metric} with value #{result.friendlyValue || result.value} limit #{result.limitType} #{result.friendlyLimit || result.limit}
 
 block content
-    h2 The budget
-    p The result of the performance budget. We got #{totalFailing} failing and #{totalWorking} working.
+  h2 The budget
+  p The result of the performance budget. We got #{totalFailing} failing and #{totalWorking} working.
 
-    h3 Failing budgets [#{totalFailing}]
-    if totalFailing > 0 
-      table
+  //- Failing first because that's what the reader actually came here
+  //- to find. Each list lives in a card with a count chip in the
+  //- header — the bare `h3 Failing budgets [N]` syntax was carrying
+  //- both the title and the count, the chip splits them visually.
+  if totalFailing > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Failing budgets
+        span.listing-card-meta #{totalFailing} #{totalFailing === 1 ? 'failure' : 'failures'}
+      .responsive
+        table(data-sortable, id='budget-failing')
           +rowHeading(['url', 'result'])
           +row(budget.failing)
 
-    h3 Working budgets [#{totalWorking}]
-    if totalWorking > 0 
-      table
+  if totalWorking > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Working budgets
+        span.listing-card-meta #{totalWorking} passing
+      .responsive
+        table(data-sortable, id='budget-working')
           +rowHeading(['url', 'result'])
           +row(budget.working)

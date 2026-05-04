@@ -2,27 +2,29 @@ include ../../_tableMixins
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 
-small
-  ||
-  a(href='#pagexray-summary') Summary
-  | &nbsp;|&nbsp;
-  a(href='#largest-assets') Largest responses
-  | &nbsp;|&nbsp;
-  a(href='#requests-and-sizes-per-content-type') Per content type
-  | &nbsp;|&nbsp;
-  a(href='#data-per-domain') Per domain
-  | &nbsp;|&nbsp;
-  a(href='#expires-and-last-modified-stats') Expires & last-modified
-  | &nbsp;|&nbsp;
+//- Quicklinks to the named sections in this tab — chip-style list
+//- replaces the old `| A | B |` separator strip so the entry point
+//- matches the rest of the modernised report.
+ul.listing-quicklinks
+  li
+    a(href='#pagexray-summary') Summary
+  li
+    a(href='#largest-assets') Largest responses
+  li
+    a(href='#requests-and-sizes-per-content-type') Per content type
+  li
+    a(href='#data-per-domain') Per domain
+  li
+    a(href='#expires-and-last-modified-stats') Expires & last-modified
   if pageInfo.data.browsertime && pageInfo.data.browsertime.console
-    a(href='#console-log') Console
-    | &nbsp;|&nbsp;
+    li
+      a(href='#console-log') Console
   if pagexray.afterOnLoad.requests > 0
-    a(href='#requests-after-onload') After onLoad
-    | &nbsp;|&nbsp;
+    li
+      a(href='#requests-after-onload') After onLoad
   if pagexray.renderBlocking
-    a(href='#requests-render-blocking') Render-blocking
-    | &nbsp;|&nbsp;
+    li
+      a(href='#requests-render-blocking') Render-blocking
 
 a
 h2 PageXray
@@ -82,24 +84,26 @@ include ./perContentType.pug
 include ./perDomain.pug
 
 a#expires-and-last-modified-stats
-h3 Expires & last-modified statistics
 - expire = pagexray.expireStats
 - lastModified = pagexray.lastModifiedStats
-.responsive
-  table
-    +rowHeading(['type', 'min', 'median', 'max'])
-    if expire
-      tr
-        td(data-title='Type') Expires
-        +durationCell('min', expire.min)
-        +durationCell('median', expire.median)
-        +durationCell('max', expire.max)
-    if lastModified
-      tr
-        td(data-title='Type') Last modified
-        +durationCell('min', lastModified.min)
-        +durationCell('median', lastModified.median)
-        +durationCell('max', lastModified.max)
+.listing-card
+  .listing-card-header
+    h3.listing-card-title Expires & last-modified statistics
+  .responsive
+    table(data-sortable)
+      +rowHeading(['type', 'min', 'median', 'max'])
+      if expire
+        tr
+          td(data-title='Type') Expires
+          +durationCell('min', expire.min)
+          +durationCell('median', expire.median)
+          +durationCell('max', expire.max)
+      if lastModified
+        tr
+          td(data-title='Type') Last modified
+          +durationCell('min', lastModified.min)
+          +durationCell('median', lastModified.median)
+          +durationCell('max', lastModified.max)
 
 if pageInfo.data.browsertime && pageInfo.data.browsertime.console
   include ./console.pug
