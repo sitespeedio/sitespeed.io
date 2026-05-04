@@ -304,6 +304,40 @@
   padding: 0;
 }
 
+.ve-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: flex-start;
+}
+
+.ve-meta {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.ve-thumb-link {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 140px;
+  padding: 8px;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  background: $color--surface;
+}
+
+.ve-thumb {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
 .ve-html {
   margin-top: 4px;
   font-size: 0.85rem;
