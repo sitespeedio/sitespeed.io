@@ -10,5 +10,5 @@ if usingBrowsertime
         | .
     a(href= rootPath + 'settings.html')= '(runtime settings).'
   
-  if options.browsertime.browser === 'safari'
-        p At the moment we get limited metrics from Safari. Transfer sizes and number of requests are missing.
+  if options.browsertime.browser === 'safari' && !(options.safari && options.safari.ios)
+        p At the moment we get limited metrics from Safari on macOS. Transfer sizes and number of requests are missing. Run with #[code --safari.ios] for the full HAR on iOS Safari.
