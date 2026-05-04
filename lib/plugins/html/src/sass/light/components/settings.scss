@@ -29,12 +29,20 @@
   }
 }
 
+// Firefox preference names regularly run to ~50 characters with no word
+// breaks (`network.http.altsvc.proxy_checks`); without anywhere-break
+// rules on both label and value, long names spill out of their tile and
+// overlap the next column. `overflow-wrap: anywhere` lets the browser
+// break inside identifiers, and `min-width: 0` on the tile is required
+// to allow the wrapping to actually shrink the tile in the grid track.
 .settings-tile-label {
   font-size: 0.72rem;
   font-weight: $font--weight--medium;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: $color--text-muted;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .settings-tile-value {
@@ -42,6 +50,7 @@
   font-weight: $font--weight--semibold;
   color: $color--text;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .settings-tile-sub {

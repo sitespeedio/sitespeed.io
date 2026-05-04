@@ -30,6 +30,8 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: $color--text-muted;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .settings-tile-value {
@@ -37,6 +39,7 @@
   font-weight: $font--weight--semibold;
   color: $color--text;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .settings-tile-sub {
