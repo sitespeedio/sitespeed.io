@@ -1,15 +1,28 @@
-a#server-timings
-h3 Server timings
+//- Server-Timing entries reported by the page's response headers.
+//- Wrapped in the same .listing-card shell the other modernised pages
+//- use, with a count chip in the header. The original template had a
+//- malformed <thead>/<tr> structure; rebuilding it with a proper
+//- thead/tbody pair lets data-sortable do its job. The card is omitted
+//- entirely when no Server-Timing entries were sent — the empty-state
+//- placeholder added clutter on the majority of pages where the
+//- feature isn't wired up.
 if timings.serverTimings && timings.serverTimings.length > 0
-    table
-        tr
-        th name
-        th duration
-        th description
-        each serverTiming in timings.serverTimings
+  - const serverTimingsCount = timings.serverTimings.length
+  a#server-timings
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Server timings
+      span.listing-card-meta #{serverTimingsCount} #{serverTimingsCount === 1 ? 'entry' : 'entries'}
+    .responsive
+      table(data-sortable)
+        thead
+          tr
+            th Name
+            th.number Duration
+            th Description
+        tbody
+          each serverTiming in timings.serverTimings
             tr
-                td #{serverTiming.name}
-                td #{serverTiming.duration}
-                td #{serverTiming.description}
-else
-    p There are no Server Timings.
+              td #{serverTiming.name}
+              td.number #{serverTiming.duration}
+              td #{serverTiming.description}

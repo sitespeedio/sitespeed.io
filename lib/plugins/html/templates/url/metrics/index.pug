@@ -382,21 +382,43 @@ if browsertime
               span.ve-name #{element.name}
               if element.filename
                 span.ve-filename #{element.filename}
-            .metric-tiles
-              if visualMetrics && visualMetrics[element.name]
-                .metric-tile
-                  span.metric-tile-label Display time
-                  span.metric-tile-value #{h.time.ms(visualMetrics[element.name].toFixed(0))}
-              .metric-tile
-                span.metric-tile-label Position (x, y)
-                span.metric-tile-value #{element.x}, #{element.y}
-              .metric-tile
-                span.metric-tile-label Size (w × h)
-                span.metric-tile-value #{element.width} × #{element.height}
-            if element.html
-              details.ve-html
-                summary HTML snippet
-                pre.ve-html-pre
-                  code= element.html
+            .ve-body
+              .ve-meta
+                .metric-tiles
+                  if visualMetrics && visualMetrics[element.name]
+                    .metric-tile
+                      span.metric-tile-label Display time
+                      span.metric-tile-value #{h.time.ms(visualMetrics[element.name].toFixed(0))}
+                  .metric-tile
+                    span.metric-tile-label Position (x, y)
+                    span.metric-tile-value #{element.x}, #{element.y}
+                  .metric-tile
+                    span.metric-tile-label Size (w × h)
+                    span.metric-tile-value #{element.width} × #{element.height}
+                if element.html
+                  details.ve-html
+                    summary HTML snippet
+                    pre.ve-html-pre
+                      code= element.html
+              //- Render the actual image asset alongside the metadata
+              //- when the hero is an image. Browsertime only stores the
+              //- basename in `element.filename`, so to get a usable
+              //- thumbnail URL we extract the original src from the
+              //- snippet HTML and resolve it against the page's URL.
+              //- Click-through opens the full asset; the preview is
+              //- capped so a 1200×800 hero photo doesn't dwarf the card.
+              - let veThumbUrl = null
+              - if (element.html && element.filename) {
+              -   const m = element.html.match(/src="([^"]+)"/i)
+              -   if (m) {
+              -     try {
+              -       const baseUrl = (pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.info && pageInfo.data.browsertime.pageSummary.info.url) || (pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.info && pageInfo.data.browsertime.run.info.url)
+              -       veThumbUrl = baseUrl ? new URL(m[1], baseUrl).href : (m[1].startsWith('http') ? m[1] : null)
+              -     } catch (e) { veThumbUrl = null }
+              -   }
+              - }
+              if veThumbUrl
+                a.ve-thumb-link(href=veThumbUrl, target='_blank', rel='noopener')
+                  img.ve-thumb(src=veThumbUrl, alt=element.name + ' preview', loading='lazy')
 else
   p Missing data from Browsertime.
