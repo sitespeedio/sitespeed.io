@@ -2,22 +2,26 @@
 - const cpu = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run.cpu
 
 if cpu
-  small
+  //- Quicklinks to the named sections lower on this tab — chip-style
+  //- list replaces the old `| Long tasks | First Input Delay | ...`
+  //- separator strip so the entry point matches the rest of the
+  //- modernised report.
+  ul.listing-quicklinks
     if cpu.longTasks
-      a(href='#long-tasks') Long tasks
-      | &nbsp;|&nbsp;
+      li
+        a(href='#long-tasks') Long tasks
     if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
-      a(href='#first-input-delay') First Input Delay
-      | &nbsp;|&nbsp;
+      li
+        a(href='#first-input-delay') First Input Delay
     if cpu.categories
-      a(href='#cpu-time-spent') CPU time spent
-      | &nbsp;|&nbsp;
+      li
+        a(href='#cpu-time-spent') CPU time spent
     if cpu.urls && cpu.urls.length > 0
-      a(href='#cpu-time-spent-per-request') Per request
-      | &nbsp;|&nbsp;
+      li
+        a(href='#cpu-time-spent-per-request') Per request
     if pageInfo.data.thirdparty
-      a(href='#cpu-time-per-tool') Per tool
-      | &nbsp;|&nbsp;
+      li
+        a(href='#cpu-time-per-tool') Per tool
 
 a#cpu
 h2 CPU
@@ -99,26 +103,29 @@ if cpu && cpu.longTasks
         span.cpu-phase-time #{h.time.ms(cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0))}
 
     if browsertime && browsertime.pageinfo && browsertime.pageinfo.longTask
-      h4.cpu-section-heading Individual long tasks
-      .responsive
-        table(data-sortable)
-          thead
-            tr
-              th Name
-              th.number Start
-              th.number Duration
-              th Container
-              th Container src
-              th Type
-          tbody
-            each task in browsertime.pageinfo.longTask
+      .listing-card
+        .listing-card-header
+          h4.listing-card-title Individual long tasks
+          span.listing-card-meta #{browsertime.pageinfo.longTask.length} #{browsertime.pageinfo.longTask.length === 1 ? 'task' : 'tasks'}
+        .responsive
+          table(data-sortable)
+            thead
               tr
-                td #{task.name}
-                td.number #{task.startTime.toFixed(0)}
-                td.number #{task.duration.toFixed(0)}
-                td #{task.attribution[0].containerName}
-                td.url.assetsurl #{task.attribution[0].containerSrc}
-                td #{task.attribution[0].containerType}
+                th Name
+                th.number Start
+                th.number Duration
+                th Container
+                th Container src
+                th Type
+            tbody
+              each task in browsertime.pageinfo.longTask
+                tr
+                  td #{task.name}
+                  td.number #{task.startTime.toFixed(0)}
+                  td.number #{task.duration.toFixed(0)}
+                  td #{task.attribution[0].containerName}
+                  td.url.assetsurl #{task.attribution[0].containerSrc}
+                  td #{task.attribution[0].containerType}
   else
     p.cpu-no-tasks ✓ No long tasks observed during this run.
 
