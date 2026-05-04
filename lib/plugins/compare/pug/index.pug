@@ -1,210 +1,281 @@
-- const compare = pageInfo.data.compare.pageSummary;
+- const compare = pageInfo.data.compare.pageSummary
+- const meta = compare.meta
+- const baselineRaw = compare.raw.baseline
+- const currentRaw = compare.raw.current
+- const baselineXray = baselineRaw.pagexray.statistics
+- const currentXray = currentRaw.pagexray.statistics
+
 - var createGraphLink = function(metricGroup, metricName) {
--   return '#chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_');
+-   return '#chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_')
 - }
 - var cliffDeltaHelper = function(delta) {
--   if (delta < 0.3) return `Small effect (${h.decimals(delta)})`;
--   if (delta < 0.5) return `Medium effect (${h.decimals(delta)})`;
--   if (delta >= 0.5) return `Large effect (${h.decimals(delta)})`;
+-   if (delta < 0.3) return 'Small effect (' + h.decimals(delta) + ')'
+-   if (delta < 0.5) return 'Medium effect (' + h.decimals(delta) + ')'
+-   return 'Large effect (' + h.decimals(delta) + ')'
+- }
+- var isInformational = function(s) {
+-   return s === 'N/A' || s === 'Datasets are identical' || s === 'No variability' || s === 'Datasets have different lengths'
+- }
+- var fmtCount = function(stats) {
+-   if (!stats) return '–'
+-   const count = stats.requests ? stats.requests.median : (stats.median !== undefined ? stats.median : '')
+-   const transfer = stats.transferSize ? h.size.format(stats.transferSize.median) : null
+-   const content = stats.contentSize ? h.size.format(stats.contentSize.median) : null
+-   let extra = ''
+-   if (transfer && content) extra = ' (' + transfer + ' / ' + content + ')'
+-   else if (transfer) extra = ' (' + transfer + ')'
+-   return count + extra
 - }
 
-h1 Compare
+a#compare
+h1.cmp-title Compare
 
-if compare.meta.iterations < 21
-  p.error
-    | Warning: The number of iterations (#{compare.meta.iterations}) is less than the 
-    a(href='https://en.wikipedia.org/wiki/Mann–Whitney_U_test#Calculations') recommended minimum of 21. 
-    | This may impact the reliability of the statistical comparison.
-   
-p 
-  | In this web performance comparison, statistical tests are employed to analyze the significance of performance changes between baseline and current measurements. The Mann-Whitney U test, ideal for comparing independent samples, is used when analyzing different web pages or different conditions (e.g., comparing load times of a page with and without a new optimization). The Wilcoxon signed-rank test is applied to related or paired samples, such as comparing the response times of the same website before and after applying a specific optimization technique.
+if meta.iterations < 21
+  .cmp-alert.cmp-alert--warning
+    | The number of iterations (#{meta.iterations}) is less than the&nbsp;
+    a(href='https://en.wikipedia.org/wiki/Mann–Whitney_U_test#Calculations') recommended minimum of 21
+    | . This may impact the reliability of the statistical comparison.
 
-h2 Settings
-p 
-  | The test conducted in this comparison is the 
-  b #{compare.meta.testOptions.testType} 
-  | test. The alternative hypothesis used for this test is 
-  b "#{compare.meta.testOptions.alternative}"
-  | . 
-  if compare.meta.testOptions.alternative === 'less'
-    | This means that we test if the current test is significant less that the baseline tests. 
-  else if compare.meta.testOptions.alternative === 'greater'
-    | This means that we test if the current test is siginficant higher than the baseline tests. 
-  else if compare.meta.testOptions.alternative === 'two-sided'
-    | This means that we test the baseline vs the current tests both ways, if there are any change in both directions. 
-  if compare.meta.testOptions.testType === 'mannwhitneyu'
-    | For more information on the settings of the Mann-Whitney U test, please refer to the 
-    a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') official documentation. 
-    | The test was configured to use continuity (set to #{compare.meta.testOptions.mannwhitneyu.useContinuity}) and the method chosen was "#{compare.meta.testOptions.mannwhitneyu.method}". 
-  else if compare.meta.testOptions.testType === 'wilcoxon'
-    | For more information on the settings of the Wilcoxon test, please refer to the 
-    a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') official documentation
-    | . For this test, a correction parameter (#{compare.meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'}) was applied to adjust for small sample sizes.
+p.cmp-intro
+  | Statistical tests highlight whether the difference between baseline and current measurements is real or noise.
+  | The Mann-Whitney U test compares independent samples (e.g. two pages or two conditions); the Wilcoxon signed-rank test compares paired samples (e.g. the same page before and after a change).
 
+//- ---------------------------------------------------------------------
+//- Settings — which test was run and how it was parameterised. Keeps the
+//- knobs separate from the data so a reader can quickly answer "what is
+//- this comparison even doing?" before diving into numbers.
+//- ---------------------------------------------------------------------
+//- Cards use <div> rather than <section> because the page-level tab JS
+//- hides every `#tabSections section` and only un-hides the active
+//- panel — nested <section> elements stay display:none.
+.cmp-card
+  .cmp-card-header
+    h2.cmp-card-title Settings
+  dl.cmp-meta
+    dt Test type
+    dd
+      code= meta.testOptions.testType
+    dt Alternative
+    dd
+      code= meta.testOptions.alternative
+    dt Iterations
+    dd #{meta.iterations}
+    if meta.testOptions.testType === 'mannwhitneyu'
+      dt Continuity
+      dd #{meta.testOptions.mannwhitneyu.useContinuity ? 'enabled' : 'disabled'}
+      dt Method
+      dd
+        code= meta.testOptions.mannwhitneyu.method
+    else if meta.testOptions.testType === 'wilcoxon'
+      dt Correction
+      dd #{meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'}
+  p.cmp-card-help
+    if meta.testOptions.alternative === 'less'
+      | We test whether the current run is significantly faster/lower than the baseline.&nbsp;
+    else if meta.testOptions.alternative === 'greater'
+      | We test whether the current run is significantly slower/higher than the baseline.&nbsp;
+    else if meta.testOptions.alternative === 'two-sided'
+      | We test for change in either direction.&nbsp;
+    if meta.testOptions.testType === 'mannwhitneyu'
+      | More on the&nbsp;
+      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') Mann-Whitney U test
+      | .
+    else if meta.testOptions.testType === 'wilcoxon'
+      | More on the&nbsp;
+      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') Wilcoxon test
+      | .
 
-h2 Setup
-table 
-  tr
-    th 
-      b Metric
-    th 
-      b baseline 
-    th 
-      b current
-  tr 
-    td Test
-    td 
-      if compare.meta.baseline.alias
-        a(href=compare.meta.baseline.url) #{compare.meta.baseline.alias}
-      else 
-        a(href=compare.meta.baseline.url) #{compare.meta.baseline.url}
-    td
-      if compare.meta.current.alias
-        a(href=compare.meta.current.url) #{compare.meta.current.alias}
-      else 
-        a(href=compare.meta.current.url) #{compare.meta.current.url}
-  tr
-    td Run time
-    td #{compare.meta.baseline.timestamp} 
-    td #{compare.meta.current.timestamp} 
-  tr 
-    td Total
-    td #{compare.raw.baseline.pagexray.statistics.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentSize.median)})
-    td #{compare.raw.current.pagexray.statistics.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentSize.median)})
-  tr 
-    td HTML 
-    td #{compare.raw.baseline.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.html.contentSize.median)}) 
-    td #{compare.raw.current.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.html.contentSize.median)})
-  tr 
-    td JavaScript 
-    td #{compare.raw.baseline.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.javascript.contentSize.median)}) 
-    td #{compare.raw.current.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.javascript.contentSize.median)})
-  tr 
-    td CSS requests
-    td #{compare.raw.baseline.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.css.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.css.contentSize.median)})
-    td #{compare.raw.current.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.css.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.css.contentSize.median)})
-  tr 
-    td Image requests 
-    td #{compare.raw.baseline.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.image.transferSize.median)})
-    td #{compare.raw.current.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.image.transferSize.median)})
-  tr 
-    td DOM Elements
-    td #{compare.raw.baseline.browsertime.statistics.pageinfo.domElements.median}
-    td #{compare.raw.current.browsertime.statistics.pageinfo.domElements.median}
+//- ---------------------------------------------------------------------
+//- Run setup — baseline and current side by side: alias / URL, when it
+//- ran, and the visual artefacts (screenshot, video, full result link).
+//- ---------------------------------------------------------------------
+.cmp-card
+  .cmp-card-header
+    h2.cmp-card-title Run setup
+  .cmp-runs
+    each run, key in {baseline: {meta: meta.baseline, raw: baselineRaw}, current: {meta: meta.current, raw: currentRaw}}
+      .cmp-run(class='cmp-run--' + key)
+        .cmp-run-head
+          span.cmp-run-tag(class='cmp-run-tag--' + key) #{key === 'baseline' ? 'Baseline' : 'Current'}
+          span.cmp-run-timestamp #{run.meta.timestamp}
+        a.cmp-run-url(href=run.meta.url) #{run.meta.alias || run.meta.url}
+        if run.raw.pagexray.meta.screenshot
+          a.cmp-run-thumb(href=run.raw.pagexray.meta.screenshot, target='_blank', rel='noopener')
+            img(src=run.raw.pagexray.meta.screenshot, alt=key + ' screenshot', loading='lazy')
+        if run.raw.pagexray.meta.video
+          .cmp-run-video
+            video(controls, preload='none')
+              source(src=run.raw.pagexray.meta.video, type='video/mp4')
+        if run.raw.pagexray.meta.result
+          a.cmp-run-result(href=run.raw.pagexray.meta.result, target='_blank', rel='noopener') Open full result
 
-  if compare.raw.current.pagexray.meta.screenshot
-    tr 
-      td Screenshot 
-      td 
-        a(href=compare.raw.baseline.pagexray.meta.screenshot)
-          img.screenshot(src=compare.raw.baseline.pagexray.meta.screenshot , width=200)
-      td 
-        a(href=compare.raw.current.pagexray.meta.screenshot)
-          img.screenshot(src=compare.raw.current.pagexray.meta.screenshot ,  width=200)
-
-  if compare.raw.current.pagexray.meta.video
-    tr 
-      td Video
-      td 
-        .videoWrapper
-          video(controls, preload='none', width=200)
-            source(src=compare.raw.baseline.pagexray.meta.video type='video/mp4')
-      td 
-        .videoWrapper
-          video(controls, preload='none', width=200)
-            source(src=compare.raw.current.pagexray.meta.video type='video/mp4')
-  
-  if compare.raw.baseline.pagexray.meta.result
-    tr 
-      td Result
-      td
-        a(href=compare.raw.baseline.pagexray.meta.result) Result
-      td 
-        a(href=compare.raw.current.pagexray.meta.result) Result
-
-h2 Comparison Data
-
-table
-  thead
-    tr
-      th Metric Name
-      th Score #{compare.meta.testOptions.testType}
-      th Baseline mean
-      th Current mean
-      th Baseline median
-      th Current median
-      th Baseline Std Dev
-      th Current Std Dev
-      th Significant Change?
-
+//- ---------------------------------------------------------------------
+//- Content breakdown — request counts and transfer sizes per resource
+//- type. Pulled out of the old "Setup" table because it answers a very
+//- different question ("did the page get heavier?") from the run
+//- metadata above.
+//- ---------------------------------------------------------------------
+.cmp-card
+  .cmp-card-header
+    h2.cmp-card-title Content breakdown
+  table.cmp-types
+    thead
+      tr
+        th Resource
+        th.cmp-types-num Baseline
+        th.cmp-types-num Current
     tbody
-      each metricGroup, groupName in compare.metrics
-        each values, metricName in metricGroup
-          tr
-            td
-              a(href=createGraphLink(groupName, metricName)) 
-                b #{groupName + '.' + metricName}
-            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" || values.statisticalTestU === "No variability" || values.statisticalTestU === "Datasets have different lengths"
-              td #{values.statisticalTestU}
-            else
-              td #{h.decimals(values.statisticalTestU)}
-            td #{h.decimals(values.baseline.mean)}
-            td #{h.decimals(values.current.mean)}
-            td #{h.decimals(values.baseline.median)}
-            td #{h.decimals(values.current.median)}
-            td #{h.decimals(values.baseline.stdev)}
-            td #{h.decimals(values.current.stdev)}
-            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical"
-              td No Test Conducted
-            else
-              td #{values.statisticalTestU < 0.05 ? 'Yes - ' + cliffDeltaHelper(values.cliffsDelta) : 'No'}
+      tr
+        td Total
+        td.cmp-types-num #{fmtCount(baselineXray)}
+        td.cmp-types-num #{fmtCount(currentXray)}
+      tr
+        td HTML
+        td.cmp-types-num #{fmtCount(baselineXray.contentTypes.html)}
+        td.cmp-types-num #{fmtCount(currentXray.contentTypes.html)}
+      tr
+        td JavaScript
+        td.cmp-types-num #{fmtCount(baselineXray.contentTypes.javascript)}
+        td.cmp-types-num #{fmtCount(currentXray.contentTypes.javascript)}
+      tr
+        td CSS
+        td.cmp-types-num #{fmtCount(baselineXray.contentTypes.css)}
+        td.cmp-types-num #{fmtCount(currentXray.contentTypes.css)}
+      tr
+        td Images
+        td.cmp-types-num #{fmtCount(baselineXray.contentTypes.image)}
+        td.cmp-types-num #{fmtCount(currentXray.contentTypes.image)}
+      tr
+        td DOM elements
+        td.cmp-types-num #{baselineRaw.browsertime.statistics.pageinfo.domElements.median}
+        td.cmp-types-num #{currentRaw.browsertime.statistics.pageinfo.domElements.median}
 
+//- ---------------------------------------------------------------------
+//- Comparison data — the wide stats table. Wrapped so it scrolls
+//- horizontally on narrow screens instead of breaking the layout, with
+//- baseline / current columns paired visually so the eye doesn't have
+//- to count cells.
+//- ---------------------------------------------------------------------
+.cmp-card
+  .cmp-card-header
+    h2.cmp-card-title Comparison data
+  .cmp-data-scroll
+    table.cmp-data
+      thead
+        tr
+          th(rowspan=2) Metric
+          th(rowspan=2) Score #{meta.testOptions.testType}
+          th.cmp-data-pair(colspan=2) Mean
+          th.cmp-data-pair(colspan=2) Median
+          th.cmp-data-pair(colspan=2) Std dev
+          th(rowspan=2) Significant change?
+        tr
+          th.cmp-data-base Baseline
+          th.cmp-data-curr Current
+          th.cmp-data-base Baseline
+          th.cmp-data-curr Current
+          th.cmp-data-base Baseline
+          th.cmp-data-curr Current
+      tbody
+        each metricGroup, groupName in compare.metrics
+          each values, metricName in metricGroup
+            - const score = values.statisticalTestU
+            - const informational = isInformational(score)
+            - const significant = !informational && score !== 'N/A' && score !== 'Datasets are identical' && score < 0.05
+            tr
+              td.cmp-data-metric
+                a(href=createGraphLink(groupName, metricName)) #{groupName}.#{metricName}
+              td.cmp-data-score #{informational ? score : h.decimals(score)}
+              td.cmp-data-base #{h.decimals(values.baseline.mean)}
+              td.cmp-data-curr #{h.decimals(values.current.mean)}
+              td.cmp-data-base #{h.decimals(values.baseline.median)}
+              td.cmp-data-curr #{h.decimals(values.current.median)}
+              td.cmp-data-base #{h.decimals(values.baseline.stdev)}
+              td.cmp-data-curr #{h.decimals(values.current.stdev)}
+              td.cmp-data-sig
+                if score === 'N/A' || score === 'Datasets are identical'
+                  span.cmp-chip.cmp-chip--neutral No test
+                else if significant
+                  span.cmp-chip.cmp-chip--error Yes — #{cliffDeltaHelper(values.cliffsDelta)}
+                else
+                  span.cmp-chip.cmp-chip--ok No
 
-h2 Graphs
+//- ---------------------------------------------------------------------
+//- Graphs — one card per metric, with a scatter plot rendered as
+//- absolutely-positioned dots over a relative wrapper. SVG circles got
+//- distorted into ellipses because the previous chart used a 100×100
+//- viewBox stretched into a wide rectangle with preserveAspectRatio
+//- 'none' — DOM dots stay round at any width.
+//- ---------------------------------------------------------------------
+.cmp-graphs
+  h2.cmp-card-title Graphs
 
-each metricGroup, groupName in compare.metrics
-  each values, metricName in metricGroup
-    - var fullMetricName = groupName + '.' + metricName
-    - var metricId = fullMetricName.replace(/\./g, '_')
-    - var baseline = values.baseline.values
-    - var current = values.current.values
-    - var allValues = baseline.concat(current).filter(v => typeof v === 'number')
-    - var yMin = allValues.length ? Math.min.apply(null, allValues) : 0
-    - var yMax = allValues.length ? Math.max.apply(null, allValues) : 1
-    - var ySpan = yMax - yMin || 1
-    - var xMax = Math.max(baseline.length, current.length, 1)
-    - var sortedBaseline = baseline.slice().sort((a, b) => a - b)
-    - var sortedCurrent = current.slice().sort((a, b) => a - b)
-    - var baseMedian = sortedBaseline.length ? sortedBaseline[Math.floor(sortedBaseline.length / 2)] : null
-    - var currMedian = sortedCurrent.length ? sortedCurrent[Math.floor(sortedCurrent.length / 2)] : null
-    h3 #{fullMetricName} #{values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" ? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
-    .cmp-chart(id=`chart-${metricId}`)
-      svg.cmp-svg(aria-hidden='true')&attributes({viewBox: '0 0 100 100', preserveAspectRatio: 'none'})
-        if baseMedian !== null
-          - var baseMedianY = (100 - (baseMedian - yMin) / ySpan * 100).toFixed(2)
-          line.cmp-median.cmp-baseline(x1='0', x2='100', y1=baseMedianY, y2=baseMedianY)
-        if currMedian !== null
-          - var currMedianY = (100 - (currMedian - yMin) / ySpan * 100).toFixed(2)
-          line.cmp-median.cmp-current(x1='0', x2='100', y1=currMedianY, y2=currMedianY)
-        each v, i in baseline
-          if typeof v === 'number'
-            - var bx = ((i + 0.5) / xMax * 100).toFixed(2)
-            - var by = (100 - (v - yMin) / ySpan * 100).toFixed(2)
-            - var overlap = current[i] === v
-            circle.cmp-point(class=overlap ? 'cmp-overlap' : 'cmp-baseline', cx=bx, cy=by, r='1.6')
-        each v, i in current
-          if typeof v === 'number' && current[i] !== baseline[i]
-            - var cx2 = ((i + 0.5) / xMax * 100).toFixed(2)
-            - var cy2 = (100 - (v - yMin) / ySpan * 100).toFixed(2)
-            circle.cmp-point.cmp-current(cx=cx2, cy=cy2, r='1.6')
-      .cmp-axis
-        span.cmp-axis-y-max #{h.decimals(yMax)}
-        span.cmp-axis-y-min #{h.decimals(yMin)}
-        span.cmp-axis-x #{xMax} run#{xMax === 1 ? '' : 's'}
-      ul.cmp-legend
-        li
-          span.cmp-swatch.cmp-baseline
-          | Baseline: [#{values.baseline.values.join(', ')}]
-        li
-          span.cmp-swatch.cmp-current
-          | Current: [#{values.current.values.join(', ')}]
+  each metricGroup, groupName in compare.metrics
+    each values, metricName in metricGroup
+      - const fullMetricName = groupName + '.' + metricName
+      - const metricId = fullMetricName.replace(/\./g, '_')
+      - const baseline = values.baseline.values
+      - const current = values.current.values
+      - const allValues = baseline.concat(current).filter(v => typeof v === 'number')
+      - const yMin = allValues.length ? Math.min.apply(null, allValues) : 0
+      - const yMax = allValues.length ? Math.max.apply(null, allValues) : 1
+      - const ySpan = yMax - yMin || 1
+      - const xMax = Math.max(baseline.length, current.length, 1)
+      - const sortedBaseline = baseline.slice().sort((a, b) => a - b)
+      - const sortedCurrent = current.slice().sort((a, b) => a - b)
+      - const baseMedian = sortedBaseline.length ? sortedBaseline[Math.floor(sortedBaseline.length / 2)] : null
+      - const currMedian = sortedCurrent.length ? sortedCurrent[Math.floor(sortedCurrent.length / 2)] : null
+      - const score = values.statisticalTestU
+      - const informational = isInformational(score)
+      - const significant = !informational && score !== 'N/A' && score !== 'Datasets are identical' && score < 0.05
+
+      //- Y-axis ticks: 5 evenly-spaced values from yMax down to yMin so
+      //- the reader can read off any dot's value, not just guess between
+      //- the corner badges. Each tick also drops a faint horizontal grid
+      //- line across the plot.
+      - const yTickCount = 5
+      - const yTicks = []
+      - for (let t = 0; t < yTickCount; t++) {
+      -   const value = yMax - (t / (yTickCount - 1)) * ySpan
+      -   yTicks.push({ value: value, top: (t / (yTickCount - 1) * 100).toFixed(2) })
+      - }
+
+      .cmp-chart-card(id='chart-' + metricId)
+        .cmp-chart-header
+          h3.cmp-chart-title #{fullMetricName}
+          if significant
+            span.cmp-chip.cmp-chip--error Significant change
+        .cmp-chart-body
+          .cmp-y-axis
+            each t in yTicks
+              span.cmp-y-tick(style='top: ' + t.top + '%') #{h.decimals(t.value)}
+          .cmp-plot
+            each t in yTicks
+              .cmp-grid(style='top: ' + t.top + '%')
+            if baseMedian !== null
+              - const baseMedianTop = (100 - (baseMedian - yMin) / ySpan * 100).toFixed(2)
+              .cmp-median.cmp-median--baseline(style='top: ' + baseMedianTop + '%', title='Baseline median ' + h.decimals(baseMedian))
+            if currMedian !== null
+              - const currMedianTop = (100 - (currMedian - yMin) / ySpan * 100).toFixed(2)
+              .cmp-median.cmp-median--current(style='top: ' + currMedianTop + '%', title='Current median ' + h.decimals(currMedian))
+            each v, i in baseline
+              if typeof v === 'number'
+                - const overlap = current[i] === v
+                - const left = ((i + 0.5) / xMax * 100).toFixed(2)
+                - const top = (100 - (v - yMin) / ySpan * 100).toFixed(2)
+                .cmp-point(class=overlap ? 'cmp-point--overlap' : 'cmp-point--baseline', style='left: ' + left + '%; top: ' + top + '%', title='Baseline run ' + (i + 1) + ': ' + h.decimals(v))
+            each v, i in current
+              if typeof v === 'number' && current[i] !== baseline[i]
+                - const left = ((i + 0.5) / xMax * 100).toFixed(2)
+                - const top = (100 - (v - yMin) / ySpan * 100).toFixed(2)
+                .cmp-point.cmp-point--current(style='left: ' + left + '%; top: ' + top + '%', title='Current run ' + (i + 1) + ': ' + h.decimals(v))
+            span.cmp-axis-x #{xMax} run#{xMax === 1 ? '' : 's'}
+        ul.cmp-legend
+          li
+            span.cmp-swatch.cmp-swatch--baseline
+            span.cmp-legend-label Baseline
+            span.cmp-legend-value [#{values.baseline.values.join(', ')}]
+          li
+            span.cmp-swatch.cmp-swatch--current
+            span.cmp-legend-label Current
+            span.cmp-legend-value [#{values.current.values.join(', ')}]

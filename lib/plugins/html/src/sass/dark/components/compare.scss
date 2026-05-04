@@ -1,69 +1,414 @@
 //
 // COMPARE — dark
 // ==============
+// See light variant for layout notes; this file mirrors that structure
+// with the dark theme's tokens and brighter series colours that read on
+// a dark surface.
 //
 
-.cmp-chart {
-  margin: 0 0 24px 0;
-  padding: 12px 14px 14px 14px;
+$cmp--baseline: #6cb670;
+$cmp--current: #e0b46a;
+$cmp--overlap: #8ed68a;
+
+.cmp-title {
+  margin: 0 0 12px 0;
+}
+
+.cmp-intro {
+  margin: 0 0 20px 0;
+  color: $color--text-secondary;
+  max-width: 80ch;
+}
+
+.cmp-alert {
+  padding: 10px 14px;
+  border-radius: $radius--sm;
+  margin: 0 0 16px 0;
+  font-size: 0.95rem;
+  border: 1px solid $color--border;
+
+  &--warning {
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+    color: $color--warning;
+  }
+}
+
+.cmp-card {
+  background: $color--surface-card;
   border: 1px solid $color--border;
   border-radius: $radius--md;
-  background: $color--surface-card;
+  padding: 18px 20px;
+  margin: 0 0 18px 0;
+  box-shadow: $shadow--sm;
+}
+
+.cmp-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cmp-card-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: $font--weight--semibold;
+}
+
+.cmp-card-help {
+  margin: 12px 0 0 0;
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  max-width: 80ch;
+}
+
+.cmp-meta {
+  display: grid;
+  grid-template-columns: minmax(160px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  margin: 0;
+  font-size: 0.95rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    word-break: break-word;
+  }
+
+  code {
+    font-size: 0.85em;
+  }
+}
+
+.cmp-runs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cmp-run {
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.cmp-run-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
 }
 
-.cmp-svg {
-  width: 100%;
-  height: 220px;
+.cmp-run-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color--black;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
+
+.cmp-run-timestamp {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cmp-run-url {
+  word-break: break-word;
+  font-weight: $font--weight--medium;
+}
+
+.cmp-run-thumb {
   display: block;
-  background: $color--surface;
+  line-height: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: $radius--sm;
+    border: 1px solid $color--border;
+    background: $color--surface-card;
+  }
+}
+
+.cmp-run-video video {
+  width: 100%;
+  max-width: 280px;
   border-radius: $radius--sm;
   border: 1px solid $color--border;
+  background: #000;
 }
 
-.cmp-point {
-  vector-effect: non-scaling-stroke;
+.cmp-run-result {
+  align-self: flex-start;
+  font-size: 0.9rem;
+  font-weight: $font--weight--medium;
+}
 
-  &.cmp-baseline {
-    fill: #6cb670;
+.cmp-types {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th, td {
+    padding: 8px 12px;
+    border-bottom: 1px solid $color--border;
+    text-align: left;
   }
 
-  &.cmp-current {
-    fill: #e0b46a;
+  thead th {
+    color: $color--text-muted;
+    font-weight: $font--weight--semibold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid $color--border-strong;
   }
 
-  &.cmp-overlap {
-    fill: #8ed68a;
+  tbody tr:last-child td {
+    border-bottom: none;
   }
 }
 
-.cmp-median {
-  stroke-width: 1;
-  stroke-dasharray: 2 2;
-  vector-effect: non-scaling-stroke;
-  opacity: 0.55;
+.cmp-types-num {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 
-  &.cmp-baseline {
-    stroke: #6cb670;
+.cmp-data-scroll {
+  overflow-x: auto;
+  margin: 0 -4px;
+}
+
+.cmp-data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+
+  th, td {
+    padding: 6px 10px;
+    border-bottom: 1px solid $color--border;
+    text-align: left;
+    white-space: nowrap;
   }
 
-  &.cmp-current {
-    stroke: #e0b46a;
+  thead th {
+    color: $color--text-muted;
+    font-weight: $font--weight--semibold;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: $color--surface;
+  }
+
+  thead tr:last-child th {
+    border-bottom: 1px solid $color--border-strong;
+  }
+
+  tbody tr:hover {
+    background: $color--surface;
+  }
+
+  td {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-.cmp-axis {
+.cmp-data-pair {
+  text-align: center !important;
+  border-left: 1px solid $color--border;
+}
+
+.cmp-data-base, .cmp-data-curr {
+  text-align: right !important;
+}
+
+.cmp-data-base {
+  border-left: 1px solid $color--border;
+}
+
+.cmp-data-metric a {
+  font-weight: $font--weight--medium;
+}
+
+.cmp-data-score {
+  text-align: right !important;
+  color: $color--text-secondary;
+}
+
+.cmp-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.78rem;
+  font-weight: $font--weight--semibold;
+  white-space: normal;
+
+  &--ok {
+    color: $color--ok;
+    background: $color--ok-bg;
+    border: 1px solid $color--ok-border;
+  }
+
+  &--error {
+    color: $color--error;
+    background: $color--error-bg;
+    border: 1px solid $color--error-border;
+  }
+
+  &--neutral {
+    color: $color--text-muted;
+    background: $color--surface;
+    border: 1px solid $color--border;
+  }
+}
+
+.cmp-graphs {
+  margin-top: 24px;
+
+  > .cmp-card-title {
+    margin: 0 0 12px 0;
+  }
+}
+
+.cmp-chart-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 14px 16px 16px 16px;
+  margin: 0 0 18px 0;
+  box-shadow: $shadow--sm;
+  scroll-margin-top: 16px;
+}
+
+.cmp-chart-header {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  font-size: 0.75rem;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.cmp-chart-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: $font--weight--semibold;
+  word-break: break-word;
+}
+
+.cmp-chart-body {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 10px;
+}
+
+.cmp-y-axis {
+  position: relative;
+  flex: 0 0 auto;
+  width: 56px;
+  font-size: 0.7rem;
   color: $color--text-muted;
   font-variant-numeric: tabular-nums;
 }
 
+.cmp-y-tick {
+  position: absolute;
+  right: 6px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+
+  &:first-child { transform: translateY(0); }
+  &:last-child { transform: translateY(-100%); }
+}
+
+.cmp-plot {
+  position: relative;
+  flex: 1 1 auto;
+  height: 220px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+}
+
+.cmp-grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px solid $color--border;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cmp-median {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed transparent;
+  opacity: 0.7;
+  pointer-events: none;
+
+  &--baseline { border-top-color: $cmp--baseline; }
+  &--current { border-top-color: $cmp--current; }
+}
+
+.cmp-point {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+  &--overlap {
+    background: $cmp--overlap;
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .cmp-axis-x {
-  margin-left: auto;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-size: 0.7rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 1px 6px;
+  pointer-events: none;
 }
 
 .cmp-legend {
@@ -72,7 +417,7 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 18px;
+  gap: 6px 18px;
   font-size: 0.85rem;
   color: $color--text-secondary;
   word-break: break-word;
@@ -92,11 +437,17 @@
   border-radius: 50%;
   flex: 0 0 auto;
 
-  &.cmp-baseline {
-    background: #6cb670;
-  }
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
 
-  &.cmp-current {
-    background: #e0b46a;
-  }
+.cmp-legend-label {
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+}
+
+.cmp-legend-value {
+  font-family: $font--mono;
+  font-size: 0.8rem;
+  color: $color--text;
 }
