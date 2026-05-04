@@ -1,24 +1,19 @@
-- let videoIndex = medianRun ? medianRun.runIndex : iteration;
+- const isSummary = !!medianRun
+- const runIndex = isSummary ? medianRun.runIndex : iteration
+- const videoIndex = options.browsertime.enableVideoRun ? '1' : runIndex
+- const videoSrc = 'data/video/' + videoIndex + '.mp4'
 - const width = options.mobile || options.android || (options.safari && options.safari.useSimulator) ? '400' : '800'
-- videoIndex = options.browsertime.enableVideoRun ? '1' : videoIndex; 
 
-small
-    || 
-    a(href='#video') Video
-    | &nbsp;|&nbsp;
-    a(href='#download-video') Download
-    | &nbsp;|&nbsp;
-a#video
-h3 Video
-  .videoWrapper
-    video(controls, preload='none', width=width)
-      source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
-
-if options.browsertime.enableVideoRun 
-  p Video from --enableVideoRun
-
-a#download-video
-- let downloadable = iteration ? iteration : medianRun.runIndex;
-- downloadable = options.browsertime.enableVideoRun ? '1' : downloadable;
-- const videoPath = 'data/video/' + downloadable +'.mp4'
-a.button.button-download(href=videoPath, download=downloadName + '-video.mp4') Download video
+.video-card
+  .video-card-header
+    h3.video-card-title Video
+    span.video-card-meta
+      | Run #{runIndex}
+      if isSummary
+        |  · median
+      if options.browsertime.enableVideoRun
+        |  · --enableVideoRun
+  .video-wrap
+    video.video-player(controls, preload='none', width=width)
+      source(src=videoSrc, type='video/mp4')
+  a.button.button-download(href=videoSrc, download=downloadName + '-video.mp4') Download video
