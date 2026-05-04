@@ -4,8 +4,7 @@ if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== un
   - const inpLabel = (() => { if (inpLatency >= 500) return 'error'; if (inpLatency >= 200) return 'warning'; return 'ok'; })()
   a#interactionToNextPaint
   h3 Interaction to Next Paint
-  p Interaction to Next Paint (INP) measures responsiveness — the time from a user interaction to the next painted frame. Read more about
-    |
+  p Interaction to Next Paint (INP) measures responsiveness — the time from a user interaction to the next painted frame. Read more about&nbsp;
     a(href='https://web.dev/inp/') Interaction to Next Paint
     | .
   .inp-card
