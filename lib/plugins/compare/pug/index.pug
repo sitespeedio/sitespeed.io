@@ -166,56 +166,45 @@ each metricGroup, groupName in compare.metrics
   each values, metricName in metricGroup
     - var fullMetricName = groupName + '.' + metricName
     - var metricId = fullMetricName.replace(/\./g, '_')
-    h3 #{fullMetricName} #{values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" ? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
-    .ct-chart(id=`chart-${metricId}`)
-      .ct-legend
-        span.ct-legend-item
-          i(style='background-color: #468847') &nbsp;
+    - var baseline = values.baseline.values
+    - var current = values.current.values
+    - var allValues = baseline.concat(current).filter(v => typeof v === 'number')
+    - var yMin = allValues.length ? Math.min.apply(null, allValues) : 0
+    - var yMax = allValues.length ? Math.max.apply(null, allValues) : 1
+    - var ySpan = yMax - yMin || 1
+    - var xMax = Math.max(baseline.length, current.length, 1)
+    - var sortedBaseline = baseline.slice().sort((a, b) => a - b)
+    - var sortedCurrent = current.slice().sort((a, b) => a - b)
+    - var baseMedian = sortedBaseline.length ? sortedBaseline[Math.floor(sortedBaseline.length / 2)] : null
+    - var currMedian = sortedCurrent.length ? sortedCurrent[Math.floor(sortedCurrent.length / 2)] : null
+    h3 #{fullMetricName} #{values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" ? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
+    .cmp-chart(id=`chart-${metricId}`)
+      svg.cmp-svg(aria-hidden='true')&attributes({viewBox: '0 0 100 100', preserveAspectRatio: 'none'})
+        if baseMedian !== null
+          - var baseMedianY = (100 - (baseMedian - yMin) / ySpan * 100).toFixed(2)
+          line.cmp-median.cmp-baseline(x1='0', x2='100', y1=baseMedianY, y2=baseMedianY)
+        if currMedian !== null
+          - var currMedianY = (100 - (currMedian - yMin) / ySpan * 100).toFixed(2)
+          line.cmp-median.cmp-current(x1='0', x2='100', y1=currMedianY, y2=currMedianY)
+        each v, i in baseline
+          if typeof v === 'number'
+            - var bx = ((i + 0.5) / xMax * 100).toFixed(2)
+            - var by = (100 - (v - yMin) / ySpan * 100).toFixed(2)
+            - var overlap = current[i] === v
+            circle.cmp-point(class=overlap ? 'cmp-overlap' : 'cmp-baseline', cx=bx, cy=by, r='1.6')
+        each v, i in current
+          if typeof v === 'number' && current[i] !== baseline[i]
+            - var cx2 = ((i + 0.5) / xMax * 100).toFixed(2)
+            - var cy2 = (100 - (v - yMin) / ySpan * 100).toFixed(2)
+            circle.cmp-point.cmp-current(cx=cx2, cy=cy2, r='1.6')
+      .cmp-axis
+        span.cmp-axis-y-max #{h.decimals(yMax)}
+        span.cmp-axis-y-min #{h.decimals(yMin)}
+        span.cmp-axis-x #{xMax} run#{xMax === 1 ? '' : 's'}
+      ul.cmp-legend
+        li
+          span.cmp-swatch.cmp-baseline
           | Baseline: [#{values.baseline.values.join(', ')}]
-      .ct-legend
-        span.ct-legend-item
-          i(style='background-color: #c09853;') &nbsp;
+        li
+          span.cmp-swatch.cmp-current
           | Current: [#{values.current.values.join(', ')}]
-    script(type='text/javascript').
-      document.addEventListener("DOMContentLoaded", function() {
-          var baselineData = !{JSON.stringify(values.baseline.values)};
-          var currentData = !{JSON.stringify(values.current.values)};
-          var metricId = '#{metricId}';
-          var overlapSeriesName = 'Overlap';
-
-          var chartData = {
-          series: [
-              {
-              name: 'Baseline',
-              data: baselineData.map((value, index) => ({ x: index + 1, y: value })),
-              className: 'baseline-series'
-              },
-              {
-              name: 'Current',
-              data: currentData.map((value, index) => ({ x: index + 1, y: value })),
-              className: 'current-series'
-              },
-              {
-              name: overlapSeriesName,
-              data: baselineData.map((value, index) => ({ x: index + 1, y: currentData[index] === value ? value : null }))
-            }
-          ]
-          };
-          var chartOptions = {
-          showLine: false,
-          axisX: {
-            
-          },
-          axisY: {
-              
-          }
-          };
-          var chart = new Chartist.Line(`#chart-${metricId}`, chartData, chartOptions);
-
-        // Take care of series that has the same value
-        chart.on('draw', function(data) {
-          if(data.type === 'point' && data.series.name === overlapSeriesName && data.value.y !== null) {
-            data.element._node.setAttribute('style', 'stroke: #59922b; stroke-width: 20px;');
-          }
-        });
-      });

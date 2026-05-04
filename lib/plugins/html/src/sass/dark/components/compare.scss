@@ -1,0 +1,102 @@
+//
+// COMPARE — dark
+// ==============
+//
+
+.cmp-chart {
+  margin: 0 0 24px 0;
+  padding: 12px 14px 14px 14px;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cmp-svg {
+  width: 100%;
+  height: 220px;
+  display: block;
+  background: $color--surface;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+}
+
+.cmp-point {
+  vector-effect: non-scaling-stroke;
+
+  &.cmp-baseline {
+    fill: #6cb670;
+  }
+
+  &.cmp-current {
+    fill: #e0b46a;
+  }
+
+  &.cmp-overlap {
+    fill: #8ed68a;
+  }
+}
+
+.cmp-median {
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.55;
+
+  &.cmp-baseline {
+    stroke: #6cb670;
+  }
+
+  &.cmp-current {
+    stroke: #e0b46a;
+  }
+}
+
+.cmp-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.cmp-axis-x {
+  margin-left: auto;
+}
+
+.cmp-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  word-break: break-word;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+}
+
+.cmp-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+
+  &.cmp-baseline {
+    background: #6cb670;
+  }
+
+  &.cmp-current {
+    background: #e0b46a;
+  }
+}
