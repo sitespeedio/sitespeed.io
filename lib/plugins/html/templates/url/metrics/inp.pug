@@ -15,15 +15,18 @@ if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== un
       dt Event type
       dd
         code= inpInfo.eventType
-      dt Element
-      dd
-        code &lt;#{inpInfo.tagName.toLowerCase()}&gt;
-      if inpInfo.className
+      if inpInfo.tagName
+        dt Element
+        dd
+          code &lt;#{inpInfo.tagName.toLowerCase()}&gt;
+      if inpInfo.className && typeof inpInfo.className === 'string'
         dt Element class name
         dd
           code= inpInfo.className
-      dt Event target
-      dd
-        code= inpInfo.eventTarget
-      dt Page load state when fired
-      dd= inpInfo.loadState
+      if inpInfo.eventTarget
+        dt Event target
+        dd
+          code= inpInfo.eventTarget
+      if inpInfo.loadState
+        dt Page load state when fired
+        dd= inpInfo.loadState
