@@ -8,7 +8,7 @@ if pageInfo.data.coach
     - const tpUnmatched = thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0
 
     small
-        ||
+        | |&nbsp;
         if tpHasCategories
             a(href='#third-party-categories') Categories
             | &nbsp;|&nbsp;
@@ -116,7 +116,7 @@ if pageInfo.data.coach
     //- full-width table.
     if tpUnmatched
         h3 Unmatched third party domains
-        p Domains that didn't match any tool in
+        p Domains that didn't match any tool in&nbsp;
             a(href='https://github.com/patrickhulce/third-party-web') Third party web
             | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using
             code --firstParty

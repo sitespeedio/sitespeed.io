@@ -4,8 +4,7 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
   - const shifts = (browsertime.pageinfo.cumulativeLayoutShiftInfo || []).slice().sort((a, b) => b.score - a.score)
   a#cumulativeLayoutShift
   h3 Cumulative Layout Shift
-  p How much the page's content shifts as it loads, collected via the
-    |
+  p How much the page's content shifts as it loads, collected via the&nbsp;
     a(href='https://web.dev/cls/') Cumulative Layout Shift API
     | .
   .cls-card

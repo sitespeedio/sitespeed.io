@@ -1,6 +1,6 @@
 if pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.screenshots
     small
-        ||
+        | |&nbsp;
         each screenshot in pageInfo.data.browsertime.run.screenshots
             - filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
             a(href='#' + filename) #{filename}
