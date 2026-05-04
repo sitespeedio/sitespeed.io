@@ -372,32 +372,33 @@ if browsertime
 
   if options.browsertime.visualElements
     a#visual-elements
-    h3 Visual Elements
-    .responsive
-      table(data-sortable)
-        thead
-          tr
-            th Name
-            th.number Display Time
-            th.number X
-            th.number Y
-            th.number Width
-            th.number Height
+    details.iter-group(open)
+      summary.iter-group-summary
+        span.iter-group-title Visual Elements
+        if browsertime.pageinfo && browsertime.pageinfo.visualElements && browsertime.pageinfo.visualElements.heroes
+          span.iter-group-count #{browsertime.pageinfo.visualElements.heroes.length}
+      .ve-list
         each element in browsertime.pageinfo.visualElements.heroes
-          tr
-            td
-              | #{element.name}
-              if (element.filename)
-                | (#{element.filename})
-            if element && visualMetrics && visualMetrics[element.name]
-              td.number #{visualMetrics[element.name] ? h.time.ms(visualMetrics[element.name].toFixed(0)): ''}
-            else
-              td
-            td.number #{element.x}
-            td.number #{element.y}
-            td.number #{element.width}
-            td.number #{element.height}
-          tr
-            td.url.pagesurl(colspan=6) #{element.html}
+          .ve-card
+            .ve-header
+              span.ve-name #{element.name}
+              if element.filename
+                span.ve-filename #{element.filename}
+            .metric-tiles
+              if visualMetrics && visualMetrics[element.name]
+                .metric-tile
+                  span.metric-tile-label Display time
+                  span.metric-tile-value #{h.time.ms(visualMetrics[element.name].toFixed(0))}
+              .metric-tile
+                span.metric-tile-label Position (x, y)
+                span.metric-tile-value #{element.x}, #{element.y}
+              .metric-tile
+                span.metric-tile-label Size (w × h)
+                span.metric-tile-value #{element.width} × #{element.height}
+            if element.html
+              details.ve-html
+                summary HTML snippet
+                pre.ve-html-pre
+                  code= element.html
 else
   p Missing data from Browsertime.
