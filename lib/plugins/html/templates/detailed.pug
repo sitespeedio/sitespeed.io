@@ -14,13 +14,15 @@ block content
   - const fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
   - const clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
   - const inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const perfClass = (v) => v == null ? '' : (typeof h.scoreLabel === 'function' ? h.scoreLabel(v) : 'info')
   - const findMetric = (name) => metrics.find(m => m.name === name)
   - const lcpMetric = findMetric('Largest Contentful Paint')
   - const fcpMetric = findMetric('First Contentful Paint')
   - const clsMetric = findMetric('Cumulative Layout Shift')
   - const inpMetric = findMetric('Interaction to Next Paint')
+  - const coachMetric = findMetric('Coach performance score')
 
-  if (lcpMetric && lcpMetric.node) || (fcpMetric && fcpMetric.node) || (clsMetric && clsMetric.node) || (inpMetric && inpMetric.node)
+  if (lcpMetric && lcpMetric.node) || (fcpMetric && fcpMetric.node) || (clsMetric && clsMetric.node) || (inpMetric && inpMetric.node) || (coachMetric && coachMetric.node)
     .detailed-kpis
       if fcpMetric && fcpMetric.node
         .detailed-kpi(class=fcpClass(fcpMetric.node.median))
@@ -37,6 +39,11 @@ block content
           span.detailed-kpi-label CLS
           span.detailed-kpi-value #{clsMetric.h(clsMetric.node.median)}
           span.detailed-kpi-sub p90 #{clsMetric.h(clsMetric.node.p90)}
+      if coachMetric && coachMetric.node
+        .detailed-kpi(class=perfClass(coachMetric.node.median))
+          span.detailed-kpi-label Coach
+          span.detailed-kpi-value #{coachMetric.h(coachMetric.node.median)}
+          span.detailed-kpi-sub p90 #{coachMetric.h(coachMetric.node.p90)}
       if inpMetric && inpMetric.node
         .detailed-kpi(class=inpClass(inpMetric.node.median))
           span.detailed-kpi-label INP
