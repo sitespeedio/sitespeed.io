@@ -11,10 +11,19 @@ mixin row(errors)
         ul
           each pageerrors, tool in error
             each myerror in pageerrors
-              li #{myerror} 
-                b (#{tool})
+              li #{myerror}
+                b  (#{tool})
+
 block content
-    h2 Errors
-    table
+  //- One framed card around the errors table so the page matches the
+  //- rest of the modernised report. The count chip surfaces how many
+  //- URLs reported errors at a glance.
+  - const errorUrlCount = Object.keys(errors).length
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Errors
+      span.listing-card-meta #{errorUrlCount} #{errorUrlCount === 1 ? 'URL' : 'URLs'}
+    .responsive
+      table(data-sortable, id='errors')
         +rowHeading(['url', 'errors'])
         +row(errors)
