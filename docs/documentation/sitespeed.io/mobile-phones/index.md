@@ -237,49 +237,59 @@ adb logcat | grep chromium
 
 ## Test on iOS
 
-You can run your tests on Safari on iOS.
+You can run your tests on Safari on iOS over USB. As of sitespeed.io 40 (Browsertime 27) this gets you HAR, video and visual metrics — the previous limitations are gone.
 
 ### Prerequisites
 
-To be able to test you need latest OS X on your Mac computer and iOS on your phone (or iPad).
+To be able to test you need latest macOS on your Mac computer and a recent iOS on your phone (or iPad).
 
 #### Desktop
 
 Run your test using npm (instead of Docker).
 
-*SafariDriver* the driver that drives Safari is bundled in OS X. But to be able to use it you need to enable it with:
+*SafariDriver* — the driver that drives Safari — is bundled in macOS. But to be able to use it you need to enable it with:
 
 ```bash
 safaridriver --enable
 ```
 
+For HAR capture, install `ios_webkit_debug_proxy`:
+
+```bash
+brew install ios-webkit-debug-proxy
+```
+
+Browsertime starts and stops `iwdp` automatically once it's installed and exits with a clear error if it isn't.
+
+For video + visual metrics, install `ffmpeg` (`brew install ffmpeg`). The CoreMediaIO screen-capture helper that pipes frames to ffmpeg is bundled with Browsertime — the device is woken into screen-capture mode automatically, no manual QuickTime step required.
+
 #### On your phone
 
 On Safari you need to enable **Remote Automation** to be able to drive it with WebDriver. To do this, toggle the setting in *Settings → Safari → Advanced → Remote Automation*.
 
-Plug in the phone into your machine and *trust the host* and make sure that your phone is unlocked when you run your tests.
+Plug the phone into your Mac, *trust the host*, and make sure that your phone is unlocked when you run your tests.
 
-Your phone needs to be unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you save energy.
+Your phone needs to stay unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you save energy.
 
 If you have any problems, make sure to read the [WebKit blog post about setting up your phone for Selenium](https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/).
 
 ### Run
 
-You are now ready to test using your phone (you need to remove the Coach, Safari on iOS has some kind of issue with running large JavaScript blobs, see [#1275](https://github.com/sitespeedio/browsertime/issues/1275)):
+You are now ready to test using your phone:
 
 ```bash
-sitespeed.io -b safari --safari.ios --plugins.remove coach https://www.sitespeed.io 
+sitespeed.io -b safari --safari.ios https://www.sitespeed.io
 ```
 
+Add `--safari.includeResponseBodies` if you want response bodies in the HAR. Add `--video --visualMetrics` to record video and compute visual metrics (these are on by default in sitespeed.io's Docker image; on a plain npm install make sure ffmpeg is on your PATH).
+
 ### Limitations
-At the moment there are a couple of limitations running Safari:
+At the moment there are a couple of remaining limitations running Safari on iOS:
 
-* No HAR file
-* No videos (see the work in [#1598](https://github.com/sitespeedio/browsertime/issues/1598)).
-* No way to set request headers
-* No built in setting connectivity
+* No way to set request headers.
+* No built-in connectivity throttling — use [Humble](/documentation/humble/) or an external network shaper.
 
-You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
+macOS Safari (not iOS) still has the older Limitations: no HAR, no cookie/request-header support — see the [Safari section in browsers]({{site.baseurl}}/documentation/sitespeed.io/browsers/#safari).
 
 ## Test on iOS simulator
 You can use the iOS simulator to test run tests on different iOS devices. This works good if you use one of the new M1 Macs since it will then have the same CPU as an iPhone.

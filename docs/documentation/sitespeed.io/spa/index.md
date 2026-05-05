@@ -16,6 +16,13 @@ twitterdescription: Test a single page application - SPA
 * Lets place the TOC here
 {:toc}
 
+# Chrome soft navigations
+{:.no_toc}
+
+Sitespeed.io 40 (via Browsertime 27) supports **Chrome soft-navigation entries** out of the box. When Chrome's PerformanceObserver detects a soft navigation — a user interaction + URL change + visible paint inside a short window — the route change automatically gets its own HAR page and the standard FCP / LCP / CLS / INP metrics, without any scripting on your side. Most React / Next.js / Vue / Turbo apps will Just Work.
+
+You still need scripting if you want to drive a specific user flow (log in, click through a checkout, etc.) — that's what the rest of this page is about. But for "measure the route change after the user clicks", the browser-native path is now the simplest option.
+
 # Test by scripting
 To test a single page application you probably want to measure more than just the first page (that loads the framework). You do that by using the Browsertime [command/scripting](/documentation/sitespeed.io/scripting/). You can use either our commands or Selenium scripts.
 
