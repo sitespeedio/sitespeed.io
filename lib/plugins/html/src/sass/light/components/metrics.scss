@@ -88,6 +88,19 @@
   word-break: break-word;
 }
 
+// Larger variant for cards where the milestone numbers are the point of
+// the section (currently the Visual Milestones list next to the
+// visual-progress chart). The label gets a small bump too so the pair
+// reads as a single set, not a giant value over a tiny caption.
+.metric-tiles--lg {
+  .metric-tile-label {
+    font-size: 0.78rem;
+  }
+  .metric-tile-value {
+    font-size: 1.25rem;
+  }
+}
+
 .metric-tile-sub {
   font-size: 0.78rem;
   color: $color--text-muted;
@@ -219,6 +232,48 @@
   position: absolute;
   top: 0;
   transform: translateX(-50%);
+}
+
+//
+// Long-task lane — sits directly below the visual-progress curve and
+// shares its X-axis. Each task is an absolutely-positioned bar at its
+// startTime, width = duration. Severity tint by duration so the worst
+// offenders pop visually:
+//   minor   < 100 ms   amber-300
+//   major   100-249ms  amber-600
+//   severe  ≥ 250 ms   red-700
+//
+.vp-longtask-lane {
+  position: relative;
+  height: 16px;
+  margin: 22px 24px 0 24px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+}
+
+.vp-longtask-lane-label {
+  position: absolute;
+  left: 0;
+  top: -16px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+}
+
+.vp-longtask {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  border-radius: 1px;
+  pointer-events: auto;
+  cursor: help;
+
+  &.vp-longtask--minor  { background: #fcd34d; }
+  &.vp-longtask--major  { background: #d97706; }
+  &.vp-longtask--severe { background: $color--error; }
 }
 
 //

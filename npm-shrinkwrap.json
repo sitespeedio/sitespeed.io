@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "40.0.0-beta.1",
+  "version": "40.0.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "40.0.0-beta.1",
+      "version": "40.0.0",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -17,8 +17,8 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.4",
-        "browsertime": "27.0.3",
-        "coach-core": "9.0.0-beta.1",
+        "browsertime": "27.0.4",
+        "coach-core": "9.0.0",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.7",
@@ -5132,9 +5132,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "27.0.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-27.0.3.tgz",
-      "integrity": "sha512-saZv4DjgxDdSIvz17cgRme+pSDTXZLaQEQpxBdHmMx5uuI+skCgnBMHfuIHyGVLOXM4ECSSlpTCvVtSY8pytLA==",
+      "version": "27.0.4",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-27.0.4.tgz",
+      "integrity": "sha512-Be5bx6/FlemvjwP0rpQCVyHCfwuZbyWWcZlTeU0q//iq+atKDAmrX2GvvLr9KSBIqnGbJ/9G4pcWkk2n30zzUQ==",
       "license": "MIT",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
@@ -5586,9 +5586,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "9.0.0-beta.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.0-beta.1.tgz",
-      "integrity": "sha512-nRGw+eUmjqVJxyFAA13TfUUl8UzFC8nh3uCNIr3blH7LwtFGGD9ROl09bDn4+xSJPVuBBejc6RpiiUr45Zf18w==",
+      "version": "9.0.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.0.tgz",
+      "integrity": "sha512-Ow0K1obOqA7uQaSiQNodD8/xf/pU9GP2co9pRjm2T2ZfQ3YVUbT2/agIBieuIvkWLZM6X1JHxGb7ZST3O0wUKg==",
       "license": "MIT",
       "dependencies": {
         "filter-files": "0.4.0",

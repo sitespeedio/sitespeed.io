@@ -374,6 +374,8 @@ $lcp--render-delay: #a78bfa;
 
 .lcp-screenshot {
   max-width: 100%;
+  max-height: 480px;
+  width: auto;
   height: auto;
   border-radius: $radius--sm;
   border: 1px solid $color--border;
@@ -542,8 +544,202 @@ $lcp--render-delay: #a78bfa;
 
 .cls-screenshot {
   max-width: 100%;
+  max-height: 480px;
+  width: auto;
   height: auto;
   border-radius: $radius--sm;
   border: 1px solid $color--border;
   margin-bottom: 8px;
+}
+
+//
+// Render-phase gap bar — dark mirror of the light theme. Same layout,
+// dark surface/text colour tokens and a slightly stronger separator
+// between segments since the dark border alone reads as no-separator.
+//
+.render-phase {
+  margin-bottom: 18px;
+}
+
+.render-phase-body {
+  padding: 12px 14px 14px 14px;
+}
+
+.render-phase-bar {
+  display: flex;
+  height: 32px;
+  width: 100%;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  border: 1px solid $color--border;
+  background: $color--surface;
+}
+
+.render-phase-segment {
+  background: var(--rp-color, $color--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 8px;
+  min-width: 0;
+  cursor: help;
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+  }
+}
+
+.render-phase-segment-label {
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.render-phase-legend {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 16px;
+
+  li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  strong {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+  }
+}
+
+// See light theme for alignment notes.
+.render-phase-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-top: -2px;
+}
+
+.render-phase-legend-meta {
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+}
+
+//
+// Web Vitals hero — dark mirror of the light theme. Same layout, just
+// using the dark surface/text/state colour tokens.
+//
+.web-vitals-hero {
+  margin-bottom: 18px;
+}
+
+.web-vitals-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 14px;
+}
+
+.web-vital {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px 12px 14px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+
+  &.web-vital--ok {
+    background: $color--ok-bg;
+    border-color: $color--ok-border;
+  }
+  &.web-vital--warning {
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+  }
+  &.web-vital--error {
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+}
+
+.web-vital-dot {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $color--text-muted;
+
+  .web-vital--ok & { background: $color--ok; }
+  .web-vital--warning & { background: #facc15; }
+  .web-vital--error & { background: $color--error; }
+}
+
+.web-vital-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.web-vital-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.web-vital-value {
+  font-size: 1.6rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: $color--text;
+}
+
+.web-vital-short {
+  font-family: $font--mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  text-transform: uppercase;
+}
+
+.web-vital-name {
+  font-size: 0.9rem;
+  color: $color--text-secondary;
+  word-break: break-word;
+
+  a {
+    color: inherit;
+    border-bottom: 1px dotted $color--border;
+    text-decoration: none;
+  }
+  a:hover {
+    border-bottom-color: $color--text-muted;
+  }
+}
+
+.web-vital-status {
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+
+  .web-vital--ok & { color: $color--ok; }
+  .web-vital--warning & { color: #facc15; }
+  .web-vital--error & { color: $color--error; }
 }
