@@ -298,6 +298,14 @@
   gap: 10px;
 }
 
+// When nested inside a .listing-card, the card header already supplies
+// the divider; drop the list's own border-top and side padding so the
+// grid sits flush with the card content area instead of double-bordered.
+.listing-card > .tech-list {
+  border-top: 0;
+  padding: 0;
+}
+
 .tech-card {
   display: flex;
   flex-direction: column;
@@ -419,6 +427,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.listing-card > .hints-list {
+  border-top: 0;
+  padding: 0;
 }
 
 .hints-group-name {

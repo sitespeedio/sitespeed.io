@@ -13,6 +13,11 @@
   row-gap: 10px;
 }
 
+.listing-card > .metric-tiles {
+  border-top: 0;
+  padding: 0;
+}
+
 .metric-tile {
   display: flex;
   flex-direction: column;
