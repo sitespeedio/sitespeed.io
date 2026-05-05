@@ -32,8 +32,7 @@ if cpu && cpu.events && !options.browsertime.enableProfileRun
     a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download trace log
 
 if options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox' && !options.browsertime.enableProfileRun
-  p Download the Firefox Gecko profile and drop it into
-    |
+  p Download the Firefox Gecko profile and drop it into&nbsp;
     a(href='https://profiler.firefox.com') profiler.firefox.com
     | .
   .downloads
@@ -42,8 +41,7 @@ if options.browsertime && options.browsertime.firefox && options.browsertime.fir
 
 if options.browsertime && options.browsertime.enableProfileRun
   if options.browser === 'firefox'
-    p Download the extra-run Firefox profile and drop it into
-      |
+    p Download the extra-run Firefox profile and drop it into&nbsp;
       a(href='https://profiler.firefox.com') profiler.firefox.com
       | .
     .downloads
