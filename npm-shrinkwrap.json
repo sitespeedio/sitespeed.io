@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.4",
-        "browsertime": "27.0.3",
+        "browsertime": "27.0.4",
         "coach-core": "9.0.0",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
@@ -5132,9 +5132,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "27.0.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-27.0.3.tgz",
-      "integrity": "sha512-saZv4DjgxDdSIvz17cgRme+pSDTXZLaQEQpxBdHmMx5uuI+skCgnBMHfuIHyGVLOXM4ECSSlpTCvVtSY8pytLA==",
+      "version": "27.0.4",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-27.0.4.tgz",
+      "integrity": "sha512-Be5bx6/FlemvjwP0rpQCVyHCfwuZbyWWcZlTeU0q//iq+atKDAmrX2GvvLr9KSBIqnGbJ/9G4pcWkk2n30zzUQ==",
       "license": "MIT",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
