@@ -80,31 +80,6 @@ layout: compress
 		</div>
 		<div class="white">
 			<div class="grid">
-				<div class="col-1-1">
-					<section>
-						{% capture install %}{% include index/install.md %}{% endcapture %}
-						{{ install | markdownify }}
-					</section>
-				</div>
-			</div>
-		</div>
-
-		<div class="white">
-			<div class="grid">
-				<div class="col-1-2">
-					<section>
-						{% capture box1 %}{% include index/box1.md %}{% endcapture %}
-						{{ box1 | markdownify }}
-					</section>
-				</div>
-				<div class="col-1-2">
-					<section>
-						{% capture box2 %}{% include index/box2.md %}{% endcapture %}
-						{{ box2 | markdownify }}
-					</section>
-				</div>
-			</div>
-			<div class="grid">
 				<div class="col-1-2">
 					<section>
 						{% capture box3 %}{% include index/box3.md %}{% endcapture %}
@@ -113,13 +88,27 @@ layout: compress
 				</div>
 				<div class="col-1-2">
 					<section>
-						{% capture box4 %}{% include index/box4.md %}{% endcapture %}
-						{{ box4 | markdownify }}
+						{% capture box1 %}{% include index/box1.md %}{% endcapture %}
+						{{ box1 | markdownify }}
 					</section>
 				</div>
 			</div>
 			<div class="grid">
 				<div class="col-1-1">
+					<section>
+						{% capture install %}{% include index/install.md %}{% endcapture %}
+						{{ install | markdownify }}
+					</section>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-1-2">
+					<section>
+						{% capture box4 %}{% include index/box4.md %}{% endcapture %}
+						{{ box4 | markdownify }}
+					</section>
+				</div>
+				<div class="col-1-2">
 					<section>
 						{% capture dashboard %}{% include index/dashboard.md %}{% endcapture %}
 						{{ dashboard | markdownify }}
@@ -129,14 +118,22 @@ layout: compress
 			<div class="grid">
 				<div class="col-1-2">
 					<section>
-						{% capture box5 %}{% include index/box5.md %}{% endcapture %}
-						{{ box5 | markdownify }}
+						{% capture box6 %}{% include index/box6.md %}{% endcapture %}
+						{{ box6 | markdownify }}
 					</section>
 				</div>
 				<div class="col-1-2">
 					<section>
-						{% capture box6 %}{% include index/box6.md %}{% endcapture %}
-						{{ box6 | markdownify }}
+						{% capture box5 %}{% include index/box5.md %}{% endcapture %}
+						{{ box5 | markdownify }}
+					</section>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-1-1">
+					<section>
+						{% capture box2 %}{% include index/box2.md %}{% endcapture %}
+						{{ box2 | markdownify }}
 					</section>
 				</div>
 			</div>
