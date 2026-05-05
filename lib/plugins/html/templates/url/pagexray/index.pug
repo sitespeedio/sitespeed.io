@@ -2,29 +2,27 @@ include ../../_tableMixins
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 
-//- Quicklinks to the named sections in this tab — chip-style list
-//- replaces the old `| A | B |` separator strip so the entry point
-//- matches the rest of the modernised report.
-ul.listing-quicklinks
-  li
-    a(href='#pagexray-summary') Summary
-  li
-    a(href='#largest-assets') Largest responses
-  li
-    a(href='#requests-and-sizes-per-content-type') Per content type
-  li
-    a(href='#data-per-domain') Per domain
-  li
-    a(href='#expires-and-last-modified-stats') Expires & last-modified
+small
+  | |&nbsp;
+  a(href='#pagexray-summary') Summary
+  | &nbsp;|&nbsp;
+  a(href='#largest-assets') Largest responses
+  | &nbsp;|&nbsp;
+  a(href='#requests-and-sizes-per-content-type') Per content type
+  | &nbsp;|&nbsp;
+  a(href='#data-per-domain') Per domain
+  | &nbsp;|&nbsp;
+  a(href='#expires-and-last-modified-stats') Expires & last-modified
+  | &nbsp;|&nbsp;
   if pageInfo.data.browsertime && pageInfo.data.browsertime.console
-    li
-      a(href='#console-log') Console
+    a(href='#console-log') Console
+    | &nbsp;|&nbsp;
   if pagexray.afterOnLoad.requests > 0
-    li
-      a(href='#requests-after-onload') After onLoad
+    a(href='#requests-after-onload') After onLoad
+    | &nbsp;|&nbsp;
   if pagexray.renderBlocking
-    li
-      a(href='#requests-render-blocking') Render-blocking
+    a(href='#requests-render-blocking') Render-blocking
+    | &nbsp;|&nbsp;
 
 a
 h2 PageXray
