@@ -1,7 +1,7 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 40.0.0 - UNRELEASED
+## 40.0.0 - 2026-05-05
 
 ### Highlights
 
