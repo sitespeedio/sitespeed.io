@@ -17,6 +17,14 @@
   row-gap: 10px;
 }
 
+// Tile grid nested in a .listing-card: drop the iter-group-era
+// border-top and padding so the card header isn't visually doubled by
+// a second divider underneath.
+.listing-card > .metric-tiles {
+  border-top: 0;
+  padding: 0;
+}
+
 .metric-tile {
   display: flex;
   flex-direction: column;
