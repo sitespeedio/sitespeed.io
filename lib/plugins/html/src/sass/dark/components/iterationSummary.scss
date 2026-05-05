@@ -121,5 +121,7 @@
   border-radius: $radius--md;
   border: 1px solid $color--border;
   max-width: 100%;
+  max-height: 480px;
+  width: auto;
   height: auto;
 }
