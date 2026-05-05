@@ -8,7 +8,7 @@ rm -fR sitespeed-result
 # Lets use it it for now and make it better over time :)
 # You need np for this to work
 # npm install --global np
-np $* --no-yarn --branch main
+np $* --branch main
 
 # Update to latest version in the docs
 bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
