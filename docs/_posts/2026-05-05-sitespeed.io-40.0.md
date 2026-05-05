@@ -19,11 +19,17 @@ There are five big things in this release: a new look for the HTML report, a bra
 
 The HTML report has been refreshed across every tab and every top-level result page. It's the first big visual update in years — cleaner, more consistent, and easier to scan at a glance.
 
+<picture><source type="image/webp" srcset="{{site.baseurl}}/img/report-summary.webp"><img src="{{site.baseurl}}/img/report-summary.png" alt="The redesigned summary tab — Where the time went card, hero KPIs, tab navigation" width="1400" height="746" loading="lazy" decoding="async"></picture>
+{: .img-thumbnail-center}
+
 A few things that are visibly new:
 
 * The **Compare plugin** has been rewritten. Per-metric scatter plots, a paired baseline/current stats table, and a significance chip on each row.
 * The **visual-progress card** on the metrics tab now shows filmstrip thumbnails along the timeline at their real capture times, with FCP / LCP / VC85 markers drawn over the curve.
 * **Visual Elements** now render the actual matched image when the hero is an image — useful when "LargestImage" turns out to be a tiny copyright wordmark and not your hero photo.
+
+<picture><source type="image/webp" srcset="{{site.baseurl}}/img/report-metrics.webp"><img src="{{site.baseurl}}/img/report-metrics.png" alt="The redesigned metrics tab — Visual milestones, Visual progress with long-task lane, Web Vitals hero" width="1400" height="802" loading="lazy" decoding="async"></picture>
+{: .img-thumbnail-center}
 
 Just upgrade and you have the new look. No flag, no migration.
 

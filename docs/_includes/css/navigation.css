@@ -1,146 +1,235 @@
+/*
+ * Top navigation — brand-blue header bar, dropdown for the
+ * Documentation submenu on desktop, hamburger reveal on phones.
+ * Mobile menu uses a hidden checkbox + sibling selector so it works
+ * without any JavaScript.
+ */
+
 body {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  font-family: Tahoma, Verdana,sans-serif;
-  font-size: 19px;
-  line-height: 1.618em;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-surface);
   word-wrap: break-word;
-  background-color: #e1f6fd;
+  -webkit-text-size-adjust: 100%;
 }
 
+/*
+ * Top nav as a "card top" — same treatment the result pages use.
+ * Sits inside a max-width container with rounded top corners and a
+ * small gap to the body background so the page reads as a panel.
+ */
 .nav {
-  background: #0095d2;
+  max-width: var(--container-max);
+  margin: 16px auto 0 auto;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--color-brand);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
-.nav ul {
-  list-style: none;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  background-color: #0095d2;
-}
-.nav li {
-  font-size: 1em;
-  line-height: 40px;
-  height: 40px;
-  border-bottom: 1px solid #0073b0;
-}
-
-.nav a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
-}
-
-.nav a:hover {
-  background-color: #0073b0;
-}
-
-.nav a.active {
-  background-color: #0073b0;
-  color: #fff;
-  cursor: default;
+.nav .grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
 }
 
 .logo {
-  text-align: center;
-  background-color: #0095d2;
+  display: flex;
+  align-items: center;
+  padding: 6px 4px 6px 0;
+  flex: 0 0 auto;
+}
+
+.logo a {
+  display: inline-flex;
+  align-items: center;
 }
 
 .navbar-brand {
-padding: 0px 0px;
-font-size: 18px;
-max-width: 250px;
+  height: 52px;
+  width: auto;
+  max-width: 240px;
 }
 
+/* hamburger — hidden on desktop, revealed below 768px */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  margin-left: auto;
+  padding: 14px 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  position: relative;
+  transition: transform 0.18s ease;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-label span::before { top: -7px; }
+.nav-toggle-label span::after  { top:  7px; }
+
+/* primary nav list — stretch every item to the full nav height so the
+ * hover/active background fills top-to-bottom (no white gap above or
+ * below). Rounded TOP corners on the highlight match the result-page
+ * "tab" pattern. */
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.nav li {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background-color 0.12s ease;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.nav a:hover,
+.nav a:focus-visible,
+.nav li:hover > a,
+.nav li:focus-within > a {
+  background-color: var(--color-brand-deep);
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+.nav a.active {
+  background-color: var(--color-brand-deep);
+  color: #fff;
+}
+
+/* submenu — appears under Documentation on hover/focus. Width sized
+ * to its content so it never extends past the parent link's right
+ * edge (the parent text is currently the widest item). */
 .nav li ul {
   position: absolute;
+  top: 100%;
+  left: 0;
+  width: max-content;
+  min-width: 100%;
   display: none;
-  width: inherit;
+  flex-direction: column;
+  background: var(--color-brand-deep);
+  box-shadow: var(--shadow-md);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  padding: 4px 0;
+  z-index: 60;
 }
 
-@media screen and (min-width: 820px) {
+.nav li:hover > ul,
+.nav li:focus-within > ul {
+  display: flex;
+}
 
-  body
-  { padding-top: 50px; }
+.nav li ul li {
+  width: 100%;
+}
 
-  .nav {
-    height: 50px;
-    width: 100%;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
+.nav li ul a {
+  padding: 12px 18px;
+  font-size: 1.1rem;
+  border-radius: 0;
+}
+
+.nav li ul a:hover,
+.nav li ul a:focus-visible {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+/*
+ * Mobile — hamburger + stacked menu. The hidden checkbox sibling-
+ * selector pattern lets the toggle work without JS.
+ */
+@media (max-width: 767px) {
+  .nav .grid {
+    padding: 0 16px;
   }
 
-  .navbar-brand {
-  padding: 0px 0px;
-  font-size: 18px;
-  float: left;
-  max-width: 250px;
-  }
-
-  .nav a {
-    padding-left: 20px;
-    padding-right: 20px;
-
-  }
-
-  .nav {
-    top: 0;
-    background-color: #0095d2;
-  }
-
-  .nav li {
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1em;
-    float: left;
-    display: inline-block;
-    margin-right: 0px;
-  }
-
-  .nav a {
-    text-decoration: none;
-    color: #fff;
+  .nav-toggle-label {
     display: block;
   }
 
-  .nav a:hover {
-    text-decoration: none;
-  }
-
   .nav ul {
-    list-style: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    background-color: #0095d2;
+    flex: 1 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+    background: var(--color-brand);
   }
 
-  /* Sub Menus */
-    .nav li ul {
-      position: absolute;
-      display: none;
-      width: inherit;
-    }
+  .nav-toggle:checked ~ ul {
+    max-height: 800px;
+  }
 
-    .nav li:hover ul {
-      display: block;
-    }
+  .nav li {
+    display: block;
+  }
 
-    .nav li ul li {
-      display: block;
-      float: none;
-    }
+  .nav a {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+  }
 
-    /* Fix for fixed navigation and links */
-    :target:before {
-      content:"";
-      display:block;
-      height:50px; /* fixed header height*/
-      margin:-50px 0 0; /* negative fixed header height */
-    }
+  .nav li ul {
+    position: static;
+    display: flex;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.18);
+  }
 
+  .nav li ul a {
+    padding-left: 32px;
+  }
+}
+
+/* Anchor offset so #foo links don't disappear under the sticky nav */
+:target {
+  scroll-margin-top: 70px;
 }

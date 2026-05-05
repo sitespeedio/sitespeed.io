@@ -39,7 +39,7 @@
 
 # What is sitespeed.io?
 
-sitespeed.io is an Open Source web performance tool. Run it once to debug a slow page and you get an HTML report with Core Web Vitals, a video of the page loading, the HAR waterfall and the Coach's advice on how to fix what's slow. Run it every 10 minutes against your site, ship the metrics to Graphite or InfluxDB, and you have a Grafana dashboard tracking your site's performance over time.
+sitespeed.io is an Open Source web performance tool. Run it once to debug a slow page and you get an HTML report with Core Web Vitals, a video of the page loading, the HAR waterfall and the Coach's advice on how to fix what's slow. Run it every hour against your site, ship the metrics to Graphite or InfluxDB, and you have a Grafana dashboard tracking your site's performance over time.
 
 It's been around since 2014, it's free, you own all your data, and there's nothing to sign up for.
 
@@ -133,11 +133,17 @@ Setup guides: [Android](https://www.sitespeed.io/documentation/sitespeed.io/mobi
 
 ### Summary report
 
-![Summary Report](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-readme.jpg)
+<picture>
+  <source type="image/webp" srcset="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-summary.webp">
+  <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-summary.png" alt="The redesigned summary tab" width="1400" height="746">
+</picture>
 
 ### Per-URL report
 
-![Individual Page Report](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-url-readme.jpg)
+<picture>
+  <source type="image/webp" srcset="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-metrics.webp">
+  <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-metrics.png" alt="The redesigned metrics tab" width="1400" height="802">
+</picture>
 
 ### Continuous monitoring in Grafana
 
