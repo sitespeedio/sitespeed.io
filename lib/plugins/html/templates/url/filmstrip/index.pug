@@ -1,44 +1,47 @@
 mixin frame(filmstrip, iteration)
-    - const frameClass =  filmstrip[iteration].timings.length > 0 ? 'videoframe blue' : 'videoframe'
-    a(href=path + filmstrip[iteration].file)
-        img(src=path + filmstrip[iteration].file, alt='', class=frameClass)
-    span.videoframetime #{filmstrip[iteration].time} s
-    each timing in filmstrip[iteration].timings
-        span.videoframetext !{timing.name ? timing.name : timing.metric}
-            b &nbsp;#{h.time.ms(timing.duration || timing.value)}
+  - const frameClass =  filmstrip[iteration].timings.length > 0 ? 'videoframe blue' : 'videoframe'
+  a(href=path + filmstrip[iteration].file)
+    img(src=path + filmstrip[iteration].file, alt='', class=frameClass)
+  span.videoframetime #{filmstrip[iteration].time} s
+  each timing in filmstrip[iteration].timings
+    span.videoframetext !{timing.name ? timing.name : timing.metric}
+      b &nbsp;#{h.time.ms(timing.duration || timing.value)}
 
-small
-    | |&nbsp;
-    a(href='#filmstrip') Filmstrip
-    | &nbsp;|&nbsp;
 a#filmstrip
-h2 Filmstrip
- 
-- const videoIndex = medianRun ? medianRun.runIndex : iteration;
-- const path = 'data/filmstrip/' + videoIndex +'/';
+- const videoIndex = medianRun ? medianRun.runIndex : iteration
+- const path = 'data/filmstrip/' + videoIndex + '/'
+- const filmstripCount = filmstrip ? filmstrip.length : 0
 
-if (options.filmstrip && options.filmstrip.showAll)
-    p
-        | Showing all the filmstrips. Set
-        code  --filmstrip.showAll
-        | to false to only show the ones that contains a change.
-else
-    p
-        | Use
-        code --filmstrip.showAll
-        |  to show all filmstrips.
+//- Wrapping the filmstrip grid in the same .listing-card shell the rest
+//- of the report uses: title + frame-count chip in the header, the
+//- --filmstrip.showAll hint as the help line, and the existing 4-up grid
+//- preserved below.
+.listing-card
+  .listing-card-header
+    h3.listing-card-title Filmstrip
+    span.listing-card-meta #{filmstripCount} #{filmstripCount === 1 ? 'frame' : 'frames'}
+  if (options.filmstrip && options.filmstrip.showAll)
+    p.listing-card-help
+      | Showing all filmstrips. Set&nbsp;
+      code --filmstrip.showAll
+      | &nbsp;to false to only show the ones that contain a change.
+  else
+    p.listing-card-help
+      | Use&nbsp;
+      code --filmstrip.showAll
+      | &nbsp;to show all filmstrips.
 
-if filmstrip
- - for (let i=0; i<filmstrip.length; i=i+4)
-    .row
-     .three.columns.filmstrip
+  if filmstrip
+    - for (let i=0; i<filmstrip.length; i=i+4)
+      .row
+        .three.columns.filmstrip
           +frame(filmstrip, i)
-     if filmstrip[i+1]
-         .three.columns.filmstrip
-             +frame(filmstrip, i+1)
-     if filmstrip[i+2]
-         .three.columns.filmstrip
-             +frame(filmstrip, i+2)
-     if filmstrip[i+3]
-         .three.columns.filmstrip
-             +frame(filmstrip, i+3)
+        if filmstrip[i+1]
+          .three.columns.filmstrip
+            +frame(filmstrip, i+1)
+        if filmstrip[i+2]
+          .three.columns.filmstrip
+            +frame(filmstrip, i+2)
+        if filmstrip[i+3]
+          .three.columns.filmstrip
+            +frame(filmstrip, i+3)

@@ -1,35 +1,42 @@
 if pagexray.afterOnLoad.requests > 0
-    a#requests-after-onload
-    h3 Requests loaded after onLoad event
-    p.small Included requests done after 
-        a(href='https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event') load event end
-        | . 
-        
-    table(data-sortable, id='contentSizeAfterOnload')
+  a#requests-after-onload
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Requests loaded after onLoad event
+      span.listing-card-meta #{pagexray.afterOnLoad.requests} #{pagexray.afterOnLoad.requests === 1 ? 'request' : 'requests'}
+    p.listing-card-help Includes requests done after&nbsp;
+      a(href='https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event') load event end
+      | .
+    .responsive
+      table(data-sortable, id='contentSizeAfterOnload')
         +rowHeading(['Content', 'Transfer Size', 'Requests'])
         each data, type in pagexray.afterOnLoad.contentTypes
-            tr
-                td(data-title='Content Type') #{type}
-                +sizeCell('transferSize', data.transferSize)
-                +numberCell('requests', data.requests)
+          tr
+            td(data-title='Content Type') #{type}
+            +sizeCell('transferSize', data.transferSize)
+            +numberCell('requests', data.requests)
         tr
-                td(data-title='Total') Total
-                +sizeCell('transferSize', pagexray.afterOnLoad.transferSize)
-                +numberCell('requests', pagexray.afterOnLoad.requests)        
+          td(data-title='Total') Total
+          +sizeCell('transferSize', pagexray.afterOnLoad.transferSize)
+          +numberCell('requests', pagexray.afterOnLoad.requests)
 
 if pagexray.afterOnContentLoad.requests > 0
-    h3 Requests loaded after onContentLoad 
-    p.small Includes requests done after 
-        a(href='https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event') DOM content loaded
-        | . 
-    table(data-sortable, id='contentSizeAfterOnContentload')
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Requests loaded after onContentLoad
+      span.listing-card-meta #{pagexray.afterOnContentLoad.requests} #{pagexray.afterOnContentLoad.requests === 1 ? 'request' : 'requests'}
+    p.listing-card-help Includes requests done after&nbsp;
+      a(href='https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event') DOM content loaded
+      | .
+    .responsive
+      table(data-sortable, id='contentSizeAfterOnContentload')
         +rowHeading(['Content', 'Transfer Size', 'Requests'])
         each data, type in pagexray.afterOnContentLoad.contentTypes
-            tr
-                td(data-title='Content Type') #{type}
-                +sizeCell('transferSize', data.transferSize)
-                +numberCell('requests', data.requests)
+          tr
+            td(data-title='Content Type') #{type}
+            +sizeCell('transferSize', data.transferSize)
+            +numberCell('requests', data.requests)
         tr
-                td(data-title='Total') Total
-                +sizeCell('transferSize', pagexray.afterOnContentLoad.transferSize)
-                +numberCell('requests', pagexray.afterOnContentLoad.requests)
+          td(data-title='Total') Total
+          +sizeCell('transferSize', pagexray.afterOnContentLoad.transferSize)
+          +numberCell('requests', pagexray.afterOnContentLoad.requests)
