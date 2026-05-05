@@ -164,7 +164,15 @@ You download ChromeDriver from [http://chromedriver.chromium.org](http://chromed
 You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the SafariDriver you can run `man safaridriver` in your terminal.
 
 ### Limitations
-We do not support HAR, cookies/request headers in Safari at the moment.
+On macOS Safari we do not support HAR, cookies and request headers. iOS Safari over USB collects HAR + video + visual metrics — see [Run on iOS](#run-on-ios) below.
+
+### iOS Safari over USB (sitespeed.io 40+)
+Sitespeed.io 40 (via Browsertime 27) collects HAR, video and visual metrics for Safari on iOS over USB. Two extra dependencies needed on the Mac that drives the test:
+
+* `ios_webkit_debug_proxy` for HAR (`brew install ios-webkit-debug-proxy`). Browsertime starts and stops `iwdp` automatically and exits with a clear error if it isn't installed.
+* `ffmpeg` for visual metrics, plus the bundled CoreMediaIO screen-capture helper that Browsertime ships. The device is woken into screen-capture mode automatically — no manual QuickTime step required.
+
+Then run as usual with `--safari.ios -b safari`. Add `--safari.includeResponseBodies` if you also want response bodies in the HAR.
 
 ### Configuration
 There are a couple of different specific Safari configurations.
