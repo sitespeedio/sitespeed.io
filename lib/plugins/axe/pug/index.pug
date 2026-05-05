@@ -7,8 +7,7 @@
 
 a
 h2 Axe
-p Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Tested using #{axe.testEngine.name} version #{axe.testEngine.version}. Read more about
-  |
+p Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Tested using #{axe.testEngine.name} version #{axe.testEngine.version}. Read more about&nbsp;
   a(href='https://github.com/dequelabs/axe-core') axe-core
   | .
 
@@ -17,51 +16,57 @@ if pageInfo.data.axe.run
   //- description, and the offending nodes. Cards group by impact level
   //- because that's how an accessibility reviewer wants to triage —
   //- worst first.
-  h3 Violations (#{axe.violations.length})
-  if axe.violations.length === 0
-    p.axe-clear ✓ No accessibility violations detected on this page.
-  else
-    .axe-violations
-      - let oldImpact = null
-      each violation in axe.violations
-        if violation.impact !== oldImpact
-          h4.axe-impact-heading #{violation.impact}
-          - oldImpact = violation.impact
-        details.axe-violation
-          summary.axe-violation-summary
-            span.label(class=impactClass(violation.impact)) #{violation.impact}
-            span.axe-violation-title #{violation.help}
-            code.axe-violation-rule #{violation.id}
-          .axe-violation-body
-            p.axe-violation-desc #{violation.description}
-            if violation.tags && violation.tags.length > 0
-              p.axe-violation-tags
-                each tag in violation.tags
-                  code.axe-tag #{tag}
-            if violation.helpUrl
-              p
-                a.axe-violation-help(href=violation.helpUrl, target='_blank', rel='noopener') Read the axe-core docs for this rule →
-            if violation.nodes && violation.nodes.length > 0
-              h5.axe-nodes-heading Failure summary
-              p.axe-nodes-failure #{violation.nodes[0].failureSummary}
-              h5.axe-nodes-heading Offending nodes (#{violation.nodes.length})
-              ul.axe-nodes
-                each node in violation.nodes
-                  li
-                    code.axe-node-html= node.html
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Violations
+      span.listing-card-meta #{axe.violations.length} #{axe.violations.length === 1 ? 'finding' : 'findings'}
+    if axe.violations.length === 0
+      p.axe-clear ✓ No accessibility violations detected on this page.
+    else
+      .axe-violations
+        - let oldImpact = null
+        each violation in axe.violations
+          if violation.impact !== oldImpact
+            h4.axe-impact-heading #{violation.impact}
+            - oldImpact = violation.impact
+          details.axe-violation
+            summary.axe-violation-summary
+              span.label(class=impactClass(violation.impact)) #{violation.impact}
+              span.axe-violation-title #{violation.help}
+              code.axe-violation-rule #{violation.id}
+            .axe-violation-body
+              p.axe-violation-desc #{violation.description}
+              if violation.tags && violation.tags.length > 0
+                p.axe-violation-tags
+                  each tag in violation.tags
+                    code.axe-tag #{tag}
+              if violation.helpUrl
+                p
+                  a.axe-violation-help(href=violation.helpUrl, target='_blank', rel='noopener') Read the axe-core docs for this rule →
+              if violation.nodes && violation.nodes.length > 0
+                h5.axe-nodes-heading Failure summary
+                p.axe-nodes-failure #{violation.nodes[0].failureSummary}
+                h5.axe-nodes-heading Offending nodes (#{violation.nodes.length})
+                ul.axe-nodes
+                  each node in violation.nodes
+                    li
+                      code.axe-node-html= node.html
 else
   //- Aggregate view: median counts per impact bucket across all runs.
   //- Each bucket is a KPI tile coloured by severity.
-  h3 Violations (median across runs)
-  p.small Click into an individual run to see the actual violations.
-  .axe-medians
-    - const buckets = [['Critical', 'critical'], ['Serious', 'serious'], ['Moderate', 'moderate'], ['Minor', 'minor']]
-    each bucket in buckets
-      - const label = bucket[0]
-      - const key = bucket[1]
-      - const count = axe.violations[key].median
-      - const issues = axe.violationIssues[key].median
-      .axe-median-tile(class=impactClass(key))
-        span.axe-median-label #{label}
-        span.axe-median-count #{count}
-        span.axe-median-sub #{issues} #{issues === 1 ? 'issue' : 'issues'}
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Violations
+      span.listing-card-meta median across runs
+    p.listing-card-help Click into an individual run to see the actual violations.
+    .axe-medians
+      - const buckets = [['Critical', 'critical'], ['Serious', 'serious'], ['Moderate', 'moderate'], ['Minor', 'minor']]
+      each bucket in buckets
+        - const label = bucket[0]
+        - const key = bucket[1]
+        - const count = axe.violations[key].median
+        - const issues = axe.violationIssues[key].median
+        .axe-median-tile(class=impactClass(key))
+          span.axe-median-label #{label}
+          span.axe-median-count #{count}
+          span.axe-median-sub #{issues} #{issues === 1 ? 'issue' : 'issues'}

@@ -7,28 +7,16 @@
   max-width: 880px;
   margin: 0 auto;
 
-  h2 {
-    margin: 32px 0 14px 0;
-    padding-top: 18px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid $color--border;
-    font-weight: $font--weight--semibold;
-    font-size: 1.6rem;
-    letter-spacing: -0.01em;
-    color: $color--text;
-  }
-
-  h2:first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
-
   h5 {
     margin: 18px 0 4px 0;
     font-size: 1rem;
     font-weight: $font--weight--semibold;
     color: $color--text;
     scroll-margin-top: 64px;
+  }
+
+  .listing-card > h5:first-of-type {
+    margin-top: 0;
   }
 
   h5[id]::after {
@@ -50,7 +38,8 @@
     line-height: 1.6;
   }
 
-  p code {
+  p code,
+  code {
     font-family: $font--mono;
     font-size: 0.9em;
     padding: 1px 6px;
