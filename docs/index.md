@@ -9,4 +9,6 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 # Welcome to the wonderful world of Web Performance
 
-Unlock the full potential of your website with sitespeed.io - the ultimate tool for monitoring and enhancing web performance. Say goodbye to the complexity and high costs of measuring performance. With our easy-to-use [Open Source tools](/documentation/), you'll have complete control over your metrics and own your own data. Welcome to the world of exceptional web performance with Sitespeed.io.
+sitespeed.io is an Open Source web performance tool. Run it once to debug a slow page and you get an HTML report with Core Web Vitals, a video of the page loading, the HAR waterfall and the Coach's advice on how to fix what's slow. Run it every 10 minutes against your site, ship the metrics to Graphite or InfluxDB, and you have a Grafana dashboard tracking your site's performance over time.
+
+It's been around since 2014, it's free, you own all your data, and there's nothing to sign up for.

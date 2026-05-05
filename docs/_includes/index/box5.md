@@ -1,7 +1,6 @@
 ## We believe in privacy
 * * *
-At sitespeed.io, we understand the importance of privacy and take it extremely seriously. That's why our [documentation site](https://www.sitespeed.io/), [dashboard](https://dashboard.sitespeed.io), and [compare tool](https://dashboard.sitespeed.io) are completely free of any tracking software, including Google Analytics or any other similar programs. None of our tools will send any data back to us, giving you complete control over your information.
 
-But we also know that your browser can be a weak point. Chrome and Firefox have been known to send data back to their servers. We're always working to find ways to prevent this, and we welcome any contributions or suggestions from our users to improve your privacy when using our tools.
+This site, the [dashboard](https://dashboard.sitespeed.io) and the [compare tool](https://compare.sitespeed.io) all run without any tracking — no Google Analytics, no third-party scripts. None of our tools send anything back to us. You own your data.
 
-We take pride in our commitment to protecting your privacy and ensuring that you have complete control over your data. To learn more about our privacy practices, please [read more]({{site.baseurl}}/important/).
+Modern browsers can leak data of their own (Chrome and Firefox have both done it). We try to lock that down where we can, and we'd love help from anyone who spots more we can do. See [our privacy notes]({{site.baseurl}}/important/) for the full picture.
