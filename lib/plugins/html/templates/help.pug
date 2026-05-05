@@ -1,190 +1,215 @@
 extends ./layout.pug
 
+//- Each top-level h2 section becomes a .listing-card so the page reads
+//- in the same idiom as the rest of the report. Inside the "Timing
+//- metrics" card the h5+p definition entries stay as-is — that's a
+//- long flat reference list, not a table of cards.
+
 block content
   .help-page
-    h2 Welcome to the wonderful world of performance
-    p The help file explains different metrics, so it easier to understand what sitespeed.io collects. When you need more information, you should checkout&nbsp;
-      a(href='https://www.sitespeed.io') https://www.sitespeed.io
-      | .
+    .listing-card
+      .listing-card-header
+        h2.listing-card-title Welcome to the wonderful world of performance
+      p The help file explains different metrics, so it easier to understand what sitespeed.io collects. When you need more information, you should checkout&nbsp;
+        a(href='https://www.sitespeed.io') https://www.sitespeed.io
+        | .
 
-    h2(id='overallScore') Overall score
-    p The average combined performance, accessibility and best practices score from the Coach. If the score is 100 you are doing fantastic, there's no more you can do here.
+    .listing-card
+      .listing-card-header
+        h2.listing-card-title(id='overallScore') Overall score
+      p The average combined performance, accessibility and best practices score from the Coach. If the score is 100 you are doing fantastic, there's no more you can do here.
 
-    h2(id='performanceScore') Performance score
-    p The coach knows much about performance best practices and match your pages against them. Checkout the full&nbsp;
-      a(href='#performanceAdvice') advice list
-      | .
+    .listing-card
+      .listing-card-header
+        h2.listing-card-title(id='performanceScore') Performance score
+      p The coach knows much about performance best practices and match your pages against them. Checkout the full&nbsp;
+        a(href='#performanceAdvice') advice list
+        | .
 
-    h2(id='accessibilityScore') Accessibility score
-    p Make sure your site is accessible and usable for everyone. The coach can learn more about accessibility so please&nbsp;
-      a(href='https://github.com/sitespeedio/coach/issues/new') help out&nbsp;
-      | . You can read more about making the web accessible&nbsp;
-      a(href='https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/') here
-      | .
+    .listing-card
+      .listing-card-header
+        h2.listing-card-title(id='accessibilityScore') Accessibility score
+      p Make sure your site is accessible and usable for everyone. The coach can learn more about accessibility so please&nbsp;
+        a(href='https://github.com/sitespeedio/coach/issues/new') help out
+        | . You can read more about making the web accessible&nbsp;
+        a(href='https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/') here
+        | .
 
-    h2(id='bestPracticeScore') Web best practice score
-    p You want your page to follow web best practice and the coach helps you with that. Making sure your page is set up for search engines, have good URL structure and more. Read all&nbsp;
-      a(href='#bestPracticeAdvice') the advice
-      | .
+    .listing-card
+      .listing-card-header
+        h2.listing-card-title(id='bestPracticeScore') Web best practice score
+      p You want your page to follow web best practice and the coach helps you with that. Making sure your page is set up for search engines, have good URL structure and more. Read all&nbsp;
+        a(href='#bestPracticeAdvice') the advice
+        | .
 
     if (coach)
-      h2(id='performanceAdvice') Performance advice
-      each advice, adviceKey in coach.performance.adviceList
-        h5(id=adviceKey) #{advice.title} (#{adviceKey})
-        p #{advice.description}
+      .listing-card
+        .listing-card-header
+          h2.listing-card-title(id='performanceAdvice') Performance advice
+          - const perfAdviceCount = Object.keys(coach.performance.adviceList).length
+          span.listing-card-meta #{perfAdviceCount} #{perfAdviceCount === 1 ? 'rule' : 'rules'}
+        each advice, adviceKey in coach.performance.adviceList
+          h5(id=adviceKey) #{advice.title} (#{adviceKey})
+          p #{advice.description}
 
-      h2(id='bestPracticeAdvice') Best practice advice
-      each advice, adviceKey in coach.bestpractice.adviceList
-        h5(id=adviceKey) #{advice.title} (#{adviceKey})
-        p #{advice.description}
+      .listing-card
+        .listing-card-header
+          h2.listing-card-title(id='bestPracticeAdvice') Best practice advice
+          - const bestAdviceCount = Object.keys(coach.bestpractice.adviceList).length
+          span.listing-card-meta #{bestAdviceCount} #{bestAdviceCount === 1 ? 'rule' : 'rules'}
+        each advice, adviceKey in coach.bestpractice.adviceList
+          h5(id=adviceKey) #{advice.title} (#{adviceKey})
+          p #{advice.description}
 
-    h2(id='timingMetrics') Timing metrics
+    .listing-card
+      .listing-card-header
+        h2.listing-card-title(id='timingMetrics') Timing metrics
 
-    h5(id='backEndTime') BackEndTime / TTFB
-    p The time it takes for the network and the server to generate and start sending the HTML. Collected using the Navigation Timing API with the definition: responseStart - navigationStart
+      h5(id='backEndTime') BackEndTime / TTFB
+      p The time it takes for the network and the server to generate and start sending the HTML. Collected using the Navigation Timing API with the definition: responseStart - navigationStart
 
-    h5(id='frontEndTime') FrontEndTime
-    p The time it takes for the browser to parse and create the page. Collected using the Navigation Timing API with the definition: loadEventStart - responseEnd
+      h5(id='frontEndTime') FrontEndTime
+      p The time it takes for the browser to parse and create the page. Collected using the Navigation Timing API with the definition: loadEventStart - responseEnd
 
-    h5(id='domContentLoadedTime') DOMContentLoadedTime
-    p The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the users location to your server. Collected using the Navigation Timing API with the definition: domContentLoadedEventStart - navigationStart
+      h5(id='domContentLoadedTime') DOMContentLoadedTime
+      p The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the users location to your server. Collected using the Navigation Timing API with the definition: domContentLoadedEventStart - navigationStart
 
-    h5(id='domInteractiveTime') DOMInteractiveTime
-    p The time the browser takes to parse the document, including the network time from the users location to your server. Collected using the Navigation Timing API with the definition: domInteractive - navigationStart
+      h5(id='domInteractiveTime') DOMInteractiveTime
+      p The time the browser takes to parse the document, including the network time from the users location to your server. Collected using the Navigation Timing API with the definition: domInteractive - navigationStart
 
-    h5(id='domainLookupTime') DomainLookupTime
-    p The time it takes to do the DNS lookup. Collected using the Navigation Timing API with the definition: domainLookupEnd - domainLookupStart
+      h5(id='domainLookupTime') DomainLookupTime
+      p The time it takes to do the DNS lookup. Collected using the Navigation Timing API with the definition: domainLookupEnd - domainLookupStart
 
-    h5(id='pageDownloadTime') PageDownloadTime
-    p How long time does it take to download the page (the HTML). Collected using the Navigation Timing API with the definition: responseEnd - responseStart
+      h5(id='pageDownloadTime') PageDownloadTime
+      p How long time does it take to download the page (the HTML). Collected using the Navigation Timing API with the definition: responseEnd - responseStart
 
-    h5(id='pageLoadTime') PageLoadTime
-    p The time it takes for page to load, from initiation of the page view (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Collected using the Navigation Timing API with the definition: loadEventStart - navigationStart
+      h5(id='pageLoadTime') PageLoadTime
+      p The time it takes for page to load, from initiation of the page view (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Collected using the Navigation Timing API with the definition: loadEventStart - navigationStart
 
-    h5(id='redirectionTime') RedirectionTime
-    p Time spent on redirects. Collected using the Navigation Timing API with the definition: fetchStart - navigationStart
+      h5(id='redirectionTime') RedirectionTime
+      p Time spent on redirects. Collected using the Navigation Timing API with the definition: fetchStart - navigationStart
 
-    h5(id='serverConnectionTime') ServerConnectionTime
-    p How long time it takes to connect to the server. Collected using the Navigation Timing API with the definition: connectEnd - connectStart
+      h5(id='serverConnectionTime') ServerConnectionTime
+      p How long time it takes to connect to the server. Collected using the Navigation Timing API with the definition: connectEnd - connectStart
 
-    h5(id='serverResponseTime') ServerResponseTime
-    p The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
+      h5(id='serverResponseTime') ServerResponseTime
+      p The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
 
-    h5(id='firstPaint') FirstPaint
-    p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
+      h5(id='firstPaint') FirstPaint
+      p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
 
-    h5(id='first-contentful-paint') First Contentful Paint
-    p First Contentful Paint (FCP) measures the time from navigation to the time when the browser renders the first bit of content from the DOM.
+      h5(id='first-contentful-paint') First Contentful Paint
+      p First Contentful Paint (FCP) measures the time from navigation to the time when the browser renders the first bit of content from the DOM.
 
-    h5(id='largestContentfulPaint') Largest Contentful Paint
-    p The Largest Contentful Paint (LCP) metric reports the render time of the largest content element visible in the viewport.
+      h5(id='largestContentfulPaint') Largest Contentful Paint
+      p The Largest Contentful Paint (LCP) metric reports the render time of the largest content element visible in the viewport.
 
-    h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
-    p Internal Firefox metric activated by setting the preference
-      i dom.performance.time_to_dom_content_flushed.enabled
-      | &nbsp;to true.
+      h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
+      p Internal Firefox metric activated by setting the preference
+        i dom.performance.time_to_dom_content_flushed.enabled
+        | &nbsp;to true.
 
-    h5(id='timeToContentfulPaint') Time To Contentful Paint
-    p Firefox implementation of First Contentful Paint. Activated by setting the preference
-      i dom.performance.time_to_contentful_paint.enabled
-      | &nbsp;to true.
+      h5(id='timeToContentfulPaint') Time To Contentful Paint
+      p Firefox implementation of First Contentful Paint. Activated by setting the preference
+        i dom.performance.time_to_contentful_paint.enabled
+        | &nbsp;to true.
 
-    h5(id='timeToFirstInteractive') Time To First Interactive
-    p Firefox implementation of Time to first interactive. Activated by setting the preference
-      i dom.performance.time_to_first_interactive.enabled
-      | &nbsp;to true.
+      h5(id='timeToFirstInteractive') Time To First Interactive
+      p Firefox implementation of Time to first interactive. Activated by setting the preference
+        i dom.performance.time_to_first_interactive.enabled
+        | &nbsp;to true.
 
-    h5(id='loadEventEnd') Load Event End
-    p The time when the load event of the current document is completed.
+      h5(id='loadEventEnd') Load Event End
+      p The time when the load event of the current document is completed.
 
-    h5(id='fullyLoaded') FullyLoaded
-    p The time when all assets in the page is downloaded. The value comes from the latest response in the HAR file.
+      h5(id='fullyLoaded') FullyLoaded
+      p The time when all assets in the page is downloaded. The value comes from the latest response in the HAR file.
 
-    h5(id='SpeedIndex') Speed Index
-    p The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation&nbsp;
-      a(href='https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index') here
-      | .
+      h5(id='SpeedIndex') Speed Index
+      p The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation&nbsp;
+        a(href='https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index') here
+        | .
 
-    h5(id='ContentfulSpeedIndex') Contentful Speed Index
-    p This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
+      h5(id='ContentfulSpeedIndex') Contentful Speed Index
+      p This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
 
-    h5(id='FirstVisualChange') First Visual Change
-    p The time when something for the first time is painted within the viewport. Calculated by analysing a video.
+      h5(id='FirstVisualChange') First Visual Change
+      p The time when something for the first time is painted within the viewport. Calculated by analysing a video.
 
-    h5(id='VisualComplete85') Visual Complete 85%
-    p When the page is visually complete to 85% (or more). Calculated by analysing a video.
+      h5(id='VisualComplete85') Visual Complete 85%
+      p When the page is visually complete to 85% (or more). Calculated by analysing a video.
 
-    h5(id='VisualComplete95') Visual Complete 95%
-    p When the page is visually complete to 95% (or more). Calculated by analysing a video.
+      h5(id='VisualComplete95') Visual Complete 95%
+      p When the page is visually complete to 95% (or more). Calculated by analysing a video.
 
-    h5(id='VisualComplete99') Visual Complete 99%
-    p When the page is visually complete to 99% (or more). Calculated by analysing a video.
+      h5(id='VisualComplete99') Visual Complete 99%
+      p When the page is visually complete to 99% (or more). Calculated by analysing a video.
 
-    h5(id='LastVisualChange') Last Visual Change
-    p The time when something for the last time changes within the viewport. Calculated by analysing a video.
+      h5(id='LastVisualChange') Last Visual Change
+      p The time when something for the last time changes within the viewport. Calculated by analysing a video.
 
-    h5(id='LargestImage') Largest Image
-    p The time when the largest image within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
+      h5(id='LargestImage') Largest Image
+      p The time when the largest image within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
 
-    h5(id='Heading') Heading
-    p The time when the largest H1 heading within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
+      h5(id='Heading') Heading
+      p The time when the largest H1 heading within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
 
-    h5(id='Logo') Logo
-    p The time when the logo (configured with --scriptInput.visualElements) within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
+      h5(id='Logo') Logo
+      p The time when the logo (configured with --scriptInput.visualElements) within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
 
-    h5(id='memory') Memory usage
-    p The page memory usage. Only measurable in Firefox using --firefox.memoryReport.
+      h5(id='memory') Memory usage
+      p The page memory usage. Only measurable in Firefox using --firefox.memoryReport.
 
-    h5(id='imageSizePerPage') Image transfer size per page
-    p The size of images per page.
+      h5(id='imageSizePerPage') Image transfer size per page
+      p The size of images per page.
 
-    h5(id='cssSizePerPage') CSS transfer size per page
-    p The transfer size of CSS per page, meaning if the CSS is sent compressed the unpacked size is larger.
+      h5(id='cssSizePerPage') CSS transfer size per page
+      p The transfer size of CSS per page, meaning if the CSS is sent compressed the unpacked size is larger.
 
-    h5(id='jsSizePerPage') JavaScript transfer size per page
-    p The transfer size of JavaScript per page.
+      h5(id='jsSizePerPage') JavaScript transfer size per page
+      p The transfer size of JavaScript per page.
 
-    h5(id='fontSizePerPage') Font transfer size per page
-    p The transfer size of fonts per page.
+      h5(id='fontSizePerPage') Font transfer size per page
+      p The transfer size of fonts per page.
 
-    h5(id='htmlSizePerPage') HTML transfer size per page
-    p The transfer size of HTML per page.
+      h5(id='htmlSizePerPage') HTML transfer size per page
+      p The transfer size of HTML per page.
 
-    h5(id='totalSizePerPage') Total transfer size per page
-    p The total transfer size of all assets on a page.
+      h5(id='totalSizePerPage') Total transfer size per page
+      p The total transfer size of all assets on a page.
 
-    h5(id='imageRequestsPerPage') Image requests per page
-    p The number of image requests on a page.
+      h5(id='imageRequestsPerPage') Image requests per page
+      p The number of image requests on a page.
 
-    h5(id='cssRequestsPerPage') CSS requests per page
-    p The number of CSS requests on a page.
+      h5(id='cssRequestsPerPage') CSS requests per page
+      p The number of CSS requests on a page.
 
-    h5(id='jsRequestsPerPage') JavaScript requests per page
-    p The number of JavaScript requests on a page.
+      h5(id='jsRequestsPerPage') JavaScript requests per page
+      p The number of JavaScript requests on a page.
 
-    h5(id='fontRequestsPerPage') Font requests per page
-    p The number of font requests on a page.
+      h5(id='fontRequestsPerPage') Font requests per page
+      p The number of font requests on a page.
 
-    h5(id='totalRequestsPerPage') Total amount of requests per page
-    p The total amount of requests on a page.
+      h5(id='totalRequestsPerPage') Total amount of requests per page
+      p The total amount of requests on a page.
 
-    h5(id='axeCriticalViolations') Critical Axe violations
-    p The number of critical accessibility violations on your page found by Axe.  A critical violation means that you should fix it now.
+      h5(id='axeCriticalViolations') Critical Axe violations
+      p The number of critical accessibility violations on your page found by Axe. A critical violation means that you should fix it now.
 
-    h5(id='axeSeriousViolations') Serious Axe violations
-    p The number of serious accessibility violations on your page found by Axe.  A serious violation means that you should fix it now.
+      h5(id='axeSeriousViolations') Serious Axe violations
+      p The number of serious accessibility violations on your page found by Axe. A serious violation means that you should fix it now.
 
-    h5(id='axeMinorViolations') Minor Axe violations
-    p The number of monir accessibility violations on your page found by Axe.
+      h5(id='axeMinorViolations') Minor Axe violations
+      p The number of minor accessibility violations on your page found by Axe.
 
-    h5(id='axeModeratelViolations') Moderate Axe violations
-    p The number of moderate accessibility violations on your page found by Axe.
+      h5(id='axeModerateViolations') Moderate Axe violations
+      p The number of moderate accessibility violations on your page found by Axe.
 
-    h5(id='totalBlockingTime') Total Blocking Time
-    p The blocking time of a given long task is its duration in excess of 50 ms (or the time you have configured with <code>--browsertime.minLongTaskLength</code>). And the total blocking time for a page is the sum of the blocking time for each long task that happens after first contentful paint.
+      h5(id='totalBlockingTime') Total Blocking Time
+      p The blocking time of a given long task is its duration in excess of 50 ms (or the time you have configured with <code>--browsertime.minLongTaskLength</code>). And the total blocking time for a page is the sum of the blocking time for each long task that happens after first contentful paint.
 
-    h5(id='maxPotentialFid') Max Potential First Input Delay
-    p The worst-case First Input Delay that your users might experience during load. This is calculated using CPU long tasks.
+      h5(id='maxPotentialFid') Max Potential First Input Delay
+      p The worst-case First Input Delay that your users might experience during load. This is calculated using CPU long tasks.
 
-    h5(id='firstInputDelay') First Input Delay
-    p First Input Delay measures the time from when a user first interacts with your site (when they click a link, tap on a button etc) to the time when the browser is actually able to respond to that interaction. You need to <a href="https://www.sitespeed.io/documentation/sitespeed.io/scripting/#measuring-first-input-delay---fid">use scripting</a> to actively do something with the page for this metric to be collected.
+      h5(id='firstInputDelay') First Input Delay
+      p First Input Delay measures the time from when a user first interacts with your site (when they click a link, tap on a button etc) to the time when the browser is actually able to respond to that interaction. You need to <a href="https://www.sitespeed.io/documentation/sitespeed.io/scripting/#measuring-first-input-delay---fid">use scripting</a> to actively do something with the page for this metric to be collected.

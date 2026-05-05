@@ -1,32 +1,16 @@
 //
 // HELP PAGE — light
 // =================
-// The help page is a long flat reference doc — h2 section headers and
-// h5 entries with paragraph descriptions. Style it as a readable
-// definition-list rather than a wall of headings: cap line length,
-// give each entry breathing room, and make the section headers stand
-// out as anchors.
+// The help page is a long flat reference doc — sections wrapped in
+// .listing-card with a section heading and a stack of h5 + p entries
+// inside the "Timing metrics" card. The card shell handles the section
+// frame; this file styles the in-card definitions so the eye can group
+// each h5 with its description.
 //
 
 .help-page {
   max-width: 880px;
   margin: 0 auto;
-
-  h2 {
-    margin: 32px 0 14px 0;
-    padding-top: 18px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid $color--border;
-    font-weight: $font--weight--semibold;
-    font-size: 1.6rem;
-    letter-spacing: -0.01em;
-    color: $color--text;
-  }
-
-  h2:first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
 
   // Each h5 + adjacent p is one "entry". Treat the h5 like a definition
   // term and the following p like its description so the eye groups
@@ -37,6 +21,11 @@
     font-weight: $font--weight--semibold;
     color: $color--text;
     scroll-margin-top: 64px;
+  }
+
+  // First h5 inside a card sits flush with the card's content area.
+  .listing-card > h5:first-of-type {
+    margin-top: 0;
   }
 
   // Permalink-on-hover for entries with an id.
@@ -59,7 +48,8 @@
     line-height: 1.6;
   }
 
-  p code {
+  p code,
+  code {
     font-family: $font--mono;
     font-size: 0.9em;
     padding: 1px 6px;
