@@ -1,4 +1,6 @@
 <picture>
+<source type="image/webp" srcset="{{site.baseurl}}/img/team.webp">
+
 <source media="(max-width: 1000px)" srcset="{{site.baseurl}}/img/team-medium-1px.png 1x,
 {{site.baseurl}}/img/team-medium-2px.png 2x">
 
