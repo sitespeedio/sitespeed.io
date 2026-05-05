@@ -3,13 +3,33 @@ include ../../_tableMixins
 //- Each advice category renders as a collection of `<details>` cards
 //- sorted by score ascending — most-urgent first. Native `<details>`
 //- gives per-card disclosure with no JS, accessible by default.
+//-
+//- Per-advice severity chip (error / warn / info) and a category-level
+//- severity breakdown next to the score chip surface coach-core's
+//- `severity` field on the rule result, so a reader can scan urgency
+//- without having to expand every card. Severity is orthogonal to
+//- score: a low-weight info finding can have score 80 while a
+//- high-weight error finding can have score 50, and the chips make
+//- that distinction visible. The numeric score is hidden when severity
+//- is `info` — those findings are advisory, the score isn't a useful
+//- "how urgent is this?" signal so it just adds noise.
 mixin adviceCategory(name, id, perfectMessage, node)
   a(id=id)
   - const advices = Object.entries(node.adviceList).filter(([, a]) => a.score < 100).sort(([, a], [, b]) => a.score - b.score)
+  - const severityCounts = { error: 0, warn: 0, info: 0 }
+  - advices.forEach(([, a]) => { if (a.severity && severityCounts[a.severity] !== undefined) severityCounts[a.severity]++ })
   .coach-section
     .coach-section-header
       h3.coach-section-title #{name}
       span.label(class=h.scoreLabel(node.score)) #{node.score}
+      if advices.length > 0
+        .coach-section-severity
+          if severityCounts.error > 0
+            span.coach-severity.coach-severity--error #{severityCounts.error} #{severityCounts.error === 1 ? 'error' : 'errors'}
+          if severityCounts.warn > 0
+            span.coach-severity.coach-severity--warn #{severityCounts.warn} #{severityCounts.warn === 1 ? 'warning' : 'warnings'}
+          if severityCounts.info > 0
+            span.coach-severity.coach-severity--info #{severityCounts.info} info
     if advices.length === 0
       p.coach-section-clear ✓ #{perfectMessage}
     else
@@ -19,7 +39,10 @@ mixin adviceCategory(name, id, perfectMessage, node)
           - const advice = entry[1]
           details.coach-advice
             summary.coach-advice-summary
-              span.label(class=h.scoreLabel(advice.score)) #{advice.score}
+              if advice.severity
+                span.coach-severity(class='coach-severity--' + advice.severity) #{advice.severity}
+              if advice.severity !== 'info'
+                span.coach-advice-score (#{advice.score})
               span.coach-advice-title #{advice.title}
               code.coach-advice-rule #{adviceName}
             .coach-advice-body
