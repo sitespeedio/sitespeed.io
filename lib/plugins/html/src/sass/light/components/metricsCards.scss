@@ -218,6 +218,15 @@ $loaf--style-layout: #7c3aed;    // violet — style + layout
   margin: 0;
   font-size: 0.95rem;
 
+  // Stack the dt/dd pairs on narrow viewports — the 180px label
+  // column and 1fr value column squeeze unreadably below ~480px.
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+
+    dt { margin-top: 4px; }
+  }
+
   dt {
     color: $color--text-muted;
     font-weight: $font--weight--medium;
@@ -369,6 +378,13 @@ $lcp--render-delay: #7c3aed;
   margin: 0 0 8px 0;
   font-size: 0.95rem;
 
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+
+    dt { margin-top: 4px; }
+  }
+
   dt {
     color: $color--text-muted;
     font-weight: $font--weight--medium;
@@ -421,6 +437,14 @@ $lcp--render-delay: #7c3aed;
   border: 1px solid $color--border;
   margin-bottom: 8px;
   object-fit: contain;
+
+  // On narrow viewports the column itself is tiny, so the 240px cap
+  // can overflow horizontally. Switch to fluid-width and cap height
+  // proportionally.
+  @media (max-width: 600px) {
+    max-width: 100%;
+    max-height: 220px;
+  }
   background: $color--surface;
 }
 

@@ -5,7 +5,11 @@
 
 .detailed-kpis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  // 140px lower bound (down from 180) so two tiles fit side by side
+  // at a 360px viewport — emulated-mobile reports were collapsing the
+  // hero band to a 5-tile vertical stack that pushed the rest of the
+  // page off the first scroll.
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
   margin: 0 0 18px 0;
 }
