@@ -47,7 +47,7 @@ sitespeed.io drives a real browser — Firefox, Chrome, Edge, or Safari (includi
 
 - **Core Web Vitals** — LCP, INP, CLS, TTFB and FCP, scored against Google's p75 thresholds.
 - **A video and visual metrics** — First Visual Change, Speed Index, Last Visual Change, plus a scrubable filmstrip.
-- **The HAR waterfall** — rendered with [waterfall-tools](https://github.com/pmeenan/waterfall-tools), the same renderer WebPageTest uses.
+- **The HAR waterfall** — rendered with [waterfall-tools](https://github.com/pmeenan/waterfall-tools).
 - **The Coach's advice** — a checklist of best-practice rules with severity, scores and concrete fixes.
 - **CPU and long-task analysis** — what the main thread was doing during the load.
 
@@ -171,8 +171,6 @@ Bugs and feature requests go on [GitHub Issues](https://github.com/sitespeedio/s
 - **Slack** — [join our workspace](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 - **GitHub Issues** — [github.com/sitespeedio/sitespeed.io/issues](https://github.com/sitespeedio/sitespeed.io/issues) for bugs and feature requests.
 - **RSS** — [release feed](https://github.com/sitespeedio/sitespeed.io/releases.atom) for new versions.
-- **Mastodon** — [@sitespeedio@fosstodon.org](https://fosstodon.org/@sitespeedio).
-- **Bluesky** — [@sitespeed.io](https://bsky.app/profile/sitespeed.io).
 
 
 # License
