@@ -1,6 +1,55 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.0.0-beta.1 - 2026-05-05
+
+### Highlights
+
+A big release. The HTML report has been almost entirely re-skinned around a unified card-based design language; Browsertime jumps to 27 with a much improved scripting API and iOS-device testing; coach-core jumps to 9 with a `severity` tier on every rule, an INP rule, and a set of modern-image rules.
+
+* **A new look and feel for every page of the report.** Every tab and every top-level result page has been refreshed. Charts that used to need Chartist are now inline SVG with no JS dependency [#4619](https://github.com/sitespeedio/sitespeed.io/pull/4619), [#4654](https://github.com/sitespeedio/sitespeed.io/pull/4654).
+* **Coach severity is now on the advice cards.** Every finding leads with a colour-coded `error` / `warn` / `info` chip; the section header gets a category-level breakdown (`1 error · 8 warnings · 1 info`). The numeric score follows in muted parentheses for error/warn and is hidden entirely for info, where the number isn't a meaningful urgency signal [#4667](https://github.com/sitespeedio/sitespeed.io/pull/4667). Rules has been updated to match 2026.
+* **Browsertime 27 (major).** Unified selector syntax for every interaction command (`commands.click('#btn')`, `commands.addText('#input', text)`), a much bigger convenience-command surface (`type`, `find`, `fill`, `cookie`, `clickAndMeasure`, `clickByText`, …), Chrome soft-navigation support so SPA route changes produce a HAR page + Core Web Vitals, Safari on iOS over USB (HAR via `iwdp`, video + visual metrics via CoreMediaIO), and TypeScript navigation scripts on Node 22.18+. See the [Browsertime 27 release notes](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2700---2026-05-01) for the full list and the breaking-change details (default `--timeouts.elementWait` is now 6000ms; clicks now use the Selenium Actions API).
+* **Coach-core 9 (major).** New `interactionToNextPaint` rule (INP became a Core Web Vital in March 2026), four new modern-image rules (`decodingAsync`, `lazyLoadingImages`, `modernImageFormats`, `lcpImageHints`), modern privacy/security header rules (Permissions-Policy, X-Content-Type-Options, the cross-origin isolation trio, NEL, Reporting-Endpoints, DOM-side `iframeSandbox` / `referrerPolicy` / `sessionReplay`), CSP scored on its directives instead of its byte length, refreshed thresholds across the rule set, the `surveillance` category typo fixed (was `survelliance`), and the package is now ESM-only on Node 20+. See the [coach-core 9 release notes](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#900-beta1---2026-05-05).
+* **HAR waterfalls render via waterfall-tools.** The waterfall code moved out of the HTML plugin into the dedicated `waterfall-tools` package so the same renderer can be reused outside sitespeed.io [#4614](https://github.com/sitespeedio/sitespeed.io/pull/4614).
+* **Compare plugin rewrite.** The per-metric scatter plots are now DOM-positioned dots over a relative wrapper (round at any width) with a real Y-axis gutter showing five labelled ticks plus grid lines; setup is split into separate Run-setup and Content-breakdown cards, and the wide stats table scrolls horizontally with paired baseline/current columns [#4656](https://github.com/sitespeedio/sitespeed.io/pull/4656).
+* **Mobile-friendliness pass.** Hero KPI bands fit two tiles at a 360px viewport, dt/dd metadata grids stack to one column on narrow screens, and the matched-LCP element image goes fluid-width below 600px [#4669](https://github.com/sitespeedio/sitespeed.io/pull/4669).
+
+### Breaking
+* `coach-core` bumped to 9.0.0-beta.1: ESM-only, Node.js 20+, and the `survelliance` category key in HAR third-party data is now spelled `surveillance` — consumers that hard-coded the typo need to update [#4644](https://github.com/sitespeedio/sitespeed.io/pull/4644), [#4666](https://github.com/sitespeedio/sitespeed.io/pull/4666).
+* `browsertime` bumped to 27: default `--timeouts.elementWait` changed from 0 to 6000ms (all element commands auto-wait up to 6 seconds for elements to appear; set to 0 to restore old behaviour); click commands now use the Selenium Actions API for real OS-level mouse events instead of `.click()` so elements must be visible and interactable [#4616](https://github.com/sitespeedio/sitespeed.io/pull/4616), [#4618](https://github.com/sitespeedio/sitespeed.io/pull/4618), [#4621](https://github.com/sitespeedio/sitespeed.io/pull/4621).
+
+### Added
+* Refreshed look and feel for the report. Implemented across a series of small PRs grouped by area:
+  * Summary / Detailed / per-iteration Summary [#4622](https://github.com/sitespeedio/sitespeed.io/pull/4622), [#4629](https://github.com/sitespeedio/sitespeed.io/pull/4629), [#4636](https://github.com/sitespeedio/sitespeed.io/pull/4636), [#4670](https://github.com/sitespeedio/sitespeed.io/pull/4670).
+  * Metrics tab — LCP, LOAF, INP, CLS, Element Timings, Visual Elements, First Input, Server timings, Visual progress filmstrip [#4625](https://github.com/sitespeedio/sitespeed.io/pull/4625), [#4626](https://github.com/sitespeedio/sitespeed.io/pull/4626), [#4628](https://github.com/sitespeedio/sitespeed.io/pull/4628), [#4640](https://github.com/sitespeedio/sitespeed.io/pull/4640), [#4641](https://github.com/sitespeedio/sitespeed.io/pull/4641), [#4650](https://github.com/sitespeedio/sitespeed.io/pull/4650), [#4655](https://github.com/sitespeedio/sitespeed.io/pull/4655), [#4663](https://github.com/sitespeedio/sitespeed.io/pull/4663), [#4665](https://github.com/sitespeedio/sitespeed.io/pull/4665).
+  * Coach tab + sub-pages + severity chips + Help page [#4627](https://github.com/sitespeedio/sitespeed.io/pull/4627), [#4646](https://github.com/sitespeedio/sitespeed.io/pull/4646), [#4667](https://github.com/sitespeedio/sitespeed.io/pull/4667), [#4668](https://github.com/sitespeedio/sitespeed.io/pull/4668), [#4672](https://github.com/sitespeedio/sitespeed.io/pull/4672).
+  * Per-URL tabs — CrUX, Sustainable, Axe, CPU, PageXray, Third-party, Compare, Video [#4630](https://github.com/sitespeedio/sitespeed.io/pull/4630), [#4631](https://github.com/sitespeedio/sitespeed.io/pull/4631), [#4632](https://github.com/sitespeedio/sitespeed.io/pull/4632), [#4633](https://github.com/sitespeedio/sitespeed.io/pull/4633), [#4634](https://github.com/sitespeedio/sitespeed.io/pull/4634), [#4637](https://github.com/sitespeedio/sitespeed.io/pull/4637), [#4656](https://github.com/sitespeedio/sitespeed.io/pull/4656), [#4657](https://github.com/sitespeedio/sitespeed.io/pull/4657).
+  * Top-level result pages — Pages, Toplist, Detailed, Domains, Assets, Errors, Budget [#4635](https://github.com/sitespeedio/sitespeed.io/pull/4635), [#4658](https://github.com/sitespeedio/sitespeed.io/pull/4658), [#4659](https://github.com/sitespeedio/sitespeed.io/pull/4659), [#4660](https://github.com/sitespeedio/sitespeed.io/pull/4660).
+  * Settings, Screenshots, runtime info, charts, filmstrip and sortable tables [#4620](https://github.com/sitespeedio/sitespeed.io/pull/4620), [#4638](https://github.com/sitespeedio/sitespeed.io/pull/4638), [#4639](https://github.com/sitespeedio/sitespeed.io/pull/4639).
+* Detailed-summary hero band picks up the four Core-Web-Vitals-class metrics plus the Coach overall score [#4622](https://github.com/sitespeedio/sitespeed.io/pull/4622), [#4646](https://github.com/sitespeedio/sitespeed.io/pull/4646).
+* Coach severity tier surfaced on every advice card, with a category-level breakdown next to the score chip [#4667](https://github.com/sitespeedio/sitespeed.io/pull/4667).
+
+### Changed
+* `axe-core` bumped to 4.11.4 [#4662](https://github.com/sitespeedio/sitespeed.io/pull/4662).
+* HAR waterfalls render via the dedicated `waterfall-tools` package instead of inline JS [#4614](https://github.com/sitespeedio/sitespeed.io/pull/4614).
+* Chartist (and its three plugins) dropped from the report assets — the visual-progress chart and the compare scatter plots are now inline SVG / DOM-positioned [#4654](https://github.com/sitespeedio/sitespeed.io/pull/4654), [#4655](https://github.com/sitespeedio/sitespeed.io/pull/4655), [#4656](https://github.com/sitespeedio/sitespeed.io/pull/4656).
+* Unify quicklinks across tabs around a consistent `<small>` + `|` separator with a fixed leading-pipe-spacing bug [#4664](https://github.com/sitespeedio/sitespeed.io/pull/4664).
+* CI hardened with `step-security/harden-runner` [#4610](https://github.com/sitespeedio/sitespeed.io/pull/4610), action SHAs pinned [#4606](https://github.com/sitespeedio/sitespeed.io/pull/4606), CI sped up [#4617](https://github.com/sitespeedio/sitespeed.io/pull/4617). The apt-built SSH test container in the upload workflow replaced with `lscr.io/linuxserver/openssh-server` so the job stops flaking on Ubuntu mirror outages [#4661](https://github.com/sitespeedio/sitespeed.io/pull/4661).
+
+### Fixed
+* INP card guards against missing fields on the interaction target [#4652](https://github.com/sitespeedio/sitespeed.io/pull/4652).
+* LCP card guards against undefined url and id [#4651](https://github.com/sitespeedio/sitespeed.io/pull/4651).
+* `index.pug` no longer crashes when `HERO_URLS` is referenced before `block content` [#4624](https://github.com/sitespeedio/sitespeed.io/pull/4624).
+* CLS shows in the summary even when the value is 0 [#4623](https://github.com/sitespeedio/sitespeed.io/pull/4623).
+* The "limited metrics on Safari" warning only shows on desktop Safari, not iOS [#4648](https://github.com/sitespeedio/sitespeed.io/pull/4648).
+* Long Firefox preference identifiers wrap inside settings tiles [#4647](https://github.com/sitespeedio/sitespeed.io/pull/4647).
+* Solid warning pills are now bright yellow instead of a muted pastel that read as "ok" [#4645](https://github.com/sitespeedio/sitespeed.io/pull/4645).
+* Capped the matched-LCP element image preview so a 1200×800 hero photo doesn't dwarf the rest of the card [#4642](https://github.com/sitespeedio/sitespeed.io/pull/4642).
+* The visual-progress card no longer renders DCL on a chart of "what the user sees" — it's a DOM lifecycle event, not a visual one. Replaced with VisualComplete85 [#4655](https://github.com/sitespeedio/sitespeed.io/pull/4655).
+* Several typos in the report (page titles, in-page text, anchor ids) [#4649](https://github.com/sitespeedio/sitespeed.io/pull/4649), [#4671](https://github.com/sitespeedio/sitespeed.io/pull/4671), [#4672](https://github.com/sitespeedio/sitespeed.io/pull/4672).
+* Polish across the report — odds and ends [#4643](https://github.com/sitespeedio/sitespeed.io/pull/4643).
+
 ## 39.5.0 - 2026-03-25
 ### Added
 * Chrome 146 and Edge 146, Firefox 148 in the Docker container [#4590](https://github.com/sitespeedio/sitespeed.io/pull/4590), [#4596](https://github.com/sitespeedio/sitespeed.io/pull/4596), [#4599](https://github.com/sitespeedio/sitespeed.io/pull/4599).
