@@ -4,24 +4,26 @@
 	X-XSS-Protection: 1; mode=block
 	Referrer-Policy: no-referrer
 	Permissions-Policy: interest-cohort=()
-	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
+	Cross-Origin-Opener-Policy: same-origin
+	Cross-Origin-Resource-Policy: same-origin
 	Cache-Control: public, max-age=0, must-revalidate, no-transform
 	Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 /search/*
-	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
 
 /video/*
-	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
 
 /testcases/*
-	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
 
 /img/*
-        Cache-Control: public, max-age=3600000
+	Cache-Control: public, max-age=31536000
 /js/*
-        Cache-Control: public, max-age=3600000
+	Cache-Control: public, max-age=31536000, immutable
 /css/*
-        Cache-Control: public, max-age=3600000	
-/feed/* 
-		Access-Control-Allow-Origin: *			
+	Cache-Control: public, max-age=31536000, immutable
+/feed/*
+	Access-Control-Allow-Origin: *
