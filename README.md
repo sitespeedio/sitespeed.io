@@ -135,14 +135,14 @@ Setup guides: [Android](https://www.sitespeed.io/documentation/sitespeed.io/mobi
 
 <picture>
   <source type="image/webp" srcset="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-summary.webp">
-  <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-summary.png" alt="The redesigned summary tab" width="1400" height="746">
+  <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-summary.png" alt="The redesigned summary tab">
 </picture>
 
 ### Per-URL report
 
 <picture>
   <source type="image/webp" srcset="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-metrics.webp">
-  <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-metrics.png" alt="The redesigned metrics tab" width="1400" height="802">
+  <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/report-metrics.png" alt="The redesigned metrics tab">
 </picture>
 
 ### Continuous monitoring in Grafana
