@@ -95,12 +95,67 @@
 .coach-section-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   margin-bottom: 14px;
 }
 
 .coach-section-title {
   margin: 0;
+}
+
+// Category-level severity breakdown — sits next to the score chip in
+// the section header. Pushed to the right so the title + score stay
+// flush left and the breakdown reads as a summary.
+.coach-section-severity {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-left: auto;
+}
+
+// Severity chip — pill-shaped, colour-coded. Mirrors coach-core's three
+// tiers (error / warn / info) with the same palette the rest of the
+// report uses for ok/warning/error/info backgrounds.
+.coach-severity {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  &--error {
+    color: $color--error;
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+  &--warn {
+    color: $color--warning;
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+  }
+  &--info {
+    color: $color--info;
+    background: $color--info-bg;
+    border-color: $color--info-border;
+  }
+}
+
+// Numeric score sits next to the severity chip as muted text in
+// parentheses — supporting detail rather than a competing chip. Hidden
+// for info-severity rows where the score isn't a meaningful urgency
+// signal.
+.coach-advice-score {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
 }
 
 .coach-section-clear {

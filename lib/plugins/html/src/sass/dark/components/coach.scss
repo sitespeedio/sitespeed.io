@@ -81,12 +81,57 @@
 .coach-section-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   margin-bottom: 14px;
 }
 
 .coach-section-title {
   margin: 0;
+}
+
+.coach-section-severity {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.coach-severity {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  &--error {
+    color: $color--error;
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+  &--warn {
+    color: $color--warning;
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+  }
+  &--info {
+    color: $color--info;
+    background: $color--info-bg;
+    border-color: $color--info-border;
+  }
+}
+
+.coach-advice-score {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
 }
 
 .coach-section-clear {
