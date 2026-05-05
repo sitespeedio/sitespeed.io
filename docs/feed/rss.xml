@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sat, 31 Jan 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 05 May 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,449 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 40.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</guid>
+            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Refreshed look and feel for the report. Implemented across a series of small PRs grouped by area:</li>
+</ul>
+ <ul>
+<li>Detailed-summary hero band picks up the four Core-Web-Vitals-class metrics plus the Coach overall score <a href="https://github.com/sitespeedio/sitespeed.io/pull/4622">#4622</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4646">#4646</a>.</li>
+</ul>
+ <ul>
+<li>Coach severity tier surfaced on every advice card, with a category-level breakdown next to the score chip <a href="https://github.com/sitespeedio/sitespeed.io/pull/4667">#4667</a>.</li>
+</ul>
+ <ul>
+<li>Google Web Vitals are now a hero card on the metrics tab — each Vital gets a colour-coded dot, the value at 2× the surrounding font size, the short name, and a Good / Needs improvement / Poor label tied to Google&#39;s p75 cutoffs. INP suppresses the TBT fallback so we don&#39;t show two interactivity proxies side by side. The Visual Milestones tiles next to the chart get a small font bump too <a href="https://github.com/sitespeedio/sitespeed.io/pull/4679">#4679</a>.</li>
+</ul>
+ <ul>
+<li>&quot;Where the time went&quot; card on the summary tab and per-iteration summary — a stacked horizontal bar splitting the page-load timeline into Network (0 → TTFB), Render-blocking (TTFB → FCP), Largest paint (FCP → LCP) and Tail (LCP → loaded), with a colour legend underneath restating each segment in ms and %. Reads the medians the rest of the summary already uses <a href="https://github.com/sitespeedio/sitespeed.io/pull/4677">#4677</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4679">#4679</a>.</li>
+</ul>
+ <ul>
+<li>Long-task lane on the visual-progress card — one bar per Long Task at its real <code>startTime</code> / <code>duration</code>, tinted by severity (≥ 250 ms red, ≥ 100 ms amber, otherwise pale amber) so the worst offenders pop visually next to the FCP / LCP markers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4678">#4678</a>.</li>
+</ul>
+ <ul>
+<li>Visual-metrics tab gains a hint that points at <code>--cpu</code> when the FCP / LCP recalculate-style breakdowns aren&#39;t available, so it&#39;s clear how to enable them rather than leaving the card silent <a href="https://github.com/sitespeedio/sitespeed.io/pull/4673">#4673</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>INP card guards against missing fields on the interaction target <a href="https://github.com/sitespeedio/sitespeed.io/pull/4652">#4652</a>.</li>
+</ul>
+ <ul>
+<li>LCP card guards against undefined url and id <a href="https://github.com/sitespeedio/sitespeed.io/pull/4651">#4651</a>.</li>
+</ul>
+ <ul>
+<li><code>index.pug</code> no longer crashes when <code>HERO_URLS</code> is referenced before <code>block content</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4624">#4624</a>.</li>
+</ul>
+ <ul>
+<li>CLS shows in the summary even when the value is 0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4623">#4623</a>.</li>
+</ul>
+ <ul>
+<li>The &quot;limited metrics on Safari&quot; warning only shows on desktop Safari, not iOS <a href="https://github.com/sitespeedio/sitespeed.io/pull/4648">#4648</a>.</li>
+</ul>
+ <ul>
+<li>Long Firefox preference identifiers wrap inside settings tiles <a href="https://github.com/sitespeedio/sitespeed.io/pull/4647">#4647</a>.</li>
+</ul>
+ <ul>
+<li>Solid warning pills are now bright yellow instead of a muted pastel that read as &quot;ok&quot; <a href="https://github.com/sitespeedio/sitespeed.io/pull/4645">#4645</a>.</li>
+</ul>
+ <ul>
+<li>Capped the matched-LCP element image preview so a 1200×800 hero photo doesn&#39;t dwarf the rest of the card <a href="https://github.com/sitespeedio/sitespeed.io/pull/4642">#4642</a>.</li>
+</ul>
+ <ul>
+<li>The visual-progress card no longer renders DCL on a chart of &quot;what the user sees&quot; — it&#39;s a DOM lifecycle event, not a visual one. Replaced with VisualComplete85 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4655">#4655</a>.</li>
+</ul>
+ <ul>
+<li>Several typos in the report (page titles, in-page text, anchor ids) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4649">#4649</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4671">#4671</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4672">#4672</a>.</li>
+</ul>
+ <ul>
+<li>Polish across the report — odds and ends <a href="https://github.com/sitespeedio/sitespeed.io/pull/4643">#4643</a>.</li>
+</ul>
+ <ul>
+<li>Re-enable the Coach for <code>--safari.ios</code> runs (the legacy carve-out that disabled it is no longer needed) and cap the LCP / CLS / iteration screenshot heights so portrait iPhone captures don&#39;t dwarf the rest of the card <a href="https://github.com/sitespeedio/sitespeed.io/pull/4675">#4675</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li><code>coach-core</code> bumped from 9.0.0-beta.1 to 9.0.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4674">#4674</a>.</li>
+</ul>
+ <ul>
+<li><code>browsertime</code> bumped to 27.0.4 — Safari iOS video time-scale fix (default capture rate is now 60 fps so visualmetrics-derived metrics match the browser&#39;s wall-clock timeline) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4676">#4676</a>.</li>
+</ul>
+ <ul>
+<li><code>axe-core</code> bumped to 4.11.4 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4662">#4662</a>.</li>
+</ul>
+ <ul>
+<li>HAR waterfalls render via the dedicated <code>waterfall-tools</code> package instead of inline JS <a href="https://github.com/sitespeedio/sitespeed.io/pull/4614">#4614</a>.</li>
+</ul>
+ <ul>
+<li>Chartist (and its three plugins) dropped from the report assets — the visual-progress chart and the compare scatter plots are now inline SVG / DOM-positioned <a href="https://github.com/sitespeedio/sitespeed.io/pull/4654">#4654</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4655">#4655</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4656">#4656</a>.</li>
+</ul>
+ <ul>
+<li>Unify quicklinks across tabs around a consistent <code>&lt;small&gt;</code> + <code>|</code> separator with a fixed leading-pipe-spacing bug <a href="https://github.com/sitespeedio/sitespeed.io/pull/4664">#4664</a>.</li>
+</ul>
+ <ul>
+<li>CI hardened with <code>step-security/harden-runner</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4610">#4610</a>, action SHAs pinned <a href="https://github.com/sitespeedio/sitespeed.io/pull/4606">#4606</a>, CI sped up <a href="https://github.com/sitespeedio/sitespeed.io/pull/4617">#4617</a>. The apt-built SSH test container in the upload workflow replaced with <code>lscr.io/linuxserver/openssh-server</code> so the job stops flaking on Ubuntu mirror outages <a href="https://github.com/sitespeedio/sitespeed.io/pull/4661">#4661</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.0.4]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</guid>
+            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix Safari iOS video time scale <a href="https://github.com/sitespeedio/browsertime/pull/2457">#2457</a>. This make the video and Safari metric match.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 9.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</guid>
+            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>New <code>severity</code> field on every rule result, with three tiers (<code>error</code> / <code>warn</code> / <code>info</code>) modelled on Lighthouse and axe. Severity is orthogonal to weight: weight controls how strongly a rule pulls on the aggregate score, severity tells a consumer how loudly to surface a finding. Existing <code>score</code> and <code>weight</code> are unchanged <a href="https://github.com/sitespeedio/coach-core/pull/143">#143</a>.</li>
+</ul>
+ <ul>
+<li>New <code>interactionToNextPaint</code> DOM performance rule. INP replaced First Input Delay as a Core Web Vital in March 2026, but coach-core had rules for every other Web Vital (LCP, FCP, CLS) and was silently behind on the one Google now ranks against. The rule observes buffered <code>event</code> entries via PerformanceObserver, groups them by <code>interactionId</code> so a single user interaction&#39;s three events (pointerdown, pointerup, click) count as one, and reports the slowest. Thresholds match Google&#39;s published p75 cutoffs: ≤200ms good, 200–500ms needs improvement, &gt;500ms poor. Synthetic tests rarely fire interactions, so the rule explicitly handles the no-measurement case rather than scoring zero — INP is best measured with real-user monitoring and the advice text says so <a href="https://github.com/sitespeedio/coach-core/pull/155">#155</a>.</li>
+</ul>
+ <ul>
+<li>Four new DOM performance rules covering modern image best practices: <code>decodingAsync</code> flags <code>&lt;img&gt;</code> elements without a <code>decoding</code> hint so non-LCP image decode doesn&#39;t block the main thread; <code>lazyLoadingImages</code> flags below-the-fold images that aren&#39;t <code>loading=&quot;lazy&quot;</code> (the threshold deliberately overshoots — more than two viewport heights below the current scroll position — so images just out of view aren&#39;t penalised); <code>modernImageFormats</code> flags <code>&lt;img&gt;</code> that ships a JPEG/PNG/GIF without an AVIF or WebP alternative through <code>&lt;picture&gt;</code> or its own <code>srcset</code>; <code>lcpImageHints</code> scores priority hints on the LCP image (<code>fetchpriority=&quot;high&quot;</code> recommended, <code>loading=&quot;lazy&quot;</code> forbidden) <a href="https://github.com/sitespeedio/coach-core/pull/157">#157</a>.</li>
+</ul>
+ <ul>
+<li>Modern privacy / security header rules on the HAR side: <code>permissionsPolicyHeader</code>, <code>xContentTypeOptionsHeader</code> <a href="https://github.com/sitespeedio/coach-core/pull/138">#138</a>, and the cross-origin isolation trio <code>crossOriginOpenerPolicyHeader</code>, <code>crossOriginEmbedderPolicyHeader</code>, <code>crossOriginResourcePolicyHeader</code> <a href="https://github.com/sitespeedio/coach-core/pull/139">#139</a>.</li>
+</ul>
+ <ul>
+<li>Two DOM privacy rules that the HAR side cannot see: <code>iframeSandbox</code> (flags cross-origin iframes without a sandbox attribute) and <code>referrerPolicy</code> (flags pages with no <code>&lt;meta name=&quot;referrer&quot;&gt;</code>) <a href="https://github.com/sitespeedio/coach-core/pull/139">#139</a>.</li>
+</ul>
+ <ul>
+<li>New <code>sessionReplay</code> DOM privacy rule that flags pages embedding session-recording tools (Hotjar, FullStory, Microsoft Clarity, LogRocket, Smartlook, Mouseflow, Quantum Metric, Inspectlet, Lucky Orange, Crazy Egg). Kept separate from the surveillance rule because the remediation is different — these tools have legitimate uses but the privacy concern is real, so the advice is &quot;configure input redaction, get explicit consent, know where the recordings live&quot; rather than &quot;stop using them&quot; <a href="https://github.com/sitespeedio/coach-core/pull/153">#153</a>.</li>
+</ul>
+ <ul>
+<li>New <code>nelHeader</code> and <code>reportingEndpointsHeader</code> HAR privacy rules — thin presence checks for the Network Error Logging and Reporting-API headers. Severity <code>info</code> because these are observability headers, not security baselines <a href="https://github.com/sitespeedio/coach-core/pull/150">#150</a>.</li>
+</ul>
+ <ul>
+<li>Two DOM bestpractice rules: <code>viewport</code> (flags missing viewport meta, missing <code>width=device-width</code>, and the patterns that disable pinch-to-zoom) and <code>imageAltText</code> (flags <code>&lt;img&gt;</code> without an <code>alt</code> attribute, accepting <code>alt=&quot;&quot;</code>, <code>role=&quot;presentation&quot; / &quot;none&quot;</code> and <code>aria-hidden=&quot;true&quot;</code> as valid markers for decorative images) <a href="https://github.com/sitespeedio/coach-core/pull/140">#140</a>.</li>
+</ul>
+ <ul>
+<li><code>lib/technologies/VERSION.json</code> records source URL, upstream SHA and sync date for the bundled fingerprint catalogue, exposed via a new <code>coach.getTechnologiesVersion()</code> accessor next to <code>getWappalyzerCoreVersion()</code> and <code>getThirdPartyWebVersion()</code> <a href="https://github.com/sitespeedio/coach-core/pull/144">#144</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>HSTS rule no longer scores 100 silently on an HTTPS page that is missing the Strict-Transport-Security header. Several other rules had small typos and dead branches that masked their advice text or scoring: dangling template literals in the FCP / LCP &quot;good&quot; branches (advice was being built and discarded), an off-by-one in <code>fullyLoaded.js</code> that skipped the first resource, an operator-precedence bug in <code>unnecessaryHeaders.js</code> that silently broke the cache-control + expires check, an assignment instead of <code>-=</code> in <code>thirdPartyCookies.js</code> that flattened the score regardless of cookie count, plus dead <code>score;</code> and <code>if (score === undefined)</code> blocks in HSTS <a href="https://github.com/sitespeedio/coach-core/pull/137">#137</a>.</li>
+</ul>
+ <ul>
+<li>Wappalyzer no longer attributes technologies named in a page&#39;s Content-Security-Policy header to the page itself. Wappalyzer regex-matches patterns like <code>s3[^ ]*amazonaws.com</code> against header values, so a benign CSP allowlist (Wikipedia&#39;s CSP names an S3 bucket to permit embedded photos) was getting attributed as &quot;uses S3&quot;. The technology detector now strips <code>content-security-policy*</code> headers before handing the asset response to Wappalyzer, and pins the URL and HTML body to the document itself rather than letting them drift to a later asset in the loop <a href="https://github.com/sitespeedio/coach-core/pull/149">#149</a>.</li>
+</ul>
+ <ul>
+<li><code>lib/har/thirdParty.js</code> no longer mutates the imported <code>third-party-web</code> entity object&#39;s <code>categories</code> array — side-effects could leak across pages and across consumers <a href="https://github.com/sitespeedio/coach-core/pull/137">#137</a>.</li>
+</ul>
+ <ul>
+<li>LCP &quot;poor&quot; advice text said &quot;slower than 4.5 seconds&quot; but the threshold is 4 seconds; text now matches the threshold <a href="https://github.com/sitespeedio/coach-core/pull/137">#137</a>.</li>
+</ul>
+ <ul>
+<li>Restore the DOM-rule test infrastructure that had been silently dead since the browsertime 23 upgrade. The old runner called <code>loadAndWait</code> and <code>runScript</code> on a <code>BrowsertimeEngine</code> instance; those methods only exist on the internal <code>SeleniumRunner</code> class and were never on the public engine, so the tests blew up the moment they tried to register. The runner is now a thin wrapper around <code>selenium-webdriver</code> (drivers managed by Selenium Manager — no path config required), and the broken async-<code>describe</code> pattern in every DOM test file is replaced with the standard async <code>before</code> / <code>after</code> hooks. <code>npm test</code> continues to run the no-browser suites; <code>npm run test:browser</code> now actually drives a browser instead of silently no-op-ing <a href="https://github.com/sitespeedio/coach-core/pull/148">#148</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Score the Content-Security-Policy header on its directives instead of its byte length. The previous heuristic (deduct 50 if the header value was longer than 150 chars) didn&#39;t reflect any real-world property and the comparison was reading <code>.length</code> on the array of header values rather than on the value string, so the deduction never actually fired. The new rule deducts for <code>&#39;unsafe-inline&#39;</code> and <code>&#39;unsafe-eval&#39;</code>, for missing <code>default-src</code> / <code>script-src</code>, and for missing <code>object-src &#39;none&#39;</code>; the <code>&#39;unsafe-inline&#39;</code> deduction is suppressed when <code>&#39;strict-dynamic&#39;</code> is paired with a nonce or hash, which is the modern strict-CSP shape <a href="https://github.com/sitespeedio/coach-core/pull/151">#151</a>.</li>
+</ul>
+ <ul>
+<li>The <code>largestContentfulPaint</code> rule no longer scores <code>fetchpriority</code> and <code>loading</code> hints on the LCP image. Those checks moved into the new <code>lcpImageHints</code> rule above so a consumer can tell &quot;the hero image is slow&quot; apart from &quot;the hero image&#39;s hints are wrong&quot; — different remediations, separate scores <a href="https://github.com/sitespeedio/coach-core/pull/157">#157</a>.</li>
+</ul>
+ <ul>
+<li>Modernise the rule set: delete <code>dom/bestpractice/spdy.js</code> (SPDY no longer in browsers since 2016); rewrite <code>dom/privacy/surveillance.js</code> to scan <code>&lt;script src&gt;</code> and <code>&lt;iframe src&gt;</code> for known surveillance hostnames using exact-suffix host matching (no more <code>document.domain</code>, no more substring matches); update <code>dom/privacy/ga.js</code> to also detect GA4 (<code>gtag</code> + <code>dataLayer</code> config with <code>G-…</code> measurement id); replace the &quot;HTTP/3 is new&quot; placeholder in <code>dom/performance/inlineCss.js</code> with real advice; reweight <code>amp</code> (10 → 1) and <code>jquery</code> (4 → 1); drop SPDY from <code>isHTTP2</code> <a href="https://github.com/sitespeedio/coach-core/pull/138">#138</a>.</li>
+</ul>
+ <ul>
+<li>Refresh stale rule thresholds across the rule set: <code>metaDescription</code> 155 → 160 chars (matches Google&#39;s modern search-results display); <code>cacheHeadersLong</code> floor 30 days → 1 year (modern best practice for content-hashed URLs with <code>immutable</code>); <code>strictTransportSecurityHeader</code> max-age floor 6 months → 1 year (HSTS preload list minimum); <code>cacheHeaders</code> weight 30 → 6 (in line with the rest of the rule set, which sits at 1–10); <code>pageSize</code> 1 / 2 MB → 2 / 3 MB mobile / desktop (HTTP Archive 2024 medians); <code>cssSize</code> 120 / 400 KB → 150 / 500 KB; <code>javascriptSize</code> 120 / 500 KB → 250 / 800 KB; <code>optimalCssSize</code> 14.5 → 25 KB with the dated &quot;magic number TCP window&quot; framing dropped. Several rule descriptions and advice strings were rewritten to drop dated framings and to point at the modern reference <a href="https://github.com/sitespeedio/coach-core/pull/154">#154</a>.</li>
+</ul>
+ <ul>
+<li>Extend the surveillance hostname list from 10 entries to 32, grouped and commented by company (X / Twitter, LinkedIn, TikTok, Snapchat, Pinterest, Reddit, Bing Ads, Yandex Metrica, Baidu Tongji on top of the existing Google / Meta / YouTube set). Session-replay tools deliberately stay out of this list and have their own rule <a href="https://github.com/sitespeedio/coach-core/pull/152">#152</a>.</li>
+</ul>
+ <ul>
+<li>Tune severity on four rules that needed editorial intent rather than the weight-derived default: <code>thirdPartyPrivacy</code> (sharing user data with third parties) <code>info</code> → <code>warn</code>; <code>thirdParty</code> (too many third-party requests) <code>info</code> → <code>warn</code>; <code>spof</code> (frontend single point of failure) <code>info</code> → <code>error</code>; <code>googleTagManager</code> <code>info</code> → <code>warn</code> <a href="https://github.com/sitespeedio/coach-core/pull/158">#158</a>.</li>
+</ul>
+ <ul>
+<li>Declare an explicit <code>severity</code> on the seven 9.0 rules that still leaned on the <code>severity.fromWeight()</code> fallback, so each value reflects editorial intent: <code>viewport</code> <code>warn</code>; <code>imageAltText</code> <code>info</code>; <code>iframeSandbox</code> <code>info</code>; <code>referrerPolicy</code> <code>warn</code>; <code>crossOriginOpenerPolicyHeader</code> <code>warn</code>; <code>crossOriginEmbedderPolicyHeader</code> <code>info</code>; <code>crossOriginResourcePolicyHeader</code> <code>info</code> <a href="https://github.com/sitespeedio/coach-core/pull/159">#159</a>.</li>
+</ul>
+ <ul>
+<li>Sync the bundled technology catalogue (<code>lib/technologies/*.json</code>, <code>categories.json</code>, <code>groups.json</code>) from <code>enthec/webappanalyzer@c2855b46</code> (2026-04-17). About sixteen months of upstream churn since the previous sync, net ~36 000 lines of new fingerprints <a href="https://github.com/sitespeedio/coach-core/pull/144">#144</a>.</li>
+</ul>
+ <ul>
+<li>Bump <code>third-party-web</code> to 0.29.0 <a href="https://github.com/sitespeedio/coach-core/pull/145">#145</a>.</li>
+</ul>
+ <ul>
+<li>Drop <code>bluebird</code> from runtime dependencies — native promises cover everything coach-core needs and the package was effectively unused <a href="https://github.com/sitespeedio/coach-core/pull/156">#156</a>.</li>
+</ul>
+ <ul>
+<li>Modernise the GitHub Actions workflow: bump <code>actions/checkout</code> to v6.0.2, <code>actions/setup-node</code> to v6.4.0 (with npm cache enabled), replace the deprecated apt-key Chrome install with a one-liner, replace the unmaintained third-party <code>xvfb-action</code> with <code>xvfb-run</code>, expand the Node matrix to 20 / 22 / 24, drop test/dom and test/api/domTest.js from <code>npm test</code> (test runner needs a separate rewrite — see #147 if you want them back). New <code>dependabot.yml</code> keeps SHA pins current going forward <a href="https://github.com/sitespeedio/coach-core/pull/141">#141</a>.</li>
+</ul>
+ <ul>
+<li>Bump browsertime devDep to 27.0.0 (no runtime impact — coach-core has no runtime browsertime dep, only the dev test runner used to).</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.0.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.3</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.3</guid>
+            <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix so INP only is calculated on interactions with an id <a href="https://github.com/sitespeedio/browsertime/pull/2456">#2456</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.0.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.2</guid>
+            <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>SPA scripts no longer drop a HAR page when Chrome&#39;s soft-navigation <code>PerformanceObserver</code> entry doesn&#39;t fire. <a href="https://github.com/sitespeedio/browsertime/pull/2438">#2438</a> gated HAR-page creation on Chrome detecting all three soft-navigation criteria (interaction + URL change + visible paint within a short window), but real SPAs like Grafana sometimes paint too late and Chrome never emits the entry — chrome-har then sees only <code>Network.*</code> events for that measurement and emits zero pages, breaking downstream per-iteration page indexing in sitespeed.io. When the measurement was started without a URL (<code>commands.measure.start(alias)</code> form) and no soft-nav entry was detected, fall back to a synthetic page anchored at the current <code>location.href</code> so each <code>measure.start</code> produces exactly one HAR page.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.0.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.1</guid>
+            <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li><code>commands.click</code> now falls back to a JavaScript click when the Actions API can&#39;t reach the element. Hidden elements have a zero-size bounding box, so the Actions API click that became the default in <a href="https://github.com/sitespeedio/browsertime/pull/2381">#2381</a> silently moved the pointer to (0,0) and clicked nothing instead of triggering the handler. The click command now pre-checks <code>isDisplayed()</code> and uses a JS click when the element isn&#39;t displayed, and otherwise catches any Actions API failure and retries with a JS click. Each fallback is logged at info level so it&#39;s visible without <code>--verbose</code>. Restores the documented &quot;hide everything before clicking&quot; pattern used by visual-metric scripts <a href="https://github.com/sitespeedio/browsertime/pull/2452">#2452</a>.</li>
+</ul>
+ <ul>
+<li><code>engineDelegate.afterBrowserStopped()</code> is no longer called twice per iteration on the happy path. <a href="https://github.com/sitespeedio/browsertime/pull/2432">#2432</a> added a safety-net cleanup call in the iteration <code>finally</code> block so failure paths still release long-lived helpers, but in the happy path <code>_stopBrowser</code> had already invoked the cleanup, so it ran twice. The visible symptom on Chrome was a spurious <code>ENOENT</code> error from the second <code>cleanUserDataDir</code> (the first call had already removed the directory). It could also double-terminate the iOS simulator&#39;s Safari and the <code>ios-capture</code> server. The safety-net now runs only when <code>_stopBrowser</code> didn&#39;t already reach the cleanup <a href="https://github.com/sitespeedio/browsertime/pull/2453">#2453</a>.</li>
+</ul>
+ <ul>
+<li><code>cleanUserDataDir</code> cleanup now uses <code>rm(..., { recursive: true, force: true })</code> so a missing directory is treated as already-cleaned. Defense in depth alongside <a href="https://github.com/sitespeedio/browsertime/pull/2453">#2453</a>: if anything in the future double-calls the Chrome cleanup, or if Chrome failed to create the directory in the first place, the cleanup stays quiet instead of logging a spurious <code>ENOENT</code> <a href="https://github.com/sitespeedio/browsertime/pull/2454">#2454</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.0</guid>
+            <pubDate>Fri, 01 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Unified selector syntax for all interaction commands. You can now call <code>commands.click(&#39;#btn&#39;)</code>, <code>commands.addText(&#39;#input&#39;, &#39;text&#39;)</code>, <code>commands.wait(&#39;#el&#39;, { timeout: 5000 })</code>, <code>commands.select(&#39;#dropdown&#39;, &#39;value&#39;)</code>, and <code>commands.set(&#39;#field&#39;, &#39;value&#39;)</code> directly. Supports prefixes: <code>id:</code>, <code>xpath:</code>, <code>text:</code>, <code>link:</code>, <code>name:</code>, <code>class:</code> — CSS selector is the default <a href="https://github.com/sitespeedio/browsertime/pull/2390">#2390</a> <a href="https://github.com/sitespeedio/browsertime/pull/2408">#2408</a>.</li>
+</ul>
+ <ul>
+<li>The <code>AndWait</code> methods are deprecated in favour of <code>{ waitForNavigation: true }</code> <a href="https://github.com/sitespeedio/browsertime/pull/2390">#2390</a> <a href="https://github.com/sitespeedio/browsertime/pull/2396">#2396</a>.</li>
+</ul>
+ <ul>
+<li>Navigation methods (back, forward, refresh) now support <code>{ waitForNavigation: true }</code> for consistency <a href="https://github.com/sitespeedio/browsertime/pull/2408">#2408</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.type(selector, text)</code> as a shorthand for <code>addText</code> with a more conventional parameter order <a href="https://github.com/sitespeedio/browsertime/pull/2387">#2387</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.find(selector, options)</code> helper that combines element lookup with optional waiting and visibility checks <a href="https://github.com/sitespeedio/browsertime/pull/2386">#2386</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.measure.clickAndMeasure(alias, selector)</code> shortcut for the common measure.start/click/measure.stop pattern <a href="https://github.com/sitespeedio/browsertime/pull/2382">#2382</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.click.byText(text)</code> to click any element by visible text, not just links <a href="https://github.com/sitespeedio/browsertime/pull/2384">#2384</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>--timeouts.elementWait</code> option for auto-waiting on elements before interaction <a href="https://github.com/sitespeedio/browsertime/pull/2383">#2383</a>.</li>
+</ul>
+ <ul>
+<li>Added support for TypeScript scripts (.ts, .mts, .cts) using Node.js native type stripping (requires Node.js 22.18.0+) <a href="https://github.com/sitespeedio/browsertime/pull/2363">#2363</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.getText(selector)</code>, <code>commands.getValue(selector)</code>, and <code>commands.isVisible(selector)</code> convenience methods <a href="https://github.com/sitespeedio/browsertime/pull/2411">#2411</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.exists(selector, { timeout })</code> for checking element presence without throwing <a href="https://github.com/sitespeedio/browsertime/pull/2412">#2412</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.clear(selector)</code> to clear form element content <a href="https://github.com/sitespeedio/browsertime/pull/2413">#2413</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.fill({ selector: text, ... })</code> for filling multiple form fields at once <a href="https://github.com/sitespeedio/browsertime/pull/2414">#2414</a>.</li>
+</ul>
+ <ul>
+<li>Added unified selector syntax to mouse commands: <code>commands.mouse.singleClick(selector)</code>, <code>commands.mouse.doubleClick(selector)</code>, <code>commands.mouse.contextClick(selector)</code>, <code>commands.mouse.moveTo(selector)</code> <a href="https://github.com/sitespeedio/browsertime/pull/2415">#2415</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.cookie</code> for managing browser cookies: <code>get</code>, <code>getAll</code>, <code>set</code>, <code>delete</code>, <code>deleteAll</code> <a href="https://github.com/sitespeedio/browsertime/pull/2420">#2420</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.getAttribute(selector, name)</code>, <code>commands.isEnabled(selector)</code>, and <code>commands.isChecked(selector)</code> for element state queries <a href="https://github.com/sitespeedio/browsertime/pull/2421">#2421</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.hover(selector)</code> as alias for mouse.moveTo, <code>commands.press(key)</code> for keyboard input, <code>commands.getTitle()</code> and <code>commands.getUrl()</code> for page info <a href="https://github.com/sitespeedio/browsertime/pull/2422">#2422</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.check(selector)</code> and <code>commands.uncheck(selector)</code> for checkbox/radio interactions <a href="https://github.com/sitespeedio/browsertime/pull/2423">#2423</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.scrollIntoView(selector)</code> to scroll elements into the viewport <a href="https://github.com/sitespeedio/browsertime/pull/2425">#2425</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.select.byText(selector, text)</code> to select dropdown options by visible text <a href="https://github.com/sitespeedio/browsertime/pull/2426">#2426</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>commands.waitForUrl(pattern, { timeout })</code> to wait for URL changes after navigation <a href="https://github.com/sitespeedio/browsertime/pull/2427">#2427</a>.</li>
+</ul>
+ <ul>
+<li>Added video recording and visual metrics for Safari on iOS over USB. A native helper captures the device&#39;s screen via CoreMediaIO and pipes frames to ffmpeg. The device is woken into screen-capture mode automatically — no manual QuickTime step required <a href="https://github.com/sitespeedio/browsertime/pull/2432">#2432</a> <a href="https://github.com/sitespeedio/browsertime/pull/2436">#2436</a>.</li>
+</ul>
+ <ul>
+<li>Added HAR capture for Safari on iOS via <code>ios_webkit_debug_proxy</code>. Browsertime starts and stops <code>iwdp</code> automatically and exits with a clear error if it isn&#39;t installed (<code>brew install ios-webkit-debug-proxy</code>). New <code>--safari.includeResponseBodies</code> CLI option. macOS Safari is unaffected <a href="https://github.com/sitespeedio/browsertime/pull/2431">#2431</a>.</li>
+</ul>
+ <ul>
+<li>Added soft navigation support for Chrome. Single-page app route changes (React, Next.js, Vue, Turbo) now produce a HAR page and the standard FCP/LCP/CLS/INP metrics, using Chrome&#39;s PerformanceObserver soft-navigation entry type to confirm user interaction + URL change + visible paint <a href="https://github.com/sitespeedio/browsertime/pull/2438">#2438</a>.</li>
+</ul>
+ <ul>
+<li>Updated dependencies to latest compatible versions: chrome-har 1.2.1, selenium-webdriver 4.43.0, execa 9.6.1, jimp 1.6.1 <a href="https://github.com/sitespeedio/browsertime/pull/2437">#2437</a>.</li>
+</ul>
+ <ul>
+<li>Firefox 149 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2375">#2375</a>.</li>
+</ul>
+ <ul>
+<li>Record the full Chrome/Edge configuration browsertime applied to the browser (args, preferences, mobile emulation, binary path, extensions count) under <code>info.browser</code> in the result JSON, not just what the user passed via <code>--chrome.args</code> <a href="https://github.com/sitespeedio/browsertime/pull/2447">#2447</a>.</li>
+</ul>
+ <ul>
+<li>Record Firefox preferences and the resolved binary path under <code>info.browser</code> in the result JSON <a href="https://github.com/sitespeedio/browsertime/pull/2448">#2448</a>.</li>
+</ul>
+ <ul>
+<li>Write long-task ranges and user-timing marks/measures into the HAR under <code>pages[].pageTimings</code> as <code>_longTasks</code> (array of <code>[startMs, endMs]</code> tuples) and <code>_userTimings</code> (object keyed by entry name → startTime), so downstream waterfall viewers can show what the browser was doing between requests <a href="https://github.com/sitespeedio/browsertime/pull/2449">#2449</a>.</li>
+</ul>
+ <ul>
+<li>Added modern device profiles to the mobile emulation device list <a href="https://github.com/sitespeedio/browsertime/pull/2446">#2446</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Pin the iOS Safari tab being measured so unrelated open tabs cannot clobber the active inspector target. The WebDriver tab is navigated to a sentinel URL and identified by it before iWDP messages are processed, otherwise an unrelated <code>Target.targetCreated</code> event could leave the HAR empty <a href="https://github.com/sitespeedio/browsertime/pull/2440">#2440</a>.</li>
+</ul>
+ <ul>
+<li>Fixed <code>drawtext</code> failing on ffmpeg 8 by quoting font paths and forwarding ffmpeg stderr so font/filter errors are visible <a href="https://github.com/sitespeedio/browsertime/pull/2435">#2435</a>.</li>
+</ul>
+ <ul>
+<li>Fixed Firefox network idle timeout on repeated iterations. The WebSocket message listener was never removed between iterations, causing the inflight counter to go negative <a href="https://github.com/sitespeedio/browsertime/pull/2391">#2391</a>.</li>
+</ul>
+ <ul>
+<li>Fixed Firefox network idle timeout when no network events arrive. Timestamps were initialized as undefined causing the idle check to never trigger <a href="https://github.com/sitespeedio/browsertime/pull/2394">#2394</a>.</li>
+</ul>
+ <ul>
+<li>Fixed intermittent crash when setting orange background before document.body exists on Edge/Windows <a href="https://github.com/sitespeedio/browsertime/pull/2393">#2393</a>.</li>
+</ul>
+ <ul>
+<li>Element interaction error messages now include the current page URL for easier debugging <a href="https://github.com/sitespeedio/browsertime/pull/2385">#2385</a>.</li>
+</ul>
+ <ul>
+<li>Added <code>actions.clear()</code> after <code>perform()</code> in all mouse commands to prevent pointer/key state leaking between actions <a href="https://github.com/sitespeedio/browsertime/pull/2406">#2406</a>.</li>
+</ul>
+ <ul>
+<li>Standardized error handling in all command <code>run()</code> methods using <code>executeCommand</code> with URL context. Fixed typo in select.deselectById and removed dead code in wait <a href="https://github.com/sitespeedio/browsertime/pull/2410">#2410</a>.</li>
+</ul>
+ <ul>
+<li>Added clear error message when loading TypeScript scripts on Node.js older than 22.18.0 <a href="https://github.com/sitespeedio/browsertime/pull/2404">#2404</a>.</li>
+</ul>
+ <ul>
+<li>Disabled the &quot;You can zoom in and out&quot; popup on Android <a href="https://github.com/sitespeedio/browsertime/pull/2378">#2378</a>.</li>
+</ul>
+ <ul>
+<li>Warn when <code>--viewPort</code> is set with a width below 500px on desktop Chrome. Chrome enforces a hard ~500px minimum window width and silently clamps narrower requests, but browsertime kept recording the filmstrip and video at the requested size, leaving captures cropped. The warning points users at mobile emulation, which lays out at the requested size while the OS window stays desktop-sized <a href="https://github.com/sitespeedio/browsertime/pull/2445">#2445</a>.</li>
+</ul>
+ <ul>
+<li>Stop a perceptual SSIM failure from discarding every other visual metric for the iteration. <code>calculate_perceptual_speed_index</code> now returns <code>(None, None)</code> on internal errors instead of letting the exception propagate up through <code>calculate_visual_metrics</code>, so SpeedIndex, FCP, LCP and the rest still flow through when SSIM can&#39;t run <a href="https://github.com/sitespeedio/browsertime/pull/2444">#2444</a>.</li>
+</ul>
+ <ul>
+<li>Drain ffmpeg/ffprobe stderr after the process exits in <code>visualmetrics-portable.py</code>. The previous Popen+poll loop dropped output buffered between the last read and exit — silently losing <code>keep pts:</code> lines and therefore filmstrip frames — and could deadlock when ffmpeg&#39;s debug output filled the OS pipe buffer <a href="https://github.com/sitespeedio/browsertime/pull/2443">#2443</a>.</li>
+</ul>
+ <ul>
+<li>Converted <code>visualmetrics-portable.py</code> path handling to <code>pathlib</code> for consistent cross-platform behaviour <a href="https://github.com/sitespeedio/browsertime/pull/2442">#2442</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.2.1]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.1</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.1</guid>
+            <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure not multiple pages are created for a soft nav <a href="https://github.com/sitespeedio/chrome-har/pull/154">#154</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.2.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.0</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.0</guid>
+            <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Support for soft navigation coming from Browsertime <a href="https://github.com/sitespeedio/chrome-har/pull/153">#153</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Get Charset from response <a href="https://github.com/sitespeedio/chrome-har/pull/152">#152</a></li>
+</ul>
+ <ul>
+<li>Fix to parse postData <a href="https://github.com/sitespeedio/chrome-har/pull/150">#150</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 39.5.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0</guid>
+            <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome 146 and Edge 146, Firefox 148 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4590">#4590</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4596">#4596</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4599">#4599</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated s3 and gcs packages <a href="https://github.com/sitespeedio/sitespeed.io/pull/4603">#4603</a>.</li>
+</ul>
+ <ul>
+<li>Updated wpr binaries <a href="https://github.com/sitespeedio/sitespeed.io/pull/4602">#4602</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[throttle 6.0.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0</guid>
+            <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added IPv6 throttling support on macOS <a href="https://github.com/sitespeedio/throttle/pull/94">#94</a> and Linux <a href="https://github.com/sitespeedio/throttle/pull/100">#100</a>.</li>
+</ul>
+ <ul>
+<li>Apply packet loss also to the upload interface <a href="https://github.com/sitespeedio/throttle/pull/69">#69</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>More robust detection of the default network interface on Linux, falling back to global IP address lookup when the default route is unavailable <a href="https://github.com/sitespeedio/throttle/pull/104">#104</a>.</li>
+</ul>
+ <ul>
+<li>Fixed README profile values for DSL and Edge to match actual code, and fixed Node.js API examples to use named imports.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 39.4.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.2</link>
@@ -38,6 +481,18 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 26.3.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.2</guid>
+            <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Hello the new and fixed bidi-har 0.0.22 that fixes the response body <a href="https://github.com/sitespeedio/browsertime/pull/2361">#2361</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[onlinetest 2.0.0]]></title>
@@ -131,7 +586,7 @@
             <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release <a href="https://github.com/sitespeedio/browsertime/pull/2360">#2360</a></li>
+<li>Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release <a href="https://github.com/sitespeedio/browsertime/pull/2360">#2360</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -227,30 +682,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 39.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.0</guid>
-            <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgrade the Docker container: Chrome and Edge 143, Firefox 146 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4572">#4572</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 39.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.0.0</guid>
-            <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--browsertime.screenshotParams.png.compressionLevel</code>  <a href="https://github.com/sitespeedio/sitespeed.io/pull/4570">#4570</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 26.1.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</guid>
@@ -265,57 +696,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Make sure the user in the Docker container has the correct user rights <a href="https://github.com/sitespeedio/browsertime/pull/2349">#2349</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 26.0.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</guid>
-            <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Remove extra console.log entry :)</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 26.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</guid>
-            <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--screenshotParams.png.compressionLevel</code>   <a href="https://github.com/sitespeedio/browsertime/pull/2342">#2342</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 25.4.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0</guid>
-            <pubDate>Sun, 02 Nov 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Chromedriver 142 <a href="https://github.com/sitespeedio/browsertime/pull/2335">#2335</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 25.3.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.1</guid>
-            <pubDate>Fri, 24 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Better handling of closing XVFB <a href="https://github.com/sitespeedio/browsertime/pull/2332">#2332</a>.</li>
-</ul>
- <ul>
-<li>Firefox: Disable quicksuggest <a href="https://github.com/sitespeedio/browsertime/pull/2333">#2333</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -346,44 +726,38 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.3.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.0</guid>
+            <title><![CDATA[chrome-har 1.1.1]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1</guid>
             <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
+            <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Make it possible to strip cookie and auth headers in the HAR file for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2329">#2329</a> and Chrome <a href="https://github.com/sitespeedio/browsertime/pull/2330">#2330</a>. Use <code>--cleanSensitiveHeaders</code> to remove a <a href="https://github.com/sitespeedio/browsertime/blob/main/lib/support/har/index.js#L11-L24">couple of headers</a>.</li>
-</ul>
- <ul>
-<li>Firefox 144 <a href="https://github.com/sitespeedio/browsertime/pull/2331">#2331</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated developer dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2326">#2326</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2327">#2327</a>.</li>
-</ul>
- <ul>
-<li>Updated log dependency <a href="https://github.com/sitespeedio/b23272327rowsertime/pull/2328">#2328</a></li>
+<li>The option to clean header values was broken, this has been reverted for now.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</guid>
-            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
+            <title><![CDATA[chrome-har 1.1.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0</guid>
+            <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Updated to Chrome/Chromedriver/Edge/Edgedriver 141, Firefox 143 <a href="https://github.com/sitespeedio/browsertime/pull/2325">#2325</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2323">#2323</a>.</li>
-</ul>
- <ul>
-<li>Updated webdriver and bidi-har <a href="https://github.com/sitespeedio/browsertime/pull/2322">#2322</a>.</li>
-</ul>
- <ul>
-<li>Added simpleperf and perfetto support for Android, thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR  <a href="https://github.com/sitespeedio/browsertime/pull/2315">#2315</a>.</li>
+<li>Add option to clean header values <a href="https://github.com/sitespeedio/chrome-har/pull/141">#141</a>.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.1.3]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.3</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.3</guid>
+            <pubDate>Mon, 04 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Reverted svg images in avoidScalingImages check released in 8.1.2 since it was causing errors. Lets work on a fir for it later and revert it for now <a href="https://github.com/sitespeedio/coach-core/pull/135">#135</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.1.2]]></title>
@@ -455,17 +829,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Another label fix.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.6.1]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</guid>
-            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
 </ul>
 ]]></description>
         </item>
@@ -698,18 +1061,6 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[coach-core 7.1.3]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.3</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.3</guid>
-            <pubDate>Fri, 10 Feb 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed exporting to work with ESM modules too.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[throttle 5.0.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</guid>
@@ -752,18 +1103,6 @@
 <li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
 </ul>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.1.2]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.2</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.2</guid>
-            <pubDate>Thu, 05 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to PageXray 4.4.2 and Third Party Web 0.17.1.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.2]]></title>
@@ -828,17 +1167,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[chrome-har 0.13.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</guid>
-            <pubDate>Fri, 04 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
             <title><![CDATA[throttle 3.1.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
@@ -893,17 +1221,6 @@
             <description><![CDATA[<h3>Changed</h3>
  <ul>
 <li>When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[throttle 2.1.2]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</guid>
-            <pubDate>Thu, 29 Jul 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix breakage when multiple default routes are declared , thank you <a href="https://github.com/andyrichardson">Andy Richardson</a> for PR <a href="https://github.com/sitespeedio/throttle/pull/62">#62</a>.</li>
 </ul>
 ]]></description>
         </item>
@@ -966,23 +1283,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.12.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</guid>
-            <pubDate>Thu, 29 Oct 2020 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.12]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</guid>
-            <pubDate>Wed, 09 Sep 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Removed test directory from the release, thank you <a href="https://github.com/yurynix">Yury Michurin</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/75">#75</a>.</li>
-</ul>
-]]></description>
         </item>
         <item>
             <title><![CDATA[coach 5.0.0]]></title>

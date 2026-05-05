@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 25 Mar 2026 03:54:05 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 05 May 2026 16:15:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,95 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 40.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</guid>
+            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Refreshed look and feel for the report. Implemented across a series of small PRs grouped by area:</li>
+</ul>
+ <ul>
+<li>Detailed-summary hero band picks up the four Core-Web-Vitals-class metrics plus the Coach overall score <a href="https://github.com/sitespeedio/sitespeed.io/pull/4622">#4622</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4646">#4646</a>.</li>
+</ul>
+ <ul>
+<li>Coach severity tier surfaced on every advice card, with a category-level breakdown next to the score chip <a href="https://github.com/sitespeedio/sitespeed.io/pull/4667">#4667</a>.</li>
+</ul>
+ <ul>
+<li>Google Web Vitals are now a hero card on the metrics tab — each Vital gets a colour-coded dot, the value at 2× the surrounding font size, the short name, and a Good / Needs improvement / Poor label tied to Google&#39;s p75 cutoffs. INP suppresses the TBT fallback so we don&#39;t show two interactivity proxies side by side. The Visual Milestones tiles next to the chart get a small font bump too <a href="https://github.com/sitespeedio/sitespeed.io/pull/4679">#4679</a>.</li>
+</ul>
+ <ul>
+<li>&quot;Where the time went&quot; card on the summary tab and per-iteration summary — a stacked horizontal bar splitting the page-load timeline into Network (0 → TTFB), Render-blocking (TTFB → FCP), Largest paint (FCP → LCP) and Tail (LCP → loaded), with a colour legend underneath restating each segment in ms and %. Reads the medians the rest of the summary already uses <a href="https://github.com/sitespeedio/sitespeed.io/pull/4677">#4677</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4679">#4679</a>.</li>
+</ul>
+ <ul>
+<li>Long-task lane on the visual-progress card — one bar per Long Task at its real <code>startTime</code> / <code>duration</code>, tinted by severity (≥ 250 ms red, ≥ 100 ms amber, otherwise pale amber) so the worst offenders pop visually next to the FCP / LCP markers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4678">#4678</a>.</li>
+</ul>
+ <ul>
+<li>Visual-metrics tab gains a hint that points at <code>--cpu</code> when the FCP / LCP recalculate-style breakdowns aren&#39;t available, so it&#39;s clear how to enable them rather than leaving the card silent <a href="https://github.com/sitespeedio/sitespeed.io/pull/4673">#4673</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>INP card guards against missing fields on the interaction target <a href="https://github.com/sitespeedio/sitespeed.io/pull/4652">#4652</a>.</li>
+</ul>
+ <ul>
+<li>LCP card guards against undefined url and id <a href="https://github.com/sitespeedio/sitespeed.io/pull/4651">#4651</a>.</li>
+</ul>
+ <ul>
+<li><code>index.pug</code> no longer crashes when <code>HERO_URLS</code> is referenced before <code>block content</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4624">#4624</a>.</li>
+</ul>
+ <ul>
+<li>CLS shows in the summary even when the value is 0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4623">#4623</a>.</li>
+</ul>
+ <ul>
+<li>The &quot;limited metrics on Safari&quot; warning only shows on desktop Safari, not iOS <a href="https://github.com/sitespeedio/sitespeed.io/pull/4648">#4648</a>.</li>
+</ul>
+ <ul>
+<li>Long Firefox preference identifiers wrap inside settings tiles <a href="https://github.com/sitespeedio/sitespeed.io/pull/4647">#4647</a>.</li>
+</ul>
+ <ul>
+<li>Solid warning pills are now bright yellow instead of a muted pastel that read as &quot;ok&quot; <a href="https://github.com/sitespeedio/sitespeed.io/pull/4645">#4645</a>.</li>
+</ul>
+ <ul>
+<li>Capped the matched-LCP element image preview so a 1200×800 hero photo doesn&#39;t dwarf the rest of the card <a href="https://github.com/sitespeedio/sitespeed.io/pull/4642">#4642</a>.</li>
+</ul>
+ <ul>
+<li>The visual-progress card no longer renders DCL on a chart of &quot;what the user sees&quot; — it&#39;s a DOM lifecycle event, not a visual one. Replaced with VisualComplete85 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4655">#4655</a>.</li>
+</ul>
+ <ul>
+<li>Several typos in the report (page titles, in-page text, anchor ids) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4649">#4649</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4671">#4671</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4672">#4672</a>.</li>
+</ul>
+ <ul>
+<li>Polish across the report — odds and ends <a href="https://github.com/sitespeedio/sitespeed.io/pull/4643">#4643</a>.</li>
+</ul>
+ <ul>
+<li>Re-enable the Coach for <code>--safari.ios</code> runs (the legacy carve-out that disabled it is no longer needed) and cap the LCP / CLS / iteration screenshot heights so portrait iPhone captures don&#39;t dwarf the rest of the card <a href="https://github.com/sitespeedio/sitespeed.io/pull/4675">#4675</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li><code>coach-core</code> bumped from 9.0.0-beta.1 to 9.0.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4674">#4674</a>.</li>
+</ul>
+ <ul>
+<li><code>browsertime</code> bumped to 27.0.4 — Safari iOS video time-scale fix (default capture rate is now 60 fps so visualmetrics-derived metrics match the browser&#39;s wall-clock timeline) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4676">#4676</a>.</li>
+</ul>
+ <ul>
+<li><code>axe-core</code> bumped to 4.11.4 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4662">#4662</a>.</li>
+</ul>
+ <ul>
+<li>HAR waterfalls render via the dedicated <code>waterfall-tools</code> package instead of inline JS <a href="https://github.com/sitespeedio/sitespeed.io/pull/4614">#4614</a>.</li>
+</ul>
+ <ul>
+<li>Chartist (and its three plugins) dropped from the report assets — the visual-progress chart and the compare scatter plots are now inline SVG / DOM-positioned <a href="https://github.com/sitespeedio/sitespeed.io/pull/4654">#4654</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4655">#4655</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4656">#4656</a>.</li>
+</ul>
+ <ul>
+<li>Unify quicklinks across tabs around a consistent <code>&lt;small&gt;</code> + <code>|</code> separator with a fixed leading-pipe-spacing bug <a href="https://github.com/sitespeedio/sitespeed.io/pull/4664">#4664</a>.</li>
+</ul>
+ <ul>
+<li>CI hardened with <code>step-security/harden-runner</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4610">#4610</a>, action SHAs pinned <a href="https://github.com/sitespeedio/sitespeed.io/pull/4606">#4606</a>, CI sped up <a href="https://github.com/sitespeedio/sitespeed.io/pull/4617">#4617</a>. The apt-built SSH test container in the upload workflow replaced with <code>lscr.io/linuxserver/openssh-server</code> so the job stops flaking on Ubuntu mirror outages <a href="https://github.com/sitespeedio/sitespeed.io/pull/4661">#4661</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 39.5.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0</link>
@@ -131,18 +220,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Safer handling for broken URLs. This logs the actual root cause <a href="https://github.com/sitespeedio/sitespeed.io/pull/4573">#4573</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 39.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.0</guid>
-            <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgrade the Docker container: Chrome and Edge 143, Firefox 146 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4572">#4572</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
