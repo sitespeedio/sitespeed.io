@@ -5,6 +5,6 @@ We are incredibly grateful for the Open Source tools that form the foundation of
 
  * [Selenium](http://www.selenium.dev/)
  * [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics)
- * [PerfCascade](https://github.com/micmro/PerfCascade)
+ * [WaterfallTools](https://github.com/pmeenan/waterfall-tools)
  * [Skeleton](http://getskeleton.com)
  * [Simple crawler](https://github.com/cgiffard/node-simplecrawler)
