@@ -617,3 +617,93 @@ $lcp--render-delay: #7c3aed;
   border: 1px solid $color--border;
   margin-bottom: 8px;
 }
+
+//
+// Render-phase gap bar — stacked bar above the metrics tab that splits
+// the page-load timeline into the phases the developer can act on
+// (network, render-blocking, hero paint, tail). Segment widths are
+// proportional to ms; the legend underneath restates each segment with
+// the absolute ms and percentage so a too-narrow segment is still
+// readable.
+//
+.render-phase {
+  margin-bottom: 18px;
+}
+
+.render-phase-body {
+  padding: 12px 14px 14px 14px;
+}
+
+.render-phase-bar {
+  display: flex;
+  height: 32px;
+  width: 100%;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  border: 1px solid $color--border;
+  background: $color--surface;
+}
+
+.render-phase-segment {
+  background: var(--rp-color, $color--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 8px;
+  min-width: 0;
+  cursor: help;
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+.render-phase-segment-label {
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.render-phase-legend {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 16px;
+
+  li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  strong {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+  }
+}
+
+// Swatch is inline-aligned with the strong label so it stays on the
+// first line of text even when the meta text wraps. vertical-align:
+// middle puts the box at the line center; the negative margin-top is a
+// 1px optical nudge so the box reads as centred against capital letters.
+.render-phase-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-top: -2px;
+}
+
+.render-phase-legend-meta {
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+}
