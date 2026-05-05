@@ -133,5 +133,12 @@
   border-radius: $radius--md;
   border: 1px solid $color--border;
   max-width: 100%;
+  // Cap the height so portrait captures (emulated mobile, iOS device
+  // runs) don't stretch the summary band vertically. `width: auto`
+  // overrides the inline `width="100%"` HTML attribute so the browser
+  // scales the image proportionally to the height cap instead of
+  // distorting it.
+  max-height: 480px;
+  width: auto;
   height: auto;
 }

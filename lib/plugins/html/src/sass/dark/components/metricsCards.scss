@@ -374,6 +374,8 @@ $lcp--render-delay: #a78bfa;
 
 .lcp-screenshot {
   max-width: 100%;
+  max-height: 480px;
+  width: auto;
   height: auto;
   border-radius: $radius--sm;
   border: 1px solid $color--border;
@@ -542,6 +544,8 @@ $lcp--render-delay: #a78bfa;
 
 .cls-screenshot {
   max-width: 100%;
+  max-height: 480px;
+  width: auto;
   height: auto;
   border-radius: $radius--sm;
   border: 1px solid $color--border;
