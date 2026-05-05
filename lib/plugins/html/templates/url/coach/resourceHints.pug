@@ -1,11 +1,14 @@
 - let haveHints = false
+- let hintsTotal = 0
 each value, key in advice.info.resourceHints
   if value && value.length > 0
     - haveHints = true
+    - hintsTotal += value.length
 if haveHints
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title Resource hints
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Resource hints
+      span.listing-card-meta #{hintsTotal} #{hintsTotal === 1 ? 'hint' : 'hints'}
     .hints-list
       each value, key in advice.info.resourceHints
         if value && value.length > 0

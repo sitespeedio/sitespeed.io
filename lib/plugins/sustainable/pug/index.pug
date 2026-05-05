@@ -1,5 +1,5 @@
 small
-  | |
+  | |&nbsp;
   a(href='#sustainable-per-domain') Per domain
   | &nbsp;|&nbsp;
   a(href='#dirtiest-assets') Dirtiest assets
@@ -106,28 +106,37 @@ mixin co2BarRow(label, co2, transferSize, total, isGreen)
       span.sustainable-bar-size #{h.size.format(transferSize)}
 
 a#sustainable-per-domain
-h2 Per domain#{sectionLabel}
-.sustainable-bars
-  each data in sustainable.co2PerDomain
-    +co2BarRow(data.domain, data.co2, data.transferSize, co2PerPageView, sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
+.listing-card
+  .listing-card-header
+    h3.listing-card-title Per domain#{sectionLabel}
+    span.listing-card-meta #{sustainable.co2PerDomain.length} #{sustainable.co2PerDomain.length === 1 ? 'domain' : 'domains'}
+  .sustainable-bars
+    each data in sustainable.co2PerDomain
+      +co2BarRow(data.domain, data.co2, data.transferSize, co2PerPageView, sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
 
 a#dirtiest-assets
-h2 Dirtiest assets#{sectionLabel}
-.sustainable-bars
-  each resource in sustainable.dirtiestResources
-    .sustainable-bar-row
-      - const pct = co2PerPageView > 0 ? (resource.co2 / co2PerPageView * 100) : 0
-      .sustainable-bar-label
-        a.sustainable-bar-asset(href=resource.url)= h.shortAsset(resource.url)
-      .sustainable-bar-track
-        span.sustainable-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-      .sustainable-bar-meta
-        span.sustainable-bar-co2 #{h.co2(resource.co2)}
-        span.sustainable-bar-pct #{pct.toFixed(2)}%
-        span.sustainable-bar-size #{h.size.format(resource.transferSize)}
+.listing-card
+  .listing-card-header
+    h3.listing-card-title Dirtiest assets#{sectionLabel}
+    span.listing-card-meta #{sustainable.dirtiestResources.length} #{sustainable.dirtiestResources.length === 1 ? 'asset' : 'assets'}
+  .sustainable-bars
+    each resource in sustainable.dirtiestResources
+      .sustainable-bar-row
+        - const pct = co2PerPageView > 0 ? (resource.co2 / co2PerPageView * 100) : 0
+        .sustainable-bar-label
+          a.sustainable-bar-asset(href=resource.url)= h.shortAsset(resource.url)
+        .sustainable-bar-track
+          span.sustainable-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+        .sustainable-bar-meta
+          span.sustainable-bar-co2 #{h.co2(resource.co2)}
+          span.sustainable-bar-pct #{pct.toFixed(2)}%
+          span.sustainable-bar-size #{h.size.format(resource.transferSize)}
 
 a#sustainible-per-content-type
-h2 Per content type#{sectionLabel}
-.sustainable-bars
-  each t in sustainable.co2PerContentType
-    +co2BarRow(t.type, t.co2, t.transferSize, co2PerPageView, false)
+.listing-card
+  .listing-card-header
+    h3.listing-card-title Per content type#{sectionLabel}
+    span.listing-card-meta #{sustainable.co2PerContentType.length} #{sustainable.co2PerContentType.length === 1 ? 'type' : 'types'}
+  .sustainable-bars
+    each t in sustainable.co2PerContentType
+      +co2BarRow(t.type, t.co2, t.transferSize, co2PerPageView, false)
