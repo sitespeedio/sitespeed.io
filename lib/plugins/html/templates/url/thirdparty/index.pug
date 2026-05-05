@@ -66,64 +66,74 @@ if pageInfo.data.coach
     //- Categories as a horizontal bar list (replaces two tiny side-by-side
     //- tables). Each row shows requests share + tool count for the category.
     if tpHasCategories
-        h3 Categories
         - const tpCatEntries = Object.entries(thirdparty.category).filter(e => e[0] !== 'unknown').map(e => ({name: e[0], requests: (e[1] && e[1].requests ? e[1].requests.median : e[1])})).sort((a, b) => b.requests - a.requests)
         - const tpCatMax = tpCatEntries.length > 0 ? tpCatEntries[0].requests : 0
-        .tp-bars
-            each entry in tpCatEntries
-                - const pct = tpCatMax > 0 ? (entry.requests / tpCatMax * 100) : 0
-                - const toolCount = thirdparty.toolsByCategory && thirdparty.toolsByCategory[entry.name] ? Object.keys(thirdparty.toolsByCategory[entry.name]).length : 0
-                .tp-bar-row
-                    span.tp-bar-label #{entry.name}
-                    .tp-bar-track
-                        span.tp-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-                    span.tp-bar-value #{entry.requests} req · #{toolCount} #{toolCount === 1 ? 'tool' : 'tools'}
+        .listing-card
+            .listing-card-header
+                h3.listing-card-title Categories
+                span.listing-card-meta #{tpCatEntries.length} #{tpCatEntries.length === 1 ? 'category' : 'categories'}
+            .tp-bars
+                each entry in tpCatEntries
+                    - const pct = tpCatMax > 0 ? (entry.requests / tpCatMax * 100) : 0
+                    - const toolCount = thirdparty.toolsByCategory && thirdparty.toolsByCategory[entry.name] ? Object.keys(thirdparty.toolsByCategory[entry.name]).length : 0
+                    .tp-bar-row
+                        span.tp-bar-label #{entry.name}
+                        .tp-bar-track
+                            span.tp-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+                        span.tp-bar-value #{entry.requests} req · #{toolCount} #{toolCount === 1 ? 'tool' : 'tools'}
 
     //- Tools per category as <details> cards. Replaces the old
     //- toggleRow() JS with native disclosure: collapsed by default,
     //- expand to see the deduped tool list and the underlying URLs.
     if tpHasAssets
         a#third-party-tools
-        h3 Third party requests and tools
-        .tp-tools
-            each category in Object.keys(thirdparty.assets)
-                - const assets = thirdparty.assets[category]
-                - const seen = new Set()
-                - const tools = []
-                each asset in assets
-                    if !seen.has(asset.entity.name)
-                        - seen.add(asset.entity.name)
-                        - tools.push(asset.entity)
-                details.tp-tool-card
-                    summary.tp-tool-summary
-                        span.tp-tool-category #{category}
-                        span.tp-tool-meta #{assets.length} requests · #{tools.length} #{tools.length === 1 ? 'tool' : 'tools'}
-                    .tp-tool-body
-                        ul.tp-tool-entities
-                            each tool in tools
-                                li
-                                    if tool.homepage
-                                        a(href=tool.homepage) #{tool.name}
-                                    else
-                                        span #{tool.name}
-                        ul.tp-tool-urls
-                            each asset in assets
-                                li
-                                    a(href=asset.url) #{h.shortAsset(asset.url, true)}
-                                    span.tp-tool-urls-entity (#{asset.entity.name})
+        .listing-card
+            .listing-card-header
+                h3.listing-card-title Third party requests and tools
+                span.listing-card-meta #{Object.keys(thirdparty.assets).length} #{Object.keys(thirdparty.assets).length === 1 ? 'category' : 'categories'}
+            .tp-tools
+                each category in Object.keys(thirdparty.assets)
+                    - const assets = thirdparty.assets[category]
+                    - const seen = new Set()
+                    - const tools = []
+                    each asset in assets
+                        if !seen.has(asset.entity.name)
+                            - seen.add(asset.entity.name)
+                            - tools.push(asset.entity)
+                    details.tp-tool-card
+                        summary.tp-tool-summary
+                            span.tp-tool-category #{category}
+                            span.tp-tool-meta #{assets.length} requests · #{tools.length} #{tools.length === 1 ? 'tool' : 'tools'}
+                        .tp-tool-body
+                            ul.tp-tool-entities
+                                each tool in tools
+                                    li
+                                        if tool.homepage
+                                            a(href=tool.homepage) #{tool.name}
+                                        else
+                                            span #{tool.name}
+                            ul.tp-tool-urls
+                                each asset in assets
+                                    li
+                                        a(href=asset.url) #{h.shortAsset(asset.url, true)}
+                                        span.tp-tool-urls-entity (#{asset.entity.name})
 
     //- Unmatched third-party domains: short, scannable list rather than a
     //- full-width table.
     if tpUnmatched
-        h3 Unmatched third party domains
-        p Domains that didn't match any tool in&nbsp;
-            a(href='https://github.com/patrickhulce/third-party-web') Third party web
-            | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using
-            code --firstParty
-            | .
-        ul.tp-unmatched
-            each domain in thirdparty.possibileMissedThirdPartyDomains
-                li.tp-unmatched-item #{domain}
+        .listing-card
+            .listing-card-header
+                h3.listing-card-title Unmatched third party domains
+                span.listing-card-meta #{thirdparty.possibileMissedThirdPartyDomains.length} #{thirdparty.possibileMissedThirdPartyDomains.length === 1 ? 'domain' : 'domains'}
+            p.listing-card-help
+                | Domains that didn't match any tool in&nbsp;
+                a(href='https://github.com/patrickhulce/third-party-web') Third party web
+                | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using&nbsp;
+                code --firstParty
+                | .
+            ul.tp-unmatched
+                each domain in thirdparty.possibileMissedThirdPartyDomains
+                    li.tp-unmatched-item #{domain}
 
     include ./thirdPartyCookies.pug
 
