@@ -7,6 +7,32 @@
 // one row per metric.
 //
 
+// Tiny dashed-border hint shown where the "First Contentful Paint info"
+// card would appear if the run had a Chrome timeline trace / Firefox
+// Gecko profile. Tells the reader the missing metrics exist and which
+// flag enables them, without being loud enough to compete with the real
+// metric cards above it.
+.metrics-cpu-hint {
+  margin: 0 0 18px 0;
+  padding: 10px 14px;
+  border-radius: $radius--md;
+  border: 1px dashed $color--border-strong;
+  background: $color--surface-card;
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  code {
+    font-family: $font--mono;
+    font-size: 0.85em;
+    background: $color--surface;
+    border: 1px solid $color--border;
+    border-radius: $radius--sm;
+    padding: 1px 6px;
+    color: $color--text;
+  }
+}
+
 .metric-tiles {
   margin: 0;
   padding: 8px 14px 14px 14px;
