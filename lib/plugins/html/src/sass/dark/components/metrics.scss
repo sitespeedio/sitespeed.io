@@ -196,6 +196,42 @@
   transform: translateX(-50%);
 }
 
+//
+// Long-task lane (dark) — see light theme for full notes.
+//
+.vp-longtask-lane {
+  position: relative;
+  height: 16px;
+  margin: 22px 24px 0 24px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+}
+
+.vp-longtask-lane-label {
+  position: absolute;
+  left: 0;
+  top: -16px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+}
+
+.vp-longtask {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  border-radius: 1px;
+  pointer-events: auto;
+  cursor: help;
+
+  &.vp-longtask--minor  { background: #fcd34d; }
+  &.vp-longtask--major  { background: #d97706; }
+  &.vp-longtask--severe { background: $color--error; }
+}
+
 .et-list {
   border-top: 1px solid $color--border;
   padding: 12px 14px 14px 14px;

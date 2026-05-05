@@ -35,6 +35,12 @@ if vpData.length > 0
 
   - const vpTicks = Array.from({length: 6}, (_, i) => ({ pct: i * 20, sec: (i * 20 / 100 * vpMax) / 1000 }))
 
+  //- Long Task entries — collected by Browsertime via the Long Task API
+  //- on Chrome/Edge. Each task has startTime + duration in ms (relative
+  //- to navigation start), so they slot straight onto the same timeline
+  //- as the visual-progress curve.
+  - const vpLongTasks = (browsertime && browsertime.pageinfo && browsertime.pageinfo.longTask) || []
+
   .vp-chart
     if vpThumbs.length > 0
       .vp-thumbs
@@ -53,6 +59,14 @@ if vpData.length > 0
         .vp-marker(style='left: ' + mLeft + '%; --vp-marker-color: ' + m.color + ';')
           span.vp-marker-label #{m.label}
           span.vp-marker-time #{(m.value / 1000).toFixed(2)}s
+    if vpLongTasks.length > 0
+      .vp-longtask-lane(title=vpLongTasks.length + ' long tasks (≥50ms blocking the main thread)')
+        span.vp-longtask-lane-label Long tasks
+        each task in vpLongTasks
+          - const ltLeft = (task.startTime / vpMax * 100).toFixed(2)
+          - const ltWidth = Math.max(0.4, task.duration / vpMax * 100).toFixed(2)
+          - const ltClass = task.duration >= 250 ? 'vp-longtask--severe' : (task.duration >= 100 ? 'vp-longtask--major' : 'vp-longtask--minor')
+          .vp-longtask(class=ltClass, style='left: ' + ltLeft + '%; width: ' + ltWidth + '%;', title='Long task ' + task.duration.toFixed(0) + ' ms at ' + task.startTime.toFixed(0) + ' ms (' + (task.attribution && task.attribution[0] ? task.attribution[0].containerType : 'unknown') + ')')
     .vp-axis
       each tick in vpTicks
         span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
