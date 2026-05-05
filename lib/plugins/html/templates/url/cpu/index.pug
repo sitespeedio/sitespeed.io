@@ -2,26 +2,23 @@
 - const cpu = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run.cpu
 
 if cpu
-  //- Quicklinks to the named sections lower on this tab — chip-style
-  //- list replaces the old `| Long tasks | First Input Delay | ...`
-  //- separator strip so the entry point matches the rest of the
-  //- modernised report.
-  ul.listing-quicklinks
+  small
+    | |&nbsp;
     if cpu.longTasks
-      li
-        a(href='#long-tasks') Long tasks
+      a(href='#long-tasks') Long tasks
+      | &nbsp;|&nbsp;
     if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
-      li
-        a(href='#first-input-delay') First Input Delay
+      a(href='#first-input-delay') First Input Delay
+      | &nbsp;|&nbsp;
     if cpu.categories
-      li
-        a(href='#cpu-time-spent') CPU time spent
+      a(href='#cpu-time-spent') CPU time spent
+      | &nbsp;|&nbsp;
     if cpu.urls && cpu.urls.length > 0
-      li
-        a(href='#cpu-time-spent-per-request') Per request
+      a(href='#cpu-time-spent-per-request') Per request
+      | &nbsp;|&nbsp;
     if pageInfo.data.thirdparty
-      li
-        a(href='#cpu-time-per-tool') Per tool
+      a(href='#cpu-time-per-tool') Per tool
+      | &nbsp;|&nbsp;
 
 a#cpu
 h2 CPU
