@@ -22,10 +22,10 @@ p.small
   |  to help Wappalyzer find more information about technologies used.
 
 if advice.info.technology && advice.info.technology.length > 0
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title Detected technologies
-      span.iter-group-count #{advice.info.technology.length}
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Detected technologies
+      span.listing-card-meta #{advice.info.technology.length} #{advice.info.technology.length === 1 ? 'technology' : 'technologies'}
     ul.tech-list
       each tech in advice.info.technology
         li.tech-card
@@ -45,10 +45,13 @@ else
 
 if advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0
   - const tpToolCount = Object.values(advice.info.thirdparty.toolsByCategory).reduce((s, tools) => s + Object.keys(tools).length, 0)
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title Third-party tools
-      span.iter-group-count #{tpToolCount}
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Third-party tools
+      span.listing-card-meta #{tpToolCount} #{tpToolCount === 1 ? 'tool' : 'tools'}
+    p.listing-card-help Data collected using&nbsp;
+      a(href='https://github.com/patrickhulce/third-party-web') Third Party Web
+      | &nbsp;version #{thirdPartyWebVersion}.
     .tp-tool-categories
       each tools, category in advice.info.thirdparty.toolsByCategory
         .tp-tool-cat
@@ -56,7 +59,3 @@ if advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory)
           ul.tp-tool-cat-list
             each requests, tool in tools
               li #{tool}
-  p.small Data collected using
-    |
-    a(href='https://github.com/patrickhulce/third-party-web') Third Party Web
-    | &nbsp;version #{thirdPartyWebVersion}.
