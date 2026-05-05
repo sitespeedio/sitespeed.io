@@ -74,6 +74,7 @@ if browsertime
   - gwvInpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
   - gwvTtfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
   - gwvTbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const wvStatusLabel = (c) => c === 'ok' ? 'Good' : (c === 'warning' ? 'Needs improvement' : (c === 'error' ? 'Poor' : ''))
 
   //- 1. Visual Metrics — the milestones list and the visual-progress chart.
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
@@ -85,7 +86,7 @@ if browsertime
         details.iter-group(open)
           summary.iter-group-summary
             span.iter-group-title Visual milestones
-          .metric-tiles
+          .metric-tiles.metric-tiles--lg
             .metric-tile
               span.metric-tile-label
                 a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
@@ -155,57 +156,35 @@ if browsertime
             span.iter-group-title Visual progress
           include ./visualProgress.pug
 
-  //- 2. Google Web Vitals — headline scoreboard with threshold-coloured
-  //- pills, sits right under the visual progress so the eye lands on the
-  //- numbers that matter most before the deep-dive cards.
+  //- 2. Web Vitals hero — sits below visual metrics so the reader sees
+  //- the "what the user actually saw" filmstrip first, then the headline
+  //- scoreboard, then the deep-dive cards for each Vital.
   if googleWebVitals
     a#google-web-vitals
-    details.iter-group.metrics-vitals(open)
-      summary.iter-group-summary
-        span.iter-group-title Google Web Vitals
-      .metric-tiles
-        if timings.ttfb
-          .metric-tile
-            span.metric-tile-label
-              a(href=baseHelpURL + 'ttfb') Time to first byte (TTFB)
-            span.metric-tile-value
-              span.label(class=gwvTtfbClass(timings.ttfb)) #{h.time.ms(timings.ttfb.toFixed(0))}
-        if timings.paintTiming && timings.paintTiming['first-contentful-paint']
-          .metric-tile
-            span.metric-tile-label
-              a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (FCP)
-            span.metric-tile-value
-              span.label(class=gwvFcpClass(timings.paintTiming['first-contentful-paint'])) #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
-        if timings.largestContentfulPaint
-          - const lcpVal = Math.max(timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.loadTime)
-          .metric-tile
-            span.metric-tile-label
-              a(href='#largestContentfulPaint') Largest Contentful Paint (LCP)
-            span.metric-tile-value
-              span.label(class=gwvLcpClass(lcpVal)) #{h.time.ms(lcpVal)}
-        if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
-          .metric-tile
-            span.metric-tile-label
-              a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
-            span.metric-tile-value
-              span.label(class=gwvClsClass(browsertime.pageinfo.cumulativeLayoutShift)) #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
-        if timings.interactionToNextPaint
-          .metric-tile
-            span.metric-tile-label
-              a(href='#interactionToNextPaint') Interaction to next paint (INP)
-            span.metric-tile-value
-              span.label(class=gwvInpClass(timings.interactionToNextPaint)) #{h.time.ms(timings.interactionToNextPaint)}
-        if timings.firstInput !== undefined
-          .metric-tile
-            span.metric-tile-label
-              a(href=baseHelpURL + 'firstInputDelay') First Input Delay (FID)
-            span.metric-tile-value #{h.time.ms(timings.firstInput.delay)}
-        else if cpu && cpu.longTasks
-          .metric-tile
-            span.metric-tile-label
-              a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
-            span.metric-tile-value
-              span.label(class=gwvTbtClass(cpu.longTasks.totalBlockingTime)) #{h.time.ms(cpu.longTasks.totalBlockingTime)}
+    - const wvTiles = []
+    - if (timings.ttfb) wvTiles.push({short: 'TTFB', label: 'Time to first byte', formatted: h.time.ms(timings.ttfb.toFixed ? timings.ttfb.toFixed(0) : timings.ttfb), cls: gwvTtfbClass(timings.ttfb), href: baseHelpURL + 'ttfb'})
+    - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { const v = timings.paintTiming['first-contentful-paint']; wvTiles.push({short: 'FCP', label: 'First Contentful Paint', formatted: h.time.ms(v), cls: gwvFcpClass(v), href: baseHelpURL + 'firstContentfulPaint'}) }
+    - if (timings.largestContentfulPaint) { const v = Math.max(timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.renderTime); wvTiles.push({short: 'LCP', label: 'Largest Contentful Paint', formatted: h.time.ms(v), cls: gwvLcpClass(v), href: '#largestContentfulPaint'}) }
+    - if (browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined) { const v = browsertime.pageinfo.cumulativeLayoutShift; wvTiles.push({short: 'CLS', label: 'Cumulative Layout Shift', formatted: v.toFixed(2), cls: gwvClsClass(v), href: '#cumulativeLayoutShift'}) }
+    - if (timings.interactionToNextPaint) { const v = timings.interactionToNextPaint; wvTiles.push({short: 'INP', label: 'Interaction to next paint', formatted: h.time.ms(v), cls: gwvInpClass(v), href: '#interactionToNextPaint'}) }
+    - else if (cpu && cpu.longTasks) { const v = cpu.longTasks.totalBlockingTime; wvTiles.push({short: 'TBT', label: 'Total Blocking Time', formatted: h.time.ms(v), cls: gwvTbtClass(v), href: baseHelpURL + 'totalBlockingTime'}) }
+    .listing-card.web-vitals-hero
+      .listing-card-header
+        h3.listing-card-title Google Web Vitals
+        if medianRun
+          span.listing-card-meta from run #{medianRun.runIndex}
+      .web-vitals-hero-grid
+        each tile in wvTiles
+          .web-vital(class=tile.cls ? 'web-vital--' + tile.cls : '')
+            span.web-vital-dot
+            .web-vital-body
+              .web-vital-row
+                span.web-vital-value #{tile.formatted}
+                span.web-vital-short #{tile.short}
+              .web-vital-name
+                a(href=tile.href) #{tile.label}
+              if tile.cls
+                .web-vital-status #{wvStatusLabel(tile.cls)}
 
   //- 3-5. The three "interactive" Web Vitals each get their own deep-dive
   //- card from a sub-template (LCP phase breakdown, CLS shift list, INP
