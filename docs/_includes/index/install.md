@@ -28,3 +28,13 @@ You can throttle the connection ([connectivity guide]({{site.baseurl}}/documenta
 ~~~bash
 sitespeed.io https://www.sitespeed.io/ -b chrome --android
 ~~~
+
+You can also test on Safari on iOS:
+
+~~~bash
+brew install ios-webkit-debug-proxy
+brew install ffmpeg
+sitespeed.io -b safari --safari.ios --video --visualMetrics https://www.sitespeed.io/
+~~~
+
+See the [mobile-phones guide]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/#test-on-ios) for the full setup.
