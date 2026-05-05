@@ -1,7 +1,7 @@
 ## What does it cost?
 * * *
 
-[<img src="{{site.baseurl}}/img/public.png" class="pull-left img-big" alt="The power of sitespeed.io" width="150" height="150" alt="sitespeed.io Public Enemy logo">]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost)
+<a href="{{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost"><picture><source type="image/webp" srcset="{{site.baseurl}}/img/public.webp"><img src="{{site.baseurl}}/img/public.png" class="pull-left img-big" alt="sitespeed.io Public Enemy logo" width="150" height="150" loading="lazy" decoding="async"></picture></a>
 
 sitespeed.io itself is free. The only cost is the box you run it on and somewhere to store the results.
 

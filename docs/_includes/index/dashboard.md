@@ -1,6 +1,6 @@
 ## Monitor your site 
 * * *
-[<img src="{{site.baseurl}}/img/dashboard-front.png" class="pull-left img-big" alt="Performance dashboard" width="500" height="227">]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/)
+<a href="{{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/"><picture><source type="image/webp" srcset="{{site.baseurl}}/img/dashboard-front.webp"><img src="{{site.baseurl}}/img/dashboard-front.png" class="pull-left img-big" alt="Performance dashboard" width="500" height="227" loading="lazy" decoding="async"></picture></a>
 
 Run sitespeed.io on a schedule, ship the metrics to Graphite or InfluxDB, and watch your site's performance in Grafana. We have a [Docker Compose setup](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) that gets you a full stack — sitespeed.io, Graphite, Grafana and a set of [ready-made dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) — running in about five minutes.
 

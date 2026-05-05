@@ -62,11 +62,11 @@ layout: compress
 	<script src="{{ "/js/prism-1.15.js" | prepend: site.baseurl }}" defer></script>
 </head>
 
-<body>
+<body class="startpage">
 	{% include header.html %}
 	<main role="main">
-		<div class="grid">
-			<div class="col-1-1">
+		<div class="white">
+			<div class="grid">
 				<div class="col-1-2">
 					{% capture logo %}{% include index/logo.md %}{% endcapture %}
 					{{ logo | markdownify }}

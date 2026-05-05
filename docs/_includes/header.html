@@ -1,12 +1,12 @@
 <nav role="navigation">
   <div class="darkblue nav">
     <div class="grid">
-      <div class="col-1-1">
-        <div class="logo">
-          <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"
-              width="162" height="50" elementtiming="header-logo" /></a>
-        </div>
-        <ul>
+      <div class="logo">
+        <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" elementtiming="header-logo" /></a>
+      </div>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+      <ul>
           <li>
             <a href="{{site.baseurl}}/" {% if page.nav=='start' %}class="active" {% endif %}>Start</a>
           </li>
@@ -28,19 +28,12 @@
             <a href="{{site.baseurl}}/support/" {% if page.nav=='support' %}class="active" {% endif %}>Support</a>
           </li>
           <li>
-            <a href="{{site.baseurl}}/examples/" {% if page.nav=='examples' %}class="active" {% endif %}>Examples</a>
-          </li>
-          <li>
             <a href="{{site.baseurl}}/blog/" {% if page.nav=='blog' %}class="active" {% endif %}>Blog</a>
-          </li>
-          <li>
-            <a href="{{site.baseurl}}/video/" {% if page.nav=='video' %}class="active" {% endif %}>Videos</a>
           </li>
           <li>
             <a href="{{site.baseurl}}/search/" {% if page.nav=='search' %}class="active" {% endif %}>Search</a>
           </li>
-        </ul>
-      </div>
+      </ul>
     </div>
   </div>
 </nav>
