@@ -21,7 +21,7 @@ $sustainable--third-party: $color--text-muted;
 
 .sustainable-kpis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
   margin: 0 0 18px 0;
 }

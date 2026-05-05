@@ -209,6 +209,13 @@ $loaf--style-layout: #a78bfa;
   margin: 0;
   font-size: 0.95rem;
 
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+
+    dt { margin-top: 4px; }
+  }
+
   dt {
     color: $color--text-muted;
     font-weight: $font--weight--medium;
@@ -339,6 +346,13 @@ $lcp--render-delay: #a78bfa;
   margin: 0 0 8px 0;
   font-size: 0.95rem;
 
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+
+    dt { margin-top: 4px; }
+  }
+
   dt { color: $color--text-muted; font-weight: $font--weight--medium; }
   dd { margin: 0; color: $color--text; word-break: break-word; }
   code { font-size: 0.85em; }
@@ -377,6 +391,11 @@ $lcp--render-delay: #a78bfa;
   margin-bottom: 8px;
   object-fit: contain;
   background: $color--surface;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+    max-height: 220px;
+  }
 }
 
 //
