@@ -80,59 +80,39 @@ function addItemToFeed(feed, item, tool) {
   });
 }
 
+// Grafana's news panel sanitizes the description: <h3>, <ul>, <li>, <a> are
+// stripped/flattened, so block structure and links disappear. We render with
+// <strong> + <br> (which survive sanitization) and inline the PR number as
+// plain text instead of an <a> link.
+function bulletAsHTML(md) {
+  return marked
+    .parse(md)
+    .replace(/<\/?(ul|li)>/g, '')
+    .replace(/<a [^>]*>([^<]+)<\/a>/g, '$1')
+    .trim();
+}
+
 function getResultAsHTML(result) {
-  let allData = '';
-  if (result.parsed) {
-    if (result.parsed.Added) {
-      allData += `<h3>Added</h3>\n`;
-      for (let added of result.parsed.Added) {
-        allData += ' ' + marked.parse(added);
-      }
-    }
-    if (result.parsed.Fixed) {
-      allData += `<h3>Fixed</h3>\n`;
-      for (let fixed of result.parsed.Fixed) {
-        allData += ' ' + marked.parse(fixed);
-      }
-    }
+  if (!result.parsed) return '';
 
-    if (result.parsed.Changed) {
-      allData += `<h3>Changed</h3>\n`;
-      for (let changed of result.parsed.Changed) {
-        allData += ' ' + marked.parse(changed);
-      }
-    }
+  const sections = [
+    ['Added', result.parsed.Added],
+    ['Fixed', result.parsed.Fixed],
+    ['Changed', result.parsed.Changed],
+    ['Breaking changes', result.parsed['Breaking changes']],
+    ['Deprecated', result.parsed['Deprecated']],
+    ['Removed', result.parsed['Removed']],
+    ['Security', result.parsed['Security']]
+  ];
 
-    if (result.parsed['Breaking changes']) {
-      allData += `<h3>Breaking changes</h3>\n`;
-      for (let breaking of result.parsed['Breaking changes']) {
-        allData += ' ' + marked.parse(breaking);
-      }
-    }
-
-    if (result.parsed['Deprecated']) {
-      allData += `<h3>Deprecated</h3>\n`;
-      for (let deprecated of result.parsed['Deprecated']) {
-        allData += ' ' + marked.parse(deprecated);
-      }
-    }
-
-    if (result.parsed['Removed']) {
-      allData += `<h3>Removed</h3>\n`;
-      for (let removed of result.parsed['Removed']) {
-        allData += ' ' + marked.parse(removed);
-      }
-    }
-
-    if (result.parsed['Security']) {
-      allData += `<h3>Security</h3>\n`;
-      for (let security of result.parsed['Security']) {
-        allData += ' ' + marked.parse(security);
-      }
-    }
-
-    return allData;
-  }
+  return sections
+    .filter(([, items]) => items && items.length > 0)
+    .map(
+      ([title, items]) =>
+        `<strong>${title}</strong><br>\n` +
+        items.map(item => `- ${bulletAsHTML(item)}<br>\n`).join('')
+    )
+    .join('<br>\n');
 }
 
 const getContent = async tool => {

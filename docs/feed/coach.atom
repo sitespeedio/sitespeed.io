@@ -21,10 +21,8 @@
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0"/>
         <updated>2021-12-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to use latest Coach core and Browertime.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Updated to use latest Coach core and Browertime.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -36,22 +34,12 @@
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.4.3</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.4.3"/>
         <updated>2021-10-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to use latest Browsertime with latest Chromedriver</li>
-</ul>
- <ul>
-<li>Updated Docker container to use latest Chrome/Firefox</li>
-</ul>
- <ul>
-<li>Use Browsertime 11.0.0</li>
-</ul>
- <ul>
-<li>Use Coach-code 6.0</li>
-</ul>
- <ul>
-<li>Use latest Firefox and Chrome</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Updated to use latest Browsertime with latest Chromedriver<br>
+- Updated Docker container to use latest Chrome/Firefox<br>
+- Use Browsertime 11.0.0<br>
+- Use Coach-code 6.0<br>
+- Use latest Firefox and Chrome<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -63,10 +51,8 @@
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0"/>
         <updated>2020-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Changed</h3>
- <ul>
-<li>We moved out the core functionality to <a href="https://github.com/sitespeedio/coach-core">coach-core</a>. This makes it easy to use the Coach in your own code.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Changed</strong><br>
+- We moved out the core functionality to coach-core. This makes it easy to use the Coach in your own code.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -88,10 +74,8 @@
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.1</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.1"/>
         <updated>2020-02-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Browsertime 8.0.1</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Upgraded to Browsertime 8.0.1<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

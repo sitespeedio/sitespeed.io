@@ -4,7 +4,7 @@
         <title>throttle release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of throttle</description>
-        <lastBuildDate>Wed, 25 Mar 2026 03:47:07 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 06 May 2026 17:10:26 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,20 +16,13 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0</guid>
             <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added IPv6 throttling support on macOS <a href="https://github.com/sitespeedio/throttle/pull/94">#94</a> and Linux <a href="https://github.com/sitespeedio/throttle/pull/100">#100</a>.</li>
-</ul>
- <ul>
-<li>Apply packet loss also to the upload interface <a href="https://github.com/sitespeedio/throttle/pull/69">#69</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>More robust detection of the default network interface on Linux, falling back to global IP address lookup when the default route is unavailable <a href="https://github.com/sitespeedio/throttle/pull/104">#104</a>.</li>
-</ul>
- <ul>
-<li>Fixed README profile values for DSL and Edge to match actual code, and fixed Node.js API examples to use named imports.</li>
-</ul>
+            <description><![CDATA[<strong>Added</strong><br>
+- Added IPv6 throttling support on macOS #94 and Linux #100.<br>
+- Apply packet loss also to the upload interface #69.<br>
+<br>
+<strong>Fixed</strong><br>
+- More robust detection of the default network interface on Linux, falling back to global IP address lookup when the default route is unavailable #104.<br>
+- Fixed README profile values for DSL and Edge to match actual code, and fixed Node.js API examples to use named imports.<br>
 ]]></description>
         </item>
         <item>
@@ -37,10 +30,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</guid>
             <pubDate>Mon, 26 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Smarter ifb0 handling on Linux <a href="https://github.com/sitespeedio/throttle/pull/93">#93</a>.</li>
-</ul>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Smarter ifb0 handling on Linux #93.<br>
 ]]></description>
         </item>
         <item>
@@ -48,10 +39,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</guid>
             <pubDate>Sat, 02 Jul 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Changed</h3>
- <ul>
-<li>Dropped support for NodeJS 12 since it&#39;s unmaintaned.</li>
-</ul>
+            <description><![CDATA[<strong>Changed</strong><br>
+- Dropped support for NodeJS 12 since it&#39;s unmaintaned.<br>
 ]]></description>
         </item>
         <item>
@@ -59,10 +48,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</guid>
             <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed <code>--version</code> so it actually shows the version again <a href="https://github.com/sitespeedio/throttle/pull/75">#75</a>.</li>
-</ul>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Fixed <code>--version</code> so it actually shows the version again #75.<br>
 ]]></description>
         </item>
         <item>
@@ -70,10 +57,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2</guid>
             <pubDate>Tue, 21 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The E6 Module convertion in 4.0 broke version check (<code>--version</code>) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
-</ul>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- The E6 Module convertion in 4.0 broke version check (<code>--version</code>) making installs failed. PR #74 is a temporaty fix for that.<br>
 ]]></description>
         </item>
         <item>
@@ -81,10 +66,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</guid>
             <pubDate>Fri, 17 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
-</ul>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.<br>
 ]]></description>
         </item>
         <item>
@@ -92,14 +75,11 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</guid>
             <pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dev dependencies to latest versions <a href="https://github.com/sitespeedio/throttle/pull/68">#68</a></li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>. You can read <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Sindre Sorhus ESM package guide</a>.</li>
-</ul>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Updated dev dependencies to latest versions #68<br>
+<br>
+<strong>Changed</strong><br>
+- Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 #67. You can read Sindre Sorhus ESM package guide.<br>
 ]]></description>
         </item>
         <item>
@@ -107,10 +87,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</guid>
             <pubDate>Tue, 19 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated minimist dependency.</li>
-</ul>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Updated minimist dependency.<br>
 ]]></description>
         </item>
         <item>
@@ -118,10 +96,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
             <pubDate>Sun, 26 Dec 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.</li>
-</ul>
+            <description><![CDATA[<strong>Added</strong><br>
+- Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.<br>
 ]]></description>
         </item>
         <item>
@@ -129,10 +105,8 @@
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
             <pubDate>Mon, 09 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Changed</h3>
- <ul>
-<li>When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.</li>
-</ul>
+            <description><![CDATA[<strong>Changed</strong><br>
+- When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.<br>
 ]]></description>
         </item>
     </channel>

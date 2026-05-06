@@ -16,10 +16,8 @@
             <link>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.2.0</link>
             <guid>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.2.0</guid>
             <pubDate>Sat, 11 Jan 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.</li>
-</ul>
+            <description><![CDATA[<strong>Added</strong><br>
+- Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.<br>
 ]]></description>
         </item>
     </channel>
