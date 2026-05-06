@@ -75,11 +75,390 @@ script(type='text/javascript').
       }
     };
 
+    // Per-request detail panel — opens when a request is clicked on
+    // the canvas. Populated lazily so the markup work only happens
+    // when the user actually opens a request.
+    const detailPanel = document.getElementById('wt-detail-panel');
+    const detailBackdrop = document.getElementById('wt-detail-backdrop');
+    const detailUrl = document.getElementById('wt-detail-url');
+    const detailStatus = document.getElementById('wt-detail-status');
+    const detailMethod = document.getElementById('wt-detail-method');
+    const detailClose = document.getElementById('wt-detail-close');
+    const detailCopyUrl = document.getElementById('wt-detail-copy-url');
+    const detailTabs = detailPanel ? detailPanel.querySelectorAll('.wt-detail-tab') : [];
+    const detailBodies = detailPanel ? detailPanel.querySelectorAll('.wt-detail-body') : [];
+
+    // Copy-button helper — writes text to the clipboard and gives a
+    // brief "Copied!" affordance back on the button. Falls back to
+    // execCommand on older browsers / non-secure contexts.
+    const copyToClipboard = async (text, btn) => {
+      const original = btn ? btn.textContent : null;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        if (btn) {
+          btn.textContent = 'Copied!';
+          btn.dataset.state = 'copied';
+          setTimeout(() => {
+            if (btn.dataset.state === 'copied') {
+              btn.textContent = original;
+              delete btn.dataset.state;
+            }
+          }, 1200);
+        }
+      } catch (e) {
+        if (btn) { btn.textContent = 'Copy failed'; setTimeout(() => { btn.textContent = original; }, 1200); }
+      }
+    };
+
+    const escAttr = s => String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    const fmtBytes = n => {
+      if (n == null || !isFinite(n)) return '—';
+      if (n < 1024) return n + ' B';
+      if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+      return (n / 1024 / 1024).toFixed(2) + ' MB';
+    };
+    const fmtMs = n => (n == null || n < 0) ? '—'
+      : (n < 1000 ? Math.round(n) + ' ms' : (n / 1000).toFixed(2) + ' s');
+
+    // Decode the request body. waterfall-tools' loader hoists the HAR
+    // `response.content.text` field onto the top-level `req.body`, with
+    // the encoding on `req.bodyEncoding` — so we look there first and
+    // only fall back to `response.content.text` for raw HARs.
+    const decodeBody = req => {
+      const response = req.response || {};
+      const content = response.content || {};
+      const mimeType = (req.bodyMime || content.mimeType || req._content_type || '').toLowerCase();
+      let raw = (typeof req.body === 'string') ? req.body : null;
+      let encoding = req.bodyEncoding || null;
+      if (raw == null && typeof content.text === 'string') {
+        raw = content.text;
+        encoding = content.encoding || null;
+      }
+      if (raw == null || raw === '') return null;
+      if (encoding === 'base64') {
+        if (mimeType.startsWith('image/')) {
+          return { kind: 'image', dataUrl: 'data:' + mimeType + ';base64,' + raw, mimeType };
+        }
+        try {
+          const bin = atob(raw);
+          // base64-encoded text bodies (Browsertime + Chrome encode as
+          // base64 unconditionally for binary safety) — decode as UTF-8.
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          const text = new TextDecoder('utf-8').decode(bytes);
+          return { kind: 'text', text, mimeType };
+        } catch (e) {
+          return { kind: 'binary', size: raw.length, mimeType };
+        }
+      }
+      return { kind: 'text', text: raw, mimeType };
+    };
+
+    const populateDetail = req => {
+      if (!detailPanel || !req) return;
+      const url = req.url || req._URL || req._full_url || '';
+      const method = (req.method || (req.request && req.request.method) || 'GET').toUpperCase();
+      const response = req.response || {};
+      const status = response.status || req._status || 0;
+      detailUrl.textContent = url;
+      detailStatus.textContent = status || '—';
+      detailStatus.dataset.status = String(status || '');
+      detailMethod.textContent = method;
+
+      // General tab — top-line attributes the developer scans for first.
+      const general = document.getElementById('wt-detail-body-general');
+      const content = response.content || {};
+      const responseSize = content.size || response.bodySize || req._objectSize || 0;
+      const transferSize = response._transferSize || req._bytesIn || req._bytes_in || 0;
+      const protocol = response.httpVersion || req._protocol || req.httpVersion || '—';
+      const priority = req._priority || '—';
+      const initiator = req._initiator || (req._initiator_detail) || '—';
+      general.innerHTML = '<table>'
+        + '<tr><th>Status</th><td>' + escAttr(status) + ' ' + escAttr(response.statusText || '') + '</td></tr>'
+        + '<tr><th>Method</th><td>' + escAttr(method) + '</td></tr>'
+        + '<tr><th>URL</th><td class="url">' + escAttr(url) + '</td></tr>'
+        + '<tr><th>MIME type</th><td>' + escAttr(content.mimeType || '—') + '</td></tr>'
+        + '<tr><th>Response body</th><td>' + escAttr(fmtBytes(responseSize)) + '</td></tr>'
+        + (transferSize ? '<tr><th>Transferred</th><td>' + escAttr(fmtBytes(transferSize)) + '</td></tr>' : '')
+        + '<tr><th>Protocol</th><td>' + escAttr(protocol) + '</td></tr>'
+        + '<tr><th>Priority</th><td>' + escAttr(priority) + '</td></tr>'
+        + (initiator !== '—' ? '<tr><th>Initiated by</th><td>' + escAttr(initiator) + '</td></tr>' : '')
+        + '</table>';
+
+      // Headers tab — request + response sections.
+      const headersEl = document.getElementById('wt-detail-body-headers');
+      const reqHeaders = (req.request && req.request.headers) || req.headers || [];
+      const resHeaders = response.headers || [];
+      const renderHeaders = arr => {
+        if (!arr || !arr.length) return '<p class="wt-detail-empty">No headers</p>';
+        return '<table>' + arr.map(h => {
+          const name = (h.name || h.key || '');
+          const value = (h.value != null ? h.value : '');
+          return '<tr><th>' + escAttr(name) + '</th><td>' + escAttr(value) + '</td></tr>';
+        }).join('') + '</table>';
+      };
+      headersEl.innerHTML = ''
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Request</div>' + renderHeaders(reqHeaders) + '</div>'
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Response</div>' + renderHeaders(resHeaders) + '</div>';
+
+      // Cookies tab — HAR has structured `cookies` arrays per direction;
+      // fall back to splitting raw `Cookie` / `Set-Cookie` headers when
+      // a producer didn't fill them in.
+      const cookiesEl = document.getElementById('wt-detail-body-cookies');
+      const headerValue = (arr, name) => {
+        if (!arr) return null;
+        const target = name.toLowerCase();
+        for (const h of arr) if ((h.name || h.key || '').toLowerCase() === target) return h.value;
+        return null;
+      };
+      const headerValues = (arr, name) => {
+        if (!arr) return [];
+        const target = name.toLowerCase();
+        const values = [];
+        for (const h of arr) if ((h.name || h.key || '').toLowerCase() === target) values.push(h.value);
+        return values;
+      };
+      // Parse a raw `Cookie:` request header into [{name,value}].
+      const parseCookieHeader = raw => {
+        if (!raw) return [];
+        return raw.split(/;\s*/).map(p => {
+          const eq = p.indexOf('=');
+          if (eq < 0) return null;
+          return { name: p.slice(0, eq).trim(), value: p.slice(eq + 1).trim() };
+        }).filter(Boolean);
+      };
+      // Parse a raw `Set-Cookie:` response header into a structured cookie.
+      // Note: HAR only carries individual Set-Cookie values (each as its
+      // own header entry), so this never has to handle the multi-cookie
+      // comma split that's tricky in a raw stream.
+      const parseSetCookie = raw => {
+        if (!raw) return null;
+        const parts = raw.split(/;\s*/);
+        const first = parts.shift();
+        if (!first) return null;
+        const eq = first.indexOf('=');
+        if (eq < 0) return null;
+        const cookie = { name: first.slice(0, eq).trim(), value: first.slice(eq + 1).trim() };
+        for (const p of parts) {
+          const [k, v = ''] = p.split('=');
+          const key = k.trim().toLowerCase();
+          if (key === 'domain') cookie.domain = v.trim();
+          else if (key === 'path') cookie.path = v.trim();
+          else if (key === 'expires') cookie.expires = v.trim();
+          else if (key === 'max-age') cookie.maxAge = v.trim();
+          else if (key === 'samesite') cookie.sameSite = v.trim();
+          else if (key === 'secure') cookie.secure = true;
+          else if (key === 'httponly') cookie.httpOnly = true;
+        }
+        return cookie;
+      };
+      let reqCookies = (req.request && req.request.cookies) || req.cookies || [];
+      let resCookies = (response && response.cookies) || [];
+      // Fall back to header parsing when the structured arrays are
+      // absent (some HAR generators skip them).
+      if (!reqCookies.length) {
+        reqCookies = parseCookieHeader(headerValue(reqHeaders, 'cookie'));
+      }
+      if (!resCookies.length) {
+        resCookies = headerValues(resHeaders, 'set-cookie').map(parseSetCookie).filter(Boolean);
+      }
+
+      const renderRequestCookies = arr => {
+        if (!arr || !arr.length) return '<p class="wt-detail-empty">No cookies sent</p>';
+        return '<table>' + arr.map(c =>
+          '<tr><th>' + escAttr(c.name || '') + '</th><td><span class="wt-cookie-value">' + escAttr(c.value || '') + '</span></td></tr>'
+        ).join('') + '</table>';
+      };
+      const renderResponseCookies = arr => {
+        if (!arr || !arr.length) return '<p class="wt-detail-empty">No Set-Cookie headers</p>';
+        return arr.map(c => {
+          const chips = [];
+          if (c.domain) chips.push('<span class="chip">Domain: ' + escAttr(c.domain) + '</span>');
+          if (c.path) chips.push('<span class="chip">Path: ' + escAttr(c.path) + '</span>');
+          if (c.expires) chips.push('<span class="chip">Expires: ' + escAttr(c.expires) + '</span>');
+          if (c.maxAge) chips.push('<span class="chip">Max-Age: ' + escAttr(c.maxAge) + '</span>');
+          // Secure / HttpOnly / SameSite — flag absence as a warning.
+          chips.push('<span class="chip ' + (c.secure ? 'ok' : 'warn') + '">' + (c.secure ? 'Secure' : 'No Secure') + '</span>');
+          chips.push('<span class="chip ' + (c.httpOnly ? 'ok' : 'warn') + '">' + (c.httpOnly ? 'HttpOnly' : 'No HttpOnly') + '</span>');
+          if (c.sameSite) {
+            chips.push('<span class="chip ok">SameSite: ' + escAttr(c.sameSite) + '</span>');
+          } else {
+            chips.push('<span class="chip warn">No SameSite</span>');
+          }
+          return '<div class="wt-detail-section">'
+            + '<div class="wt-detail-section-title" style="margin-bottom:2px;">' + escAttr(c.name || '') + '</div>'
+            + '<span class="wt-cookie-value">' + escAttr(c.value || '') + '</span>'
+            + '<div class="wt-cookie-attrs">' + chips.join('') + '</div>'
+            + '</div>';
+        }).join('');
+      };
+      cookiesEl.innerHTML = ''
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Sent (Cookie header)</div>' + renderRequestCookies(reqCookies) + '</div>'
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Received (Set-Cookie)</div>' + renderResponseCookies(resCookies) + '</div>';
+
+      // Timing tab — Browsertime HAR timings: blocked, dns, connect,
+      // ssl, send, wait, receive in ms. Render as a label / bar / ms
+      // grid so each phase shows its share of the total visually.
+      const timingEl = document.getElementById('wt-detail-body-timing');
+      const t = req.timings || {};
+      const PHASE_COLORS = {
+        blocked: '#94a3b8', dns: '#a78bfa', connect: '#fb923c',
+        ssl: '#facc15', send: '#22c55e', wait: '#0ea5e9', receive: '#0073b0'
+      };
+      const phaseRows = ['blocked','dns','connect','ssl','send','wait','receive'];
+      let totalKnown = 0;
+      for (const p of phaseRows) if (typeof t[p] === 'number' && t[p] > 0) totalKnown += t[p];
+      const max = Math.max(totalKnown, 1);
+      const rows = phaseRows.map(p => {
+        const v = (typeof t[p] === 'number') ? t[p] : -1;
+        const w = v > 0 ? (v / max * 100).toFixed(1) : 0;
+        const color = PHASE_COLORS[p] || '#cbd5e1';
+        return '<div class="wt-detail-timing-bar">'
+          + '<span class="label">' + p + '</span>'
+          + '<span class="track">' + (v > 0 ? '<span style="width: ' + w + '%; background: ' + color + ';"></span>' : '') + '</span>'
+          + '<span class="ms">' + escAttr(v < 0 ? '—' : fmtMs(v)) + '</span>'
+          + '</div>';
+      }).join('');
+      const totalRow = '<div class="wt-detail-timing-bar" style="margin-top:12px;border-top:1px solid #e3e7ed;padding-top:10px;">'
+        + '<span class="label" style="font-weight:600;color:#0f172a;">Total</span>'
+        + '<span class="track" style="background:transparent;"></span>'
+        + '<span class="ms" style="font-weight:600;">' + escAttr(fmtMs(totalKnown)) + '</span>'
+        + '</div>';
+      timingEl.innerHTML = rows + totalRow;
+
+      // Body tab — only meaningful when the HAR was generated with
+      // `--browsertime.<browser>.includeResponseBodies all|html`. If
+      // there's no body in the HAR, show a hint pointing at the flag.
+      const bodyEl = document.getElementById('wt-detail-body-body');
+      const decoded = decodeBody(req);
+      if (!decoded) {
+        bodyEl.innerHTML = '<p class="wt-detail-empty">No response body in the HAR. Run with one of these flags to include them, depending on the browser you tested with: <code>--browsertime.chrome.includeResponseBodies all</code> or <code>--browsertime.firefox.includeResponseBodies all</code>.</p>';
+      } else if (decoded.kind === 'image') {
+        bodyEl.innerHTML = '<img class="body-preview" alt="Response body preview" src="' + escAttr(decoded.dataUrl) + '">';
+      } else if (decoded.kind === 'binary') {
+        bodyEl.innerHTML = '<p class="wt-detail-empty">Binary content (' + fmtBytes(decoded.size) + ').</p>';
+      } else {
+        // Pick a Prism language from MIME type so the existing prism.js
+        // already on the page highlights the body the same way it
+        // highlights other code blocks.
+        const mt = decoded.mimeType || '';
+        let lang = 'markup';
+        let displayText = decoded.text;
+        if (mt.includes('json')) {
+          lang = 'javascript';
+          // Pretty-print JSON when possible — minified payloads are
+          // unreadable otherwise. Falls through to raw text on parse
+          // errors (truncated or invalid JSON).
+          try {
+            displayText = JSON.stringify(JSON.parse(decoded.text), null, 2);
+          } catch (e) { /* leave as-is */ }
+        } else if (mt.includes('javascript')) {
+          lang = 'javascript';
+        } else if (mt.includes('css')) {
+          lang = 'css';
+        } else if (mt.includes('html')) {
+          lang = 'markup';
+        }
+
+        // Size guards. Real-world HTML / JS bodies are easily hundreds
+        // of KB and Prism's tokenizer is recursive — running it on
+        // ~500 KB of HTML hangs the tab for several seconds. Truncate
+        // for display past 200 KB (full body still goes to the
+        // clipboard via copyText) and skip Prism past 50 KB.
+        const RENDER_CAP = 200 * 1024;
+        const HIGHLIGHT_CAP = 50 * 1024;
+        const fullText = displayText;
+        const truncated = displayText.length > RENDER_CAP;
+        if (truncated) {
+          displayText = displayText.slice(0, RENDER_CAP)
+            + '\n\n…[truncated — body is ' + fmtBytes(fullText.length)
+            + ', showing first ' + fmtBytes(RENDER_CAP)
+            + '. Copy body grabs the full content.]';
+        }
+
+        const note = truncated
+          ? '<p class="wt-detail-empty" style="margin:0 0 8px;">Body is ' + fmtBytes(fullText.length) + ' — preview truncated for performance. Use Copy body for the full content.</p>'
+          : '';
+
+        bodyEl.innerHTML = '<div class="wt-detail-body-toolbar"><button type="button" class="wt-copy-btn" id="wt-detail-copy-body">Copy body</button></div>'
+          + note
+          + '<pre><code class="language-' + lang + '">' + escAttr(displayText) + '</code></pre>';
+
+        if (
+          typeof Prism !== 'undefined' && Prism.highlightAllUnder &&
+          displayText.length <= HIGHLIGHT_CAP
+        ) {
+          Prism.highlightAllUnder(bodyEl);
+        }
+        const copyBtn = document.getElementById('wt-detail-copy-body');
+        if (copyBtn) {
+          // Copy the *full* body text, not the truncated preview.
+          copyBtn.addEventListener('click', () => copyToClipboard(fullText, copyBtn));
+        }
+      }
+    };
+
+    const openDetail = () => {
+      if (!detailPanel) return;
+      detailPanel.dataset.open = '';
+      if (detailBackdrop) detailBackdrop.dataset.open = '';
+      // Reset to the first tab on every open.
+      for (const t of detailTabs) {
+        if (t.dataset.tab === 'general') t.dataset.active = '';
+        else delete t.dataset.active;
+      }
+      for (const b of detailBodies) {
+        b.hidden = b.dataset.tab !== 'general';
+      }
+    };
+    const closeDetail = () => {
+      if (!detailPanel) return;
+      delete detailPanel.dataset.open;
+      if (detailBackdrop) delete detailBackdrop.dataset.open;
+    };
+    if (detailCopyUrl) detailCopyUrl.addEventListener('click', () => {
+      copyToClipboard(detailUrl.textContent, detailCopyUrl);
+    });
+    if (detailClose) detailClose.addEventListener('click', closeDetail);
+    if (detailBackdrop) detailBackdrop.addEventListener('click', closeDetail);
+    document.addEventListener('keydown', ev => {
+      if (ev.key === 'Escape' && detailPanel && 'open' in detailPanel.dataset) closeDetail();
+    });
+    for (const tab of detailTabs) {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        for (const t of detailTabs) {
+          if (t.dataset.tab === target) t.dataset.active = '';
+          else delete t.dataset.active;
+        }
+        for (const b of detailBodies) b.hidden = b.dataset.tab !== target;
+      });
+    }
+
+    const onClick = payload => {
+      if (!payload || !payload.request) return;
+      populateDetail(payload.request);
+      openDetail();
+    };
+
     const renderer = await wt.renderTo(container, {
       ...WaterfallTools.getDefaultOptions(),
       ...readOptions(),
       pageId: initialPageId,
-      onHover
+      onHover,
+      onClick
     });
 
     // User-timing marks key — the canvas draws unlabelled vertical lines for
