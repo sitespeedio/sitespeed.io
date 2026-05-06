@@ -94,6 +94,8 @@
 .vp-chart {
   padding: 12px 14px 14px 14px;
   border-top: 1px solid $color--border;
+  position: relative;
+  cursor: crosshair;
 }
 
 .vp-thumbs {
@@ -241,6 +243,95 @@
   &.vp-longtask--minor  { background: #fcd34d; }
   &.vp-longtask--major  { background: #d97706; }
   &.vp-longtask--severe { background: $color--error; }
+}
+
+.vp-scrubber {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 1;
+  transition: opacity 100ms ease;
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.vp-scrubber-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #f8fafc;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.65);
+  transform: translateX(-0.5px);
+  transition: left 60ms linear;
+}
+
+.vp-scrubber-popover {
+  position: absolute;
+  top: 8px;
+  width: 200px;
+  padding: 8px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--md;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: $color--text;
+  pointer-events: none;
+}
+
+.vp-scrubber-frame-wrap {
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  margin-bottom: 6px;
+}
+
+.vp-scrubber-frame {
+  display: block;
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.vp-scrubber-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.vp-scrubber-time {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+}
+
+.vp-scrubber-progress {
+  color: $color--text-muted;
+}
+
+.vp-scrubber-events {
+  list-style: none;
+  margin: 6px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vp-scrubber-events li {
+  font-size: 0.72rem;
+  color: $color--text-secondary;
+  padding: 2px 6px 2px 8px;
+  background: $color--surface;
+  border-left: 3px solid $color--text-muted;
+  border-radius: 0 $radius--sm $radius--sm 0;
 }
 
 .et-list {
