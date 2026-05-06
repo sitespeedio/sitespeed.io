@@ -41,6 +41,35 @@ if vpData.length > 0
   //- as the visual-progress curve.
   - const vpLongTasks = (browsertime && browsertime.pageinfo && browsertime.pageinfo.longTask) || []
 
+  //- Extended marker set surfaced ONLY in the scrubber popover (the
+  //- chart itself still draws just FCP / LCP / VC85 — drawing a dozen
+  //- vertical lines would be unreadable). The colour palette mirrors
+  //- the waterfall card so milestones read consistently across the
+  //- two views: greens for paint events, blues for the page lifecycle,
+  //- purples for visual milestones, yellows for user-defined marks.
+  - const vpScrubMarkers = vpMarkers.slice()
+  - const addMarker = (label, value, color) => { if (typeof value === 'number' && value > 0) vpScrubMarkers.push({label, value, color}) }
+  - if (timings.paintTiming && timings.paintTiming['first-paint']) addMarker('First Paint', timings.paintTiming['first-paint'], 'rgb(40, 188, 0)')
+  - if (timings.pageTimings && typeof timings.pageTimings.backEndTime === 'number') addMarker('TTFB', timings.pageTimings.backEndTime, 'rgb(0, 123, 132)')
+  - if (timings.domInteractive) addMarker('DOM Interactive', timings.domInteractive, 'rgb(255, 198, 26)')
+  - if (timings.domContentLoadedTime) addMarker('DOMContentLoaded', timings.domContentLoadedTime, 'rgb(216, 136, 223)')
+  - if (timings.loadEventEnd) addMarker('Load', timings.loadEventEnd, 'rgb(0, 0, 255)')
+  - if (visualMetrics) {
+  -   addMarker('First Visual Change', visualMetrics.FirstVisualChange, 'rgb(102, 110, 175)')
+  -   addMarker('Visual Readiness', visualMetrics.VisualReadiness, 'rgb(70, 165, 200)')
+  -   addMarker('Largest Image', visualMetrics.LargestImage, 'rgb(196, 154, 232)')
+  -   addMarker('Heading', visualMetrics.Heading, 'rgb(231, 111, 81)')
+  -   addMarker('Visual Complete 95%', visualMetrics.VisualComplete95, 'rgb(180, 90, 178)')
+  -   addMarker('Visual Complete 99%', visualMetrics.VisualComplete99, 'rgb(110, 76, 191)')
+  -   addMarker('Last Visual Change', visualMetrics.LastVisualChange, 'rgb(80, 130, 80)')
+  - }
+  - if (timings.userTimings && Array.isArray(timings.userTimings.marks)) timings.userTimings.marks.forEach(m => addMarker(m.name, m.startTime, 'rgb(255, 159, 28)'))
+
+  //- Serialise everything the scrubber needs as a single JSON blob.
+  //- Replace `<` so an embedded `</script>` substring (extremely
+  //- unlikely here but free insurance) can't break out of the tag.
+  - const vpScrubData = JSON.stringify({ max: vpMax, base: vpFilmstripBase, frames: vpFilmstrip.map(f => ({ t: Math.round(f.time * 1000), f: f.file })), progress: vpData.map(r => ({ t: r.timestamp, p: r.percent })), markers: vpScrubMarkers, longTasks: vpLongTasks.map(t => ({ s: Math.round(t.startTime), d: Math.round(t.duration) })) }).replace(/</g, '\\u003c')
+
   .vp-chart
     if vpThumbs.length > 0
       .vp-thumbs
@@ -70,3 +99,149 @@ if vpData.length > 0
     .vp-axis
       each tick in vpTicks
         span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
+
+    //- Scrubber overlay — vertical playhead + popover preview that
+    //- syncs the filmstrip frame, visual-progress percent and any
+    //- page-event marker / long task firing at the cursor's time.
+    .vp-scrubber.is-hidden(aria-hidden='true')
+      .vp-scrubber-line
+      .vp-scrubber-popover
+        .vp-scrubber-frame-wrap
+          img.vp-scrubber-frame(alt='', loading='lazy')
+        .vp-scrubber-meta
+          span.vp-scrubber-time —
+          span.vp-scrubber-progress —
+        ul.vp-scrubber-events
+
+  script.vp-scrubber-data(type='application/json')!= vpScrubData
+  script.
+    (function () {
+      const chart = document.currentScript.closest('section, article, body').querySelector('.vp-chart');
+      if (!chart) return;
+      const dataEl = chart.parentElement.querySelector('.vp-scrubber-data');
+      if (!dataEl) return;
+      let data;
+      try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+      const scrubber = chart.querySelector('.vp-scrubber');
+      const line = chart.querySelector('.vp-scrubber-line');
+      const popover = chart.querySelector('.vp-scrubber-popover');
+      const frameImg = chart.querySelector('.vp-scrubber-frame');
+      const frameWrap = chart.querySelector('.vp-scrubber-frame-wrap');
+      const timeEl = chart.querySelector('.vp-scrubber-time');
+      const progressEl = chart.querySelector('.vp-scrubber-progress');
+      const eventsEl = chart.querySelector('.vp-scrubber-events');
+
+      // Closest filmstrip frame to a given time (linear — frames are
+      // typically <60 entries on a default Browsertime run, sorted by
+      // time, so a binary search adds complexity for no gain).
+      function nearestFrame(timeMs) {
+        if (!data.frames.length) return null;
+        let nearest = data.frames[0];
+        let bestDelta = Math.abs(nearest.t - timeMs);
+        for (let i = 1; i < data.frames.length; i++) {
+          const f = data.frames[i];
+          const d = Math.abs(f.t - timeMs);
+          if (d < bestDelta) { nearest = f; bestDelta = d; }
+        }
+        return nearest;
+      }
+
+      // Linear interpolation between visual-progress samples.
+      function progressAt(timeMs) {
+        const points = data.progress;
+        if (!points.length) return 0;
+        if (timeMs <= points[0].t) return 0;
+        const last = points[points.length - 1];
+        if (timeMs >= last.t) return last.p;
+        for (let i = 0; i < points.length - 1; i++) {
+          const a = points[i], b = points[i + 1];
+          if (timeMs >= a.t && timeMs < b.t) {
+            const k = (timeMs - a.t) / (b.t - a.t);
+            return a.p + (b.p - a.p) * k;
+          }
+        }
+        return last.p;
+      }
+
+      // Markers within ±150ms of the cursor + any long task currently
+      // overlapping. Keeps the popover from going noisy when the user
+      // mouses far away from anything notable.
+      function eventsAt(timeMs) {
+        const out = [];
+        const window = 150;
+        for (const m of data.markers) {
+          if (Math.abs(m.value - timeMs) <= window) {
+            out.push({ label: m.label + ' · ' + (m.value / 1000).toFixed(2) + 's', color: m.color });
+          }
+        }
+        for (const t of data.longTasks) {
+          if (timeMs >= t.s && timeMs <= t.s + t.d) {
+            out.push({ label: 'Long task · ' + t.d + ' ms', color: 'rgb(255, 82, 62)' });
+          }
+        }
+        return out;
+      }
+
+      function show(clientX) {
+        const rect = chart.getBoundingClientRect();
+        const x = clientX - rect.left;
+        if (x < 0 || x > rect.width) { hide(); return; }
+        const ratio = Math.max(0, Math.min(1, x / rect.width));
+        const timeMs = ratio * data.max;
+        scrubber.classList.remove('is-hidden');
+        scrubber.setAttribute('aria-hidden', 'false');
+        line.style.left = (ratio * 100) + '%';
+
+        const frame = nearestFrame(timeMs);
+        if (frame) {
+          frameImg.src = data.base + frame.f;
+          frameWrap.style.display = '';
+        } else {
+          frameImg.removeAttribute('src');
+          frameWrap.style.display = 'none';
+        }
+        timeEl.textContent = (timeMs / 1000).toFixed(2) + ' s';
+        progressEl.textContent = progressAt(timeMs).toFixed(0) + '% rendered';
+
+        // Reuse li elements when possible to avoid GC churn during
+        // rapid mousemove on long pages.
+        const events = eventsAt(timeMs);
+        while (eventsEl.children.length > events.length) eventsEl.lastChild.remove();
+        for (let i = 0; i < events.length; i++) {
+          let li = eventsEl.children[i];
+          if (!li) { li = document.createElement('li'); eventsEl.appendChild(li); }
+          li.textContent = events[i].label;
+          li.style.borderLeftColor = events[i].color || '#5b6370';
+        }
+        eventsEl.style.display = events.length ? '' : 'none';
+
+        // Position popover horizontally relative to the chart, clamped
+        // so it never spills past the card edges.
+        const popWidth = popover.offsetWidth || 200;
+        const margin = 6;
+        let popLeft = x - popWidth / 2;
+        if (popLeft < margin) popLeft = margin;
+        if (popLeft + popWidth > rect.width - margin) popLeft = rect.width - popWidth - margin;
+        popover.style.left = popLeft + 'px';
+      }
+
+      function hide() {
+        scrubber.classList.add('is-hidden');
+        scrubber.setAttribute('aria-hidden', 'true');
+      }
+
+      chart.addEventListener('mousemove', e => show(e.clientX));
+      chart.addEventListener('mouseleave', hide);
+      chart.addEventListener('touchstart', e => {
+        if (e.touches[0]) show(e.touches[0].clientX);
+      }, { passive: true });
+      chart.addEventListener('touchmove', e => {
+        if (e.touches[0]) {
+          show(e.touches[0].clientX);
+          e.preventDefault();
+        }
+      }, { passive: false });
+      chart.addEventListener('touchend', hide);
+      chart.addEventListener('touchcancel', hide);
+    })();
