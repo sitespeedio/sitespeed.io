@@ -5,7 +5,10 @@
 //- thead/tbody pair lets data-sortable do its job. The card is omitted
 //- entirely when no Server-Timing entries were sent — the empty-state
 //- placeholder added clutter on the majority of pages where the
-//- feature isn't wired up.
+//- feature isn't wired up. Cells carry `data-title` so the responsive
+//- mobile stack labels each value, and the duration is rendered through
+//- `h.time.ms` so it shows up as "0 ms" like every other timing column
+//- elsewhere in the report.
 if timings.serverTimings && timings.serverTimings.length > 0
   - const serverTimingsCount = timings.serverTimings.length
   a#server-timings
@@ -23,6 +26,11 @@ if timings.serverTimings && timings.serverTimings.length > 0
         tbody
           each serverTiming in timings.serverTimings
             tr
-              td #{serverTiming.name}
-              td.number #{serverTiming.duration}
-              td #{serverTiming.description}
+              td(data-title='Name')
+                code.server-timing-name #{serverTiming.name}
+              td.number(data-title='Duration', data-value=serverTiming.duration)= h.time.ms(serverTiming.duration)
+              td.server-timing-desc(data-title='Description')
+                if serverTiming.description
+                  | #{serverTiming.description}
+                else
+                  | —

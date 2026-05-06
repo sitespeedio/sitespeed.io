@@ -500,3 +500,23 @@
     color: inherit;
   }
 }
+
+//
+// Server-Timing table — Name is a token (mono chip), Description is the
+// muted secondary line. Without these the cells render as bare text and
+// the card looks unfinished next to the rest of the metrics tab.
+//
+.server-timing-name {
+  font-family: $font--mono;
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  color: $color--text;
+}
+
+.server-timing-desc {
+  color: $color--text-secondary;
+  font-size: 0.9rem;
+}
