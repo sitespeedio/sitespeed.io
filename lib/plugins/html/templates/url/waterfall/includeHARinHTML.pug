@@ -3,7 +3,15 @@
 //- specific run (the median run) in summaryPageHAR.
 //- Inline script tags breaks the output
 - dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
-- dahar = JSON.stringify(dahar).split('</script>').join('&lt;/script&gt;').split('<script>').join('&lt;script&gt;')
+//- Embedding JSON inside an outer `<script>` tag has a long history of
+//- script-tag-injection footguns: `</SCRIPT>` (case-insensitive),
+//- `<script src="...">` (with attrs), `<!--` flipping the HTML parser
+//- into script-data-escape state, etc. Rather than enumerating every
+//- form, escape every `<` and `>` in the JSON to their `\\u003c` /
+//- `\\u003e` Unicode escapes — valid JSON, decoded back to `<` / `>`
+//- by `JSON.parse`, and no substring the HTML parser can possibly
+//- misinterpret as a tag.
+- dahar = JSON.stringify(dahar).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')
 
 script(type='text/javascript').
   window.__waterfallBufferPromise = Promise.resolve(new TextEncoder().encode(JSON.stringify(!{dahar})));
