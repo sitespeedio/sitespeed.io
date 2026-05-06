@@ -1,6 +1,16 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.1.0 - 2026-05-06
+
+### Added
+* Per-request detail panel on the HAR waterfall — clicking a request opens a slide-in side panel with General / Headers / Cookies / Timing / Body tabs, with syntax-highlighted body previews and copy buttons when response bodies are in the HAR (use `--browsertime.chrome.includeResponseBodies html|all` for Chrome) [#4684](https://github.com/sitespeedio/sitespeed.io/pull/4684).
+* URL filter on the waterfall card — type a substring and the canvas narrows to matching requests, with a "N of M" counter next to the box [#4685](https://github.com/sitespeedio/sitespeed.io/pull/4685).
+* Page-metric legend now explains the orange render-blocking marker, the yellow redirect row tint, and the red error row tint — previously these visuals had no key in the report [#4685](https://github.com/sitespeedio/sitespeed.io/pull/4685).
+
+### Changed
+* The waterfall canvas adopts a slate/blue palette so its border, gridlines, and row stripes match the surrounding sitespeed.io card chrome instead of the standalone-viewer default [#4685](https://github.com/sitespeedio/sitespeed.io/pull/4685).
+
 ## 40.0.0 - 2026-05-05
 
 ### Highlights
