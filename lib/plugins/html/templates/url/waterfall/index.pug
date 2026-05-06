@@ -396,8 +396,12 @@ style.
       span.swatch(style='background: rgb(0,0,255)')
       | Load
     span(title='Render-blocking resource — blocks first paint until it has loaded')
+      //- viewBox is intentionally lowercased — pug-lint rejects camelCase
+      //- attributes, and the HTML5 parser's inline-SVG attribute-adjustment
+      //- table normalises `viewbox` back to the SVG-namespace `viewBox`
+      //- before the renderer sees it, so the output renders identically.
       span.marker-x
-        svg(width='12', height='12', viewBox='0 0 14 14', aria-hidden='true')
+        svg(width='12', height='12', viewbox='0 0 14 14', aria-hidden='true')
           circle(cx='7', cy='7', r='7', fill='#ff9900')
           line(x1='4', y1='4', x2='10', y2='10', stroke='#fff', stroke-width='1.5', stroke-linecap='round')
           line(x1='10', y1='4', x2='4', y2='10', stroke='#fff', stroke-width='1.5', stroke-linecap='round')
