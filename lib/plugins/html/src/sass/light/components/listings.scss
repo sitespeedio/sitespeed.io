@@ -51,6 +51,89 @@
   max-width: 80ch;
 }
 
+// Tiny middot separator between meta items (e.g. "47 files · 3.2 MB").
+.listing-card-meta-sep {
+  margin: 0 6px;
+  color: $color--border-strong;
+}
+
+//
+// In-cell scaling bar — a thin coloured pill that sits behind the
+// numeric label so the reader can see "this row is ~30% of the leader"
+// without doing the arithmetic. Used in the Domains and Toplist tables.
+//
+td.cell--bar {
+  position: relative;
+  isolation: isolate;
+}
+
+.cell-bar-fill {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 50%;
+  height: 16px;
+  transform: translateY(-50%);
+  background: rgba(0, 149, 210, 0.16);
+  border-radius: $radius--sm;
+  z-index: 0;
+  pointer-events: none;
+  width: 0;
+}
+
+.cell-bar-text {
+  position: relative;
+  z-index: 1;
+}
+
+//
+// Resource-type chips — colour mirrors the waterfall canvas legend
+// for visual continuity with the per-URL waterfall view. Unknown
+// types fall through to the muted `--other` style.
+//
+.type-cell {
+  white-space: nowrap;
+}
+
+.type-chip {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: $radius--pill;
+  font-family: $font--mono;
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  border: 1px solid transparent;
+  color: $color--text;
+  background: rgb(196, 196, 196);
+}
+
+.type-chip--html      { background: rgb(130, 181, 252); }
+.type-chip--javascript,
+.type-chip--js        { background: rgb(254, 197, 132); }
+.type-chip--css       { background: rgb(178, 234, 148); }
+.type-chip--image,
+.type-chip--svg,
+.type-chip--favicon   { background: rgb(196, 154, 232); }
+.type-chip--font      { background: rgb(255, 82, 62); color: #fff; }
+.type-chip--video     { background: rgb(33, 194, 162); color: #fff; }
+.type-chip--audio     { background: rgb(89, 199, 235); color: #fff; }
+.type-chip--json,
+.type-chip--xml,
+.type-chip--plain     { background: rgb(220, 220, 232); }
+.type-chip--other     { background: rgb(220, 220, 220); }
+
+//
+// Reuse highlight on the Assets table — rows where the same URL was
+// requested across more than one page in the run get a subtle blue
+// tint so cache-reuse opportunities pop without reading the count
+// column on every row.
+//
+tr.asset-reused {
+  background: rgba(0, 149, 210, 0.045);
+}
+
 // Quicklinks row above the cards on Toplist — a compact list of jump
 // anchors to the named cards, replacing the old `| A | B | C |` strip
 // of inline `<small>` text.

@@ -3,12 +3,19 @@ include _tableMixins
 
 mixin rows(assets)
   each asset in assets
-    tr
+    //- `count > 1` means this exact asset URL was requested across more
+    //- than one page in the run — i.e. cache reuse is already happening
+    //- or a candidate for it. Tinting the row makes those wins pop.
+    tr(class=(asset.requestCount > 1 ? 'asset-reused' : ''))
       td.url.assetsurl(data-title='URL')
         a(href=asset.url)= h.shortAsset(asset.url)
         | &nbsp;
         a.from-page(href=asset.page + 'index.html', title='Open the page that loaded this asset') → page
-      td(data-title='type')= asset.type
+      td.type-cell(data-title='type')
+        if asset.type
+          span(class='type-chip type-chip--' + asset.type)= asset.type
+        else
+          | —
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.size)
