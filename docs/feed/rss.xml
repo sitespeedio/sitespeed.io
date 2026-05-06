@@ -16,6 +16,34 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 40.2.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</guid>
+            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update the CPU tab for Chrome to show more valuable metrics <a href="https://github.com/sitespeedio/sitespeed.io/pull/4691">#4691</a>.</li>
+</ul>
+ <ul>
+<li>Add a scrubbable timeline to the visual-progress card <a href="https://github.com/sitespeedio/sitespeed.io/pull/4690">#4690</a>.</li>
+</ul>
+ <ul>
+<li>Style the Server timings table to match the rest of the metrics tab <a href="https://github.com/sitespeedio/sitespeed.io/pull/4689">#4689</a>.</li>
+</ul>
+ <ul>
+<li>Make Domains, Toplist and Assets pages easier to scan/read <a href="https://github.com/sitespeedio/sitespeed.io/pull/4688">#4688</a></li>
+</ul>
+ <ul>
+<li>A friendlier third-party tab <a href="https://github.com/sitespeedio/sitespeed.io/pull/4687">#4687</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update to Browsertime 27.1.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4691">#4691</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 40.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0</guid>
@@ -36,6 +64,39 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</guid>
+            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Three new analyses on <code>result.cpu</code> derived from the same Chrome <code>trace.json</code> that&#39;s already collected when <code>--cpu</code> is on. <code>scriptCosts</code> produces the per-URL parse / compile / execute / total breakdown that Lighthouse&#39;s bootup-time audit shows, sorted by total descending. <code>forcedReflows</code> walks the main-thread task tree for <code>Layout</code> / <code>UpdateLayoutTree</code> events nested inside JS-driven tasks (<code>EventDispatch</code>, <code>FunctionCall</code>, <code>TimerFire</code>, <code>FireAnimationFrame</code>, …) — every match is a synchronous reflow caused by JavaScript reading a layout-triggering property mid-handler, reported with the script that triggered it. <code>nonCompositedAnimations</code> surfaces <code>Animation</code> events whose <code>compositeFailed</code> bitmask is non-zero, returning the unsupported properties (<code>top</code>, <code>box-shadow</code>, <code>filter</code>, …) so consumers can see what to swap for the GPU-friendly equivalent. Each new analysis is wrapped in its own try / catch so a bug in one can&#39;t poison the existing <code>categories</code> / <code>events</code> / <code>urls</code> payload <a href="https://github.com/sitespeedio/browsertime/pull/PR1">#PR1</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Replace the unmaintained <code>@sitespeed.io/tracium</code> dependency (extracted from Lighthouse circa 2017, last release 0.3.3) with an in-tree ESM port at <code>lib/chrome/trace/</code>. The algorithm is a 1:1 port; output of <code>computeMainThreadTasks</code> is byte-equivalent for any trace, so existing <code>result.cpu.{categories,events,urls}</code> consumers see no change. Pulling the parser inline lets new analyses ship at Browsertime&#39;s release cadence without a second <code>npm publish</code> step in between <a href="https://github.com/sitespeedio/browsertime/pull/PR1">#PR1</a>.</li>
+</ul>
+ <ul>
+<li>Modernise the trace-event classifier. The original list only knew about ~30 event names, so on busy 2026-era pages roughly half the trace fell through to &quot;other&quot; — on a sample cnet run that meant 1.3 s of &quot;other&quot; hiding <code>RunTask</code>, <code>v8.run</code>, <code>IntersectionObserverController::computeIntersections</code>, <code>PrePaint</code>, <code>Commit</code>, <code>Layerize</code>, <code>v8.callFunction</code>, <code>V8.DeserializeContext</code> and friends. The expanded list draws from modern Lighthouse + the WebPageTest-derived map in waterfall-tools + direct sampling of real traces, and a new <code>groupForEvent()</code> lookup adds <code>V8.GC*</code> prefix matching so future V8 GC phases auto-classify <a href="https://github.com/sitespeedio/browsertime/pull/PR1">#PR1</a>.</li>
+</ul>
+ <ul>
+<li>Bump <code>chrome-har</code> to 1.3.0 to pick up the new <code>_renderBlocking</code> field on each entry, lifting Chrome&#39;s CDP <code>renderBlockingStatus</code> (Chrome 108+) so downstream HAR consumers can see which resources blocked first paint without inferring it from the trace.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.3.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
+            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 40.0.0]]></title>
@@ -680,37 +741,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 39.1.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2</guid>
-            <pubDate>Wed, 17 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure <a href="https://github.com/sitespeedio/sitespeed.io/pull/4574">#4574</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 26.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</guid>
-            <pubDate>Thu, 11 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 146 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2351">#2351</a>.</li>
-</ul>
- <ul>
-<li>Chrome 143 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2350">#2350</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure the user in the Docker container has the correct user rights <a href="https://github.com/sitespeedio/browsertime/pull/2349">#2349</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[onlinetest 1.7.1]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</link>
             <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</guid>
@@ -1055,20 +1085,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.13.1]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</guid>
-            <pubDate>Wed, 22 Feb 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies to latest versions <a href="https://github.com/sitespeedio/chrome-har/pull/105">#105</a>.</li>
-</ul>
- <ul>
-<li>Remove adding headers from extra parameters. Using the CDP Fetch API manipulating responses, the extra response info holds the old un-manipulated headers, so when copying the ones that do not exist, this breaks. Fixed in <a href="https://github.com/sitespeedio/chrome-har/pull/100">#100</a>.</li>
-</ul>
-]]></description>
         </item>
         <item>
             <title><![CDATA[throttle 5.0.0]]></title>

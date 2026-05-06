@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>chrome-har-release-feed</id>
     <title>chrome-har release feed</title>
-    <updated>2026-04-22T15:21:38.128Z</updated>
+    <updated>2026-05-06T14:16:24.426Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 1.3.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0"/>
+        <updated>2026-05-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[chrome-har 1.2.1]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.1</id>
@@ -156,24 +171,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated tough-cookie, thank you <a href="https://github.com/lallenlowe">lallenlowe</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/107">#107</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.13.1]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1"/>
-        <updated>2023-02-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies to latest versions <a href="https://github.com/sitespeedio/chrome-har/pull/105">#105</a>.</li>
-</ul>
- <ul>
-<li>Remove adding headers from extra parameters. Using the CDP Fetch API manipulating responses, the extra response info holds the old un-manipulated headers, so when copying the ones that do not exist, this breaks. Fixed in <a href="https://github.com/sitespeedio/chrome-har/pull/100">#100</a>.</li>
 </ul>
 ]]></summary>
         <author>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-06T05:43:38.323Z</updated>
+    <updated>2026-05-06T15:43:39.841Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,37 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 40.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0"/>
+        <updated>2026-05-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update the CPU tab for Chrome to show more valuable metrics <a href="https://github.com/sitespeedio/sitespeed.io/pull/4691">#4691</a>.</li>
+</ul>
+ <ul>
+<li>Add a scrubbable timeline to the visual-progress card <a href="https://github.com/sitespeedio/sitespeed.io/pull/4690">#4690</a>.</li>
+</ul>
+ <ul>
+<li>Style the Server timings table to match the rest of the metrics tab <a href="https://github.com/sitespeedio/sitespeed.io/pull/4689">#4689</a>.</li>
+</ul>
+ <ul>
+<li>Make Domains, Toplist and Assets pages easier to scan/read <a href="https://github.com/sitespeedio/sitespeed.io/pull/4688">#4688</a></li>
+</ul>
+ <ul>
+<li>A friendlier third-party tab <a href="https://github.com/sitespeedio/sitespeed.io/pull/4687">#4687</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update to Browsertime 27.1.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4691">#4691</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 40.1.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0</id>
@@ -242,21 +273,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix <a href="https://github.com/sitespeedio/sitespeed.io/pull/4575">#4575</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.1.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.2"/>
-        <updated>2025-12-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure <a href="https://github.com/sitespeedio/sitespeed.io/pull/4574">#4574</a>.</li>
 </ul>
 ]]></summary>
         <author>
