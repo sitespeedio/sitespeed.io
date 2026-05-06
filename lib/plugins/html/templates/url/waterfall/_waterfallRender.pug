@@ -46,10 +46,51 @@ script(type='text/javascript').
       showLongtasks: document.getElementById('wt-show-longtasks'),
       connectionView: document.getElementById('wt-connection-view')
     };
+    const filterEl = document.getElementById('wt-req-filter');
+    const filterCountEl = document.getElementById('wt-req-filter-count');
+    let currentPageId = initialPageId;
+    // waterfall-tools `reqFilter` accepts a comma-separated list of 1-based
+    // request indices (within the active page), not a URL substring. To make
+    // the search box behave the obvious way, we resolve the user's substring
+    // against the page's entries here and hand the renderer the matching
+    // indices. Empty input → renderer sees '' → all requests visible.
+    // Substring with zero matches → '0' → renderer filters everything out
+    // (1-based indices never include 0), which is what the user asked for.
+    const resolveReqFilter = query => {
+      const q = (query || '').trim().toLowerCase();
+      if (!q) return { value: '', count: null, total: null };
+      const pageEntries = ((har.log && har.log.entries) || [])
+        .filter(e => e.pageref === currentPageId);
+      const matched = [];
+      pageEntries.forEach((e, i) => {
+        const url = ((e.request && e.request.url) || e._URL || '').toLowerCase();
+        if (url.includes(q)) matched.push(i + 1);
+      });
+      return {
+        value: matched.length === 0 ? '0' : matched.join(','),
+        count: matched.length,
+        total: pageEntries.length
+      };
+    };
+    const updateFilterCount = info => {
+      if (!filterCountEl) return;
+      if (info.count === null) {
+        filterCountEl.hidden = true;
+        filterCountEl.textContent = '';
+      } else {
+        filterCountEl.hidden = false;
+        filterCountEl.textContent = info.count + ' of ' + info.total;
+      }
+    };
     const readOptions = () => {
       const o = {};
       for (const k of Object.keys(controls)) {
         if (controls[k]) o[k] = controls[k].checked;
+      }
+      if (filterEl) {
+        const info = resolveReqFilter(filterEl.value);
+        o.reqFilter = info.value;
+        updateFilterCount(info);
       }
       return o;
     };
@@ -453,10 +494,27 @@ script(type='text/javascript').
       openDetail();
     };
 
+    // Theme the canvas to match the surrounding sitespeed.io card. The
+    // renderer's defaults are tuned for the standalone WPT-style viewer
+    // (pure black border, neutral grey stripes); inside our card those
+    // read as visually heavy. Slate text + softened border + slightly
+    // cooler stripe align the canvas with the card chrome. Functional
+    // colours (`longTask`, `userTimingMark`, MIME-type bars, page-event
+    // markers) are intentionally left at their defaults — those carry
+    // semantic meaning we don't want to override.
+    const palette = {
+      text: '#0f172a',
+      titleText: '#3a4250',
+      rowStripe: '#f4f6fa',
+      border: '#e3e7ed',
+      grid: 'rgb(214, 219, 224)'
+    };
+
     const renderer = await wt.renderTo(container, {
       ...WaterfallTools.getDefaultOptions(),
       ...readOptions(),
       pageId: initialPageId,
+      palette,
       onHover,
       onClick
     });
@@ -585,6 +643,21 @@ script(type='text/javascript').
       }
     }
 
+    // Debounce the URL filter — the renderer rebuilds layout on every
+    // updateOptions, so firing per-keystroke on a thousand-request HAR
+    // jitters the UI badly.
+    if (filterEl) {
+      let filterTimer = null;
+      filterEl.addEventListener('input', () => {
+        if (filterTimer) clearTimeout(filterTimer);
+        filterTimer = setTimeout(() => {
+          const info = resolveReqFilter(filterEl.value);
+          renderer.updateOptions({ reqFilter: info.value });
+          updateFilterCount(info);
+        }, 120);
+      });
+    }
+
     const selector = document.getElementById('page-selector');
     if (selector && pages.length > 1) {
       for (const page of pages) {
@@ -595,9 +668,12 @@ script(type='text/javascript').
         selector.appendChild(opt);
       }
       selector.addEventListener('change', () => {
-        renderer.updateOptions({ pageId: selector.value });
-        populateUserTimings(selector.value);
-        populateExtLegend(selector.value);
+        currentPageId = selector.value;
+        const info = filterEl ? resolveReqFilter(filterEl.value) : { value: '', count: null, total: null };
+        renderer.updateOptions({ pageId: currentPageId, reqFilter: info.value });
+        populateUserTimings(currentPageId);
+        populateExtLegend(currentPageId);
+        updateFilterCount(info);
       });
     }
   })();
