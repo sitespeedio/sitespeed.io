@@ -44,7 +44,25 @@ if pageInfo.data.coach
     - const tpCategoryCount = tpHasCategories ? Object.keys(thirdparty.category).filter(c => c !== 'unknown').length : 0
     - const tpCookieCount = pagexray.cookieNamesThirdParties ? pagexray.cookieNamesThirdParties.length : 0
 
-    if tpTotalRequests || tpToolsTotal || tpCookieCount
+    //- The whole tab can be empty for first-party-only sites (no detected
+    //- categories, no tools, no third-party cookies, no unmatched domains).
+    //- Without an explicit empty state the user lands on a stub heading and
+    //- a one-liner about Third Party Web — looks like data is missing.
+    - const tpAnyData = tpTotalRequests || tpToolsTotal || tpCookieCount || tpUnmatched
+    if !tpAnyData
+        .listing-card.tp-empty
+            .tp-empty-icon
+                svg(width='28', height='28', viewbox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round', aria-hidden='true')
+                    path(d='M20 6 9 17l-5-5')
+            .tp-empty-body
+                p.tp-empty-title No third-party requests detected
+                p.tp-empty-help
+                    | Every request on this page resolved to a first-party domain. There are no entries in&nbsp;
+                    a(href='https://github.com/patrickhulce/third-party-web') Third party web
+                    |  to attribute, no third-party tools to enumerate, and no third-party cookies set. If you expected to see entries here you can fine-tune the first-party domain list with&nbsp;
+                    code --firstParty
+                    | .
+    else
         .tp-kpis
             if tpTotalRequests
                 .tp-kpi
@@ -65,9 +83,14 @@ if pageInfo.data.coach
 
     //- Categories as a horizontal bar list (replaces two tiny side-by-side
     //- tables). Each row shows requests share + tool count for the category.
+    //- The bar is scaled relative to the leading category for visual
+    //- comparison, but the right-hand label shows the actual share of all
+    //- third-party requests (e.g. "ad … 38%") so a reader can answer
+    //- "how much of this page is ads" directly from the row.
     if tpHasCategories
         - const tpCatEntries = Object.entries(thirdparty.category).filter(e => e[0] !== 'unknown').map(e => ({name: e[0], requests: (e[1] && e[1].requests ? e[1].requests.median : e[1])})).sort((a, b) => b.requests - a.requests)
         - const tpCatMax = tpCatEntries.length > 0 ? tpCatEntries[0].requests : 0
+        - const tpFmtShare = (n) => n >= 10 ? Math.round(n) + '%' : n >= 1 ? n.toFixed(1) + '%' : '<1%'
         .listing-card
             .listing-card-header
                 h3.listing-card-title Categories
@@ -75,12 +98,15 @@ if pageInfo.data.coach
             .tp-bars
                 each entry in tpCatEntries
                     - const pct = tpCatMax > 0 ? (entry.requests / tpCatMax * 100) : 0
+                    - const share = tpTotalRequests > 0 ? (entry.requests / tpTotalRequests * 100) : 0
                     - const toolCount = thirdparty.toolsByCategory && thirdparty.toolsByCategory[entry.name] ? Object.keys(thirdparty.toolsByCategory[entry.name]).length : 0
                     .tp-bar-row
                         span.tp-bar-label #{entry.name}
                         .tp-bar-track
                             span.tp-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-                        span.tp-bar-value #{entry.requests} req · #{toolCount} #{toolCount === 1 ? 'tool' : 'tools'}
+                        span.tp-bar-value
+                            span.tp-bar-share #{tpFmtShare(share)}
+                            | &nbsp;·&nbsp;#{entry.requests} req · #{toolCount} #{toolCount === 1 ? 'tool' : 'tools'}
 
     //- Tools per category as <details> cards. Replaces the old
     //- toggleRow() JS with native disclosure: collapsed by default,
@@ -100,9 +126,23 @@ if pageInfo.data.coach
                         if !seen.has(asset.entity.name)
                             - seen.add(asset.entity.name)
                             - tools.push(asset.entity)
+                    //- Surface up to three tool/entity names in the
+                    //- closed `<summary>` so a reader can scan the entire
+                    //- third-party landscape without expanding every card.
+                    //- Beyond three we collapse the rest into "+ N more"
+                    //- to keep the summary line short and predictable.
+                    - const PREVIEW_LIMIT = 3
+                    - const previewTools = tools.slice(0, PREVIEW_LIMIT).map(t => t.name)
+                    - const remainingTools = Math.max(0, tools.length - PREVIEW_LIMIT)
                     details.tp-tool-card
                         summary.tp-tool-summary
                             span.tp-tool-category #{category}
+                            if previewTools.length
+                                span.tp-tool-preview
+                                    each name, idx in previewTools
+                                        span.tp-tool-chip #{name}
+                                    if remainingTools
+                                        span.tp-tool-chip.tp-tool-chip--more + #{remainingTools} more
                             span.tp-tool-meta #{assets.length} requests · #{tools.length} #{tools.length === 1 ? 'tool' : 'tools'}
                         .tp-tool-body
                             ul.tp-tool-entities

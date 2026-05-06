@@ -77,11 +77,16 @@
 
 .tp-bar-value {
   text-align: right;
-  color: $color--text;
+  color: $color--text-secondary;
   font-variant-numeric: tabular-nums;
   font-size: 0.85rem;
   font-weight: $font--weight--medium;
   white-space: nowrap;
+}
+
+.tp-bar-share {
+  color: $color--text;
+  font-weight: $font--weight--semibold;
 }
 
 //
@@ -154,6 +159,43 @@
   font-size: 0.85rem;
 }
 
+//
+// Top-tools preview row inside the closed `<summary>` line — chip list
+// of up to PREVIEW_LIMIT entity names so the third-party tools area can
+// be skimmed without expanding every category card.
+//
+.tp-tool-preview {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 1 1 auto;
+  min-width: 0;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.tp-tool-chip {
+  font-size: 0.78rem;
+  font-family: $font--mono;
+  padding: 2px 8px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--border;
+  background: $color--surface;
+  color: $color--text-secondary;
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tp-tool-chip--more {
+  background: transparent;
+  border-style: dashed;
+  color: $color--text-muted;
+}
+
 .tp-tool-body {
   padding: 12px 14px;
   border-top: 1px solid $color--border;
@@ -212,6 +254,50 @@
   color: $color--text-muted;
   font-size: 0.8rem;
   margin-left: 6px;
+}
+
+//
+// Empty state — shown when this page has zero third-party requests,
+// tools, cookies or unmatched domains. Without this, the tab is a stub
+// heading and a one-line paragraph and looks like data is missing.
+//
+.tp-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  margin-bottom: 1.5rem;
+}
+
+.tp-empty-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(0, 149, 210, 0.08);
+  color: $color--blue;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tp-empty-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tp-empty-title {
+  font-size: 1rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  margin: 0 0 4px 0;
+}
+
+.tp-empty-help {
+  font-size: 0.9rem;
+  color: $color--text-secondary;
+  margin: 0;
+  line-height: 1.5;
 }
 
 //
