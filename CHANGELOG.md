@@ -1,6 +1,18 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.2.0 - 2026-05-06
+
+### Added
+* Update the CPU tab for Chrome to show more valuable metrics [#4691](https://github.com/sitespeedio/sitespeed.io/pull/4691).
+* Add a scrubbable timeline to the visual-progress card [#4690](https://github.com/sitespeedio/sitespeed.io/pull/4690).
+* Style the Server timings table to match the rest of the metrics tab [#4689](https://github.com/sitespeedio/sitespeed.io/pull/4689).
+* Make Domains, Toplist and Assets pages easier to scan/read [#4688](https://github.com/sitespeedio/sitespeed.io/pull/4688)
+* A friendlier third-party tab [#4687](https://github.com/sitespeedio/sitespeed.io/pull/4687)
+
+### Fixed
+* Update to Browsertime 27.1.0 [#4691](https://github.com/sitespeedio/sitespeed.io/pull/4691)
+
 ## 40.1.0 - 2026-05-06
 
 ### Added
