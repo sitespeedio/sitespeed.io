@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-05T00:00:00.000Z</updated>
+    <updated>2026-05-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,31 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 40.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0"/>
+        <updated>2026-05-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Per-request detail panel on the HAR waterfall — clicking a request opens a slide-in side panel with General / Headers / Cookies / Timing / Body tabs, with syntax-highlighted body previews and copy buttons when response bodies are in the HAR (use <code>--browsertime.chrome.includeResponseBodies html|all</code> for Chrome) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4684">#4684</a>.</li>
+</ul>
+ <ul>
+<li>URL filter on the waterfall card — type a substring and the canvas narrows to matching requests, with a &quot;N of M&quot; counter next to the box <a href="https://github.com/sitespeedio/sitespeed.io/pull/4685">#4685</a>.</li>
+</ul>
+ <ul>
+<li>Page-metric legend now explains the orange render-blocking marker, the yellow redirect row tint, and the red error row tint — previously these visuals had no key in the report <a href="https://github.com/sitespeedio/sitespeed.io/pull/4685">#4685</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>The waterfall canvas adopts a slate/blue palette so its border, gridlines, and row stripes match the surrounding sitespeed.io card chrome instead of the standalone-viewer default <a href="https://github.com/sitespeedio/sitespeed.io/pull/4685">#4685</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 40.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</id>
@@ -735,21 +760,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix a bug introduced in 39.0.0 where alias was missing when creating some file structure <a href="https://github.com/sitespeedio/sitespeed.io/pull/4574">#4574</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.1.1"/>
-        <updated>2025-12-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Safer handling for broken URLs. This logs the actual root cause <a href="https://github.com/sitespeedio/sitespeed.io/pull/4573">#4573</a>.</li>
 </ul>
 ]]></summary>
         <author>
