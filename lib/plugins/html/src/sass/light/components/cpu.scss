@@ -40,6 +40,24 @@
   line-height: 1.05;
 }
 
+.cpu-kpi-sub {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+// Secondary KPI band — used for the "long tasks per page-load
+// phase" tiles below the headline TBT row. Same shape, slightly
+// smaller value text so it doesn't compete with the main KPIs.
+.cpu-kpis-secondary {
+  margin-top: -8px;
+  margin-bottom: 14px;
+
+  .cpu-kpi-value {
+    font-size: 1.1rem;
+  }
+}
+
 .cpu-section-heading {
   font-size: 0.85rem;
   font-weight: $font--weight--semibold;
@@ -188,4 +206,182 @@
   font-size: 0.85rem;
   font-weight: $font--weight--medium;
   white-space: nowrap;
+}
+
+
+//
+// Forced-reflow row meta — the "· 12 reflows · worst 16 ms" suffix
+// after the headline ms total in the CPU bar list.
+//
+.cpu-bar-sub {
+  color: $color--text-muted;
+  font-weight: $font--weight--regular;
+}
+
+.cpu-bar-anon {
+  color: $color--text-muted;
+  font-style: italic;
+}
+
+.cpu-truncate-note {
+  margin-top: 4px;
+  color: $color--text-muted;
+}
+
+//
+// Non-composited animation list — small inline pills, each a
+// property name + count. Wraps to a few lines on busy pages
+// rather than expanding into a tall table.
+//
+.cpu-anim-list {
+  list-style: none;
+  margin: 8px 0 1.5rem 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cpu-anim-prop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: $radius--pill;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  font-size: 0.85rem;
+
+  code {
+    font-family: $font--mono;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: $color--text;
+  }
+}
+
+.cpu-anim-prop-count {
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+  font-size: 0.78rem;
+}
+
+//
+// Top-offender callout — auto-derived "here is the answer" banner
+// at the top of the CPU tab. Pill-edged, slate background with a
+// brand-blue alert glyph on the left, two-line headline + detail.
+//
+.cpu-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  margin: 0 0 18px 0;
+  background: rgba(0, 149, 210, 0.06);
+  border: 1px solid rgba(0, 149, 210, 0.20);
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+}
+
+.cpu-callout-icon {
+  flex: 0 0 auto;
+  color: $color--blue;
+  margin-top: 1px;
+}
+
+.cpu-callout-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cpu-callout-headline {
+  font-size: 1rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  line-height: 1.4;
+  word-break: break-word;
+
+  a {
+    color: $color--blue;
+    text-decoration: none;
+    border-bottom: 1px dotted $color--blue;
+  }
+  a:hover { border-bottom-style: solid; }
+}
+
+.cpu-callout-detail {
+  margin-top: 4px;
+  font-size: 0.88rem;
+  color: $color--text-secondary;
+  font-variant-numeric: tabular-nums;
+}
+
+//
+// Stacked-segment "Where the time went" bar. Each category is a
+// flex item with `flex: <pct> 0 0`, so segment widths exactly map
+// to time share. Matches the WPT-derived palette used elsewhere in
+// the report so categories read consistently across views.
+//
+.cpu-cat-bar {
+  display: flex;
+  height: 22px;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  margin: 4px 0 14px 0;
+}
+
+.cpu-cat-seg {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+}
+
+.cpu-cat-seg--parseHTML            { background: rgb(130, 181, 252); }
+.cpu-cat-seg--styleLayout          { background: rgb(178, 234, 148); }
+.cpu-cat-seg--paintCompositeRender { background: rgb(196, 154, 232); }
+.cpu-cat-seg--scriptParseCompile   { background: rgb(254, 197, 132); }
+.cpu-cat-seg--scriptEvaluation     { background: rgb(245, 124, 80); }
+.cpu-cat-seg--garbageCollection    { background: rgb(33, 194, 162); }
+.cpu-cat-seg--other                { background: rgb(196, 196, 196); }
+
+.cpu-cat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cpu-cat-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.cpu-cat-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+.cpu-cat-name { color: $color--text; }
+.cpu-cat-value { color: $color--text; font-weight: $font--weight--medium; }
+.cpu-cat-pct { color: $color--text-muted; }
+
+//
+// Inline icon next to each h3 section heading on the CPU tab.
+// Stroke colour inherits the heading colour so light/dark themes
+// follow without per-icon overrides.
+//
+.cpu-h-icon {
+  vertical-align: -3px;
+  margin-right: 8px;
+  color: $color--text-muted;
 }

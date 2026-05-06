@@ -1,27 +1,115 @@
 - const browsertime = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run
 - const cpu = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run.cpu
 
+//- Inline SVG glyph mixin — small Lucide-style stroke icons next to
+//- each h3 section heading. Stroke colour inherits from the heading
+//- so light/dark themes follow without per-icon overrides. viewBox
+//- lowercased because pug-lint rejects camelCase attributes; HTML5's
+//- inline-SVG attribute-adjustment table normalises it back to
+//- viewBox at parse time. Argument is one of:
+//-   clock | ban | piechart | refresh | layout | filecode | globe |
+//-   activity | pointer
+mixin cpuIcon(name)
+  svg.cpu-h-icon(width='18', height='18', viewbox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round', aria-hidden='true')
+    case name
+      when 'clock'
+        circle(cx='12', cy='12', r='10')
+        polyline(points='12 6 12 12 16 14')
+      when 'ban'
+        circle(cx='12', cy='12', r='10')
+        line(x1='4.93', y1='4.93', x2='19.07', y2='19.07')
+      when 'piechart'
+        path(d='M21.21 15.89A10 10 0 1 1 8 2.83')
+        path(d='M22 12A10 10 0 0 0 12 2v10z')
+      when 'refresh'
+        path(d='M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8')
+        path(d='M3 3v5h5')
+        path(d='M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16')
+        path(d='M16 16h5v5')
+      when 'layout'
+        rect(x='3', y='3', width='18', height='18', rx='2')
+        line(x1='3', y1='9', x2='21', y2='9')
+        line(x1='9', y1='21', x2='9', y2='9')
+      when 'filecode'
+        path(d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z')
+        polyline(points='14 2 14 8 20 8')
+        polyline(points='10 13 8 15 10 17')
+        polyline(points='14 17 16 15 14 13')
+      when 'globe'
+        circle(cx='12', cy='12', r='10')
+        line(x1='2', y1='12', x2='22', y2='12')
+        path(d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z')
+      when 'activity'
+        polyline(points='22 12 18 12 15 21 9 3 6 12 2 12')
+      when 'pointer'
+        path(d='m9 9 5 12 1.774-5.226L21 14 9 9z')
+        path(d='m16.071 16.071 4.243 4.243')
+        path(d='m7.188 2.239.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122')
+
+//- Quicklinks ordered by importance — what a perf reader would
+//- want to see first. Long tasks (TBT headline) → where the time
+//- went → which scripts forced reflows → which scripts cost time
+//- → third-party rollup → niche signals (animations, FID) at the
+//- bottom because they're either rare or supplanted by INP.
 if cpu
   small
     | |&nbsp;
     if cpu.longTasks
       a(href='#long-tasks') Long tasks
       | &nbsp;|&nbsp;
-    if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
-      a(href='#first-input-delay') First Input Delay
+    if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+      a(href='#cpu-loaf-blocking') Per script blocking
       | &nbsp;|&nbsp;
     if cpu.categories
-      a(href='#cpu-time-spent') CPU time spent
+      a(href='#cpu-time-spent') Where time went
+      | &nbsp;|&nbsp;
+    if cpu.forcedReflows && cpu.forcedReflows.length > 0
+      a(href='#cpu-forced-reflows') Forced reflows
+      | &nbsp;|&nbsp;
+    if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+      a(href='#cpu-forced-layout-per-script') Forced layout/script
       | &nbsp;|&nbsp;
     if cpu.urls && cpu.urls.length > 0
-      a(href='#cpu-time-spent-per-request') Per request
+      a(href='#cpu-time-spent-per-request') Per script
       | &nbsp;|&nbsp;
     if pageInfo.data.thirdparty
-      a(href='#cpu-time-per-tool') Per tool
+      a(href='#cpu-time-per-tool') Per domain/tool
+      | &nbsp;|&nbsp;
+    if cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
+      a(href='#cpu-animations') Animations
+      | &nbsp;|&nbsp;
+    if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+      a(href='#first-input-delay') First Input Delay
       | &nbsp;|&nbsp;
 
 a#cpu
 h2 CPU
+
+//- Top-offender callout — auto-derived from LoAF blocking-per-script.
+//- Only renders when the data is unambiguous: total LoAF blocking
+//- ≥ 100 ms AND the top single script accounts for ≥ 30 % of it.
+//- Skips when work is evenly distributed (because then "fix script
+//- X" isn't really the answer) or when the page barely blocked at
+//- all (no clear win available).
+if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+  - const calloutByScript = new Map()
+  - for (const loaf of browsertime.pageinfo.loaf) { const blockingDur = loaf.blockingDuration || 0; if (blockingDur === 0) continue; const firstScript = loaf.scripts && loaf.scripts[0]; const url = (firstScript && firstScript.sourceURL) || ''; if (!url) continue; const entry = calloutByScript.get(url) || { url, blocking: 0 }; entry.blocking += blockingDur; calloutByScript.set(url, entry) }
+  - const calloutSorted = Array.from(calloutByScript.values()).sort((a, b) => b.blocking - a.blocking)
+  - const calloutTopOffender = calloutSorted[0]
+  - const calloutTotal = calloutSorted.reduce((s, e) => s + e.blocking, 0)
+  if calloutTopOffender && calloutTotal >= 100 && (calloutTopOffender.blocking / calloutTotal) >= 0.3
+    .cpu-callout
+      .cpu-callout-icon(aria-hidden='true')
+        svg(width='28', height='28', viewbox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+          path(d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z')
+          path(d='M12 9v4')
+          path(d='M12 17h.01')
+      .cpu-callout-body
+        .cpu-callout-headline
+          a(href=calloutTopOffender.url, title=calloutTopOffender.url)= h.shortAsset(calloutTopOffender.url, true)
+          | &nbsp;is responsible for #{Math.round(calloutTopOffender.blocking / calloutTotal * 100)}% of blocking time
+        .cpu-callout-detail
+          | #{calloutTopOffender.blocking.toFixed(0)} ms of #{calloutTotal.toFixed(0)} ms total — defer it, replace it with a lighter alternative, or move its work off the main thread to recover most of your TBT.
 
 //- Trace download buttons (Chrome / Firefox / extra-run profile).
 if cpu && cpu.events && !options.browsertime.enableProfileRun
@@ -57,7 +145,9 @@ if options.browsertime && options.browsertime.enableProfileRun
 //- individual long tasks as a sortable table at the bottom.
 if cpu && cpu.longTasks
   a#long-tasks
-  h3 Long tasks
+  h3
+    +cpuIcon('clock')
+    | Long tasks
   p Tasks ≥ 50 ms blocking the main thread, collected via the Long Task API.
   if cpu.longTasks.tasks > 0
     .cpu-kpis
@@ -75,59 +165,256 @@ if cpu && cpu.longTasks
         span.cpu-kpi-label Total time
         span.cpu-kpi-value #{h.time.ms(cpu.longTasks.totalDuration.toFixed(0))}
       .cpu-kpi
-        span.cpu-kpi-label Last task
+        span.cpu-kpi-label Last task at
         span.cpu-kpi-value #{h.time.ms(cpu.longTasks.lastLongTask)}
 
-    h4.cpu-section-heading Long tasks by phase
-    dl.cpu-phase-list
-      dt Before First Paint
-      dd
-        span.cpu-phase-count #{cpu.longTasks.beforeFirstPaint.tasks}
-        span.cpu-phase-time #{h.time.ms(cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0))}
-      dt Before First Contentful Paint
-      dd
-        span.cpu-phase-count #{cpu.longTasks.beforeFirstContentfulPaint.tasks}
-        span.cpu-phase-time #{h.time.ms(cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(0))}
-      dt Before Largest Contentful Paint
-      dd
-        span.cpu-phase-count #{cpu.longTasks.beforeLargestContentfulPaint.tasks}
-        span.cpu-phase-time #{h.time.ms(cpu.longTasks.beforeLargestContentfulPaint.totalDuration.toFixed(0))}
-      dt After Load Event End
-      dd
-        span.cpu-phase-count #{cpu.longTasks.afterLoadEventEnd.tasks}
-        span.cpu-phase-time #{h.time.ms(cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0))}
-
-    if browsertime && browsertime.pageinfo && browsertime.pageinfo.longTask
-      .listing-card
-        .listing-card-header
-          h4.listing-card-title Individual long tasks
-          span.listing-card-meta #{browsertime.pageinfo.longTask.length} #{browsertime.pageinfo.longTask.length === 1 ? 'task' : 'tasks'}
-        .responsive
-          table(data-sortable)
-            thead
-              tr
-                th Name
-                th.number Start
-                th.number Duration
-                th Container
-                th Container src
-                th Type
-            tbody
-              each task in browsertime.pageinfo.longTask
-                tr
-                  td #{task.name}
-                  td.number #{task.startTime.toFixed(0)}
-                  td.number #{task.duration.toFixed(0)}
-                  td #{task.attribution[0].containerName}
-                  td.url.assetsurl #{task.attribution[0].containerSrc}
-                  td #{task.attribution[0].containerType}
+    //- Long tasks by phase as a second KPI row — answers "WHEN was
+    //- the page busy?" at a glance. Pre-FCP work delays first paint;
+    //- before-LCP work delays the LCP candidate; post-load work is
+    //- typically third-party / hydration; combined they tell you
+    //- which slice of the page-load timeline to attack first. Each
+    //- tile is colour-coded by total duration so a reader spots the
+    //- problem phase without reading the numbers — green when the
+    //- phase had zero blocking, yellow up to 200 ms, red above.
+    - const phaseClass = (ms) => ms === 0 ? 'ok' : (ms <= 200 ? 'warning' : 'error')
+    .cpu-kpis.cpu-kpis-secondary
+      .cpu-kpi(class=phaseClass(cpu.longTasks.beforeFirstPaint.totalDuration))
+        span.cpu-kpi-label Before FP
+        span.cpu-kpi-value #{h.time.ms(cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0))}
+        span.cpu-kpi-sub #{cpu.longTasks.beforeFirstPaint.tasks} #{cpu.longTasks.beforeFirstPaint.tasks === 1 ? 'task' : 'tasks'}
+      .cpu-kpi(class=phaseClass(cpu.longTasks.beforeFirstContentfulPaint.totalDuration))
+        span.cpu-kpi-label Before FCP
+        span.cpu-kpi-value #{h.time.ms(cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(0))}
+        span.cpu-kpi-sub #{cpu.longTasks.beforeFirstContentfulPaint.tasks} #{cpu.longTasks.beforeFirstContentfulPaint.tasks === 1 ? 'task' : 'tasks'}
+      .cpu-kpi(class=phaseClass(cpu.longTasks.beforeLargestContentfulPaint.totalDuration))
+        span.cpu-kpi-label Before LCP
+        span.cpu-kpi-value #{h.time.ms(cpu.longTasks.beforeLargestContentfulPaint.totalDuration.toFixed(0))}
+        span.cpu-kpi-sub #{cpu.longTasks.beforeLargestContentfulPaint.tasks} #{cpu.longTasks.beforeLargestContentfulPaint.tasks === 1 ? 'task' : 'tasks'}
+      .cpu-kpi(class=phaseClass(cpu.longTasks.afterLoadEventEnd.totalDuration))
+        span.cpu-kpi-label After load
+        span.cpu-kpi-value #{h.time.ms(cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0))}
+        span.cpu-kpi-sub #{cpu.longTasks.afterLoadEventEnd.tasks} #{cpu.longTasks.afterLoadEventEnd.tasks === 1 ? 'task' : 'tasks'}
   else
     p.cpu-no-tasks ✓ No long tasks observed during this run.
 
-//- First Input Delay
+//- Blocking time per script — derived from the Long Animation Frame
+//- API. The Long Task API deliberately doesn't expose script-level
+//- attribution (privacy: cross-origin script identity), so it's
+//- the wrong source for "which script caused TBT". LoAF was
+//- designed to fix that gap and ships per-script attribution
+//- (sourceURL, sourceFunctionName, sourceCharPosition).
+//-
+//- Each LoAF's `blockingDuration` is credited to its **first**
+//- entry in `scripts[]` — Chrome lists scripts in execution order,
+//- so the first one is the script that started the long frame
+//- (typically the trigger). LoAFs without a script attribution
+//- (e.g. browser-internal work) are skipped.
+if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+  - const loafByScript = new Map()
+  - for (const loaf of browsertime.pageinfo.loaf) { const blockingDur = loaf.blockingDuration || 0; if (blockingDur === 0) continue; const firstScript = loaf.scripts && loaf.scripts[0]; const url = (firstScript && firstScript.sourceURL) || ''; if (!url) continue; const entry = loafByScript.get(url) || { url, blocking: 0, count: 0, worst: 0, fn: firstScript.sourceFunctionName || '' }; entry.blocking += blockingDur; entry.count++; if (blockingDur > entry.worst) entry.worst = blockingDur; if (!entry.fn && firstScript.sourceFunctionName) entry.fn = firstScript.sourceFunctionName; loafByScript.set(url, entry) }
+  - const loafEntries = Array.from(loafByScript.values()).sort((a, b) => b.blocking - a.blocking).slice(0, 10)
+  if loafEntries.length > 0
+    - const loafBlockingMax = loafEntries[0].blocking
+    a#cpu-loaf-blocking
+    h3
+      +cpuIcon('ban')
+      | Blocking time per script
+    p How much each script blocked the main thread, derived from the Long Animation Frame API. The script that started each long frame is credited with the frame's blocking time — the closest answer to "which script should I fix to improve TBT" the platform exposes.
+    .listing-card
+      .listing-card-header
+        h4.listing-card-title Top scripts blocking the main thread
+        span.listing-card-meta #{loafEntries.length} of #{loafByScript.size} #{loafByScript.size === 1 ? 'script' : 'scripts'}
+      .cpu-bars
+        each entry in loafEntries
+          - const pct = loafBlockingMax > 0 ? (entry.blocking / loafBlockingMax * 100) : 0
+          .cpu-bar-row
+            a.cpu-bar-asset(href=entry.url, title=entry.url)= h.shortAsset(entry.url, true)
+            .cpu-bar-track
+              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
+            span.cpu-bar-value
+              | #{entry.blocking.toFixed(0)} ms
+              span.cpu-bar-sub  · #{entry.count} #{entry.count === 1 ? 'frame' : 'frames'} · worst #{entry.worst.toFixed(0)} ms
+
+//- "Where the time went" — categories first since it's the broad
+//- orientation that anchors the rest of the page. Events column
+//- alongside for power users.
+if cpu && cpu.categories
+  a#cpu-time-spent
+  h3
+    +cpuIcon('piechart')
+    | Where the time went
+  p.small Calculated from the Chrome trace.
+  - const catTotal = Object.values(cpu.categories).reduce((s, v) => s + v, 0)
+  - const catEntries = Object.entries(cpu.categories).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1])
+  .listing-card
+    .listing-card-header
+      h4.listing-card-title Categories
+      span.listing-card-meta #{h.time.ms(catTotal.toFixed(0))} total
+    //- One wide horizontal bar with each category as a coloured
+    //- segment sized by its share of total CPU. Replaces the old
+    //- vertical bar list — same data, much more visual at a glance.
+    //- Tiny segments (< 1.5 % of total) are merged into the legend
+    //- only, so the bar isn't speckled with hairlines.
+    .cpu-cat-bar
+      each entry in catEntries
+        - const pct = catTotal > 0 ? (entry[1] / catTotal * 100) : 0
+        if pct >= 1.5
+          span.cpu-cat-seg(class='cpu-cat-seg--' + entry[0], style='flex: ' + pct.toFixed(3) + ' 0 0', title=entry[0] + ' · ' + entry[1].toFixed(0) + ' ms · ' + pct.toFixed(1) + '%')
+    .cpu-cat-legend
+      each entry in catEntries
+        - const pct = catTotal > 0 ? (entry[1] / catTotal * 100) : 0
+        .cpu-cat-legend-item
+          span.cpu-cat-swatch(class='cpu-cat-seg--' + entry[0])
+          span.cpu-cat-name #{entry[0]}
+          span.cpu-cat-value #{h.time.ms(entry[1].toFixed(0))}
+          span.cpu-cat-pct #{pct.toFixed(1)}%
+
+//- Forced reflows — bug-pattern signal, ranked by which script is
+//- causing them. Aggregated and filtered to ≥ 2 ms per individual
+//- reflow so the busy-trace noise (100+ sub-ms layout events) gets
+//- collapsed into a top-N actionable list.
+if cpu && cpu.forcedReflows && cpu.forcedReflows.length > 0
+  - const significant = cpu.forcedReflows.filter(r => r.duration >= 2)
+  if significant.length > 0
+    - const reflowGroups = {}
+    - for (const r of significant) { const key = r.triggeredByUrl || '__anonymous__'; if (!reflowGroups[key]) { reflowGroups[key] = { url: r.triggeredByUrl, count: 0, total: 0, max: 0 } } const g = reflowGroups[key]; g.count++; g.total += r.duration; if (r.duration > g.max) g.max = r.duration }
+    - const reflowEntries = Object.values(reflowGroups).sort((a, b) => b.total - a.total).slice(0, 10)
+    - const reflowMax = reflowEntries[0].total
+    a#cpu-forced-reflows
+    h3
+      +cpuIcon('refresh')
+      | Forced reflows
+    p A forced reflow happens when JavaScript reads a layout-triggering property (offsetTop, getBoundingClientRect, …) inside a handler, forcing the browser to synchronously recompute layout. The scripts below caused most of the page's reflows — fix them in priority order.
+    .listing-card
+      .listing-card-header
+        h4.listing-card-title Scripts causing reflows
+        span.listing-card-meta #{significant.length} #{significant.length === 1 ? 'reflow' : 'reflows'} ≥ 2 ms across #{reflowEntries.length} #{reflowEntries.length === 1 ? 'script' : 'scripts'}
+      .cpu-bars
+        each entry in reflowEntries
+          - const pct = reflowMax > 0 ? (entry.total / reflowMax * 100) : 0
+          .cpu-bar-row
+            span.cpu-bar-asset
+              if entry.url
+                a(href=entry.url, title=entry.url)= h.shortAsset(entry.url, true)
+              else
+                span.cpu-bar-anon Anonymous / inline
+            .cpu-bar-track
+              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
+            span.cpu-bar-value
+              | #{entry.total.toFixed(0)} ms
+              span.cpu-bar-sub  · #{entry.count} #{entry.count === 1 ? 'reflow' : 'reflows'} · worst #{entry.max.toFixed(0)} ms
+
+//- Forced layout per script (from LoAF). Each LoAF script entry
+//- carries `forcedStyleAndLayoutDuration` — the time spent inside
+//- that script forcing synchronous style/layout work. This is
+//- direct, browser-reported data; complements the trace-derived
+//- forced-reflows above (which counts events, not durations).
+if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+  - const fsByScript = new Map()
+  - for (const loaf of browsertime.pageinfo.loaf) { for (const s of (loaf.scripts || [])) { const dur = s.forcedStyleAndLayoutDuration || 0; if (dur === 0) continue; const url = s.sourceURL || ''; if (!url) continue; const entry = fsByScript.get(url) || { url, total: 0, count: 0 }; entry.total += dur; entry.count++; fsByScript.set(url, entry) } }
+  - const fsEntries = Array.from(fsByScript.values()).filter(e => e.total >= 1).sort((a, b) => b.total - a.total).slice(0, 10)
+  if fsEntries.length > 0
+    - const fsMax = fsEntries[0].total
+    a#cpu-forced-layout-per-script
+    h3
+      +cpuIcon('layout')
+      | Forced layout per script
+    p Each long animation frame reports how much time each script spent forcing synchronous style and layout — i.e. JavaScript reading layout-triggering properties mid-execution. Same actionable answer as forced reflows above but measured directly by the browser instead of inferred from the trace.
+    .listing-card
+      .listing-card-header
+        h4.listing-card-title Scripts forcing layout
+        span.listing-card-meta #{fsEntries.length} of #{fsByScript.size} #{fsByScript.size === 1 ? 'script' : 'scripts'}
+      .cpu-bars
+        each entry in fsEntries
+          - const pct = fsMax > 0 ? (entry.total / fsMax * 100) : 0
+          .cpu-bar-row
+            a.cpu-bar-asset(href=entry.url, title=entry.url)= h.shortAsset(entry.url, true)
+            .cpu-bar-track
+              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
+            span.cpu-bar-value
+              | #{entry.total.toFixed(0)} ms
+              span.cpu-bar-sub  · across #{entry.count} #{entry.count === 1 ? 'frame' : 'frames'}
+
+//- CPU time per script — the broad "what's costing main thread"
+//- list. Capped at top 10 because longer lists become wallpaper.
+if cpu && cpu.urls && cpu.urls.length > 0
+  a#cpu-time-spent-per-request
+  h3
+    +cpuIcon('filecode')
+    | CPU time per script
+  - const topUrls = cpu.urls.slice(0, 10)
+  - const urlMax = topUrls[0].value
+  .listing-card
+    .listing-card-header
+      h4.listing-card-title Scripts by main-thread time
+      span.listing-card-meta
+        | #{topUrls.length} of #{cpu.urls.length} #{cpu.urls.length === 1 ? 'script' : 'scripts'}
+    .cpu-bars
+      each data in topUrls
+        - const pct = urlMax > 0 ? (data.value / urlMax * 100) : 0
+        .cpu-bar-row
+          a.cpu-bar-asset(href=data.url, title=data.url)= h.shortAsset(data.url, true)
+          .cpu-bar-track
+            span.cpu-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+          span.cpu-bar-value #{data.value.toFixed(0)} ms
+
+//- CPU time per third-party tool / domain — context for the per-script
+//- list above.
+if pageInfo.data.thirdparty
+  - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
+  if thirdparty && thirdparty.cpuPerTool && Object.keys(thirdparty.cpuPerTool).length > 0
+    a#cpu-time-per-tool
+    h3
+      +cpuIcon('globe')
+      | CPU time per domain/tool
+    - const tools = Object.entries(thirdparty.cpuPerTool).sort((a, b) => b[1] - a[1])
+    - const toolMax = tools.length > 0 ? tools[0][1] : 0
+    .listing-card
+      .listing-card-header
+        h4.listing-card-title Domain / tool breakdown
+        span.listing-card-meta #{tools.length} #{tools.length === 1 ? 'entity' : 'entities'}
+      .cpu-bars
+        each entry in tools
+          - const pct = toolMax > 0 ? (entry[1] / toolMax * 100) : 0
+          .cpu-bar-row
+            span.cpu-bar-label #{entry[0]}
+            .cpu-bar-track
+              span.cpu-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+            span.cpu-bar-value #{entry[1].toFixed(1)} ms
+
+//- Non-composited animations — niche but actionable. Aggregated by
+//- unsupported property since one bad animation on N elements
+//- emits N events, and the actionable thing is "swap this property",
+//- not "see all 9 instances".
+if cpu && cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
+  - const propCounts = {}
+  - for (const a of cpu.nonCompositedAnimations) { for (const p of (a.unsupportedProperties || [])) { propCounts[p] = (propCounts[p] || 0) + 1 } }
+  - const propEntries = Object.entries(propCounts).sort((a, b) => b[1] - a[1])
+  if propEntries.length > 0
+    a#cpu-animations
+    h3
+      +cpuIcon('activity')
+      | Non-composited animations
+    p Animations that fell back from the compositor to the main thread, blocking each frame instead of running on the GPU. Each chip below is a CSS property the page tried to animate that Chrome couldn't hand to the compositor — swap it for a transform or opacity equivalent where you can.
+    .listing-card
+      .listing-card-header
+        h4.listing-card-title Properties to fix
+        span.listing-card-meta #{propEntries.length} #{propEntries.length === 1 ? 'property' : 'properties'} · #{cpu.nonCompositedAnimations.length} #{cpu.nonCompositedAnimations.length === 1 ? 'animation' : 'animations'}
+      ul.cpu-anim-list
+        each entry in propEntries
+          li.cpu-anim-prop
+            code= entry[0]
+            span.cpu-anim-prop-count #{entry[1]}×
+
+//- First Input Delay — relegated to the bottom because it's an
+//- older signal that's largely been superseded by INP, and on
+//- automated test runs (no real user input) it's almost always
+//- empty. Kept for completeness when scripted clicks are present.
 if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
   a#first-input-delay
-  h3 First Input Delay
+  h3
+    +cpuIcon('pointer')
+    | First Input Delay
   - const fi = browsertime.timings.firstInput
   .cpu-card
     .cpu-card-header
@@ -143,67 +430,3 @@ if browsertime && browsertime.timings && browsertime.timings.firstInput !== unde
       dd #{h.time.ms(fi.processingStart)}
       dt Processing end
       dd #{h.time.ms(fi.processingEnd)}
-
-//- CPU time spent — categories and event types as horizontal bar lists,
-//- replaces the two tiny tables stacked side by side.
-if cpu && cpu.categories
-  a#cpu-time-spent
-  h3 CPU time spent
-  p.small Calculated using Tracium.
-  - const catTotal = Object.values(cpu.categories).reduce((s, v) => s + v, 0)
-  .row
-    .one-half.column
-      h4.cpu-section-heading Categories
-      .cpu-bars
-        - const catEntries = Object.entries(cpu.categories).sort((a, b) => b[1] - a[1])
-        each entry in catEntries
-          - const pct = catTotal > 0 ? (entry[1] / catTotal * 100) : 0
-          .cpu-bar-row
-            span.cpu-bar-label #{entry[0]}
-            .cpu-bar-track
-              span.cpu-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-            span.cpu-bar-value #{entry[1].toFixed(0)} ms
-    .one-half.column
-      if cpu.events
-        h4.cpu-section-heading Events
-        - const evTotal = Object.values(cpu.events).reduce((s, v) => s + v, 0)
-        - const evEntries = Object.entries(cpu.events).sort((a, b) => b[1] - a[1])
-        .cpu-bars
-          each entry in evEntries
-            - const pct = evTotal > 0 ? (entry[1] / evTotal * 100) : 0
-            .cpu-bar-row
-              span.cpu-bar-label #{entry[0]}
-              .cpu-bar-track
-                span.cpu-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-              span.cpu-bar-value #{entry[1].toFixed(0)} ms
-
-  //- CPU time per request as bar list (sorted desc).
-  if cpu.urls && cpu.urls.length > 0
-    a#cpu-time-spent-per-request
-    h3 CPU time per request
-    - const urlMax = Math.max.apply(null, cpu.urls.map(u => u.value))
-    .cpu-bars
-      each data in cpu.urls
-        - const pct = urlMax > 0 ? (data.value / urlMax * 100) : 0
-        .cpu-bar-row
-          a.cpu-bar-asset(href=data.url)= data.url
-          .cpu-bar-track
-            span.cpu-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-          span.cpu-bar-value #{data.value.toFixed(0)} ms
-
-  //- CPU time per third-party tool / domain.
-  if pageInfo.data.thirdparty
-    - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
-    if thirdparty && thirdparty.cpuPerTool && Object.keys(thirdparty.cpuPerTool).length > 0
-      a#cpu-time-per-tool
-      h3 CPU time per tool / domain
-      - const tools = Object.entries(thirdparty.cpuPerTool).sort((a, b) => b[1] - a[1])
-      - const toolMax = tools.length > 0 ? tools[0][1] : 0
-      .cpu-bars
-        each entry in tools
-          - const pct = toolMax > 0 ? (entry[1] / toolMax * 100) : 0
-          .cpu-bar-row
-            span.cpu-bar-label #{entry[0]}
-            .cpu-bar-track
-              span.cpu-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-            span.cpu-bar-value #{entry[1].toFixed(1)} ms
