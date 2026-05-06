@@ -1,33 +1,57 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin rows(assets, showTiming)
+//- Inline bar rendered in the `size` cell — scales to the largest row in
+//- the table so the reader sees "this asset is ~half the leader" without
+//- doing the arithmetic. The numeric label sits on top of the bar fill.
+mixin kbSizeBarCell(title, value, max)
+  - const pct = max > 0 ? Math.min(100, value / max * 100) : 0
+  td.number.cell--bar(data-title=title, data-value=value)
+    span.cell-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+    span.cell-bar-text= h.size.format(value)
+
+mixin rows(assets, showTiming, sizeMax, includeType)
   each asset in assets
     tr
       td.url.assetsurl(data-title='URL')
         a(href=asset.url)= h.shortAsset(asset.url)
         | &nbsp;
         a.from-page(href=asset.runPage + '.html', title='Open the iteration page where this asset was loaded') → run
+      if includeType
+        td.type-cell(data-title='type')
+          if asset.type
+            span(class='type-chip type-chip--' + asset.type)= asset.type
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('transfer', asset.transferSize)
-      +kbSizeCell('size', asset.contentSize)
+      +kbSizeBarCell('size', asset.contentSize, sizeMax)
       if showTiming
         +numberCell('timing', asset.totalTime.toFixed(0))
 
 //- Each top-N table sits in its own card so the page reads as a stack
 //- of cleanly framed sections instead of a single long scroll of bare
 //- tables. Quicklinks above swap the old `| A | B | C |` separator
-//- strip for chip-style anchors.
-mixin listingCard(id, title, count, headings, assets, showTiming)
+//- strip for chip-style anchors. The header meta now also reports the
+//- summed transfer + content sizes so users can read the card's total
+//- footprint without scanning the table.
+mixin listingCard(id, title, count, headings, assets, showTiming, includeType)
+  - const sizeMax = assets.reduce((m, a) => Math.max(m, a.contentSize || 0), 0)
+  - const sizeTotal = assets.reduce((s, a) => s + (a.contentSize || 0), 0)
+  - const transferTotal = assets.reduce((s, a) => s + (a.transferSize || 0), 0)
   .listing-card(id=id)
     .listing-card-header
       h3.listing-card-title= title
-      span.listing-card-meta #{count} #{count === 1 ? 'file' : 'files'}
+      span.listing-card-meta
+        | #{count} #{count === 1 ? 'file' : 'files'}
+        if sizeTotal
+          span.listing-card-meta-sep ·
+          | #{h.size.format(transferTotal)} transfer
+          span.listing-card-meta-sep ·
+          | #{h.size.format(sizeTotal)} size
     .responsive
       table(data-sortable)
         +rowHeading(headings)
-        +rows(assets, showTiming)
+        +rows(assets, showTiming, sizeMax, includeType)
 
 block content
   include runInfo
@@ -36,7 +60,11 @@ block content
     - const topLists = ['javascript', 'image', 'css', 'html'];
     - const contentTypeNames = {javascript: 'JavaScript', image: 'image' , css: 'CSS', html : 'HTML'}
     - const headingsBySize = ['url', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)']
-    - const headingsByTime = headingsBySize.concat(['timing (ms)'])
+    //- Slow-responses + 3rd-party slowest cards include a `type` column so
+    //- a reader can see "slow because big image" vs "slow despite small XHR"
+    //- without leaving the page. Bytes columns get the same scaling bar.
+    - const headingsByTime = ['url', 'type', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)', 'timing (ms)']
+    - const headings3rdSize = ['url', 'type', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)']
 
     ul.listing-quicklinks
       each type in topLists
@@ -53,27 +81,45 @@ block content
 
     each type in topLists
       if (assetsBySize[type] && assetsBySize[type].length > 1)
-        +listingCard(type, 'Largest ' + contentTypeNames[type] + ' files', assetsBySize[type].length, headingsBySize, assetsBySize[type], false)
+        +listingCard(type, 'Largest ' + contentTypeNames[type] + ' files', assetsBySize[type].length, headingsBySize, assetsBySize[type], false, false)
 
+    - const slowestSizeMax = slowestAssets.reduce((m, a) => Math.max(m, a.contentSize || 0), 0)
+    - const slowestTransferTotal = slowestAssets.reduce((s, a) => s + (a.transferSize || 0), 0)
+    - const slowestSizeTotal = slowestAssets.reduce((s, a) => s + (a.contentSize || 0), 0)
     .listing-card(id='slowest')
       .listing-card-header
         h3.listing-card-title Slowest responses
-        span.listing-card-meta #{slowestAssets.length} #{slowestAssets.length === 1 ? 'file' : 'files'}
+        span.listing-card-meta
+          | #{slowestAssets.length} #{slowestAssets.length === 1 ? 'file' : 'files'}
+          if slowestSizeTotal
+            span.listing-card-meta-sep ·
+            | #{h.size.format(slowestTransferTotal)} transfer
+            span.listing-card-meta-sep ·
+            | #{h.size.format(slowestSizeTotal)} size
       p.listing-card-help These are the assets that took the longest time to download.
       .responsive
         table(data-sortable)
           +rowHeading(headingsByTime)
-          +rows(slowestAssets, true)
+          +rows(slowestAssets, true, slowestSizeMax, true)
 
     if options.firstParty
-      +listingCard('largestThirdParty', '3rd party largest responses', thirdPartyAssetsBySize.length, headingsBySize, thirdPartyAssetsBySize, false)
+      +listingCard('largestThirdParty', '3rd party largest responses', thirdPartyAssetsBySize.length, headings3rdSize, thirdPartyAssetsBySize, false, true)
 
+      - const slow3rdSizeMax = thirdPartySlowestAssets.reduce((m, a) => Math.max(m, a.contentSize || 0), 0)
+      - const slow3rdTransferTotal = thirdPartySlowestAssets.reduce((s, a) => s + (a.transferSize || 0), 0)
+      - const slow3rdSizeTotal = thirdPartySlowestAssets.reduce((s, a) => s + (a.contentSize || 0), 0)
       .listing-card(id='slowestThirdParty')
         .listing-card-header
           h3.listing-card-title 3rd party slowest responses
-          span.listing-card-meta #{thirdPartySlowestAssets.length} #{thirdPartySlowestAssets.length === 1 ? 'file' : 'files'}
+          span.listing-card-meta
+            | #{thirdPartySlowestAssets.length} #{thirdPartySlowestAssets.length === 1 ? 'file' : 'files'}
+            if slow3rdSizeTotal
+              span.listing-card-meta-sep ·
+              | #{h.size.format(slow3rdTransferTotal)} transfer
+              span.listing-card-meta-sep ·
+              | #{h.size.format(slow3rdSizeTotal)} size
         p.listing-card-help These are the 3rd party assets that took the longest time to download.
         .responsive
           table(data-sortable)
             +rowHeading(headingsByTime)
-            +rows(thirdPartySlowestAssets, true)
+            +rows(thirdPartySlowestAssets, true, slow3rdSizeMax, true)

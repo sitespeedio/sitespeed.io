@@ -1,11 +1,16 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin rows(domainStats)
+mixin rows(domainStats, transferMax)
   each domain in domainStats
+    - const transferSum = (domain.transferSize && domain.transferSize.sum) || 0
+    - const transferPct = transferMax > 0 ? Math.min(100, transferSum / transferMax * 100) : 0
     tr
       td.url.assetsurl(data-title='Domain')
         span.domain-name #{domain.domainName}
+      td.number.cell--bar(data-title='Bytes', data-value=transferSum)
+        span.cell-bar-fill(style='width: ' + transferPct.toFixed(2) + '%')
+        span.cell-bar-text= h.size.format(transferSum)
       +statsCell(domain.blocked, 'Blocked', 'max')
       +statsCell(domain.dns, 'DNS', 'max')
       +statsCell(domain.connect, 'Connect', 'max')
@@ -21,19 +26,27 @@ block content
   if topDomains
     //- The old `.domains-summary` count panel collapses into the card
     //- header's meta slot — same information, but consistent with the
-    //- rest of the report's card-driven layout.
+    //- rest of the report's card-driven layout. The total wire bytes
+    //- across all listed domains is rolled up beside the count so the
+    //- page's overall transfer footprint is visible up-front.
     - const shownDomains = count < fullCount ? count : fullCount
+    - const transferMax = topDomains.reduce((m, d) => Math.max(m, (d.transferSize && d.transferSize.sum) || 0), 0)
+    - const transferTotal = topDomains.reduce((s, d) => s + ((d.transferSize && d.transferSize.sum) || 0), 0)
     .listing-card
       .listing-card-header
         h3.listing-card-title Domains
-        if count < fullCount
-          span.listing-card-meta Top #{count} of #{fullCount}
-        else
-          span.listing-card-meta #{fullCount} #{fullCount === 1 ? 'domain' : 'domains'}
-      p.listing-card-help Per-phase timings (max). Click any column header to sort.
+        span.listing-card-meta
+          if count < fullCount
+            | Top #{count} of #{fullCount}
+          else
+            | #{fullCount} #{fullCount === 1 ? 'domain' : 'domains'}
+          if transferTotal
+            span.listing-card-meta-sep ·
+            | #{h.size.format(transferTotal)} total transfer
+      p.listing-card-help Bytes are wire totals per domain; per-phase timings are max. Click any column header to sort.
       .responsive
         table(data-sortable, id='domains')
-          +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
-          +rows(topDomains)
+          +rowHeading(['Domain', 'Bytes', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
+          +rows(topDomains, transferMax)
   else
     p.domains-empty No domain information available — the HAR file wasn't generated.
