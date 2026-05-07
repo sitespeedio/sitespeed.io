@@ -18,7 +18,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 SimpleJekyllSearch({
  searchInput: document.getElementById('search-input'),
  resultsContainer: document.getElementById('results-container'),
- json: {% include_relative search.json %},
+ json: '{{ site.baseurl }}/search/search.json',
  searchResultTemplate: "<li><a href='{url}'>{title}</a> - {description}</li>"
 })
 </script>

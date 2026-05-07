@@ -22,7 +22,7 @@ Sitespeed.io is highly configurable, let's check it out!
 You have the following options when running sitespeed.io within Docker (run <code>docker run sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help</code> to get the list on your command line):
 
 ~~~help
-{% include_relative config.md %}
+{% include_relative "config.md" %}
 ~~~
 
 

@@ -117,7 +117,7 @@ Here are the different metrics that you can show in the summary boxes or in the 
 
 
 ~~~
-{% include_relative friendlynames.md %}
+{% include_relative "friendlynames.md" %}
 ~~~
 
 # Show your script in the HTML output

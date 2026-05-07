@@ -1,0 +1,28 @@
+{
+  "name": "sitespeed.io-docs",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The sitespeed.io documentation site, built with Eleventy.",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "html-minifier-terser": "^7.2.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-attrs": "^4.3.1",
+    "markdown-it-toc-done-right": "^4.2.0"
+  },
+  "dependencies": {
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "lightningcss": "^1.32.0"
+  }
+}
