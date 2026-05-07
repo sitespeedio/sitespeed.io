@@ -1,0 +1,15 @@
+/* Copy-button visibility tweak.
+ *
+ * The Prism toolbar CSS in prism-1.15.css starts the toolbar at
+ * opacity:0 and fades it in on hover. That's invisible on touch
+ * devices, and easy to miss with a mouse too. Show the button at a
+ * reduced opacity by default so it's discoverable, then full opacity
+ * on hover or focus. */
+div.code-toolbar > .toolbar {
+	opacity: 0.5;
+}
+
+div.code-toolbar:hover > .toolbar,
+div.code-toolbar:focus-within > .toolbar {
+	opacity: 1;
+}

@@ -1,0 +1,21 @@
+# Netlify build customisation for the Eleventy documentation site.
+#
+# The build command, base directory and publish directory are still
+# configured in the Netlify UI; this file only adds the bits that are
+# easier expressed in code than in environment variables.
+#
+# Why the cache plugin matters here:
+#   eleventy-img processes ~600 images on a cold build (~60 s). Without
+#   persisting the output between deploys every commit pays that cost.
+#   netlify-plugin-cache restores `_site/img/_optimized/` and the
+#   eleventy-fetch metadata cache before the build, so subsequent
+#   deploys finish in 2–5 s instead.
+
+[[plugins]]
+  package = "netlify-plugin-cache"
+
+  [plugins.inputs]
+    paths = [
+      "docs/_site/img/_optimized",
+      "docs/.cache"
+    ]
