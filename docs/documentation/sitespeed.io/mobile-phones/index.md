@@ -14,7 +14,6 @@ twitterdescription: Test your page using Android or iOS.
 ## Run tests on mobile phones
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Test on Android

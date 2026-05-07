@@ -14,7 +14,6 @@ twitterdescription:
 # Matrix
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Send messages to [Matrix](https://matrix.org) [clients](https://matrix.org/clients/) (an open network for secure, decentralized communication).

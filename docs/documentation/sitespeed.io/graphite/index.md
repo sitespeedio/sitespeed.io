@@ -14,7 +14,6 @@ twitterdescription: Store your metrics in Graphite.
 # Graphite
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 

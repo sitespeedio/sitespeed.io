@@ -13,7 +13,6 @@ twitterdescription: Install browsertime using npm, yarn or Docker.
 # Installation
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 # Install

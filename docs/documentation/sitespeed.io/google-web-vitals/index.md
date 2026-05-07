@@ -13,7 +13,6 @@ twitterdescription: Get Google Web Vital metrics.
 # Google Web Vitals
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Using sitespeed.io

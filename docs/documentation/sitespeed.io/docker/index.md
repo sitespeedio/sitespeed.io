@@ -14,7 +14,6 @@ twitterdescription: Use Docker to run sitespeed.io.
 # Docker
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Containers

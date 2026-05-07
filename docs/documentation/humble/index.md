@@ -12,7 +12,6 @@ twitterdescription: Simulate slow network connections on your WiFi network.
 # Humble
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## Introduction

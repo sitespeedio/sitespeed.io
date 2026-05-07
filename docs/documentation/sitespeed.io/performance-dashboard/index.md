@@ -16,7 +16,6 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 
 Monitor the performance of your website using the performance dashboard.
 
-* Let's place the TOC here
 {:toc}
 
 ## Using Docker compose

@@ -12,7 +12,6 @@ twitterdescription:
 # Throttle
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## Introduction

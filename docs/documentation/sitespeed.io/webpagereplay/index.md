@@ -14,7 +14,6 @@ twitterdescription: Use WebPageReplay and sitespeed.io.
 # WebPageReplay
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 [WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md) is a proxy that first records your website and then replays it locally. That makes it easier to find front-end performance regressions: latency and server timings stay constant. We have integrated WebPageReplay in both Browsertime and the sitespeed.io Docker containers to make it easier to use.

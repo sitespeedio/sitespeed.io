@@ -22,7 +22,6 @@ We work out how much energy it takes to serve a site, then work out how much CO2
 
 [Chris Adams](https://twitter.com/mrchrisadams) has written down [more details](/documentation/sitespeed.io/sustainable/#the-slightly-longer-version) on how we do the calculations.
 
-* Let's place the TOC here
 {:toc}
 
 ### How to use it

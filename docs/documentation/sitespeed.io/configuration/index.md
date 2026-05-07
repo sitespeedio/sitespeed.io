@@ -13,7 +13,6 @@ twitterdescription: Configuration for sitespeed.io.
 # Configuration
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Sitespeed.io is highly configurable, let's check it out!

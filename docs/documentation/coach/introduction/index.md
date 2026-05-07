@@ -14,7 +14,6 @@ twitterdescription:
 # The Coach - Introduction
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 

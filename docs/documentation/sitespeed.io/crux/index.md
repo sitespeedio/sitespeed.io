@@ -14,7 +14,6 @@ twitterdescription: Collect Chrome User Experience Report - CrUx using sitespeed
 # Collect Chrome User Experience Report
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Get CrUx data

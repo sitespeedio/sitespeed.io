@@ -13,7 +13,6 @@ twitterdescription: Use the video in sitespeed.io
 # Video
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## The stack (easy with Docker)

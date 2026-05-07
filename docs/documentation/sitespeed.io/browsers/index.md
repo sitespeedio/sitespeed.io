@@ -13,7 +13,6 @@ twitterdescription: You can use Firefox, Safari, Chrome, Edge and Chrome/Firefox
 # Browsers
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Edge, Chrome, Chrome and Firefox on Android, and Safari on iOS. If you run our Docker containers, we update them whenever we have tested the latest stable release of Chrome or Firefox. Safari and Safari on iOS need macOS Catalina. Edge needs the corresponding MSEdgeDriver.

@@ -14,7 +14,6 @@ twitterdescription: Configuring metrics to use
 # Configure Metrics
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 # Collected metrics

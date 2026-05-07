@@ -12,7 +12,6 @@ twitterdescription: Learn more on how we work with privacy, COC and sustainabili
 # Important
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## How we work

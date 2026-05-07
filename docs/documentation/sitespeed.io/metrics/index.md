@@ -16,7 +16,6 @@ twitterdescription: Here are the metrics we collect by sitespeed.io and how they
 
 We collect a lot of metrics in sitespeed.io and not all of them are super easy to understand.
 
-* Let's place the TOC here
 {:toc}
 
 ## Visual Metrics

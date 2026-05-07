@@ -12,7 +12,6 @@ twitterdescription: Upgrade sitespeed.io 39 → 40
 # Upgrade
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 # Upgrade from 39 to 40

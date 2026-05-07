@@ -15,7 +15,6 @@ twitterdescription:
 
 <img src="{{site.baseurl}}/img/logos/compare.png" class="pull-right img-big" alt="Compare logo" width="200" height="204">
 
-* Lets place the TOC here
 {:toc}
 
 

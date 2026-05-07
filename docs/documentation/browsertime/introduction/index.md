@@ -13,7 +13,6 @@ twitterdescription: Introduction to Browsertime.
 # Introduction
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 

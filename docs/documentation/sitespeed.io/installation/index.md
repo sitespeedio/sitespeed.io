@@ -13,7 +13,6 @@ twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 # Installation
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 You can install sitespeed.io using Docker or Node.js.

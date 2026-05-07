@@ -13,7 +13,6 @@ twitterdescription: Create your own plugin for sitespeed.io
 # Plugins
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Sitespeed.io uses a plugin architecture. This architecture allows you to add/remove/create your own plugins that can run additional tests on URLs or do other things with the result, like store it in a database.

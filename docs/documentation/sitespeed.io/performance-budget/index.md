@@ -13,7 +13,6 @@ twitterdescription: Performance budget with sitespeed.io.
 # Performance Budget
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Performance budget

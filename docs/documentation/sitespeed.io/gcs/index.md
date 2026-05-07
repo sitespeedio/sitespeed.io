@@ -14,7 +14,6 @@ twitterdescription: Upload result to GCS.
 # Google Cloud Storage
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Set up a GCS bucket

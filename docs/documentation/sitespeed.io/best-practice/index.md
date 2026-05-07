@@ -13,7 +13,6 @@ twitterdescription:
 # F.A.Q and Best Practice
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Here we keep questions that are frequently asked on [Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw) or [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).

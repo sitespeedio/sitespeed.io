@@ -13,7 +13,6 @@ twitterdescription: Introduction for sitespeed.io.
 # Introduction
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Sitespeed.io is a complete web performance tool that helps you measure the performance of your website. It is designed to:

@@ -15,7 +15,6 @@ twitterdescription:
 # Details
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## A simple example
