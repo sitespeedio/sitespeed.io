@@ -18,7 +18,7 @@
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.4",
         "browsertime": "27.1.0",
-        "coach-core": "9.0.0",
+        "coach-core": "9.0.1",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.7",
@@ -5575,9 +5575,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "9.0.0",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.0.tgz",
-      "integrity": "sha512-Ow0K1obOqA7uQaSiQNodD8/xf/pU9GP2co9pRjm2T2ZfQ3YVUbT2/agIBieuIvkWLZM6X1JHxGb7ZST3O0wUKg==",
+      "version": "9.0.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.1.tgz",
+      "integrity": "sha512-DnhVyGDy7r2PJDqP/fDqucYC/MMxOc3azvclupLO6gdZ2S1iYmgVoTbm8wUKVT3dDB40giYqmG/t1bJFS9EiNQ==",
       "license": "MIT",
       "dependencies": {
         "filter-files": "0.4.0",
