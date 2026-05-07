@@ -18,7 +18,8 @@
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-attrs": "^4.3.1",
-    "markdown-it-toc-done-right": "^4.2.0"
+    "markdown-it-toc-done-right": "^4.2.0",
+    "netlify-plugin-cache": "^1.0.3"
   },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.4",
