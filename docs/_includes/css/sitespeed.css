@@ -328,7 +328,7 @@ button.btn:hover {
 
 .pull-left { float: left !important; }
 .pull-right { float: right !important; }
-.img-big { margin-right: 20px; }
+.img-big { margin-right: 20px; max-width: 100%; height: auto; }
 
 /*
  * Page panel — body is a light slate (set in navigation.css) and the
