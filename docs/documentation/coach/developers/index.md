@@ -14,7 +14,6 @@ twitterdescription:
 # The Coach - Developers guide
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## Prerequisites

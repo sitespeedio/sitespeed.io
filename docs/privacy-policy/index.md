@@ -17,7 +17,6 @@ But beware: Chrome and Firefox call home. We would love pull requests and tips h
 Also be aware that GitHub/npm/Docker/Netlify can store information when you download sitespeed.io. 
 
 Let us go through this thoroughly:
-* Let's place the TOC here
 {:toc}
 
 ## What information is being collected?

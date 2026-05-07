@@ -15,7 +15,6 @@ twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 {:.no_toc}
 
 
-* Let's place the TOC here
 {:toc}
 
 You can use sitespeed.io to keep track of what is happening with your site by making sure that you don't break performance best practice rules before you push changes to production. You can leverage budgets to break your build if your page has too many assets, the assets are too big, or it's even too slow. You can even use WebPageTest metrics to break a build!

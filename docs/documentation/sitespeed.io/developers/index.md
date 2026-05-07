@@ -14,7 +14,6 @@ twitterdescription: Hack on sitespeed.io
 # Developers
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## How it all works

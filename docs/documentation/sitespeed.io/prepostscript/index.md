@@ -13,7 +13,6 @@ twitterdescription: Pre/post scripts (log in the user)
 # Pre/post scripts and login the user
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 # Selenium

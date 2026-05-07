@@ -14,7 +14,6 @@ twitterdescription: CPU benchmark
 # CPU Benchmark
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## How it works

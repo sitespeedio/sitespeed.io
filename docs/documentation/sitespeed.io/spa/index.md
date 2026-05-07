@@ -13,7 +13,6 @@ twitterdescription: Test a single page application - SPA
 # Test a single page application
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 # Chrome soft navigations

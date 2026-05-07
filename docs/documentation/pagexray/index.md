@@ -16,7 +16,6 @@ twitterdescription:
 
 We love HAR files but it's hard to actually see how the page is composed only looking at the file. PageXray converts a HAR file to a JSON format that is easier to read and easier to use. We use the format internally in the Coach and sitespeed.io (using NodeJS) and directly in the browser in [https://compare.sitespeed.io/](https://compare.sitespeed.io/).
 
-* Lets place the TOC here
 {:toc}
 
 ## What do PageXray collect?

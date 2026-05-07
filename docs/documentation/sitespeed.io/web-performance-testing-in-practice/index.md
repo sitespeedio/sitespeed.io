@@ -13,7 +13,6 @@ twitterdescription: Web performance testing in practice
 # Web performance testing in practice
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## Start

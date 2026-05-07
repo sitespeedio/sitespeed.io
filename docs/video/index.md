@@ -10,7 +10,6 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 # Videos
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## Getting started with Sitespeed.io using Docker

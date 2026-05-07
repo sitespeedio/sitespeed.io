@@ -16,7 +16,6 @@ twitterdescription: Continuously run your tests.
 
 We have an example setup that we use to collect metrics for [dashboard.sitespeed.io](https://dashboard.sitespeed.io) that you can use as inspiration. Or you can just run your tests in the crontab or as an infinite loop on your server. In our example we use the Dockerized version of sitespeed.io. You can use Docker or you can run sitespeed.io standalone for more control.
 
-* Let's place the TOC here
 {:toc}
 
 

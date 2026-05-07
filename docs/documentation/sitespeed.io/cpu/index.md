@@ -14,7 +14,6 @@ twitterdescription: Collect CPU metrics
 # CPU
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## CPU metrics [Chrome only]

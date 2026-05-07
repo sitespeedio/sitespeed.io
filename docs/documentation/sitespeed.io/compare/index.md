@@ -13,7 +13,6 @@ twitterdescription: Use Mann Whitney U or Wilcox statistical methods to know if 
 # Compare - Statistical Methods for Regression Analysis
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Sitespeed.io utilizes Mann Whitney U and Wilcoxon tests for detecting performance regressions.

@@ -13,7 +13,6 @@ twitterdescription: Configuration for Browsertime.
 # Configuration
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 # Configuration

@@ -14,7 +14,6 @@ twitterdescription:
 # Axe
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 [Axe](https://github.com/dequelabs/axe-core) is an accessibility testing engine for websites and other HTML-based user interfaces.

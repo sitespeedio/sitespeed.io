@@ -15,7 +15,6 @@ category: sitespeed.io
 
 <b>TL;DR - Please create a reproducible bug report!</b>
 
-* Let's place the TOC here
 {:toc}
 
 ## We love a new bug report

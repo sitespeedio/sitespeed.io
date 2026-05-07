@@ -14,7 +14,6 @@ twitterdescription: Measure those third party scripts!
 # Third parties
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 
