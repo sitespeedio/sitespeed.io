@@ -636,6 +636,15 @@ body.startpage main > .white > .grid + .grid {
   margin-top: 1.4em;
 }
 
+/* Cap every image inside the startpage's main column so a >viewport-width
+ * intrinsic size (e.g. the 500x432 hero) does not push the page wider
+ * than the iPhone screen. .img-big handles the floated mascots; this
+ * catches the hero <img> and anything else without that class. */
+body.startpage main img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Mascot drop-shadow + tiny rotation on hover. */
 body.startpage main .img-big {
   filter: drop-shadow(0 6px 18px rgba(15, 23, 42, 0.18));
