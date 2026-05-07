@@ -29,7 +29,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.s
 
 ### Windows
 
-~~~
+~~~bash
 C:\Users\Vicky> docker pull sitespeedio/sitespeed.io
 C:\Users\Vicky> docker run --rm -v ${pwd}:/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
@@ -188,17 +188,17 @@ Whether you use Raspberry Pi OS Lite or Desktop, you should do the following:
 1. Write the latest version of Raspberry Pi OS Lite or Raspberry Pi OS Desktop to an SD card. If you use the **Raspberry Pi Imager**, make sure to enable SSH and choose a username/password in the settings.
 2. Access your device using SSH.
 3. Install Node.js. Install the [latest LTS](https://nodejs.org/en/); at the time of writing, that's version 24.
-~~~
+~~~bash
 curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt install nodejs
 ~~~
 4. Install ADB and Chromedriver.
-~~~
+~~~bash
 sudo apt-get update
 sudo apt-get install chromium-chromedriver adb -y
 ~~~
 5. Install video and visual metrics dependencies.
-~~~
+~~~bash
 sudo apt-get update && sudo apt-get install -y ffmpeg
 python -m pip install pyssim opencv-python numpy scipy --break-system-packages
 ~~~
