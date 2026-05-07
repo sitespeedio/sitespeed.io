@@ -1,16 +1,13 @@
----
-layout: compress
----
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
-	<title>{{ page.title }}</title>
+	<title>{{ title | escape }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="{{ page.description }}">
-	<meta name="keywords" content="{{ page.keywords }}">
-	<meta name="author" content="{{ page.author }}">
+	<meta name="description" content="{{ description | escape }}">
+	<meta name="keywords" content="{{ keywords | escape }}">
+	<meta name="author" content="{{ author | escape }}">
 	<meta name="theme-color" content="#0095d2">
 	<meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -20,23 +17,23 @@ layout: compress
 	<meta name="twitter:site" content="@sitespeedio">
 	<meta name="twitter:creator" content="@soulislove">
 	<meta name="twitter:url" content="https://www.sitespeed.io{{ page.url | replace:'index.html','' }}">
-	<meta name="twitter:title" content="{{ page.title | truncate:70  }}">
+	<meta name="twitter:title" content="{{ title | truncate:70  }}">
 
-	{% if page.twitterdescription %}
-	<meta name="twitter:description" content="{{ page.twitterdescription | truncate:200 }}">
+	{% if twitterdescription %}
+	<meta name="twitter:description" content="{{ twitterdescription | truncate:200 | escape }}">
 	{% else %}
-	<meta name="twitter:description" content="{{ page.description | truncate:200 }}">
+	<meta name="twitter:description" content="{{ description | truncate:200 | escape }}">
 	{% endif %}
 
-	{% if page.image %}
-	<meta name="twitter:image" content="{{ page.image }}">
+	{% if image %}
+	<meta name="twitter:image" content="{{ image | escape }}">
 	{% endif %}
 
 	<meta property="og:image" content="{{site.baseurl}}/img/sitespeed.io-400x400.png">
-	<meta property="og:title" content="{{ page.title }}">
+	<meta property="og:title" content="{{ title | escape }}">
 	<meta property="og:url" content="https://www.sitespeed.io{{ page.url | replace:'index.html','' }}">
 	<meta property="og:site_name" content="Sitespeed.io - How speedy is your website">
-	<meta property="og:description" content="{{ page.description | truncate:200 }}">
+	<meta property="og:description" content="{{ description | truncate:200 | escape }}">
 
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{site.baseurl}}/img/ico/sitespeed.io-144.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{site.baseurl}}/img/ico/sitespeed.io-114.png">
@@ -55,12 +52,9 @@ layout: compress
 	<link type="application/rss+xml" title="RSS Changelog for Coach Core"  href="https://www.sitespeed.io/feed/coach-core.rss" rel="alternate" />
 	<link type="application/rss+xml" title="RSS Changelog for Chrome HAR"  href="https://www.sitespeed.io/feed/chrome-har.rss" rel="alternate" />
 	<link type="application/rss+xml" title="RSS Changelog for Chrome trace"  href="https://www.sitespeed.io/feed/chrome-trace.rss" rel="alternate" />
-	<style>
-		{% include css/default.css %}
-	</style>
-	<link rel="stylesheet" href="{{ "/css/prism-1.15.css" | prepend: site.baseurl }}">
-	<script src="{{ "/js/clipboard-2.0.4.min.js" | prepend: site.baseurl }}" defer></script>
-	<script src="{{ "/js/prism-1.15.js" | prepend: site.baseurl }}" defer></script>
+	{% css %}{% include css/default.css %}{% endcss %}
+	{% css %}{% include css/prism-1.15.css %}{% endcss %}
+	<style>{% getBundle "css" %}</style>
 </head>
 
 <body class="startpage">

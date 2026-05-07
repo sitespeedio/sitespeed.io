@@ -2,36 +2,36 @@
   <div class="darkblue nav">
     <div class="grid">
       <div class="logo">
-        <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" elementtiming="header-logo" decoding="async" fetchpriority="high" width="324" height="100" /></a>
+        <a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" elementtiming="header-logo" decoding="async" fetchpriority="high" loading="eager" width="324" height="100" /></a>
       </div>
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
       <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
       <ul>
           <li>
-            <a href="{{site.baseurl}}/" {% if page.nav=='start' %}class="active" {% endif %}>Start</a>
+            <a href="{{ site.baseurl }}/" {% if nav=='start' %}class="active" {% endif %}>Start</a>
           </li>
           <li>
-            <a href="{{site.baseurl}}/documentation/" {% if page.nav=='documentation' %}class="active" {% endif %}>Documentation</a>
+            <a href="{{ site.baseurl }}/documentation/" {% if nav=='documentation' %}class="active" {% endif %}>Documentation</a>
             <ul>
-              <li><a href="{{site.baseurl}}/documentation/sitespeed.io/">sitespeed.io</a></li>
-              <li><a href="{{site.baseurl}}/documentation/browsertime/">Browsertime</a></li>
-              <li><a href="{{site.baseurl}}/documentation/onlinetest/">OnlineTest</a></li>
-              <li><a href="{{site.baseurl}}/documentation/throttle/">Throttle</a></li>
-              <li><a href="{{site.baseurl}}/documentation/coach/">Coach</a></li>
-              <li><a href="{{site.baseurl}}/documentation/pagexray/">PageXray</a></li>
-              <li><a href="{{site.baseurl}}/documentation/humble/">Humble</a></li>
-              <li><a href="{{site.baseurl}}/documentation/compare/">Compare</a></li>
-              <li><a href="{{site.baseurl}}/documentation/chrome-har/">Chrome HAR</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/sitespeed.io/">sitespeed.io</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/browsertime/">Browsertime</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/onlinetest/">OnlineTest</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/throttle/">Throttle</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/coach/">Coach</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/pagexray/">PageXray</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/humble/">Humble</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/compare/">Compare</a></li>
+              <li><a href="{{ site.baseurl }}/documentation/chrome-har/">Chrome HAR</a></li>
             </ul>
           </li>
           <li>
-            <a href="{{site.baseurl}}/support/" {% if page.nav=='support' %}class="active" {% endif %}>Support</a>
+            <a href="{{ site.baseurl }}/support/" {% if nav=='support' %}class="active" {% endif %}>Support</a>
           </li>
           <li>
-            <a href="{{site.baseurl}}/blog/" {% if page.nav=='blog' %}class="active" {% endif %}>Blog</a>
+            <a href="{{ site.baseurl }}/blog/" {% if nav=='blog' %}class="active" {% endif %}>Blog</a>
           </li>
           <li>
-            <a href="{{site.baseurl}}/search/" {% if page.nav=='search' %}class="active" {% endif %}>Search</a>
+            <a href="{{ site.baseurl }}/search/" {% if nav=='search' %}class="active" {% endif %}>Search</a>
           </li>
       </ul>
     </div>

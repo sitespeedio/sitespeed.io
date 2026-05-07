@@ -214,7 +214,7 @@ If you need more metrics for your budget, either [create an issue](https://githu
 Here's a list of all static metrics you can configure. Remember that you can also use your own metric, either from the [User Timing API (marks/measures)](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) or [metrics from scripting](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#measureaddname-value).
 
 ~~~json
-{% include_relative friendlynames.md %}
+{% include_relative "friendlynames.md" %}
 ~~~
 
 #### Budget configuration using the internal data structure

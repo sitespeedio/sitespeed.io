@@ -1,0 +1,16 @@
+---
+permalink: /search/search.json
+eleventyExcludeFromCollections: true
+---
+{%- assign docs = collections.all | where_exp: "p", "p.url contains '/documentation/'" -%}
+[{% for p in docs %}{% unless forloop.first %},{% endunless %}
+  {
+    "title": "{{ p.data.title | escape }}",
+    "category": "{{ p.data.category }}",
+    "tags": "{{ p.data.keywords | join: ', ' }}",
+    "url": "{{ site.baseurl }}{{ p.url }}",
+    "date": "{{ p.date }}",
+    "description": "{{ p.data.description | escape }}",
+    "content": {{ p.content | strip_html | strip_newlines | jsonify }}
+  }{% endfor %}
+]
