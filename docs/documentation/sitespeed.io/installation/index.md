@@ -46,19 +46,15 @@ Install on a fresh Apple Mac M1:
 
 1. Install Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 2. Install the latest Node.js LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew (if you install using Homebrew, make sure you follow the instructions and add Node.js and npm to your PATH):
-    `brew install node@20`
+    `brew install node@24`
 3. Make sure you can install using *npm* without sudo. Check out [Sindre Sorhus's guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 4. Install ffmpeg
     `brew install ffmpeg`
-5. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)) (or make sure you use the pre-installed Python 3):
-    1. `brew install pyenv` 
-    2. `pyenv install 3.9.1`
-    3. `pyenv global 3.9.1`
-    4. `echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc`
-    5. `source ~/.zshrc`
-    6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
-    7. `python get-pip.py --user`
-    8. `python -m pip install --user pillow pyssim OpenCV-Python Numpy scipy`
+5. Install the Python dependencies needed for Visual Metrics. macOS ships Python 3, so use that:
+    ~~~bash
+    python3 -m pip install --user pillow pyssim opencv-python numpy scipy
+    ~~~
+    On recent macOS versions, pip may refuse with "externally-managed-environment". If so, add `--break-system-packages` to the command above (or use a virtualenv).
 6. To be able to throttle the connection without adding a sudo password you need to run:
     `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 7. If you plan to run the iOS Simulator, you also need to install Xcode. Either install it from the App Store, follow [MacStadium's guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download it directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode works by running `xcrun simctl list devices` to list your devices.
@@ -72,10 +68,26 @@ npm install sitespeed.io -g
 
 After that you can also install the browsers that you need for your testing: [Chrome](https://www.google.com/chrome/)/[Firefox](https://www.mozilla.org/en-GB/firefox/new/)/Edge.
 
+#### Also test on iOS over USB
+
+If you want to drive a real iPhone or iPad over USB from this Mac, three extra dependencies on top of the install above:
+
+1. Enable SafariDriver:
+    ~~~bash
+    safaridriver --enable
+    ~~~
+2. Install `ios-webkit-debug-proxy` (used by Browsertime for HAR capture):
+    ~~~bash
+    brew install ios-webkit-debug-proxy
+    ~~~
+3. The FFmpeg you installed in step 4 already covers video and visual metrics, nothing extra needed.
+
+The phone-side setup (enable Remote Automation, trust the host, brightness/auto-lock) is documented in [Test on iOS](/documentation/sitespeed.io/mobile-phones/#test-on-ios).
+
 
 ### Linux
 
-If you are using Ubuntu you can use our prebuilt script. It will install all dependencies you need to run sitespeed.io, including the latest Firefox and Chrome. Use it if you have a new machine or have just set up a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script has been tested on Ubuntu 22.04.
+If you are using Ubuntu you can use our prebuilt script. It will install all dependencies you need to run sitespeed.io, including the latest Firefox and Chrome. Use it if you have a new machine or have just set up a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script has been tested on Ubuntu 24.04.
 
 ~~~bash
 bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/7218332445010ee64e3301f2021bcf18a91f0627/install-sitespeed.io-and-dependencies-ubuntu.sh)
@@ -94,16 +106,15 @@ su - sitespeedio
 sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
 ~~~
 
-You can also install everything manually to have more control. This is what's needed on Ubuntu 22.04:
+You can also install everything manually to have more control. This is what's needed on Ubuntu 24.04:
 
-1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
-    * `curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
-    * `sudo bash nodesource_setup.sh`
+1. [Install Node.js LTS](https://github.com/nodesource/distributions)
+    * `curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -`
     * `sudo apt install -y nodejs`
 2. Install ffmpeg `sudo apt-get update -y && sudo apt-get install -y ffmpeg`
 3. Install Python dependencies:
-    * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
-    * `python -m pip install pyssim OpenCV-Python Numpy scipy`
+    * `sudo apt-get install -y python-is-python3 python3-dev python3-pip`
+    * `python -m pip install pyssim opencv-python numpy scipy`
 4. Install xvfb: `sudo apt-get install -y xvfb`
 5. Install ip and tc for network throttling to work: `sudo apt-get install -y net-tools`
 6. Create a user that you will use to run sitespeed.io and switch to that user:
@@ -120,11 +131,12 @@ Before you start your testing you need to install a browser. Here's how you can 
 sudo apt install firefox -y
 ~~~
 
-And if you want to use Chrome you can install it like this:
+And if you want to use Chrome you can install it like this. `apt-key` was deprecated in Ubuntu 22.04, so we use a per-repository keyring file with `signed-by`:
 
 ~~~bash
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo install -d -m 0755 /etc/apt/keyrings
+wget -qO- https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 sudo apt update
 sudo apt install -y google-chrome-stable
 ~~~
@@ -132,11 +144,11 @@ sudo apt install -y google-chrome-stable
 And if you want to use Edge you can install it like this:
 
 ~~~bash
- curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
- sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
- sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
- sudo apt-get update
- sudo apt-get install -y microsoft-edge-stable
+sudo install -d -m 0755 /etc/apt/keyrings
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
+sudo apt-get update
+sudo apt-get install -y microsoft-edge-stable
 ~~~
 
 Try it out with Firefox:
@@ -175,9 +187,9 @@ Whether you use Raspberry Pi OS Lite or Desktop, you should do the following:
 
 1. Write the latest version of Raspberry Pi OS Lite or Raspberry Pi OS Desktop to an SD card. If you use the **Raspberry Pi Imager**, make sure to enable SSH and choose a username/password in the settings.
 2. Access your device using SSH.
-3. Install Node.js. Install the [latest LTS](https://nodejs.org/en/); at the time of writing, that's version 20.
+3. Install Node.js. Install the [latest LTS](https://nodejs.org/en/); at the time of writing, that's version 24.
 ~~~
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt install nodejs
 ~~~
 4. Install ADB and Chromedriver.
@@ -188,7 +200,7 @@ sudo apt-get install chromium-chromedriver adb -y
 5. Install video and visual metrics dependencies.
 ~~~
 sudo apt-get update && sudo apt-get install -y ffmpeg
-python -m pip install pyssim OpenCV-Python Numpy scipy --break-system-packages
+python -m pip install pyssim opencv-python numpy scipy --break-system-packages
 ~~~
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 7. And then install sitespeed.io.
@@ -247,7 +259,7 @@ EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
 
 When using Docker, the browser and driver are bundled with the correct versions. If you install everything yourself, you may need to update driver versions.
 
-You can download ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable:
-```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
+You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable:
+```CHROMEDRIVER_VERSION=131.0.6778.85 npm install ```
 
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.

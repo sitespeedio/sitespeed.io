@@ -87,8 +87,8 @@ function addItemToFeed(feed, item, tool) {
 function bulletAsHTML(md) {
   return marked
     .parse(md)
-    .replace(/<\/?(ul|li)>/g, '')
-    .replace(/<a [^>]*>([^<]+)<\/a>/g, '$1')
+    .replaceAll(/<\/?(ul|li)>/g, '')
+    .replaceAll(/<a [^>]*>([^<]+)<\/a>/g, '$1')
     .trim();
 }
 
