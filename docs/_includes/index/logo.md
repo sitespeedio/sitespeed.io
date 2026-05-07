@@ -7,6 +7,6 @@
 <source media="(min-width: 1001px)" srcset="{{site.baseurl}}/img/team1px.png 1x,
 {{site.baseurl}}/img/team.png 2x">
 
-<img src="{{site.baseurl}}/img/team.png" alt="sitespeed.io Logo with My Little Pony style cats" elementtiming="logo" fetchpriority="high" decoding="async" loading="eager" width="500" height="433">
+<img src="{{site.baseurl}}/img/team.png" alt="sitespeed.io Logo with My Little Pony style cats" elementtiming="logo" fetchpriority="high" decoding="async" loading="eager" eleventy:widths="500,1000" sizes="500px">
 
 </picture>

@@ -1,7 +1,7 @@
 ## What tool should I use?
 * * *
 
-<a href="https://dashboard.sitespeed.io"><picture><source type="image/webp" srcset="{{site.baseurl}}/img/pippi.webp"><img src="{{site.baseurl}}/img/pippi.png" class="pull-left img-big" alt="The power of sitespeed.io - Pippi Longstocking logo" width="180" height="151" loading="lazy" decoding="async"></picture></a>
+<a href="https://dashboard.sitespeed.io"><picture><source type="image/webp" srcset="{{site.baseurl}}/img/pippi.webp"><img src="{{site.baseurl}}/img/pippi.png" class="pull-left img-big" alt="The power of sitespeed.io - Pippi Longstocking logo" loading="lazy" decoding="async" eleventy:widths="180,360" sizes="180px"></picture></a>
 
 If you're testing a single page or a user journey and you want a full report, use [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/). It's the main tool — it pulls in everything else, supports scripting, and ships metrics to Graphite or InfluxDB so you can monitor your site over time.
 
