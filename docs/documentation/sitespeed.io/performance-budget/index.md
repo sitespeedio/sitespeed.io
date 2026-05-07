@@ -21,7 +21,7 @@ Have you heard of a performance budget? If not, please go read these excellent p
 
 
 ### How it works
-When you run sitespeed.io configured with a budget, the script will exit with an **exit status > 0** if the budget fails. Else the exit code is 0. It will log all budget items regardless if they pass or fail and generate a HTML report.
+When you run sitespeed.io configured with a budget, the script will exit with an **exit status > 0** if the budget fails. Otherwise the exit code is 0. It will log all budget items regardless of whether they pass or fail, and generate an HTML report.
 
 The log will look something like this:
 
@@ -43,10 +43,10 @@ The report looks like this.
 ![Example of the budget]({{site.baseurl}}/img/budget.png)
 {: .img-thumbnail}
 
-Timing metrics (like first visual change) uses the median metric of all runs. So if you wanna have more stable metrics, increase the number of iterations/runs that you test one URL.
+Timing metrics (like first visual change) use the median metric of all runs. So if you want more stable metrics, increase the number of iterations/runs that you test one URL with.
 
 ### The budget file
-In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL. In the budget file there are 5 couple of sections:
+In 8.0 we introduced a new way of configuring the budget. You can configure default values and specific values per URL. In the budget file there are five sections:
 
 * timings - are Visual and technical metrics and are configured in milliseconds (ms)
 * requests - the max number of requests per type or total
@@ -69,7 +69,7 @@ The simplest version of a budget file that will check for SpeedIndex higher than
 ~~~
 
 #### Override per URL or alias
-All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL.
+All URLs that you test then need to have a SpeedIndex faster than 1000. But what if you have one URL that you know is slower? You can override the budget per URL.
 
 ~~~json
 {
@@ -86,7 +86,7 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 }
 ~~~
 
-If you use alias for URLs, you can use that instead:
+If you use aliases for URLs, you can use those instead:
 
 ~~~json
 {
@@ -100,10 +100,11 @@ If you use alias for URLs, you can use that instead:
       "SpeedIndex":1000
     }
  }
- ~~~
+}
+~~~
 
 #### User Timing API metrics
-You can use User Timing API metrics in your budget. Both marks and measurements will be picked up under the name *usertimings*. Sitespeed.io will first look for a mark with that name, and if that do not exist it will look for a measurement.
+You can use User Timing API metrics in your budget. Both marks and measurements will be picked up under the name *usertimings*. Sitespeed.io will first look for a mark with that name, and if it doesn't exist it will look for a measurement.
 
 ~~~json
 {
@@ -217,7 +218,7 @@ Here's a list of all static metrics you can configure. Remember that you can als
 ~~~
 
 #### Budget configuration using the internal data structure
-There's also an old version of setting a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
+There's also an older way of setting a budget that works for all metrics collected by sitespeed.io. It works on the internal data structure.
 
 
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
@@ -306,7 +307,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 It will create a *budgetResult.json* in the outputFolder.
 
 ### Remove working/passing result
-There's a feature where you can configure sitespeed.io to remove data (the result HTML/videos/screenshots) for all pages that passes your budget. This is useful if you crawl your site and only want to keep the result of the pages that fails, to save space. Use ```--budget.removeWorkingResult``` to remove data for pages that works.
+There's a feature where you can configure sitespeed.io to remove data (the result HTML/videos/screenshots) for all pages that pass your budget. This is useful if you crawl your site and only want to keep the result of the pages that fail, to save space. Use ```--budget.removeWorkingResult``` to remove data for pages that pass.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.removeWorkingResult -b chrome -n 5

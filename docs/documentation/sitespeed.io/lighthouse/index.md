@@ -17,30 +17,30 @@ You can find the plugin at [https://github.com/sitespeedio/plugin-lighthouse](ht
 
 We also made it easy to use Lighthouse and the Google PageSpeed Insights plugin by releasing the +1 Docker container.
 
-You can run it with: 
+You can run it with:
 
 ```bash
 docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/
-``` 
+```
 
-And you will also automatically run Lighthouse and GPSI. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionality please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
+That will automatically run Lighthouse and GPSI. We release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDB, the scores from Lighthouse and GPSI will be automatically stored. If you want to add functionality, please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
 
-The Lighthouse tests will run after Browsertime finished and run Chrome headless.
+The Lighthouse tests will run after Browsertime has finished, and run Chrome headless.
 
-*Note:* If you want to run more plugins with <code>--plugins.add</code> that will override the default settings so you will need to add the Lighthouse plugin again like this:
+*Note:* if you want to run more plugins with <code>--plugins.add</code>, that will override the default settings, so you will need to add the Lighthouse plugin again like this:
 
 ```bash
 docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add @sitespeed.io/plugin-lighthouse
-``` 
+```
 
 The Lighthouse result is iframed into sitespeed.io:
 ![Lighthouse]({{site.baseurl}}/img/lighthouse-frame.png)
 {: .img-thumbnail}
 
 ## Configuration
-By default the plugin run the tests with desktop settings (*lighthouse/lighthouse-core/config/lr-desktop-config*). If you run sitespeed.io with `--mobile`, `--android` or `--ios` the plugin will run the tests with mobile settings (*lighthouse/lighthouse-core/config/lr-mobile-config*).
+By default the plugin runs the tests with desktop settings (*lighthouse/lighthouse-core/config/lr-desktop-config*). If you run sitespeed.io with `--mobile`, `--android` or `--ios` the plugin will run the tests with mobile settings (*lighthouse/lighthouse-core/config/lr-mobile-config*).
 
-If you want you can run the tests with your own configuration. You will do that by adding your own JavaScript configuration file ```--lighthouse.config config.js```.
+If you want, you can run the tests with your own configuration. You do that by adding your own JavaScript configuration file ```--lighthouse.config config.js```.
 
 And a configuration file like this:
 
@@ -53,11 +53,11 @@ module.exports = {
 };
 ```
 
-You can also add Lighthouse flags by a JSON file ```--lighthouse.flags flag.json```. If you pass on command like flags that contains hyphens, they are removed and converted internally in Lighthouse, so for example to get the command line flag `--extra-headers` to work, the JSON should be like this:
+You can also add Lighthouse flags via a JSON file ```--lighthouse.flags flag.json```. If you pass command line flags that contain hyphens, they are removed and converted internally in Lighthouse. So, for example, to get the command line flag `--extra-headers` to work, the JSON should be like this:
 
 ```JSON
 {
-    "extraHeaders": { "key": "value"} 
+    "extraHeaders": { "key": "value"}
 }
 ```
 
@@ -65,7 +65,7 @@ Read all about configuring Lighthouse at [https://github.com/GoogleChrome/lighth
 
 
 ## Disable GPSI
-If you only want to run Lighthouse and not GPSI you can disable it with `----plugins.remove @sitespeed.io/plugin-gpsi`.
+If you only want to run Lighthouse and not GPSI, you can disable it with `--plugins.remove @sitespeed.io/plugin-gpsi`.
 
 
 You can read more about sitespeed.io plugins [here](https://www.sitespeed.io/documentation/sitespeed.io/plugins/).

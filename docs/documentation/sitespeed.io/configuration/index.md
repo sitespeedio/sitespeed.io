@@ -16,11 +16,10 @@ twitterdescription: Configuration for sitespeed.io.
 * Let's place the TOC here
 {:toc}
 
-# Configuration
 Sitespeed.io is highly configurable, let's check it out!
 
 ## The options
-You have the following options when running sitespeed.io within docker (run <code>docker run sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help</code> to get the list on your command line):
+You have the following options when running sitespeed.io within Docker (run <code>docker run sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help</code> to get the list on your command line):
 
 ~~~help
 {% include_relative config.md %}
@@ -29,7 +28,7 @@ You have the following options when running sitespeed.io within docker (run <cod
 
 ## The basics
 
-You can analyse a site either by crawling or by feeding sitespeed.io with a list of URLs you want to analyse.
+You can analyse a site either by crawling or by feeding sitespeed.io a list of URLs you want to analyse.
 
 ### Analyse by URLs
 The simplest way to run sitespeed.io is to give it a URL:
@@ -38,7 +37,7 @@ The simplest way to run sitespeed.io is to give it a URL:
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io
 ~~~
 
-If you want to test multiple URLs, then just add them. Each page will be tested with a new browser session, browser cache cleared between each URL.
+If you want to test multiple URLs, just add them. Each page will be tested with a new browser session, with the browser cache cleared between URLs.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
@@ -53,7 +52,7 @@ http://www.yoursite.com/my/really/important/page/
 http://www.yoursite.com/where/we/are/
 ~~~
 
-Another feature of the plain text file is you can add aliases to the urls.txt file after each URL. To do this, add a non-spaced string after each URL that you would like to alias:
+Another feature of the plain text file is that you can add aliases after each URL. To do this, add a non-spaced string after each URL that you would like to alias:
 
 ~~~
 http://www.yoursite.com/ Start_page
@@ -70,13 +69,13 @@ And run it:
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
 ~~~
 
-You can also add alias directly from the command line. Make yore that you pass on the same amount of alias and URLs.
+You can also add aliases directly from the command line. Make sure you pass the same number of aliases and URLs.
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --urlAlias doc https://www.sitespeed.io/documumentation/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --urlAlias doc https://www.sitespeed.io/documentation/
 ~~~
 
-Pass on multiple --urlAlias for multiple alias/URLs.
+Pass multiple --urlAlias for multiple alias/URL pairs.
 
 If you want to test multiple URLs in a sequence (where the browser cache is not cleared) use --multi:
 
@@ -84,7 +83,7 @@ If you want to test multiple URLs in a sequence (where the browser cache is not 
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
-You can also add an group alias to the plain text file that replaces the domain part of the URL in the time series database. To do this, add a non-spaced string after each URL alias (this only works if you already have an alias for the URL):
+You can also add a group alias to the plain text file that replaces the domain part of the URL in the time series database. To do this, add a non-spaced string after each URL alias (this only works if you already have an alias for the URL):
 
 ~~~
 http://www.yoursite.com/ Start_page Group1
@@ -92,19 +91,19 @@ http://www.yoursite.com/my/really/important/page/ Important_Page Group1
 http://www.test.com/where/we/are/ We_are Group2
 ~~~
 
-If you wanna do more complicated things like log in the user, add items to a cart etc, checkout [scripting](../scripting/).
+If you want to do more complicated things like logging in the user or adding items to a cart, check out [scripting](../scripting/).
 
 
 ### Analyse by crawling
 
-If you want to find pages that are not so performant it's a good idea to crawl. Sitespeed.io will start with the URL and fetch all links on that page and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
+If you want to find pages that are not so performant, it's a good idea to crawl. Sitespeed.io will start with the URL, fetch all links on that page, and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from the first page, etc.):
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -d 2
 ~~~
 
 ### How many runs per URL?
-When collecting timing metrics, it's good to test the URL more than one time (default is three times). You can configure how many runs like this (five runs):
+When collecting timing metrics, it's good to test the URL more than once (default is three times). You can configure how many runs like this (five runs):
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 5
@@ -119,7 +118,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 ### Connectivity
 
-You should throttle the connection when you are fetching metrics. We have a [special section]({{site.baseurl}}/documentation/sitespeed.io/connectivity) on how you emulate connectivity for real users. Make sure you read that parts of the documentation!
+You should throttle the connection when you are fetching metrics. We have a [special section]({{site.baseurl}}/documentation/sitespeed.io/connectivity) on how to emulate connectivity for real users. Make sure you read that part of the documentation!
 
 ### Viewport/user agent and mobile
 
@@ -141,9 +140,9 @@ Mobile testing is always best on actual mobile devices. You can [test on Android
 {: .note .note-warning}
 
 ### Visual metrics and video
-In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. This is one of the main benefits for using our Docker images, as it makes for an easy setup. Without Docker, you would need to install all the [dependencies](https://github.com/WPO-Foundation/visualmetrics).
+In 4.1 we released support for recording a video of the browser screen and using that to calculate visual metrics like Speed Index. This is one of the main benefits of using our Docker images, since it makes for an easy setup. Without Docker, you would need to install all the [dependencies](https://github.com/WPO-Foundation/visualmetrics).
 
-In 6.0 video and Visual Metrics is turned on by default, and if you want to turn them off you do like this:
+In 6.0 video and Visual Metrics are turned on by default, and if you want to turn them off you do like this:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --visualMetrics false https://www.sitespeed.io/
@@ -156,7 +155,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 
 ### First party vs third party
-By default we will categorise the current main domain as first party and the rest as a third party. And you probably wanna categorise requests yourself as first or third parties by adding a regex.
+By default we categorise the current main domain as first party and everything else as third party. You probably want to categorise requests yourself as first or third party by adding a regex.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --firstParty ".ryanair.com" https://www.ryanair.com/us/en/
@@ -165,7 +164,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 This is a JavaScript regex and if you need help you should test it out at [https://regexr.com](https://regexr.com) to see that it will match.
 
 ### Output folder or where to store the result
-You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behaviour and put the output in a specific location:
+You can change where the data is stored by setting the <code>--outputFolder</code> parameter. That is useful when you want to put the output in a specific location:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder https://www.sitespeed.io/
@@ -175,7 +174,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 You can keep all your configuration in a JSON file and then pass it on to sitespeed.io, and override with CLI parameters. We use [yargs](https://github.com/yargs/yargs) for the CLI and configuration.
 
-The CLI parameters can easily be converted to a JSON, using the full name of the cli name. A simple example is when you configure which browser to use. The shorthand name is `-b` but if you check the help (`--help`) you can see that the full name is `browsertime.browser`. That means that `-b` and `--browsertime.browser` is the same. And in your JSON configuration that looks like this:
+The CLI parameters can easily be converted to JSON using the full name of the CLI option. A simple example is when you configure which browser to use. The shorthand name is `-b` but if you check the help (`--help`) you can see that the full name is `browsertime.browser`. That means `-b` and `--browsertime.browser` are the same. In your JSON configuration that looks like this:
 
 ~~~json
 {
@@ -239,7 +238,7 @@ You can also extend another JSON config file. The path needs to be absolute. We 
 }
 ~~~
 
-If you have a parameter that you want to repeat, for example setting multiple request headers, the field needs to be an JSON array. 
+If you have a parameter that you want to repeat, for example setting multiple request headers, the field needs to be a JSON array.
 
 ~~~json
 {

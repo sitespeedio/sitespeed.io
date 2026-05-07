@@ -14,10 +14,10 @@ twitterdescription:
 # Axe
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
-[Axe](https://github.com/dequelabs/axe-core) is an accessibility testing engine for websites and other HTML-based user interfaces. 
+[Axe](https://github.com/dequelabs/axe-core) is an accessibility testing engine for websites and other HTML-based user interfaces.
 
 ## Run
 You enable testing with `--axe.enable`.
@@ -33,9 +33,9 @@ That will run [axe-core](https://github.com/dequelabs/axe-core) and generate a n
 
 
 ## Configure Axe
-You can [configure Axe](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) which rules/checks that will be used. 
+You can [configure Axe](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) to choose which rules/checks will be used.
 
-You need to read [Axe official documentation](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) to get a feeling for what you can configure with Axe.  In the *axe* namespace we pass on all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
+You need to read the [Axe official documentation](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) to get a feeling for what you can configure with Axe. In the *axe* namespace we pass all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
 
 ```json
 checks: {
@@ -46,7 +46,7 @@ checks: {
 That way you can configure all things you can configure in the [Axe configuration](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure).
 
 
-However you probably just want to configure [run options](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axerun), you can do that with adding a run prefix. Say for example you only want to test *wcag2aa* compliance, you can do that with the *runOnly* configuration in AXE. You can do that with a configuration like:
+However you probably just want to configure [run options](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axerun), you can do that by adding a `run` prefix. Say for example you only want to test *wcag2aa* compliance, you can do that with the *runOnly* configuration in Axe. You can do that with a configuration like:
 
 ```json
 {
@@ -58,9 +58,9 @@ However you probably just want to configure [run options](https://github.com/deq
 }
 ```
 
-If you wanna avoid having over complicated cli-parameters you should use the [configuration as JSON feature](/documentation/sitespeed.io/configuration/#configuration-as-json).
+If you want to avoid having over-complicated CLI parameters, you should use the [configuration as JSON feature](/documentation/sitespeed.io/configuration/#configuration-as-json).
 
-## How it works behind the scene
+## How it works behind the scenes
 The Axe tests are run as a [postScript](/documentation/sitespeed.io/prepostscript/).
 
-Running Axe will add some extra run time per test. How long extra time it takes depends on your page and the server running the browser.
+Running Axe will add some extra run time per test. How much extra time it takes depends on your page and the server running the browser.

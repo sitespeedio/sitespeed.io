@@ -13,12 +13,12 @@ twitterdescription: Create your own plugin for sitespeed.io
 # Plugins
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
-Sitespeed.io uses a plugin architecture. This architecture allows you to add/remove/create your own plugins that can run additional tests on URLs or do other things with the result, like store it to a database.
+Sitespeed.io uses a plugin architecture. This architecture allows you to add/remove/create your own plugins that can run additional tests on URLs or do other things with the result, like store it in a database.
 
-The most basic things you can do is list configured plugins (which are currently used), disable one of the default plugin, or add/enable more plugins.
+The most basic things you can do are list configured plugins (which are currently used), disable one of the default plugins, or add/enable more plugins.
 
 ## List configured plugins
 You can list the plugins that will be used when you do a run:
@@ -31,26 +31,26 @@ And you will get a log entry that looks something like this:
 
 ~~~
 ...
-The following plugins are enabled: assets,browsertime,coach,domains,ithubhtml
+The following plugins are enabled: assets,browsertime,coach,domains,html
 ...
 ~~~
 
-The default plugins lives in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins). This is a good starting place to look at if you wanna build your own plugin.
+The default plugins live in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins). This is a good starting place to look at if you want to build your own plugin.
 
 ## Disable a plugin
-You can remove/disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
+You can remove/disable default plugins if needed. For instance, you may not want to output HTML and only send the data to Graphite.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html
 ~~~
 
-If you want to disable multiple plugins say you don't need the HTML and the har files (the harstorer plugin):
+If you want to disable multiple plugins, say you don't need the HTML and the HAR files (the harstorer plugin):
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove harstorer
 ~~~
 
-At anytime if you want to verify that disabling worked, add the plugins.list to your command:
+At any time, if you want to verify that disabling worked, add the plugins.list to your command:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove harstorer --plugins.list
@@ -59,7 +59,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ## Add a plugin
 You can also add a plugin. This is great if you have plugins you created yourself, plugins others have created, or plugins that are not enabled by default.
 
-There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin:
+There's a plugin bundled with sitespeed.io called the *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc.) to disk. You can enable this plugin:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
@@ -70,13 +70,13 @@ If you want to run plugins that you created yourself or that are shared from oth
 
 ### Mount your plugin in Docker
 
-If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
+If you run in Docker (and you should), you will need to mount your plugin directory as a volume. This is the recommended best practice. In practice you should clone your repo on your server and then mount it like this.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
-Here's full example on how you could do it with the WebPageTest plugin:
+Here's a full example of how you could do it with the WebPageTest plugin:
 
 ~~~bash
 cd
@@ -91,15 +91,15 @@ docker run --rm -v /Users/peter/:/sitespeed.io sitespeedio/sitespeed.io --plugin
 ~~~
 
 
-### Relative using NodeJS
-If you have your plugin installed on your computer you can load it by a relative path.
+### Relative using Node.js
+If you have your plugin installed on your computer, you can load it by a relative path.
 
 ~~~bash
 sitespeed.io https://www.sitespeed.io --plugins.add ../my/super/plugin
 ~~~
 
-### Globally using NodeJS
-If you installed your plugin globally, you can find it by it name. In this example we first install the lighthouse plugin:
+### Globally using Node.js
+If you installed your plugin globally, you can find it by its name. In this example we first install the Lighthouse plugin:
 
 ~~~bash
 npm install @sitespeed.io/plugin-lighthouse -g
@@ -143,7 +143,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" my-custom-sitespeedio -b firefox --my-
 ~~~
 
 ## How to create your own plugin
-Plugins in sitespeed.io should inherit the [sitespeed.io plugin](https://github.com/sitespeedio/plugin/blob/main/plugin.js). This has been added in sitespeed.io 27.0.0. Implement that base class and you will get some functioonality for free.
+Plugins in sitespeed.io should inherit the [sitespeed.io plugin](https://github.com/sitespeedio/plugin/blob/main/plugin.js). This was added in sitespeed.io 27.0.0. Implement that base class and you will get some functionality for free.
 
 In your dependencies for your plugin, make sure to add the latest version of the plugin.
 
@@ -161,11 +161,11 @@ export default class MyPlugin extends SitespeedioPlugin {
   constructor(options, context, queue) {
     super({ name: 'MyPlugin', options, context, queue });
     // You need to call the constructor of the base plugin to make sure
-    // yoo can get hold of all the 
+    // you can get hold of all the configuration.
   }
 
    open() {
-     // when sitespeed.io start it calls the open function once for all plugins
+     // when sitespeed.io starts it calls the open function once for all plugins
      // here you can prepare the things you need.
 
      // If you want to log a message to the log you can log on info level
@@ -185,7 +185,7 @@ export default class MyPlugin extends SitespeedioPlugin {
       // you can get those from the base class.
       const options = super.getOptions();
 
-      // if your plugin needs to store data to disk, you can do that with thhe
+      // if your plugin needs to store data to disk, you can do that with the
       // storage manager
       const storageManager = super.getStorageManager();
 
@@ -193,7 +193,7 @@ export default class MyPlugin extends SitespeedioPlugin {
 
     close() {
     // When all messages are done, the close function is called once.
-    // Options are the configuration options and errors a array of errors
+    // Options are the configuration options, and errors is an array of errors
     // from the run.
      super.log('Closing down my plugin');
   }
@@ -201,9 +201,9 @@ export default class MyPlugin extends SitespeedioPlugin {
 ~~~
 
 ### open()
-The open function is called once when sitespeed.io starts, it's in this function you can initialise whatever you need within your plugin. You will get the *context* and the *options*.
+The open function is called once when sitespeed.io starts. It's in this function you can initialise whatever you need within your plugin. You will get the *context* and the *options*.
 
-The *context* holds information for this specific run that generated at runtime and looks like this:
+The *context* holds information for this specific run that is generated at runtime and looks like this:
 
 ~~~javascript
 {
@@ -219,21 +219,21 @@ The *context* holds information for this specific run that generated at runtime 
 }
 ~~~
 
-You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/core/resultsStorage/storageManager.js),
+You can check out the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/core/resultsStorage/storageManager.js),
 [messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/messageMaker.js),
-[statsHelpers](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/statsHelpers.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/filterRegistry.js) to get feel how you can use them.
+[statsHelpers](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/statsHelpers.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/filterRegistry.js) to get a feel for how you can use them.
 
-The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/cli.js) to see all the options.
+The *options* are the options that a user will supply in the CLI, check out the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/cli.js) to see all the options.
 
 ### processMessage(message, queue)
-The processMessage function in your plugin is called for each and every message that is passed in the application. So what's a message you may ask? Everything is a message in sitespeed.io.:) A message contains the following information:
+The processMessage function in your plugin is called for each and every message that is passed in the application. So what's a message, you may ask? Everything is a message in sitespeed.io :) A message contains the following information:
 
  * **uuid** a unique id
- * **type** the type of a message, so your plugin know if it is interested in this message type or not.
+ * **type** the type of a message, so your plugin knows whether it is interested in this message type.
  * **timestamp** when the message was created
  * **source** who created the message
  * **data** the data that is sent in the message
- * **extras** whatever extra that you wanna include in a message
+ * **extras** whatever extra you want to include in a message
 
 When you start the application and feed it with URLs, each URL will generate a message of type URL and will be sent to all configured plugins.
 
@@ -260,23 +260,23 @@ const messageMaker = context.messageMaker;
 When all URLs have been analysed, the close function is called once for each plugin. The idea with the close function is to close down assets that your plugin created. Normally the close function is nothing you need to implement.
 
 ### Important messages
-There are a couple of pre defined messages that will always passed around in the queue.
+There are a couple of predefined messages that are always passed around in the queue.
 
-* **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaScript to browsertime.
+* **sitespeedio.setup** - the first message that will be passed to all plugins. When you get this message you can pass information to other plugins. For example, if you send pug files to the HTML plugin or JavaScript to Browsertime.
 * **sitespeedio.summarize** - all URLs are analysed and the plugins need to summarise the metrics.
 * **sitespeedio.render** - it is time to render (=write data to disk).
 
-Plugins also pass on message to each other. The HTML plugin also sends a **html.finished** message when the HTML is written to disk. The S3 plugin listens for that message and when it gets it it uploads the files and then sends a **s3.finished** message. And then the Slack plugin listens on **s3.finished** messages and then sends a Slack message.
+Plugins also pass messages to each other. The HTML plugin sends an **html.finished** message when the HTML is written to disk. The S3 plugin listens for that message, and when it gets it, it uploads the files and sends an **s3.finished** message. The Slack plugin then listens for **s3.finished** messages and sends a Slack message.
 
-Data from different tools are passed with three different message types:
+Data from different tools is passed with three different message types:
 * ***.run** - metrics collected for one run/iteration
 * ***.pageSummary** - a summary of all the metrics collected for all iterations for one page. Here you will get min/median/max values for all runs for that page.
-* ***.summary** - metrics collected for all pages tested. 
+* ***.summary** - metrics collected for all pages tested.
 
 ### Debug/log
 You can use the sitespeed.io log to log messages. We use [intel](https://www.npmjs.com/package/intel) for logging.
 
-You get the log object in the context object (so there's no need to require the log) but you you should get a specific instance so that you can filter the log/see which part of sitespeed.io that writes to the log.
+You get the log object in the context object (so there's no need to require the log), but you should get a specific instance so that you can filter the log/see which part of sitespeed.io is writing to the log.
 
 In the [open](#opencontext-options) function you can add something like this:
 
@@ -299,7 +299,7 @@ You start by listening to the generic setup message **sitespeedio.setup**. When 
  * id = the id of the plugin, need to be unique.
  * name = the friendly name displayed in the tab showing the data.
  * pug = the pug file as a String.
- * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page. Most cases you will only need pageSummary data but if you have a tool that do multiple runs, then you should send the data per run (as Browsertime and WebPageTest do).
+ * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page. In most cases you will only need pageSummary data, but if you have a tool that does multiple runs, you should send the data per run (as Browsertime and WebPageTest do).
 
 Sending a pug looks something like this:
 
@@ -320,7 +320,7 @@ case 'sitespeedio.setup': {
 The HTML plugin will then listen to metrics sent with the type of the id and type, in this case *gpsi.pageSummary*.
 
 #### Send the data
-The HTML plugin will automatically pickup data sent with the types of \*.run and \*.pageSummary. All these needs to have the URL so that it can be mapped to the right place.
+The HTML plugin will automatically pick up data sent with the types of \*.run and \*.pageSummary. All these need to have the URL so that the data can be mapped to the right place.
 
 A message can look like this (the HTML plugin will pickup messages sent by combining the id + type):
 
@@ -340,7 +340,7 @@ You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plug
 One new feature in 6.0 is that your plugin can tell Browsertime to run synchronous JavaScript on the page you test to
 collect metrics.
 
-You do that by in the setup phase, send the JavaScript you want to run to sitespeed.io
+In the setup phase, send the JavaScript you want to run to sitespeed.io:
 
 ~~~javascript
 case 'sitespeedio.setup': {
@@ -394,7 +394,7 @@ If your plugin lives on GitHub you should check out our [example Travis-ci file]
 You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins/webpagetest).
 
 ## Find plugins
-We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you wanna add your plugin, send a PR!
+We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you want to add your plugin, send a PR!
 
 ## What's missing
-There's no way for a plugin to tell the CLI about what type of configuration/options that are needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that. Help us out if you have ideas!
+There's no way for a plugin to tell the CLI what type of configuration/options are needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that. Help us out if you have ideas!
