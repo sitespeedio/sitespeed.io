@@ -14,26 +14,26 @@ twitterdescription: Run Google PageSpeed Insights from sitespeed.io.
 
 There's a Google Page Speed Insights plugin at [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi) and since sitespeed.io 12.2.0 it runs the *new* Lighthouse backend.
 
-You can run it with: 
+You can run it with:
 
 ```bash
 docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.remove @sitespeed.io/plugin-lighthouse
-``` 
+```
 
-You would also need to add the `--gpsi.key YOUR_GPSI_KEY` to sitespeed.io. The GPSI key is provided by Google and you can get it [here](https://cloud.google.com/docs/authentication/api-keys).
+You also need to add `--gpsi.key YOUR_GPSI_KEY` to sitespeed.io. The GPSI key is provided by Google and you can get it [here](https://cloud.google.com/docs/authentication/api-keys).
 
-The container also includes Lighthouse. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored.
+The container also includes Lighthouse. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDB, the scores from Lighthouse and GPSI will be automatically stored.
 
-The plugin will send a request to the Google Page Speed Servers and parse the result. The result will look something like this:
+The plugin will send a request to the Google Page Speed servers and parse the result. The result will look something like this:
 
 ![GPSI]({{site.baseurl}}/img/gpsi-lighthouse.png)
 {: .img-thumbnail}
 
-The plugin also collect metrics for the specific page and the domain from the Chrome User Experience report:
+The plugin also collects metrics for the specific page and the domain from the Chrome User Experience report:
 ![GPSI distribution]({{site.baseurl}}/img/gpsi-distribution.png)
 {: .img-thumbnail}
 
-All scores and distributions is automatically sent to Graphite/InfluxDB.
+All scores and distributions are automatically sent to Graphite/InfluxDB.
 
 ## Disable Lighthouse
-If you only want to run GPSI and not Lighthouse you can disable it with `--plugins.remove  @sitespeed.io/plugin-lighthouse`.
+If you only want to run GPSI and not Lighthouse, you can disable it with `--plugins.remove @sitespeed.io/plugin-lighthouse`.

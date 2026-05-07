@@ -14,13 +14,13 @@ twitterdescription: Configuring metrics to use
 # Configure Metrics
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 # Collected metrics
-Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove
-filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change
-them create an [issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
+Sitespeed.io collects a lot of metrics, which are filtered before they are sent to Graphite/InfluxDB. You can remove
+filters and/or add your own filters. Some sensible defaults have been set for you; if you have suggestions to change
+them, create an [issue on GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Summary vs pageSummary vs run
 The metrics are separated into three groups:
@@ -63,7 +63,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 
 ## Configure/filter metrics
-You can add/change/remove filters with **\-\-metrics.filter**. We use yargs to pass on parameters and complicated parameters like metrics.filter works best if you use a configuration json file.
+You can add/change/remove filters with **\-\-metrics.filter**. We use yargs to pass parameters, and complicated parameters like metrics.filter work best if you use a JSON configuration file.
 
 ### Add a metric
 If you want to add metrics, start by looking at the generated metrics file, so you can see what you would send.
@@ -90,7 +90,7 @@ coach.pageSummary.advice.performance.adviceList.thirdPartyAsyncJs.weight
 ...
 ~~~
 
-The score is ... yes the score and the weight is how important it is. You probably only need the score, so setting a
+The score is ... yes, the score, and the weight is how important it is. You probably only need the score, so setting a
 filter like this **coach.pageSummary.advice.performance.adviceList.\*.score** will send them all (setting a wildcard for
 the name).
 
@@ -98,7 +98,7 @@ the name).
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score -n 1
 ~~~
 
-The best way to test and verify on your local, is to checkout the sitespeed.io project and then start a TCP server that
+The best way to test and verify locally is to check out the sitespeed.io project and then start a TCP server that
 logs everything:
 
 ~~~bash
@@ -117,13 +117,13 @@ It will output the port, so you can then use it when you run sitespeed.io:
 docker run --net host --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
 
-The previous example it will log all metrics you send to Graphite to the console.
+The previous example will log all metrics you send to Graphite to the console.
 
 #### Example: Add all Coach advice
 
-By default the total score for performance, accessibility and best practice is configured to send to Graphite.
-Previously we looked at sending all the score for the performance advice. If you want to send all the scores for all
-advice, you can do that easily, by adding all three categories in the CLI:
+By default, the total score for performance, accessibility and best practice is configured to send to Graphite.
+Previously we looked at sending all the scores for the performance advice. If you want to send all the scores for all
+advice, you can do that easily by adding all three categories in the CLI:
 
 ~~~shell
 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score coach.pageSummary.advice.bestpractice.adviceList.*.score coach.pageSummary.advice.accessibility.adviceList.*.score
@@ -150,7 +150,7 @@ If you want to send the three coach metrics, you can add them as a config file l
 ~~~
 
 ### Remove metrics
-Sitespeed.io does not currently have support removal of a single metric, but you can
+Sitespeed.io does not currently support removal of a single metric, but you can
 remove all configured metrics with the parameter value *\*-*. Here is an example sending only the
 **coach.pageSummary.advice.performance.adviceList.\*.score** metrics.
 

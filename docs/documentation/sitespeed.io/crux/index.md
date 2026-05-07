@@ -14,21 +14,21 @@ twitterdescription: Collect Chrome User Experience Report - CrUx using sitespeed
 # Collect Chrome User Experience Report
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 ## Get CrUx data
-sitespeed.io has a CrUx plugin that can collect data from the [Chrome User Experience Report API](https://web.dev/chrome-ux-report-api/). To do that you need a CrUx API key that you can get [from Google](https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey) (click on the button **Get a Key**). When you have the key you can get CrUx data using sitespeed.io.
+sitespeed.io has a CrUx plugin that can collect data from the [Chrome User Experience Report API](https://web.dev/chrome-ux-report-api/). To do that you need a CrUx API key that you can get [from Google](https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey) (click on the **Get a Key** button). Once you have the key, you can get CrUx data using sitespeed.io.
 
 ~~~bash
 sitespeed.io --crux.key $CRUX_API_KEY https://www.sitespeed.io
 ~~~
 
-If you send the data to Graphite you want to push the data to its own namespace ```--graphite.namespace sitespeedio.crux``` and you probably want to separate the data from your sitespeed.io data, so you can disable Browsertime and do one run just to get the CrUx data. CrUx data changes doesn't change so often so you can just run it once per day.
+If you send the data to Graphite you want to push the data to its own namespace ```--graphite.namespace sitespeedio.crux```, and you probably want to separate the data from your sitespeed.io data, so you can disable Browsertime and do one run just to get the CrUx data. CrUx data doesn't change that often, so you can just run it once per day.
 
-The plugin collect data for the specific URL that you test AND the origin (domain). 
+The plugin collects data for the specific URL that you test AND for the origin (domain).
 
-Here's a full example of getting CrUx data, disable browsertime for that run and send the data to the namespace sitespeedio.crux.
+Here's a full example of getting CrUx data, disabling Browsertime for that run, and sending the data to the namespace sitespeedio.crux:
 
 ~~~bash
 sitespeed.io --crux.key $CRUX_API_KEY --plugins.remove browsertime --graphite.namespace sitespeedio.crux https://www.sitespeed.io
@@ -45,9 +45,9 @@ sitespeed.io --crux.key $CRUX_API_KEY --crux.formFactor PHONE --crux.formFactor 
 
 
 ## Collect URL or origin data or both
-You can choose to collect data specific only for a URL, for the origin (domain) or for both of them (using **ALL**). Use the switch ```--crux.collect```. By default both URL and origin data is collected.
+You can choose to collect data only for a specific URL, for the origin (domain), or for both (using **ALL**). Use the switch ```--crux.collect```. By default both URL and origin data are collected.
 
-Lets collect only origin data:
+Let's collect only origin data:
 ~~~bash
 sitespeed.io --crux.key $CRUX_API_KEY --crux.collect ORIGIN https://www.sitespeed.io
 ~~~

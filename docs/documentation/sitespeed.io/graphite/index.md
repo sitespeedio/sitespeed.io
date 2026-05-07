@@ -19,12 +19,12 @@ twitterdescription: Store your metrics in Graphite.
 
 
 ## What is Graphite
-[Graphite](https://graphiteapp.org/) store numeric time-series data and you can use that to store the metrics sitespeed.io collects. We provide an easy integration and you can use [our pre-made Docker container](https://hub.docker.com/r/sitespeedio/graphite/) and our [dashboard setup]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes) or use your current Graphite setup.
+[Graphite](https://graphiteapp.org/) stores numeric time-series data and you can use that to store the metrics sitespeed.io collects. We provide an easy integration and you can use [our pre-made Docker container](https://hub.docker.com/r/sitespeedio/graphite/) and our [dashboard setup]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes) or use your current Graphite setup.
 
 ## Before you start
-If you are a new user of Graphite you need to read Etsys write up about [Graphite](https://github.com/statsd/statsd/blob/master/docs/graphite.md) so you have an understanding of how the data is stored and how to configure the metrics. Also read [Graphite docs how to get metrics into graphite](https://graphite.readthedocs.io/en/latest/feeding-carbon.html#getting-your-data-into-graphite) for a better understanding of the metrics structure.
+If you are a new user of Graphite you need to read Etsy's write-up about [Graphite](https://github.com/statsd/statsd/blob/master/docs/graphite.md) so you have an understanding of how the data is stored and how to configure the metrics. Also read the [Graphite docs on how to get metrics into Graphite](https://graphite.readthedocs.io/en/latest/feeding-carbon.html#getting-your-data-into-graphite) for a better understanding of the metrics structure.
 
-In Graphite you configure for how long time you want to store metrics and at what precision, so it's good to check our default configuration ([this](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) and [this](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf)) before you start so you see that it matches your needs.
+In Graphite you configure how long you want to store metrics and at what precision, so it's good to check our default configuration ([this](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) and [this](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf)) before you start to see that it matches your needs.
 
 
 ## Configure Graphite
@@ -54,7 +54,7 @@ pattern = run-\d+\.
 retentions = 10s:6h,10m:60d,30m:90d
 ~~~
 
-Another example is if wanna use the [Crux plugin](/documentation/sitespeed.io/crux/) to collect Crux data once day. And then you want to store that data for one year. Setup a pattern that match the Crux data and configure the retention.
+Another example is if you want to use the [CrUX plugin](/documentation/sitespeed.io/crux/) to collect CrUX data once a day, and then you want to store that data for one year. Set up a pattern that matches the CrUX data and configure the retention.
 
 ~~~shell
 [sitespeed_crux]
@@ -69,28 +69,29 @@ One thing to know if you change your Graphite configuration: ["Any existing metr
 To send metrics to Graphite you need to at least configure the Graphite host:
 <code>--graphite.host</code>.
 
-If you don't run Graphite on default port you can change that to by <code>--graphite.port</code>.
+If you don't run Graphite on the default port, you can change that with <code>--graphite.port</code>.
 
 If your instance is behind authentication you can use <code>--graphite.auth</code> with the format **user:password**.
 
-If you use a specifc port for the user interface (and where we send the annotations) you can change that with <code>--graphite.httpPort</code>.
+If you use a specific port for the user interface (and where we send the annotations), you can change that with <code>--graphite.httpPort</code>.
 
 If you use a different web host for Graphite than your default host, you can change that with <code>--graphite.webHost</code>. If you don't use a specific web host, the default domain will be used.
 
-You can choose the namespace where sitespeed.io will publish the metrics. Default is **sitespeed_io.default**. Change it with <code>--graphite.namespace</code>. If you want all default dashboards to work, it need to be 2 steps and include a slug.
+You can choose the namespace where sitespeed.io will publish the metrics. Default is **sitespeed_io.default**. Change it with <code>--graphite.namespace</code>. If you want all default dashboards to work, it needs to be 2 steps and include a slug.
 
-Each URL is by default split into domain and the URL when we send it to Graphite. By default sitespeed.io remove query parameters from the URL bit if you need them you can change that by adding <code>--graphite.includeQueryParams</code>.
+Each URL is by default split into domain and URL when we send it to Graphite. By default sitespeed.io removes query parameters from the URL, but if you need them you can change that by adding <code>--graphite.includeQueryParams</code>.
 
 If you want metrics from each iteration you can use <code>--graphite.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean).
 
 If you use Graphite < 1.0 you need to make sure the tags in the annotations follow the old format, you do that by adding <code>--graphite.arrayTags</code>.
 
-You can choose to send metric per par page and summarized per domain. If you only test a couple of URLs you probably do not need the summarized per domain metrics and you can disable them by adding <code>--graphite.skipSummary</code>.
+You can choose to send metrics per page and summarised per domain. If you only test a couple of URLs you probably do not need the summarised per-domain metrics and you can disable them by adding <code>--graphite.skipSummary</code>.
 
-You can add the slug of the test to the key (`--slug`). This will be the default in September 2021 and you should start using it now to be able to see screenshots and latest videos directly in Grafana. Use it like this:
-`--graphite.addSlugToKey true --slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure of **sitespeed_io.desktop.firstView.**.
+You can add the slug of the test to the key (`--slug`). This will be the default in September 2021, and you should start using it now to be able to see screenshots and the latest videos directly in Grafana. Use it like this:
+`--graphite.addSlugToKey true --slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure **sitespeed_io.desktop.firstView.**.
+
 ### Debug
-If you want to test and verify what the metrics looks like that you send to Graphite you can use *tools/tcp-server.js* to verify what it looks like.
+If you want to test and verify what the metrics that you send to Graphite look like, you can use *tools/tcp-server.js* to see.
 
 1. Start the server (you need to clone the sitespeed.io repo first): <code>tools/tcp-server.js</code>
 2. You will then get back the port for the server (60447 in this example): <code>Server listening on :::60447</code>
@@ -119,10 +120,10 @@ You can send annotations to Graphite to mark when a run happens so you can go fr
 
 You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
-You can also modify the annotation and append our own text/HTML and add your own tags.
-Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you feel that can help you. If needed set a custom title with <code>--graphite.annotationTitle</code> instead of the default title that displays the number of runs of the test.
+You can also modify the annotation and append your own text/HTML and add your own tags.
+Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever else you feel can help you. If needed, set a custom title with <code>--graphite.annotationTitle</code> instead of the default title that displays the number of runs of the test.
 
-You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
+You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags don't collide with our internal tags.
 
 ![Annotations]({{site.baseurl}}/img/graphite-annotations.png){:loading="lazy"}
 {: .img-thumbnail-center}
@@ -135,13 +136,13 @@ You can also include a screenshot from the run in the annotation by adding <code
 To make sure the annotations match the actual metric point in Grafana you should use <code>--graphite.annotationRetentionMinutes</code>. If you configured your *storage-schemas.conf* file to have a retention of 10 minutes (one new metric every 10 minutes) you should add <code>--graphite.annotationRetentionMinutes 10</code> to your configuration.
 
 ### Use Grafana annotations
-All default dashboards use Graphite annotations. But you can use Grafana built in annotations. That can be good if your organisation is already using them. Note that if you choose to do that, you need to update the dashboards to use Grafana annotations.
+All default dashboards use Graphite annotations. But you can use Grafana's built-in annotations. That can be good if your organisation is already using them. Note that if you choose to do that, you need to update the dashboards to use Grafana annotations.
 
-To use Grafana annotations, make sure you setup a *resultBaseURL* and add the host and port to Grafana: <code>--grafana.host</code> and <code>--grafana.port</code>.
+To use Grafana annotations, make sure you set up a *resultBaseURL* and add the host and port to Grafana: <code>--grafana.host</code> and <code>--grafana.port</code>.
 
-Then setup your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
+Then set up your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
 
-You need to create a new annotation setup in Grafana that matches the templates (the dropdowns) in your dashboard (the same way the default "run" Graphite annotation is setup). It will look something like this:
+You need to create a new annotation setup in Grafana that matches the templates (the dropdowns) in your dashboard (the same way the default "run" Graphite annotation is set up). It will look something like this:
 
 ![Setup Grafana annotations]({{site.baseurl}}/img/grafana-annotations.png){:loading="lazy"}
 {: .img-thumbnail-center}
@@ -158,23 +159,23 @@ In sitespeed.io **17.0.0** we introduced the ability to add the slug of your tes
 The change is rolled out like this:
 * In April 2021 you can convert your data and use the slug. You need to add `--graphite.addSlugToKey true` else you will get a log warning that you miss the slug for your test. All default dashboards in sitespeed.io will use the slug, so to use them you should add that new key and convert your data.
 * In September 2021 `--graphite.addSlugToKey true` will be set to default, meaning if you haven't upgraded your Graphite data yet, you need to set `--graphite.addSlugToKey false` to be able to run as before.
-* In November 2021 the CLI functionality will disappear and you need upgrade your Graphite metrics when you upgrade sitespeed.io. 
+* In November 2021 the CLI functionality will disappear and you need to upgrade your Graphite metrics when you upgrade sitespeed.io.
 
-If you have old data you should convert it as soon as possible. When you do that you need add the new dashboards or if you have your own made dashboard, you need to convert them so they pickup the slug.
+If you have old data you should convert it as soon as possible. When you do that you need to add the new dashboards, or if you have your own dashboard, you need to convert it so it picks up the slug.
 
 
 ### Convert Graphite data structure
-Depending on how used you are to use the command line, there are different ways you can convert the data to the new format. If you feel you need input please feel free to create an issue at [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
+Depending on how used to the command line you are, there are different ways you can convert the data to the new format. If you feel you need input, please feel free to create an issue on [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 #### The simple way
-Run tests side by side and have the double amount of data for a while: Add new tests that sends the metrics with the new structure and when you have the history you, you can remove the data for the old tests and stop those tests. Make sure you add a new `--graphite.namespace` and enable the slug `--graphite.addSlugToKey true`. Also add a unique slug to all your tests by adding `--slug YOUR_TEST_NAME`.
+Run tests side by side and have double the amount of data for a while: add new tests that send the metrics with the new structure, and when you have the history, you can remove the data for the old tests and stop them. Make sure you add a new `--graphite.namespace` and enable the slug `--graphite.addSlugToKey true`. Also add a unique slug to all your tests by adding `--slug YOUR_TEST_NAME`.
 
 #### The middle way
-Move the old data to the new structure in Graphite. Since Graphite store metrics in plain files in a directory structure, you can add a new folder structure and move the old data. You will have some downtime for the test when you do it, but you don't need to have multiple tests running at the same time. 
+Move the old data to the new structure in Graphite. Since Graphite stores metrics in plain files in a directory structure, you can add a new folder structure and move the old data. You will have some downtime for the test when you do it, but you don't need to have multiple tests running at the same time.
 
-Lets say that you use a Graphite namespace that looks like `--graphite.namespace sitespeed_io.firstView` then the data is stored in your *whisper* directory like *whisper/sitespeed_io/firstView*. You can move all the old data to a legacy folder (all those all data will be visible in your new dashboards under the test name *legacy*).
+Let's say that you use a Graphite namespace that looks like `--graphite.namespace sitespeed_io.firstView`, then the data is stored in your *whisper* directory like *whisper/sitespeed_io/firstView*. You can move all the old data to a legacy folder (all that old data will be visible in your new dashboards under the test name *legacy*).
 
-Log into the server that runs your tests, stop all tests and then login to the Graphite server. Then go to the whisper directory and where your data is stored and then move them all to a test slug name that is *legacy*. 
+Log into the server that runs your tests, stop all tests, and then log into the Graphite server. Then go to the whisper directory where your data is stored and move it all into a test slug named *legacy*.
 
 ~~~
 cd whisper/sitespeed_io/firstView
@@ -183,25 +184,25 @@ mv * .legacy
 mv .legacy legacy
 ~~~
 
-Then you can add `--graphite.addSlugToKey true` and slug  `--slug YOUR_TEST_NAME` to all your tests and restart the tests.
+Then you can add `--graphite.addSlugToKey true` and a slug `--slug YOUR_TEST_NAME` to all your tests and restart the tests.
 
 #### The best way (but more work)
-If you got the skills you can move all data to the right directory and have keep the history of the old data in the new dashboards. To do that you should decide what test name/slug each test should use first. Then stop your tests and log into your Graphite server.
+If you have the skills, you can move all the data to the right directory and keep the history of the old data in the new dashboards. To do that you should first decide what test name/slug each test should use. Then stop your tests and log into your Graphite server.
 
-First take a copy of your whisper directory so you have a backup if something goes wrong. Then create each new directory for each slug in your whisper directory and then move the data. The slug/test name is appended as a key/directory direct after your Graphite namespace. Say that you use a namespace `--graphite.namespace sitespeed_io.hepp` then the folder structure on your Graphite server is *whisper/sitespeed_io/hepp*. If you then add slug named *mySlug* you need to move all the test data into  *whisper/sitespeed_io/hepp/mySlug*.
+First take a copy of your whisper directory so you have a backup if something goes wrong. Then create a new directory for each slug in your whisper directory and move the data. The slug/test name is appended as a key/directory directly after your Graphite namespace. Say that you use a namespace `--graphite.namespace sitespeed_io.hepp`, then the folder structure on your Graphite server is *whisper/sitespeed_io/hepp*. If you then add a slug named *mySlug*, you need to move all the test data into *whisper/sitespeed_io/hepp/mySlug*.
 
 ### Update to our new dashboards
 
-When you converted the data you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) and use them.
+Once you have converted the data, you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) and use them.
 
-### Change your home made Grafana dashboards
+### Change your home-made Grafana dashboards
 
-If you have your own created dashboards, you need to add the testname as variable and update all the other variables. Start by adding the testname as in the screenshot below.
+If you have your own dashboards, you need to add the testname as a variable and update all the other variables. Start by adding the testname as in the screenshot below.
 
 ![Add a test name as a variable]({{site.baseurl}}/img/add-testname.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-Then update all variables to use the newly create variable. Here's an example what it looks like when you update domain/group.
+Then update all variables to use the newly created variable. Here's an example of what it looks like when you update domain/group.
 
 ![Repeat adding the testname for all variables]({{site.baseurl}}/img/add-testname-all.jpg){:loading="lazy"}
 {: .img-thumbnail}
@@ -211,28 +212,29 @@ When you changed all the variables, you need to update the metrics on your dashb
 ![Change all the keys direct in the dashboard JSON]({{site.baseurl}}/img/change-dashboard-json.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-Copy the JSON and add it to your favourite editor and search and replace all keys. Search for the key `$base.$path.pageSummary.` and replace that with `$base.$path.$testname.pageSummary.`. Replace all occurrence. Then copy the changed JSON, pastes into Grafana and save the dashboard again.
+Copy the JSON and add it to your favourite editor and search and replace all keys. Search for the key `$base.$path.pageSummary.` and replace that with `$base.$path.$testname.pageSummary.`. Replace all occurrences. Then copy the changed JSON, paste it into Grafana, and save the dashboard again.
+
 ## Dashboards
-We have [pre-made Grafana dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one. You can also checkout our [docker-compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) on how to set it up.
+We have [pre-made Grafana dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) that work with Graphite. They are generic, and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one. You can also check out our [docker-compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) on how to set it up.
 
 
 ## Namespace
-The default namespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second* and with adding a slug/test name. To add a slug add `--graphite.addSlugToKey true` and the actual test name/slug to all your test by adding `--slug YOUR_TEST_NAME`.
+The default namespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that start with two parts: *first.second*, with the addition of a slug/test name. To add a slug, add `--graphite.addSlugToKey true` and the actual test name/slug to all your tests by adding `--slug YOUR_TEST_NAME`.
 
 If you want more parts, the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) will break.
 
-When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite. We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards).
+When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that send metrics to Graphite. We then change the second part: *sitespeed_io.desktop*, *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards).
 
 ## Delete old tags/annotations
-By default annotations and there tags are stored in the SQLite database that comes with Graphite. The size of that database will increase over time and that will make the annotations slower to load in the Grafana GUI.
+By default, annotations and their tags are stored in the SQLite database that comes with Graphite. The size of that database will increase over time, and that will make the annotations slower to load in the Grafana GUI.
 
-To fix that you should setup a job in the crontab that delete old tags/events. Edit the crontab using `crontab -e` and make sure to change the path to the SQLite database and to the SQL script that will delete old entries.
+To fix that you should set up a job in the crontab that deletes old tags/events. Edit the crontab using `crontab -e` and make sure to change the path to the SQLite database and to the SQL script that will delete old entries.
 
 ~~~
 0 0 * * 0 sqlite3 /path/to/graphite.db < /path/to/deleteoldevents.sql && sqlite3 /path/to/graphite.db 'VACUUM;'
 ~~~
 
-The script should look like this. Here we gonna delete tags/annotations that are older than 34 days.
+The script should look like this. Here we delete tags/annotations that are older than 34 days.
 
 ~~~
 DELETE FROM tagging_taggeditem WHERE object_id IN (SELECT id FROM events_event WHERE "when" <= date('now','-34 day'));
@@ -247,30 +249,30 @@ You either need to make sure you have a massive amount of storage, or you should
 The Graphite DB size is determined by the number of unique data points and the frequency of them within configured time periods, meaning you can easily optimize how much space you need. If the majority of the URLs you need to test are static and are tested often, you should find there's a maximum DB size depending on your storage-schemas.conf settings.
 
 ## Statsd
-If you are using statsd you can use it by adding <code>--graphite.statsd</code> (and send the metrics to statsd instead of directly to Graphite). You can also choose how many metrics you wanna send per request by configuring <code>--graphite.bulkSize</code>.
+If you are using statsd you can use it by adding <code>--graphite.statsd</code> (and send the metrics to statsd instead of directly to Graphite). You can also choose how many metrics you want to send per request by configuring <code>--graphite.bulkSize</code>.
 
 If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/).
 
 ## Secure your instance
 You probably want to make sure that only your sitespeed.io servers can post data to your Graphite instance. If you run your Graphite instance on your server using Docker, you need to use iptables to block access.
 
-If you run on AWS you that with [security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). On Digital Ocean you can setup firewalls through the admin.
+If you run on AWS, you can do that with [security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). On Digital Ocean you can set up firewalls through the admin.
 
 Your Graphite server needs to open port 2003 and 8080 for TCP traffic for your servers running sitespeed.io.
 
-If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting metrics) can all have the same group (allows outbound traffic and only allowing inbound for ssh).
+If you are using AWS, you always give your servers a security group. The servers running sitespeed.io (collecting metrics) can all have the same group (allowing outbound traffic and only allowing inbound for ssh).
 
-The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
+The Graphite server can then open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
 
 ![Security group AWS]({{site.baseurl}}/img/security-group-aws.png){:loading="lazy"}
 {: .img-thumbnail}
 
-Make sure that when you send data between the server that you using the **Private DNS/Private IP** of the server (else they cannot reach each other). You find the private IP in the *description* section of your server in the admin.
+Make sure that when you send data between servers, you use the **Private DNS/Private IP** of the server (otherwise they cannot reach each other). You find the private IP in the *description* section of your server in the admin.
 
 ![Private IP AWS]({{site.baseurl}}/img/private-ip.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-If you are using Digital Ocean, you can setup the firewall rule in the admin. Here you add each instance that need to be able to send data (*sitespeed.io-worker* in this example). On this server we also Grafana for HTTP/HTTPS traffic.
+If you are using Digital Ocean, you can set up the firewall rule in the admin. Here you add each instance that needs to be able to send data (*sitespeed.io-worker* in this example). On this server we also have Grafana open for HTTP/HTTPS traffic.
 
 ![Firewall setup Digital Ocean]({{site.baseurl}}/img/firewall-digitalocean.png){:loading="lazy"}
 {: .img-thumbnail}
@@ -306,9 +308,9 @@ sudo apt-get install -y iptables-persistent
 ~~~
 
 ## Storing the data
-You probably gonna need to store the metrics in Graphite on another disk. If you are an AWS user, you can use and [setup an EBS volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html). If you use Digital Ocean you can follow their [quick start guide](https://www.digitalocean.com/docs/volumes/quickstart/).
+You're probably going to need to store the metrics in Graphite on another disk. If you are an AWS user, you can [set up an EBS volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html). If you use Digital Ocean you can follow their [quick start guide](https://www.digitalocean.com/docs/volumes/quickstart/).
 
-When your volume is mounted on your server that runs Graphite, you need to make sure Graphite uses the. Map the Graphite volume to the new volume outside of Docker (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/raw/main/docker/graphite/graphite.db) file):
+When your volume is mounted on your server that runs Graphite, you need to make sure Graphite uses it. Map the Graphite volume to the new volume outside of Docker (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/raw/main/docker/graphite/graphite.db) file):
  - `/path/on/server/whisper:/opt/graphite/storage/whisper`
  - `/path/on/server/graphite.db:/opt/graphite/storage/graphite.db`
 
@@ -317,7 +319,7 @@ If you use Grafana annotations, you should make sure grafana.db is outside of th
 ## Graphite for production (important!)
 
 1. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
-2. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
+2. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf) for how long you want to store your metrics.
 3. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
 4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper

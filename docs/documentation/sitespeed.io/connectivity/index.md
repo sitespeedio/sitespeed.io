@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Set the connectivity type before you start your tests.
-description: You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle.
+description: You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to set up a network bridge in Docker or use our connectivity engine Throttle.
 keywords: connectivity, throttle, emulate, users
 nav: documentation
 category: sitespeed.io
@@ -13,17 +13,18 @@ twitterdescription:
 # Connectivity
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 ## Change/set connectivity
-You can and should throttle the connection to make the connectivity slower to make it easier to catch regressions. If you don’t do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection
+You can and should throttle the connection to make the connectivity slower, which makes it easier to catch regressions. If you don't, your tests will run with different connectivity profiles and any regressions/improvements you see may just be caused by your server's flaky internet connection.
 
-The best way to do that is to use our connectivity engine [Throttle](https://github.com/sitespeedio/throttle), setup a network bridge in Docker, use [Humble](https://github.com/sitespeedio/humble) the Raspberry Pi WiFi network link conditioner if you test with mobile phones.
+The best way to do that is to use our connectivity engine [Throttle](https://github.com/sitespeedio/throttle), set up a network bridge in Docker, or use [Humble](https://github.com/sitespeedio/humble) (the Raspberry Pi WiFi network link conditioner) if you test with mobile phones.
+
 ### Throttle
-[Throttle](https://github.com/sitespeedio/throttle) uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
+[Throttle](https://github.com/sitespeedio/throttle) uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle needs sudo rights for the user running sitespeed.io to work.
 
-To use throttle, use set the connectivity engine by <code>--connectivity.engine throttle</code>.
+To use Throttle, set the connectivity engine with <code>--connectivity.engine throttle</code>.
 
 ~~~bash
 browsertime --connectivity.engine throttle -c cable https://www.sitespeed.io/
@@ -35,7 +36,7 @@ or for sitespeed.io:
 sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sitespeed.io/
 ~~~
 
-You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
+You can also use Throttle inside Docker, but then the host needs to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
 First use modprobe:
 
@@ -43,12 +44,12 @@ First use modprobe:
 sudo modprobe ifb numifbs=1
 ~~~
 
-And then then make user you use the right privileges:
+Then make sure you use the right privileges:
 ~~~bash
 docker run --cap-add=NET_ADMIN --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
 ~~~
 
-If you run Docker on OS X, you need to rottle outside of Docker. Install it and run like this:
+If you run Docker on OS X, you need to throttle outside of Docker. Install it and run like this:
 
 ~~~
 # First install
@@ -61,9 +62,9 @@ $ throttle stop
 ~~~
 
 ### Humble (for mobile phone testing)
-To get Humble up and running you need a Raspberry Pi 4. The Pi will share a trottled WiFi network that you can use from your phone. Browsertime/sitespeed.io will connect to the Raspberry Pi and configure the connectivity on the WiFi before your test starts.
+To get Humble up and running you need a Raspberry Pi 4. The Pi will share a throttled WiFi network that you can use from your phone. Browsertime/sitespeed.io will connect to the Raspberry Pi and configure the connectivity on the WiFi before your test starts.
 
-1. Follow [the instructions to setup the Raspberry Pi WiFi network](https://github.com/sitespeedio/humble#install-using-the-pre-made-image).
+1. Follow [the instructions to set up the Raspberry Pi WiFi network](https://github.com/sitespeedio/humble#install-using-the-pre-made-image).
 2. Make sure your phone uses the new WiFi (named `humble` by default).
 3. Run the tests!
 
@@ -74,7 +75,7 @@ sitespeed.io --browsertime.connectivity.engine=humble --browsertime.connectivity
 ~~~
 
 ### Docker networks
-Here's an full example to setup up Docker network bridges on a server that has tc installed:
+Here's a full example for setting up Docker network bridges on a server that has tc installed:
 
 ~~~shell
 #!/bin/bash
@@ -100,7 +101,7 @@ tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
 tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 ~~~
 
-When you run your container you add the network with <code>--network cable</code>. A full example running running with cable:
+When you run your container, you add the network with <code>--network cable</code>. A full example running with cable:
 
 ~~~bash
 docker run --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c cable https://www.sitespeed.io/

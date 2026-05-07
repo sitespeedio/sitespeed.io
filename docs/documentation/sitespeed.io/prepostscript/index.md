@@ -13,15 +13,15 @@ twitterdescription: Pre/post scripts (log in the user)
 # Pre/post scripts and login the user
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 # Selenium
-Since sitespeed.io 8.0 the pre/post script has changed. You probably should use just [a script to navigate](../scripting/). 
+Since sitespeed.io 8.0 the pre/post script has changed. You probably should just use [a script to navigate](../scripting/).
 
-Before sitespeed.io loads and tests a URL you can run your own Selenium script. Do you want to access a URL and pre-load the cache or maybe you want to login as a user and then measure a URL?
+Before sitespeed.io loads and tests a URL, you can run your own Selenium script. Do you want to access a URL and pre-load the cache, or maybe you want to log in as a user and then measure a URL?
 
-We use the NodeJS version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html). You need to go into the docs to see how to select the elements you need to do the magic on your page.
+We use the Node.js version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html). You need to go into the docs to see how to select the elements you need to do the magic on your page.
 
 Your script needs to follow a specific pattern to be able to run as a pre/post script. The simplest version of a script looks like this:
 
@@ -35,15 +35,15 @@ Move on to read about the data that is passed in the context object and how you 
 
 ## Data to the pre/post script
 
-Your script will get access to two objects: The *context* object that holds information about the current run and the *commands* object that has commands/shortcuts to navigate in the page,
+Your script will get access to two objects: the *context* object that holds information about the current run, and the *commands* object that has commands/shortcuts to navigate the page.
 
 The context object:
-* *options* - All the options sent from the CLI to Browsertime.
-* *log* - an instance to the log system so you can log from your navigation script.
-* *index* - the index of the runs, so you can keep track of which run that is running.
-* *storageManager* - The Browsertime storage manager that can help you get read/store files to disk.
-* *selenium.webdriver* -  The Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
-* *selenium.driver* - The [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
+* *options* - all the options sent from the CLI to Browsertime.
+* *log* - an instance of the log system so you can log from your navigation script.
+* *index* - the index of the runs, so you can keep track of which run is running.
+* *storageManager* - the Browsertime storage manager that can help you read/store files to disk.
+* *selenium.webdriver* - the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
+* *selenium.driver* - the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
 
 The commands object:
@@ -60,24 +60,24 @@ In your script you can get hold of the log object from sitespeed.io. This is sup
 ~~~javascript
 export default async function (context, commands) {
   // Simple example to add a log message
-  // Remember that you can log message on different levels
+  // Remember that you can log messages at different levels
   context.log.info('Log message from the task');
 };
 ~~~
 
 ## Login example
-Create a script where you login the user. The following is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
+Create a script that logs in the user. The following is an example to log in the user at Wikipedia. Start by creating a file login.js with the following.
 
 ~~~javascript
 export default async function (context, commands) {
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
-  // Add text into an input field y finding the field by id
+  // Add text into an input field by finding the field by id
   await commands.addText.byId('login', 'wpName1');
   await commands.addText.byId('password', 'wpPassword1');
 
-  // find the sumbit button and click it
+  // find the submit button and click it
   await commands.click.byIdAndWait('wpLoginAttempt');
 
   // we wait for something on the page that verifies that we are logged in
@@ -94,14 +94,14 @@ Then run it like this:
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.mjs https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
+The script will then log in the user, access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
 
 
 ## Pass your own options to your pre/post scripts
-You can add your own parameters to the options object (by adding a parameter) and then pick them up in the pre/post script. The scripts runs in the context of browsertime, so you need to 
-pass it on in that context.
+You can add your own parameters to the options object (by adding a parameter) and then pick them up in the pre/post script. The scripts run in the context of Browsertime, so you need to
+pass it in that context.
 
-For example: you wanna pass on a password to your script, you can do that by adding <code>--browsertime.my.password MY_PASSWORD</code> and then in your code get hold of that with: 
+For example: you want to pass a password to your script. You can do that by adding <code>--browsertime.my.password MY_PASSWORD</code> and then in your code get hold of it with:
 
 ~~~javascript
 ...

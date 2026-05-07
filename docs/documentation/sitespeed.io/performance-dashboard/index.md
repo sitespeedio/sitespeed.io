@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Web Performance Dashboards with sitespeed.io
-description: Setup your dashboard using Docker Compose to continuously monitor the performance of your web site.
+description: Set up your dashboard using Docker Compose to continuously monitor the performance of your website.
 keywords: dashboard, monitor, documentation, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
@@ -14,13 +14,13 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 # Performance Dashboard
 {:.no_toc}
 
-Monitor the performance of your web site using the performance dashboard.
+Monitor the performance of your website using the performance dashboard.
 
 * Let's place the TOC here
 {:toc}
 
-## Using Docker compose 
-If you don't use Grafana/Graphite already, we have prepared a Docker Compose file that downloads and sets up Graphite/Grafana with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but there's no pre made dashboards.
+## Using Docker compose
+If you don't use Grafana/Graphite already, we have prepared a Docker Compose file that downloads and sets up Graphite/Grafana with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but there are no pre-made dashboards for it.
 
 ### Pre-Requirements
 
@@ -58,7 +58,7 @@ Before you start, make sure you have the following installed:
    docker-compose up
    ```
 
-   This command will download the necessary Docker images and start the Grafana and Graphite.
+   This command will download the necessary Docker images and start Grafana and Graphite.
 
 
 4. **Add example data**
@@ -70,7 +70,7 @@ Before you start, make sure you have the following installed:
 
 5. **Access Grafana**
 
-   Once the services are up and running, you can access the Grafana dashboard by opening a web browser and navigating to `http://localhost:3000`. If you want to edit the dashboards, the default login is *sitespeedio* and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
+   Once the services are up and running, you can access the Grafana dashboard by opening a web browser and navigating to `http://localhost:3000`. If you want to edit the dashboards, the default login is *sitespeedio* and the password is... well, check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
 
 6. **Stop docker compose**
 
@@ -80,9 +80,9 @@ Remember, these are simplified instructions. For a production setup, you would n
 
 
 ### Pre-made example dashboards
-We insert ready-made dashboards with our docker compose file using provisioning. You can checkout the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
+We insert ready-made dashboards with our docker compose file using provisioning. You can check out the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
 
-Some of our dashboards uses Grafana plugins. To make sure the dashboards work you need to install these plugins: 
+Some of our dashboards use Grafana plugins. To make sure the dashboards work you need to install these plugins:
 * [marcusolsson-json-datasource](https://github.com/grafana/grafana-json-datasource)
 * [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
 
@@ -95,19 +95,19 @@ In our Docker file you can see something like this:
 
 ```
 
-The *Page metrics* dashboard shows meta data like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and setup the dashboard to point to where you store the sitespeed.io result. 
+The *Page metrics* dashboard shows metadata like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and set up the dashboard to point to where you store the sitespeed.io result.
 
-In our example dashboard we serve our content from https://data.sitespeed.io so we configure the variable *resulturl* for the dashboard to point to that like this. That way we will see screenshots and videos in the dashboard.
+In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots and videos in the dashboard.
 
 ![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-We also configure the JSON datasource to point to the same place. That way we can see meta data like how you configured your tests.
+We also configure the JSON datasource to point to the same place. That way we can see metadata like how you configured your tests.
 
 ![Configure the JSON datasource ]({{site.baseurl}}/img/json-api.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-If that is setup correctly your dashboard will look something like this:
+If that is set up correctly, your dashboard will look something like this:
 
 ![Screenshots and other meta data ]({{site.baseurl}}/img/whatyousee.jpg){:loading="lazy"}
 {: .img-thumbnail}
@@ -124,18 +124,18 @@ A dashboard that shows metrics for a specific page has the following templates:
 
 The *path* is the first path after the namespace. Using the default values, the namespace looks like this: *sitespeed_io.default*.
 
-The *testname* is the the slug that you give to your test. Make sure to run your test with `--slug yourTestName --graphite.addSlugToKey true` so that the slug is added to Graphite and the default dashboards work.
+The *testname* is the slug that you give to your test. Make sure to run your test with `--slug yourTestName --graphite.addSlugToKey true` so that the slug is added to Graphite and the default dashboards work.
 
 If you choose one of the values in a template, the rest will be populated. You can choose from checking metrics for a specific page, browser, and connectivity.
 
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page metrics
-You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
+You should use these as example dashboards to inspire what you can do. We try to squeeze all the data into these dashboards and you can view those by expanding each row.
 
 The [page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics) shows metrics for a specific URL/page.
 
-The dashboards looks something like this:
+The dashboard looks something like this:
 ![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
@@ -146,14 +146,14 @@ And scroll down to see more, do not forget to click on the rows to expand and se
 
 ## User Journeys example dashboards
 
-We have a couple of example dashboards on how to add your own user journeys dashboards. When you import those dashboards into Grafana you need to add the Grafana variables that match your tests.
+We have a couple of example dashboards on how to add your own user journey dashboards. When you import those dashboards into Grafana you need to add the Grafana variables that match your tests.
 
-This is an example dashboard login into Wikipedia. That user journey measure four pages.
+This is an example dashboard for logging into Wikipedia. That user journey measures four pages.
 
 ![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-We also have examples that take three pages.
+We also have examples for three-page user journeys.
 
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
@@ -173,7 +173,7 @@ Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/cru
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
 
-If you are new to [Grafana](https://grafana.com) you should checkout the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by Cern, NASA and many many tech companies like Paypal, Ebay and Digital Ocean and it will surely work for you too :)
+If you are new to [Grafana](https://grafana.com) you should check out the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by CERN, NASA and many tech companies like PayPal, eBay and Digital Ocean, and it will surely work for you too :)
 
 You can configure all the thresholds (green/yellow/red) so that they match your needs:
 
@@ -183,10 +183,10 @@ You can configure all the thresholds (green/yellow/red) so that they match your 
 ## How to get the latest video/screenshot visible in Grafana
 
 To get the screenshot and video visible in Grafana you need to:
-* Set a `--resultBaseURL` and the value need to match the Grafana variable *resulturl*
+* Set a `--resultBaseURL` and the value needs to match the Grafana variable *resulturl*.
 * Set `--copyLatestFilesToBase true`. That will make a copy of the last screenshot and video in the base directory so it can be found by Grafana.
-* Add a testname/slug to your test with `--slug`. 
-* Make sure that the screenshot content type `--screenshot.type` matches *screenshottype* variable in Grafana. By default the screenshot type is *png*.
+* Add a testname/slug to your test with `--slug`.
+* Make sure that the screenshot content type `--screenshot.type` matches the *screenshottype* variable in Grafana. By default the screenshot type is *png*.
 
 If you add all that it should work.
 
@@ -196,11 +196,11 @@ In the Grafana panel the path to the screenshot is generated by:
 And the video:
 `$resulturl/$testname/$group.$page.$browser.$connectivity.mp4`
 
-If you can't see the screenshot or the video you can debug it by either inspect the HTML in Grafana, check the network log in devtools (to see if the full URL is correct) or add `<div>$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype</div>` to the panel so you can see the generated URL.
+If you can't see the screenshot or the video you can debug it by either inspecting the HTML in Grafana, checking the network log in DevTools (to see if the full URL is correct), or adding `<div>$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype</div>` to the panel so you can see the generated URL.
 
-## Setup your own user journey dashboard
+## Set up your own user journey dashboard
 
-When you import that dashboard you need to add the correct variables. For the login user journey we meausure four pages. When you import that dashboard into Grafana it will look something like this:
+When you import that dashboard you need to add the correct variables. For the login user journey, we measure four pages. When you import that dashboard into Grafana it will look something like this:
 
 ![Import a user journey variables]({{site.baseurl}}/img/import-dashboard.png)
 {: .img-thumbnail}
@@ -208,22 +208,22 @@ When you import that dashboard you need to add the correct variables. For the lo
 You need to define those variables with the configuration you use:
 
 * **graphite** - your Graphite instance where you store the metrics.
-* **base** - the first part of your `--graphite.namespace`
-* **path** -  the second part of your `--graphite.namespace`
-* **resulturl** - the URL where you display the result, the same setting as `--resultBaseURL`
-* **testname** - the name of the test, the value of the `--slug` parameter
-* **domain** - The domain of the pages you test. To work in Graphite the dots are changed to underscore. 
-* **page1** - The name of the first page. If you use an alias, that is the correct name to use else is the path and page. If you struggle to get this right you can just look in Graphite/Grafana to see what  
-* **page2** -  The name of the second page.
-* **page3** -  The name of the third page.
-* **page4** -  The name of the fourth page.
+* **base** - the first part of your `--graphite.namespace`.
+* **path** - the second part of your `--graphite.namespace`.
+* **resulturl** - the URL where you display the result, the same setting as `--resultBaseURL`.
+* **testname** - the name of the test, the value of the `--slug` parameter.
+* **domain** - the domain of the pages you test. To work in Graphite, the dots are changed to underscores.
+* **page1** - the name of the first page. If you use an alias, that is the correct name to use; otherwise it's the path and page. If you struggle to get this right, you can just look in Graphite/Grafana to see what to use.
+* **page2** - the name of the second page.
+* **page3** - the name of the third page.
+* **page4** - the name of the fourth page.
 
 And then if you need to change it later on you can go into the variable section in Grafana.
 ![Import a user journey variables]({{site.baseurl}}/img/import-user-journey-variables.png)
 {: .img-thumbnail}
 
 # Configure running your tests
-No that you have the dashboards you need to collect metrics. You can collect metrics on one or multiple servers. Do not do it on the same server as the dashboard setup since you want to have an as isolated environment as possible for your tests.
+Now that you have the dashboards you need to collect metrics. You can collect metrics on one or multiple servers. Do not do it on the same server as the dashboard setup, since you want as isolated an environment as possible for your tests.
 
 Go to the documentation on how to [continuously run your tests](/documentation/sitespeed.io/continuously-run-your-tests/) and learn how you can do that.
 
@@ -233,14 +233,14 @@ If you run the tests on a standalone server, you need to make sure your agents s
 We provide an example Graphite Docker container for non-production purposes. If you want to put that into production, you need to change the configuration. Check out our own [Graphite documentation](/documentation/sitespeed.io/graphite/#configure-graphite).
 
 # Using S3 for HTML and video
-You can store the HTML result on your local agent that runs sitespeed.io, or you can dump the data to S3 or GCS and serve it from there. To use S3, you first need to [set up a S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html). For GCS follow the instructions to set up a [Google Cloud storage](https://cloud.google.com/storage/docs/creating-buckets) (GCS) bucket.
+You can store the HTML result on your local agent that runs sitespeed.io, or you can dump the data to S3 or GCS and serve it from there. To use S3, you first need to [set up an S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html). For GCS, follow the instructions to set up a [Google Cloud Storage](https://cloud.google.com/storage/docs/creating-buckets) (GCS) bucket.
 
-Then you configure sitespeed.io to send the data to S3 by configuring the bucket name (and AWS key/secret if that's not available on your server). For GCS you need to provide the name of the bucket, service account key and the project id.
+Then you configure sitespeed.io to send the data to S3 by configuring the bucket name (and AWS key/secret if that's not available on your server). For GCS you need to provide the name of the bucket, the service account key, and the project id.
 
-Now, you have the result on S3 or GCS and you're almost done. You should also configure sending annotations to Graphite for each run.
+Now you have the result on S3 or GCS and you're almost done. You should also configure sending annotations to Graphite for each run.
 
 # Annotations
-You can send annotations to Graphite to mark when a run happens, that you can go from the dashboard to any HTML-results page.
+You can send annotations to Graphite to mark when a run happens, so you can go from the dashboard to any HTML-results page.
 
 You send annotations by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
@@ -251,7 +251,7 @@ You can add extra tags with <code>--graphite.annotationTag</code>. For multiple 
 
 # Production Guidelines
 
-Here are a couple of things you should check out before you setup sitespeed.io for production.
+Here are a couple of things you should check out before you set up sitespeed.io for production.
 
 ## Setup (important!)
 To run this in production (=not on your local dev machine) you should make some modifications:
@@ -264,12 +264,12 @@ To run this in production (=not on your local dev machine) you should make some 
 4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
 5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf) to set how long you want to store your metrics.
 6. *MAX_CREATES_PER_MINUTE* is usually quite low by default in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it if you want to.
-7, Make sure you disabled tags in Graphite using **ENABLE_TAGS = False**, see [example](https://github.com/sitespeedio/docker-graphite-statsd/commit/b78d8fc05af290dae95a0586e575675ac849190d#diff-0c326c4f02797b088fc566e64fbfe2162390f52f2fec1483ec3a413a7f11c910).
-8. Map the Graphite volume to a physical directory outside of the Docker container to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db]((https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db) by browser or by CLI `wget https://github.com/sitespeedio/sitespeed.io/raw/main/docker/graphite/graphite.db`) file):
+7. Make sure you disabled tags in Graphite using **ENABLE_TAGS = False**, see [example](https://github.com/sitespeedio/docker-graphite-statsd/commit/b78d8fc05af290dae95a0586e575675ac849190d#diff-0c326c4f02797b088fc566e64fbfe2162390f52f2fec1483ec3a413a7f11c910).
+8. Map the Graphite volume to a physical directory outside of the Docker container to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db) file by browser or by CLI: `wget https://github.com/sitespeedio/sitespeed.io/raw/main/docker/graphite/graphite.db`):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
 9. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
-10. Optional: Disable anonymous users access in Grafana.
+10. Optional: disable anonymous user access in Grafana.
 
 ## System Requirements / Memory & CPU
 To ensure smooth performance while running tests with sitespeed.io, it is important to have sufficient memory for Chrome and Firefox, as they can require a significant amount of memory for certain websites. In the past, we have used an $80 instance on Digital Ocean (8GB memory, 4 Core processors), but currently, we use a bare metal server at Hetzner for our dashboard.sitespeed.io. We have found that bare metal servers provide the most stable metrics.

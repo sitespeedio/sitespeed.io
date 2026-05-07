@@ -14,11 +14,11 @@ twitterdescription: Hack on sitespeed.io
 # Developers
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 ## How it all works
-Almost everything we do is written in NodeJS (use [latest LTS](https://nodejs.org/en/)).
+Almost everything we do is written in Node.js (use the [latest LTS](https://nodejs.org/en/)).
 
 ### Built upon Open Source
 Sitespeed.io uses a lot of other Open Source tools so massive love to those projects and maintainers:
@@ -40,7 +40,7 @@ And of course we use all the tools in the [sitespeed.io suite]({{site.baseurl}}/
 
 ### Analyse a page, what happens
 
-Checkout the [description](/documentation/sitespeed.io/browsers/#how-does-it-work-behind-the-scene) in the browser docs.
+Check out the [description](/documentation/sitespeed.io/browsers/#how-does-it-work-behind-the-scene) in the browser docs.
 
 ### The big picture (with all the tools)
 The big picture looks something like this:
@@ -48,11 +48,11 @@ The big picture looks something like this:
 ![How it all works]({{site.baseurl}}/img/sitespeed-universe-5.png)
 {: .img-thumbnail}
 
-## Use directly from NodeJS
+## Use directly from Node.js
 
-### Use sitespeed.io from NodeJS
+### Use sitespeed.io from Node.js
 
-Here's an example on how to use sitespeed.io directly from NodeJS. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We maybe change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
+Here's an example of how to use sitespeed.io directly from Node.js. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We may change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
 
 ~~~javascript
 
@@ -78,9 +78,9 @@ await run();
 
 ~~~
 
-### Use Browsertime from NodeJS
+### Use Browsertime from Node.js
 
-In this example you run Browsertime directly from NodeJS, using the default JavaScripts to collect metrics. 
+In this example you run Browsertime directly from Node.js, using the default JavaScript to collect metrics.
 
 ~~~javascript
 import { BrowsertimeEngine, browserScripts } from 'browsertime';
@@ -116,7 +116,7 @@ await run();
 ### Setup
 On your local machine you need:
 
-- [Install NodeJS](https://nodejs.org/en/download/) latest LTS version.
+- [Install Node.js](https://nodejs.org/en/download/) latest LTS version.
 - You need Git and fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository.
 - Install Chrome/Firefox/Edge
 - Go to the cloned directory and run <code>npm install</code>
@@ -138,12 +138,12 @@ If you want to test and push to Graphite/InfluxDB:
 - Run: <code>docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1</code> to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
-If you are new to Git/GitHub and want to make a PR you can start with reading [Digital Oceans tutorial on how to make PRs](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
+If you are new to Git/GitHub and want to make a PR, you can start by reading [Digital Ocean's tutorial on how to make PRs](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
 
 We use *main* as our default branch, send all PRs to *main*.
 
 ### Log and debug
-To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log on the lowest level getting all information you can use <code>-vvv</code>. If that is too much information use  <code>-vv</code> or <code>-v</code>.
+To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log at the lowest level and get all information, you can use <code>-vvv</code>. If that is too much information, use <code>-vv</code> or <code>-v</code>.
 
 You can also debug all the messages sent inside of the queue of sitespeed.io. That way you can see how plugins are communicating with each other. To turn that on use <code>--debug</code>.
 
@@ -153,47 +153,47 @@ Everything in sitespeed.io (well almost everything) is a plugin. Each plugin wil
 The [plugin structure]({{site.baseurl}}/documentation/sitespeed.io/plugins/#create-your-own-plugin) looks like that.
 
 ### Using Pug
-We use [Pug](https://pugjs.org) as template for the HTML. If you are use to debug with console.log we have a special feature for you. We pass on JSON to the templates, so if you want to output the data structure in the HTML you can easily do that by just adding:
+We use [Pug](https://pugjs.org) as the template for the HTML. If you are used to debugging with console.log, we have a special feature for you. We pass JSON to the templates, so if you want to output the data structure in the HTML you can easily do that by just adding:
 
 ~~~
 p #{JSON.stringify(pageInfo)}
 ~~~
 
-Where pageInfo is the data structure that you wanna inspect.
+Where pageInfo is the data structure that you want to inspect.
 
-If you are new to pug you can use [https://html2jade.org](https://html2jade.org) to convert your HTML to Pug.
+If you are new to Pug you can use [https://html2jade.org](https://html2jade.org) to convert your HTML to Pug.
 
 ### Make a pull request
 
- We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
+We love pull requests, and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you get feedback on the idea before taking the time to write precious code!
 
- When you make your pull request, you can follow the guide from GitHub on [how to make a pull requests from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+When you make your pull request, you can follow the guide from GitHub on [how to make a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
 #### Before you send the pull request
 
-Before you send the PR make sure you:
+Before you send the PR, make sure you:
  * Squash your commits so it looks sane
- * Make sure your code follow our lint rule by running: <code>npm run lint</code> and use <code>npm run lint:fix</code> if you have any breaking rules
- * Make sure your code don't break any tests: <code>npm test</code>
- * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/main/docs](https://github.com/sitespeedio/sitespeed.io/tree/main/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
+ * Make sure your code follows our lint rules by running: <code>npm run lint</code>, and use <code>npm run lint:fix</code> if you have any breaking rules
+ * Make sure your code doesn't break any tests: <code>npm test</code>
+ * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/main/docs](https://github.com/sitespeedio/sitespeed.io/tree/main/docs) in another pull request. When we merge the PR, the documentation is automatically updated, so we do that when we push the next release.
 
-### Debug metrics 
+### Debug metrics
 Sometimes you want to verify that the metrics are correct, how do you do that?
 #### Visual metrics
-The best to verify that visual metrics are correct are to look at the film strip view and verify that the metrics correlate to the filmstrip. Through the years browsers has changed the URL bar or added some small infoboxes at the bottom of the browser window that affect visual metrics. You can easily see if those are picked up by looking at the filmstrip.
+The best way to verify that visual metrics are correct is to look at the filmstrip view and verify that the metrics correlate with the filmstrip. Through the years, browsers have changed the URL bar or added small infoboxes at the bottom of the browser window that affect visual metrics. You can easily see if those are picked up by looking at the filmstrip.
 
-If you don't have the filmstrip you can compare first visual change from visual metrics with first contentful paint, they usually match pretty good.
+If you don't have the filmstrip, you can compare first visual change from visual metrics with first contentful paint, they usually match pretty well.
 
 ### Do a sitespeed.io release
 When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
 
 You need NodeJS, Docker, np (<code>npm install --global np</code>), Firefox and Chrome installed on your machine.
 
-To be able to release a new version you new to have access to our Docker account, npm, our GitHub repos and use 2FA.
+To be able to release a new version you need to have access to our Docker account, npm, our GitHub repos, and 2FA.
 
 To do a release you need to first install np (a better *npm publish*): <code>npm install --global np</code>
 
-Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
+Before you do a release, remember to let your latest code change run for a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 Do the release:
 
@@ -210,11 +210,11 @@ When you become a member of the Browsertime team you can push releases. You do t
 
 You need NodeJS, Docker, np (<code>npm install --global np</code>), Firefox and Chrome installed on your machine.
 
-To be able to release a new version you new to have access to our Docker account, npm, our GitHub repos and use 2FA.
+To be able to release a new version you need to have access to our Docker account, npm, our GitHub repos, and 2FA.
 
-You also need to have the sitespeed.io repo at the same level as your checked out Browsertime repo, so that the documentation automatically can be updated.
+You also need to have the sitespeed.io repo at the same level as your checked-out Browsertime repo, so that the documentation can be automatically updated.
 
-Before you do a release, make sure the latest commits has a [green light in Travis](https://travis-ci.org/sitespeedio/browsertime).
+Before you do a release, make sure the latest commit has a [green light in Travis](https://travis-ci.org/sitespeedio/browsertime).
 
 Do the release:
 1. Make sure you have a clean repo: `git status`
@@ -254,7 +254,6 @@ Debugger attached.
 ~~~
 
 
-Then copy & paste <code>chrome://inspect/</code> Chrome and then choose *Open dedicated DevTools for Node*
-. <code>--inspect-brk</code> ensures a breakpoint as soon as the code is entered. From there, you can start any of the profiles under the Profile tab.
+Then copy & paste <code>chrome://inspect/</code> into Chrome and choose *Open dedicated DevTools for Node*. <code>--inspect-brk</code> ensures a breakpoint as soon as the code is entered. From there, you can start any of the profiles under the Profile tab.
 
 Use it when you want to debug functionality or check memory usage.

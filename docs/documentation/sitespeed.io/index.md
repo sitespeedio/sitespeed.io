@@ -13,23 +13,23 @@ twitterdescription: Documentation for sitespeed.io.
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
-Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for the project.
+Sitespeed.io is the complete toolbox for testing the web performance of your website. Use it to monitor your own performance or to check out how your competition is doing. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for the project.
 
 ## Start
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS.
  * [Compare plugin](compare/) - use Mann Whitney U or Wilcox statistical methods to know if you have a regression.
- * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
- * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
- * [Continuously run your tests](continuously-run-your-tests/) - how to setup your test to continuously run your tests.
+ * [Configuration](configuration/) - there's a lot you can do with sitespeed.io, let's check out how!
+ * [Connectivity](connectivity/) - set the connectivity to emulate real users' network conditions.
+ * [Continuously run your tests](continuously-run-your-tests/) - how to set up your tests to run continuously.
  * [Docker](docker/) - how to use our Docker containers.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
- * [Metrics](metrics/) - definitions of all the metrics that is collected.
- * [Performance Dashboard](performance-dashboard/) - monitor your web site and keep track of your metrics and performance.
+ * [Metrics](metrics/) - definitions of all the metrics that are collected.
+ * [Performance Dashboard](performance-dashboard/) - monitor your website and keep track of your metrics and performance.
  * [Performance Leaderboard](leaderboard/) - compare your pages with your competition.
- * [Scripting](scripting/) - test a user journey, test multiple URLs, test login, test adding items to the cart with scripting.
-* [Web performance testing in practice](web-performance-testing-in-practice/) - start to read this is if you are new into synthetics tests.
+ * [Scripting](scripting/) - script a user journey, test multiple URLs, test login, or test adding items to the cart.
+ * [Web performance testing in practice](web-performance-testing-in-practice/) - start here if you are new to synthetic testing.
 
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
@@ -44,18 +44,18 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Google Page Speed Insights](google-page-speed-insights/) - run Google Page Speed Insights (GPSI) from sitespeed.io.
  * [Google Web Vitals](google-web-vitals/) - get Google Web Vitals using sitespeed.io and other tools.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
- * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions
+ * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fix the problem instead of asking you questions.
  * [Lighthouse](lighthouse/) - run Lighthouse from sitespeed.io.
  * [Matrix](matrix/) - send messages to your Matrix client.
  * [Mobile phones](mobile-phones/) - test using your mobile phone. Chrome on Android and Safari on iOS.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
- * [Setup S3](s3/) - how to setup S3 for your html result/videos and screenshots.
- * [Setup GCS](gcs/) - how to setup Google Cloud storage (GCS) for your html result/videos and screenshots.
+ * [Set up S3](s3/) - how to set up S3 for your HTML results, videos and screenshots.
+ * [Set up GCS](gcs/) - how to set up Google Cloud Storage (GCS) for your HTML results, videos and screenshots.
  * [Single Page Application](spa/) - how to test your single page application.
- * [Sustainable web plugin](sustainable/) - the sustainable web plugin helps you build a greener, more sustainable websites and applications.
+ * [Sustainable web plugin](sustainable/) - the sustainable web plugin helps you build greener, more sustainable websites and applications.
  * [Third party requests](thirdparty/) - keep track of those 3rd party scripts.
  * [Video](video/) - all that you can do with the video and filmstrip.
- * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
+ * [WebPageReplay](webpagereplay/) - WebPageReplay is a proxy that first records your website and then replays it locally. That makes it easier to find front-end performance regressions: latency and server timings stay constant.
 
