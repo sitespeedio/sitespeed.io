@@ -22,9 +22,7 @@ Once we have the video we use [Visual Metrics](https://github.com/WPO-Foundation
 
 We record the video in two steps. First we turn the background orange (this is used by VisualMetrics to know when the navigation starts), set the background to white, and let the browser go to the URL. The video is recorded lossless. Then, when the video has been analysed, we remove the orange frames and convert the video to a compressed mp4.
 
-The video will look something like this:
-
-<div class="youtube-player" data-id="djFy0YeQkCM"></div>
+The video will look something like this: [watch on YouTube](https://www.youtube.com/watch?v=djFy0YeQkCM).
 
 ## Video related parameters
 There are a couple of things that you can do to configure the video and the metrics.
@@ -116,5 +114,4 @@ One of the things we love about [WebPageTest](https://www.webpagetest.org/) is t
 4. <code>./combineVideos.sh file1.mp4 file2.mp4</code>
 5. You are done!
 
-You will then have the two videos side by side, slightly slowed down to make it easier to compare them:
-<div class="youtube-player" data-id="xH0jRpM2nK8"></div>
+You will then have the two videos side by side, slightly slowed down to make it easier to compare them: [watch on YouTube](https://www.youtube.com/watch?v=xH0jRpM2nK8).
