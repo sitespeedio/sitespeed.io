@@ -138,6 +138,7 @@ export default function (eleventyConfig) {
   // significantly smaller and faster than html-minifier-terser's CSS
   // pass, and handles modern syntax that the older minifier misparses.
   eleventyConfig.addBundle('css', {
+    toFileDirectory: 'css',
     transforms: [
       function (content) {
         const out = lightningcssTransform({
@@ -196,7 +197,9 @@ export default function (eleventyConfig) {
     'feed',
     'logo',
     '.well-known',
-    'testcases'
+    'testcases',
+    'js',
+    'css'
   ]) {
     eleventyConfig.addPassthroughCopy(dir);
   }

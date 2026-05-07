@@ -12,13 +12,5 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
  <ul id="results-container"></ul>
 </div>
 
-<!-- script pointing to jekyll-search.js -->
-<script src="{{ site.baseurl }}/simple-jekyll-search.min.js"></script>
-<script>
-SimpleJekyllSearch({
- searchInput: document.getElementById('search-input'),
- resultsContainer: document.getElementById('results-container'),
- json: '{{ site.baseurl }}/search/search.json',
- searchResultTemplate: "<li><a href='{url}'>{title}</a> - {description}</li>"
-})
-</script>
+<script src="{{ site.baseurl }}/simple-jekyll-search.min.js" defer></script>
+<script src="{{ site.baseurl }}/js/search-init.js" defer></script>

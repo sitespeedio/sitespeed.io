@@ -55,8 +55,8 @@
 	{% css %}{% include css/default.css %}{% endcss %}
 	{% css %}{% include css/prism-1.15.css %}{% endcss %}
 	{% css %}{% include css/code-copy.css %}{% endcss %}
-	<style>{% getBundle "css" %}</style>
-	<script type="text/javascript">{% include copy.js %}</script>
+	<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+	<script src="{{site.baseurl}}/js/copy.js" defer></script>
 </head>
 
 <body class="startpage">

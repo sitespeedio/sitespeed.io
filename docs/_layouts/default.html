@@ -44,9 +44,9 @@
 	{% css %}{% include css/default.css %}{% endcss %}
 	{% css %}{% include css/prism-1.15.css %}{% endcss %}
 	{% css %}{% include css/code-copy.css %}{% endcss %}
-	<style>{% getBundle "css" %}</style>
-	<script type="text/javascript">{% include userTimings.js %}</script>
-	<script type="text/javascript">{% include copy.js %}</script>
+	<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+	<script src="{{site.baseurl}}/js/user-timings.js"></script>
+	<script src="{{site.baseurl}}/js/copy.js" defer></script>
 </head>
 
 <body>
@@ -77,7 +77,7 @@
 			{% include footer.html %}
 		</div>
 	</div>
-	{% include youtube.js %}
+	<script src="{{site.baseurl}}/js/youtube.js" defer></script>
 </body>
 
 </html>
