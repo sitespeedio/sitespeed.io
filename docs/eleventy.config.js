@@ -176,7 +176,17 @@ export default function (eleventyConfig) {
     },
     urlPath: '/img/_optimized/',
     outputDir: '_site/img/_optimized/',
-    failOnError: false
+    failOnError: false,
+    // For multi-width images (the ones using `eleventy:widths`), set the
+    // <img> width/height attributes to the smallest variant's intrinsic
+    // size — that's the size the image actually occupies in the layout.
+    // Defaulting to "largest" lets a HiDPI variant blow up the layout
+    // (e.g. team.png becoming 1000x865 in a 500-wide column). Single-
+    // variant images (the default `widths: ['auto']`) are unaffected
+    // because smallest = largest.
+    htmlOptions: {
+      fallback: 'smallest'
+    }
   });
 
   // ---- Pass-through ----------------------------------------------------
