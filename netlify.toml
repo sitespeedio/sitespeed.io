@@ -10,12 +10,16 @@
 #   netlify-plugin-cache restores `_site/img/_optimized/` and the
 #   eleventy-fetch metadata cache before the build, so subsequent
 #   deploys finish in 2–5 s instead.
+#
+# Paths are relative to the build base directory (configured in the
+# Netlify UI as `docs`), not the repository root, so don't prefix them
+# with `docs/`.
 
 [[plugins]]
   package = "netlify-plugin-cache"
 
   [plugins.inputs]
     paths = [
-      "docs/_site/img/_optimized",
-      "docs/.cache"
+      "_site/img/_optimized",
+      ".cache"
     ]
