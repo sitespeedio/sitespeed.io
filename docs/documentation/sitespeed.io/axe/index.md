@@ -60,6 +60,6 @@ However you probably just want to configure [run options](https://github.com/deq
 If you want to avoid having over-complicated CLI parameters, you should use the [configuration as JSON feature](/documentation/sitespeed.io/configuration/#configuration-as-json).
 
 ## How it works behind the scenes
-The Axe tests are run as a [postScript](/documentation/sitespeed.io/prepostscript/).
+The Axe tests are run as a [postScript](/documentation/sitespeed.io/scripting/pre-and-post-scripts/).
 
 Running Axe will add some extra run time per test. How much extra time it takes depends on your page and the server running the browser.
