@@ -13,24 +13,32 @@ category: sitespeed.io
 
 Scripting in sitespeed.io and Browsertime lets you measure user journeys by interacting with web pages — login flows, multi-step transactions, anything a user can do. Scripting works the same in both Browsertime and sitespeed.io.
 
-If you're new to scripting, start with the [Introduction]({{site.baseurl}}/documentation/sitespeed.io/scripting/01-introduction/) and work through the tutorials in order. The API reference is for looking up specific commands once you know what you want.
+If you're new to scripting, start with the [Introduction]({{site.baseurl}}/documentation/sitespeed.io/scripting/introduction/) and work through the tutorials in order. The API reference is for looking up specific commands once you know what you want.
 
 ## Tutorials
 
-1. [Introduction]({{site.baseurl}}/documentation/sitespeed.io/scripting/01-introduction/)
-2. [Running and managing scripts]({{site.baseurl}}/documentation/sitespeed.io/scripting/02-running-scripts/)
-3. [Measure]({{site.baseurl}}/documentation/sitespeed.io/scripting/03-measurement-commands/)
-4. [Interact with the page]({{site.baseurl}}/documentation/sitespeed.io/scripting/04-interact-with-the-page/)
-5. [Interact with the browser]({{site.baseurl}}/documentation/sitespeed.io/scripting/05-interact-browser/)
-6. [Error handling]({{site.baseurl}}/documentation/sitespeed.io/scripting/06-error-handling/)
-7. [Debugging scripts]({{site.baseurl}}/documentation/sitespeed.io/scripting/07-debugging-scripts/)
-8. [Code completion and IntelliSense]({{site.baseurl}}/documentation/sitespeed.io/scripting/08-setting-up-intellisense/)
-9. [Examples]({{site.baseurl}}/documentation/sitespeed.io/scripting/09-examples/)
-10. [Running Selenium code]({{site.baseurl}}/documentation/sitespeed.io/scripting/10-selenium/)
-11. [Chrome Devtools Protocol (CDP)]({{site.baseurl}}/documentation/sitespeed.io/scripting/11-chrome-devtools-protocol/)
-12. [Using Bidi]({{site.baseurl}}/documentation/sitespeed.io/scripting/12-bidi/)
-13. [Android devices]({{site.baseurl}}/documentation/sitespeed.io/scripting/13-android/)
-14. [Tips and tricks]({{site.baseurl}}/documentation/sitespeed.io/scripting/18-tips-and-tricks/)
+1. [Introduction]({{site.baseurl}}/documentation/sitespeed.io/scripting/introduction/)
+2. [Running and managing scripts]({{site.baseurl}}/documentation/sitespeed.io/scripting/running-scripts/)
+3. [Pre and post scripts]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/)
+4. [Measure]({{site.baseurl}}/documentation/sitespeed.io/scripting/measurement-commands/)
+5. [Custom metrics]({{site.baseurl}}/documentation/sitespeed.io/scripting/custom-metrics/)
+6. [Visual elements and element timing]({{site.baseurl}}/documentation/sitespeed.io/scripting/visual-elements/)
+7. [Interact with the page]({{site.baseurl}}/documentation/sitespeed.io/scripting/interact-with-the-page/)
+8. [Waiting recipes]({{site.baseurl}}/documentation/sitespeed.io/scripting/waiting/)
+9. [Interact with the browser]({{site.baseurl}}/documentation/sitespeed.io/scripting/interact-with-the-browser/)
+10. [Iframes and popups]({{site.baseurl}}/documentation/sitespeed.io/scripting/iframes-and-popups/)
+11. [Cookies and consent banners]({{site.baseurl}}/documentation/sitespeed.io/scripting/cookies-and-consent/)
+12. [User journeys]({{site.baseurl}}/documentation/sitespeed.io/scripting/user-journeys/)
+13. [Error handling]({{site.baseurl}}/documentation/sitespeed.io/scripting/error-handling/)
+14. [Debugging scripts]({{site.baseurl}}/documentation/sitespeed.io/scripting/debugging-scripts/)
+15. [Code completion and IntelliSense]({{site.baseurl}}/documentation/sitespeed.io/scripting/setting-up-intellisense/)
+16. [Examples]({{site.baseurl}}/documentation/sitespeed.io/scripting/examples/)
+17. [Running Selenium code]({{site.baseurl}}/documentation/sitespeed.io/scripting/selenium/)
+18. [Chrome Devtools Protocol (CDP)]({{site.baseurl}}/documentation/sitespeed.io/scripting/chrome-devtools-protocol/)
+19. [CDP recipes]({{site.baseurl}}/documentation/sitespeed.io/scripting/cdp-recipes/)
+20. [Using Bidi]({{site.baseurl}}/documentation/sitespeed.io/scripting/bidi/)
+21. [Mobile devices]({{site.baseurl}}/documentation/sitespeed.io/scripting/mobile-devices/)
+22. [Tips and tricks]({{site.baseurl}}/documentation/sitespeed.io/scripting/tips-and-tricks/)
 
 ## API reference
 

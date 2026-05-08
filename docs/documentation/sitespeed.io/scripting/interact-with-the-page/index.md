@@ -19,15 +19,17 @@ There are multiple ways to interact with the current page. We have tried to add 
 
 By default, Browsertime waits up to 6 seconds for elements to appear before interacting with them. This means you usually don’t need explicit `commands.wait.*` calls before clicking or typing — the commands will automatically poll until the element exists in the DOM.
 
-You can configure the timeout with `--timeouts.elementWait`:
+If 6 seconds isn't enough for your site, raise the limit *once for the whole run* via `--timeouts.elementWait` rather than passing `{ timeout: ... }` to every call. One CLI flag covers `commands.wait`, `commands.click`, `commands.find`, `commands.exists` and the rest:
 
 ```bash
-# Wait up to 10 seconds for elements
+# Wait up to 10 seconds for every element-related command
 browsertime --timeouts.elementWait 10000 myScript.mjs
 
 # Disable auto-wait (fail immediately if element not found)
 browsertime --timeouts.elementWait 0 myScript.mjs
 ```
+
+The per-call `{ timeout: ... }` form is for the rare case where one specific command needs a different value than the rest of the script — for example when a particular slow page legitimately needs 20 seconds. See the [Tips and tricks tutorial]({{site.baseurl}}/documentation/sitespeed.io/scripting/tips-and-tricks/) for that pattern.
 
 ## Finding elements
 

@@ -191,7 +191,7 @@ export default async function (context, commands) {
     // Click on the submit button with id wpLoginAttempt
     await commands.click('id:wpLoginAttempt', { waitForNavigation: true });
     // wait on a specific id to appear on the page after you logged in
-    return commands.wait('id:pt-userpage', { timeout: 10000 });
+    return commands.wait('id:pt-userpage');
   } catch (e) {
     // We try/catch so we catch the case where the input fields can't be found.
     // The error is automatically logged in Browsertime and re-thrown here.
@@ -236,7 +236,7 @@ export default async function (context, commands) {
     // Wait for the GUI to display the password field so we can select it
     await commands.wait.byTime(2000);
     // Wait for the actual password field
-    await commands.wait('id:password', { timeout: 5000 });
+    await commands.wait('id:password');
     // Fill in the password
     await commands.type('id:password', 'dejh8Ghgs6ga(1217)');
     // Click the submit button
