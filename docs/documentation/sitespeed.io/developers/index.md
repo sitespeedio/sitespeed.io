@@ -225,17 +225,16 @@ Do the release:
 7. Commit the updated [version file](https://github.com/sitespeedio/sitespeed.io/blob/main/docs/_includes/version/browsertime.txt) and the [configuration file](https://github.com/sitespeedio/sitespeed.io/blob/main/docs/documentation/browsertime/configuration/config.md) in the sitespeed.io repo. Or make a PR if you do not have commit rights.
 
 ### Contributing to the documentation
-The documentation lives in your cloned directory under *docs/*.
+The documentation lives in your cloned directory under *docs/* and is built with [Eleventy](https://www.11ty.dev/) (search uses [Pagefind](https://pagefind.app/)). You need Node.js (see *docs/package.json* for the supported version).
 
-First make sure you have Bundler: <code>gem install bundler</code>
+To run the documentation server locally, execute the following from within the */docs* directory after cloning the repo:
 
-You should upgrade your ruby gems too: <code>gem update --system</code>
+~~~bash
+npm install
+npm run serve
+~~~
 
-*If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>*
-
-To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
-
-Visit http://localhost:4000/ in the browser of your choice.
+Visit the URL Eleventy prints (default `http://localhost:8080/`) in the browser of your choice.
 
 ### Debugging with Chrome
 You can debug sitespeed.io using Chrome and NodeJS > 8. Thanks [@moos](https://github.com/moos) for sharing.

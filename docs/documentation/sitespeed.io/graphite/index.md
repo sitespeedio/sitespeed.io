@@ -139,7 +139,7 @@ All default dashboards use Graphite annotations. But you can use Grafana's built
 
 To use Grafana annotations, make sure you set up a *resultBaseURL* and add the host and port to Grafana: <code>--grafana.host</code> and <code>--grafana.port</code>.
 
-Then set up your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
+Then set up your Grafana API token, follow the instructions at [https://grafana.com/docs/grafana/latest/developers/http_api/auth/#authentication-api](https://grafana.com/docs/grafana/latest/developers/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
 
 You need to create a new annotation setup in Grafana that matches the templates (the dropdowns) in your dashboard (the same way the default "run" Graphite annotation is set up). It will look something like this:
 
@@ -313,7 +313,7 @@ When your volume is mounted on your server that runs Graphite, you need to make 
  - `/path/on/server/whisper:/opt/graphite/storage/whisper`
  - `/path/on/server/graphite.db:/opt/graphite/storage/graphite.db`
 
-If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
+If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.com](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/#run-grafana-via-docker-compose).
 
 ## Graphite for production (important!)
 
@@ -323,6 +323,6 @@ If you use Grafana annotations, you should make sure grafana.db is outside of th
 4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
- If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
+ If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.com](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/#run-grafana-via-docker-compose).
  5. Run the latest version of Graphite and if you are using Docker, make sure you use a tagged version of the container (like graphiteapp/graphite-statsd:1.1.5-12) and never use the **latest** Docker tag.
  6. Secure your instance with a firewall/security groups so only your servers can send data to the instance.

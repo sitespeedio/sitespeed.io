@@ -92,7 +92,7 @@ docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io
 ~~~
 
 ## Chrome
-The latest version of Chrome should work out of the box. The latest stable [ChromeDriver](http://chromedriver.chromium.org) is bundled with sitespeed.io.
+The latest version of Chrome should work out of the box. The latest stable [ChromeDriver](https://developer.chrome.com/docs/chromedriver) is bundled with sitespeed.io.
 
 ### Chrome setup
 When we start Chrome it is set up with [these](https://github.com/sitespeedio/browsertime/blob/main/lib/chrome/webdriver/chromeOptions.js) command line switches.
@@ -155,7 +155,7 @@ Our Docker container only contains one version of Chrome, [let us know](https://
 ### Use a newer version of ChromeDriver
 ChromeDriver is the driver that handles the communication with Chrome. By default sitespeed.io and Browsertime come with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on a different ChromeDriver version, you need to download that version of ChromeDriver.
 
-You download ChromeDriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
+You download ChromeDriver from the [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) page and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
 
 ## Safari
 
@@ -301,7 +301,7 @@ You can then download the TCP dump for each iteration and the SSL key log file f
 Packets will be written when the buffer is flushed. If you want to force packets to be written to the file when they arrive you can do that with `--tcpdumpPacketBuffered`.
 
 ## WebDriver
-We use the WebDriver to drive the browser. We use [Chromedriver](https://chromedriver.chromium.org) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
+We use the WebDriver to drive the browser. We use [Chromedriver](https://developer.chrome.com/docs/chromedriver) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
 
 When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safaridriver. For Chrome, the ChromeDriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, upcoming developer versions, or on Android where that version hasn't been released yet.
 

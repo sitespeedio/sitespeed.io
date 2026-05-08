@@ -154,7 +154,7 @@ You can choose which Chrome version you want to run on your phone using `--chrom
 
 If you installed Chrome Canary on your phone and want to use it, then add `--chrome.android.package com.chrome.canary` to your run.
 
-Driving different versions requires different versions of ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of ChromeDriver. If you want to run other versions, you need to [download from the official ChromeDriver page](https://chromedriver.chromium.org/downloads). Then you specify the version using `--chrome.chromedriverPath`.
+Driving different versions requires different versions of ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of ChromeDriver. If you want to run other versions, you need to [download from the Chrome for Testing page](https://googlechromelabs.github.io/chrome-for-testing/). Then you specify the version using `--chrome.chromedriverPath`.
 
 ### Collect trace log
 
