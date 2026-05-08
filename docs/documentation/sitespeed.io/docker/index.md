@@ -109,13 +109,13 @@ docker pull sitespeedio/sitespeed.io:X.Y.Z
 
 Then change your start script (or where you start your container) to use the new version number.
 
-You can also pin sitespeed.io to stable versions. Say for example that you want to pin your version to version 35. Then you can use the following version:
+{% capture sitespeedVersion %}{% include version/sitespeed.io.txt %}{% endcapture %}{% assign sitespeedMajor = sitespeedVersion | split: "." | first %}You can also pin sitespeed.io to a major version and pull the latest patch and minor releases as they ship. For example, to pin to the current major:
 
 ```bash
-docker pull sitespeedio/sitespeed.io:35
+docker pull sitespeedio/sitespeed.io:{{ sitespeedMajor }}
 ```
 
-Then, as we continuously release new 35 versions, you can just run `docker pull sitespeedio/sitespeed.io:35` and you will get the latest released version of 35.
+Then, as we release new {{ sitespeedMajor }}.x versions, running `docker pull sitespeedio/sitespeed.io:{{ sitespeedMajor }}` will give you the latest released version of {{ sitespeedMajor }}.
 
 
 
