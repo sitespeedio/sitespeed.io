@@ -274,49 +274,77 @@ Sitespeed.io is the main tool to collect performance metrics, store the data and
 #### Browsertime
 Browsertime is the engine that starts the browser and gets the metrics. The outcome is raw JSON. Use Browsertime if you are building your own performance tool. Mozilla uses Browsertime in [their performance tests](https://wiki.mozilla.org/TestEngineering/Performance/Raptor/Browsertime).
 
+## Comparing the synthetic testing tools
 
-#### Other tools
-If for some reason you don't want to use Browsertime or sitespeed.io, I'm going to help you with some questions you should ask your potential synthetic monitoring solution provider. You can use these questions when you compare different providers so you get a feeling for what they can do and which one you should choose.
+There's no neutral way to do this (I'm the maintainer of one of the tools), but here's a side-by-side of what's on the market today, so you can use it as a starting point and check the things that matter to you.
 
+The tables below are split in two so they actually fit on a screen: the first covers ownership and pricing, the second covers what the tool can do. Tables verified on 2026-05-07. Vendors change pricing and features all the time, so re-check the linked pages before you sign anything.
 
-* Browser and metrics:
-    * <b>Browser support: Which browsers can you use to get performance metrics?</b> - there are tools out there that only can get metrics from Chrome. That will work fine for you as long as **all** your users and developers _only_ use Chrome and you only aim for users that will use Chrome forever. Of course your tool need to support more browsers.
-    * <b>How many runs per URL do you recommend? Can you choose between min/median/max values?</b> - Can you increase the number of runs to get more stable values? Can you choose which run to pick? You want to be able to change this to try out what works best for your website.
-    * <b>If they use a video, how many frames per second?</b> - higher FPS needs better hardware and traditionally WebPageTest uses 10 fps for video, which may be OK for you depending on how exact you need your metrics to be. Ask to get the raw video and check the quality.
-    * <b>Can you run on different connectivity types?</b> - when you collect SpeedIndex and other metrics, you want to make sure that you can choose different connectivity types for your tests to be able to test as different users. Make sure they use real throttling using TC or Dummynet.
-    * <b>Can you add your own metrics?</b> - you want to be able to collect metrics from the User Timing API or run arbitrary JavaScript to get your own metrics.
-    * <b>Can you choose browser versions for your tests? And when are browsers updated to a new version?</b> - handling browsers and versions is crucial. There will be browser bugs or performance issues, so you want to roll back versions in your tests. And you want to install new versions when your users start to use them.
-* Servers and stability
-    * <b>Where can I deploy test agents?</b> - are they using their own cloud, or can you choose locations yourself from different cloud providers?
-    * <b>How stable are the metrics using your tool?</b> - you want to test and calibrate the tool. Do they run the tool on a separate server, or do they run multiple tests at the same time that can have a negative impact on your metrics?
-    * <b>Can I use your tool inside our own network?</b> - if you want to test on stage or on your own machines with the same tool, make sure you can use the tool from wherever you want.
-    * <b>Can I upgrade/downgrade the test agent servers (number of CPUs/memory)?</b> - if they run in the cloud, for example using AWS, you want to make sure you can choose instance size, because I've seen so many problems running WebPageTest on too small instances on AWS.
-* Mobile
-    * <b>Can I use real devices (both Android and iPhones)?</b> - you really want to be able to test on real devices!
-    * <b>What browsers can I use on your device?</b> - can you choose browsers so you can test on the most important ones for you?
-* Who owns the data?
-    * <b>Do I own my own data/metrics?</b> - who owns the data they collect? Can you access the raw data or only through their tool? Can you export the data to your own servers? Will they sell your metrics to other companies?
-    * <b>If I stop using your product, how do I migrate the metrics to our new system?</b> - are you locked into the platform or can you move the metrics?
-* Cost and failures
-    * <b>Can I see exactly how much it will cost (in dimes and dollars)?</b> - some vendors work with <i>points</i> or things like that. You want to avoid that because you want to see exactly in dollars how much it will cost.
-    * <b>If a run fails, what happens then?</b> - there's a vendor out there where you pay extra for a retry. Avoid it. If the tool doesn't work, the vendor should pay, not you as a customer.
-    * <b>Does it cost extra to change the User Agent?</b> - some things cost extra because there is an extra cost for the company providing the services (adding a real device, etc.). But other things, like changing the user agent, shouldn't.
-* Supporting or abusing Open Source?
-    * <b>Is your synthetic testing tool using any Open Source projects?</b> - if not, and they still use Speed Index etc., you need to ask how they do it and how you can confirm they do everything right.
-    * <b>Are you following the license of the tool you use?</b> - You need to ask this question! Are any of the Open Source tools they use under the GPL license (for example <a href="https://github.com/WPO-Foundation/webpagetest/blob/master/LICENSE">WebPageTest uses software under GPL</a>), and do they contribute changes back?
-    * <b>Do you contribute back to the tool?</b> - if you as a vendor build things on top of Open Source tools, I think it's good karma to contribute back your changes regardless of license. You can see it like this: if the company uses Open Source tools but doesn't contribute back, the company is more likely to trick you.
-    * <b>If there's a bug in the Open Source tool, what does the company do?</b> - some companies do upstream fixes (good!), some companies just say it's something they can't fix (bad). Ask them about problems they've had so far and how they fixed them.
-    * <b>How do you know if a company is abusing Open Source?</b> If the company built their tool on another Open Source tool and is very profitable, they are probably abusing Open Source. Watch out for tweets like this:
-    
-![Very profitable, very quickly]({{site.baseurl}}/img/very-profitable-very-quickly.png)
-{: .img-thumbnail-center}
+### Behind the tools
 
-Another important thing is privacy. I think it's pretty easy to check if the tool you want to use cares about the privacy of your data by checking how many third-party tools the tool's website uses. Here's what the number of third-party requests looks like for a couple of tools:
+| Tool | Behind it | Licence | Self-host | Engine | Pricing (2026-05-07) |
+|---|---|---|---|---|---|
+| [sitespeed.io](https://www.sitespeed.io) | Independent OSS, maintainers in Sweden | MIT | Yes — only mode | Browsertime + Coach + custom | Free |
+| [WebPageTest](https://www.webpagetest.org) | Catchpoint (US, PE-owned) | Source-available agent (Polyform Shield, not OSS) + closed SaaS | Yes (private instance) | WPT agent | Free 150 runs/mo · Pro from ~$180/yr · Expert from $999/mo |
+| [Lighthouse](https://github.com/GoogleChrome/lighthouse) | Google | Apache 2.0 | Yes (CLI/CI) | Chrome DevTools Protocol | Free |
+| [SpeedCurve](https://www.speedcurve.com) | Embrace (US, VC-backed; acquired Nov 2025) | Closed SaaS | No | WPT-agent fork + LUX RUM | From $90/mo |
+| [Calibre](https://calibreapp.com) | Calibre Analytics, Australia | Closed SaaS | No | Lighthouse + CrUX + RUM | Starter $75/mo (5,000 synthetic tests) |
+| [DebugBear](https://www.debugbear.com) | Independent, UK | Closed SaaS | No | Lighthouse + custom | Volume-based; check vendor page |
+| [Treo](https://treo.sh) | Independent | Closed SaaS | No | Lighthouse | Free tier · Vital from $75/mo |
+| [Catchpoint Synthetic](https://www.catchpoint.com) | Catchpoint (US) | Closed SaaS | Private nodes possible | Proprietary + WPT | Enterprise quote |
+| [Datadog Synthetics](https://www.datadoghq.com/product/synthetic-monitoring/) | Datadog (US, public) | Closed SaaS | Private locations only | Proprietary | Per 1k browser tests; check vendor page |
+| [Dynatrace Synthetic](https://www.dynatrace.com/platform/synthetic-monitoring/) | Dynatrace (Austria/US, public) | Closed SaaS | Private nodes | Proprietary | Enterprise quote |
+| [New Relic Synthetics](https://newrelic.com/platform/synthetic-monitoring) | New Relic (US, private) | Closed SaaS | Private minions | Chrome via Selenium | 500 checks free · $0.005/check overage |
 
-![Running on the same server instance type]({{site.baseurl}}/img/thirdparty-performance-tools.png){:loading="lazy"}
-{: .img-thumbnail}
+### Capabilities
 
-Best is to check yourself when you are evaluating a tool.
+| Tool | Real browsers | Real mobile devices | Scripted journeys | Real network throttling | Video & visual metrics |
+|---|---|---|---|---|---|
+| sitespeed.io | Chrome, Firefox, Edge, Safari (Mac/iOS) | Android & iOS over USB | Yes (JS) | Yes — packet-level on agents | FFmpeg video, SpeedIndex, last visual change |
+| WebPageTest | Chrome, Firefox, Edge, Safari | Android & iOS if you self-host | Yes (WPT scripting) | Yes — packet-level on agents | Video + filmstrip + visual metrics |
+| Lighthouse | Chrome only | Emulated only | Yes (`startFlow()` + Puppeteer) | Simulated by default; DevTools optional | Screenshots in trace, no video |
+| SpeedCurve | Chrome, Firefox, Safari, Edge | Emulated | Yes | Yes — inherits from WPT agents | Filmstrip + visual metrics |
+| Calibre | Chrome | Emulated | Yes | DevTools-level (browser-side) | Filmstrip |
+| DebugBear | Chrome | Emulated | Yes | DevTools-level | Filmstrip + video |
+| Treo | Chrome | Emulated | Limited | Simulated (Lighthouse-style) | Filmstrip |
+| Catchpoint Synthetic | Chrome, IE legacy, others | Real device cloud add-on | Yes | Yes — agent-side | Video |
+| Datadog Synthetics | Chrome, Firefox, Edge | Emulated | Yes | DevTools-level | Recording + screenshots |
+| Dynatrace Synthetic | Chrome | Emulated | Yes | DevTools-level | Video |
+| New Relic Synthetics | Chrome | Emulated | Yes | DevTools-level | Screenshots + step-level visuals |
+
+### Notes: the take
+
+**sitespeed.io**: Built the way I'd want a perf tool to work: open source, your data on your boxes, real browsers, real devices, real network shaping, real video. No SaaS lock-in. Trade-off: you run it yourself, and the dashboards are whatever you wire up to Graphite, InfluxDB or OpenSearch.
+
+**WebPageTest**: Source-available, not OSS, and in slow decline since Catchpoint bought it in 2022. Engineering investment on the public codebase has fallen off a cliff: the agent repo (the part that actually does the measuring) had 384 commits in 2022, 50 in 2024, and 2 in all of 2025. The licence on the agent quietly moved to Polyform Shield, which restricts commercial reuse. The hosted SaaS still runs, but Catchpoint's strength is enterprise APM and network monitoring, not running performance test agents on real bare metal, and the gap shows. Self-hosting still works on the existing code and is how most teams who care about WPT actually use it, just be aware you're running an effectively unmaintained project.
+
+**Lighthouse**: Free, scriptable, and the de-facto baseline for "is this page OK?". But it's a single-shot audit tool with simulated throttling by default, so it tells you what *would* happen, not what *did*. Use it for CI gates and sanity checks; reach for a real measurement tool when the numbers stop matching reality.
+
+**SpeedCurve**: Long-standing commercial synthetic + RUM platform that runs its own fork of the WPT agents. Historically that meant SpeedCurve got most of its measurement engine for free from WPT's open development; with WPT now in hibernation (see above), they're stuck maintaining a fork of an unmaintained engine, with no upstream to pull from.
+
+SpeedCurve was acquired in November 2025 by Embrace, a VC-backed mobile-observability vendor (~$80M raised) adding a web story to its product, the same playbook that left WPT in hibernation under Catchpoint. Whether SpeedCurve ends the same way depends on Embrace's appetite for funding niche perf engineering after the integration honeymoon.
+
+Closed SaaS, expensive at any real volume, and your data lives with them, now with the added wrinkle that "them" is no longer the company you originally signed up with.
+
+**Calibre**: Independent, Australian-owned, focused on "performance budgets meet team workflow". Smaller scope than SpeedCurve but cheaper entry point and a clearer product. Lighthouse-based, so inherits Lighthouse's throttling caveats.
+
+**DebugBear**: Sharp on developer experience, good filmstrips and a clean UI. Lighthouse-based engine, so the same simulated-throttling caveats apply as for the other Lighthouse tools on this list. Still independent and founder-led, which is rare on this list.
+
+**Treo**: Lightweight, Lighthouse-as-a-service. Cheap. Limited if you need scripted journeys or anything beyond "monitor these N pages".
+
+**Catchpoint Synthetic**: Enterprise synthetic platform from the same parent that owns WebPageTest. Sales-led, opaque pricing, broad global footprint with real-device add-ons. If you already pay Catchpoint for network/DNS monitoring, plugging in synthetic checks is mostly a contracting exercise; if you don't, the price tag and the contract are the story. The same parent letting WebPageTest decay (see above) isn't a strong signal that perf engineering is a priority.
+
+**Datadog Synthetics / Dynatrace Synthetic / New Relic Synthetics**: Three flavours of the same story: synthetic browser checks bolted onto an APM platform. Closed engines, DevTools-level throttling at best, no real device support, no real performance focus. Worth turning on if you already pay for one of them and just want a "did the deploy break it" signal next to your APM data. If you actually care about web performance, please use something else on this list. (New Relic's 500 free checks/month is the only standalone reason to pick any of them.)
+
+### What the tool is actually optimising for
+
+Every tool on that list is optimising for something, even when nobody says it out loud. It's worth asking what that something is, because it shapes everything: which features get built, which ones quietly never ship, and where the rough edges end up.
+
+A paid SaaS is optimising for revenue. That isn't an insult, it's how companies work. But it means features the salesperson can demo win over features that make you self-sufficient. Pricing pages stay opaque so sales can price-discriminate. Lock-in is a feature, not a bug. And when the company gets acquired (it usually does, like Catchpoint with WebPageTest in 2022), the new owner's priorities shape the product, not the original founders'.
+
+Sitespeed.io is optimising for the web getting faster. That's it. There's no upsell, no enterprise tier, no quarterly target. The maintainers are people who measure performance for a living and would build most of this anyway, and the open-source release is "here's the thing we'd want to use, you can have it too." The trade-off is honest: less polish than a venture-funded SaaS, no salesperson to call when something breaks, but also no surprise renewal quote and no risk of your data being absorbed into someone's exit.
+
+This isn't a moral argument that one is "good" and the other is "bad". It's a question of whose interests line up with yours. If a SaaS vendor's incentive is to keep you paying and yours is to ship fast pages, those overlap a lot of the time, until they don't.
 
 ## Running tests using sitespeed.io
 
