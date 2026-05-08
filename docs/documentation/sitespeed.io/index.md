@@ -28,7 +28,6 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
  * [Docker](docker/) - how to use our Docker containers.
  * [Connectivity](connectivity/) - set the connectivity to emulate real users' network conditions.
  * [Scripting](scripting/) - script a user journey, test multiple URLs, test login, or test adding items to the cart.
- * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
  * [Single Page Application](spa/) - how to test your single page application.
  * [WebPageReplay](webpagereplay/) - WebPageReplay is a proxy that first records your website and then replays it locally. That makes it easier to find front-end performance regressions: latency and server timings stay constant.
  * [Continuously run your tests](continuously-run-your-tests/) - how to set up your tests to run continuously.

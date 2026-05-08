@@ -89,7 +89,7 @@ We have a super great HAR files. For Firefox we use the [HAR Export Trigger](htt
 To get the HAR from Chrome we parses the event log to generate it. Tobias spent some time to make that happen. :)
 
 ## Pre/post-scripts a.k.a login
-Are you prepared? In the new version you can login your user using a Selenium script! Yes that is true. You customize your own script to run pre and post testing a URL. [Check out]({{site.baseurl}}/documentation/sitespeed.io/prepostscript/) the documentation.
+Are you prepared? In the new version you can login your user using a Selenium script! Yes that is true. You customize your own script to run pre and post testing a URL. [Check out]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/) the documentation.
 
 ## Mobile phone support
 You can [drive your Android phone and test pages]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/) using Chrome. You will get an HAR file and it will run all the javascript and collect the metrics.
