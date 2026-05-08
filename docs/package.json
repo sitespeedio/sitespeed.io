@@ -5,7 +5,7 @@
   "description": "The sitespeed.io documentation site, built with Eleventy.",
   "type": "module",
   "scripts": {
-    "build": "eleventy",
+    "build": "eleventy && pagefind --site _site --exclude-selectors 'a.anchor'",
     "serve": "eleventy --serve",
     "clean": "rm -rf _site"
   },
@@ -19,7 +19,8 @@
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-attrs": "^4.3.1",
     "markdown-it-toc-done-right": "^4.2.0",
-    "netlify-plugin-cache": "^1.0.3"
+    "netlify-plugin-cache": "^1.0.3",
+    "pagefind": "^1.5.2"
   },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.4",

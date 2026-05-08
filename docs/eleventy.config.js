@@ -209,7 +209,6 @@ export default function (eleventyConfig) {
     'favicon.ico',
     'robots.txt',
     'google0c83e3facf54325f.html',
-    'simple-jekyll-search.min.js',
     'blank.html'
   ]) {
     eleventyConfig.addPassthroughCopy(file);

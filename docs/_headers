@@ -3,7 +3,7 @@
 	X-XSS-Protection: 1; mode=block
 	Referrer-Policy: no-referrer
 	Permissions-Policy: interest-cohort=()
-	Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
 	Cross-Origin-Opener-Policy: same-origin
 	Cross-Origin-Embedder-Policy: require-corp
 	Cross-Origin-Resource-Policy: same-origin
