@@ -5,7 +5,7 @@
   "description": "The sitespeed.io documentation site, built with Eleventy.",
   "type": "module",
   "scripts": {
-    "build": "eleventy && pagefind --site _site --exclude-selectors 'a.anchor'",
+    "build": "eleventy && node scripts/pagefind-prep.mjs && pagefind --site _site --exclude-selectors 'a.anchor'",
     "serve": "eleventy --serve",
     "clean": "rm -rf _site"
   },
