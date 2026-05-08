@@ -1,0 +1,92 @@
+{
+  "index_patterns": ["sitespeed-pagexray-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "plugins.index_state_management.policy_id": "sitespeed-default-retention"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp":  { "type": "date" },
+        "url":         { "type": "keyword" },
+        "group":       { "type": "keyword" },
+        "alias":       { "type": "keyword" },
+        "browser":     { "type": "keyword" },
+        "connectivity":{ "type": "keyword" },
+        "slug":        { "type": "keyword" },
+        "type":        { "type": "keyword" },
+        "resultUrl":   { "type": "keyword" },
+        "deviceType":  { "type": "keyword" },
+        "iterations":  { "type": "integer" },
+        "name":        { "type": "keyword" },
+        "totalDomains":{ "type": "integer" },
+        "transferSize":{ "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+        "contentSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+        "requests":    { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+        "cookies":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+        "firstParty": {
+          "properties": {
+            "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+            "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+            "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        },
+        "thirdParty": {
+          "properties": {
+            "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+            "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+            "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        },
+        "contentTypes": {
+          "properties": {
+            "javascript": {
+              "properties": {
+                "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+              }
+            },
+            "css": {
+              "properties": {
+                "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+              }
+            },
+            "image": {
+              "properties": {
+                "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+              }
+            },
+            "html": {
+              "properties": {
+                "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+              }
+            },
+            "font": {
+              "properties": {
+                "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+              }
+            },
+            "other": {
+              "properties": {
+                "transferSize": { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "contentSize":  { "properties": { "median": { "type": "long" }, "p90": { "type": "long" }, "rsd": { "type": "float" } } },
+                "requests":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
