@@ -333,11 +333,11 @@ If you want to have multiple phones of the same model work on the same queue (to
 
 If you choose to use Docker, set `useDocker` to true in the configuration. Then all you need to do is make sure Docker is installed on the server.
 
-You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:39.0.0`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use `sitespeedio/sitespeed.io:39` as the tag. Ensure that you update the container once per day with:
+You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use the current major version as the tag and pull the latest image once per day:
 
 ```yaml
 docker:
-  container: "sitespeedio/sitespeed.io:39"
+  container: "sitespeedio/sitespeed.io:latest"
 ```
 
 If you try out the Docker containers locally on your machine, you need to remember remember that localhost inside the container isn't automatically the same as localhost on the server. You can read about it [here](https://www.sitespeed.io/documentation/sitespeed.io/docker/#access-localhost).

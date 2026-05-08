@@ -184,6 +184,4 @@ The coach has a clock and knows how to use it! You will get timing metrics and k
 Checkout the [developers guide](../developers/) to get a better feeling of how the coach works.
 
 # Browser support
-The coach is automatically tested in latest Chrome and Firefox. To get best results you need Chrome or Firefox 48 (or later) to be able to know if the server is using HTTP/2.
-
-We hope that the coach works in other browsers, but we cannot guarantee it right now.
+The coach is automatically tested in the latest Chrome and Firefox. We hope that the coach works in other browsers, but we cannot guarantee it right now.

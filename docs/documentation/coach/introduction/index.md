@@ -2,7 +2,7 @@
 layout: default
 title: Coach Introduction
 description: Why do you need the coach.
-keywords: coach, documentation, web performance, yslow
+keywords: coach, documentation, web performance, core web vitals
 author: Peter Hedenskog
 nav: documentation
 category: coach
@@ -36,5 +36,5 @@ Reasons why we love the coach and you will too:
  - The coach can combine knowledge from the DOM with HAR to give you super powerful advice.
  - The CLI output is pretty nice. You can configure how much you want to see. Use it as a fast way to check the performance of your page.
 
-## Work in progress!
-We know you want the coach to help you, but right now YOU need to help the coach! The coach is new and needs more advice. Send a PR with a new advice, so the coach gets more knowledge! Check out the [issues](https://github.com/sitespeedio/coach/issues), try the project and give us feedback!
+## Help us improve the coach
+Have an idea for new advice, or spotted something the coach should catch? Open an issue or send a PR — check out the [issues](https://github.com/sitespeedio/coach/issues), try the project and give us feedback.
