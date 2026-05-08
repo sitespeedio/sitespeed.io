@@ -55,7 +55,7 @@
 	<div class="white">
 		<div class="grid">
 			<div class="col-1-1">
-				<main role="main">
+				<main role="main"{% if tags contains 'posts' or page.url contains '/release-notes/' %} data-pagefind-ignore{% endif %}>
 					{{ content }}
 				</main>
 			</div>

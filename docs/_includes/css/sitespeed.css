@@ -747,3 +747,106 @@ body.startpage main pre:hover::before {
 
   .edit { float: none; display: block; margin: 0 0 1em 0; }
 }
+
+/* Pagefind search widget on /search/. Override Pagefind's CSS custom
+ * properties so the widget tracks the rest of the docs' tokens
+ * (brand colour, text colour, border, radius, font). The vars
+ * cascade down through the widget's shadow-free Svelte CSS. */
+#search {
+  margin-top: 2rem;
+
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--color-brand);
+  --pagefind-ui-text: var(--color-text);
+  --pagefind-ui-background: var(--color-surface-card);
+  --pagefind-ui-border: var(--color-border);
+  --pagefind-ui-tag: var(--color-brand-soft);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: var(--radius-md);
+  --pagefind-ui-image-border-radius: var(--radius-md);
+  --pagefind-ui-font: var(--font-sans);
+}
+
+/* "Tool" badge on Pagefind results — show which sub-project
+ * (sitespeed.io / Browsertime / Coach / etc.) a result documents.
+ * Sits to the left of the title; the JavaScript API badge below
+ * sits to the right. CSS-only via :has() + URL pattern. */
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/sitespeed.io/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/browsertime/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/coach/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/throttle/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/pagexray/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/chrome-har/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/compare/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/humble/"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/onlinetest/"])::before {
+  display: inline-block;
+  margin-right: 0.5em;
+  padding: 0.1em 0.5em;
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  vertical-align: middle;
+}
+
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/sitespeed.io/"])::before { content: "sitespeed.io"; text-transform: none; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/browsertime/"])::before { content: "Browsertime"; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/coach/"])::before { content: "Coach"; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/throttle/"])::before { content: "Throttle"; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/pagexray/"])::before { content: "PageXray"; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/chrome-har/"])::before { content: "chrome-har"; text-transform: none; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/compare/"])::before { content: "Compare"; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/humble/"])::before { content: "Humble"; }
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/documentation/onlinetest/"])::before { content: "OnlineTest"; }
+
+/* Sub-result rows (jump-to-section links inside a Pagefind hit) link
+ * at /page/#anchor — the # in the href is the reliable marker.
+ * Main-result links never contain #. Suppress tool/API badges on
+ * sub-result rows; the parent result already carries them, and the
+ * arrow indicator sits in the same column. */
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="#"])::before,
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="#"])::after {
+  content: none;
+}
+
+/* The Pagefind default UI sets the search input to font-weight: 700
+ * via .pagefind-ui__search-input.svelte-XXXX (two-class specificity).
+ * Win the cascade by prefixing #search so we have id + class. */
+#search .pagefind-ui__search-input {
+  font-weight: normal;
+}
+
+/* The result-count message ("75 results for X") is bold by default.
+ * Make the surrounding sentence normal weight; the search term inside
+ * gets wrapped in <strong> by search-init.js so it stays emphasised. */
+#search .pagefind-ui__message {
+  font-weight: normal;
+}
+#search .pagefind-ui__message strong {
+  font-weight: 600;
+}
+
+/* "JavaScript API" badge on Pagefind results that point at jsdoc-
+ * generated scripting class pages. Tutorial URLs end in `/`;
+ * jsdoc pages end in `.html`, so the URL pattern alone tells us
+ * which results are auto-generated API reference. No JS or build
+ * step needed — this is a CSS-only attribute-selector rule. */
+.pagefind-ui__result-title:has(.pagefind-ui__result-link[href*="/scripting/"][href$=".html"])::after {
+  content: "JavaScript API";
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.1em 0.5em;
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-brand-deep);
+  background: var(--color-brand-soft);
+  border-radius: var(--radius-pill);
+  vertical-align: middle;
+}
