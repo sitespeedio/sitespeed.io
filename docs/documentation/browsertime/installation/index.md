@@ -16,11 +16,12 @@ twitterdescription: Install browsertime using npm, yarn or Docker.
 {:toc}
 
 # Install
-You can run Browsertime using our Docker container or using NodeJS. If you use Docker everything "just works" and you don't need to install anything extra for getting video and visual metrics to work.
+
+You can run Browsertime in two ways: with our Docker image or as a Node.js install. Docker is the easiest path because the image already contains Chrome, Firefox, Xvfb and the dependencies needed for video recording and Visual Metrics.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/browsertime/) with Browsertime, Chrome, Firefox and Xvfb. It is super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
+We publish [Docker images](https://hub.docker.com/r/sitespeedio/browsertime/) with Browsertime, Chrome, Firefox and Xvfb. Xvfb is started for you when the container boots, so you only need to install [Docker](https://docs.docker.com/install/) and run the image.
 
 ### Mac & Linux
 
@@ -35,23 +36,25 @@ C:\Users\Vicky> docker pull sitespeedio/browsertime
 C:\Users\Vicky> docker run --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} https://www.sitespeed.io -b firefox
 ~~~
 
-That will output the data from the run in the current directory.
+The result of the run is written to the current directory.
 
 ## Standalone
 
 ### Mac & Linux
 
-Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Install Chrome/Firefox.
+Prerequisites:
+
+ - [Node.js](https://nodejs.org/en/download/) 20 or later (22.18+ if you want to use TypeScript navigation scripts). On Linux you can manage versions with [nvm](https://github.com/nvm-sh/nvm).
+ - [npm](https://www.npmjs.com/) (bundled with Node.js) or [yarn](https://yarnpkg.com/).
+ - Chrome and/or Firefox installed locally.
 
 #### npm
-If you prefer npm, just run:
 
 ~~~bash
 npm install browsertime -g
 ~~~
 
 #### yarn
-Or with [yarn](https://yarnpkg.com/):
 
 ~~~bash
 yarn global add browsertime
@@ -59,4 +62,4 @@ yarn global add browsertime
 
 ### Windows
 
-We support Windows using [Docker](https://docs.docker.com/engine/installation/windows/). To be able to support running on Windows with NodeJS we need at least one [core contributor](/aboutus/) that can focus on Windows. Are you that one? Please [get in touch](https://github.com/sitespeedio/browsertime/issues/new)!
+We support Windows through [Docker](https://docs.docker.com/engine/installation/windows/). Running Browsertime natively on Windows would need at least one [core contributor](/aboutus/) to focus on Windows — if that is you, please [get in touch](https://github.com/sitespeedio/browsertime/issues/new).
