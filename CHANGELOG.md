@@ -1,6 +1,15 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.3.0 - 2026-05-10
+
+### Added
+* Bump the bundled Docker browsers to Chrome 148, Firefox 150, Edge 147 [#4709](https://github.com/sitespeedio/sitespeed.io/pull/4709).
+
+### Fixed
+* Compare plugin no longer crashes when running with `--verbose` — a typo in a `log.verbose` call (`'%j'.results` instead of `'%j', results`) threw once the Python statistical tests returned.
+* `coach-core` bumped to 9.0.1 [#4703](https://github.com/sitespeedio/sitespeed.io/pull/4703).
+
 ## 40.2.0 - 2026-05-06
 
 ### Added
