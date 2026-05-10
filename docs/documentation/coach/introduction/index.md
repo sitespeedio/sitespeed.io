@@ -18,7 +18,7 @@ twitterdescription:
 
 ## What is the Coach?
 
-The Coach is a set of rules that look at a real page in a real browser, plus the HAR file generated for the same run, and tell you what to fix. It runs by default inside [sitespeed.io](/documentation/sitespeed.io/) and [Browsertime](/documentation/browsertime/), and the analysis logic lives in the open-source [`coach-core`](https://github.com/sitespeedio/coach-core) library.
+The Coach is a set of rules that look at a real page in a real browser, plus the HAR file generated for the same run, and tell you what to fix. It runs by default inside [sitespeed.io](/documentation/sitespeed.io/), and the analysis logic lives in the open-source [`coach-core`](https://github.com/sitespeedio/coach-core) library.
 
 Each Coach rule combines two sources of truth:
 

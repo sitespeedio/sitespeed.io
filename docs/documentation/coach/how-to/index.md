@@ -1,7 +1,7 @@
 ---
 layout: default
 title: How to use the Coach.
-description: Get Coach advice from sitespeed.io, Browsertime, or the coach-core library.
+description: Get Coach advice from sitespeed.io or the coach-core library.
 keywords: coach, documentation, web performance
 author: Peter Hedenskog
 nav: documentation
