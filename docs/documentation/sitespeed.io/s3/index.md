@@ -95,7 +95,7 @@ You should also make sure that all the result files (HTML/videos/screenshots) ar
 As a last thing you should also add `--copyLatestFilesToBase`, which will make it possible to view the latest screenshot and video in Grafana from S3.
 
 # MinIO
-If you want to deploy the storage yourself, you can use the Open Source [https://min.io](https://min.io). You can deploy that using Docker. There's an example of how you can set that up in [sitespeed.io online test](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml).
+If you want to deploy the storage yourself, you can use the Open Source [https://min.io](https://min.io). You can deploy that using Docker. There's an example of how you can set that up in the [sitespeed.io online test](https://github.com/sitespeedio/onlinetest) repo (see the `docker-compose.*.yml` files at the root).
 
 # Digital Ocean Spaces
 [Digital Ocean Spaces](https://developers.digitalocean.com/documentation/spaces/#aws-s3-compatibility)

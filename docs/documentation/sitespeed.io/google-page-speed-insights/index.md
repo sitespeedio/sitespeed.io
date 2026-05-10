@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Run Google Page Speed Insights from sitespeed.io
-description: Since 7.5 you can also run Google Page Speed Insights from sitespeed.io
+description: Run Google Page Speed Insights (GPSI) from sitespeed.io and store the result alongside your other metrics.
 keywords: lighthouse, sitespeed.io
 nav: documentation
 category: sitespeed.io

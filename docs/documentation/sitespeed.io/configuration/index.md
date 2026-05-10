@@ -139,9 +139,9 @@ Mobile testing is always best on actual mobile devices. You can [test on Android
 {: .note .note-warning}
 
 ### Visual metrics and video
-In 4.1 we released support for recording a video of the browser screen and using that to calculate visual metrics like Speed Index. This is one of the main benefits of using our Docker images, since it makes for an easy setup. Without Docker, you would need to install all the [dependencies](https://github.com/WPO-Foundation/visualmetrics).
+Sitespeed.io records a video of the browser screen and uses that to calculate visual metrics like Speed Index. This is one of the main benefits of using our Docker images, since it makes for an easy setup. Without Docker, you would need to install all the [dependencies](https://github.com/WPO-Foundation/visualmetrics).
 
-In 6.0 video and Visual Metrics are turned on by default, and if you want to turn them off you do like this:
+Video and Visual Metrics are on by default. To turn them off:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --visualMetrics false https://www.sitespeed.io/

@@ -59,7 +59,7 @@ jobs:
     name: running sitespeed.io
     steps:
       - name: code checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: running sitespeed.io container with arguments and optional Docker options
         run: docker run -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --budget.configPath .github/budget.json -n 1
 ```
@@ -100,9 +100,6 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 {: .img-thumbnail}
 
 Remember that you can also send the metrics to Graphite to keep a closer eye on all metrics over time.
-
-## Travis
-We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/main/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
 
 ## Circle CI
 Setting up your sitespeed tests on Circle is a straightforward process. What works best is to use Circle's [Linux VM](https://circleci.com/build-environments/linux/), which will spin up a pre-configured VM made to run variations of Docker and pre-installed with lots of tools that you may need to get sitespeed up and running.

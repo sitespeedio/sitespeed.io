@@ -147,13 +147,13 @@ Can I test the same URLs from different locations, and how do I make sure they d
 You should set different namespaces depending on location (`--graphite.namespace`). If you run one test from London, set the namespace to <code>--graphite.namespace sitespeed_io.london</code>. Then you can choose individual locations in the dropdown in the pre-made dashboards.
 
 ### Google Web Vitals
-To get Google's Web Vitals in your tests you need to use Chrome. Sitespeed.io collects: First Contentful Paint, Largest Contentful Paint, Cumulative Layout Shift, First Input Delay/Total Blocking Time.
+To get Google's Web Vitals in your tests you need to use Chrome. Sitespeed.io collects: First Contentful Paint, Largest Contentful Paint, Cumulative Layout Shift, Interaction to Next Paint, and Total Blocking Time (a lab proxy for INP/FID).
 
 A good thing is to calibrate your test against the Chrome User Experience report data. Do that by running the [CrUx plugin](/documentation/sitespeed.io/crux/), then tuning the connectivity setting you use and comparing First and Largest Contentful Paint.
 
-To calibrate Cumulative Layout Shift, it's good to [use scripting](/documentation/sitespeed.io/scripting/) to go to the page and [scroll the page](/documentation/sitespeed.io/scripting/#scroll-the-page-to-measure-cumulative-layout-shift).
+To calibrate Cumulative Layout Shift, [use scripting](/documentation/sitespeed.io/scripting/interact-with-the-page/) to drive the page (e.g. scroll) so layout shifts that happen post-load are captured.
 
-First Input Delay/Total Blocking Time is harder. The best way is to test on a real mobile phone, preferably an older Android phone like a Moto G5.
+Total Blocking Time is harder. The best way is to test on a real mobile phone, preferably an older Android phone like a Moto G5. INP needs real interactions — drive them via [scripting](/documentation/sitespeed.io/scripting/).
 
 ### Google Page Speed Insights vs Lighthouse vs Chrome User Experience Report plugins
 

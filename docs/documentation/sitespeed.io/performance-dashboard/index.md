@@ -54,7 +54,7 @@ Before you start, make sure you have the following installed:
    In the terminal, run the following command:
 
    ```bash
-   docker-compose up
+   docker compose up
    ```
 
    This command will download the necessary Docker images and start Grafana and Graphite.
@@ -73,7 +73,7 @@ Before you start, make sure you have the following installed:
 
 6. **Stop docker compose**
 
-   When you're done, you can stop the services by pressing `Ctrl+C` in the terminal where you ran `docker-compose up`. To completely remove the services and volumes defined in the `docker-compose.yml` file, you can run `docker-compose down`.
+   When you're done, you can stop the services by pressing `Ctrl+C` in the terminal where you ran `docker compose up`. To completely remove the services and volumes defined in the `docker-compose.yml` file, you can run `docker compose down`.
 
 Remember, these are simplified instructions. For a production setup, you would need to make additional configurations, such as setting up persistent storage and securing the Grafana dashboard. 
 
