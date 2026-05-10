@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 06 May 2026 17:10:26 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 10 May 2026 13:49:38 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,20 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 40.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</guid>
+            <pubDate>Sun, 10 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Bump the bundled Docker browsers to Chrome 148, Firefox 150, Edge 147 #4709.<br>
+<br>
+<strong>Fixed</strong><br>
+- Compare plugin no longer crashes when running with <code>--verbose</code> — a typo in a <code>log.verbose</code> call (<code>&#39;%j&#39;.results</code> instead of <code>&#39;%j&#39;, results</code>) threw once the Python statistical tests returned.<br>
+- <code>coach-core</code> bumped to 9.0.1 #4703.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 40.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</link>
@@ -151,16 +165,6 @@
 <br>
 <strong>Fixed</strong><br>
 - Fixed typo in iteration detail page for the cpuConsumption metric, thank you Michael Walter for PR #4577.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 39.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</guid>
-            <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix #4575.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>

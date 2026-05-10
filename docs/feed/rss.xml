@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 06 May 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 10 May 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,31 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 40.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</guid>
+            <pubDate>Sun, 10 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Bump the bundled Docker browsers to Chrome 148, Firefox 150, Edge 147 #4709.<br>
+<br>
+<strong>Fixed</strong><br>
+- Compare plugin no longer crashes when running with <code>--verbose</code> — a typo in a <code>log.verbose</code> call (<code>&#39;%j&#39;.results</code> instead of <code>&#39;%j&#39;, results</code>) threw once the Python statistical tests returned.<br>
+- <code>coach-core</code> bumped to 9.0.1 #4703.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 9.0.1]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</guid>
+            <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- The <code>mimeTypes</code> HAR performance check no longer flags <code>204 No Content</code> responses as missing a recognised content type. A 204 response has no body, so there is nothing to attribute a MIME type to and the rule should not subtract score for it. Thank you Nate Spector for PR #161.<br>
+- The <code>nelHeader</code> and <code>reportingEndpointsHeader</code> HAR privacy rules are now weight 0 so they no longer pull on the aggregate score. Both rules are tagged <code>severity: &#39;info&#39;</code> and describe genuinely opt-in observability headers — most sites have no Reporting-API endpoint to point them at and should not be docked privacy score for that. The advice still surfaces as informational, matching the established pattern in <code>mimeTypes</code> #162.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 40.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</link>
@@ -72,45 +97,6 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[coach-core 9.0.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</guid>
-            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- New <code>severity</code> field on every rule result, with three tiers (<code>error</code> / <code>warn</code> / <code>info</code>) modelled on Lighthouse and axe. Severity is orthogonal to weight: weight controls how strongly a rule pulls on the aggregate score, severity tells a consumer how loudly to surface a finding. Existing <code>score</code> and <code>weight</code> are unchanged #143.<br>
-- New <code>interactionToNextPaint</code> DOM performance rule. INP replaced First Input Delay as a Core Web Vital in March 2026, but coach-core had rules for every other Web Vital (LCP, FCP, CLS) and was silently behind on the one Google now ranks against. The rule observes buffered <code>event</code> entries via PerformanceObserver, groups them by <code>interactionId</code> so a single user interaction&#39;s three events (pointerdown, pointerup, click) count as one, and reports the slowest. Thresholds match Google&#39;s published p75 cutoffs: ≤200ms good, 200–500ms needs improvement, &gt;500ms poor. Synthetic tests rarely fire interactions, so the rule explicitly handles the no-measurement case rather than scoring zero — INP is best measured with real-user monitoring and the advice text says so #155.<br>
-- Four new DOM performance rules covering modern image best practices: <code>decodingAsync</code> flags <code>&lt;img&gt;</code> elements without a <code>decoding</code> hint so non-LCP image decode doesn&#39;t block the main thread; <code>lazyLoadingImages</code> flags below-the-fold images that aren&#39;t <code>loading=&quot;lazy&quot;</code> (the threshold deliberately overshoots — more than two viewport heights below the current scroll position — so images just out of view aren&#39;t penalised); <code>modernImageFormats</code> flags <code>&lt;img&gt;</code> that ships a JPEG/PNG/GIF without an AVIF or WebP alternative through <code>&lt;picture&gt;</code> or its own <code>srcset</code>; <code>lcpImageHints</code> scores priority hints on the LCP image (<code>fetchpriority=&quot;high&quot;</code> recommended, <code>loading=&quot;lazy&quot;</code> forbidden) #157.<br>
-- Modern privacy / security header rules on the HAR side: <code>permissionsPolicyHeader</code>, <code>xContentTypeOptionsHeader</code> #138, and the cross-origin isolation trio <code>crossOriginOpenerPolicyHeader</code>, <code>crossOriginEmbedderPolicyHeader</code>, <code>crossOriginResourcePolicyHeader</code> #139.<br>
-- Two DOM privacy rules that the HAR side cannot see: <code>iframeSandbox</code> (flags cross-origin iframes without a sandbox attribute) and <code>referrerPolicy</code> (flags pages with no <code>&lt;meta name=&quot;referrer&quot;&gt;</code>) #139.<br>
-- New <code>sessionReplay</code> DOM privacy rule that flags pages embedding session-recording tools (Hotjar, FullStory, Microsoft Clarity, LogRocket, Smartlook, Mouseflow, Quantum Metric, Inspectlet, Lucky Orange, Crazy Egg). Kept separate from the surveillance rule because the remediation is different — these tools have legitimate uses but the privacy concern is real, so the advice is &quot;configure input redaction, get explicit consent, know where the recordings live&quot; rather than &quot;stop using them&quot; #153.<br>
-- New <code>nelHeader</code> and <code>reportingEndpointsHeader</code> HAR privacy rules — thin presence checks for the Network Error Logging and Reporting-API headers. Severity <code>info</code> because these are observability headers, not security baselines #150.<br>
-- Two DOM bestpractice rules: <code>viewport</code> (flags missing viewport meta, missing <code>width=device-width</code>, and the patterns that disable pinch-to-zoom) and <code>imageAltText</code> (flags <code>&lt;img&gt;</code> without an <code>alt</code> attribute, accepting <code>alt=&quot;&quot;</code>, <code>role=&quot;presentation&quot; / &quot;none&quot;</code> and <code>aria-hidden=&quot;true&quot;</code> as valid markers for decorative images) #140.<br>
-- <code>lib/technologies/VERSION.json</code> records source URL, upstream SHA and sync date for the bundled fingerprint catalogue, exposed via a new <code>coach.getTechnologiesVersion()</code> accessor next to <code>getWappalyzerCoreVersion()</code> and <code>getThirdPartyWebVersion()</code> #144.<br>
-<br>
-<strong>Fixed</strong><br>
-- HSTS rule no longer scores 100 silently on an HTTPS page that is missing the Strict-Transport-Security header. Several other rules had small typos and dead branches that masked their advice text or scoring: dangling template literals in the FCP / LCP &quot;good&quot; branches (advice was being built and discarded), an off-by-one in <code>fullyLoaded.js</code> that skipped the first resource, an operator-precedence bug in <code>unnecessaryHeaders.js</code> that silently broke the cache-control + expires check, an assignment instead of <code>-=</code> in <code>thirdPartyCookies.js</code> that flattened the score regardless of cookie count, plus dead <code>score;</code> and <code>if (score === undefined)</code> blocks in HSTS #137.<br>
-- Wappalyzer no longer attributes technologies named in a page&#39;s Content-Security-Policy header to the page itself. Wappalyzer regex-matches patterns like <code>s3[^ ]*amazonaws.com</code> against header values, so a benign CSP allowlist (Wikipedia&#39;s CSP names an S3 bucket to permit embedded photos) was getting attributed as &quot;uses S3&quot;. The technology detector now strips <code>content-security-policy*</code> headers before handing the asset response to Wappalyzer, and pins the URL and HTML body to the document itself rather than letting them drift to a later asset in the loop #149.<br>
-- <code>lib/har/thirdParty.js</code> no longer mutates the imported <code>third-party-web</code> entity object&#39;s <code>categories</code> array — side-effects could leak across pages and across consumers #137.<br>
-- LCP &quot;poor&quot; advice text said &quot;slower than 4.5 seconds&quot; but the threshold is 4 seconds; text now matches the threshold #137.<br>
-- Restore the DOM-rule test infrastructure that had been silently dead since the browsertime 23 upgrade. The old runner called <code>loadAndWait</code> and <code>runScript</code> on a <code>BrowsertimeEngine</code> instance; those methods only exist on the internal <code>SeleniumRunner</code> class and were never on the public engine, so the tests blew up the moment they tried to register. The runner is now a thin wrapper around <code>selenium-webdriver</code> (drivers managed by Selenium Manager — no path config required), and the broken async-<code>describe</code> pattern in every DOM test file is replaced with the standard async <code>before</code> / <code>after</code> hooks. <code>npm test</code> continues to run the no-browser suites; <code>npm run test:browser</code> now actually drives a browser instead of silently no-op-ing #148.<br>
-<br>
-<strong>Changed</strong><br>
-- Score the Content-Security-Policy header on its directives instead of its byte length. The previous heuristic (deduct 50 if the header value was longer than 150 chars) didn&#39;t reflect any real-world property and the comparison was reading <code>.length</code> on the array of header values rather than on the value string, so the deduction never actually fired. The new rule deducts for <code>&#39;unsafe-inline&#39;</code> and <code>&#39;unsafe-eval&#39;</code>, for missing <code>default-src</code> / <code>script-src</code>, and for missing <code>object-src &#39;none&#39;</code>; the <code>&#39;unsafe-inline&#39;</code> deduction is suppressed when <code>&#39;strict-dynamic&#39;</code> is paired with a nonce or hash, which is the modern strict-CSP shape #151.<br>
-- The <code>largestContentfulPaint</code> rule no longer scores <code>fetchpriority</code> and <code>loading</code> hints on the LCP image. Those checks moved into the new <code>lcpImageHints</code> rule above so a consumer can tell &quot;the hero image is slow&quot; apart from &quot;the hero image&#39;s hints are wrong&quot; — different remediations, separate scores #157.<br>
-- Modernise the rule set: delete <code>dom/bestpractice/spdy.js</code> (SPDY no longer in browsers since 2016); rewrite <code>dom/privacy/surveillance.js</code> to scan <code>&lt;script src&gt;</code> and <code>&lt;iframe src&gt;</code> for known surveillance hostnames using exact-suffix host matching (no more <code>document.domain</code>, no more substring matches); update <code>dom/privacy/ga.js</code> to also detect GA4 (<code>gtag</code> + <code>dataLayer</code> config with <code>G-…</code> measurement id); replace the &quot;HTTP/3 is new&quot; placeholder in <code>dom/performance/inlineCss.js</code> with real advice; reweight <code>amp</code> (10 → 1) and <code>jquery</code> (4 → 1); drop SPDY from <code>isHTTP2</code> #138.<br>
-- Refresh stale rule thresholds across the rule set: <code>metaDescription</code> 155 → 160 chars (matches Google&#39;s modern search-results display); <code>cacheHeadersLong</code> floor 30 days → 1 year (modern best practice for content-hashed URLs with <code>immutable</code>); <code>strictTransportSecurityHeader</code> max-age floor 6 months → 1 year (HSTS preload list minimum); <code>cacheHeaders</code> weight 30 → 6 (in line with the rest of the rule set, which sits at 1–10); <code>pageSize</code> 1 / 2 MB → 2 / 3 MB mobile / desktop (HTTP Archive 2024 medians); <code>cssSize</code> 120 / 400 KB → 150 / 500 KB; <code>javascriptSize</code> 120 / 500 KB → 250 / 800 KB; <code>optimalCssSize</code> 14.5 → 25 KB with the dated &quot;magic number TCP window&quot; framing dropped. Several rule descriptions and advice strings were rewritten to drop dated framings and to point at the modern reference #154.<br>
-- Extend the surveillance hostname list from 10 entries to 32, grouped and commented by company (X / Twitter, LinkedIn, TikTok, Snapchat, Pinterest, Reddit, Bing Ads, Yandex Metrica, Baidu Tongji on top of the existing Google / Meta / YouTube set). Session-replay tools deliberately stay out of this list and have their own rule #152.<br>
-- Tune severity on four rules that needed editorial intent rather than the weight-derived default: <code>thirdPartyPrivacy</code> (sharing user data with third parties) <code>info</code> → <code>warn</code>; <code>thirdParty</code> (too many third-party requests) <code>info</code> → <code>warn</code>; <code>spof</code> (frontend single point of failure) <code>info</code> → <code>error</code>; <code>googleTagManager</code> <code>info</code> → <code>warn</code> #158.<br>
-- Declare an explicit <code>severity</code> on the seven 9.0 rules that still leaned on the <code>severity.fromWeight()</code> fallback, so each value reflects editorial intent: <code>viewport</code> <code>warn</code>; <code>imageAltText</code> <code>info</code>; <code>iframeSandbox</code> <code>info</code>; <code>referrerPolicy</code> <code>warn</code>; <code>crossOriginOpenerPolicyHeader</code> <code>warn</code>; <code>crossOriginEmbedderPolicyHeader</code> <code>info</code>; <code>crossOriginResourcePolicyHeader</code> <code>info</code> #159.<br>
-- Sync the bundled technology catalogue (<code>lib/technologies/*.json</code>, <code>categories.json</code>, <code>groups.json</code>) from <code>enthec/webappanalyzer@c2855b46</code> (2026-04-17). About sixteen months of upstream churn since the previous sync, net ~36 000 lines of new fingerprints #144.<br>
-- Bump <code>third-party-web</code> to 0.29.0 #145.<br>
-- Drop <code>bluebird</code> from runtime dependencies — native promises cover everything coach-core needs and the package was effectively unused #156.<br>
-- Modernise the GitHub Actions workflow: bump <code>actions/checkout</code> to v6.0.2, <code>actions/setup-node</code> to v6.4.0 (with npm cache enabled), replace the deprecated apt-key Chrome install with a one-liner, replace the unmaintained third-party <code>xvfb-action</code> with <code>xvfb-run</code>, expand the Node matrix to 20 / 22 / 24, drop test/dom and test/api/domTest.js from <code>npm test</code> (test runner needs a separate rewrite — see #147 if you want them back). New <code>dependabot.yml</code> keeps SHA pins current going forward #141.<br>
-- Bump browsertime devDep to 27.0.0 (no runtime impact — coach-core has no runtime browsertime dep, only the dev test runner used to).<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[sitespeed.io 40.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</guid>
@@ -148,6 +134,45 @@
 - CI hardened with <code>step-security/harden-runner</code> #4610, action SHAs pinned #4606, CI sped up #4617. The apt-built SSH test container in the upload workflow replaced with <code>lscr.io/linuxserver/openssh-server</code> so the job stops flaking on Ubuntu mirror outages #4661.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 9.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</guid>
+            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>severity</code> field on every rule result, with three tiers (<code>error</code> / <code>warn</code> / <code>info</code>) modelled on Lighthouse and axe. Severity is orthogonal to weight: weight controls how strongly a rule pulls on the aggregate score, severity tells a consumer how loudly to surface a finding. Existing <code>score</code> and <code>weight</code> are unchanged #143.<br>
+- New <code>interactionToNextPaint</code> DOM performance rule. INP replaced First Input Delay as a Core Web Vital in March 2026, but coach-core had rules for every other Web Vital (LCP, FCP, CLS) and was silently behind on the one Google now ranks against. The rule observes buffered <code>event</code> entries via PerformanceObserver, groups them by <code>interactionId</code> so a single user interaction&#39;s three events (pointerdown, pointerup, click) count as one, and reports the slowest. Thresholds match Google&#39;s published p75 cutoffs: ≤200ms good, 200–500ms needs improvement, &gt;500ms poor. Synthetic tests rarely fire interactions, so the rule explicitly handles the no-measurement case rather than scoring zero — INP is best measured with real-user monitoring and the advice text says so #155.<br>
+- Four new DOM performance rules covering modern image best practices: <code>decodingAsync</code> flags <code>&lt;img&gt;</code> elements without a <code>decoding</code> hint so non-LCP image decode doesn&#39;t block the main thread; <code>lazyLoadingImages</code> flags below-the-fold images that aren&#39;t <code>loading=&quot;lazy&quot;</code> (the threshold deliberately overshoots — more than two viewport heights below the current scroll position — so images just out of view aren&#39;t penalised); <code>modernImageFormats</code> flags <code>&lt;img&gt;</code> that ships a JPEG/PNG/GIF without an AVIF or WebP alternative through <code>&lt;picture&gt;</code> or its own <code>srcset</code>; <code>lcpImageHints</code> scores priority hints on the LCP image (<code>fetchpriority=&quot;high&quot;</code> recommended, <code>loading=&quot;lazy&quot;</code> forbidden) #157.<br>
+- Modern privacy / security header rules on the HAR side: <code>permissionsPolicyHeader</code>, <code>xContentTypeOptionsHeader</code> #138, and the cross-origin isolation trio <code>crossOriginOpenerPolicyHeader</code>, <code>crossOriginEmbedderPolicyHeader</code>, <code>crossOriginResourcePolicyHeader</code> #139.<br>
+- Two DOM privacy rules that the HAR side cannot see: <code>iframeSandbox</code> (flags cross-origin iframes without a sandbox attribute) and <code>referrerPolicy</code> (flags pages with no <code>&lt;meta name=&quot;referrer&quot;&gt;</code>) #139.<br>
+- New <code>sessionReplay</code> DOM privacy rule that flags pages embedding session-recording tools (Hotjar, FullStory, Microsoft Clarity, LogRocket, Smartlook, Mouseflow, Quantum Metric, Inspectlet, Lucky Orange, Crazy Egg). Kept separate from the surveillance rule because the remediation is different — these tools have legitimate uses but the privacy concern is real, so the advice is &quot;configure input redaction, get explicit consent, know where the recordings live&quot; rather than &quot;stop using them&quot; #153.<br>
+- New <code>nelHeader</code> and <code>reportingEndpointsHeader</code> HAR privacy rules — thin presence checks for the Network Error Logging and Reporting-API headers. Severity <code>info</code> because these are observability headers, not security baselines #150.<br>
+- Two DOM bestpractice rules: <code>viewport</code> (flags missing viewport meta, missing <code>width=device-width</code>, and the patterns that disable pinch-to-zoom) and <code>imageAltText</code> (flags <code>&lt;img&gt;</code> without an <code>alt</code> attribute, accepting <code>alt=&quot;&quot;</code>, <code>role=&quot;presentation&quot; / &quot;none&quot;</code> and <code>aria-hidden=&quot;true&quot;</code> as valid markers for decorative images) #140.<br>
+- <code>lib/technologies/VERSION.json</code> records source URL, upstream SHA and sync date for the bundled fingerprint catalogue, exposed via a new <code>coach.getTechnologiesVersion()</code> accessor next to <code>getWappalyzerCoreVersion()</code> and <code>getThirdPartyWebVersion()</code> #144.<br>
+<br>
+<strong>Fixed</strong><br>
+- HSTS rule no longer scores 100 silently on an HTTPS page that is missing the Strict-Transport-Security header. Several other rules had small typos and dead branches that masked their advice text or scoring: dangling template literals in the FCP / LCP &quot;good&quot; branches (advice was being built and discarded), an off-by-one in <code>fullyLoaded.js</code> that skipped the first resource, an operator-precedence bug in <code>unnecessaryHeaders.js</code> that silently broke the cache-control + expires check, an assignment instead of <code>-=</code> in <code>thirdPartyCookies.js</code> that flattened the score regardless of cookie count, plus dead <code>score;</code> and <code>if (score === undefined)</code> blocks in HSTS #137.<br>
+- Wappalyzer no longer attributes technologies named in a page&#39;s Content-Security-Policy header to the page itself. Wappalyzer regex-matches patterns like <code>s3[^ ]*amazonaws.com</code> against header values, so a benign CSP allowlist (Wikipedia&#39;s CSP names an S3 bucket to permit embedded photos) was getting attributed as &quot;uses S3&quot;. The technology detector now strips <code>content-security-policy*</code> headers before handing the asset response to Wappalyzer, and pins the URL and HTML body to the document itself rather than letting them drift to a later asset in the loop #149.<br>
+- <code>lib/har/thirdParty.js</code> no longer mutates the imported <code>third-party-web</code> entity object&#39;s <code>categories</code> array — side-effects could leak across pages and across consumers #137.<br>
+- LCP &quot;poor&quot; advice text said &quot;slower than 4.5 seconds&quot; but the threshold is 4 seconds; text now matches the threshold #137.<br>
+- Restore the DOM-rule test infrastructure that had been silently dead since the browsertime 23 upgrade. The old runner called <code>loadAndWait</code> and <code>runScript</code> on a <code>BrowsertimeEngine</code> instance; those methods only exist on the internal <code>SeleniumRunner</code> class and were never on the public engine, so the tests blew up the moment they tried to register. The runner is now a thin wrapper around <code>selenium-webdriver</code> (drivers managed by Selenium Manager — no path config required), and the broken async-<code>describe</code> pattern in every DOM test file is replaced with the standard async <code>before</code> / <code>after</code> hooks. <code>npm test</code> continues to run the no-browser suites; <code>npm run test:browser</code> now actually drives a browser instead of silently no-op-ing #148.<br>
+<br>
+<strong>Changed</strong><br>
+- Score the Content-Security-Policy header on its directives instead of its byte length. The previous heuristic (deduct 50 if the header value was longer than 150 chars) didn&#39;t reflect any real-world property and the comparison was reading <code>.length</code> on the array of header values rather than on the value string, so the deduction never actually fired. The new rule deducts for <code>&#39;unsafe-inline&#39;</code> and <code>&#39;unsafe-eval&#39;</code>, for missing <code>default-src</code> / <code>script-src</code>, and for missing <code>object-src &#39;none&#39;</code>; the <code>&#39;unsafe-inline&#39;</code> deduction is suppressed when <code>&#39;strict-dynamic&#39;</code> is paired with a nonce or hash, which is the modern strict-CSP shape #151.<br>
+- The <code>largestContentfulPaint</code> rule no longer scores <code>fetchpriority</code> and <code>loading</code> hints on the LCP image. Those checks moved into the new <code>lcpImageHints</code> rule above so a consumer can tell &quot;the hero image is slow&quot; apart from &quot;the hero image&#39;s hints are wrong&quot; — different remediations, separate scores #157.<br>
+- Modernise the rule set: delete <code>dom/bestpractice/spdy.js</code> (SPDY no longer in browsers since 2016); rewrite <code>dom/privacy/surveillance.js</code> to scan <code>&lt;script src&gt;</code> and <code>&lt;iframe src&gt;</code> for known surveillance hostnames using exact-suffix host matching (no more <code>document.domain</code>, no more substring matches); update <code>dom/privacy/ga.js</code> to also detect GA4 (<code>gtag</code> + <code>dataLayer</code> config with <code>G-…</code> measurement id); replace the &quot;HTTP/3 is new&quot; placeholder in <code>dom/performance/inlineCss.js</code> with real advice; reweight <code>amp</code> (10 → 1) and <code>jquery</code> (4 → 1); drop SPDY from <code>isHTTP2</code> #138.<br>
+- Refresh stale rule thresholds across the rule set: <code>metaDescription</code> 155 → 160 chars (matches Google&#39;s modern search-results display); <code>cacheHeadersLong</code> floor 30 days → 1 year (modern best practice for content-hashed URLs with <code>immutable</code>); <code>strictTransportSecurityHeader</code> max-age floor 6 months → 1 year (HSTS preload list minimum); <code>cacheHeaders</code> weight 30 → 6 (in line with the rest of the rule set, which sits at 1–10); <code>pageSize</code> 1 / 2 MB → 2 / 3 MB mobile / desktop (HTTP Archive 2024 medians); <code>cssSize</code> 120 / 400 KB → 150 / 500 KB; <code>javascriptSize</code> 120 / 500 KB → 250 / 800 KB; <code>optimalCssSize</code> 14.5 → 25 KB with the dated &quot;magic number TCP window&quot; framing dropped. Several rule descriptions and advice strings were rewritten to drop dated framings and to point at the modern reference #154.<br>
+- Extend the surveillance hostname list from 10 entries to 32, grouped and commented by company (X / Twitter, LinkedIn, TikTok, Snapchat, Pinterest, Reddit, Bing Ads, Yandex Metrica, Baidu Tongji on top of the existing Google / Meta / YouTube set). Session-replay tools deliberately stay out of this list and have their own rule #152.<br>
+- Tune severity on four rules that needed editorial intent rather than the weight-derived default: <code>thirdPartyPrivacy</code> (sharing user data with third parties) <code>info</code> → <code>warn</code>; <code>thirdParty</code> (too many third-party requests) <code>info</code> → <code>warn</code>; <code>spof</code> (frontend single point of failure) <code>info</code> → <code>error</code>; <code>googleTagManager</code> <code>info</code> → <code>warn</code> #158.<br>
+- Declare an explicit <code>severity</code> on the seven 9.0 rules that still leaned on the <code>severity.fromWeight()</code> fallback, so each value reflects editorial intent: <code>viewport</code> <code>warn</code>; <code>imageAltText</code> <code>info</code>; <code>iframeSandbox</code> <code>info</code>; <code>referrerPolicy</code> <code>warn</code>; <code>crossOriginOpenerPolicyHeader</code> <code>warn</code>; <code>crossOriginEmbedderPolicyHeader</code> <code>info</code>; <code>crossOriginResourcePolicyHeader</code> <code>info</code> #159.<br>
+- Sync the bundled technology catalogue (<code>lib/technologies/*.json</code>, <code>categories.json</code>, <code>groups.json</code>) from <code>enthec/webappanalyzer@c2855b46</code> (2026-04-17). About sixteen months of upstream churn since the previous sync, net ~36 000 lines of new fingerprints #144.<br>
+- Bump <code>third-party-web</code> to 0.29.0 #145.<br>
+- Drop <code>bluebird</code> from runtime dependencies — native promises cover everything coach-core needs and the package was effectively unused #156.<br>
+- Modernise the GitHub Actions workflow: bump <code>actions/checkout</code> to v6.0.2, <code>actions/setup-node</code> to v6.4.0 (with npm cache enabled), replace the deprecated apt-key Chrome install with a one-liner, replace the unmaintained third-party <code>xvfb-action</code> with <code>xvfb-run</code>, expand the Node matrix to 20 / 22 / 24, drop test/dom and test/api/domTest.js from <code>npm test</code> (test runner needs a separate rewrite — see #147 if you want them back). New <code>dependabot.yml</code> keeps SHA pins current going forward #141.<br>
+- Bump browsertime devDep to 27.0.0 (no runtime impact — coach-core has no runtime browsertime dep, only the dev test runner used to).<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 27.0.4]]></title>
@@ -413,16 +438,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 39.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</guid>
-            <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix #4575.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 26.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</guid>
@@ -686,21 +701,6 @@
             <pubDate>Thu, 22 Jun 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Catch if local storage or session storage isn&#39;t accessible.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.2.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0</guid>
-            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Upgraded to third party web 0.23.0. #98.<br>
-- Upgraded to latest wappalyzer #100.<br>
-<br>
-<strong>Fixed</strong><br>
-- Make sure to skip advice if Chrome is missing FCP #95.<br>
-- Update dev dependencies<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>

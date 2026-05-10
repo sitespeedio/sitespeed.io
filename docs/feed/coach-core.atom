@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>coach-core-release-feed</id>
     <title>coach-core release feed</title>
-    <updated>2026-05-06T17:10:26.876Z</updated>
+    <updated>2026-05-07T21:04:09.468Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,20 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[coach-core 9.0.1]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1"/>
+        <updated>2026-05-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- The <code>mimeTypes</code> HAR performance check no longer flags <code>204 No Content</code> responses as missing a recognised content type. A 204 response has no body, so there is nothing to attribute a MIME type to and the rule should not subtract score for it. Thank you Nate Spector for PR #161.<br>
+- The <code>nelHeader</code> and <code>reportingEndpointsHeader</code> HAR privacy rules are now weight 0 so they no longer pull on the aggregate score. Both rules are tagged <code>severity: &#39;info&#39;</code> and describe genuinely opt-in observability headers — most sites have no Reporting-API endpoint to point them at and should not be docked privacy score for that. The advice still surfaces as informational, matching the established pattern in <code>mimeTypes</code> #162.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[coach-core 9.0.0]]></title>
         <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</id>
@@ -170,24 +184,6 @@
         <updated>2023-06-22T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Catch if local storage or session storage isn&#39;t accessible.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.2.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0"/>
-        <updated>2023-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Upgraded to third party web 0.23.0. #98.<br>
-- Upgraded to latest wappalyzer #100.<br>
-<br>
-<strong>Fixed</strong><br>
-- Make sure to skip advice if Chrome is missing FCP #95.<br>
-- Update dev dependencies<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

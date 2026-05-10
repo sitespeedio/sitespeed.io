@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-06T17:10:26.876Z</updated>
+    <updated>2026-05-10T13:49:38.514Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,23 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 40.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0"/>
+        <updated>2026-05-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Bump the bundled Docker browsers to Chrome 148, Firefox 150, Edge 147 #4709.<br>
+<br>
+<strong>Fixed</strong><br>
+- Compare plugin no longer crashes when running with <code>--verbose</code> — a typo in a <code>log.verbose</code> call (<code>&#39;%j&#39;.results</code> instead of <code>&#39;%j&#39;, results</code>) threw once the Python statistical tests returned.<br>
+- <code>coach-core</code> bumped to 9.0.1 #4703.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 40.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</id>
@@ -175,19 +192,6 @@
 <br>
 <strong>Fixed</strong><br>
 - Fixed typo in iteration detail page for the cpuConsumption metric, thank you Michael Walter for PR #4577.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.2.0"/>
-        <updated>2025-12-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Updated to Browsertime 26.2 with latest Chromedriver and Edgedriver and a small XVFB fix #4575.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
