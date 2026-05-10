@@ -86,8 +86,8 @@ If you use Graphite < 1.0 you need to make sure the tags in the annotations foll
 
 You can choose to send metrics per page and summarised per domain. If you only test a couple of URLs you probably do not need the summarised per-domain metrics and you can disable them by adding <code>--graphite.skipSummary</code>.
 
-You can add the slug of the test to the key (`--slug`). This will be the default in September 2021, and you should start using it now to be able to see screenshots and the latest videos directly in Grafana. Use it like this:
-`--graphite.addSlugToKey true --slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure **sitespeed_io.desktop.firstView.**.
+The slug of the test (`--slug`) is added to the Graphite key by default (`--graphite.addSlugToKey true`). This is what makes screenshots and the latest videos show up directly in Grafana. Use it like this:
+`--slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure **sitespeed_io.desktop.firstView.**. Set `--graphite.addSlugToKey false` if you have legacy data without the slug and need to keep the old layout.
 
 ### Debug
 If you want to test and verify what the metrics that you send to Graphite look like, you can use *tools/tcp-server.js* to see.
@@ -154,13 +154,7 @@ In sitespeed.io **17.0.0** we introduced the ability to add the slug of your tes
 ![New look using the slug]({{site.baseurl}}/img/use-slug.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-
-The change is rolled out like this:
-* In April 2021 you can convert your data and use the slug. You need to add `--graphite.addSlugToKey true` else you will get a log warning that you miss the slug for your test. All default dashboards in sitespeed.io will use the slug, so to use them you should add that new key and convert your data.
-* In September 2021 `--graphite.addSlugToKey true` will be set to default, meaning if you haven't upgraded your Graphite data yet, you need to set `--graphite.addSlugToKey false` to be able to run as before.
-* In November 2021 the CLI functionality will disappear and you need to upgrade your Graphite metrics when you upgrade sitespeed.io.
-
-If you have old data you should convert it as soon as possible. When you do that you need to add the new dashboards, or if you have your own dashboard, you need to convert it so it picks up the slug.
+`--graphite.addSlugToKey` is `true` by default, so new tests already write their data under the slug. If you still have data from sitespeed.io 16 or earlier — written before the slug existed — the section below explains how to convert it so it lines up with the current dashboards.
 
 
 ### Convert Graphite data structure

@@ -37,13 +37,13 @@ You can use `commands.find(selector, options)` to find an element and get a Sele
 
 ```javascript
 // Find an element (auto-waits using the configured timeout)
-const element = await commands.find(‘#my-element’);
+const element = await commands.find('#my-element');
 
 // Find with a custom timeout
-const element = await commands.find(‘#my-element’, { timeout: 5000 });
+const element = await commands.find('#my-element', { timeout: 5000 });
 
 // Wait for the element to be visible, not just present in the DOM
-const element = await commands.find(‘#my-element’, { timeout: 5000, visible: true });
+const element = await commands.find('#my-element', { timeout: 5000, visible: true });
 ```
 
 One of the key things in your script is to be able to find the right element to invoke. If the element has an id it's easy. If not, you can use developer tools in your favourite browser. They all work mostly the same: open DevTools on the page you want to inspect, click on the element, then right-click on it in DevTools. You will see something like this:

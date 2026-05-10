@@ -355,10 +355,7 @@ Running your tests on desktop is the easiest tests to run. You can choose to run
 
 The Docker container comes with pre-installed Chrome and Firefox (latest stable versions) and all the dependencies needed to record and analyse a video of your test to get visual metrics. We release a new Docker container for each stable Chrome/Firefox, so that way you can roll back versions easily. What's also good with the Docker container is that you start a new container per test, so everything is cleaned between tests. The drawbacks of running in a container could be slower metrics and only support for running Chrome and Firefox. If you are new to using Docker you should read our [Docker documentation](/documentation/sitespeed.io/docker/).
 
-If you use the Node.js version directly, you can run tests on Safari and MS Edge as long as your OS supports it. To record a video and analyse it to get visual metrics, you need to install those dependencies yourself. You can check out our GitHub Actions to see how to do that:
-* [Linux](https://github.com/sitespeedio/browsertime/blob/master/.github/workflows/linux.yml)
-* [OS X](https://github.com/sitespeedio/browsertime/blob/master/.github/workflows/safari.yml)
-* [Windows](https://github.com/sitespeedio/browsertime/blob/master/.github/workflows/windows.yml)
+If you use the Node.js version directly, you can run tests on Safari and MS Edge as long as your OS supports it. To record a video and analyse it to get visual metrics, you need to install those dependencies yourself. Our [Browsertime GitHub Actions workflows](https://github.com/sitespeedio/browsertime/tree/main/.github/workflows) (`linux-chrome.yml`, `linux-firefox.yml`, `mac.yml`, `safari.yml`) show what to install per OS.
 
 You also need to manage the browsers by manually updating them when there's a new version. There's more work to keep your tests running, but you are also in control and can test on more browsers.
 

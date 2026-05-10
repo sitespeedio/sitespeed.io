@@ -147,7 +147,7 @@ Plugins in sitespeed.io should inherit the [sitespeed.io plugin](https://github.
 In your dependencies for your plugin, make sure to add the latest version of the plugin.
 
 ~~~javascript
- "@sitespeed.io/plugin": "0.0.5"
+ "@sitespeed.io/plugin": "1.0.0"
 ~~~
 
 ### Basic structure
@@ -222,7 +222,7 @@ You can check out the [StorageManager](https://github.com/sitespeedio/sitespeed.
 [messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/messageMaker.js),
 [statsHelpers](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/statsHelpers.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/filterRegistry.js) to get a feel for how you can use them.
 
-The *options* are the options that a user will supply in the CLI, check out the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/cli.js) to see all the options.
+The *options* are the options that a user will supply in the CLI, check out the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/cli) to see all the options.
 
 ### processMessage(message, queue)
 The processMessage function in your plugin is called for each and every message that is passed in the application. So what's a message, you may ask? Everything is a message in sitespeed.io :) A message contains the following information:
@@ -387,7 +387,7 @@ queue.postMessage(make('budget.addMessageType', {type: 'gpsi.pagesummary'}));
 ~~~
 
 ## Testing your plugin
-If your plugin lives on GitHub you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/main/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest main (we also run it daily in the Travis crontab).
+If your plugin lives on GitHub you can model your CI on the [GPSI plugin's GitHub Actions](https://github.com/sitespeedio/plugin-gpsi/actions) — it checks out sitespeed.io and runs the plugin against the latest main on a schedule.
 
 ## Example plugin(s)
 You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins/webpagetest).

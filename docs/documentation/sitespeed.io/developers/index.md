@@ -132,7 +132,7 @@ To run the Docker version:
 
 If you want to test and push to Graphite/InfluxDB:
 
-- Go to *docker/* in the cloned dir and start the container: <code>docker-compose up</code>
+- Go to *docker/* in the cloned dir and start the container: <code>docker compose up</code>
 - Go back one level and run <code>docker build -t sitespeedio/sitespeed.io .</code> in the cloned directory to build the container
 - Run: <code>docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1</code> to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
@@ -213,12 +213,12 @@ To be able to release a new version you need to have access to our Docker accoun
 
 You also need to have the sitespeed.io repo at the same level as your checked-out Browsertime repo, so that the documentation can be automatically updated.
 
-Before you do a release, make sure the latest commit has a [green light in Travis](https://travis-ci.org/sitespeedio/browsertime).
+Before you do a release, make sure the latest commit is green on the [Browsertime GitHub Actions](https://github.com/sitespeedio/browsertime/actions).
 
 Do the release:
 1. Make sure you have a clean repo: `git status`
 2. Read through the [CHANGELOG](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) and see that all changes are included and add the version + date at the top for the new release and commit the change.
-3. Run `./release.sh` (if all tests are ok on Travis feel free to run `./release.sh --yolo` to skip the tests)
+3. Run `./release.sh` (if CI is green you can run `./release.sh --yolo` to skip the local tests)
 4. Choose version
 5. Login into Docker, add your 2FA when prompted
 6. When a new browser window opens at GitHub with the release, copy/paste the changes from the Changelog and add it instead of the commits.

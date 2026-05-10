@@ -16,7 +16,7 @@ twitterdescription:
 {:toc}
 
 
-One of the best use cases for sending metrics to Graphite/InfluxDB and using Grafana is creating performance alerts that will alert you when SpeedIndex, First Visual Change or other metrics regress on your site. Grafana supports [many different notification types](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/) and you can alert on all metrics that you send to Graphite/Grafana or that are in your own storage. This means you can alert on metrics from Browsertime like SpeedIndex and First/Last Visual Change, and from all other plugins that send data to your storage (WebPageTest, Coach, PageXray and [ChromeTrace](https://github.com/betit/chrometrace-sitespeedio-plugin)).
+One of the best use cases for sending metrics to Graphite/InfluxDB and using Grafana is creating performance alerts that will alert you when SpeedIndex, First Visual Change or other metrics regress on your site. Grafana supports [many different notification types](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/) and you can alert on all metrics that you send to Graphite/Grafana or that are in your own storage. This means you can alert on metrics from Browsertime like SpeedIndex and First/Last Visual Change, and from all other plugins that send data to your storage (WebPageTest, Coach, PageXray, etc.).
 
 Before you start, read the [Grafana alerts documentation](https://grafana.com/docs/grafana/latest/alerting/rules/).
 

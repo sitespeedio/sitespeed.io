@@ -55,8 +55,12 @@ You can also change the colour of the highlight: `--browsertime.screenshotLSColo
 
 Remember that the API points out the element that has shifted, not the element that actually pushed the other element.
 
-### Total Blocking Time (TBT) / First input delay
-Total blocking time is harder: it really depends on what CPU you use when you run your tests (test on real mobile phones!). Total blocking time uses the [Long Tasks API](https://w3c.github.io/longtasks/) to get long-running tasks. The API has very limited support for showing what causes the long tasks.
+### Interaction to Next Paint (INP)
+
+INP is the Core Web Vital for responsiveness — it measures the latency of every user interaction with the page and reports the worst (or near-worst) one. To get INP you need to actually interact with the page, which means [scripting](/documentation/sitespeed.io/scripting/). Once interactions happen, sitespeed.io collects INP via the [Event Timing API](https://w3c.github.io/event-timing/) and surfaces it on the metrics tab next to LCP and CLS.
+
+### Total Blocking Time (TBT) / First Input Delay
+Total blocking time is harder to measure: it really depends on what CPU you use when you run your tests (test on real mobile phones!). Total blocking time uses the [Long Tasks API](https://w3c.github.io/longtasks/) to get long-running tasks. The API has very limited support for showing what causes the long tasks. Note that INP has replaced FID as a Core Web Vital — TBT remains a useful lab proxy when you can't drive interactions in scripting.
 
 The best way to get valuable information is to use `--cpu` to get the Chrome trace log to download and drag and drop into the performance tab of DevTools in Chrome. If you need a deeper trace log (with more information) you can add extra trace categories to the tracelog. The CPU profiler does that: `--browsertime.chrome.traceCategory disabled-by-default-v8.cpu_profiler`.
 

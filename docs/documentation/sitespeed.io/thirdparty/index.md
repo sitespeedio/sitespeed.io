@@ -44,7 +44,7 @@ And then also see the exact tools that are used.
 ![Third party tools]({{site.baseurl}}/img/8.9/thirdparty-tools-html.png){:loading="lazy"}
 {: .img-thumbnail}
 
-At the moment we are very liberal in categorising tools as surveillance and need your help to get it right. Do a PR to help by changing [https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/thirdparty/index.js#L34-L38](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/thirdparty/index.js#L34-L38).
+Categories come from [coach-core's third-party-web data](https://github.com/sitespeedio/coach-core). If a tool is mis-categorised — or you think the `surveillance` bucket is too liberal for a particular tool — open a PR against coach-core.
 
 The new categorisation happens automatically.
 

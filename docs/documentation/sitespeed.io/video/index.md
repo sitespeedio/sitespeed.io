@@ -18,7 +18,7 @@ twitterdescription: Use the video in sitespeed.io
 ## The stack (easy with Docker)
 We use FFmpeg to record a video at 30 fps of the screen (you can configure the number of frames per second). The easiest way is to use our Docker container with pre-installed FFmpeg, but if you use the npm version, you can record a video too. Video works on Linux and OS X at the moment.
 
-Once we have the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse it and get SpeedIndex and other visual metrics. If you use our Docker container you get that for free, otherwise you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) yourself. You need FFmpeg, ImageMagick and a couple of Python libraries. Check out Browsertime's [Travis-CI configuration](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) to see what's needed.
+Once we have the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse it and get SpeedIndex and other visual metrics. If you use our Docker container you get that for free, otherwise you need to install FFmpeg, ImageMagick and a few Python libraries (`pyssim`, `opencv-python`, `numpy`, `scipy`) — see the [installation instructions](/documentation/sitespeed.io/installation/) for your OS.
 
 We record the video in two steps. First we turn the background orange (this is used by VisualMetrics to know when the navigation starts), set the background to white, and let the browser go to the URL. The video is recorded lossless. Then, when the video has been analysed, we remove the orange frames and convert the video to a compressed mp4.
 
@@ -48,8 +48,7 @@ When you record a video, the video is first recorded with settings to make the r
 The video will by default include a timer and show when visual metrics happen. If you want the video without any text/timer, just add <code>--browsertime.videoParams.addTimer false</code>.
 
 ### Filmstrip parameters
-When the video is analysed with [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics) screenshots for
-a filmstrip is also created. With sitespeed.io 8.1 you can see them in the HTML.
+When the video is analysed with [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics) screenshots for a filmstrip are also created, and shown on the per-iteration page in the HTML report.
 
 ![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg){:loading="lazy"}
 {: .img-thumbnail}

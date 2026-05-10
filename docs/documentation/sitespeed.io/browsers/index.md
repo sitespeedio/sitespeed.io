@@ -15,7 +15,7 @@ twitterdescription: You can use Firefox, Safari, Chrome, Edge and Chrome/Firefox
 
 {:toc}
 
-You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Edge, Chrome, Chrome and Firefox on Android, and Safari on iOS. If you run our Docker containers, we update them whenever we have tested the latest stable release of Chrome or Firefox. Safari and Safari on iOS need macOS Catalina. Edge needs the corresponding MSEdgeDriver.
+You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Edge, Chrome, Chrome and Firefox on Android, and Safari on iOS over USB. If you run our Docker containers, we update the bundled Chrome/Firefox/Edge versions whenever we have verified the latest stable release works. Edge needs the corresponding MSEdgeDriver.
 
 ## Firefox
 The latest version of Firefox should work out of the box, except on Linux when you run Firefox installed via Snap; then you need to [follow the workaround](https://github.com/mozilla/geckodriver/releases/tag/v0.31.0) by setting a TMPDIR that Geckodriver and Firefox will use.
@@ -159,7 +159,7 @@ You download ChromeDriver from the [Chrome for Testing](https://googlechromelabs
 
 ## Safari
 
-You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the SafariDriver you can run `man safaridriver` in your terminal.
+You can run Safari on macOS, and on iOS over USB from a Mac. To see more of what you can do with the SafariDriver you can run `man safaridriver` in your terminal.
 
 ### Limitations
 On macOS Safari we do not support HAR, cookies and request headers. iOS Safari over USB collects HAR + video + visual metrics — see [Run on iOS](#run-on-ios) below.
@@ -305,7 +305,7 @@ We use the WebDriver to drive the browser. We use [Chromedriver](https://develop
 
 When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safaridriver. For Chrome, the ChromeDriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, upcoming developer versions, or on Android where that version hasn't been released yet.
 
-You can download ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable: ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install```
+You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable: ```CHROMEDRIVER_VERSION=148.0.7355.0 npm install```
 
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Run Lighthouse from sitespeed.io
-description: Since 7.5 you can also run Lighthouse from sitespeed.io
+description: Run Lighthouse from sitespeed.io and store the results alongside your other metrics.
 keywords: lighthouse, sitespeed.io
 nav: documentation
 category: sitespeed.io
@@ -38,7 +38,7 @@ The Lighthouse result is iframed into sitespeed.io:
 {: .img-thumbnail}
 
 ## Configuration
-By default the plugin runs the tests with desktop settings (*lighthouse/lighthouse-core/config/lr-desktop-config*). If you run sitespeed.io with `--mobile`, `--android` or `--ios` the plugin will run the tests with mobile settings (*lighthouse/lighthouse-core/config/lr-mobile-config*).
+By default the plugin runs the tests with desktop settings. If you run sitespeed.io with `--mobile`, `--android` or `--ios` the plugin switches to Lighthouse's mobile preset.
 
 If you want, you can run the tests with your own configuration. You do that by adding your own JavaScript configuration file ```--lighthouse.config config.js```.
 
@@ -61,7 +61,7 @@ You can also add Lighthouse flags via a JSON file ```--lighthouse.flags flag.jso
 }
 ```
 
-Read all about configuring Lighthouse at [https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md](https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md).
+Read all about configuring Lighthouse at [https://github.com/GoogleChrome/lighthouse/blob/main/docs/configuration.md](https://github.com/GoogleChrome/lighthouse/blob/main/docs/configuration.md).
 
 
 ## Disable GPSI

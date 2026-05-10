@@ -23,7 +23,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
 
 ## Run your tests
  * [Configuration](configuration/) - there's a lot you can do with sitespeed.io, let's check out how!
- * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS.
+ * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Edge, Chrome on Android, Safari on iOS over USB (HAR + video + visual metrics), and limited support for Safari on macOS.
  * [Mobile phones](mobile-phones/) - test using your mobile phone. Chrome on Android and Safari on iOS.
  * [Docker](docker/) - how to use our Docker containers.
  * [Connectivity](connectivity/) - set the connectivity to emulate real users' network conditions.
