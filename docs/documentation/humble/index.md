@@ -16,24 +16,25 @@ twitterdescription: Simulate slow network connections on your WiFi network.
 
 ## Introduction
 
-We are super happy to introduce *Humble* the Raspberry Pi WiFi network link conditioner! It creates a new WiFi network that you use for your device. You then access a web page where you set the network speed (3G/4G etc) for your WiFi.
+*Humble* is a Raspberry Pi WiFi network link conditioner. It creates a WiFi network for your devices and gives you a web page where you switch the connection speed (3G, 4G and so on) on the fly.
 
-Humble uses [Throttle](https://github.com/sitespeedio/throttle) and [Throttle frontend](https://github.com/sitespeedio/throttle-frontend) and a configured Raspberry Pi 4. And it's all Open Source and you can use it for free.
+Humble is built on top of [Throttle](https://github.com/sitespeedio/throttle) and [Throttle frontend](https://github.com/sitespeedio/throttle-frontend), running on a configured Raspberry Pi 4. It is open source and free to use.
 
 ## What do you need?
-To setup your own instance of Humble you need:
-1. A Raspberry Pi 4 with a wired connection to your router.
-2. A SD card (at least 8 GB)
-3. A computer with Raspberry Pi Imager (that you can download from [https://www.raspberrypi.com/software/](https://www.raspberrypi.com/software/)).
+To set up your own Humble you need:
 
-Yes that is all!
+1. A Raspberry Pi 4 with a wired connection to your router.
+2. An SD card (at least 8 GB).
+3. A computer with [Raspberry Pi Imager](https://www.raspberrypi.com/software/) installed.
+
+That's it.
 
 Your setup will look like this:
 ![Humble setup](/img/humble-setup.png)
 {: .img-thumbnail}
 
-And you switch connection speed on the WiFi using a web page on the Raspberry Pi:
+You switch the connection speed from a web page served by the Raspberry Pi:
 ![Humble frontend](/img/throttling-frontend.png)
 {: .img-thumbnail}
 
-Read all about how to use Humble at GitHub: [https://github.com/sitespeedio/humble](https://github.com/sitespeedio/humble)
+The full setup and usage guide lives on GitHub: [sitespeedio/humble](https://github.com/sitespeedio/humble).
