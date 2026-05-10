@@ -1,204 +1,182 @@
 ---
 layout: default
 title: Coach for developers.
-description: What you need to know to do changes to the coach.
-keywords: coach, documentation, developers, web performance
+description: How to write or improve a Coach rule.
+keywords: coach, documentation, developers, web performance, coach-core
 author: Peter Hedenskog
 nav: documentation
 category: coach
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---
-[Documentation]({{site.baseurl}}/documentation/coach/) / Developers guide
+[Documentation]({{site.baseurl}}/documentation/coach/) / Developers
 
-# The Coach - Developers guide
+# The Coach — Developers
 {:.no_toc}
 
 {:toc}
 
-## Prerequisites
+## Where the code lives
 
-You need install [Node.js](https://nodejs.org/en/), [npm](https://nodejs.org/en/), [Firefox](https://www.mozilla.org/en-US/firefox/new/) and [Chrome](https://www.google.com/chrome/browser/desktop/).
-
-When you got them installed you can clone the project (or rather first fork it and clone your fork).
+All Coach rules and the analysis logic live in the [`coach-core`](https://github.com/sitespeedio/coach-core) repository. Fork it, clone your fork, install dependencies, and run the tests:
 
 ```bash
-git clone git@github.com:sitespeedio/coach.git
+git clone git@github.com:<your-fork>/coach-core.git
+cd coach-core
+npm install
+npm test
 ```
 
-Inside your coach folder install the dependencies and run the tests to check that everything works:
+Requires Node.js 20 or later. You'll also need Chrome and Firefox installed to run the DOM tests.
 
-```
-$ cd coach
-$ npm install
-$ npm test
-```
-If the test works you are ready start!
+## The advice schema
 
-## Advice
-The coach helps you with web performance and gives you advice about things you can do better. The advice needs to follow the following structure:
+Every rule — DOM or HAR — produces an object with the same shape:
 
 ```javascript
-return {
-  id: 'uniqueid', // a unique id
-  title: 'The title of the advice',
-  description: 'More information of the advice',
-  advice: 'Information of what the user should do to fix the problem',
-  score:  100, // a number between 0-100, 100 means the page don't need any advice
-  weight: 5, // a number between 0-10, how important is this advice in this category? 10 means super important
-  offending: [], // an array of assets that made the score less than perfect
-  tags: ['performance','html']
-};
+{
+  id: 'uniqueId',           // Unique rule id
+  title: 'Short summary',
+  description: 'Why the rule exists and what to do about it',
+  advice: 'Specific, page-aware text written by the rule when it runs',
+  score: 100,               // 0–100. 100 means nothing to flag.
+  weight: 5,                // 0–10. How much this rule matters in its category.
+  severity: 'warn',         // 'error' | 'warn' | 'info'
+  offending: [],            // Array of asset URLs (or other identifiers) that caused the score
+  tags: ['performance', 'css']
+}
 ```
 
-Does it look familiar? Yep it is almost the same structure as an YSlow rule :)
+`severity` is the at-a-glance triage level. `weight` is how much the rule pulls down its category score when it fails. `score` is what the rule actually produced for the page being analysed.
 
+## DOM advice vs HAR advice
 
-### DOM vs HAR advice
-The coach analyse a page in two steps: First it executes JavaScript in the browser to do checks that are a perfect fit for JavaScript: examine the rendering path, check if images are scaled in the browser and more.
+The Coach analyses a page in two passes. Each rule lives in one of the two.
 
-Then the coach take the HAR file generated from the page and analyse that too. The HAR is good if you want the number of responses, response size and check cache headers.
+- **DOM advice** runs as JavaScript inside the browser and inspects the live page. Use it for things only the live DOM can answer: which scripts blocked the parser, whether `<img>` tags use `decoding="async"`, the size of the document, whether the LCP element has `fetchpriority="high"`.
+- **HAR advice** runs in Node.js and inspects the HAR file produced for the run. Use it for things the network log answers best: cache headers, redirects, render-blocking timing, response counts, third-party usage.
 
-In the last step the  coach merges the advice into one advice list and creates an overall score.
+A HAR rule can also see the DOM result for the same page (`processPage(page, domAdvice, options)`), so a HAR rule can combine network facts with what the DOM rule observed. Rules that share an `id` between the DOM and HAR side are merged — the HAR result wins.
 
-Cool huh? We got one more thing that we [intend to implement](https://github.com/sitespeedio/coach/issues/13): the combination of the two: A HAR advice that takes input from a DOM. This will be cool because the coach will then have the power to know it all.
+### A DOM rule
 
-#### DOM advice
-
-Each DOM advice needs to be a [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression) and return an object that holds the data.
-
-A simple example is the cssPrint advice that looks for a print stylesheet.
+DOM rules are bundled into a single JavaScript file that gets injected into the browser, so each one is an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) that returns the advice object. Utility helpers are available on the `util` parameter.
 
 ```javascript
-(function(util) {
- 'use strict';
- var offending = [];
+(function (util) {
+  'use strict';
 
- var links = document.getElementsByTagName('link');
- for (var i = 0, len = links.length; i < len; i += 1) {
-   if (links[i].media === 'print') {
-     offending.push(util.getAbsoluteURL(links[i].href));
-   }
- }
+  const offending = [];
+  const links = document.getElementsByTagName('link');
 
- var score = offending.length * 10;
+  for (const link of links) {
+    if (link.media === 'print') {
+      offending.push(util.getAbsoluteURL(link.href));
+    }
+  }
 
- return {
-   id: 'cssPrint',
-   title: 'Do not load print stylesheets, use @media type print instead',
-   description: 'Loading a specific stylesheet for printing slows down the page, even though it is not used',
-   advice: offending.length > 0 ? 'The page has ' + offending.length + ' print stylesheets. You should include that stylesheet using @media type print instead.':'',
-   score: Math.max(0, 100 - score),
-   weight: 1,
-   offending: offending,
-   tags: ['performance', 'css']
- };
+  const score = Math.max(0, 100 - offending.length * 10);
 
+  return {
+    id: 'cssPrint',
+    title: 'Do not load specific print stylesheets.',
+    description:
+      'A separate print stylesheet still costs a request and bytes even though screen readers ignore it. Inline the print rules in your main CSS with @media print instead.',
+    advice:
+      offending.length > 0
+        ? `The page has ${util.plural(offending.length, 'print stylesheet')}. Move them into your main CSS with @media print.`
+        : '',
+    score,
+    weight: 1,
+    severity: 'info',
+    offending,
+    tags: ['performance', 'css']
+  };
 })(util);
 ```
 
+### A HAR rule
 
-#### HAR advice
-We use [PageXray](https://github.com/sitespeedio/pagexray) to convert the HAR file into a Page object that is easier to work with.
-
-Each HAR advice needs to implement a processPage function. The function will be called once for each page.
-
-Lets look at a simple advice that checks if the total page size is too large.
+HAR rules are ESM modules with a static schema and a `processPage` function that runs once per page in the HAR. The function returns the dynamic part of the result (`score`, `advice`, `offending`).
 
 ```javascript
-'use strict';
-let util = require('../util');
+import * as util from '../util.js';
 
-module.exports = {
+export default {
   id: 'pageSize',
-  title: 'Total page size shouldn\'t be too big',
-  description: 'Avoid having pages that have transfer size over the wire of more than 2 MB (desktop) and 1 MB (mobile) because that is really big and will hurt performance. ',
+  title: "Total page size shouldn't be too big",
+  description:
+    'Large pages are slower on every connection. Keep transfer size under 2 MB on desktop and 1 MB on mobile.',
   weight: 3,
+  severity: 'warn',
   tags: ['performance', 'mobile'],
-  processPage: function(page, domAdvice, options) {
-		// in options we have the input parameters
-		// so we can do specific advice for devices like
-    let sizeLimit = options.mobile ? 1000000 : 2000000;
+  processPage(page, domAdvice, options) {
+    const sizeLimit = options.mobile ? 1_000_000 : 2_000_000;
     if (page.transferSize > sizeLimit) {
       return {
         score: 0,
         offending: [],
-        advice: 'The page total transfer size is ' + util.formatBytes(page.transferSize) + ', which is more than the coach limit of ' + util.formatBytes(sizeLimit) + '. That is really big and you should check what you can do to make it smaller.'
+        advice: `The page transfers ${util.formatBytes(page.transferSize)}, more than the ${util.formatBytes(sizeLimit)} limit.`
       };
     }
-
-    // and the domAdvice is the data we got from running the DOM advice
-    // we can get things like what assets are loaded inside of HEAD
-    // knowing which Javascripts that are loaded synchronous
-    // if (domAdvice.coachAdvice.results.info.head.jssync.length > 0)
-
-    return {
-      score: 100,
-      offending: [],
-      advice: ''
-    };
+    return { score: 100, offending: [], advice: '' };
   }
 };
 ```
-What's extra cool is that a HAR advice can both act on input (specific advice for device or browser) and on the result from the DOM advice running in the browser (you can let the HAR advice know which assets are loaded inside of head etc).
 
-#### The best of two worlds
-As an extra feature, the HAR advice override the DOM advice if the advice has the same id. This means you can easily combine data from the two and still output one advice.
+The third argument (`options`) is what the caller passed to `analyseHar` — useful for branching on `mobile`, `browser`, or anything else specific to the run.
 
-There's no advice that use that functionality today, but be rest assured it will soon be.
+## HTTP/2 vs HTTP/1
 
-It also means we can use information from the resource timing API v2 (where we can get response size) making the DOM advice even more powerful, but when you combine the HAR & DOM advice we can get all/some of the values from the HAR.
+Both DOM and HAR helpers expose an `isHTTP2` check so a single rule can give different advice per protocol:
 
-## Testing HTTP/2 vs HTTP/1
-Both DOM and HAR advice have help methods that makes it easy to give different advice depending on the protocol.
-
-### DOM
 ```javascript
+// DOM
 if (util.isHTTP2()) {
-  // special handling for H2 connections
+  // Don't recommend domain sharding, etc.
 }
-```
 
-### HAR
-```javascript
+// HAR
 if (util.isHTTP2(page)) {
-  // special handling for H2 connections
+  // ...
 }
 ```
 
+## Testing
 
-## Test in your browser
-You can and should test your advice in your browser. It's easy. Just copy/paste your advice into the browser console. If you use the [utility methods](https://github.com/sitespeedio/coach/blob/main/lib/dom/util.js)  you need to copy/paste that too inside your console before you test your advice.
+Every rule needs a test. Tests live next to the rule code in the [`test/`](https://github.com/sitespeedio/coach-core/tree/main/test) directory.
 
-## Add a test case
-When you create a new advice you also need to create unit tests. We run the tests in both Firefox & Chrome.
-
-We create a new unique HTML page for each rule (or two if you want to test different behavior). If you only have one page, name it the same as the advice + '.html' and it will be picked up.
-
-A simple test run for the print CSS advice looks like this:
+A DOM test runs the rule against a fixture HTML page from `test/http-server`:
 
 ```javascript
-it('We should find out if we load an print CSS', function() {
-  return runner.run('cssPrint.js')
-    .then((result) => {
-      assert.strictEqual(result.offending.length, 1);
-  });
-});
+it('detects a print stylesheet', () =>
+  runner.run('cssPrint.js').then(result => {
+    assert.strictEqual(result.offending.length, 1);
+  })
+);
 ```
 
-Right now all these tests run in https://github.com/sitespeedio/coach/blob/main/test/dom/performance/indexTest.js
+If you add a new DOM rule, add (or extend) an HTML fixture under `test/http-server` that triggers it. Run the tests with `npm test`.
 
-Each test case runs against a specific HTML page located in `test/http-server` Create a suitable HTML page with the structure you want to test. Create the test case in `test/dom` or `test/har` and run it with <code>npm test</code>
+## Adding a new category
 
-## Test your changes against a web page
-The coach uses Browsertime as runner for browsers. When you finished with a change, make sure to build a new version of the combined Javascript and then test against a URL.
+The Coach has performance, privacy, best practice, accessibility and info categories. Adding a new one is a matter of creating a new folder under `lib/dom/<name>` (and/or `lib/har/<name>`) and dropping rule files into it. If you are unsure whether a new category fits, open an issue first and we can talk it through.
 
-```
+## Trying your changes against a real page
+
+After editing rules, rebuild the bundled DOM script:
+
+```bash
 npm run combine
-bin/index.js https://www.sitespeed.io firefox
 ```
 
-# Add a new category
-When you browse the code you will see that the coach knows more than just performance.
+Then point a sitespeed.io install at your local checkout with `npm link` and run sitespeed.io against a URL — the Coach will use your modified rules.
 
-We have accessibility, web best practice, privacy, performance, and info today. Does the coach need to know something else? Let us know and we can create that category (it's as easy as create a new folder) and we can start add new advice there.
+```bash
+# in coach-core
+npm link
+
+# in your sitespeed.io checkout
+npm link coach-core
+sitespeed.io https://www.sitespeed.io/
+```

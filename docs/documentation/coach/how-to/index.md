@@ -1,7 +1,7 @@
 ---
 layout: default
-title: How to use the coach.
-description: Run the coach in Docker or use npm nodejs.
+title: How to use the Coach.
+description: Get Coach advice from sitespeed.io, Browsertime, or the coach-core library.
 keywords: coach, documentation, web performance
 author: Peter Hedenskog
 nav: documentation
@@ -11,177 +11,76 @@ twitterdescription:
 ---
 [Documentation]({{site.baseurl}}/documentation/coach/) / How to
 
-# The Coach - How to use the coach
+# The Coach — How to use it
 {:.no_toc}
 
 {:toc}
 
-You can use the coach in a couple of different ways.
+There are two ways to get Coach advice: run sitespeed.io and let it do the work, or call the [`coach-core`](https://github.com/sitespeedio/coach-core) library directly from your own pipeline.
 
-### Standalone
+## With sitespeed.io
 
-You need Node.js latest LTS. And you need Chrome and/or Firefox installed.
-
-If you want to use Chrome (Chrome is default):
+The Coach is enabled by default. Run sitespeed.io as you normally would — the result page shows the Coach scores and the per-rule advice with no extra flags.
 
 ```bash
-webcoach https://www.sitespeed.io
+sitespeed.io https://www.sitespeed.io/
 ```
 
-Try it with Firefox:
+The HTML report renders the Coach output, and the same data is available in `coach.json` under the result directory. If you send metrics to InfluxDB, Graphite or Prometheus, the Coach scores ship along with them.
+
+## As a library: coach-core
+
+If you have your own browser pipeline (custom WebDriver runner, headless service, internal tool) and you want Coach advice in the result, install `coach-core` and call it directly. `coach-core` is a pure ESM package and requires Node.js 20 or later.
 
 ```bash
-npm install webcoach -g && webcoach https://www.sitespeed.io --browser firefox
+npm install coach-core
 ```
 
-Or if you prefer Docker:
+The library expects two inputs you produce yourself:
 
-```bash
-docker run sitespeedio/coach:{% include version/coach.txt %} https://www.sitespeed.io
-```
+1. The result of running the Coach's DOM script in a browser.
+2. The HAR file for the same page load.
 
-If you also want to show the offending assets/details and the description of the advice:
-
-```bash
-webcoach https://www.sitespeed.io --details --description
-```
-
-By default, the coach only tells you about advice where you don't get the score 100. You can change that. If you want to see all advice, you can do that too:
-
-```bash
-webcoach https://www.sitespeed.io --limit 101
-```
-
-If you want to test as a mobile device, that's possible too, by faking the user-agent.
-
-```bash
-webcoach https://www.sitespeed.io --mobile -b chrome
-```
-
-
-> ... but hey, I want to see the full JSON?
-
-Yes, you can do that!
-
-```bash
-webcoach https://www.sitespeed.io -f json
-```
-This will get you the full JSON, the same as if you integrate the coach into your tool.
-
-### Bookmarklet
-
-We also produce a bookmarklet. The bookmarklet only uses advice that you can run inside the browser (it doesn't have HAR file to analyse even though maybe possible in the future with the Resource Timing API).
-
-The bookmarklet is really rough right now and logs the info to the browser console. Help us make a cool front-end :)
-
-You can generate the bookmarklet by running
-
-```bash
-grunt bookmarklet
-```
-
-and then you will find it in the dist folder.
-
-### Include in your own tool
-The coach uses Browsertime to start the browser, execute the JavaScript and fetch the HAR file. You can use that functionality too inside your tool or you can use the raw scripts if you have your own browser implementation.
-
-#### Use built in browser support
-
-In the simplest version you use the default configuration (default DOM and HAR advice and using Firefox):
+The flow:
 
 ```javascript
-const api = require('webcoach');
-const result = api.run('https://www.sitespeed.io');
+import {
+  getDomAdvice,
+  getHarAdvice,
+  analyseHar,
+  merge,
+  pickAPage
+} from 'coach-core';
+
+// 1. Get the JavaScript that inspects the page and run it in your browser.
+const domScript = await getDomAdvice();
+const domResult = await yourBrowser.evaluate(domScript);
+
+// 2. Take the HAR you produced for the same run. If it has multiple pages,
+//    pick the one you want to analyse.
+const har = await yourBrowser.getHar();
+const page = pickAPage(har, 0);
+
+// 3. Run the HAR rules. Pass the DOM result so HAR rules can use it.
+const harAdvice = await getHarAdvice();
+const harResult = await analyseHar(page, harAdvice, domResult, {
+  // any options you want to forward, for example { mobile: true, browser: 'chrome' }
+});
+
+// 4. Merge the two into the final Coach result.
+const coachResult = merge(domResult, harResult);
 ```
 
-The full API method:
+`coachResult` has the same shape as the `coach.json` written by sitespeed.io: per-category scores, per-rule entries with `score`, `weight`, `severity`, `advice` text and the `offending` list.
 
-```javascript
-// get the API
-const api = require('webcoach');
-const result = api.run(url, domScript, harScript, options);
-```
+The library also exposes a few helpers:
 
-#### Use the scripts
-Say that your tool run on Windows, you start the browsers yourself and you generate your own HAR file. Create your own wrapper to get the coach to help you.
+- `getThirdPartyWeb()` and `getThirdPartyWebVersion()` — the third-party-web data the Coach uses for third-party detection.
+- `getPageXray()` — the [PageXray](/documentation/pagexray/) instance used to convert HAR to a page summary.
+- `getTechnologiesVersion()` and `getWappalyzerCoreVersion()` — versions of the technology-detection data.
 
-First you need the JavaScript advice, you can get the raw script either by generating it yourself or through the API.
+![How the Coach analyses a page]({{site.baseurl}}/img/coach-explained.png)
 
-Generate the script
+## Browser support
 
-```bash
-grunt combine
-```
-and it will be in the dist folder.
-
-Or you just get it from the API:
-
-```javascript
-// get the API
-const api = require('webcoach');
-// get the DOM scripts, it's a promise
-const domScriptPromise = api.getDomAdvice();
-```
-
-Take the <em>domScript</em> and run it in your browser and take care of the result.
-
-To test the HAR you need to generate the HAR yourself and then run it against the advice.
-
-```javascript
-const api = require('webcoach');
-// You read your HAR file from disk or however you get hold of it
-const harJson = //
-// if your har contains multiple pages (multiple runs etc) you can use the API
-// to get the page that you want
-const firstPageHar = api.pickAPage(harJson, 0);
-// the result is a promise
-const myHarAdviceResultPromise = api.runHarAdvice(firstPageHar, api.getHarAdvice());
-
-```
-
-When you got the result from both the DOM and the HAR you need to merge the result to get the full coach result:
-
-```javascript
-// Say that you got the result from the browser in domAdviceResult
-// and the HAR result in harAdviceResult
-const coachResult = api.merge(domAdviceResult, harAdviceResult);
-```
-
-Now you have the full result (as JSON) as a coachResult.
-
-## What do the coach do
-The coach will give you advice on how to make your page better. You will also get a score between 0-100. If you get 100 the page is great, if you get 0 you have some work to do!
-
-## How does it all work?
-
-The coach tests your site in two steps:
-
- * Executes JavaScript in your browser and check for performance, accessibility, best practice and collect general info about your page.
- * analyse the [HAR file](http://www.softwareishard.com/blog/har-12-spec/) for your page together with relevant info from the DOM process.
-
-You can run the different steps standalone but for the best result run them together.
-
-![What the coach do]({{site.baseurl}}/img/coach-explained.png)
-
-## Bonus
-The coach knows more than just performance. She also knows about accessibility and web best practice.
-
-### Accessibility
-Make sure your site is accessible and useable for every one. You can read more about making the web accessible [here](https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/).
-
-### Best practice
-You want your page to follow best practices, right? Making sure your page is set up for search engines, have good URL structure and so on.
-
-### General information
-The world is complex. Some things are great to know but hard for the coach to give advice about.
-
-The coach will then just tell you how the page is built and you can draw your own conclusions if something should be changed.
-
-### Timings
-The coach has a clock and knows how to use it! You will get timing metrics and know if you are doing better or worse than the last run.
-
-# Developers guide
-Checkout the [developers guide](../developers/) to get a better feeling of how the coach works.
-
-# Browser support
-The coach is automatically tested in the latest Chrome and Firefox. We hope that the coach works in other browsers, but we cannot guarantee it right now.
+The Coach is tested against the latest Chrome and Firefox. Most rules also work in Edge and Safari, but we don't run automated tests against them — file an issue if a rule misbehaves in another browser and we'll take a look.
