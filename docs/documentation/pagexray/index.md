@@ -14,19 +14,18 @@ twitterdescription:
 
 <img src="{{site.baseurl}}/img/logos/pagexray.png" class="pull-right img-big" alt="PageXray logo" width="365" height="200">
 
-We love HAR files but it's hard to actually see how the page is composed only looking at the file. PageXray converts a HAR file to a JSON format that is easier to read and easier to use. We use the format internally in the Coach and sitespeed.io (using NodeJS) and directly in the browser in [https://compare.sitespeed.io/](https://compare.sitespeed.io/).
+HAR files are great, but it is hard to see how a page is put together by reading one. PageXray converts a HAR into a compact JSON summary that is easier to read and easier to work with. We use it internally in the Coach and sitespeed.io (Node.js) and directly in the browser at [compare.sitespeed.io](https://compare.sitespeed.io/).
 
 {:toc}
 
-## What do PageXray collect?
+## What does PageXray collect?
 
- * The size and the number of requests per content type.
- * The size and requests per domain.
- * The number of requests per response code.
- * The base domain and the httpVersion used for the base asset (the main HTML document).
- * All assets (responses) with the following data: type, url, size, expires (a normalized expires converting max-age/expires to just expires in seconds), status (response code), timeSinceLastModified (using the last modified field in the response header and normalising to seconds), httpVersion and all request and response headers.
- * If you use a HAR from WebPageTest we also get SpeedIndex and other VisualMetrics.
- * If your HAR is from sitespeed.io you will also get some extra metrics like SpeedIndex.
+ * Size and number of requests per content type.
+ * Size and number of requests per domain.
+ * Number of requests per response code.
+ * The base domain and the HTTP version of the main HTML document.
+ * Every asset (response) with: type, URL, size, expires (max-age/expires normalised to seconds), status code, time since last modified (normalised to seconds), HTTP version, and all request and response headers.
+ * If the HAR comes from sitespeed.io you also get visual metrics like SpeedIndex.
 
 ## Install
 
@@ -40,18 +39,19 @@ npm install pagexray -g
 pagexray /path/to/my.har
 ```
 
-Or if you want to prettify the HAR
+Pretty-print the JSON output:
 
 ```bash
 pagexray --pretty /path/to/my.har
 ```
-And if you want to get info per request/response:
+
+Include info for every request and response:
 
 ```bash
 pagexray --includeAssets /path/to/my.har
 ```
 
-If you want to use it in node, use it like this:
+To use PageXray from Node.js:
 
 ```javascript
 const pagexray = require('pagexray');
@@ -60,7 +60,8 @@ const pages = pagexray.convert(har);
 ```
 
 ## Using PageXray in your browser
-Include the latest pagexray.min.js (that you find in the [releases](https://github.com/sitespeedio/pagexray/releases)) on your page. PageXray is exposed as *window.PageXray*
+
+Include the latest `pagexray.min.js` from the [releases page](https://github.com/sitespeedio/pagexray/releases) on your page. PageXray is exposed as `window.PageXray`:
 
 ```javascript
 const pageXray = window.PageXray.convert(har);
