@@ -13,72 +13,99 @@ category: sitespeed.io
 # How to Write a Good Bug Report
 {:.no_toc}
 
-<b>TL;DR - Please create a reproducible bug report!</b>
+<b>TL;DR — file a reproducible bug report. The more we can copy-paste and run, the faster we can fix it.</b>
 
 {:toc}
 
-## We love a new bug report
-We love it when you create a new issue for sitespeed.io! We really do. New issues help us improve the project and they help other users. In other words, we love issues.
+## Before you file
 
-Sometimes we get a really detailed issue: you describe exactly what you do when you get the problem, you share the log, you write down what you have tested, share screenshots, share videos. You even try to understand why you get this bug. When we get an issue like that, it always jumps to my number one priority. If you put down all the time and effort to really describe the issue, we want to put all our effort into fixing it.
+1. Read the [F.A.Q and Best Practice](https://www.sitespeed.io/documentation/sitespeed.io/best-practice/).
+2. Search the [existing GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues?q=is%3Aissue) (open and closed) — your bug may already be reported or fixed. If you find an open issue that matches, comment on it. Don't comment on closed issues; open a new one and link the old one.
+3. Open a new [bug report](https://github.com/sitespeedio/sitespeed.io/issues/new?template=BUG_REPORT.yml). The form will guide you through the required fields.
 
-It also happens (quite often) that we get issues that miss important information, so we need to ask you again and again about the problem (like how to reproduce the issue). Sometimes we need to do that two/three/four times within that issue. Issues that miss vital information take longer to fix/close, and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionality.
+## What we need to reproduce your bug
 
-We use an [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/.github/ISSUE_TEMPLATE.md) with a comment about what we need, but it seems that is not the best way, so let us instead show you what we need!
+A bug we can reproduce is a bug we can fix. "Reproducible" means we can copy your command and your URL onto a fresh machine and see the same problem.
 
-Before you start creating an issue, you should make sure you have read through our [F.A.Q and Best Practice](https://www.sitespeed.io/documentation/sitespeed.io/best-practice/).
+Every bug report should include:
 
-## Explain how to reproduce your issue
-The best way to make sure we can fix your issue, is to make sure we can reproduce the problem you have. If we can reproduce the problem, we can verify that we actually have fixed it with our code change.
+- **The exact command you ran**, including every flag and config file. Mask passwords, but keep everything else.
+- **A public URL** that triggers the bug. If your URL is private, build a minimal reproduction on a public host (for example [glitch.com](https://glitch.com/), [jsbin.com](http://jsbin.com/), or [httpbin.org](https://httpbin.org) for header / cookie / auth issues).
+- **The full log output** as text — not a screenshot. Run with `-vv` (or `-vvv`) to capture more detail. Paste short logs into the issue, put long logs in a [gist](https://gist.github.com/).
+- **The version of sitespeed.io** (`sitespeed.io --version`).
+- **The operating system** you run on. If you use Docker, also tell us the host OS.
+- **The browser and version** if you don't use Docker (Docker images pin known versions).
+- **What you expected to happen and what actually happened**.
 
-**Exactly** what do we mean by making it reproducible? We should be able to copy/paste your example CLI parameters and try on our local machine and then get the same problem that you have.
+If you use [scripting to measure a user journey](https://www.sitespeed.io/documentation/sitespeed.io/scripting/), include the full script. We cannot reproduce a script bug without the script.
 
-To help us reproduce your problem there are a couple of things we need:
+We can reproduce desktop bugs on macOS, Ubuntu and Debian. If you hit a bug on a different OS, tell us — and ideally give us access to a machine where we can reproduce it.
 
-* Show us exactly how you run your tests (all parameters, all configuration). Mask out any passwords, but please do not leave out things from the configuration!
-* If you run [scripting to measure a user journey](https://www.sitespeed.io/documentation/sitespeed.io/scripting/), please please please include the script so we can run it the same way you do! That will make it possible for us to reproduce your issue and help us a lot!
-* Include the URL that causes the problem. If the URL isn't public, please try to reproduce the problem on another URL that we can test. If the URL is super secret, you can share it with us by email (write it in the issue and you can get the address). But we prefer public URLs so others can reproduce the problem too.
-* Include the log output from your run. Please do not take a screenshot of the log, instead share the log as text either in the issue or in a [gist](https://gist.github.com/).
-* Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
-* Tell us what OS you are using, and if you are using Docker, give us the base OS where you run your container.
-* We can run desktop tests on Mac OS (latest OS), Ubuntu and Debian. We can also reproduce issues on Moto G5, Samsung A51 and iPhone Xs. If you run on another OS, please provide access to a machine with that OS so we can use it to reproduce the issue. Thanks!
-* If you don't use Docker: include the browser version you are using.
-* If you have problems with headers/cookies/auth, you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
+A bug report with everything above gets the <span class="reproducible">reproducible</span> tag and goes to the front of the queue.
 
-If you make your issue reproducible, the issue is the cream of the crop and will get the tag <span class="reproducible">reproducible</span>! And if your bug report has that tag, it will get our attention.
+## Capture the right artifacts for the bug type
 
-## What else you can do
+Different bugs need different evidence. Run with the matching flag and attach the file it produces.
 
-* Best case, you can fix the issue and send us a PR with a fix. We love PRs for bugs :) But of course that is only best-case scenario.
+| Bug type | Add this flag | What to attach |
+|---|---|---|
+| Visual Metrics or video looks wrong | `--videoParams.keepOriginalVideo` | `1-original.mp4` from the `video/` folder |
+| HAR is missing entries or looks wrong (Chrome) | `--chrome.collectPerfLog` | `chromePerflog-1.json.gz` |
+| Crash, hang or unexpected output | `-vv` (or `-vvv`) | The full console log |
+| Scripting bug | `-vv` | The full log **and** the script file |
 
-* Search the current [GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues). Has this bug been reported before? Does it lack info? Please add your own comment to that issue if it is open. If you aren't sure that your bug is the same as the other bug, please create a new issue. Do not hijack issues. Do not comment on a closed issue, please create a new issue instead and add a reference to the old one.
+## What not to do
 
-* Is there a problem with the video or the metrics from the video? Then make sure to enable the full original video so you can share it with us, by adding <code>--videoParams.keepOriginalVideo</code> to your run. Look in the *video* folder for that URL and you will see a video named *1-original.mp4*. Please share that video with us so we can more easily reproduce/understand the problem.
+- **Do not** open the issue on a different repo than the one with the bug. If you don't know which repo, file it on [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/issues/new) and we will move it.
+- **Do not** paste a screenshot of the log. We can't grep an image.
+- **Do not** hijack an unrelated issue, even if the symptom looks similar — open a new one and link the old.
+- **Do not** DM us on Slack or email us about the bug. Filing it on GitHub means anyone can find the answer.
 
-* Do you think this is somehow related to Docker (generic Docker issues etc.)? Then please [search](https://duckduckgo.com/) for that problem, or head over to [forums.docker.com](https://forums.docker.com/) and have a look there first.
+If your problem is generic Docker or proxy-related, search the web first or ask on [forums.docker.com](https://forums.docker.com/). If you can, reproduce the bug on a network without a proxy before filing it.
 
-* Is your problem related to being behind a proxy? Then we kindly recommend that you run your tests without a proxy. Run the tests on a network where you don't need to use a proxy.
+## How we prioritise
 
-## How we prioritise bugs
+Bugs that break functionality for many users and come with a reproducible test case are fixed first. If you disagree with how we prioritise, you can:
 
-If an issue is a bug that breaks functionality for many users and you provide a *reproducible* test case/show us exactly how you run it, we will try to fix that bug.
+- Improve the report so we can reproduce it.
+- Send a pull request — we'll help you test and verify it.
+- [Sponsor the project on Open Collective](https://opencollective.com/sitespeedio). We can't promise a fix, but it helps us spend more time on bugs.
 
-If you do not agree with our prioritisation, you can:
-* Explain the issue better and make sure we can reproduce your issue.
-* Do the PR yourself. We can help you test and verify it.
-* Support us at [Open Collective](https://opencollective.com/sitespeedio). We cannot promise we will fix your issue, but it will increase the chance of getting it fixed.
+If you don't get a response within a few days, ping us in the [general channel on Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw) — but only after the issue exists.
 
-## How to make sure we try to fix the bug as soon as possible
+## Bug report template
 
-Here are the dos and don'ts if you want your bug fixed:
+Copy this template into the issue body and fill it in. The fields match what we need to reproduce the bug.
 
-Please do:
-* [Provide a reproducible test case](#explain-how-to-reproduce-your-issue).
-* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
+~~~markdown
+### What I'm trying to do
+<one or two sentences>
 
-Please don't:
-* Contact us via direct messages on Slack about the bug.
-* Contact us on Twitter about the bug.
-* Contact us by email about the bug.
+### What happened instead
+<what you saw — error, wrong metric, missing file, crash, etc.>
 
-If we ask you to contact us, then it is perfectly fine to do so :)
+### Reproduction
+URL: <public URL that triggers the bug>
+
+Command:
+```
+sitespeed.io <full command, secrets redacted>
+```
+
+Script (if scripting): attach the .js / .mjs / .ts file or paste it here.
+
+### Environment
+- sitespeed.io version: <`sitespeed.io --version`>
+- Install method: <Docker image tag | npm global | npm local>
+- OS: <macOS 14.5 | Ubuntu 24.04 | …>
+- Browser + version: <Chrome 143 | Firefox 149 | …> (skip if using the Docker image)
+
+### Logs and artifacts
+- Full log (`-vv`): <pasted below or gist link>
+- Original video (`--videoParams.keepOriginalVideo`): <attached / link> — only for video / Visual Metrics bugs
+- Chrome perflog (`--chrome.collectPerfLog`): <attached / link> — only for HAR bugs
+
+<paste log here, or link to a gist>
+~~~
+
+When everything in the template is filled in, the bug is reproducible — and reproducible bugs get fixed.
