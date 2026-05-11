@@ -125,8 +125,8 @@ body {
   border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
-.nav a:hover,
-.nav a:focus-visible,
+.nav ul a:hover,
+.nav ul a:focus-visible,
 .nav li:hover > a,
 .nav li:focus-within > a {
   background-color: var(--color-brand-deep);
