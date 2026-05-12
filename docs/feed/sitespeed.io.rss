@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 10 May 2026 13:49:38 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 May 2026 13:50:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,16 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 40.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Browsertime 27.2.0 — <code>recalculateStyle</code> is now summarised at the HAR page level as <code>_renderBlocking.recalculateStyle</code> (beforeFCP / beforeLCP element counts + durations), so the metric is reachable from the page entry instead of only inside <code>browsertime.json</code> #4723.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 40.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</link>
@@ -152,19 +162,6 @@
             <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - There where something broken in Browsertime 26.3.0 together with the new bidi-har 0.0.20 for Firefox so I reverted to 0.0.18 until its been fixed with Browsertime/bidi-har #4579.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 39.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</guid>
-            <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Updated to Browsertime 26.3 with and updated version of bidi-har that makes it possible to get response bodies in the HAR file for Firefox #4578.<br>
-<br>
-<strong>Fixed</strong><br>
-- Fixed typo in iteration detail page for the cpuConsumption metric, thank you Michael Walter for PR #4577.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>

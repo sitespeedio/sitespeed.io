@@ -16,6 +16,130 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[onlinetest 3.3.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Refreshed the vendored compare bundle with a sharing pass, accurate transfer-size diffs and style recalculation visibility:<br>
+<br>
+<strong>Fixed</strong><br>
+- Filmstrip and Visual Progress thumbnails no longer 404 — frame timestamps are now derived from the same <code>_visualMetrics.VisualProgress</code> change points sitespeed.io&#39;s own report uses, matching the cadence sitespeed.io actually wrote to disk.<br>
+- Millisecond timings in the page-x-ray diff are rounded to whole ms — the new recalc duration field reports sub-ms precision (&quot;17.099 ms&quot;) that&#39;s noise at this scale.<br>
+- &quot;Switch HAR&quot; and run-dropdown changes preserve the previous source URLs / config / stripVersion choice, so the Share UI doesn&#39;t downgrade from &quot;Copy share link&quot; to &quot;Download bundle&quot; on every toggle.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.2.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Refreshed the vendored compare bundle to pick up the upstream regression-spotting pass:<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.1.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Filmstrip and Visual Progress thumbnails no longer point at non-existent screenshots. The frame timestamps are now derived from <code>_visualMetrics.VisualProgress</code> change points — the authoritative list of frames sitespeed.io actually wrote to disk — instead of speculating a 100 ms grid that breaks on runs with a flat visual-progress stretch #235.<br>
+- Theme and admin CSS now cache-bust on each release via <code>?v=&lt;server-version&gt;</code> stamped on the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> hrefs. Previously a patch release that only touched the theme CSS could sit in browser caches until the unrelated 30-day cache header expired #234.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.1.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.0.3]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.3</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.3"/>
+        <updated>2026-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Fix spinning /result page when a queued test is in active state #228.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.0.2]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.2</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.2"/>
+        <updated>2026-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Shorten the URL input placeholder so the allowed-domain regex hint fits on narrower viewports #227.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.0.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.1"/>
+        <updated>2026-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Show the configured <code>allowedDomain</code> regex in the URL input placeholder so users can see which URLs are accepted #225.<br>
+- Fix broken status polling and missing fonts on the running page #226.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.0.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.0"/>
+        <updated>2026-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Collect metrics from the server and make it available for Prometheus #213.<br>
+- New API endpoint to retrieve the full Browsertime JSON for a completed test via <code>GET /api/result/:id</code> #217.<br>
+- Two configurable GUI themes: <code>console</code> (default) and <code>memphis</code>, selected via <code>html.theme</code> in server.yaml #224.<br>
+- Lazy-load the Ace editor so it only fetches when the Scripting tab is opened; first paint of the start page drops by roughly 700 KB #224.<br>
+- Searchable picker of all sitespeed.io CLI flags in the Command line tab #224.<br>
+- Significant accessibility improvements: skip links, real labels, ARIA tablist with arrow-key navigation, modal focus trap, role attributes, aria-current on nav, aria-busy/aria-live on the running page, ≥44 px touch targets, prefers-reduced-motion, <code>/</code>-to-focus and ⌘↵-to-submit shortcuts #224.<br>
+- Added step-security/harden-runner to all GitHub Actions workflows #222.<br>
+<br>
+<strong>Fixed</strong><br>
+- Smarter URL matching in scripting validation: now handles both single and double quotes, and whitespace inside <code>commands.measure.start(...)</code> / <code>commands.navigate(...)</code> calls #211.<br>
+- Better error handling in the API result endpoint #218.<br>
+<br>
+<strong>Changed</strong><br>
+- Replaced the Bulma CSS framework with a hand-written design system — drops ~250 KB of vendor CSS. Custom CSS overrides targeting Bulma classes will need to be rewritten #224.<br>
+- Default sitespeed.io Docker image bumped from 39 to 40 in <code>.env.example</code>.<br>
+- Pinned GitHub Actions to specific commit SHAs for supply-chain security #220.<br>
+- Switched the API Docker workflow&#39;s harden-runner egress policy to <code>block</code> #223.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[onlinetest 2.0.0]]></title>
         <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</id>
         <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0"/>
@@ -42,98 +166,6 @@
 - Switched to default use Redis instead of KeyDB since Redis is Open Source again #169.<br>
 - Reworked the docker compose files #200 #202 #203<br>
 - Always use .env if it exists for both the server and the testrunner (and the compose files) #190.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.7.1]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1"/>
-        <updated>2025-10-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Fix for the search qyuery parameter #162.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.7.0]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0"/>
-        <updated>2025-10-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Updated dependencies (too many PRs).<br>
-- Update to NodeJS 22 #155<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.6.5]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5"/>
-        <updated>2025-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- And another fix for script names #146.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.6.4]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4"/>
-        <updated>2025-03-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Another fix for showing the script name #145.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.6.3]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3"/>
-        <updated>2025-03-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Show only the script name and not the full path #144.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.6.3]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3"/>
-        <updated>2025-02-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL #142.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 1.6.2]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2"/>
-        <updated>2025-02-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Another label fix.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

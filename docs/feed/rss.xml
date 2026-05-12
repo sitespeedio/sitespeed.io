@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 10 May 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 May 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,158 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 40.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Browsertime 27.2.0 — <code>recalculateStyle</code> is now summarised at the HAR page level as <code>_renderBlocking.recalculateStyle</code> (beforeFCP / beforeLCP element counts + durations), so the metric is reachable from the page entry instead of only inside <code>browsertime.json</code> #4723.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[pagexray 4.5.0]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface page-level style recalculation work on <code>renderBlocking.recalculateStyle</code><br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[compare 2.0.0]]></title>
+            <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</link>
+            <guid>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Swapped the waterfall renderer from PerfCascade to<br>
+- Page X-ray table grouped into sections (Content, Render blocking,<br>
+- Filmstrip section (when both HARs have one) with frames sampled from<br>
+- Visual progress chart now shows per-HAR timing markers<br>
+- Core Web Vitals row in the page X-ray table:<br>
+- Render-blocking metrics from Chrome HARs (blocking, potentially<br>
+- Long Tasks, Total Blocking Time and Max Potential FID under CPU.<br>
+- <code>stripVersion</code> configuration flag (and a checkbox on the start page)<br>
+- Support for <code>.har.gz</code> HAR files via the browser&#39;s native<br>
+- Skip-to-content link, ARIA labels and visually-hidden table captions<br>
+- Comment slot for the request/response diff section<br>
+- First/third party support — PageXray now auto-detects the host page&#39;s<br>
+<br>
+<strong>Changed</strong><br>
+- Build tooling moved to Vite. The build output<br>
+- Styling rewritten in plain CSS (Sass dropped) with a small design-token<br>
+- Templates rewritten as plain JS template literals (Template7 dropped).<br>
+- Upgraded PageXray to 4.x.<br>
+<br>
+<strong>Removed</strong><br>
+- The service worker / Workbox offline support. A one-time cleanup<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.3.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Refreshed the vendored compare bundle with a sharing pass, accurate transfer-size diffs and style recalculation visibility:<br>
+<br>
+<strong>Fixed</strong><br>
+- Filmstrip and Visual Progress thumbnails no longer 404 — frame timestamps are now derived from the same <code>_visualMetrics.VisualProgress</code> change points sitespeed.io&#39;s own report uses, matching the cadence sitespeed.io actually wrote to disk.<br>
+- Millisecond timings in the page-x-ray diff are rounded to whole ms — the new recalc duration field reports sub-ms precision (&quot;17.099 ms&quot;) that&#39;s noise at this scale.<br>
+- &quot;Switch HAR&quot; and run-dropdown changes preserve the previous source URLs / config / stripVersion choice, so the Share UI doesn&#39;t downgrade from &quot;Copy share link&quot; to &quot;Download bundle&quot; on every toggle.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.2.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Refreshed the vendored compare bundle to pick up the upstream regression-spotting pass:<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.1.1]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Filmstrip and Visual Progress thumbnails no longer point at non-existent screenshots. The frame timestamps are now derived from <code>_visualMetrics.VisualProgress</code> change points — the authoritative list of frames sitespeed.io actually wrote to disk — instead of speculating a 100 ms grid that breaks on runs with a flat visual-progress stretch #235.<br>
+- Theme and admin CSS now cache-bust on each release via <code>?v=&lt;server-version&gt;</code> stamped on the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> hrefs. Previously a patch release that only touched the theme CSS could sit in browser caches until the unrelated 30-day cache header expired #234.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.1.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.0.3]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.3</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.3</guid>
+            <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Fix spinning /result page when a queued test is in active state #228.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.0.2]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.2</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.2</guid>
+            <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Shorten the URL input placeholder so the allowed-domain regex hint fits on narrower viewports #227.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.0.1]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.1</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.1</guid>
+            <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Show the configured <code>allowedDomain</code> regex in the URL input placeholder so users can see which URLs are accepted #225.<br>
+- Fix broken status polling and missing fonts on the running page #226.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.0.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.0</guid>
+            <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Collect metrics from the server and make it available for Prometheus #213.<br>
+- New API endpoint to retrieve the full Browsertime JSON for a completed test via <code>GET /api/result/:id</code> #217.<br>
+- Two configurable GUI themes: <code>console</code> (default) and <code>memphis</code>, selected via <code>html.theme</code> in server.yaml #224.<br>
+- Lazy-load the Ace editor so it only fetches when the Scripting tab is opened; first paint of the start page drops by roughly 700 KB #224.<br>
+- Searchable picker of all sitespeed.io CLI flags in the Command line tab #224.<br>
+- Significant accessibility improvements: skip links, real labels, ARIA tablist with arrow-key navigation, modal focus trap, role attributes, aria-current on nav, aria-busy/aria-live on the running page, ≥44 px touch targets, prefers-reduced-motion, <code>/</code>-to-focus and ⌘↵-to-submit shortcuts #224.<br>
+- Added step-security/harden-runner to all GitHub Actions workflows #222.<br>
+<br>
+<strong>Fixed</strong><br>
+- Smarter URL matching in scripting validation: now handles both single and double quotes, and whitespace inside <code>commands.measure.start(...)</code> / <code>commands.navigate(...)</code> calls #211.<br>
+- Better error handling in the API result endpoint #218.<br>
+<br>
+<strong>Changed</strong><br>
+- Replaced the Bulma CSS framework with a hand-written design system — drops ~250 KB of vendor CSS. Custom CSS overrides targeting Bulma classes will need to be rewritten #224.<br>
+- Default sitespeed.io Docker image bumped from 39 to 40 in <code>.env.example</code>.<br>
+- Pinned GitHub Actions to specific commit SHAs for supply-chain security #220.<br>
+- Switched the API Docker workflow&#39;s harden-runner egress policy to <code>block</code> #223.<br>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 40.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</link>
@@ -136,6 +288,16 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[browsertime 27.0.4]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</guid>
+            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[coach-core 9.0.0]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</link>
             <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</guid>
@@ -173,16 +335,6 @@
 - Bump browsertime devDep to 27.0.0 (no runtime impact — coach-core has no runtime browsertime dep, only the dev test runner used to).<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 27.0.4]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</guid>
-            <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 27.0.3]]></title>
@@ -411,19 +563,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 39.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.3.0</guid>
-            <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Updated to Browsertime 26.3 with and updated version of bidi-har that makes it possible to get response bodies in the HAR file for Firefox #4578.<br>
-<br>
-<strong>Fixed</strong><br>
-- Fixed typo in iteration detail page for the cpuConsumption metric, thank you Michael Walter for PR #4577.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 26.3.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0</guid>
@@ -436,39 +575,6 @@
 - Add Simpleperf app_profiler options and use <code>--android.simpleperf</code>. Thank you Abhishek Nimalan for PR #2352<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 26.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</guid>
-            <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Updated Chromedriver and Edgedriver to 143 #2354 and#2355.<br>
-- Updated webdriver to 4.39.0 #2356.<br>
-<br>
-<strong>Fixed</strong><br>
-- Try to tune the XVFB handling to make it safer that xvfb is always stopped #2353.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.7.1]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</guid>
-            <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Fix for the search qyuery parameter #162.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.7.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</guid>
-            <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Updated dependencies (too many PRs).<br>
-- Update to NodeJS 22 #155<br>
-]]></description>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.1.1]]></title>
@@ -509,51 +615,6 @@
 - Make sure we use wappalyzer that is MIT #133.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.6.5]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</guid>
-            <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- And another fix for script names #146.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.6.4]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</guid>
-            <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Another fix for showing the script name #145.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.6.3]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</guid>
-            <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Show only the script name and not the full path #144.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.6.3]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</guid>
-            <pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL #142.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 1.6.2]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</guid>
-            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Another label fix.<br>
-]]></description>
         </item>
         <item>
             <title><![CDATA[coach-core 8.1.1]]></title>
@@ -627,26 +688,6 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[coach-core 8.0.2]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</guid>
-            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Another update to PageXray with a safer HTTP header check.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 8.0.1]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</guid>
-            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Updated PageXray.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[pagexray 4.4.4]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</link>
             <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</guid>
@@ -666,6 +707,26 @@
 - Update to latest minimist #122.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.0.2]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Another update to PageXray with a safer HTTP header check.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.0.1]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Updated PageXray.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.0.0]]></title>
@@ -870,16 +931,6 @@
             <pubDate>Thu, 08 Apr 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Attach Google Web Vitals data from Browsertime #101.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 4.0.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.0.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.0.0</guid>
-            <pubDate>Sat, 12 Dec 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Changed</strong><br>
-- The new header structure actually sucked. Instead follow other tools and flatten headers returning an array #98.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>

@@ -4,7 +4,7 @@
         <title>pagexray release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of pagexray</description>
-        <lastBuildDate>Tue, 03 Jun 2025 03:51:13 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 May 2026 12:45:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,16 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/pagexray.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[pagexray 4.5.0]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface page-level style recalculation work on <code>renderBlocking.recalculateStyle</code><br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[pagexray 4.4.4]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</link>
@@ -104,16 +114,6 @@
             <pubDate>Thu, 08 Apr 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Attach Google Web Vitals data from Browsertime #101.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 4.0.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.0.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.0.0</guid>
-            <pubDate>Sat, 12 Dec 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Changed</strong><br>
-- The new header structure actually sucked. Instead follow other tools and flatten headers returning an array #98.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>

@@ -4,7 +4,7 @@
         <title>compare release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of compare</description>
-        <lastBuildDate>Tue, 03 Jun 2025 03:51:13 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 May 2026 06:32:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,36 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/compare.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[compare 2.0.0]]></title>
+            <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</link>
+            <guid>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Swapped the waterfall renderer from PerfCascade to<br>
+- Page X-ray table grouped into sections (Content, Render blocking,<br>
+- Filmstrip section (when both HARs have one) with frames sampled from<br>
+- Visual progress chart now shows per-HAR timing markers<br>
+- Core Web Vitals row in the page X-ray table:<br>
+- Render-blocking metrics from Chrome HARs (blocking, potentially<br>
+- Long Tasks, Total Blocking Time and Max Potential FID under CPU.<br>
+- <code>stripVersion</code> configuration flag (and a checkbox on the start page)<br>
+- Support for <code>.har.gz</code> HAR files via the browser&#39;s native<br>
+- Skip-to-content link, ARIA labels and visually-hidden table captions<br>
+- Comment slot for the request/response diff section<br>
+- First/third party support — PageXray now auto-detects the host page&#39;s<br>
+<br>
+<strong>Changed</strong><br>
+- Build tooling moved to Vite. The build output<br>
+- Styling rewritten in plain CSS (Sass dropped) with a small design-token<br>
+- Templates rewritten as plain JS template literals (Template7 dropped).<br>
+- Upgraded PageXray to 4.x.<br>
+<br>
+<strong>Removed</strong><br>
+- The service worker / Workbox offline support. A one-time cleanup<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[compare 1.0.0]]></title>
             <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</link>

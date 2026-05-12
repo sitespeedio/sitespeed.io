@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>compare-release-feed</id>
     <title>compare release feed</title>
-    <updated>2025-06-03T03:51:13.076Z</updated>
+    <updated>2026-05-12T06:32:18.228Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,39 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[compare 2.0.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Swapped the waterfall renderer from PerfCascade to<br>
+- Page X-ray table grouped into sections (Content, Render blocking,<br>
+- Filmstrip section (when both HARs have one) with frames sampled from<br>
+- Visual progress chart now shows per-HAR timing markers<br>
+- Core Web Vitals row in the page X-ray table:<br>
+- Render-blocking metrics from Chrome HARs (blocking, potentially<br>
+- Long Tasks, Total Blocking Time and Max Potential FID under CPU.<br>
+- <code>stripVersion</code> configuration flag (and a checkbox on the start page)<br>
+- Support for <code>.har.gz</code> HAR files via the browser&#39;s native<br>
+- Skip-to-content link, ARIA labels and visually-hidden table captions<br>
+- Comment slot for the request/response diff section<br>
+- First/third party support — PageXray now auto-detects the host page&#39;s<br>
+<br>
+<strong>Changed</strong><br>
+- Build tooling moved to Vite. The build output<br>
+- Styling rewritten in plain CSS (Sass dropped) with a small design-token<br>
+- Templates rewritten as plain JS template literals (Template7 dropped).<br>
+- Upgraded PageXray to 4.x.<br>
+<br>
+<strong>Removed</strong><br>
+- The service worker / Workbox offline support. A one-time cleanup<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[compare 1.0.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>

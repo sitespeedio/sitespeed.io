@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>pagexray-release-feed</id>
     <title>pagexray release feed</title>
-    <updated>2025-06-03T03:51:13.076Z</updated>
+    <updated>2026-05-12T12:45:36.396Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,19 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.5.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Surface page-level style recalculation work on <code>renderBlocking.recalculateStyle</code><br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[pagexray 4.4.4]]></title>
         <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</id>
@@ -128,19 +141,6 @@
         <updated>2021-04-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Attach Google Web Vitals data from Browsertime #101.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.0.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.0.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.0.0"/>
-        <updated>2020-12-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Changed</strong><br>
-- The new header structure actually sucked. Instead follow other tools and flatten headers returning an array #98.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

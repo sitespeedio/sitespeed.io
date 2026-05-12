@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2026-05-06T17:10:26.875Z</updated>
+    <updated>2026-05-12T11:04:40.607Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,19 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 27.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0"/>
+        <updated>2026-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 27.1.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</id>
@@ -183,23 +196,6 @@
 <strong>Fixed</strong><br>
 - Restructure server timings so the timing name does not get lost for InfluxDB/Graphite. Thank you Tim Oldenburg for PR #2358.<br>
 - Add Simpleperf app_profiler options and use <code>--android.simpleperf</code>. Thank you Abhishek Nimalan for PR #2352<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 26.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0"/>
-        <updated>2025-12-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Updated Chromedriver and Edgedriver to 143 #2354 and#2355.<br>
-- Updated webdriver to 4.39.0 #2356.<br>
-<br>
-<strong>Fixed</strong><br>
-- Try to tune the XVFB handling to make it safer that xvfb is always stopped #2353.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
