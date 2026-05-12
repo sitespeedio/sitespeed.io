@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.4.0 - 2026-05-12
+
+### Added
+* Browsertime 27.2.0 — `recalculateStyle` is now summarised at the HAR page level as `_renderBlocking.recalculateStyle` (beforeFCP / beforeLCP element counts + durations), so the metric is reachable from the page entry instead of only inside `browsertime.json` [#4723](https://github.com/sitespeedio/sitespeed.io/pull/4723).
+
 ## 40.3.0 - 2026-05-10
 
 ### Added
