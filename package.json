@@ -90,7 +90,7 @@
     "@slack/webhook": "7.0.6",
     "@tgwf/co2": "0.16.9",
     "axe-core": "4.11.4",
-    "browsertime": "27.1.0",
+    "browsertime": "27.2.0",
     "coach-core": "9.0.1",
     "dayjs": "1.11.18",
     "fast-crc32c": "2.0.0",
