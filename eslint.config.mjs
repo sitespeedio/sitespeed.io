@@ -14,7 +14,8 @@ export default [
       'lib/plugins/html/assets/js/*',
       'bin/browsertimeWebPageReplay.js',
       'test/data/*',
-      'test/prepostscripts/*'
+      'test/prepostscripts/*',
+      'test/fixtures/*'
     ]
   },
   js.configs.recommended,
