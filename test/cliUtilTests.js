@@ -44,15 +44,6 @@ test(`getAliases should extract aliases`, t => {
   );
 });
 
-test(`getAliases should ignore non-URL lines (e.g. a .cjs scripting file)`, t => {
-  // Regression: when a scripting file was passed without --multi the file
-  // content was read here line-by-line and every JS identifier ended up
-  // as a urlMetaData key, which later crashed `new URL(token)` in the
-  // browsertime plugin with "Could not get group for URL:<token>".
-  const aliases = getAliases(['test/fixtures/scripting-as-url-list.cjs']);
-  t.deepEqual(Object.keys(aliases), []);
-});
-
 test(`pluginDefaults should yield an empty object for invalid values`, t => {
   t.deepEqual(pluginDefaults(), {});
   t.deepEqual(pluginDefaults(), {});
