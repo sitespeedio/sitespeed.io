@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.4.1 - 2026-05-13
+
+### Fixed
+* Stop parsing scripting files as URL-alias lists in `getAliases` [#4724](https://github.com/sitespeedio/sitespeed.io/pull/4724).
+
 ## 40.4.0 - 2026-05-12
 
 ### Added
