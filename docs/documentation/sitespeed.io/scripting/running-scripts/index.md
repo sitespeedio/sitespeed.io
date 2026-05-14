@@ -19,18 +19,20 @@ Running scripts in Browsertime is easy. Create your script and run it like this:
 browsertime myScript.mjs
 ```
 
-And in sitespeed.io you need to add the `--multi` switch (test multiple pages).
+In sitespeed.io you can run a script the same way — script files are detected automatically, so the old `--multi` switch is no longer required:
 
 ```bash
-sitespeed.io myScript.mjs --multi
+sitespeed.io myScript.mjs
 ```
+
+`--multi` still works and is kept for backward compatibility; you only need it explicitly if you want to share a single browser session across a list of plain URLs.
 
 ## Multiple scripts
 
 For multiple scripts, list them all in the command. This approach helps manage complex scripts by splitting them into multiple files.
 
 ```bash
-sitespeed.io login.mjs measureStartPage.mjs logout.mjs --multi
+sitespeed.io login.mjs measureStartPage.mjs logout.mjs
 ```
 
 Or you can break out code in multiple files.
@@ -51,7 +53,7 @@ export default async function (context, commands) {
   example();
 }
 ```
-And then run it: `sitespeed.io --multi test.mjs`
+And then run it: `sitespeed.io test.mjs`
 
 ## Add meta data to your script
 
