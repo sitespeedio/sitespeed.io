@@ -91,7 +91,7 @@
     "@tgwf/co2": "0.16.9",
     "axe-core": "4.11.4",
     "browsertime": "27.2.0",
-    "coach-core": "9.0.1",
+    "coach-core": "9.1.0",
     "dayjs": "1.11.18",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.7",

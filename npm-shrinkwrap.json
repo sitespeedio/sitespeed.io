@@ -18,7 +18,7 @@
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.4",
         "browsertime": "27.2.0",
-        "coach-core": "9.0.1",
+        "coach-core": "9.1.0",
         "dayjs": "1.11.18",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.7",
@@ -5575,9 +5575,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "9.0.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.0.1.tgz",
-      "integrity": "sha512-DnhVyGDy7r2PJDqP/fDqucYC/MMxOc3azvclupLO6gdZ2S1iYmgVoTbm8wUKVT3dDB40giYqmG/t1bJFS9EiNQ==",
+      "version": "9.1.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-9.1.0.tgz",
+      "integrity": "sha512-68n7/a17VC1KyWQ1ksedUlCoyhWvndawNqiqpZ3Zuq2zsDIZFu8Y2RUXwXeyVJA0ePCN3y7BD7MrQW9eZ12tVA==",
       "license": "MIT",
       "dependencies": {
         "filter-files": "0.4.0",
@@ -5585,7 +5585,7 @@
         "lodash.groupby": "4.6.0",
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
-        "pagexray": "4.4.4",
+        "pagexray": "5.0.0",
         "third-party-web": "0.29.0",
         "wappalyzer-core": "6.10.54"
       },
@@ -8958,9 +8958,9 @@
       "license": "BlueOak-1.0.0"
     },
     "node_modules/pagexray": {
-      "version": "4.4.4",
-      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-4.4.4.tgz",
-      "integrity": "sha512-eMeJzhtEUBDq8mI3DWD8n1iMFYt90lWE7gP5WfNoXFqFoTQZyj5DAg2O/W7VdRYqZYGpwswC7c0mFToeJfMwDg==",
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-5.0.0.tgz",
+      "integrity": "sha512-Wt6bJ+dstfWP9+CzhtXdpG4jaolsoZMzz3SlJA5oaIWqeD5fA3NW4hEL/wanExCbIxlW43or9vXcHS2EulE04Q==",
       "license": "MIT",
       "dependencies": {
         "minimist": "1.2.8"
@@ -8969,7 +8969,7 @@
         "pagexray": "bin/index.js"
       },
       "engines": {
-        "node": ">=8.9.0"
+        "node": ">=22.0.0"
       }
     },
     "node_modules/pako": {
