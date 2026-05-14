@@ -42,6 +42,11 @@ async function api(options) {
     );
     apiOptions.api.scripting = scripting.toString();
     apiOptions.api.scriptingName = path.basename(options._[0]);
+    // options.multi may have been auto-detected from the script file
+    // (so the user did not need to pass --multi). Propagate it to the
+    // remote API so older servers that rely on the explicit flag still
+    // treat this as a multi/script run.
+    apiOptions.multi = true;
   }
 
   if (apiOptions.mobile) {
