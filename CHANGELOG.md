@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 40.5.0 - 2026-05-14
+
+### Fixed
+* Gzipped HAR files are now written by piping JSON through `createGzip` straight to disk instead of materialising the JSON string, a `Buffer` copy of it, and the full gzipped `Buffer` all at once. For a 200 MB HAR that removes several hundred MB of avoidable peak RSS, multiplied when multiple pages finish around the same time. The storage layer now accepts a `Readable` in addition to strings and Buffers; existing callers are unaffected [#4728](https://github.com/sitespeedio/sitespeed.io/pull/4728).
+* Gzipped JSON result files (Chrome traces, console logs, etc.) are read by streaming through `createGunzip` and collecting utf-8 chunks rather than buffering the whole gzipped payload, gunzipping it into another Buffer, then stringifying. The parsed object still has to fit in memory, but the throwaway gzipped and unzipped buffer copies are gone — meaningful on 50+ MB traces [#4726](https://github.com/sitespeedio/sitespeed.io/pull/4726).
+* The sustainable plugin and the S3 plugin pick up the same streaming treatment: the sustainable plugin now uses the shared streaming gzipped-JSON helper instead of its own buffer-everything copy, and the S3 plugin streams uploads via `createReadStream` with an explicit `ContentLength` instead of loading each file fully into memory before `PutObject`. With 20 concurrent S3 uploads, RSS no longer spikes to ~20× the size of the largest file in the result bundle [#4727](https://github.com/sitespeedio/sitespeed.io/pull/4727).
+
 ## 40.4.1 - 2026-05-13
 
 ### Fixed
