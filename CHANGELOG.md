@@ -3,6 +3,9 @@
 
 ## 40.5.0 - 2026-05-14
 
+### Added
+* Scripts are now auto-detected on the command line, so `--multi` is no longer required to run them. Any positional argument that looks like a script — `.js` / `.cjs` / `.mjs`, or any file whose first non-empty line doesn't start with `http` — flips multi mode on automatically, and mixed inputs like `login.js https://example.com logout.js` just work. `--multi` is kept as an explicit override for the one case auto-detection can't cover: sharing a single browser session across a list of plain URLs. All existing invocations behave exactly as before [#4725](https://github.com/sitespeedio/sitespeed.io/pull/4725).
+
 ### Fixed
 * Gzipped HAR files are now written by piping JSON through `createGzip` straight to disk instead of materialising the JSON string, a `Buffer` copy of it, and the full gzipped `Buffer` all at once. For a 200 MB HAR that removes several hundred MB of avoidable peak RSS, multiplied when multiple pages finish around the same time. The storage layer now accepts a `Readable` in addition to strings and Buffers; existing callers are unaffected [#4728](https://github.com/sitespeedio/sitespeed.io/pull/4728).
 * Gzipped JSON result files (Chrome traces, console logs, etc.) are read by streaming through `createGunzip` and collecting utf-8 chunks rather than buffering the whole gzipped payload, gunzipping it into another Buffer, then stringifying. The parsed object still has to fit in memory, but the throwaway gzipped and unzipped buffer copies are gone — meaningful on 50+ MB traces [#4726](https://github.com/sitespeedio/sitespeed.io/pull/4726).
