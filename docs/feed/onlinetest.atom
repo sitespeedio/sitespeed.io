@@ -16,6 +16,65 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[onlinetest 3.7.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0"/>
+        <updated>2026-05-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Per-queue 24 h sparkline on each <code>/admin</code> queue row, independently scaled so low- and high-traffic queues both show shape #256.<br>
+- Subtle motion on <code>/admin</code>: one-time staggered bar-chart entrance, refresh-indicator pulse, and tweened number rollups when totals change. All honour <code>prefers-reduced-motion</code> #256.<br>
+<br>
+<strong>Fixed</strong><br>
+- Queue defaults bumped to <code>removeOnComplete: 50 / removeOnFail: 100 / attempts: 2</code>; code-level fallbacks aligned with the yaml #255.<br>
+- Internal queues (<code>testrunners</code>, <code>result</code>) no longer listed on <code>/admin</code> — they had no failures, no sparkline, and an inert Empty button #258.<br>
+- Refresh indicator on <code>/admin</code> no longer wobbles each tick — fixed-column width plus non-breaking-space padding on the seconds counter, and the mid-fetch &quot;Updating…&quot; string is gone in favour of the existing pulse animation #258 #260.<br>
+- Activity cards (Last hour / 24 h / 7 d / 30 d) on <code>/admin</code> are now centered to match the chart below them #260.<br>
+- Testrunner setup duplicated on restart — registration was concatenating old + new instead of deduping #257.<br>
+- Multi-type setups on one location (e.g. desktop + emulatedMobile) collapsed into the last entry after a restart; dedupe now keys on full setup identity, not just queue name #259.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.6.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0"/>
+        <updated>2026-05-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Activity stats on <code>/admin</code>: totals for the last 24 hours and 7 days plus a stacked bar chart of tests per hour over the last 24 h (completed / failed / other). Pure server-rendered SVG, cached for 60 s so the auto-refresh doesn&#39;t beat on Postgres #252.<br>
+<br>
+<strong>Fixed</strong><br>
+- Hide the Failed count for the internal <code>testrunners</code> and <code>result</code> queues — the number was unactionable because the queues don&#39;t appear in Recent failures #251.<br>
+- Age labels in Recent failures now graduate to <code>d</code>/<code>mo</code> past 48 h instead of shouting <code>12608h ago</code> #251.<br>
+- Long URLs no longer push the <code>/search/</code> results table past its container and shove the page off-centre. URL cells now wrap at any character; the form has <code>overflow-x: auto</code> as a safety net #253.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 3.5.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0"/>
+        <updated>2026-05-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Health banner on <code>/admin</code>: Redis up/down, Postgres up/down, connected testrunners, totals for pending/running/failed jobs #247.<br>
+- &quot;Currently running&quot; table on <code>/admin</code> — every active job with URL/script, queue, runner, and elapsed time. Runs over 10 minutes are highlighted #247.<br>
+- &quot;Recent failures&quot; table on <code>/admin</code> with the error message and a one-click Retry button #248.<br>
+- Active and Failed counts on the queue table, plus a red &quot;no worker&quot; badge when a queue has pending jobs but no testrunner serving it #246.<br>
+- <code>/admin</code> auto-refreshes every 15 seconds. Pauses in background tabs #249.<br>
+- Opt-in auto-refresh toggle on <code>/search/</code>, 60 seconds. Off by default. Pauses while any test is ticked, so Compare selections aren&#39;t lost. State remembered in <code>localStorage</code> #250.<br>
+- <code>/admin</code> mobile layout reworked for the new tables — rows stack into name → counts → action on narrow screens #246 #247 #248.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[onlinetest 3.4.0]]></title>
         <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</id>
         <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0"/>
@@ -108,46 +167,6 @@
         <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0</id>
         <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0"/>
         <updated>2026-05-12T00:00:00.000Z</updated>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.0.3]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.3</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.3"/>
-        <updated>2026-05-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Fix spinning /result page when a queued test is in active state #228.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.0.2]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.2</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.2"/>
-        <updated>2026-05-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Shorten the URL input placeholder so the allowed-domain regex hint fits on narrower viewports #227.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.0.1]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.1</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.1"/>
-        <updated>2026-05-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Show the configured <code>allowedDomain</code> regex in the URL input placeholder so users can see which URLs are accepted #225.<br>
-- Fix broken status polling and missing fonts on the running page #226.<br>
-]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

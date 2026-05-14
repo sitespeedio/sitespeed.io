@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-13T12:31:43.796Z</updated>
+    <updated>2026-05-14T13:21:29.239Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 40.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0"/>
+        <updated>2026-05-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Scripts are now auto-detected on the command line, so <code>--multi</code> is no longer required to run them. Any positional argument that looks like a script — <code>.js</code> / <code>.cjs</code> / <code>.mjs</code>, or any file whose first non-empty line doesn&#39;t start with <code>http</code> — flips multi mode on automatically, and mixed inputs like <code>login.js https://example.com logout.js</code> just work. <code>--multi</code> is kept as an explicit override for the one case auto-detection can&#39;t cover: sharing a single browser session across a list of plain URLs. All existing invocations behave exactly as before #4725.<br>
+<br>
+<strong>Fixed</strong><br>
+- Gzipped HAR files are now written by piping JSON through <code>createGzip</code> straight to disk instead of materialising the JSON string, a <code>Buffer</code> copy of it, and the full gzipped <code>Buffer</code> all at once. For a 200 MB HAR that removes several hundred MB of avoidable peak RSS, multiplied when multiple pages finish around the same time. The storage layer now accepts a <code>Readable</code> in addition to strings and Buffers; existing callers are unaffected #4728.<br>
+- Gzipped JSON result files (Chrome traces, console logs, etc.) are read by streaming through <code>createGunzip</code> and collecting utf-8 chunks rather than buffering the whole gzipped payload, gunzipping it into another Buffer, then stringifying. The parsed object still has to fit in memory, but the throwaway gzipped and unzipped buffer copies are gone — meaningful on 50+ MB traces #4726.<br>
+- The sustainable plugin and the S3 plugin pick up the same streaming treatment: the sustainable plugin now uses the shared streaming gzipped-JSON helper instead of its own buffer-everything copy, and the S3 plugin streams uploads via <code>createReadStream</code> with an explicit <code>ContentLength</code> instead of loading each file fully into memory before <code>PutObject</code>. With 20 concurrent S3 uploads, RSS no longer spikes to ~20× the size of the largest file in the result bundle #4727.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 40.4.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1</id>
@@ -176,19 +194,6 @@
         <updated>2026-01-24T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Updated Browsertime with the new bidi-har that fixes the response har problem for Firefox #4589.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.0"/>
-        <updated>2026-01-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Chrome 144 and Firefox 147 in the Docker container #4582.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
