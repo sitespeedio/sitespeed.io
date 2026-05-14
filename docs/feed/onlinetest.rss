@@ -12,6 +12,41 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/onlinetest.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[onlinetest 3.4.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</guid>
+            <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- <strong>Connected testrunners</strong> table on <code>/admin</code> showing hostname, location, the setup each machine serves, and a fresh / stale &quot;last seen&quot; badge. Each testrunner publishes a heartbeat on the existing <code>testrunners</code> Bull queue every 30 s; the server tracks <code>lastSeenAt</code> per runner and prunes anything quiet for &gt;120 s, so crashed runners (OOM, host reboot, <code>docker kill</code>) drop off the admin page within ~2 minutes instead of haunting the metrics gauge forever. When two runners pick the same <code>LOCATION_NAME</code> + <code>deviceId</code>, the server logs a clear <code>Testrunner queue collision: hostA and hostB both claim queue X. Change LOCATION_NAME (or deviceId) on one of them.</code> — the registration still goes through so existing deployments don&#39;t break, but the collision is no longer silent #244.<br>
+- <code>deploy/PRODUCTION.md</code> gets an &quot;Adding a third (or Nth) testrunner&quot; section with three concrete troubleshooting cases: not registering, stale row, queue collision #244.<br>
+- <strong>Compare workflow on <code>/search/</code></strong>: the column over the per-row checkbox is now its own <code>Compare</code> header (split out from the generic &quot;Actions&quot;), a one-line helper below the table explains the affordance, and each checkbox carries an <code>aria-label</code> / <code>title</code> of &quot;Select this run to compare with another&quot;. The Compare button itself starts disabled, gates submission until exactly two completed runs are ticked (a third tick is refused — the unchecked boxes go disabled when the limit is hit), and shows a transient inline message on a premature click (&quot;Select 1 more test to enable Compare.&quot; / &quot;Select 2 completed tests above first.&quot;) via <code>aria-disabled</code> + a polite <code>aria-live</code> region #240.<br>
+- <code>deploy/update.sh</code> — a single operator command that pulls the latest images, restarts services with <code>up -d --remove-orphans</code>, prints <code>docker compose ps</code>, and tails logs for 10 seconds so first-boot errors land in the same terminal. <code>--mode {all-in-one|server|testrunner}</code> picks the right production compose file; <code>--version X.Y.Z</code> rewrites <code>SITESPEED_IO_SERVER_VERSION</code> / <code>SITESPEED_IO_TESTRUNNER_VERSION</code> in <code>.env</code> atomically before pulling. <code>PRODUCTION.md</code> is updated to call the helper in every place it used to spell out the compose invocation by hand.<br>
+- <code>.env.example</code> is now the single source of truth for every variable any compose file reads (dev or production). New header walks through the three deployment shapes, and the previously-undocumented <code>DOMAIN</code> variable (used by the Caddy single-server compose for automatic HTTPS) is included. <code>PRODUCTION.md</code> drops its inline env-var snippets and points at <code>.env.example</code> so the two can&#39;t drift.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>SIGTERM</code> / <code>SIGINT</code> now actually drain in-flight HTTP requests before the process exits. The previous shutdown chain ended at <code>this.app.close()</code> on the Express app object (no such method exists), so the HTTP server was never told to stop — it just disappeared when <code>process.exit(0)</code> fired a few lines later, killing in-flight requests mid-response. The web server now keeps the real <code>http.Server</code> reference and calls <code>close()</code> on it; a configurable <code>server.shutdown.timeoutMs</code> (default 30 s) caps the drain and falls back to <code>closeAllConnections()</code> after the deadline. A second signal during shutdown short-circuits to immediate exit for operators who&#39;d rather not wait #243.<br>
+- Custom hero / navbar logo overrides now use whatever dimensions the operator sets in <code>html.logo.*</code>. Two hardcoded <code>aspect-ratio: 90.488 / 19.543</code> / <code>aspect-ratio: 123 / 25.375</code> CSS rules were forcing every logo back to the bundled SVG&#39;s proportions #239.<br>
+- The analyze button on the Extras tab no longer sits a few pixels lower than on the other tabs. <code>#extras .control</code> was applying <code>padding: 4px 0</code> to the submit button&#39;s wrapper as well as to the intended checkbox rows; scoped to <code>.extras-fieldset .control</code> so only the diagnostics checkboxes get the extra spacing #239.<br>
+- Footer spacing: removed the duplicate <code>&amp;nbsp;</code> before &quot;version&quot; and added one between the trailing dash and &quot;AGPLv3&quot;, so the footer now reads &quot;©sitespeed.io  2026 - version X.Y.Z - AGPLv3&quot; with consistent spacing #239.<br>
+- Search help panel: tighter copy. &quot;You can combine your search commands. To find a test for a URL, date and browser you can search like this&quot; is now &quot;Combine commands to narrow your search. Example&quot;. The &quot;Find tests by …&quot; preamble that repeated on every line is gone — each command now leads with its field name and (where applicable) the allowed values #239.<br>
+<br>
+<strong>Security</strong><br>
+- Stop logging and echoing back invalid API keys. <code>validateKey</code> used to write the rejected value to the server log and return it in the 403 response body, so typos and stale secrets piled up in log aggregation. The log line is now <code>Invalid API key supplied</code> (no value, no length) and the response carries a single &quot;Invalid API key.&quot; message in every locale #242.<br>
+- Close two XSS vectors that the recent UI work uncovered:<br>
+- Enforce a defense-in-depth CSP (<code>default-src &#39;self&#39;</code>; <code>script-src</code> / <code>style-src</code> allow <code>&#39;unsafe-inline&#39;</code> transitionally because pug templates still ship inline blocks; <code>frame-ancestors &#39;none&#39;</code>, <code>object-src &#39;none&#39;</code>, <code>base-uri &#39;self&#39;</code>, <code>form-action &#39;self&#39;</code>) and re-enable HSTS. Both were disabled previously #242.<br>
+- Block sensitive sitespeed.io flags from the GUI&#39;s &quot;Command line args&quot; tab. The user-supplied extras textarea used to forward arbitrary flags to the testrunner with only <code>--verbose</code> filtered. A GUI submission could load plugin / JS code (<code>--plugins.add</code>, <code>--browsertime.preScript</code>), run any binary as the browser (<code>--browsertime.chrome.binaryPath</code>), redirect HARs and metrics to an attacker-controlled destination (whole <code>--graphite.*</code> / <code>--s3.*</code> / <code>--gcs.*</code> / <code>--scp.*</code> / <code>--slack.*</code> / <code>--matrix.*</code> / <code>--datadog.*</code> / <code>--influxdb.*</code> namespaces), or read arbitrary files via <code>--config</code>. A denylist now drops these tokens (and their value arguments) before they reach sitespeed.io, and <code>/sitespeed-help.json</code> filters the same set so the CLI picker stops suggesting them (277 → 187 entries). API submissions (which pass a <code>userConfig</code> object, not extras) are deliberately untouched #241.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.3.1]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Filmstrip 404s in the compare view, again — the 3.3.0 pass still constructed frame URLs on a fixed 100 ms cadence inside <code>(FirstVisualChange, LastVisualChange)</code>, which broke whenever visual progress sat flat between two boundaries (the expected JPGs were never written to disk). The vendored compare bundle now reads frame timestamps straight from <code>_visualMetrics.VisualProgress</code> — one JPG per VP sample, named after that exact ms — and lets the existing 100 ms padding step forward-fill the uniform grid, so the rendered strip still reads &quot;nothing happened for 2 s&quot; differently from &quot;everything changed in 50 ms&quot; #238.<br>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[onlinetest 3.3.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</link>
             <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</guid>
@@ -76,60 +111,6 @@
             <description><![CDATA[<strong>Fixed</strong><br>
 - Show the configured <code>allowedDomain</code> regex in the URL input placeholder so users can see which URLs are accepted #225.<br>
 - Fix broken status polling and missing fonts on the running page #226.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 3.0.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.0.0</guid>
-            <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Collect metrics from the server and make it available for Prometheus #213.<br>
-- New API endpoint to retrieve the full Browsertime JSON for a completed test via <code>GET /api/result/:id</code> #217.<br>
-- Two configurable GUI themes: <code>console</code> (default) and <code>memphis</code>, selected via <code>html.theme</code> in server.yaml #224.<br>
-- Lazy-load the Ace editor so it only fetches when the Scripting tab is opened; first paint of the start page drops by roughly 700 KB #224.<br>
-- Searchable picker of all sitespeed.io CLI flags in the Command line tab #224.<br>
-- Significant accessibility improvements: skip links, real labels, ARIA tablist with arrow-key navigation, modal focus trap, role attributes, aria-current on nav, aria-busy/aria-live on the running page, ≥44 px touch targets, prefers-reduced-motion, <code>/</code>-to-focus and ⌘↵-to-submit shortcuts #224.<br>
-- Added step-security/harden-runner to all GitHub Actions workflows #222.<br>
-<br>
-<strong>Fixed</strong><br>
-- Smarter URL matching in scripting validation: now handles both single and double quotes, and whitespace inside <code>commands.measure.start(...)</code> / <code>commands.navigate(...)</code> calls #211.<br>
-- Better error handling in the API result endpoint #218.<br>
-<br>
-<strong>Changed</strong><br>
-- Replaced the Bulma CSS framework with a hand-written design system — drops ~250 KB of vendor CSS. Custom CSS overrides targeting Bulma classes will need to be rewritten #224.<br>
-- Default sitespeed.io Docker image bumped from 39 to 40 in <code>.env.example</code>.<br>
-- Pinned GitHub Actions to specific commit SHAs for supply-chain security #220.<br>
-- Switched the API Docker workflow&#39;s harden-runner egress policy to <code>block</code> #223.<br>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 2.0.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</guid>
-            <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Docker containers now uses NodeJS 24 #173.<br>
-- German translations, thank you Tobi for PR #174.<br>
-- Translations: Arabic, Bengali, Spanish, French, Hindi, Portuguese, Russian, Urdu, Simplified Chinese thank you Tobi for PR #181.<br>
-- Basic Auth for admin now uses .env file and will warn in the logs if no auth is setup #205.<br>
-<br>
-<strong>Fixed</strong><br>
-- Make sure the configuratiomn (nconf) is never accessed before configuration files is read #177.<br>
-- Bump Postgres to latest version #172<br>
-- Fix correct path to scripting file #167.<br>
-- Update to sitespeed.io 39 #171.<br>
-- Use Trixie as base image #185.<br>
-- Simplify how we do releases #206<br>
-- The webserver port was hardcoded, fixed in #204.<br>
-- Renamed the default yaml files for server and testrunner #199<br>
-<br>
-<strong>Changed</strong><br>
-- Rename defaulLocale configuration to locale #178. If you used <code>localization:defaultLocale</code> that is now <code>localization:locale</code>.<br>
-- Updated minio to latest release. There are some changes on startup so check the PR and update your docker compose accordingly #163.<br>
-- Switched to default use Redis instead of KeyDB since Redis is Open Source again #169.<br>
-- Reworked the docker compose files #200 #202 #203<br>
-- Always use .env if it exists for both the server and the testrunner (and the compose files) #190.<br>
 ]]></description>
         </item>
     </channel>
