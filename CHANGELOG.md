@@ -1,6 +1,29 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 41.0.0 - 2026-05-15
+
+### Highlights
+
+A small but breaking release: Node.js 22 is now the minimum, and `--help` has been redesigned around topic-filtered views instead of dumping every option in one screen.
+
+### Breaking
+* Node.js 22+ is now required (was Node.js 20+) [#4732](https://github.com/sitespeedio/sitespeed.io/pull/4732).
+* `sitespeed.io --help` no longer prints every option from all 26 option groups by default — it now shows a short curated list of common options plus the available topic names. Use `sitespeed.io --help <topic>` to drill into one topic, or `sitespeed.io --help-all` to reproduce the historical full dump (kept unchanged for scripts, and used to generate the published docs/config reference) [#4730](https://github.com/sitespeedio/sitespeed.io/pull/4730).
+
+### Changed
+* `coach-core` bumped to 9.1.0, which pulls in `pagexray` 5.0.0 [#4731](https://github.com/sitespeedio/sitespeed.io/pull/4731).
+
+### Fixed
+`pagexray` 5.0.0 (transitive via coach-core 9.1.0) brings several reporting fixes that show up directly in sitespeed.io output:
+* HTTP/3 / HTTP/3.0 connections are now classified as `h3` instead of falling through to `h1`, so the HTTP-version breakdown is correct on HTTP/3 traffic.
+* `Cache-Control` is parsed case-insensitively (RFC 7234), so `Max-Age=42` is read as 42 instead of 0 and `No-Cache` / `No-Store` are honoured — caching advice and `expireStats` no longer over-report problems on origins that capitalise the directive.
+* `missingCompression` no longer flags already-gzipped assets (the encoding check was comparing a flattened header array against a string), accepts compound encodings like `br, gzip`, and recognises `zstd`. `xml` is now also considered for compression reporting.
+* The `Domain=` cookie attribute is matched case-insensitively (RFC 6265), so third-party cookies set with lowercase `domain=` are detected.
+* `getMainDomain` recognises common two-label public suffixes (`.co.jp`, `.com.br`, `.com.au`, …), so the auto-generated first-party regex stops misclassifying same-site requests on non-`.co.uk` country domains.
+* `defaultContentTypes` now includes `favicon`, so every page has a consistent shape in the content-type breakdown.
+* `getDocumentRequests` returns an empty array for pages with no matching entries instead of throwing.
+
 ## 40.5.0 - 2026-05-14
 
 ### Added
