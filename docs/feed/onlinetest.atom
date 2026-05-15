@@ -27,8 +27,7 @@
 <strong>Fixed</strong><br>
 - Queue defaults bumped to <code>removeOnComplete: 50 / removeOnFail: 100 / attempts: 2</code>; code-level fallbacks aligned with the yaml #255.<br>
 - Internal queues (<code>testrunners</code>, <code>result</code>) no longer listed on <code>/admin</code> — they had no failures, no sparkline, and an inert Empty button #258.<br>
-- Refresh indicator on <code>/admin</code> no longer wobbles each tick — fixed-column width plus non-breaking-space padding on the seconds counter, and the mid-fetch &quot;Updating…&quot; string is gone in favour of the existing pulse animation #258 #260.<br>
-- Activity cards (Last hour / 24 h / 7 d / 30 d) on <code>/admin</code> are now centered to match the chart below them #260.<br>
+- Refresh indicator on <code>/admin</code> now sits in a fixed-width column so the version pill can&#39;t shift sideways each tick #258.<br>
 - Testrunner setup duplicated on restart — registration was concatenating old + new instead of deduping #257.<br>
 - Multi-type setups on one location (e.g. desktop + emulatedMobile) collapsed into the last entry after a restart; dedupe now keys on full setup identity, not just queue name #259.<br>
 ]]></summary>

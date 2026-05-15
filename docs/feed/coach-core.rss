@@ -4,7 +4,7 @@
         <title>coach-core release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of coach-core</description>
-        <lastBuildDate>Thu, 07 May 2026 21:04:09 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 14 May 2026 18:16:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,16 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/coach-core.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[coach-core 9.1.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0</guid>
+            <pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Updated to PageXraty 5.0.0 #164.<br>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[coach-core 9.0.1]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</link>
@@ -147,16 +157,6 @@
 <br>
 <strong>Changed</strong><br>
 - Remove advice about disableFLoCHeader #106.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.2.1]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</guid>
-            <pubDate>Thu, 22 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Catch if local storage or session storage isn&#39;t accessible.<br>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>

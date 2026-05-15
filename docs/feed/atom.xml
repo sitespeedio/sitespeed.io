@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-14T00:00:00.000Z</updated>
+    <updated>2026-05-15T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0"/>
+        <updated>2026-05-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- HTTP/3 / HTTP/3.0 connections are now classified as <code>h3</code> instead of falling through to <code>h1</code>, so the HTTP-version breakdown is correct on HTTP/3 traffic.<br>
+- <code>Cache-Control</code> is parsed case-insensitively (RFC 7234), so <code>Max-Age=42</code> is read as 42 instead of 0 and <code>No-Cache</code> / <code>No-Store</code> are honoured — caching advice and <code>expireStats</code> no longer over-report problems on origins that capitalise the directive.<br>
+- <code>missingCompression</code> no longer flags already-gzipped assets (the encoding check was comparing a flattened header array against a string), accepts compound encodings like <code>br, gzip</code>, and recognises <code>zstd</code>. <code>xml</code> is now also considered for compression reporting.<br>
+- The <code>Domain=</code> cookie attribute is matched case-insensitively (RFC 6265), so third-party cookies set with lowercase <code>domain=</code> are detected.<br>
+- <code>getMainDomain</code> recognises common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, …), so the auto-generated first-party regex stops misclassifying same-site requests on non-<code>.co.uk</code> country domains.<br>
+- <code>defaultContentTypes</code> now includes <code>favicon</code>, so every page has a consistent shape in the content-type breakdown.<br>
+- <code>getDocumentRequests</code> returns an empty array for pages with no matching entries instead of throwing.<br>
+<br>
+<strong>Changed</strong><br>
+- <code>coach-core</code> bumped to 9.1.0, which pulls in <code>pagexray</code> 5.0.0 #4731.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 40.5.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0"/>
@@ -27,6 +49,52 @@
 - Gzipped HAR files are now written by piping JSON through <code>createGzip</code> straight to disk instead of materialising the JSON string, a <code>Buffer</code> copy of it, and the full gzipped <code>Buffer</code> all at once. For a 200 MB HAR that removes several hundred MB of avoidable peak RSS, multiplied when multiple pages finish around the same time. The storage layer now accepts a <code>Readable</code> in addition to strings and Buffers; existing callers are unaffected #4728.<br>
 - Gzipped JSON result files (Chrome traces, console logs, etc.) are read by streaming through <code>createGunzip</code> and collecting utf-8 chunks rather than buffering the whole gzipped payload, gunzipping it into another Buffer, then stringifying. The parsed object still has to fit in memory, but the throwaway gzipped and unzipped buffer copies are gone — meaningful on 50+ MB traces #4726.<br>
 - The sustainable plugin and the S3 plugin pick up the same streaming treatment: the sustainable plugin now uses the shared streaming gzipped-JSON helper instead of its own buffer-everything copy, and the S3 plugin streams uploads via <code>createReadStream</code> with an explicit <code>ContentLength</code> instead of loading each file fully into memory before <code>PutObject</code>. With 20 concurrent S3 uploads, RSS no longer spikes to ~20× the size of the largest file in the result bundle #4727.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 9.1.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0"/>
+        <updated>2026-05-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Updated to PageXraty 5.0.0 #164.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 5.0.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0"/>
+        <updated>2026-05-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- CLI can now read a HAR from stdin: <code>pagexray -</code> or piping into <code>pagexray</code> with no path argument #131.<br>
+- CLI prints a friendly error to stderr and exits 1 when the file is missing or the input isn&#39;t valid JSON (previously threw a raw Node stack trace) #131.<br>
+- README updated to drop the long-removed <code>cookieStats</code> example block and document fields added across 3.x / 4.x (<code>fullyLoaded</code>, <code>afterOnLoad</code>, <code>afterOnContentLoad</code>, <code>renderBlocking</code>, <code>googleWebVitals</code>, <code>cpu</code>, <code>firstPartyRegEx</code>) #130.<br>
+<br>
+<strong>Fixed</strong><br>
+- Classify <code>HTTP/3</code> / <code>HTTP/3.0</code> connections as <code>h3</code> (previously only the lowercase <code>h3</code> / <code>h3-29</code> shorthand was recognised — the canonical form fell through to <code>h1</code>) #128.<br>
+- Parse <code>Cache-Control</code> directives case-insensitively (RFC 7234 §5.2). <code>Max-Age=42</code> is now read as 42 instead of 0, and <code>No-Cache</code> / <code>No-Store</code> are honoured #128.<br>
+- Replace the deprecated <code>url.parse</code> (Node DEP0169) with the WHATWG <code>URL</code> parser in <code>getHostname</code> #128.<br>
+- Stop throwing in <code>getDocumentRequests</code> when a page has no matching entries — return an empty array instead #128.<br>
+- <code>missingCompression</code> was flagging every large text asset, including gzipped ones, because <code>headers.flatten</code> wraps values in arrays and the encoding check compared the array to a string. Unwrap before comparing, accept compound codings (<code>br, gzip</code>), and recognise <code>zstd</code> #129.<br>
+- Match the <code>Domain=</code> cookie attribute case-insensitively (RFC 6265 §5.2) so third-party cookies set with lowercase <code>domain=</code> are detected #129.<br>
+- Recognise common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, ...) in <code>getMainDomain</code> so the auto-generated first-party regex isn&#39;t wrong for non-<code>.co.uk</code> country domains #129.<br>
+- <code>defaultContentTypes</code> now includes <code>favicon</code> so every page has a consistent shape (matches the example in the README) #129.<br>
+- <code>xml</code> is now considered for <code>missingCompression</code> reporting #129.<br>
+- <code>engines.node</code> bumped from <code>&gt;=8.9.0</code> to <code>&gt;=22.0.0</code> (the current Node.js LTS), and the GitHub Actions matrix now runs on Node 22 + 24 #132, #133.<br>
+- Test runner switched from Mocha + Chai to AVA, matching the rest of the sitespeed.io / browsertime ecosystem. Test helpers no longer depend on bluebird or lodash #133.<br>
+- ESLint upgraded from 8 to 9 with the new flat config (<code>eslint.config.js</code> replaces <code>.eslintrc.json</code> and <code>.eslintignore</code>) #133.<br>
+- All devDependencies bumped to current major versions: prettier 3, browserify 17, browserify-banner 2, @babel/core + preset-env 7.29, jsdoc 4. The abandoned <code>uglify-es</code> is replaced by <code>terser</code>, and <code>mkdirp</code> is dropped in favour of native <code>fs.mkdirSync({recursive:true})</code> in the browserify script #133.<br>
+<br>
+<strong>Changed</strong><br>
+- Node.js 22 is minumium.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -58,8 +126,7 @@
 <strong>Fixed</strong><br>
 - Queue defaults bumped to <code>removeOnComplete: 50 / removeOnFail: 100 / attempts: 2</code>; code-level fallbacks aligned with the yaml #255.<br>
 - Internal queues (<code>testrunners</code>, <code>result</code>) no longer listed on <code>/admin</code> — they had no failures, no sparkline, and an inert Empty button #258.<br>
-- Refresh indicator on <code>/admin</code> no longer wobbles each tick — fixed-column width plus non-breaking-space padding on the seconds counter, and the mid-fetch &quot;Updating…&quot; string is gone in favour of the existing pulse animation #258 #260.<br>
-- Activity cards (Last hour / 24 h / 7 d / 30 d) on <code>/admin</code> are now centered to match the chart below them #260.<br>
+- Refresh indicator on <code>/admin</code> now sits in a fixed-width column so the version pill can&#39;t shift sideways each tick #258.<br>
 - Testrunner setup duplicated on restart — registration was concatenating old + new instead of deduping #257.<br>
 - Multi-type setups on one location (e.g. desktop + emulatedMobile) collapsed into the last entry after a restart; dedupe now keys on full setup identity, not just queue name #259.<br>
 ]]></summary>
@@ -418,19 +485,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 27.0.4]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4"/>
-        <updated>2026-05-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[coach-core 9.0.0]]></title>
         <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</id>
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0"/>
@@ -466,6 +520,19 @@
 - Drop <code>bluebird</code> from runtime dependencies — native promises cover everything coach-core needs and the package was effectively unused #156.<br>
 - Modernise the GitHub Actions workflow: bump <code>actions/checkout</code> to v6.0.2, <code>actions/setup-node</code> to v6.4.0 (with npm cache enabled), replace the deprecated apt-key Chrome install with a one-liner, replace the unmaintained third-party <code>xvfb-action</code> with <code>xvfb-run</code>, expand the Node matrix to 20 / 22 / 24, drop test/dom and test/api/domTest.js from <code>npm test</code> (test runner needs a separate rewrite — see #147 if you want them back). New <code>dependabot.yml</code> keeps SHA pins current going forward #141.<br>
 - Bump browsertime devDep to 27.0.0 (no runtime impact — coach-core has no runtime browsertime dep, only the dev test runner used to).<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 27.0.4]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4"/>
+        <updated>2026-05-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -643,19 +710,6 @@
         <updated>2026-01-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - The +1 container has an updated gpsi-plugin with change #60 contributed by Tim Oldenburg and lighthouse plugin bumped to 13.0.1 in #141.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.1"/>
-        <updated>2026-01-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Updated Browsertime with the new bidi-har that fixes the response har problem for Firefox #4589.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -857,6 +911,32 @@
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[coach-core 8.0.2]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Another update to PageXray with a safer HTTP header check.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 8.0.1]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Updated PageXray.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[pagexray 4.4.4]]></title>
         <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</id>
         <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4"/>
@@ -877,32 +957,6 @@
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - If the meta section from a HAR file from Browsertime was missing, we didn&#39;t catch that. Fixed in #124.<br>
 - Update to latest minimist #122.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 8.0.2]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2"/>
-        <updated>2023-08-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Another update to PageXray with a safer HTTP header check.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 8.0.1]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1"/>
-        <updated>2023-08-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Updated PageXray.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -937,19 +991,6 @@
         <updated>2023-07-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Updated tough-cookie, thank you lallenlowe for PR #107.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.2.1]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1"/>
-        <updated>2023-06-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Catch if local storage or session storage isn&#39;t accessible.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -1165,19 +1206,6 @@
         <updated>2021-05-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Attach info about render blocking assets coming/working in Chrome 92 #104.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.1.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.1.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.1.0"/>
-        <updated>2021-04-08T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Attach Google Web Vitals data from Browsertime #101.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

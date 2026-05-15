@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-14T13:21:29.239Z</updated>
+    <updated>2026-05-15T04:20:22.893Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0"/>
+        <updated>2026-05-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- HTTP/3 / HTTP/3.0 connections are now classified as <code>h3</code> instead of falling through to <code>h1</code>, so the HTTP-version breakdown is correct on HTTP/3 traffic.<br>
+- <code>Cache-Control</code> is parsed case-insensitively (RFC 7234), so <code>Max-Age=42</code> is read as 42 instead of 0 and <code>No-Cache</code> / <code>No-Store</code> are honoured — caching advice and <code>expireStats</code> no longer over-report problems on origins that capitalise the directive.<br>
+- <code>missingCompression</code> no longer flags already-gzipped assets (the encoding check was comparing a flattened header array against a string), accepts compound encodings like <code>br, gzip</code>, and recognises <code>zstd</code>. <code>xml</code> is now also considered for compression reporting.<br>
+- The <code>Domain=</code> cookie attribute is matched case-insensitively (RFC 6265), so third-party cookies set with lowercase <code>domain=</code> are detected.<br>
+- <code>getMainDomain</code> recognises common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, …), so the auto-generated first-party regex stops misclassifying same-site requests on non-<code>.co.uk</code> country domains.<br>
+- <code>defaultContentTypes</code> now includes <code>favicon</code>, so every page has a consistent shape in the content-type breakdown.<br>
+- <code>getDocumentRequests</code> returns an empty array for pages with no matching entries instead of throwing.<br>
+<br>
+<strong>Changed</strong><br>
+- <code>coach-core</code> bumped to 9.1.0, which pulls in <code>pagexray</code> 5.0.0 #4731.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 40.5.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0</id>
@@ -181,19 +203,6 @@
         <updated>2026-01-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - The +1 container has an updated gpsi-plugin with change #60 contributed by Tim Oldenburg and lighthouse plugin bumped to 13.0.1 in #141.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.4.1"/>
-        <updated>2026-01-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Updated Browsertime with the new bidi-har that fixes the response har problem for Firefox #4589.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

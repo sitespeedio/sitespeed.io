@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>pagexray-release-feed</id>
     <title>pagexray release feed</title>
-    <updated>2026-05-12T12:45:36.396Z</updated>
+    <updated>2026-05-14T18:05:38.300Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,39 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[pagexray 5.0.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0"/>
+        <updated>2026-05-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- CLI can now read a HAR from stdin: <code>pagexray -</code> or piping into <code>pagexray</code> with no path argument #131.<br>
+- CLI prints a friendly error to stderr and exits 1 when the file is missing or the input isn&#39;t valid JSON (previously threw a raw Node stack trace) #131.<br>
+- README updated to drop the long-removed <code>cookieStats</code> example block and document fields added across 3.x / 4.x (<code>fullyLoaded</code>, <code>afterOnLoad</code>, <code>afterOnContentLoad</code>, <code>renderBlocking</code>, <code>googleWebVitals</code>, <code>cpu</code>, <code>firstPartyRegEx</code>) #130.<br>
+<br>
+<strong>Fixed</strong><br>
+- Classify <code>HTTP/3</code> / <code>HTTP/3.0</code> connections as <code>h3</code> (previously only the lowercase <code>h3</code> / <code>h3-29</code> shorthand was recognised — the canonical form fell through to <code>h1</code>) #128.<br>
+- Parse <code>Cache-Control</code> directives case-insensitively (RFC 7234 §5.2). <code>Max-Age=42</code> is now read as 42 instead of 0, and <code>No-Cache</code> / <code>No-Store</code> are honoured #128.<br>
+- Replace the deprecated <code>url.parse</code> (Node DEP0169) with the WHATWG <code>URL</code> parser in <code>getHostname</code> #128.<br>
+- Stop throwing in <code>getDocumentRequests</code> when a page has no matching entries — return an empty array instead #128.<br>
+- <code>missingCompression</code> was flagging every large text asset, including gzipped ones, because <code>headers.flatten</code> wraps values in arrays and the encoding check compared the array to a string. Unwrap before comparing, accept compound codings (<code>br, gzip</code>), and recognise <code>zstd</code> #129.<br>
+- Match the <code>Domain=</code> cookie attribute case-insensitively (RFC 6265 §5.2) so third-party cookies set with lowercase <code>domain=</code> are detected #129.<br>
+- Recognise common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, ...) in <code>getMainDomain</code> so the auto-generated first-party regex isn&#39;t wrong for non-<code>.co.uk</code> country domains #129.<br>
+- <code>defaultContentTypes</code> now includes <code>favicon</code> so every page has a consistent shape (matches the example in the README) #129.<br>
+- <code>xml</code> is now considered for <code>missingCompression</code> reporting #129.<br>
+- <code>engines.node</code> bumped from <code>&gt;=8.9.0</code> to <code>&gt;=22.0.0</code> (the current Node.js LTS), and the GitHub Actions matrix now runs on Node 22 + 24 #132, #133.<br>
+- Test runner switched from Mocha + Chai to AVA, matching the rest of the sitespeed.io / browsertime ecosystem. Test helpers no longer depend on bluebird or lodash #133.<br>
+- ESLint upgraded from 8 to 9 with the new flat config (<code>eslint.config.js</code> replaces <code>.eslintrc.json</code> and <code>.eslintignore</code>) #133.<br>
+- All devDependencies bumped to current major versions: prettier 3, browserify 17, browserify-banner 2, @babel/core + preset-env 7.29, jsdoc 4. The abandoned <code>uglify-es</code> is replaced by <code>terser</code>, and <code>mkdirp</code> is dropped in favour of native <code>fs.mkdirSync({recursive:true})</code> in the browserify script #133.<br>
+<br>
+<strong>Changed</strong><br>
+- Node.js 22 is minumium.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[pagexray 4.5.0]]></title>
         <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</id>
@@ -128,19 +161,6 @@
         <updated>2021-05-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Attach info about render blocking assets coming/working in Chrome 92 #104.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.1.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.1.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.1.0"/>
-        <updated>2021-04-08T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Attach Google Web Vitals data from Browsertime #101.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
