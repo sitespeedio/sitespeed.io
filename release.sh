@@ -13,8 +13,10 @@ np $* --branch main
 # Update to latest version in the docs
 bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
 
-# Generate the help for the docs
-bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
+# Generate the help for the docs (use --help-all so the published
+# reference still lists every option; the plain --help is now a curated
+# subset intended for interactive use).
+bin/sitespeed.js --help-all > docs/documentation/sitespeed.io/configuration/config.md
 
 # If an onlinetest checkout sits next to us at ../onlinetest, regenerate its
 # CLI help JSON so the picker in onlinetest's "command line" tab stays in sync
@@ -22,7 +24,7 @@ bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.m
 # isn't there (older onlinetest checkouts).
 if [ -d "../onlinetest" ] && [ -f "../onlinetest/release/update-cli-help.cjs" ]; then
   echo "Updating onlinetest CLI help…"
-  bin/sitespeed.js --help | node ../onlinetest/release/update-cli-help.cjs -
+  bin/sitespeed.js --help-all | node ../onlinetest/release/update-cli-help.cjs -
   echo "  Remember to commit & push ../onlinetest/server/public/sitespeed-help.json"
 fi
 
