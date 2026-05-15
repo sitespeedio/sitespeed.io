@@ -18,10 +18,26 @@ twitterdescription: Configuration for sitespeed.io.
 Sitespeed.io is highly configurable, let's check it out!
 
 ## The options
-You have the following options when running sitespeed.io within Docker (run <code>docker run sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help</code> to get the list on your command line):
+You have the following options when running sitespeed.io within Docker (run <code>docker run sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help-all</code> to get the full list on your command line):
 
 ~~~help
 {% include_relative "config.md" %}
+~~~
+
+### Browsing the help by topic
+
+Sitespeed.io has hundreds of options across many areas (browsers, video, Graphite, S3, scripting, ...). To make the CLI easier to navigate, <code>--help</code> is split into topics:
+
+* <code>sitespeed.io --help</code> shows a short, curated set of the most common options together with the list of available topics.
+* <code>sitespeed.io --help &lt;topic&gt;</code> shows only the options belonging to that topic. For example <code>--help chrome</code>, <code>--help firefox</code>, <code>--help graphite</code> or <code>--help video</code>.
+* <code>sitespeed.io --help-all</code> prints the complete reference (the same content as in the box above) and is what scripts and CI jobs should use if they want every option.
+
+The available topics are: <code>browser</code>, <code>video</code>, <code>firefox</code>, <code>chrome</code>, <code>edge</code>, <code>safari</code>, <code>android</code>, <code>screenshot</code>, <code>graphite</code>, <code>grafana</code>, <code>html</code>, <code>slack</code>, <code>s3</code>, <code>gcs</code>, <code>scp</code>, <code>matrix</code>, <code>budget</code>, <code>crux</code>, <code>sustainable</code>, <code>crawler</code>, <code>metrics</code>, <code>compare</code>, <code>api</code>, <code>plugins</code> and <code>text</code>.
+
+To see only the Chrome options, for example:
+
+~~~bash
+docker run --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help chrome
 ~~~
 
 
