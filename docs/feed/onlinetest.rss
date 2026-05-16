@@ -12,6 +12,30 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/onlinetest.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[onlinetest 4.0.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</guid>
+            <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>failed_reason TEXT</code> and <code>finished_date TIMESTAMP</code> columns on <code>sitespeed_io_test_runs</code>. <code>failed_reason</code> is populated from three paths the DB previously knew nothing about: Bull&#39;s <code>global:failed</code> event (the testrunner threw), the queue-down submit path in <code>add-test.js</code> (Redis unreachable when the test was queued), and the result-queue path when sitespeed.io itself exits non-zero (testrunner now sends <code>Test runner exited with code N: &lt;last line of stderr&gt;</code>, capped at 500 chars). <code>finished_date</code> is stamped on every terminal transition, so end-to-end duration can be derived as <code>finished_date - added_date</code> and run duration as <code>finished_date - run_date</code> (which is the browsertime <em>start</em> timestamp, not finish) #264.<br>
+- <code>server/database/migrations/</code> directory establishes the convention for schema changes against existing deployments — <code>setup.sql</code> only runs on a fresh Postgres data dir, so live databases need ALTERs applied separately. Each migration ships with a <code>.sh</code> helper (<code>check</code> / <code>backup</code> / <code>dry-run</code> / <code>apply</code> / <code>verify</code> / <code>rollback</code>) that runs <code>psql</code> inside the compose Postgres container, plus a README documenting the manual path. Existing deployments must run <code>001-add-failure-fields.sh apply</code> before rolling the server forward #264.<br>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.8.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</link>
+            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</guid>
+            <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Default sitespeed.io Docker image bumped from 40 to 41 in <code>.env.example</code>. The README &quot;Update sitespeed.io version&quot; snippets now reference 41 / 42 as the current and next-major tags.<br>
+- Vendored compare bundle rolled to pagexray 5.0.0 (HTTP/3 detection, case-insensitive <code>Cache-Control</code> directives, <code>missingCompression</code> over-count fix). The bundle shrinks from ~28 KB to ~17 KB thanks to pagexray&#39;s switch from uglify-es to terser #262.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>/admin</code> &quot;failed&quot; pill is now a real health signal: it counts failed test runs in the last 24 h from Postgres instead of Bull&#39;s <code>getJobCounts()</code>, which was capped by <code>removeOnFail</code> and only decayed on a successful retry — so the pill accumulated weeks of stale failures and shouted &quot;13 failed&quot; next to activity cards that correctly showed 0 in 24 h #261.<br>
+- Compare cookie list no longer renders domains like <code>.example.com\nUIDR=...</code> when a HAR concatenates multiple <code>Set-Cookie</code> response headers into one newline-joined value — the next cookie&#39;s name was leaking into the previous cookie&#39;s <code>Domain=</code> attribute. Picked up via the pagexray bump #262.<br>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[onlinetest 3.7.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</link>
             <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</guid>
@@ -124,12 +148,6 @@
 - Filmstrip and Visual Progress thumbnails no longer point at non-existent screenshots. The frame timestamps are now derived from <code>_visualMetrics.VisualProgress</code> change points — the authoritative list of frames sitespeed.io actually wrote to disk — instead of speculating a 100 ms grid that breaks on runs with a flat visual-progress stretch #235.<br>
 - Theme and admin CSS now cache-bust on each release via <code>?v=&lt;server-version&gt;</code> stamped on the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> hrefs. Previously a patch release that only touched the theme CSS could sit in browser caches until the unrelated 30-day cache header expired #234.<br>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 3.1.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.0</guid>
-            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
