@@ -13,7 +13,7 @@
         "@aws-sdk/client-s3": "3.1009.0",
         "@google-cloud/storage": "7.19.0",
         "@sitespeed.io/log": "2.0.0",
-        "@sitespeed.io/plugin": "1.0.1",
+        "@sitespeed.io/plugin": "1.0.2",
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.4",
@@ -3356,9 +3356,9 @@
       }
     },
     "node_modules/@sitespeed.io/plugin": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/plugin/-/plugin-1.0.1.tgz",
-      "integrity": "sha512-YE/6jFAaMfPdQziiu2ywPeAKNJ8lyx3zs7eUoIgp3eMU9OE+Uosj6n3dK9KXYJRVz/DSwnGzAFmZahqRw2nR4A==",
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/plugin/-/plugin-1.0.2.tgz",
+      "integrity": "sha512-K9sNP9aE5stXjRw87y8PF6KIS82TUeLkof7mORx4C/llFRzvN5INj/u8WPp+nsDmj0soNKSM5lqRYFtQdcadag==",
       "license": "MIT",
       "engines": {
         "node": ">=20.0.0"
