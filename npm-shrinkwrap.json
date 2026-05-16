@@ -19,7 +19,6 @@
         "axe-core": "4.11.4",
         "browsertime": "27.2.0",
         "coach-core": "9.1.0",
-        "dayjs": "1.11.18",
         "fast-stats": "0.0.7",
         "import-global": "1.1.1",
         "markdown": "0.5.0",
@@ -5806,12 +5805,6 @@
       "engines": {
         "node": ">=6"
       }
-    },
-    "node_modules/dayjs": {
-      "version": "1.11.18",
-      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.18.tgz",
-      "integrity": "sha512-zFBQ7WFRvVRhKcWoUh+ZA1g2HVgUbsZm9sbddh8EC5iv93sui8DVVz1Npvz+r6meo9VKfa8NyLWBsQK1VvIKPA==",
-      "license": "MIT"
     },
     "node_modules/debug": {
       "version": "4.3.4",

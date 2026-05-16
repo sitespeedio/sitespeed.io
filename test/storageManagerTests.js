@@ -5,12 +5,12 @@ import { Readable } from 'node:stream';
 import { createGunzip } from 'node:zlib';
 import { pipeline } from 'node:stream/promises';
 
-import dayjs from 'dayjs';
 import test from 'ava';
 
+import timestampFactory from '../lib/support/time.js';
 import { resultsStorage } from '../lib/core/resultsStorage/index.js';
 
-const timestamp = dayjs();
+const timestamp = timestampFactory();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
 
 function createManager(url, outputFolder) {
