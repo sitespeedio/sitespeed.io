@@ -12,8 +12,8 @@
       "dependencies": {
         "@aws-sdk/client-s3": "3.1009.0",
         "@google-cloud/storage": "7.19.0",
-        "@sitespeed.io/log": "1.0.0",
-        "@sitespeed.io/plugin": "1.0.0",
+        "@sitespeed.io/log": "2.0.0",
+        "@sitespeed.io/plugin": "1.0.2",
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.16.9",
         "axe-core": "4.11.4",
@@ -3347,19 +3347,22 @@
       }
     },
     "node_modules/@sitespeed.io/log": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-1.0.0.tgz",
-      "integrity": "sha512-fNZwb6JT6oUZstwRI1HLsHIYI+gxtqPKfGqOw5r+cX1zBgwolYjxd+B0h3cNSRGbunmyyl4Hi7qz0Eyt055iGw==",
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-2.0.0.tgz",
+      "integrity": "sha512-yI0g+wQVTySyWh6apMQP0RXD18HzcfkhLFZMUtTpkn2cgw6h1gtgY648UjEuBwfPzMNTYzJs59RZnFIYe4VUww==",
       "license": "Apache-2.0",
       "engines": {
-        "node": ">=20.0.0"
+        "node": ">=22.0.0"
       }
     },
     "node_modules/@sitespeed.io/plugin": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/plugin/-/plugin-1.0.0.tgz",
-      "integrity": "sha512-IvwXe17ZlF2UK2Asl8KkfhrNnmDS/3aL/mZg1xPhNbLiGhvYu4Uh7bsbz3YkV8cnOxGK7HdR5khbjm/BjZ0wQg==",
-      "license": "MIT"
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/plugin/-/plugin-1.0.2.tgz",
+      "integrity": "sha512-K9sNP9aE5stXjRw87y8PF6KIS82TUeLkof7mORx4C/llFRzvN5INj/u8WPp+nsDmj0soNKSM5lqRYFtQdcadag==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=20.0.0"
+      }
     },
     "node_modules/@sitespeed.io/throttle": {
       "version": "6.0.0",
@@ -5144,6 +5147,15 @@
       "optionalDependencies": {
         "jimp": "1.6.1",
         "usb-power-profiling": "1.6.0"
+      }
+    },
+    "node_modules/browsertime/node_modules/@sitespeed.io/log": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-1.0.0.tgz",
+      "integrity": "sha512-fNZwb6JT6oUZstwRI1HLsHIYI+gxtqPKfGqOw5r+cX1zBgwolYjxd+B0h3cNSRGbunmyyl4Hi7qz0Eyt055iGw==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=20.0.0"
       }
     },
     "node_modules/buffer-equal-constant-time": {
