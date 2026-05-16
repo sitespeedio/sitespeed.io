@@ -24,7 +24,6 @@
         "import-global": "1.1.1",
         "markdown": "0.5.0",
         "pug": "3.0.3",
-        "simplecrawler": "1.1.9",
         "ssh2-sftp-client": "12.1.1",
         "waterfall-tools": "https://codeload.github.com/pmeenan/waterfall-tools/tar.gz/123f6e4",
         "yargs": "18.0.0"
@@ -9790,11 +9789,6 @@
         "node": ">=0.10.0"
       }
     },
-    "node_modules/robots-parser": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/robots-parser/-/robots-parser-2.1.1.tgz",
-      "integrity": "sha512-6yWEYSdhK3bAEcYY0In3wgSBK70BiQoJArzdjZKCP/35b3gKIYu5Lc0qQqsoxjoLVebVoJiKK4VWGc5+oxvWBQ=="
-    },
     "node_modules/run-parallel": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz",
@@ -10098,39 +10092,6 @@
       "optional": true,
       "engines": {
         "node": ">=20.12.2"
-      }
-    },
-    "node_modules/simplecrawler": {
-      "version": "1.1.9",
-      "resolved": "https://registry.npmjs.org/simplecrawler/-/simplecrawler-1.1.9.tgz",
-      "integrity": "sha512-IY5YmeJWvfc1zpy9so1p/EknCqNum3Y9tmnzuLWZqKEwbntGXPGvN0SOtr+XqT4BHjfek2C12g3Tg1yK7Hoh8g==",
-      "dependencies": {
-        "async": "^3.1.0",
-        "iconv-lite": "^0.5.0",
-        "robots-parser": "^2.1.1",
-        "urijs": "^1.19.1"
-      },
-      "bin": {
-        "crawl": "lib/cli.js"
-      },
-      "engines": {
-        "node": ">=8"
-      }
-    },
-    "node_modules/simplecrawler/node_modules/async": {
-      "version": "3.2.3",
-      "resolved": "https://registry.npmjs.org/async/-/async-3.2.3.tgz",
-      "integrity": "sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g=="
-    },
-    "node_modules/simplecrawler/node_modules/iconv-lite": {
-      "version": "0.5.2",
-      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.5.2.tgz",
-      "integrity": "sha512-kERHXvpSaB4aU3eANwidg79K8FlrN77m8G9V+0vOR3HYaRifrlwMEpT7ZBJqLSEIHnEgJTHcWK82wwLwwKwtag==",
-      "dependencies": {
-        "safer-buffer": ">= 2.1.2 < 3"
-      },
-      "engines": {
-        "node": ">=0.10.0"
       }
     },
     "node_modules/slash": {
@@ -10885,11 +10846,6 @@
       "dependencies": {
         "punycode": "^2.1.0"
       }
-    },
-    "node_modules/urijs": {
-      "version": "1.19.11",
-      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.11.tgz",
-      "integrity": "sha512-HXgFDgDommxn5/bIv0cnQZsPhHDA90NPHD6+c/v21U5+Sx5hoP8+dP9IZXBU1gIfvdRfhG8cel9QNPeionfcCQ=="
     },
     "node_modules/usb": {
       "version": "2.15.0",
