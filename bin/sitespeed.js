@@ -9,7 +9,7 @@ import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { EventEmitter } from 'node:events';
 
-import merge from 'lodash.merge';
+import { merge } from '../lib/support/objectPath.js';
 import ora from '../lib/support/spinner.js';
 
 import { parseCommandLine } from '../lib/cli/cli.js';

@@ -2,8 +2,7 @@
 
 import { readFileSync } from 'node:fs';
 
-import merge from 'lodash.merge';
-import { get, set } from '../lib/support/objectPath.js';
+import { get, set, merge } from '../lib/support/objectPath.js';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
