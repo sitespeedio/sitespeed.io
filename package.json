@@ -93,7 +93,6 @@
     "browsertime": "27.2.0",
     "coach-core": "9.1.0",
     "dayjs": "1.11.18",
-    "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.7",
     "import-global": "1.1.1",
     "lodash.get": "4.4.2",
