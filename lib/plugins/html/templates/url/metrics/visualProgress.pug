@@ -19,13 +19,20 @@ if vpData.length > 0
   - if (vpFilmstrip.length <= 8) { vpThumbs = vpFilmstrip.slice() }
   - else { for (let i = 0; i < 8; i++) { vpThumbs.push(vpFilmstrip[Math.round(i * (vpFilmstrip.length - 1) / 7)]) } }
 
+  //- Step-after curve: VisualProgress samples are emitted only when the
+  //- similarity-to-final-frame percent changes, so the value between two
+  //- samples is the *previous* sample's percent — not a linear ramp to
+  //- the next one. Drawing straight lines between samples paints a
+  //- diagonal from (0, 0%) up to the first paint, which falsely suggests
+  //- the page was steadily rendering during a blank/orange period.
   - let vpFill = 'M 0 100'
-  - let vpStroke = ''
+  - let vpStroke = 'M 0 100'
+  - let vpLastY = '100.00'
   - let vpLastPercent = 0
-  - for (let i = 0; i < vpData.length; i++) { const r = vpData[i]; const x = (r.timestamp / vpMax * 100).toFixed(2); const y = (100 - r.percent).toFixed(2); vpFill += ' L ' + x + ' ' + y; vpStroke += (i === 0 ? 'M ' : 'L ') + x + ' ' + y + ' '; vpLastPercent = r.percent }
+  - for (let i = 0; i < vpData.length; i++) { const r = vpData[i]; const x = (r.timestamp / vpMax * 100).toFixed(2); const y = (100 - r.percent).toFixed(2); vpFill += ' L ' + x + ' ' + vpLastY + ' L ' + x + ' ' + y; vpStroke += ' L ' + x + ' ' + vpLastY + ' L ' + x + ' ' + y; vpLastY = y; vpLastPercent = r.percent }
   - const vpFinalY = (100 - vpLastPercent).toFixed(2)
   - vpFill += ' L 100 ' + vpFinalY + ' L 100 100 Z'
-  - vpStroke += 'L 100 ' + vpFinalY
+  - vpStroke += ' L 100 ' + vpFinalY
 
   //- Page-event markers — same palette the waterfall card uses.
   - const vpMarkers = []
@@ -123,6 +130,12 @@ if vpData.length > 0
       let data;
       try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
 
+      // The curve, axis ticks, thumbs and event markers all live inside
+      // .vp-curve-wrap, which has horizontal margins relative to the
+      // chart container. The X axis is the curve-wrap's width, NOT the
+      // chart's — using the chart rect for cursor→time math drags the
+      // popover time out of sync with what's drawn underneath.
+      const curveWrap = chart.querySelector('.vp-curve-wrap');
       const scrubber = chart.querySelector('.vp-scrubber');
       const line = chart.querySelector('.vp-scrubber-line');
       const popover = chart.querySelector('.vp-scrubber-popover');
@@ -132,34 +145,31 @@ if vpData.length > 0
       const progressEl = chart.querySelector('.vp-scrubber-progress');
       const eventsEl = chart.querySelector('.vp-scrubber-events');
 
-      // Closest filmstrip frame to a given time (linear — frames are
-      // typically <60 entries on a default Browsertime run, sorted by
-      // time, so a binary search adds complexity for no gain).
-      function nearestFrame(timeMs) {
+      // Most recent filmstrip frame at or before the cursor — what the
+      // page actually looked like at time T is whatever was last painted,
+      // not whichever frame is closest in absolute distance (frames are
+      // sorted by time; linear is fine for <60 entries).
+      function frameAt(timeMs) {
         if (!data.frames.length) return null;
-        let nearest = data.frames[0];
-        let bestDelta = Math.abs(nearest.t - timeMs);
-        for (let i = 1; i < data.frames.length; i++) {
-          const f = data.frames[i];
-          const d = Math.abs(f.t - timeMs);
-          if (d < bestDelta) { nearest = f; bestDelta = d; }
+        let result = data.frames[0];
+        for (let i = 0; i < data.frames.length; i++) {
+          if (data.frames[i].t <= timeMs) result = data.frames[i];
+          else break;
         }
-        return nearest;
+        return result;
       }
 
-      // Linear interpolation between visual-progress samples.
+      // Step-after lookup — samples mark the moments the percent changed,
+      // so any time between samples a and b holds a's value.
       function progressAt(timeMs) {
         const points = data.progress;
         if (!points.length) return 0;
-        if (timeMs <= points[0].t) return 0;
+        if (timeMs < points[0].t) return 0;
         const last = points[points.length - 1];
         if (timeMs >= last.t) return last.p;
         for (let i = 0; i < points.length - 1; i++) {
           const a = points[i], b = points[i + 1];
-          if (timeMs >= a.t && timeMs < b.t) {
-            const k = (timeMs - a.t) / (b.t - a.t);
-            return a.p + (b.p - a.p) * k;
-          }
+          if (timeMs >= a.t && timeMs < b.t) return a.p;
         }
         return last.p;
       }
@@ -184,16 +194,21 @@ if vpData.length > 0
       }
 
       function show(clientX) {
-        const rect = chart.getBoundingClientRect();
-        const x = clientX - rect.left;
-        if (x < 0 || x > rect.width) { hide(); return; }
-        const ratio = Math.max(0, Math.min(1, x / rect.width));
+        const chartRect = chart.getBoundingClientRect();
+        const curveRect = (curveWrap || chart).getBoundingClientRect();
+        const xInChart = clientX - chartRect.left;
+        const xInCurve = clientX - curveRect.left;
+        if (xInChart < 0 || xInChart > chartRect.width) { hide(); return; }
+        const ratio = Math.max(0, Math.min(1, xInCurve / curveRect.width));
         const timeMs = ratio * data.max;
         scrubber.classList.remove('is-hidden');
         scrubber.setAttribute('aria-hidden', 'false');
-        line.style.left = (ratio * 100) + '%';
+        // Pixel-position the line in the chart's coordinate space so it
+        // tracks the curve's X axis, not the chart's full width.
+        const lineX = (curveRect.left - chartRect.left) + ratio * curveRect.width;
+        line.style.left = lineX + 'px';
 
-        const frame = nearestFrame(timeMs);
+        const frame = frameAt(timeMs);
         if (frame) {
           frameImg.src = data.base + frame.f;
           frameWrap.style.display = '';
@@ -217,12 +232,14 @@ if vpData.length > 0
         eventsEl.style.display = events.length ? '' : 'none';
 
         // Position popover horizontally relative to the chart, clamped
-        // so it never spills past the card edges.
+        // so it never spills past the card edges. The popover anchors to
+        // the playhead line, not the raw cursor, so it stays glued to
+        // whatever moment the rest of the UI is showing.
         const popWidth = popover.offsetWidth || 200;
         const margin = 6;
-        let popLeft = x - popWidth / 2;
+        let popLeft = lineX - popWidth / 2;
         if (popLeft < margin) popLeft = margin;
-        if (popLeft + popWidth > rect.width - margin) popLeft = rect.width - popWidth - margin;
+        if (popLeft + popWidth > chartRect.width - margin) popLeft = chartRect.width - popWidth - margin;
         popover.style.left = popLeft + 'px';
       }
 
