@@ -56,8 +56,12 @@ jobs:
       run: npm install serve -g
     - name: Start local HTTP server
       run: (serve test/data/html/ -l 3001&)
+    - name: Install sshpass for the rsync password test
+      run: sudo apt-get install -y sshpass
     - name: Run Chrome test sending data using scp
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username scpuser --scp.password password --scp.destinationPath /config/
+    - name: Run Chrome test sending data using rsync
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --rsync.host localhost --rsync.port 2222 --rsync.username scpuser --rsync.password password --rsync.destinationPath /config/
     - name: Run Chrome test sending data to GCS
       run: STORAGE_EMULATOR_HOST="http://localhost:8081" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.projectId sitespeed
     - name: Run Chrome test sending data to S3
