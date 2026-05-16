@@ -10,7 +10,7 @@ import { readFileSync } from 'node:fs';
 import { EventEmitter } from 'node:events';
 
 import merge from 'lodash.merge';
-import ora from 'ora';
+import ora from '../lib/support/spinner.js';
 
 import { parseCommandLine } from '../lib/cli/cli.js';
 import { run } from '../lib/sitespeed.js';
