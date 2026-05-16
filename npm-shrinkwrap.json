@@ -22,7 +22,6 @@
         "dayjs": "1.11.18",
         "fast-stats": "0.0.7",
         "import-global": "1.1.1",
-        "lodash.get": "4.4.2",
         "lodash.merge": "4.6.2",
         "lodash.set": "4.3.2",
         "markdown": "0.5.0",
@@ -8266,11 +8265,6 @@
       "version": "4.17.21",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
       "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
-    },
-    "node_modules/lodash.get": {
-      "version": "4.4.2",
-      "resolved": "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz",
-      "integrity": "sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk="
     },
     "node_modules/lodash.groupby": {
       "version": "4.6.0",
