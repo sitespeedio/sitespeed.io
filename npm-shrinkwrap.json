@@ -22,9 +22,6 @@
         "dayjs": "1.11.18",
         "fast-stats": "0.0.7",
         "import-global": "1.1.1",
-        "lodash.get": "4.4.2",
-        "lodash.merge": "4.6.2",
-        "lodash.set": "4.3.2",
         "markdown": "0.5.0",
         "node-scp": "0.0.25",
         "ora": "9.0.0",
@@ -8267,11 +8264,6 @@
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
       "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
     },
-    "node_modules/lodash.get": {
-      "version": "4.4.2",
-      "resolved": "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz",
-      "integrity": "sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk="
-    },
     "node_modules/lodash.groupby": {
       "version": "4.6.0",
       "resolved": "https://registry.npmjs.org/lodash.groupby/-/lodash.groupby-4.6.0.tgz",
@@ -8282,11 +8274,6 @@
       "version": "4.6.2",
       "resolved": "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz",
       "integrity": "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
-    },
-    "node_modules/lodash.set": {
-      "version": "4.3.2",
-      "resolved": "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz",
-      "integrity": "sha512-4hNPN5jlm/N/HLMCO43v8BXKq9Z7QdAGc/VGrRD61w8gN9g/6jF9A4L1pbUgBLCffi0w9VsXfTOij5x8iTyFvg=="
     },
     "node_modules/lodash.sortby": {
       "version": "4.7.0",
