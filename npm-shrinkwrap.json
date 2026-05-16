@@ -22,7 +22,6 @@
         "dayjs": "1.11.18",
         "fast-stats": "0.0.7",
         "import-global": "1.1.1",
-        "markdown": "0.5.0",
         "pug": "3.0.3",
         "simplecrawler": "1.1.9",
         "ssh2-sftp-client": "12.1.1",
@@ -4435,7 +4434,8 @@
     "node_modules/abbrev": {
       "version": "1.1.1",
       "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz",
-      "integrity": "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="
+      "integrity": "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==",
+      "dev": true
     },
     "node_modules/abort-controller": {
       "version": "3.0.0",
@@ -8271,20 +8271,6 @@
       "dev": true,
       "license": "ISC"
     },
-    "node_modules/markdown": {
-      "version": "0.5.0",
-      "resolved": "https://registry.npmjs.org/markdown/-/markdown-0.5.0.tgz",
-      "integrity": "sha512-ctGPIcuqsYoJ493sCtFK7H4UEgMWAUdXeBhPbdsg1W0LsV9yJELAHRsMmWfTgao6nH0/x5gf9FmsbxiXnrgaIQ==",
-      "dependencies": {
-        "nopt": "~2.1.1"
-      },
-      "bin": {
-        "md2html": "bin/md2html.js"
-      },
-      "engines": {
-        "node": "*"
-      }
-    },
     "node_modules/markdown-it": {
       "version": "13.0.1",
       "resolved": "https://registry.npmjs.org/markdown-it/-/markdown-it-13.0.1.tgz",
@@ -8316,17 +8302,6 @@
       "resolved": "https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz",
       "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==",
       "dev": true
-    },
-    "node_modules/markdown/node_modules/nopt": {
-      "version": "2.1.2",
-      "resolved": "https://registry.npmjs.org/nopt/-/nopt-2.1.2.tgz",
-      "integrity": "sha1-bMzZd7gBMqB3MdbozljCyDA8+a8=",
-      "dependencies": {
-        "abbrev": "1"
-      },
-      "bin": {
-        "nopt": "bin/nopt.js"
-      }
     },
     "node_modules/marked": {
       "version": "4.3.0",
