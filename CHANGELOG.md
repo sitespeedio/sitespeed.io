@@ -1,6 +1,14 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 41.0.1 - 2026-05-16
+
+### Fixed
+* Drop unused fast-crc32c dependency [#4735](https://github.com/sitespeedio/sitespeed.io/pull/4735)
+* Fix visual-progress curve and scrubber to match the data's semantics
+ [#4734](https://github.com/sitespeedio/sitespeed.io/pull/4734)
+
 ## 41.0.0 - 2026-05-15
 
 ### Highlights
