@@ -92,7 +92,7 @@
     "@tgwf/co2": "0.16.9",
     "axe-core": "4.11.4",
     "browsertime": "27.2.0",
-    "coach-core": "9.1.0",
+    "coach-core": "9.2.0",
     "fast-stats": "0.0.7",
     "import-global": "1.1.1",
     "pug": "3.0.3",
