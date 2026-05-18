@@ -74,7 +74,6 @@
     "eslint-plugin-unicorn": "64.0.0",
     "feed": "4.2.2",
     "globals": "17.6.0",
-    "jsdoc": "4.0.5",
     "license-checker": "25.0.1",
     "marked": "4.3.0",
     "prettier": "3.8.3",
