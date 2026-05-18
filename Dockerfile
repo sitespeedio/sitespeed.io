@@ -12,10 +12,13 @@ COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-RUN sudo apt-get update && sudo apt-get install libnss3-tools \
-    net-tools \
-    build-essential \
-    iproute2 -y && \
+RUN sudo apt-get update && \
+    sudo apt-get install -y --no-install-recommends \
+        libnss3-tools \
+        net-tools \
+        build-essential \
+        iproute2 && \
+    sudo rm -rf /var/lib/apt/lists/* && \
     mkdir -p $HOME/.pki/nssdb && \
     certutil -d $HOME/.pki/nssdb -N
 
@@ -29,11 +32,12 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
-RUN npm install --omit=dev && npm cache clean --force
+RUN npm ci --omit=dev && \
+    npm cache clean --force && \
+    rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
 COPY ./bin/ /usr/src/app/bin/
 COPY ./lib/ /usr/src/app/lib/
-RUN rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
 COPY docker/scripts/start.sh /start.sh
 
