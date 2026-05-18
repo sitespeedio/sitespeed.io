@@ -29,7 +29,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
-RUN npm install --production && npm cache clean --force
+RUN npm install --omit=dev && npm cache clean --force
 
 COPY ./bin/ /usr/src/app/bin/
 COPY ./lib/ /usr/src/app/lib/
