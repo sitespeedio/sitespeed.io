@@ -23,6 +23,7 @@
 
 /img/*
 	Cache-Control: public, max-age=31536000
+	Cross-Origin-Resource-Policy: cross-origin
 /js/*
 	Cache-Control: public, max-age=31536000, immutable
 /css/*
