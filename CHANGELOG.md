@@ -2,6 +2,25 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 41.1.0 - 2026-05-20
+
+### Added
+* New `rsync` plugin for result uploads. The existing `scp` plugin walks files one at a time over a single SFTP channel, which is the worst case for a result directory of thousands of small files. The new plugin shells out to `rsync` over `ssh`, pipelines the wire protocol and reuses the channel — the same upload finishes in a small fraction of the time on a typical Linux host. Exposed as `--rsync.host` / `--rsync.username` / `--rsync.privateKey` / `--rsync.destinationPath` etc., sitting alongside `scp`, `s3` and `gcs`; existing scp users keep their exact behaviour and opt in to rsync only when they want it [#4739](https://github.com/sitespeedio/sitespeed.io/pull/4739).
+* Upload performance on the existing `scp` plugin: swapped `node-scp` (serial uploads, stuck on 0.0.25) for `ssh2-sftp-client`, which fans out 16 concurrent uploads on the same ssh2 transport. Same auth, same options, same CLI surface — just faster on result directories with many small files [#4738](https://github.com/sitespeedio/sitespeed.io/pull/4738).
+
+### Fixed
+* Bring back the visual-change markers on the waterfall. The renderer that replaced PerfCascade in #4614 only drew vertical lines for a fixed set of page-event names, so the `_firstVisualChange` / `_lastVisualChange` / `_visualComplete85` lines silently disappeared with the swap. They're now hoisted into the user-timing-marks bag the renderer does draw, the "Marks & visual metrics" toggle is on by default, and the hover tooltip identifies which metric or user mark the cursor is on [#4755](https://github.com/sitespeedio/sitespeed.io/pull/4755).
+* Browsertime 27.3.0 [#4754](https://github.com/sitespeedio/sitespeed.io/pull/4754).
+* `coach-core` bumped to 9.2.1 [#4750](https://github.com/sitespeedio/sitespeed.io/pull/4750).
+* Bump `@sitespeed.io/log` and the bundled plugin to latest [#4746](https://github.com/sitespeedio/sitespeed.io/pull/4746).
+* Crawler rewrite: `simplecrawler` (unmaintained since 2020, ~1000 lines of transitive code) is replaced by an in-tree `node:fetch`-based crawler in ~285 lines with no new dependency. Same BFS semantics, same depth/maxPages/include/exclude/content-type/skip-extension rules, same robots.txt handling (`--crawler.ignoreRobotsTxt` still opts out), same cookies/basicAuth/userAgent passthrough. Parity verified across four real-site runs at different depths and page caps; natural completion is ~6× faster on the sample runs [#4745](https://github.com/sitespeedio/sitespeed.io/pull/4745).
+* Dependency pruning, no behaviour change for users: `lodash.get`, `lodash.set` and `lodash.merge` are replaced by small in-tree helpers in `lib/support/objectPath.js`, with the `merge` replacement verified byte-for-byte against `lodash.merge` across 23 edge cases and an A/B `parseCommandLine()` run. `dayjs` (plus the utc plugin) is replaced by an ~80-line `lib/support/time.js`, with every `.format()` pattern actually used in the codebase pinned in a new test. `ora` is replaced by a ~60-line blinking-dot spinner used only by `--api.add` / `--api.addAndGetResult`. The lodash subtree is now gone entirely [[#4737](https://github.com/sitespeedio/sitespeed.io/pull/4737), [#4741](https://github.com/sitespeedio/sitespeed.io/pull/4741), [#4742](https://github.com/sitespeedio/sitespeed.io/pull/4742), [#4744](https://github.com/sitespeedio/sitespeed.io/pull/4744), [#4740](https://github.com/sitespeedio/sitespeed.io/pull/4740)].
+* The `markdown` template helper exposed to pug templates is removed. It was added in 2018 (#2161) but no shipped `.pug` template has ever called it, and the underlying `markdown@0.5.0` package has been unmaintained for over a decade with an open ReDoS advisory. Anyone with a custom pug template that calls `markdown(...)` will need to import their own renderer [#4743](https://github.com/sitespeedio/sitespeed.io/pull/4743).
+* Slimmer main Docker image: `apt-get install --no-install-recommends` + `/var/lib/apt/lists` cleanup, `npm ci` (lockfile-strict) instead of `npm install`, and the `selenium-webdriver/bin` cleanup folded into the install layer so the deleted bytes no longer ship in an earlier layer [#4753](https://github.com/sitespeedio/sitespeed.io/pull/4753).
+* Docker: use `--omit=dev` instead of the deprecated `--production`, and fix the `skip edgedriver` typo [#4752](https://github.com/sitespeedio/sitespeed.io/pull/4752).
+* Release tooling: bump `feed` to 5.2.1 and `marked` to 18.0.3 (used only by `release/feed.js` when refreshing documentation RSS feeds). API usage unchanged, regenerated feeds are content-identical [#4751](https://github.com/sitespeedio/sitespeed.io/pull/4751).
+* Dev tooling: align with eslint 10 and unicorn 64, drop the dead legacy `.eslintrc.json` and the stale `eslint-check` script, minor bumps to prettier/sass/esbuild [#4747](https://github.com/sitespeedio/sitespeed.io/pull/4747).
+
 ## 41.0.1 - 2026-05-16
 
 ### Fixed
