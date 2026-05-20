@@ -4,7 +4,7 @@
         <title>coach-core release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of coach-core</description>
-        <lastBuildDate>Thu, 14 May 2026 18:16:21 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 18 May 2026 02:18:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,30 +17,65 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/coach-core.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[coach-core 9.2.1]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.2.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.2.1</guid>
+            <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- 9.2.0 generated JS was broken, fixed in #177.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 9.2.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.2.0</guid>
+            <pubDate>Sun, 17 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Vendor the Wappalyzer engine in <code>lib/technologies/wappalyzer.js</code> and drop the deprecated <code>wappalyzer-core</code> npm package. The upstream package is unmaintained on npm, ships with a <code>Proprietary</code> license tag, and prints a deprecation warning on every install even though it is a few hundred lines of zero-dependency pattern matching. The port keeps the same public surface (<code>setTechnologies</code>, <code>setCategories</code>, <code>analyze</code>, <code>resolve</code>), the same pattern parsing, and the same implies/excludes resolution — behaviour is unchanged on the existing technology tests (real WordPress HAR fixture, plus the CSP-leak and third-party-headers safety checks). <code>getWappalyzerCoreVersion()</code> now reports coach-core&#39;s own version, which is the thing that actually changes when the engine changes; the data version stays separately available via <code>getTechnologiesVersion()</code> #169.<br>
+<br>
+<strong>Fixed</strong><br>
+- Shrink the runtime dependency footprint from eight packages to two. <code>lodash.sortby</code>, <code>json-stable-stringify</code> and the dev-only <code>bookmarkletify</code> were declared but referenced nowhere; <code>lodash.merge</code>, <code>lodash.groupby</code>, <code>filter-files</code> and the dev-only <code>mkdirp</code> were one-call helpers replaced with small inline equivalents (the new <code>lib/support/objectMerge.js</code> is ported from the same helper sitespeed.io uses in place of <code>lodash.merge</code>, where it was verified against the original across 23 edge cases). <code>dependencies</code> is now just <code>pagexray</code>, <code>third-party-web</code> and the vendored Wappalyzer engine #165, #166, #167, #168.<br>
+- Drop <code>connect</code> and <code>serve-static</code> from the test fixture web server in favour of a small native <code>http</code> / <code>http2</code> handler. The fixture only needed to map a request path to a file under <code>test/http-server</code> and stream it back, optionally over http2 with the test certs — a Connect middleware pipeline plus <code>serve-static</code> was overkill, and was the last reason to depend on a Connect middleware stack at all #170.<br>
+- Migrate the test suite from <code>mocha</code> + <code>chai</code> + <code>chai-as-promised</code> to <code>ava</code>, the framework sitespeed.io and browsertime already use. All 45 test files are converted: nested <code>describe</code> / <code>it</code> is flattened into ava&#39;s flat <code>test(&#39;Suite / Case&#39;, t =&gt; ...)</code> form so the old grouping stays visible in test names; chai&#39;s <code>should</code> / <code>expect</code> assertions are mapped onto the corresponding <code>t.is</code>, <code>t.deepEqual</code>, <code>t.truthy</code>, <code>t.regex</code>, <code>t.true</code> / <code>t.false</code>. Browser-driven tests keep their per-browser runner setup, but as a single module-level <code>Map</code> populated in <code>test.before</code> and torn down in <code>test.after.always</code>, with <code>test.serial</code> + <code>t.timeout(60_000)</code> per case #171.<br>
+- Bump <code>third-party-web</code> to 0.29.2 #174.<br>
+- Update to ESLint 10 and align with the sitespeed.io ESLint stack: <code>eslint</code> 9.17 → 10.4, <code>eslint-config-prettier</code> 9.1 → 10.1.8, <code>eslint-plugin-prettier</code> 5.2 → 5.5.5. <code>@eslint/js</code> and <code>globals</code> were silently transitive under v9 and are now declared explicitly. Drop <code>FlatCompat</code> in favour of the flat-config shape ESLint 10 expects natively. Six new <code>eslint:recommended</code> findings (<code>no-useless-assignment</code> and <code>preserve-caught-error</code>) are fixed in place: five <code>let foo = &#39;&#39;</code> initializers where every code path reassigned before reading become <code>let foo;</code>, and a rethrow in the wappalyzer engine grows a <code>{ cause: error }</code> so the original error chains through #175.<br>
+- Adopt <code>eslint-plugin-unicorn</code> 64, the same major sitespeed.io and browsertime are on. The eslint config moves from <code>.cjs</code> to <code>.js</code> (ESM) on the way — <code>eslint-plugin-unicorn</code> v64 is ESM-only and the package was already <code>type: module</code>. The unicorn rule set surfaced 354 findings, 276 of them auto-fixed: a sweep toward modern array methods (<code>for…of</code> over <code>.forEach</code>, <code>flatMap</code> over <code>map().flat()</code>, <code>some</code> over <code>findIndex</code> truthy checks), node-native helpers (<code>Number.parseInt</code>, <code>String.fromCodePoint</code>, <code>structuredClone</code>, <code>String#slice</code>, <code>String#replaceAll</code>, <code>String.raw</code>, <code>includes</code>), and tidier conditionals (explicit length checks, no nested ternaries, no useless <code>undefined</code>). The remaining hand-fixes are small. The config disables the same six unicorn rules sitespeed.io disables, plus three more that don&#39;t fit coach-core&#39;s situation: <code>no-null</code> (the vendored wappalyzer engine deliberately uses <code>null</code> to match the upstream data format), <code>import-style</code> (destructured <code>node:*</code> imports are clearer than forcing default imports), and <code>prefer-module</code> scoped to <code>lib/dom/**</code> (those files are not modules — they are IIFE fragments that get concatenated into <code>dist/coach.min.js</code> and evaluated in the browser via WebDriver <code>executeScript</code>) #176.<br>
+- The <code>terser</code> build script was running with <code>--compresss</code> (three s&#39;s). Terser silently treated the typo as an unknown flag and skipped compression entirely, so the shipped <code>coach.min.js</code> was mangled-only. Correcting it to <code>--compress</code> shrinks the bundle from 54,739 to 52,739 bytes — a ~2 KB win on every release with zero behaviour change #173.<br>
+- Drop the unrunnable <code>eslint-check</code> npm script. It piped <code>eslint --print-config .eslintrc.js</code> (the file is now <code>eslint.config.cjs</code>) into <code>eslint-config-prettier-check</code>, a binary modern <code>eslint-config-prettier</code> no longer ships — the script could not run, and removing it removes confusion #173.<br>
+- Backfill HAR tests for fourteen previously untested rules: the eleven HAR privacy rules without coverage (<code>crossOriginEmbedderPolicyHeader</code>, <code>crossOriginOpenerPolicyHeader</code>, <code>crossOriginResourcePolicyHeader</code>, <code>googleReCaptcha</code>, <code>mixedContent</code>, <code>nelHeader</code>, <code>permissionsPolicyHeader</code>, <code>reportingEndpointsHeader</code>, <code>thirdPartyCookies</code>, <code>thirdPartyPrivacy</code>, <code>xContentTypeOptionsHeader</code>), the HAR-level <code>avoidRenderBlocking</code>, and the third-party rules in <code>bestpractice/thirdParty</code> and <code>info/thirdParty</code>. Header-based rules use a clone-and-inject-header pattern; the third-party rules lean on the existing <code>www.nytimes.com.har</code> fixture with <code>firstParty: &#39;nytimes\\.com&#39;</code> set so pagexray classifies off-domain assets correctly. Test count rises from 67 to 101 #172.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[coach-core 9.1.0]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.1.0</guid>
             <pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Updated to PageXraty 5.0.0 #164.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 9.0.1]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.1</guid>
             <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - The <code>mimeTypes</code> HAR performance check no longer flags <code>204 No Content</code> responses as missing a recognised content type. A 204 response has no body, so there is nothing to attribute a MIME type to and the rule should not subtract score for it. Thank you Nate Spector for PR #161.<br>
 - The <code>nelHeader</code> and <code>reportingEndpointsHeader</code> HAR privacy rules are now weight 0 so they no longer pull on the aggregate score. Both rules are tagged <code>severity: &#39;info&#39;</code> and describe genuinely opt-in observability headers — most sites have no Reporting-API endpoint to point them at and should not be docked privacy score for that. The advice still surfaces as informational, matching the established pattern in <code>mimeTypes</code> #162.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 9.0.0]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#9.0.0</guid>
             <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - New <code>severity</code> field on every rule result, with three tiers (<code>error</code> / <code>warn</code> / <code>info</code>) modelled on Lighthouse and axe. Severity is orthogonal to weight: weight controls how strongly a rule pulls on the aggregate score, severity tells a consumer how loudly to surface a finding. Existing <code>score</code> and <code>weight</code> are unchanged #143.<br>
@@ -74,44 +109,48 @@
 - Modernise the GitHub Actions workflow: bump <code>actions/checkout</code> to v6.0.2, <code>actions/setup-node</code> to v6.4.0 (with npm cache enabled), replace the deprecated apt-key Chrome install with a one-liner, replace the unmaintained third-party <code>xvfb-action</code> with <code>xvfb-run</code>, expand the Node matrix to 20 / 22 / 24, drop test/dom and test/api/domTest.js from <code>npm test</code> (test runner needs a separate rewrite — see #147 if you want them back). New <code>dependabot.yml</code> keeps SHA pins current going forward #141.<br>
 - Bump browsertime devDep to 27.0.0 (no runtime impact — coach-core has no runtime browsertime dep, only the dev test runner used to).<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.1.3]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.3</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.3</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.3</guid>
             <pubDate>Mon, 04 Aug 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Reverted svg images in avoidScalingImages check released in 8.1.2 since it was causing errors. Lets work on a fir for it later and revert it for now #135.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.1.2]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</guid>
             <pubDate>Fri, 01 Aug 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Don&#39;t check svg images in avoidScalingImages check, thank you Marcus Müller for PR #129.<br>
 - Add zstd to encoding check, thank you Marcus Müller for PR #128.<br>
 - Make sure we use wappalyzer that is MIT #133.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.1.1]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1</guid>
             <pubDate>Sat, 28 Dec 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Fix broken minified release.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.1.0]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0</guid>
             <pubDate>Sat, 28 Dec 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Use latest data from https://github.com/enthec/webappanalyzer #114.<br>
@@ -120,44 +159,18 @@
 <strong>Fixed</strong><br>
 - Update dev dependencies  #115,  #116 and #117.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 8.0.2]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</guid>
             <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Another update to PageXray with a safer HTTP header check.<br>
 ]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 8.0.1]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</guid>
-            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Updated PageXray.<br>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 8.0.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0</guid>
-            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Expose third party web and wappalyzer versions #111.<br>
-<br>
-<strong>Fixed</strong><br>
-- Updated to Wappalyzer 6.10.66 #110.<br>
-- Updated third party web 0.24.0 #108.<br>
-- Fix correct LCP attribute #107.<br>
-<br>
-<strong>Changed</strong><br>
-- Remove advice about disableFLoCHeader #106.<br>
-]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
     </channel>

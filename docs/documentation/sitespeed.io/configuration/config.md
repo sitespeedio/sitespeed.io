@@ -225,6 +225,16 @@ scp
       --scp.passphrase         The passphrase for the pem file.
       --scp.removeLocalResult  Remove the files locally when the files has been copied to the other server.  [default: true]
 
+rsync
+      --rsync.host               The host.
+      --rsync.destinationPath    The destination path on the remote server where the files will be copied.
+      --rsync.port               The port for ssh when sending the result to another server.  [default: 22]
+      --rsync.username           The username. Use username/password or username/privateKey/pem.
+      --rsync.password           The password if you do not use a pem file. Requires sshpass on PATH.
+      --rsync.privateKey         Path to the pem file.
+      --rsync.passphrase         The passphrase for the pem file. The rsync plugin cannot supply this non-interactively; load the key into ssh-agent before running.
+      --rsync.removeLocalResult  Remove the files locally when the files has been copied to the other server.  [default: true]
+
 Matrix
       --matrix.host         The Matrix host.
       --matrix.accessToken  The Matrix access token.

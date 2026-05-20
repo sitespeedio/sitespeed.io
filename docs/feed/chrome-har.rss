@@ -4,7 +4,7 @@
         <title>chrome-har release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of chrome-har</description>
-        <lastBuildDate>Wed, 06 May 2026 17:10:26 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 19 May 2026 13:39:50 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,27 +12,36 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/chrome-har.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[chrome-har 1.3.1]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.1</guid>
+            <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+            <author>Sitespeed.io</author>
+        </item>
+        <item>
             <title><![CDATA[chrome-har 1.3.0]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
             <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.2.1]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.1</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.1</guid>
             <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Make sure not multiple pages are created for a soft nav #154<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.2.0]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.2.0</guid>
             <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Support for soft navigation coming from Browsertime #153<br>
@@ -41,71 +50,69 @@
 - Get Charset from response #152<br>
 - Fix to parse postData #150<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.1.1]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.1</guid>
             <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - The option to clean header values was broken, this has been reverted for now.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.1.0]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.1.0</guid>
             <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Add option to clean header values #141.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.0.1]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</guid>
             <pubDate>Fri, 11 Oct 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Try/catch broken dates #130.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.0.0]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</guid>
             <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Removed dayjs dependency #128.<br>
 - Removed uuid dependency #127.<br>
 - Updated to tough cookie 5.0.0 #126.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 0.13.5]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</guid>
             <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Always take care of Network.responseReceivedExtraInfo even if its fired early, thank you ifduyue for PR #120.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[chrome-har 0.13.3]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</guid>
             <pubDate>Fri, 05 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Include early hints requests, thank you Ben Schwarz for PR #118.<br>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.13.2]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</guid>
-            <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Updated tough-cookie, thank you lallenlowe for PR #107.<br>
-]]></description>
+            <author>Sitespeed.io</author>
         </item>
     </channel>
 </rss>

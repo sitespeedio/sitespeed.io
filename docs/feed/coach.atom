@@ -20,6 +20,7 @@
         <title type="html"><![CDATA[coach 7.0.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2021-12-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Updated to use latest Coach core and Browertime.<br>
@@ -33,6 +34,7 @@
         <title type="html"><![CDATA[coach 6.4.3]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.4.3</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.4.3"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2021-10-15T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Updated to use latest Browsertime with latest Chromedriver<br>
@@ -50,6 +52,7 @@
         <title type="html"><![CDATA[coach 5.0.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2020-03-11T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Changed</strong><br>
 - We moved out the core functionality to coach-core. This makes it easy to use the Coach in your own code.<br>
@@ -63,6 +66,7 @@
         <title type="html"><![CDATA[coach 4.5.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.5.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.5.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2020-02-20T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
@@ -73,6 +77,7 @@
         <title type="html"><![CDATA[coach 4.4.1]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.1</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2020-02-07T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Upgraded to Browsertime 8.0.1<br>
@@ -86,6 +91,7 @@
         <title type="html"><![CDATA[coach 4.4.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2020-02-05T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
@@ -96,6 +102,7 @@
         <title type="html"><![CDATA[coach 4.3.1]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.1</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2020-01-10T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
@@ -106,6 +113,7 @@
         <title type="html"><![CDATA[coach 4.3.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2019-12-12T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
@@ -116,6 +124,7 @@
         <title type="html"><![CDATA[coach 4.2.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.2.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2019-11-02T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>

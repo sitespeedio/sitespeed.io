@@ -20,6 +20,7 @@
         <title type="html"><![CDATA[compare 2.0.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2026-05-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Swapped the waterfall renderer from PerfCascade to<br>
@@ -53,6 +54,7 @@
         <title type="html"><![CDATA[compare 1.0.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-11-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Added support for using Github gists see #34.<br>
@@ -74,6 +76,7 @@
         <title type="html"><![CDATA[compare 0.6.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.6.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.6.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-10-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Sort CPU events by name to make it easier to spot regressions<br>
@@ -90,6 +93,7 @@
         <title type="html"><![CDATA[compare 0.5.1]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.1</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-06-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Layout -&gt; Rendering in latest Browsertime.<br>
@@ -104,6 +108,7 @@
         <title type="html"><![CDATA[compare 0.5.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-04-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - CPU metrics are now showed automatically.<br>
@@ -118,6 +123,7 @@
         <title type="html"><![CDATA[compare 0.4.1]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.1</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-04-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Major code refactoring to make it easier to do changes in the future.<br>
@@ -132,6 +138,7 @@
         <title type="html"><![CDATA[compare 0.4.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-04-02T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Upgraded to PerfCascade 2.4.1<br>
@@ -149,6 +156,7 @@
         <title type="html"><![CDATA[compare 0.3.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.3.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-03-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Automatically load the HAR files if both files are given in the URL . Thanks Ivru for the PR #15.<br>
@@ -165,6 +173,7 @@
         <title type="html"><![CDATA[compare 0.2.1]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.1</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-02-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Upgraded to PerfCascade 2.2.2 that makes HAR files from WebPageTest Linux render<br>
@@ -179,6 +188,7 @@
         <title type="html"><![CDATA[compare 0.2.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/compare.png" type="image/png"/>
         <updated>2018-02-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Upgraded to PageXray 2.1.0 and added more CPU metrics<br>

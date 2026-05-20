@@ -14,17 +14,18 @@
         <item>
             <title><![CDATA[onlinetest 4.0.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</guid>
             <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - New <code>failed_reason TEXT</code> and <code>finished_date TIMESTAMP</code> columns on <code>sitespeed_io_test_runs</code>. <code>failed_reason</code> is populated from three paths the DB previously knew nothing about: Bull&#39;s <code>global:failed</code> event (the testrunner threw), the queue-down submit path in <code>add-test.js</code> (Redis unreachable when the test was queued), and the result-queue path when sitespeed.io itself exits non-zero (testrunner now sends <code>Test runner exited with code N: &lt;last line of stderr&gt;</code>, capped at 500 chars). <code>finished_date</code> is stamped on every terminal transition, so end-to-end duration can be derived as <code>finished_date - added_date</code> and run duration as <code>finished_date - run_date</code> (which is the browsertime <em>start</em> timestamp, not finish) #264.<br>
 - <code>server/database/migrations/</code> directory establishes the convention for schema changes against existing deployments — <code>setup.sql</code> only runs on a fresh Postgres data dir, so live databases need ALTERs applied separately. Each migration ships with a <code>.sh</code> helper (<code>check</code> / <code>backup</code> / <code>dry-run</code> / <code>apply</code> / <code>verify</code> / <code>rollback</code>) that runs <code>psql</code> inside the compose Postgres container, plus a README documenting the manual path. Existing deployments must run <code>001-add-failure-fields.sh apply</code> before rolling the server forward #264.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.8.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</guid>
             <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Default sitespeed.io Docker image bumped from 40 to 41 in <code>.env.example</code>. The README &quot;Update sitespeed.io version&quot; snippets now reference 41 / 42 as the current and next-major tags.<br>
@@ -34,11 +35,12 @@
 - <code>/admin</code> &quot;failed&quot; pill is now a real health signal: it counts failed test runs in the last 24 h from Postgres instead of Bull&#39;s <code>getJobCounts()</code>, which was capped by <code>removeOnFail</code> and only decayed on a successful retry — so the pill accumulated weeks of stale failures and shouted &quot;13 failed&quot; next to activity cards that correctly showed 0 in 24 h #261.<br>
 - Compare cookie list no longer renders domains like <code>.example.com\nUIDR=...</code> when a HAR concatenates multiple <code>Set-Cookie</code> response headers into one newline-joined value — the next cookie&#39;s name was leaking into the previous cookie&#39;s <code>Domain=</code> attribute. Picked up via the pagexray bump #262.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.7.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</guid>
             <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Per-queue 24 h sparkline on each <code>/admin</code> queue row, independently scaled so low- and high-traffic queues both show shape #256.<br>
@@ -51,11 +53,12 @@
 - Testrunner setup duplicated on restart — registration was concatenating old + new instead of deduping #257.<br>
 - Multi-type setups on one location (e.g. desktop + emulatedMobile) collapsed into the last entry after a restart; dedupe now keys on full setup identity, not just queue name #259.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.6.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0</guid>
             <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Activity stats on <code>/admin</code>: totals for the last 24 hours and 7 days plus a stacked bar chart of tests per hour over the last 24 h (completed / failed / other). Pure server-rendered SVG, cached for 60 s so the auto-refresh doesn&#39;t beat on Postgres #252.<br>
@@ -65,11 +68,12 @@
 - Age labels in Recent failures now graduate to <code>d</code>/<code>mo</code> past 48 h instead of shouting <code>12608h ago</code> #251.<br>
 - Long URLs no longer push the <code>/search/</code> results table past its container and shove the page off-centre. URL cells now wrap at any character; the form has <code>overflow-x: auto</code> as a safety net #253.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.5.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0</guid>
             <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Health banner on <code>/admin</code>: Redis up/down, Postgres up/down, connected testrunners, totals for pending/running/failed jobs #247.<br>
@@ -80,11 +84,12 @@
 - Opt-in auto-refresh toggle on <code>/search/</code>, 60 seconds. Off by default. Pauses while any test is ticked, so Compare selections aren&#39;t lost. State remembered in <code>localStorage</code> #250.<br>
 - <code>/admin</code> mobile layout reworked for the new tables — rows stack into name → counts → action on narrow screens #246 #247 #248.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.4.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</guid>
             <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - <strong>Connected testrunners</strong> table on <code>/admin</code> showing hostname, location, the setup each machine serves, and a fresh / stale &quot;last seen&quot; badge. Each testrunner publishes a heartbeat on the existing <code>testrunners</code> Bull queue every 30 s; the server tracks <code>lastSeenAt</code> per runner and prunes anything quiet for &gt;120 s, so crashed runners (OOM, host reboot, <code>docker kill</code>) drop off the admin page within ~2 minutes instead of haunting the metrics gauge forever. When two runners pick the same <code>LOCATION_NAME</code> + <code>deviceId</code>, the server logs a clear <code>Testrunner queue collision: hostA and hostB both claim queue X. Change LOCATION_NAME (or deviceId) on one of them.</code> — the registration still goes through so existing deployments don&#39;t break, but the collision is no longer silent #244.<br>
@@ -106,20 +111,22 @@
 - Enforce a defense-in-depth CSP (<code>default-src &#39;self&#39;</code>; <code>script-src</code> / <code>style-src</code> allow <code>&#39;unsafe-inline&#39;</code> transitionally because pug templates still ship inline blocks; <code>frame-ancestors &#39;none&#39;</code>, <code>object-src &#39;none&#39;</code>, <code>base-uri &#39;self&#39;</code>, <code>form-action &#39;self&#39;</code>) and re-enable HSTS. Both were disabled previously #242.<br>
 - Block sensitive sitespeed.io flags from the GUI&#39;s &quot;Command line args&quot; tab. The user-supplied extras textarea used to forward arbitrary flags to the testrunner with only <code>--verbose</code> filtered. A GUI submission could load plugin / JS code (<code>--plugins.add</code>, <code>--browsertime.preScript</code>), run any binary as the browser (<code>--browsertime.chrome.binaryPath</code>), redirect HARs and metrics to an attacker-controlled destination (whole <code>--graphite.*</code> / <code>--s3.*</code> / <code>--gcs.*</code> / <code>--scp.*</code> / <code>--slack.*</code> / <code>--matrix.*</code> / <code>--datadog.*</code> / <code>--influxdb.*</code> namespaces), or read arbitrary files via <code>--config</code>. A denylist now drops these tokens (and their value arguments) before they reach sitespeed.io, and <code>/sitespeed-help.json</code> filters the same set so the CLI picker stops suggesting them (277 → 187 entries). API submissions (which pass a <code>userConfig</code> object, not extras) are deliberately untouched #241.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.3.1]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1</guid>
             <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Filmstrip 404s in the compare view, again — the 3.3.0 pass still constructed frame URLs on a fixed 100 ms cadence inside <code>(FirstVisualChange, LastVisualChange)</code>, which broke whenever visual progress sat flat between two boundaries (the expected JPGs were never written to disk). The vendored compare bundle now reads frame timestamps straight from <code>_visualMetrics.VisualProgress</code> — one JPG per VP sample, named after that exact ms — and lets the existing 100 ms padding step forward-fill the uniform grid, so the rendered strip still reads &quot;nothing happened for 2 s&quot; differently from &quot;everything changed in 50 ms&quot; #238.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.3.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</guid>
             <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Refreshed the vendored compare bundle with a sharing pass, accurate transfer-size diffs and style recalculation visibility:<br>
@@ -129,25 +136,28 @@
 - Millisecond timings in the page-x-ray diff are rounded to whole ms — the new recalc duration field reports sub-ms precision (&quot;17.099 ms&quot;) that&#39;s noise at this scale.<br>
 - &quot;Switch HAR&quot; and run-dropdown changes preserve the previous source URLs / config / stripVersion choice, so the Share UI doesn&#39;t downgrade from &quot;Copy share link&quot; to &quot;Download bundle&quot; on every toggle.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.2.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</guid>
             <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Refreshed the vendored compare bundle to pick up the upstream regression-spotting pass:<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[onlinetest 3.1.1]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</guid>
             <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Filmstrip and Visual Progress thumbnails no longer point at non-existent screenshots. The frame timestamps are now derived from <code>_visualMetrics.VisualProgress</code> change points — the authoritative list of frames sitespeed.io actually wrote to disk — instead of speculating a 100 ms grid that breaks on runs with a flat visual-progress stretch #235.<br>
 - Theme and admin CSS now cache-bust on each release via <code>?v=&lt;server-version&gt;</code> stamped on the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> hrefs. Previously a patch release that only touched the theme CSS could sit in browser caches until the unrelated 30-day cache header expired #234.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
     </channel>
 </rss>

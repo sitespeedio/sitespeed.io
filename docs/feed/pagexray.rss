@@ -19,7 +19,7 @@
         <item>
             <title><![CDATA[pagexray 5.0.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#5.0.0</guid>
             <pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - CLI can now read a HAR from stdin: <code>pagexray -</code> or piping into <code>pagexray</code> with no path argument #131.<br>
@@ -44,97 +44,107 @@
 <strong>Changed</strong><br>
 - Node.js 22 is minumium.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.5.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</guid>
             <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Surface page-level style recalculation work on <code>renderBlocking.recalculateStyle</code><br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.4]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</guid>
             <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Added a safer header check #125.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.3]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3</guid>
             <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - If the meta section from a HAR file from Browsertime was missing, we didn&#39;t catch that. Fixed in #124.<br>
 - Update to latest minimist #122.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.2]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.2</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.2</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.2</guid>
             <pubDate>Thu, 05 May 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Added missing SSL timings to the time per domain #117<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.1]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.1</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.1</guid>
             <pubDate>Tue, 05 Apr 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Bumped minimist to 1.2.6<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</guid>
             <pubDate>Fri, 04 Feb 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types #109.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.3.1]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</guid>
             <pubDate>Wed, 21 Jul 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Added missing in_body_parser_blocking render blocking info for Chrome.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.3.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.0</guid>
             <pubDate>Wed, 02 Jun 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Include request method per asset #105.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.2.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</guid>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</guid>
             <pubDate>Fri, 28 May 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Attach info about render blocking assets coming/working in Chrome 92 #104.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
     </channel>

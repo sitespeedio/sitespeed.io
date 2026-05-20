@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-16T05:11:17.969Z</updated>
+    <updated>2026-05-20T19:17:41.640Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,9 +17,38 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.1.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- New <code>rsync</code> plugin for result uploads. The existing <code>scp</code> plugin walks files one at a time over a single SFTP channel, which is the worst case for a result directory of thousands of small files. The new plugin shells out to <code>rsync</code> over <code>ssh</code>, pipelines the wire protocol and reuses the channel — the same upload finishes in a small fraction of the time on a typical Linux host. Exposed as <code>--rsync.host</code> / <code>--rsync.username</code> / <code>--rsync.privateKey</code> / <code>--rsync.destinationPath</code> etc., sitting alongside <code>scp</code>, <code>s3</code> and <code>gcs</code>; existing scp users keep their exact behaviour and opt in to rsync only when they want it #4739.<br>
+- Upload performance on the existing <code>scp</code> plugin: swapped <code>node-scp</code> (serial uploads, stuck on 0.0.25) for <code>ssh2-sftp-client</code>, which fans out 16 concurrent uploads on the same ssh2 transport. Same auth, same options, same CLI surface — just faster on result directories with many small files #4738.<br>
+<br>
+<strong>Fixed</strong><br>
+- Bring back the visual-change markers on the waterfall. The renderer that replaced PerfCascade in #4614 only drew vertical lines for a fixed set of page-event names, so the <code>_firstVisualChange</code> / <code>_lastVisualChange</code> / <code>_visualComplete85</code> lines silently disappeared with the swap. They&#39;re now hoisted into the user-timing-marks bag the renderer does draw, the &quot;Marks &amp; visual metrics&quot; toggle is on by default, and the hover tooltip identifies which metric or user mark the cursor is on #4755.<br>
+- Browsertime 27.3.0 #4754.<br>
+- <code>coach-core</code> bumped to 9.2.1 #4750.<br>
+- Bump <code>@sitespeed.io/log</code> and the bundled plugin to latest #4746.<br>
+- Crawler rewrite: <code>simplecrawler</code> (unmaintained since 2020, ~1000 lines of transitive code) is replaced by an in-tree <code>node:fetch</code>-based crawler in ~285 lines with no new dependency. Same BFS semantics, same depth/maxPages/include/exclude/content-type/skip-extension rules, same robots.txt handling (<code>--crawler.ignoreRobotsTxt</code> still opts out), same cookies/basicAuth/userAgent passthrough. Parity verified across four real-site runs at different depths and page caps; natural completion is ~6× faster on the sample runs #4745.<br>
+- Dependency pruning, no behaviour change for users: <code>lodash.get</code>, <code>lodash.set</code> and <code>lodash.merge</code> are replaced by small in-tree helpers in <code>lib/support/objectPath.js</code>, with the <code>merge</code> replacement verified byte-for-byte against <code>lodash.merge</code> across 23 edge cases and an A/B <code>parseCommandLine()</code> run. <code>dayjs</code> (plus the utc plugin) is replaced by an ~80-line <code>lib/support/time.js</code>, with every <code>.format()</code> pattern actually used in the codebase pinned in a new test. <code>ora</code> is replaced by a ~60-line blinking-dot spinner used only by <code>--api.add</code> / <code>--api.addAndGetResult</code>. The lodash subtree is now gone entirely [#4737, #4741, #4742, #4744, #4740].<br>
+- The <code>markdown</code> template helper exposed to pug templates is removed. It was added in 2018 (#2161) but no shipped <code>.pug</code> template has ever called it, and the underlying <code>markdown@0.5.0</code> package has been unmaintained for over a decade with an open ReDoS advisory. Anyone with a custom pug template that calls <code>markdown(...)</code> will need to import their own renderer #4743.<br>
+- Slimmer main Docker image: <code>apt-get install --no-install-recommends</code> + <code>/var/lib/apt/lists</code> cleanup, <code>npm ci</code> (lockfile-strict) instead of <code>npm install</code>, and the <code>selenium-webdriver/bin</code> cleanup folded into the install layer so the deleted bytes no longer ship in an earlier layer #4753.<br>
+- Docker: use <code>--omit=dev</code> instead of the deprecated <code>--production</code>, and fix the <code>skip edgedriver</code> typo #4752.<br>
+- Release tooling: bump <code>feed</code> to 5.2.1 and <code>marked</code> to 18.0.3 (used only by <code>release/feed.js</code> when refreshing documentation RSS feeds). API usage unchanged, regenerated feeds are content-identical #4751.<br>
+- Dev tooling: align with eslint 10 and unicorn 64, drop the dead legacy <code>.eslintrc.json</code> and the stale <code>eslint-check</code> script, minor bumps to prettier/sass/esbuild #4747.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 41.0.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.1</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Drop unused fast-crc32c dependency #4735<br>
@@ -34,6 +63,7 @@
         <title type="html"><![CDATA[sitespeed.io 41.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-15T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - HTTP/3 / HTTP/3.0 connections are now classified as <code>h3</code> instead of falling through to <code>h1</code>, so the HTTP-version breakdown is correct on HTTP/3 traffic.<br>
@@ -56,6 +86,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.5.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-14T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Scripts are now auto-detected on the command line, so <code>--multi</code> is no longer required to run them. Any positional argument that looks like a script — <code>.js</code> / <code>.cjs</code> / <code>.mjs</code>, or any file whose first non-empty line doesn&#39;t start with <code>http</code> — flips multi mode on automatically, and mixed inputs like <code>login.js https://example.com logout.js</code> just work. <code>--multi</code> is kept as an explicit override for the one case auto-detection can&#39;t cover: sharing a single browser session across a list of plain URLs. All existing invocations behave exactly as before #4725.<br>
@@ -74,6 +105,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.4.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-13T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Stop parsing scripting files as URL-alias lists in <code>getAliases</code> #4724.<br>
@@ -87,6 +119,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.4.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Browsertime 27.2.0 — <code>recalculateStyle</code> is now summarised at the HAR page level as <code>_renderBlocking.recalculateStyle</code> (beforeFCP / beforeLCP element counts + durations), so the metric is reachable from the page entry instead of only inside <code>browsertime.json</code> #4723.<br>
@@ -100,6 +133,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Bump the bundled Docker browsers to Chrome 148, Firefox 150, Edge 147 #4709.<br>
@@ -117,6 +151,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Update the CPU tab for Chrome to show more valuable metrics #4691.<br>
@@ -137,6 +172,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.1.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Per-request detail panel on the HAR waterfall — clicking a request opens a slide-in side panel with General / Headers / Cookies / Timing / Body tabs, with syntax-highlighted body previews and copy buttons when response bodies are in the HAR (use <code>--browsertime.chrome.includeResponseBodies html|all</code> for Chrome) #4684.<br>
@@ -155,6 +191,7 @@
         <title type="html"><![CDATA[sitespeed.io 40.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
         <updated>2026-05-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Refreshed look and feel for the report. Implemented across a series of small PRs grouped by area:<br>
@@ -187,23 +224,6 @@
 - Chartist (and its three plugins) dropped from the report assets — the visual-progress chart and the compare scatter plots are now inline SVG / DOM-positioned #4654, #4655, #4656.<br>
 - Unify quicklinks across tabs around a consistent <code>&lt;small&gt;</code> + <code>|</code> separator with a fixed leading-pipe-spacing bug #4664.<br>
 - CI hardened with <code>step-security/harden-runner</code> #4610, action SHAs pinned #4606, CI sped up #4617. The apt-built SSH test container in the upload workflow replaced with <code>lscr.io/linuxserver/openssh-server</code> so the job stops flaking on Ubuntu mirror outages #4661.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 39.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#39.5.0"/>
-        <updated>2026-03-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Chrome 146 and Edge 146, Firefox 148 in the Docker container #4590, #4596, #4599.<br>
-<br>
-<strong>Fixed</strong><br>
-- Updated s3 and gcs packages #4603.<br>
-- Updated wpr binaries #4602.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
