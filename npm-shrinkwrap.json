@@ -23,7 +23,7 @@
         "import-global": "1.1.1",
         "pug": "3.0.3",
         "ssh2-sftp-client": "12.1.1",
-        "waterfall-tools": "https://codeload.github.com/pmeenan/waterfall-tools/tar.gz/123f6e4",
+        "waterfall-tools": "https://codeload.github.com/pmeenan/waterfall-tools/tar.gz/e5415be",
         "yargs": "18.0.0"
       },
       "bin": {
@@ -10354,8 +10354,8 @@
     },
     "node_modules/waterfall-tools": {
       "version": "0.2.0",
-      "resolved": "https://codeload.github.com/pmeenan/waterfall-tools/tar.gz/123f6e4",
-      "integrity": "sha512-+oBWiqW2Xqb0dWz3cwpfsA4Gh3mSLM+Y5g67KBw1YYjE5OaFmub9dYQ8YWhatb2p4BMDQoLOH6+96g957L3jsw==",
+      "resolved": "https://codeload.github.com/pmeenan/waterfall-tools/tar.gz/e5415be",
+      "integrity": "sha512-ZT6g9+LUSInOZRG5Yxr3zHJ3MDPc0zBVumjq10VyhF8M89ZvesTly3LMubHD6tmUQ/33xB0/lKoOHFrBeojQVA==",
       "license": "Apache-2.0",
       "dependencies": {
         "@streamparser/json": "^0.0.22",

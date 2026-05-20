@@ -7,15 +7,24 @@ script(type='text/javascript').
     // Visual-complete 95% / 99% percentiles sit too close to the
     // neighbouring 85% and 100% markers to add waterfall value — strip
     // them before handing the HAR over so the timeline stays readable.
-    // Everything else (FCP / LCP / paint / DOM events / arbitrary
-    // _-prefixed fields like _firstVisualChange) is now lifted onto the
-    // page root by waterfall-tools 0.3+ on import — see waterfall-tools
-    // PRs #7 (named extensions) and #9 (passthrough of unknown
-    // _-prefixed keys).
+    // FCP / LCP / paint / DOM events are lifted from pageTimings onto
+    // the page root by waterfall-tools' HAR loader and rendered from a
+    // fixed event-name list (see waterfall-tools renderer/layout.js).
+    // Browsertime's visual metrics (_firstVisualChange, _lastVisualChange,
+    // _visualComplete85) reach the page root via the same lift but aren't
+    // in that fixed list, so they'd silently disappear from the canvas.
+    // Hoist them into pageTimings._userTimings before handing the HAR
+    // over — the user-timing-marks renderer draws them as vertical lines
+    // and our onHover picks up the labels.
     const DROP_PAGE_TIMING_FIELDS = new Set([
       '_visualComplete95',
       '_visualComplete99'
     ]);
+    const VISUAL_METRIC_LABELS = {
+      _firstVisualChange: 'First Visual Change',
+      _lastVisualChange: 'Last Visual Change',
+      _visualComplete85: 'Visual Complete 85%'
+    };
     let renderBuffer = rawBuffer;
     try {
       const har = JSON.parse(new TextDecoder().decode(rawBuffer));
@@ -26,6 +35,16 @@ script(type='text/javascript').
         for (const k of DROP_PAGE_TIMING_FIELDS) {
           if (k in t) { delete t[k]; mutated = true; }
         }
+        const userTimings = t._userTimings ? { ...t._userTimings } : {};
+        let injectedAny = false;
+        for (const [key, label] of Object.entries(VISUAL_METRIC_LABELS)) {
+          const v = t[key];
+          if (typeof v === 'number' && v > 0 && !(label in userTimings)) {
+            userTimings[label] = v;
+            injectedAny = true;
+          }
+        }
+        if (injectedAny) { t._userTimings = userTimings; mutated = true; }
       }
       if (mutated) renderBuffer = new TextEncoder().encode(JSON.stringify(har));
     } catch (e) {
@@ -94,21 +113,46 @@ script(type='text/javascript').
       }
       return o;
     };
-    const onHover = payload => {
+    // waterfall-tools calls onHover with two payloads: the request under
+    // the cursor (if any) and — when the cursor is near a vertical metric
+    // line — a `metrics` payload carrying visible page-metric / user-timing
+    // entries. Render whichever the cursor is over (or both, when stacked).
+    const fmtTooltipMs = ms => (ms == null || !isFinite(ms)) ? ''
+      : (ms < 1000 ? Math.round(ms) + 'ms' : (ms / 1000).toFixed(3) + 's');
+    const onHover = (payload, metrics) => {
       if (!tooltip) return;
-      if (!payload || !payload.request) {
+      const lines = [];
+      if (payload && payload.request) {
+        let url = payload.request.url || payload.request._URL || '';
+        if (url.length > 120) {
+          url = url.slice(0, 60) + ' … ' + url.slice(-55);
+        }
+        lines.push(url);
+      }
+      const pushMetric = m => {
+        const label = m.label || m.name || '';
+        const time = (m.time != null) ? m.time : m.value;
+        const formatted = fmtTooltipMs(time);
+        lines.push(formatted ? label + ': ' + formatted : label);
+      };
+      if (metrics) {
+        for (const m of metrics.pageMetrics || []) pushMetric(m);
+        for (const m of metrics.userTiming || []) pushMetric(m);
+      }
+      if (lines.length === 0) {
         tooltip.style.display = 'none';
         return;
       }
-      let url = payload.request.url || payload.request._URL || '';
-      if (url.length > 120) {
-        url = url.slice(0, 60) + ' … ' + url.slice(-55);
+      tooltip.textContent = '';
+      for (let i = 0; i < lines.length; i++) {
+        if (i > 0) tooltip.appendChild(document.createElement('br'));
+        tooltip.appendChild(document.createTextNode(lines[i]));
       }
-      tooltip.textContent = url;
       tooltip.style.display = 'block';
-      if (payload.event) {
-        let x = payload.event.clientX + 14;
-        let y = payload.event.clientY + 14;
+      const ev = (payload && payload.event) || (metrics && metrics.event);
+      if (ev) {
+        let x = ev.clientX + 14;
+        let y = ev.clientY + 14;
         if (x + tooltip.offsetWidth > window.innerWidth) x = window.innerWidth - tooltip.offsetWidth - 8;
         if (y + tooltip.offsetHeight > window.innerHeight) y = window.innerHeight - tooltip.offsetHeight - 8;
         tooltip.style.left = x + 'px';
@@ -522,7 +566,7 @@ script(type='text/javascript').
     // User-timing marks key — the canvas draws unlabelled vertical lines for
     // each entry in `pageTimings._userTimings`; pair them with a small
     // chronological list so users can match line position → mark name.
-    // Visibility is tied to the same `User timing marks` toggle that gates
+    // Visibility is tied to the same `Marks & visual metrics` toggle that gates
     // the canvas lines, so list and lines appear/hide together.
     const userTimingsEl = document.getElementById('wt-user-timings');
     const userTimingsList = document.getElementById('wt-user-timings-list');
