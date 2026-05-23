@@ -27,7 +27,22 @@ script(type='text/javascript').
     };
     let renderBuffer = rawBuffer;
     try {
-      const har = JSON.parse(new TextDecoder().decode(rawBuffer));
+      // The fetched HAR may be gzipped (`browsertime.har.gz`). Sniff the
+      // gzip magic bytes and inflate via DecompressionStream before parsing —
+      // a raw TextDecoder over gzip bytes produces garbage that throws in
+      // JSON.parse, the catch below swallows it, and the visual-metric
+      // injection silently never runs (so the visual-change lines disappear).
+      const u8 = ArrayBuffer.isView(rawBuffer) ? rawBuffer : new Uint8Array(rawBuffer);
+      let jsonText;
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        const inflated = await new Response(
+          new Blob([u8]).stream().pipeThrough(new DecompressionStream('gzip'))
+        ).arrayBuffer();
+        jsonText = new TextDecoder().decode(inflated);
+      } else {
+        jsonText = new TextDecoder().decode(u8);
+      }
+      const har = JSON.parse(jsonText);
       let mutated = false;
       for (const page of (har.log && har.log.pages) || []) {
         const t = page.pageTimings;
