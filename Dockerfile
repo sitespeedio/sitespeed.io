@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-148.0-firefox-150.0-edge-147.0
+FROM sitespeedio/webbrowsers:chrome-148.0-firefox-150.0-edge-147.0-b
 
 ARG TARGETPLATFORM=linux/amd64
 
