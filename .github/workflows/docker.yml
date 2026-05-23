@@ -32,6 +32,8 @@ jobs:
         context: .
         file: ${{ matrix.image.file }}
         platforms: linux/${{ matrix.arch.platform }}
+        build-args: |
+          TARGETPLATFORM=linux/${{ matrix.arch.platform }}
         tags: ${{ matrix.image.tag }}
         cache-from: type=gha,scope=${{ matrix.image.name }}-${{ matrix.arch.platform }}
         cache-to: type=gha,scope=${{ matrix.image.name }}-${{ matrix.arch.platform }},mode=max
