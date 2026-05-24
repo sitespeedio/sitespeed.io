@@ -90,13 +90,13 @@
     "@slack/webhook": "7.0.6",
     "@tgwf/co2": "0.16.9",
     "axe-core": "4.11.4",
-    "browsertime": "27.3.0",
+    "browsertime": "27.4.0",
     "coach-core": "9.2.1",
     "fast-stats": "0.0.7",
     "import-global": "1.1.1",
     "pug": "3.0.3",
     "ssh2-sftp-client": "12.1.1",
-    "waterfall-tools": "https://codeload.github.com/pmeenan/waterfall-tools/tar.gz/e5415be",
+    "waterfall-tools": "0.3.0",
     "yargs": "18.0.0"
   },
   "overrides": {
