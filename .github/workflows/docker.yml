@@ -8,10 +8,13 @@ on:
     - main
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch.runner }}
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     strategy:
       matrix:
+        arch:
+          - { platform: amd64, runner: ubuntu-24.04 }
+          - { platform: arm64, runner: ubuntu-24.04-arm }
         image:
           - { name: full, file: Dockerfile, tag: 'sitespeedio/sitespeed.io' }
           - { name: slim, file: Dockerfile-slim, tag: 'sitespeedio/sitespeed.io:slim' }
@@ -23,28 +26,35 @@ jobs:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
-    - name: Build ${{ matrix.image.name }} image
+    - name: Build ${{ matrix.image.name }} image (${{ matrix.arch.platform }})
       uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
       with:
         context: .
         file: ${{ matrix.image.file }}
-        platforms: linux/amd64
+        platforms: linux/${{ matrix.arch.platform }}
+        build-args: |
+          TARGETPLATFORM=linux/${{ matrix.arch.platform }}
         tags: ${{ matrix.image.tag }}
-        cache-from: type=gha,scope=${{ matrix.image.name }}
-        cache-to: type=gha,scope=${{ matrix.image.name }},mode=max
+        cache-from: type=gha,scope=${{ matrix.image.name }}-${{ matrix.arch.platform }}
+        cache-to: type=gha,scope=${{ matrix.image.name }}-${{ matrix.arch.platform }},mode=max
         outputs: type=docker,dest=/tmp/${{ matrix.image.name }}.tar
     - name: Upload image artifact
       uses: actions/upload-artifact@v4
       with:
-        name: docker-${{ matrix.image.name }}
+        name: docker-${{ matrix.image.name }}-${{ matrix.arch.platform }}
         path: /tmp/${{ matrix.image.name }}.tar
         retention-days: 1
         compression-level: 0
 
   test-default:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch.runner }}
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    strategy:
+      matrix:
+        arch:
+          - { platform: amd64, runner: ubuntu-24.04 }
+          - { platform: arm64, runner: ubuntu-24.04-arm }
     steps:
     - name: Harden Runner
       uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
@@ -55,7 +65,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         path: /tmp
-        pattern: docker-*
+        pattern: docker-*-${{ matrix.arch.platform }}
         merge-multiple: true
     - name: Load images
       run: |
@@ -70,6 +80,7 @@ jobs:
     - name: Run test on default container for Firefox
       run: docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io http://127.0.0.1:3001 -n 1 -b firefox
     - name: Run test on default container for Edge
+      if: matrix.arch.platform == 'amd64'
       run: docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io http://127.0.0.1:3001 -n 1 -b edge
     - name: Run test on slim container
       run: docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:slim http://127.0.0.1:3001 -n 1 --browsertime.firefox.preference "devtools.netmonitor.persistlog:true"
@@ -82,8 +93,13 @@ jobs:
 
   test-wpr-chrome:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch.runner }}
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    strategy:
+      matrix:
+        arch:
+          - { platform: amd64, runner: ubuntu-24.04 }
+          - { platform: arm64, runner: ubuntu-24.04-arm }
     steps:
     - name: Harden Runner
       uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
@@ -93,7 +109,7 @@ jobs:
     - name: Download full image
       uses: actions/download-artifact@v4
       with:
-        name: docker-full
+        name: docker-full-${{ matrix.arch.platform }}
         path: /tmp
     - name: Load image
       run: docker load --input /tmp/full.tar
@@ -104,8 +120,13 @@ jobs:
 
   test-wpr-firefox:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch.runner }}
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    strategy:
+      matrix:
+        arch:
+          - { platform: amd64, runner: ubuntu-24.04 }
+          - { platform: arm64, runner: ubuntu-24.04-arm }
     steps:
     - name: Harden Runner
       uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
@@ -115,7 +136,7 @@ jobs:
     - name: Download full image
       uses: actions/download-artifact@v4
       with:
-        name: docker-full
+        name: docker-full-${{ matrix.arch.platform }}
         path: /tmp
     - name: Load image
       run: docker load --input /tmp/full.tar
