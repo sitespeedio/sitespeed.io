@@ -235,11 +235,11 @@ script(type='text/javascript').
     // Decode the request body. waterfall-tools' loader hoists the HAR
     // `response.content.text` field onto the top-level `req.body`, with
     // the encoding on `req.bodyEncoding` — so we look there first and
-    // only fall back to `response.content.text` for raw HARs.
-    const decodeBody = req => {
-      const response = req.response || {};
-      const content = response.content || {};
-      const mimeType = (req.bodyMime || content.mimeType || req._content_type || '').toLowerCase();
+    // fall back to the original HAR entry's `response.content.text` when
+    // it isn't lifted.
+    const decodeBody = (req, harEntry) => {
+      const content = (harEntry && harEntry.response && harEntry.response.content) || {};
+      const mimeType = (req.bodyMime || req.mimeType || content.mimeType || req._content_type || '').toLowerCase();
       let raw = (typeof req.body === 'string') ? req.body : null;
       let encoding = req.bodyEncoding || null;
       if (raw == null && typeof content.text === 'string') {
@@ -266,12 +266,23 @@ script(type='text/javascript').
       return { kind: 'text', text: raw, mimeType };
     };
 
-    const populateDetail = req => {
+    // The click payload from waterfall-tools is its own internal Request
+    // shape (flat `status`/`mimeType`/`bytes_in`/`responseHeaders`, plus
+    // `body`/`bodyEncoding` and any `_`-prefixed HAR fields), not a raw
+    // HAR entry. The original HAR entry carries richer data (structured
+    // timings + cookies, `response.content.size` vs `bodySize`, full
+    // headers, `_transferSize`) — read from it as the primary source and
+    // only fall back to the waterfall-tools shape when it's missing.
+    const populateDetail = (req, harEntry) => {
       if (!detailPanel || !req) return;
-      const url = req.url || req._URL || req._full_url || '';
-      const method = (req.method || (req.request && req.request.method) || 'GET').toUpperCase();
-      const response = req.response || {};
-      const status = response.status || req._status || 0;
+      const entry = harEntry || {};
+      const entryReq = entry.request || {};
+      const response = entry.response || {};
+      const content = response.content || {};
+      const url = entryReq.url || req.url || req._URL || req._full_url || '';
+      const method = (entryReq.method || req.method || 'GET').toUpperCase();
+      const status = response.status || req.status || req._status || 0;
+      const statusText = response.statusText || req.statusText || '';
       detailUrl.textContent = url;
       detailStatus.textContent = status || '—';
       detailStatus.dataset.status = String(status || '');
@@ -279,19 +290,19 @@ script(type='text/javascript').
 
       // General tab — top-line attributes the developer scans for first.
       const general = document.getElementById('wt-detail-body-general');
-      const content = response.content || {};
-      const responseSize = content.size || response.bodySize || req._objectSize || 0;
-      const transferSize = response._transferSize || req._bytesIn || req._bytes_in || 0;
-      const protocol = response.httpVersion || req._protocol || req.httpVersion || '—';
-      const priority = req._priority || '—';
-      const initiator = req._initiator || (req._initiator_detail) || '—';
+      const responseSize = content.size || response.bodySize || req.bytes_in || 0;
+      const transferSize = response._transferSize || response.bodySize || 0;
+      const protocol = response.httpVersion || req.httpVersion || req._protocol || '—';
+      const mimeType = content.mimeType || req.mimeType || '—';
+      const priority = req._priority || entry._priority || '—';
+      const initiator = req._initiator || entry._initiator || req._initiator_detail || '—';
       general.innerHTML = '<table>'
-        + '<tr><th>Status</th><td>' + escAttr(status) + ' ' + escAttr(response.statusText || '') + '</td></tr>'
+        + '<tr><th>Status</th><td>' + escAttr(status) + ' ' + escAttr(statusText) + '</td></tr>'
         + '<tr><th>Method</th><td>' + escAttr(method) + '</td></tr>'
         + '<tr><th>URL</th><td class="url">' + escAttr(url) + '</td></tr>'
-        + '<tr><th>MIME type</th><td>' + escAttr(content.mimeType || '—') + '</td></tr>'
+        + '<tr><th>MIME type</th><td>' + escAttr(mimeType) + '</td></tr>'
         + '<tr><th>Response body</th><td>' + escAttr(fmtBytes(responseSize)) + '</td></tr>'
-        + (transferSize ? '<tr><th>Transferred</th><td>' + escAttr(fmtBytes(transferSize)) + '</td></tr>' : '')
+        + (transferSize && transferSize !== responseSize ? '<tr><th>Transferred</th><td>' + escAttr(fmtBytes(transferSize)) + '</td></tr>' : '')
         + '<tr><th>Protocol</th><td>' + escAttr(protocol) + '</td></tr>'
         + '<tr><th>Priority</th><td>' + escAttr(priority) + '</td></tr>'
         + (initiator !== '—' ? '<tr><th>Initiated by</th><td>' + escAttr(initiator) + '</td></tr>' : '')
@@ -299,8 +310,8 @@ script(type='text/javascript').
 
       // Headers tab — request + response sections.
       const headersEl = document.getElementById('wt-detail-body-headers');
-      const reqHeaders = (req.request && req.request.headers) || req.headers || [];
-      const resHeaders = response.headers || [];
+      const reqHeaders = entryReq.headers || req.headers || [];
+      const resHeaders = response.headers || req.responseHeaders || [];
       const renderHeaders = arr => {
         if (!arr || !arr.length) return '<p class="wt-detail-empty">No headers</p>';
         return '<table>' + arr.map(h => {
@@ -364,8 +375,8 @@ script(type='text/javascript').
         }
         return cookie;
       };
-      let reqCookies = (req.request && req.request.cookies) || req.cookies || [];
-      let resCookies = (response && response.cookies) || [];
+      let reqCookies = entryReq.cookies || req.cookies || [];
+      let resCookies = response.cookies || [];
       // Fall back to header parsing when the structured arrays are
       // absent (some HAR generators skip them).
       if (!reqCookies.length) {
@@ -412,7 +423,7 @@ script(type='text/javascript').
       // ssl, send, wait, receive in ms. Render as a label / bar / ms
       // grid so each phase shows its share of the total visually.
       const timingEl = document.getElementById('wt-detail-body-timing');
-      const t = req.timings || {};
+      const t = entry.timings || req.timings || {};
       const PHASE_COLORS = {
         blocked: '#94a3b8', dns: '#a78bfa', connect: '#fb923c',
         ssl: '#facc15', send: '#22c55e', wait: '#0ea5e9', receive: '#0073b0'
@@ -442,7 +453,7 @@ script(type='text/javascript').
       // `--browsertime.<browser>.includeResponseBodies all|html`. If
       // there's no body in the HAR, show a hint pointing at the flag.
       const bodyEl = document.getElementById('wt-detail-body-body');
-      const decoded = decodeBody(req);
+      const decoded = decodeBody(req, entry);
       if (!decoded) {
         bodyEl.innerHTML = '<p class="wt-detail-empty">No response body in the HAR. Run with one of these flags to include them, depending on the browser you tested with: <code>--browsertime.chrome.includeResponseBodies all</code> or <code>--browsertime.firefox.includeResponseBodies all</code>.</p>';
       } else if (decoded.kind === 'image') {
@@ -549,7 +560,15 @@ script(type='text/javascript').
 
     const onClick = payload => {
       if (!payload || !payload.request) return;
-      populateDetail(payload.request);
+      // waterfall-tools' click payload exposes its own internal Request
+      // shape, which is missing fields the detail panel wants (HAR-shape
+      // timings / cookies / sizes / headers). The same per-page index it
+      // gives us lines up with the original HAR entries, so look those up
+      // and hand both to the panel.
+      const pageEntries = ((har.log && har.log.entries) || [])
+        .filter(e => e.pageref === currentPageId);
+      const harEntry = pageEntries[payload.index] || null;
+      populateDetail(payload.request, harEntry);
       openDetail();
     };
 
