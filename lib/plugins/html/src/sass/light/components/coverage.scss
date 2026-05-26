@@ -1,0 +1,257 @@
+//
+// COVERAGE — light
+// ================
+// JS/CSS coverage tab. Reuses .listing-card from listings.scss; only
+// the local KPI grid, the per-file table and the inline unused-percent
+// bar live here.
+//
+
+.cov-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+}
+
+.cov-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+}
+
+.cov-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+}
+
+.cov-kpi-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: $color--text;
+}
+
+.cov-table {
+  width: 100%;
+  font-size: 0.9rem;
+
+  th, td {
+    padding: 6px 10px;
+    vertical-align: middle;
+  }
+
+  .cov-num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .cov-bar {
+    width: 30%;
+    min-width: 160px;
+  }
+
+  .cov-url {
+    word-break: break-all;
+    font-family: $font--mono;
+    font-size: 0.85rem;
+  }
+}
+
+.cov-inline {
+  color: $color--text-muted;
+  font-style: italic;
+}
+
+.cov-bar-track {
+  display: inline-block;
+  width: calc(100% - 60px);
+  height: 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.cov-bar-fill {
+  display: block;
+  height: 100%;
+  background: rgb(217, 119, 6);
+}
+
+.cov-bar-fill--bad { background: rgb(185, 28, 28); }
+.cov-bar-fill--mid { background: rgb(217, 119, 6); }
+.cov-bar-fill--ok  { background: rgb(5, 150, 105); }
+
+.cov-bar-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-secondary;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  white-space: nowrap;
+  width: 50px;
+  text-align: right;
+}
+
+.cov-empty {
+  color: $color--text-muted;
+}
+
+.cov-count {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  color: $color--text-muted;
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+//
+// Methodology disclosure — sits between the intro paragraph and the
+// KPIs. Default state collapsed; expanding shows the V8 / CSS-rule
+// explainer and the caveats.
+//
+.cov-method {
+  margin: 0 0 16px 0;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+
+  > summary {
+    cursor: pointer;
+    padding: 10px 14px;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    list-style: none;
+
+    &::-webkit-details-marker { display: none; }
+
+    &::before {
+      content: '▸';
+      display: inline-block;
+      margin-right: 8px;
+      color: $color--text-muted;
+      transition: transform 0.15s ease;
+    }
+  }
+
+  &[open] > summary::before { content: '▾'; }
+}
+
+.cov-method-body {
+  padding: 0 14px 14px 14px;
+  color: $color--text-secondary;
+  line-height: 1.55;
+
+  h4 {
+    margin: 14px 0 4px 0;
+    font-size: 0.95rem;
+    color: $color--text;
+  }
+
+  p { margin: 0 0 8px 0; }
+
+  code {
+    font-size: 0.85em;
+  }
+}
+
+//
+// First-party vs third-party unused-bytes split
+//
+.cov-split {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cov-split-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.cov-split-label {
+  color: $color--text-secondary;
+  font-weight: $font--weight--medium;
+}
+
+.cov-split-track {
+  display: flex;
+  height: 12px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+}
+
+.cov-split-fp { background: rgb(0, 149, 210); }
+.cov-split-tp { background: rgb(217, 119, 6); }
+
+.cov-split-value {
+  display: flex;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.cov-split-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $color--text-secondary;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+}
+
+.cov-split-chip--fp::before { background: rgb(0, 149, 210); }
+.cov-split-chip--tp::before { background: rgb(217, 119, 6); }
+
+//
+// Advice card
+//
+.cov-advice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+
+  h4 {
+    margin: 0 0 6px 0;
+    font-size: 0.95rem;
+    font-weight: $font--weight--semibold;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.5;
+    color: $color--text-secondary;
+  }
+
+  li + li { margin-top: 4px; }
+}

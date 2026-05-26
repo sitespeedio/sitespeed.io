@@ -1,6 +1,8 @@
 include ../../_tableMixins
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+- const _btCov = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
+- const hasCoverage = _btCov && ((_btCov.js && _btCov.js.length) || (_btCov.css && _btCov.css.length))
 
 small
   | |&nbsp;
@@ -22,6 +24,9 @@ small
     | &nbsp;|&nbsp;
   if pagexray.renderBlocking
     a(href='#requests-render-blocking') Render-blocking
+    | &nbsp;|&nbsp;
+  if hasCoverage
+    a(href='#coverage') Coverage
     | &nbsp;|&nbsp;
 
 a
@@ -109,3 +114,6 @@ if pageInfo.data.browsertime && pageInfo.data.browsertime.console
 include ./after.pug
 
 include ./blocking.pug
+
+if hasCoverage
+  include ../coverage/index.pug
