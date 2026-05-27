@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-20T00:00:00.000Z</updated>
+    <updated>2026-05-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,81 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-05-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- JS/CSS coverage in the report. Browsertime 27.4.0 collects per-iteration coverage when you pass <code>--chrome.coverage</code>, and the HTML report now surfaces it as a Coverage section in the per-URL view: median JS/CSS total/unused/percent KPIs, first-party vs third-party split, top-25 worst-offender tables, and a methodology + recommendations panel. <code>--chrome.coverage</code> is declared in sitespeed.io&#39;s own CLI so it shows up in <code>--help</code> and the config reference, and the <code>--enableProfileRun</code> path now collects coverage on the profile run and merges it into the main result #4769, #4767.<br>
+<br>
+<strong>Fixed</strong><br>
+- Visual-change lines (<code>_firstVisualChange</code> / <code>_lastVisualChange</code> / <code>_visualComplete85</code>) are back on the waterfall when the HAR is gzipped on disk (the default). The renderer&#39;s user-timing injection was parsing the raw gzip bytes as JSON and silently falling back to the unannotated HAR; it now sniffs the gzip magic bytes and inflates via <code>DecompressionStream</code> first #4758.<br>
+- Per-request detail panel on the waterfall now shows real data again. The panel was reading HAR-shape fields (<code>req.response.content.size</code>, <code>req.response.headers</code>, <code>req.response.status</code>, <code>req.timings</code>, …) but waterfall-tools&#39; click payload is its own flat internal <code>Request</code> object, so Response body always showed <code>0 B</code>, Status was blank, MIME type and Protocol were <code>—</code>, and the response-headers and timing tabs were empty. Look up the matching HAR entry by index and read the rich HAR shape from it, falling back to the waterfall-tools shape only when the HAR is missing.<br>
+- Folder path aliases now accept Unicode letters and digits, so non-ASCII URLs no longer collapse to <code>-</code> in result paths (issue #3880) #4759.<br>
+- <code>scp</code> plugin: retry the initial SFTP handshake up to 3× with linear backoff. <code>ssh2-sftp-client</code> v12 removed its built-in connect retries, so a single &quot;Connection lost before handshake&quot; blip was failing the whole upload #4760.<br>
+- Graphite: retry the post-run annotation POST up to 3× on network errors and 5xx responses. 4xx still fails fast #4761.ß<br>
+- <code>waterfall-tools</code> bumped to the first proper npm release, 0.3.0 — no more pinning to a GitHub tarball, and the bundling script drops to ~30 fewer lines now that the published browser bundle has the platform aliases baked in #4764.<br>
+- Browsertime 27.4.0 #4767.<br>
+- Docker base image rev&#39;d to <code>chrome-148.0-firefox-150.0-edge-147.0-d</code> #4762.<br>
+- Slim Docker image cleanup #4757.<br>
+- Drop now-unused npm <code>overrides</code> from <code>package.json</code> #4756.<br>
+- CI: PR Docker workflow now builds and exercises the image on arm64 in addition to amd64, so arch-specific breakage surfaces pre-merge instead of at release-tag time. Edge step is skipped on arm64 (Linux Edge is amd64-only) #4766.<br>
+- CI: pin the Safari workflow to <code>macos-14</code> #4765.<br>
+- Drop an unnecessary <code>\.</code> escape inside a character class in <code>pathToFolder</code> that was tripping eslint&#39;s <code>no-useless-escape</code> and failing lint on every PR #4763.<br>
+- Docs: remove unused CSS #4768.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 27.4.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.4.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.4.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
+        <updated>2026-05-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- <code>--chrome.coverage</code> no longer reports &quot;0 B unused&quot; for functions that executed at least once. The JS used-bytes calculation took the union of every V8 range with count &gt; 0, but V8 returns nested ranges — an outer range over the whole function body and inner ranges over sub-blocks. If a function ran at all, its outer range already covered the whole body and the inner count == 0 ranges (the actual dead branches) got absorbed into the union and contributed nothing. On modern bundles where module-evaluation top-level code runs for almost every function, the per-script unused-% collapsed to roughly zero across the board, leaving sitespeed.io rendering a &quot;0 B unused&quot; column on pages that obviously ship plenty of dead code. The calculation now walks the ranges as nested intervals, painting the innermost range&#39;s count at every byte (the same definition Chrome DevTools&#39; Coverage panel uses), so dead branches inside executed functions show up correctly. CSS rule-usage tracking returns flat, non-overlapping ranges and is unchanged #2484.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 27.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.4.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.4.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
+        <updated>2026-05-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- JS/CSS coverage collection for Chrome. <code>--chrome.coverage</code> turns it on for every iteration for users who want the data and accept that detailed V8 coverage deoptimizes scripts and will skew their timing metrics. <code>--enableProfileRun</code> also turns coverage on for Chrome alongside the existing trace, so users who want coverage without affecting their timings can lean on the same extra-iteration pattern they already use for tracing — the result is merged back into the main <code>browsertime.json</code> so consumers like sitespeed.io see the data in the same place they read every other metric. Each entry has a per-file breakdown (<code>url</code>, <code>totalBytes</code>, <code>usedBytes</code>, <code>unusedBytes</code>, <code>unusedPercent</code>) #2480.<br>
+<br>
+<strong>Fixed</strong><br>
+- HAR post-processing no longer throws when a page has no matching entries. Occasionally a HAR contains a page whose <code>pageref</code> has no entries — typically a navigation that didn&#39;t produce any requests, or an extension-injected page. <code>getDocumentRequests</code> and <code>getFinalURL</code> dereferenced <code>shift()</code> / <code>pop()</code> without a guard, and <code>getMainDocumentTimings</code> wrapped its entire per-page loop in a single try/catch so one bad page wiped out the main-document timings for every other page in the same HAR. Downstream this surfaced as a noisy triplet of warnings followed by an empty coach-data payload in sitespeed.io. The three crash points are now guarded and unresolvable pages are skipped #2483.<br>
+- Bumped <code>geckodriver</code> to a version with native ARM-64 support #2482.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 4.0.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1"/>
+        <updated>2026-05-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Compare page now renders screenshots, the filmstrip and the run video when the HAR points at a different sitespeed.io result server (e.g. wikiperformance comparing HARs that live on wikimedia.sitespeed.io). The helmet CSP only allowed <code>&#39;self&#39;</code> for images and — via the inherited <code>default-src</code> — for video, so the cross-origin URLs the HAR carries in <code>_meta.screenshot</code> / <code>_meta.filmstrip[].file</code> / <code>_meta.video</code> were blocked and the slots came up empty. <code>img-src</code> now also allows any <code>https:</code> origin and a new <code>media-src</code> does the same for video #269.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 41.1.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.1.0</id>
@@ -472,20 +547,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[onlinetest 3.1.1]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Filmstrip and Visual Progress thumbnails no longer point at non-existent screenshots. The frame timestamps are now derived from <code>_visualMetrics.VisualProgress</code> change points — the authoritative list of frames sitespeed.io actually wrote to disk — instead of speculating a 100 ms grid that breaks on runs with a flat visual-progress stretch #235.<br>
-- Theme and admin CSS now cache-bust on each release via <code>?v=&lt;server-version&gt;</code> stamped on the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> hrefs. Previously a patch release that only touched the theme CSS could sit in browser caches until the unrelated 30-day cache header expired #234.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[sitespeed.io 40.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.3.0"/>
@@ -584,49 +645,6 @@
         <updated>2026-05-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 40.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.0.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Refreshed look and feel for the report. Implemented across a series of small PRs grouped by area:<br>
-- Detailed-summary hero band picks up the four Core-Web-Vitals-class metrics plus the Coach overall score #4622, #4646.<br>
-- Coach severity tier surfaced on every advice card, with a category-level breakdown next to the score chip #4667.<br>
-- Google Web Vitals are now a hero card on the metrics tab — each Vital gets a colour-coded dot, the value at 2× the surrounding font size, the short name, and a Good / Needs improvement / Poor label tied to Google&#39;s p75 cutoffs. INP suppresses the TBT fallback so we don&#39;t show two interactivity proxies side by side. The Visual Milestones tiles next to the chart get a small font bump too #4679.<br>
-- &quot;Where the time went&quot; card on the summary tab and per-iteration summary — a stacked horizontal bar splitting the page-load timeline into Network (0 → TTFB), Render-blocking (TTFB → FCP), Largest paint (FCP → LCP) and Tail (LCP → loaded), with a colour legend underneath restating each segment in ms and %. Reads the medians the rest of the summary already uses #4677, #4679.<br>
-- Long-task lane on the visual-progress card — one bar per Long Task at its real <code>startTime</code> / <code>duration</code>, tinted by severity (≥ 250 ms red, ≥ 100 ms amber, otherwise pale amber) so the worst offenders pop visually next to the FCP / LCP markers #4678.<br>
-- Visual-metrics tab gains a hint that points at <code>--cpu</code> when the FCP / LCP recalculate-style breakdowns aren&#39;t available, so it&#39;s clear how to enable them rather than leaving the card silent #4673.<br>
-<br>
-<strong>Fixed</strong><br>
-- INP card guards against missing fields on the interaction target #4652.<br>
-- LCP card guards against undefined url and id #4651.<br>
-- <code>index.pug</code> no longer crashes when <code>HERO_URLS</code> is referenced before <code>block content</code> #4624.<br>
-- CLS shows in the summary even when the value is 0 #4623.<br>
-- The &quot;limited metrics on Safari&quot; warning only shows on desktop Safari, not iOS #4648.<br>
-- Long Firefox preference identifiers wrap inside settings tiles #4647.<br>
-- Solid warning pills are now bright yellow instead of a muted pastel that read as &quot;ok&quot; #4645.<br>
-- Capped the matched-LCP element image preview so a 1200×800 hero photo doesn&#39;t dwarf the rest of the card #4642.<br>
-- The visual-progress card no longer renders DCL on a chart of &quot;what the user sees&quot; — it&#39;s a DOM lifecycle event, not a visual one. Replaced with VisualComplete85 #4655.<br>
-- Several typos in the report (page titles, in-page text, anchor ids) #4649, #4671, #4672.<br>
-- Polish across the report — odds and ends #4643.<br>
-- Re-enable the Coach for <code>--safari.ios</code> runs (the legacy carve-out that disabled it is no longer needed) and cap the LCP / CLS / iteration screenshot heights so portrait iPhone captures don&#39;t dwarf the rest of the card #4675.<br>
-<br>
-<strong>Changed</strong><br>
-- <code>coach-core</code> bumped from 9.0.0-beta.1 to 9.0.0 #4674.<br>
-- <code>browsertime</code> bumped to 27.0.4 — Safari iOS video time-scale fix (default capture rate is now 60 fps so visualmetrics-derived metrics match the browser&#39;s wall-clock timeline) #4676.<br>
-- <code>axe-core</code> bumped to 4.11.4 #4662.<br>
-- HAR waterfalls render via the dedicated <code>waterfall-tools</code> package instead of inline JS #4614.<br>
-- Chartist (and its three plugins) dropped from the report assets — the visual-progress chart and the compare scatter plots are now inline SVG / DOM-positioned #4654, #4655, #4656.<br>
-- Unify quicklinks across tabs around a consistent <code>&lt;small&gt;</code> + <code>|</code> separator with a fixed leading-pipe-spacing bug #4664.<br>
-- CI hardened with <code>step-security/harden-runner</code> #4610, action SHAs pinned #4606, CI sped up #4617. The apt-built SSH test container in the upload workflow replaced with <code>lscr.io/linuxserver/openssh-server</code> so the job stops flaking on Ubuntu mirror outages #4661.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -835,34 +853,6 @@
 <strong>Fixed</strong><br>
 - More robust detection of the default network interface on Linux, falling back to global IP address lookup when the default route is unavailable #104.<br>
 - Fixed README profile values for DSL and Edge to match actual code, and fixed Node.js API examples to use named imports.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 26.3.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.2"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-01-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Hello the new and fixed bidi-har 0.0.22 that fixes the response body #2361.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 26.3.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-01-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release #2360.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

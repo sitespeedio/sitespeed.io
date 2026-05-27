@@ -16,6 +16,19 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[onlinetest 4.0.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1"/>
+        <updated>2026-05-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Compare page now renders screenshots, the filmstrip and the run video when the HAR points at a different sitespeed.io result server (e.g. wikiperformance comparing HARs that live on wikimedia.sitespeed.io). The helmet CSP only allowed <code>&#39;self&#39;</code> for images and — via the inherited <code>default-src</code> — for video, so the cross-origin URLs the HAR carries in <code>_meta.screenshot</code> / <code>_meta.filmstrip[].file</code> / <code>_meta.video</code> were blocked and the slots came up empty. <code>img-src</code> now also allows any <code>https:</code> origin and a new <code>media-src</code> does the same for video #269.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[onlinetest 4.0.0]]></title>
         <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</id>
         <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0"/>
@@ -173,20 +186,6 @@
         <updated>2026-05-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Refreshed the vendored compare bundle to pick up the upstream regression-spotting pass:<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.1.1]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.1.1"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Filmstrip and Visual Progress thumbnails no longer point at non-existent screenshots. The frame timestamps are now derived from <code>_visualMetrics.VisualProgress</code> change points — the authoritative list of frames sitespeed.io actually wrote to disk — instead of speculating a 100 ms grid that breaks on runs with a flat visual-progress stretch #235.<br>
-- Theme and admin CSS now cache-bust on each release via <code>?v=&lt;server-version&gt;</code> stamped on the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> hrefs. Previously a patch release that only touched the theme CSS could sit in browser caches until the unrelated 30-day cache header expired #234.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
