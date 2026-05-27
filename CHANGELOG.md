@@ -2,6 +2,27 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 41.2.0 - 2026-05-26
+
+### Added
+* JS/CSS coverage in the report. Browsertime 27.4.0 collects per-iteration coverage when you pass `--chrome.coverage`, and the HTML report now surfaces it as a Coverage section in the per-URL view: median JS/CSS total/unused/percent KPIs, first-party vs third-party split, top-25 worst-offender tables, and a methodology + recommendations panel. `--chrome.coverage` is declared in sitespeed.io's own CLI so it shows up in `--help` and the config reference, and the `--enableProfileRun` path now collects coverage on the profile run and merges it into the main result [#4769](https://github.com/sitespeedio/sitespeed.io/pull/4769), [#4767](https://github.com/sitespeedio/sitespeed.io/pull/4767).
+
+### Fixed
+* Visual-change lines (`_firstVisualChange` / `_lastVisualChange` / `_visualComplete85`) are back on the waterfall when the HAR is gzipped on disk (the default). The renderer's user-timing injection was parsing the raw gzip bytes as JSON and silently falling back to the unannotated HAR; it now sniffs the gzip magic bytes and inflates via `DecompressionStream` first [#4758](https://github.com/sitespeedio/sitespeed.io/pull/4758).
+* Per-request detail panel on the waterfall now shows real data again. The panel was reading HAR-shape fields (`req.response.content.size`, `req.response.headers`, `req.response.status`, `req.timings`, …) but waterfall-tools' click payload is its own flat internal `Request` object, so Response body always showed `0 B`, Status was blank, MIME type and Protocol were `—`, and the response-headers and timing tabs were empty. Look up the matching HAR entry by index and read the rich HAR shape from it, falling back to the waterfall-tools shape only when the HAR is missing.
+* Folder path aliases now accept Unicode letters and digits, so non-ASCII URLs no longer collapse to `-` in result paths (issue #3880) [#4759](https://github.com/sitespeedio/sitespeed.io/pull/4759).
+* `scp` plugin: retry the initial SFTP handshake up to 3× with linear backoff. `ssh2-sftp-client` v12 removed its built-in connect retries, so a single "Connection lost before handshake" blip was failing the whole upload [#4760](https://github.com/sitespeedio/sitespeed.io/pull/4760).
+* Graphite: retry the post-run annotation POST up to 3× on network errors and 5xx responses. 4xx still fails fast [#4761](https://github.com/sitespeedio/sitespeed.io/pull/4761).ß
+* `waterfall-tools` bumped to the first proper npm release, 0.3.0 — no more pinning to a GitHub tarball, and the bundling script drops to ~30 fewer lines now that the published browser bundle has the platform aliases baked in [#4764](https://github.com/sitespeedio/sitespeed.io/pull/4764).
+* Browsertime 27.4.0 [#4767](https://github.com/sitespeedio/sitespeed.io/pull/4767).
+* Docker base image rev'd to `chrome-148.0-firefox-150.0-edge-147.0-d` [#4762](https://github.com/sitespeedio/sitespeed.io/pull/4762).
+* Slim Docker image cleanup [#4757](https://github.com/sitespeedio/sitespeed.io/pull/4757).
+* Drop now-unused npm `overrides` from `package.json` [#4756](https://github.com/sitespeedio/sitespeed.io/pull/4756).
+* CI: PR Docker workflow now builds and exercises the image on arm64 in addition to amd64, so arch-specific breakage surfaces pre-merge instead of at release-tag time. Edge step is skipped on arm64 (Linux Edge is amd64-only) [#4766](https://github.com/sitespeedio/sitespeed.io/pull/4766).
+* CI: pin the Safari workflow to `macos-14` [#4765](https://github.com/sitespeedio/sitespeed.io/pull/4765).
+* Drop an unnecessary `\.` escape inside a character class in `pathToFolder` that was tripping eslint's `no-useless-escape` and failing lint on every PR [#4763](https://github.com/sitespeedio/sitespeed.io/pull/4763).
+* Docs: remove unused CSS [#4768](https://github.com/sitespeedio/sitespeed.io/pull/4768).
+
 ## 41.1.0 - 2026-05-20
 
 ### Added
