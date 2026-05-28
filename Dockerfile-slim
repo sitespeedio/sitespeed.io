@@ -9,6 +9,7 @@ ENV SITESPEED_IO_BROWSERTIME__VISUAL_METRICS=false
 ENV SITESPEED_IO_BROWSERTIME__HEADLESS=true
 
 RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
+    printf 'Package: *\nPin: release a=unstable\nPin-Priority: 100\n\nPackage: firefox\nPin: release a=unstable\nPin-Priority: 990\n' > /etc/apt/preferences.d/99-firefox-unstable && \
     apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
         firefox tcpdump iproute2 ca-certificates sudo && \
