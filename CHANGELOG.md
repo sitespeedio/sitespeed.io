@@ -2,6 +2,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 41.2.1 - 2026-05-31
+
+### Fixed
+* Unblock the arm64 Docker release build by bumping the QEMU `binfmt` emulator to a 9.2 build that handles modern systemd, and pinning APT so only the Firefox package is pulled from Debian unstable [#4771](https://github.com/sitespeedio/sitespeed.io/pull/4771).
+* Move the slim Docker image to Debian trixie (the new stable) and drop the APT pin from #4771, which was too strict to let Firefox's `libc6` / `libnss3` dependencies upgrade from unstable [#4772](https://github.com/sitespeedio/sitespeed.io/pull/4772).
+* CI: allow Docker Hub's CloudFront CDN (`production.cloudfront.docker.com`) through the Linux workflow's Harden-Runner egress allowlist, so the test job stops flaking when DNS routes the runner to CloudFront instead of Cloudflare [#4773](https://github.com/sitespeedio/sitespeed.io/pull/4773).
+
 ## 41.2.0 - 2026-05-26
 
 ### Added
