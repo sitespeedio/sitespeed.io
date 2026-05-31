@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-27T12:43:14.457Z</updated>
+    <updated>2026-05-31T12:30:51.059Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,22 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.2.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-05-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Unblock the arm64 Docker release build by bumping the QEMU <code>binfmt</code> emulator to a 9.2 build that handles modern systemd, and pinning APT so only the Firefox package is pulled from Debian unstable #4771.<br>
+- Move the slim Docker image to Debian trixie (the new stable) and drop the APT pin from #4771, which was too strict to let Firefox&#39;s <code>libc6</code> / <code>libnss3</code> dependencies upgrade from unstable #4772.<br>
+- CI: allow Docker Hub&#39;s CloudFront CDN (<code>production.cloudfront.docker.com</code>) through the Linux workflow&#39;s Harden-Runner egress allowlist, so the test job stops flaking when DNS routes the runner to CloudFront instead of Cloudflare #4773.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 41.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.0</id>
@@ -192,25 +208,6 @@
 <br>
 <strong>Fixed</strong><br>
 - Update to Browsertime 27.1.0 #4691<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 40.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.1.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Per-request detail panel on the HAR waterfall — clicking a request opens a slide-in side panel with General / Headers / Cookies / Timing / Body tabs, with syntax-highlighted body previews and copy buttons when response bodies are in the HAR (use <code>--browsertime.chrome.includeResponseBodies html|all</code> for Chrome) #4684.<br>
-- URL filter on the waterfall card — type a substring and the canvas narrows to matching requests, with a &quot;N of M&quot; counter next to the box #4685.<br>
-- Page-metric legend now explains the orange render-blocking marker, the yellow redirect row tint, and the red error row tint — previously these visuals had no key in the report #4685.<br>
-<br>
-<strong>Changed</strong><br>
-- The waterfall canvas adopts a slate/blue palette so its border, gridlines, and row stripes match the surrounding sitespeed.io card chrome instead of the standalone-viewer default #4685.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
