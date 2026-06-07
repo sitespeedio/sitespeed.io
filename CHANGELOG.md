@@ -2,6 +2,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 41.3.0 - 2026-06-07
+
+### Added
+* Docker base image bumped browsers to `chrome-149.0-firefox-151.0-edge-149.0` [#4774](https://github.com/sitespeedio/sitespeed.io/pull/4774), [#4775](https://github.com/sitespeedio/sitespeed.io/pull/4775).
+
+### Fixed
+* Browsertime 27.5.0 [#4776](https://github.com/sitespeedio/sitespeed.io/pull/4776).
+
 ## 41.2.1 - 2026-05-31
 
 ### Fixed
