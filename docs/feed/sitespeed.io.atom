@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-05-31T12:30:51.059Z</updated>
+    <updated>2026-06-07T14:11:47.013Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,23 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-06-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Docker base image bumped browsers to <code>chrome-149.0-firefox-151.0-edge-149.0</code> #4774, #4775.<br>
+<br>
+<strong>Fixed</strong><br>
+- Browsertime 27.5.0 #4776.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 41.2.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.1</id>
@@ -187,27 +204,6 @@
 <strong>Fixed</strong><br>
 - Compare plugin no longer crashes when running with <code>--verbose</code> — a typo in a <code>log.verbose</code> call (<code>&#39;%j&#39;.results</code> instead of <code>&#39;%j&#39;, results</code>) threw once the Python statistical tests returned.<br>
 - <code>coach-core</code> bumped to 9.0.1 #4703.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 40.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Update the CPU tab for Chrome to show more valuable metrics #4691.<br>
-- Add a scrubbable timeline to the visual-progress card #4690.<br>
-- Style the Server timings table to match the rest of the metrics tab #4689.<br>
-- Make Domains, Toplist and Assets pages easier to scan/read #4688<br>
-- A friendlier third-party tab #4687<br>
-<br>
-<strong>Fixed</strong><br>
-- Update to Browsertime 27.1.0 #4691<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

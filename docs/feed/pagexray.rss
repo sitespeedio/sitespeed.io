@@ -136,16 +136,5 @@
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
-        <item>
-            <title><![CDATA[pagexray 4.2.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</guid>
-            <pubDate>Fri, 28 May 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Attach info about render blocking assets coming/working in Chrome 92 #104.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
     </channel>
 </rss>

@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 31 May 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 07 Jun 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,35 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 41.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.0</guid>
+            <pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Docker base image bumped browsers to <code>chrome-149.0-firefox-151.0-edge-149.0</code> #4774, #4775.<br>
+<br>
+<strong>Fixed</strong><br>
+- Browsertime 27.5.0 #4776.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.5.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.5.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.5.0</guid>
+            <pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Bumped <code>chromedriver</code> and <code>edgedriver</code> to 149 #2487.<br>
+- Updated the Docker image to Chrome 149 / Firefox 151 / Edge 149 #2486 #2488.<br>
+<br>
+<strong>Fixed</strong><br>
+- Navigation-script failures now include the URL being tested and the iteration number in the error message, so failure logs and <code>markAsFailure</code> output point at the offending page without cross-referencing the surrounding log lines #2489.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 41.2.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.1</link>
@@ -503,24 +532,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 40.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.2.0</guid>
-            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Update the CPU tab for Chrome to show more valuable metrics #4691.<br>
-- Add a scrubbable timeline to the visual-progress card #4690.<br>
-- Style the Server timings table to match the rest of the metrics tab #4689.<br>
-- Make Domains, Toplist and Assets pages easier to scan/read #4688<br>
-- A friendlier third-party tab #4687<br>
-<br>
-<strong>Fixed</strong><br>
-- Update to Browsertime 27.1.0 #4691<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 27.1.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</guid>
@@ -628,62 +639,6 @@
 - <code>commands.click</code> now falls back to a JavaScript click when the Actions API can&#39;t reach the element. Hidden elements have a zero-size bounding box, so the Actions API click that became the default in #2381 silently moved the pointer to (0,0) and clicked nothing instead of triggering the handler. The click command now pre-checks <code>isDisplayed()</code> and uses a JS click when the element isn&#39;t displayed, and otherwise catches any Actions API failure and retries with a JS click. Each fallback is logged at info level so it&#39;s visible without <code>--verbose</code>. Restores the documented &quot;hide everything before clicking&quot; pattern used by visual-metric scripts #2452.<br>
 - <code>engineDelegate.afterBrowserStopped()</code> is no longer called twice per iteration on the happy path. #2432 added a safety-net cleanup call in the iteration <code>finally</code> block so failure paths still release long-lived helpers, but in the happy path <code>_stopBrowser</code> had already invoked the cleanup, so it ran twice. The visible symptom on Chrome was a spurious <code>ENOENT</code> error from the second <code>cleanUserDataDir</code> (the first call had already removed the directory). It could also double-terminate the iOS simulator&#39;s Safari and the <code>ios-capture</code> server. The safety-net now runs only when <code>_stopBrowser</code> didn&#39;t already reach the cleanup #2453.<br>
 - <code>cleanUserDataDir</code> cleanup now uses <code>rm(..., { recursive: true, force: true })</code> so a missing directory is treated as already-cleaned. Defense in depth alongside #2453: if anything in the future double-calls the Chrome cleanup, or if Chrome failed to create the directory in the first place, the cleanup stays quiet instead of logging a spurious <code>ENOENT</code> #2454.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 27.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.0</guid>
-            <pubDate>Fri, 01 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Unified selector syntax for all interaction commands. You can now call <code>commands.click(&#39;#btn&#39;)</code>, <code>commands.addText(&#39;#input&#39;, &#39;text&#39;)</code>, <code>commands.wait(&#39;#el&#39;, { timeout: 5000 })</code>, <code>commands.select(&#39;#dropdown&#39;, &#39;value&#39;)</code>, and <code>commands.set(&#39;#field&#39;, &#39;value&#39;)</code> directly. Supports prefixes: <code>id:</code>, <code>xpath:</code>, <code>text:</code>, <code>link:</code>, <code>name:</code>, <code>class:</code> — CSS selector is the default #2390 #2408.<br>
-- The <code>AndWait</code> methods are deprecated in favour of <code>{ waitForNavigation: true }</code> #2390 #2396.<br>
-- Navigation methods (back, forward, refresh) now support <code>{ waitForNavigation: true }</code> for consistency #2408.<br>
-- Added <code>commands.type(selector, text)</code> as a shorthand for <code>addText</code> with a more conventional parameter order #2387.<br>
-- Added <code>commands.find(selector, options)</code> helper that combines element lookup with optional waiting and visibility checks #2386.<br>
-- Added <code>commands.measure.clickAndMeasure(alias, selector)</code> shortcut for the common measure.start/click/measure.stop pattern #2382.<br>
-- Added <code>commands.click.byText(text)</code> to click any element by visible text, not just links #2384.<br>
-- Added <code>--timeouts.elementWait</code> option for auto-waiting on elements before interaction #2383.<br>
-- Added support for TypeScript scripts (.ts, .mts, .cts) using Node.js native type stripping (requires Node.js 22.18.0+) #2363.<br>
-- Added <code>commands.getText(selector)</code>, <code>commands.getValue(selector)</code>, and <code>commands.isVisible(selector)</code> convenience methods #2411.<br>
-- Added <code>commands.exists(selector, { timeout })</code> for checking element presence without throwing #2412.<br>
-- Added <code>commands.clear(selector)</code> to clear form element content #2413.<br>
-- Added <code>commands.fill({ selector: text, ... })</code> for filling multiple form fields at once #2414.<br>
-- Added unified selector syntax to mouse commands: <code>commands.mouse.singleClick(selector)</code>, <code>commands.mouse.doubleClick(selector)</code>, <code>commands.mouse.contextClick(selector)</code>, <code>commands.mouse.moveTo(selector)</code> #2415.<br>
-- Added <code>commands.cookie</code> for managing browser cookies: <code>get</code>, <code>getAll</code>, <code>set</code>, <code>delete</code>, <code>deleteAll</code> #2420.<br>
-- Added <code>commands.getAttribute(selector, name)</code>, <code>commands.isEnabled(selector)</code>, and <code>commands.isChecked(selector)</code> for element state queries #2421.<br>
-- Added <code>commands.hover(selector)</code> as alias for mouse.moveTo, <code>commands.press(key)</code> for keyboard input, <code>commands.getTitle()</code> and <code>commands.getUrl()</code> for page info #2422.<br>
-- Added <code>commands.check(selector)</code> and <code>commands.uncheck(selector)</code> for checkbox/radio interactions #2423.<br>
-- Added <code>commands.scrollIntoView(selector)</code> to scroll elements into the viewport #2425.<br>
-- Added <code>commands.select.byText(selector, text)</code> to select dropdown options by visible text #2426.<br>
-- Added <code>commands.waitForUrl(pattern, { timeout })</code> to wait for URL changes after navigation #2427.<br>
-- Added video recording and visual metrics for Safari on iOS over USB. A native helper captures the device&#39;s screen via CoreMediaIO and pipes frames to ffmpeg. The device is woken into screen-capture mode automatically — no manual QuickTime step required #2432 #2436.<br>
-- Added HAR capture for Safari on iOS via <code>ios_webkit_debug_proxy</code>. Browsertime starts and stops <code>iwdp</code> automatically and exits with a clear error if it isn&#39;t installed (<code>brew install ios-webkit-debug-proxy</code>). New <code>--safari.includeResponseBodies</code> CLI option. macOS Safari is unaffected #2431.<br>
-- Added soft navigation support for Chrome. Single-page app route changes (React, Next.js, Vue, Turbo) now produce a HAR page and the standard FCP/LCP/CLS/INP metrics, using Chrome&#39;s PerformanceObserver soft-navigation entry type to confirm user interaction + URL change + visible paint #2438.<br>
-- Updated dependencies to latest compatible versions: chrome-har 1.2.1, selenium-webdriver 4.43.0, execa 9.6.1, jimp 1.6.1 #2437.<br>
-- Firefox 149 in the Docker container #2375.<br>
-- Record the full Chrome/Edge configuration browsertime applied to the browser (args, preferences, mobile emulation, binary path, extensions count) under <code>info.browser</code> in the result JSON, not just what the user passed via <code>--chrome.args</code> #2447.<br>
-- Record Firefox preferences and the resolved binary path under <code>info.browser</code> in the result JSON #2448.<br>
-- Write long-task ranges and user-timing marks/measures into the HAR under <code>pages[].pageTimings</code> as <code>_longTasks</code> (array of <code>[startMs, endMs]</code> tuples) and <code>_userTimings</code> (object keyed by entry name → startTime), so downstream waterfall viewers can show what the browser was doing between requests #2449.<br>
-- Added modern device profiles to the mobile emulation device list #2446.<br>
-<br>
-<strong>Fixed</strong><br>
-- Pin the iOS Safari tab being measured so unrelated open tabs cannot clobber the active inspector target. The WebDriver tab is navigated to a sentinel URL and identified by it before iWDP messages are processed, otherwise an unrelated <code>Target.targetCreated</code> event could leave the HAR empty #2440.<br>
-- Fixed <code>drawtext</code> failing on ffmpeg 8 by quoting font paths and forwarding ffmpeg stderr so font/filter errors are visible #2435.<br>
-- Fixed Firefox network idle timeout on repeated iterations. The WebSocket message listener was never removed between iterations, causing the inflight counter to go negative #2391.<br>
-- Fixed Firefox network idle timeout when no network events arrive. Timestamps were initialized as undefined causing the idle check to never trigger #2394.<br>
-- Fixed intermittent crash when setting orange background before document.body exists on Edge/Windows #2393.<br>
-- Element interaction error messages now include the current page URL for easier debugging #2385.<br>
-- Added <code>actions.clear()</code> after <code>perform()</code> in all mouse commands to prevent pointer/key state leaking between actions #2406.<br>
-- Standardized error handling in all command <code>run()</code> methods using <code>executeCommand</code> with URL context. Fixed typo in select.deselectById and removed dead code in wait #2410.<br>
-- Added clear error message when loading TypeScript scripts on Node.js older than 22.18.0 #2404.<br>
-- Disabled the &quot;You can zoom in and out&quot; popup on Android #2378.<br>
-- Warn when <code>--viewPort</code> is set with a width below 500px on desktop Chrome. Chrome enforces a hard ~500px minimum window width and silently clamps narrower requests, but browsertime kept recording the filmstrip and video at the requested size, leaving captures cropped. The warning points users at mobile emulation, which lays out at the requested size while the OS window stays desktop-sized #2445.<br>
-- Stop a perceptual SSIM failure from discarding every other visual metric for the iteration. <code>calculate_perceptual_speed_index</code> now returns <code>(None, None)</code> on internal errors instead of letting the exception propagate up through <code>calculate_visual_metrics</code>, so SpeedIndex, FCP, LCP and the rest still flow through when SSIM can&#39;t run #2444.<br>
-- Drain ffmpeg/ffprobe stderr after the process exits in <code>visualmetrics-portable.py</code>. The previous Popen+poll loop dropped output buffered between the last read and exit — silently losing <code>keep pts:</code> lines and therefore filmstrip frames — and could deadlock when ffmpeg&#39;s debug output filled the OS pipe buffer #2443.<br>
-- Converted <code>visualmetrics-portable.py</code> path handling to <code>pathlib</code> for consistent cross-platform behaviour #2442.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -1043,17 +998,6 @@
             <pubDate>Wed, 02 Jun 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Include request method per asset #105.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 4.2.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.2.0</guid>
-            <pubDate>Fri, 28 May 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Attach info about render blocking assets coming/working in Chrome 92 #104.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
