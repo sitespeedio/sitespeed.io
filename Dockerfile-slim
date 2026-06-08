@@ -8,10 +8,17 @@ ENV SITESPEED_IO_BROWSERTIME__BROWSER=firefox
 ENV SITESPEED_IO_BROWSERTIME__VISUAL_METRICS=false
 ENV SITESPEED_IO_BROWSERTIME__HEADLESS=true
 
-RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --no-install-suggests \
+        wget ca-certificates && \
+    install -d -m 0755 /etc/apt/keyrings && \
+    wget -qO /etc/apt/keyrings/packages.mozilla.org.asc https://packages.mozilla.org/apt/repo-signing-key.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" > /etc/apt/sources.list.d/mozilla.list && \
+    printf 'Package: *\nPin: origin packages.mozilla.org\nPin-Priority: 1000\n' > /etc/apt/preferences.d/mozilla && \
     apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
-        firefox tcpdump iproute2 ca-certificates sudo && \
+        firefox tcpdump iproute2 sudo && \
+    apt-get purge -y --auto-remove wget && \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 # Install sitespeed.io
