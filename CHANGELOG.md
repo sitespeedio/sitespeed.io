@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 41.3.1 - 2026-06-09
+
+### Fixed
+* npm releases now ship a Sigstore provenance attestation and SPDX + CycloneDX SBOMs as GitHub Release assets. Releases run from a new `.github/workflows/release.yml` (triggered with `./release.sh patch|minor|major`), publish to npm via OIDC Trusted Publishing, and only push the version commit and tag after the publish succeeds — so a failed publish can't leave an orphan tag firing the Docker release for a never-published version. Users can verify what they install with `npm audit signatures` a[#4780](https://github.com/sitespeedio/sitespeed.io/pull/4780).
+* `SECURITY.md`: a written security policy with a documented channel (GitHub private vulnerability reporting, with email fallback). The file requires reporters to spell out an exploitation chain rather than just citing a finding, and takes an explicit stance on transitive-dependency CVEs that don't have a reachable code path in sitespeed.io's actual usage [#4778](https://github.com/sitespeedio/sitespeed.io/pull/4778).
+* `publiccode.yml`: machine-readable metadata so sitespeed.io can be listed in EU public-sector software catalogues. `release.sh`'s replacement workflow keeps `softwareVersion` and `releaseDate` fresh automatically on every release [#4779](https://github.com/sitespeedio/sitespeed.io/pull/4779).
+* Slim Docker image build experiment [#4777](https://github.com/sitespeedio/sitespeed.io/pull/4777).
 
 ## 41.3.0 - 2026-06-07
 
