@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-06-09T10:03:43.809Z</updated>
+    <updated>2026-06-09T14:24:37.747Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,22 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.3.3]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-06-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Release chain: dispatch <code>building-docker-release.yml</code>, <code>building-docker-autobuild.yml</code> and <code>netlify.yml</code> explicitly from <code>release.yml</code> instead of relying on the tag and main-branch pushes to fire them #4786.<br>
+- Docker release images are now signed with cosign and ship with a SLSA provenance attestation and an SPDX SBOM attached as separate OCI artefacts in the same Docker Hub repository. Users can verify an image was built and pushed by this repository&#39;s release workflow with <code>cosign verify --certificate-identity-regexp &#39;https://github\.com/sitespeedio/sitespeed\.io/\.github/workflows/building-docker-release\.yml@refs/tags/v .*&#39; --certificate-oidc-issuer https://token.actions.githubusercontent.com sitespeedio/sitespeed.io:&lt;version&gt;</code>, and inspect the SBOM or provenance with <code>docker buildx imagetools inspect sitespeedio/sitespeed.io:&lt;version&gt; --format &#39;{{ json .SBOM }}&#39;</code>. The <code>-slim</code> and <code>-plus1</code> variants are signed the same way. Signing is keyless via Sigstore OIDC so there&#39;s no long-lived signing key to manage #4783.<br>
+- Bump <code>step-security/harden-runner</code> from v2.14.2 to v2.19.4 across every workflow #4782.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 41.3.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.1</id>
@@ -189,20 +205,6 @@
         <updated>2026-05-13T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Stop parsing scripting files as URL-alias lists in <code>getAliases</code> #4724.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 40.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Browsertime 27.2.0 — <code>recalculateStyle</code> is now summarised at the HAR page level as <code>_renderBlocking.recalculateStyle</code> (beforeFCP / beforeLCP element counts + durations), so the metric is reachable from the page entry instead of only inside <code>browsertime.json</code> #4723.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

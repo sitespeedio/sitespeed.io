@@ -16,6 +16,22 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 41.3.3]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-06-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Release chain: dispatch <code>building-docker-release.yml</code>, <code>building-docker-autobuild.yml</code> and <code>netlify.yml</code> explicitly from <code>release.yml</code> instead of relying on the tag and main-branch pushes to fire them #4786.<br>
+- Docker release images are now signed with cosign and ship with a SLSA provenance attestation and an SPDX SBOM attached as separate OCI artefacts in the same Docker Hub repository. Users can verify an image was built and pushed by this repository&#39;s release workflow with <code>cosign verify --certificate-identity-regexp &#39;https://github\.com/sitespeedio/sitespeed\.io/\.github/workflows/building-docker-release\.yml@refs/tags/v .*&#39; --certificate-oidc-issuer https://token.actions.githubusercontent.com sitespeedio/sitespeed.io:&lt;version&gt;</code>, and inspect the SBOM or provenance with <code>docker buildx imagetools inspect sitespeedio/sitespeed.io:&lt;version&gt; --format &#39;{{ json .SBOM }}&#39;</code>. The <code>-slim</code> and <code>-plus1</code> variants are signed the same way. Signing is keyless via Sigstore OIDC so there&#39;s no long-lived signing key to manage #4783.<br>
+- Bump <code>step-security/harden-runner</code> from v2.14.2 to v2.19.4 across every workflow #4782.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 41.3.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.1</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.1"/>
@@ -442,13 +458,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 40.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <title type="html"><![CDATA[browsertime 27.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
         <updated>2026-05-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Browsertime 27.2.0 — <code>recalculateStyle</code> is now summarised at the HAR page level as <code>_renderBlocking.recalculateStyle</code> (beforeFCP / beforeLCP element counts + durations), so the metric is reachable from the page entry instead of only inside <code>browsertime.json</code> #4723.<br>
+- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -548,13 +564,18 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 27.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0"/>
+        <title type="html"><![CDATA[browsertime 27.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0"/>
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
+        <updated>2026-05-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
+- Three new analyses on <code>result.cpu</code> derived from the same Chrome <code>trace.json</code> that&#39;s already collected when <code>--cpu</code> is on. <code>scriptCosts</code> produces the per-URL parse / compile / execute / total breakdown that Lighthouse&#39;s bootup-time audit shows, sorted by total descending. <code>forcedReflows</code> walks the main-thread task tree for <code>Layout</code> / <code>UpdateLayoutTree</code> events nested inside JS-driven tasks (<code>EventDispatch</code>, <code>FunctionCall</code>, <code>TimerFire</code>, <code>FireAnimationFrame</code>, …) — every match is a synchronous reflow caused by JavaScript reading a layout-triggering property mid-handler, reported with the script that triggered it. <code>nonCompositedAnimations</code> surfaces <code>Animation</code> events whose <code>compositeFailed</code> bitmask is non-zero, returning the unsupported properties (<code>top</code>, <code>box-shadow</code>, <code>filter</code>, …) so consumers can see what to swap for the GPU-friendly equivalent. Each new analysis is wrapped in its own try / catch so a bug in one can&#39;t poison the existing <code>categories</code> / <code>events</code> / <code>urls</code> payload #PR1.<br>
+<br>
+<strong>Fixed</strong><br>
+- Replace the unmaintained <code>@sitespeed.io/tracium</code> dependency (extracted from Lighthouse circa 2017, last release 0.3.3) with an in-tree ESM port at <code>lib/chrome/trace/</code>. The algorithm is a 1:1 port; output of <code>computeMainThreadTasks</code> is byte-equivalent for any trace, so existing <code>result.cpu.{categories,events,urls}</code> consumers see no change. Pulling the parser inline lets new analyses ship at Browsertime&#39;s release cadence without a second <code>npm publish</code> step in between #PR1.<br>
+- Modernise the trace-event classifier. The original list only knew about ~30 event names, so on busy 2026-era pages roughly half the trace fell through to &quot;other&quot; — on a sample cnet run that meant 1.3 s of &quot;other&quot; hiding <code>RunTask</code>, <code>v8.run</code>, <code>IntersectionObserverController::computeIntersections</code>, <code>PrePaint</code>, <code>Commit</code>, <code>Layerize</code>, <code>v8.callFunction</code>, <code>V8.DeserializeContext</code> and friends. The expanded list draws from modern Lighthouse + the WebPageTest-derived map in waterfall-tools + direct sampling of real traces, and a new <code>groupForEvent()</code> lookup adds <code>V8.GC*</code> prefix matching so future V8 GC phases auto-classify #PR1.<br>
+- Bump <code>chrome-har</code> to 1.3.0 to pick up the new <code>_renderBlocking</code> field on each entry, lifting Chrome&#39;s CDP <code>renderBlockingStatus</code> (Chrome 108+) so downstream HAR consumers can see which resources blocked first paint without inferring it from the trace.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -568,25 +589,6 @@
         <updated>2026-05-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 27.1.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-05-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Three new analyses on <code>result.cpu</code> derived from the same Chrome <code>trace.json</code> that&#39;s already collected when <code>--cpu</code> is on. <code>scriptCosts</code> produces the per-URL parse / compile / execute / total breakdown that Lighthouse&#39;s bootup-time audit shows, sorted by total descending. <code>forcedReflows</code> walks the main-thread task tree for <code>Layout</code> / <code>UpdateLayoutTree</code> events nested inside JS-driven tasks (<code>EventDispatch</code>, <code>FunctionCall</code>, <code>TimerFire</code>, <code>FireAnimationFrame</code>, …) — every match is a synchronous reflow caused by JavaScript reading a layout-triggering property mid-handler, reported with the script that triggered it. <code>nonCompositedAnimations</code> surfaces <code>Animation</code> events whose <code>compositeFailed</code> bitmask is non-zero, returning the unsupported properties (<code>top</code>, <code>box-shadow</code>, <code>filter</code>, …) so consumers can see what to swap for the GPU-friendly equivalent. Each new analysis is wrapped in its own try / catch so a bug in one can&#39;t poison the existing <code>categories</code> / <code>events</code> / <code>urls</code> payload #PR1.<br>
-<br>
-<strong>Fixed</strong><br>
-- Replace the unmaintained <code>@sitespeed.io/tracium</code> dependency (extracted from Lighthouse circa 2017, last release 0.3.3) with an in-tree ESM port at <code>lib/chrome/trace/</code>. The algorithm is a 1:1 port; output of <code>computeMainThreadTasks</code> is byte-equivalent for any trace, so existing <code>result.cpu.{categories,events,urls}</code> consumers see no change. Pulling the parser inline lets new analyses ship at Browsertime&#39;s release cadence without a second <code>npm publish</code> step in between #PR1.<br>
-- Modernise the trace-event classifier. The original list only knew about ~30 event names, so on busy 2026-era pages roughly half the trace fell through to &quot;other&quot; — on a sample cnet run that meant 1.3 s of &quot;other&quot; hiding <code>RunTask</code>, <code>v8.run</code>, <code>IntersectionObserverController::computeIntersections</code>, <code>PrePaint</code>, <code>Commit</code>, <code>Layerize</code>, <code>v8.callFunction</code>, <code>V8.DeserializeContext</code> and friends. The expanded list draws from modern Lighthouse + the WebPageTest-derived map in waterfall-tools + direct sampling of real traces, and a new <code>groupForEvent()</code> lookup adds <code>V8.GC*</code> prefix matching so future V8 GC phases auto-classify #PR1.<br>
-- Bump <code>chrome-har</code> to 1.3.0 to pick up the new <code>_renderBlocking</code> field on each entry, lifting Chrome&#39;s CDP <code>renderBlockingStatus</code> (Chrome 108+) so downstream HAR consumers can see which resources blocked first paint without inferring it from the trace.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
