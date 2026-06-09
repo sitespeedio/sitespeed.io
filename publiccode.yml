@@ -1,0 +1,103 @@
+publiccodeYmlVersion: "0.5.0"
+
+name: sitespeed.io
+url: "https://github.com/sitespeedio/sitespeed.io"
+landingURL: "https://www.sitespeed.io"
+softwareVersion: "41.3.0"
+releaseDate: "2026-06-07"
+
+logo: docs/img/sitespeed.io-logo-large.png
+
+platforms:
+  - linux
+  - mac
+  - windows
+  - web
+
+categories:
+  - it-development
+  - data-analytics
+
+developmentStatus: stable
+softwareType: standalone/backend
+
+description:
+  en:
+    localisedName: sitespeed.io
+    genericName: Web performance tool
+    shortDescription: >-
+      Open-source command-line tool that measures web page performance
+      using real browsers and produces an HTML report, JSON metrics,
+      and time-series data for Grafana dashboards.
+    longDescription: >
+      sitespeed.io is an open-source web performance tool used to test,
+      monitor and optimise the speed of websites. It drives a real
+      browser — Firefox, Chrome, Edge or Safari, including Safari on a
+      real iPhone over USB — and collects Core Web Vitals (LCP, INP,
+      CLS, TTFB, FCP), a video of the page load, visual metrics such as
+      First Visual Change and Speed Index, the HAR waterfall, and the
+      Coach's catalogue of best-practice advice.
+
+
+      It can be used in three common ways. Run it once from a terminal
+      to audit a slow page and open the HTML report to see what is
+      slow. Run it in a CI pipeline on every pull request and fail the
+      build when a performance budget is exceeded. Or run it on a
+      schedule in production and ship the metrics to Graphite or
+      InfluxDB to track performance over time in a Grafana dashboard.
+
+
+      For privacy and EU regulatory reviews the third-party plugin
+      inventories every external domain, entity and cookie each page
+      loads, categorised by purpose (analytics, advertising,
+      surveillance, video, social) using the public third-party-web
+      dataset. The output is *input* to a review — it surfaces what
+      data flows out of the page — and is intentionally not a
+      determination of compliance with the GDPR, the ePrivacy
+      Directive or any other law. That judgement still belongs to the
+      team running the audit.
+
+
+      The project is free software, owned and operated by the
+      contributors. It has been developed and maintained from Sweden,
+      inside the European Union, since 2012, with no corporate owner
+      and no acquisition exit. There is nothing to sign up for, and
+      users keep full ownership of their measurement data. The tool
+      ships as an npm package and a reproducible multi-architecture
+      Docker image with Firefox, Chrome and Edge preinstalled. Teams
+      who would rather not give every contributor command-line access
+      can instead self-host sitespeed.io behind the
+      `sitespeedio/onlinetest` web UI and REST API, which wraps the
+      same engine in a browser-based front end and is also free and
+      open-source.
+    documentation: "https://www.sitespeed.io/documentation/sitespeed.io/"
+    apiDocumentation: "https://www.sitespeed.io/documentation/sitespeed.io/configuration/"
+    features:
+      - Core Web Vitals (LCP, INP, CLS, TTFB, FCP)
+      - Visual metrics with scrubbable filmstrip
+      - HAR waterfall rendering
+      - Third-party domain, entity and cookie inventory for privacy reviews
+      - Coach performance and best-practice advice
+      - Performance budgets for CI regression testing
+      - Time-series export to Graphite and InfluxDB
+      - Slack and Matrix notifications
+      - Result upload to S3, GCS, SFTP and rsync
+      - Multi-architecture Docker image (amd64, arm64)
+      - Scriptable user journeys via browsertime
+
+legal:
+  license: MIT
+  mainCopyrightOwner: sitespeed.io contributors
+  repoOwner: sitespeed.io
+
+maintenance:
+  type: community
+  contacts:
+    - name: Peter Hedenskog
+      email: peter@soulgalore.com
+      affiliation: sitespeed.io
+
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - en

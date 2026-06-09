@@ -10,8 +10,24 @@ rm -fR sitespeed-result
 # npm install --global np
 np $* --branch main
 
+# Capture the just-released version once so docs, metadata and any
+# downstream catalogue file all see the same number.
+VERSION="$(bin/sitespeed.js --version | tr -d '\n')"
+
 # Update to latest version in the docs
-bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
+printf '%s' "$VERSION" > docs/_includes/version/sitespeed.io.txt
+
+# Keep publiccode.yml in sync — softwareVersion and releaseDate are read by
+# public-software catalogues, so a stale entry there silently misrepresents
+# the project. sed -i.bak + rm keeps this portable between BSD and GNU sed.
+if [ -f publiccode.yml ]; then
+  TODAY="$(date -u +%Y-%m-%d)"
+  sed -i.bak \
+    -e "s/^softwareVersion: .*/softwareVersion: \"${VERSION}\"/" \
+    -e "s/^releaseDate: .*/releaseDate: \"${TODAY}\"/" \
+    publiccode.yml
+  rm -f publiccode.yml.bak
+fi
 
 # Generate the help for the docs (use --help-all so the published
 # reference still lists every option; the plain --help is now a curated
