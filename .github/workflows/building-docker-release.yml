@@ -3,6 +3,12 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  # workflow_dispatch is needed because release.yml's tag push runs as
+  # GITHUB_TOKEN, and GITHUB_TOKEN-triggered push/tag events don't fan out
+  # to other workflows. release.yml calls `gh workflow run` against this
+  # workflow with `--ref v<version>` so the Docker images for that release
+  # actually get built.
+  workflow_dispatch:
 
 # id-token: write is the OIDC token that cosign exchanges for a short-lived
 # Sigstore certificate. contents: read covers the actions/checkout step.

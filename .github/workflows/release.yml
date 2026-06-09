@@ -144,3 +144,21 @@ jobs:
             --generate-notes \
             sbom.spdx.json \
             sbom.cdx.json
+
+      # GITHUB_TOKEN can't trigger push/tag-based workflows (GitHub's
+      # anti-loop guard), so the tag push above does NOT fire
+      # building-docker-release.yml, and the "new version" commit push
+      # does NOT fire building-docker-autobuild.yml or netlify.yml.
+      # workflow_dispatch is the one event GITHUB_TOKEN is allowed to
+      # raise, so kick each one off explicitly here. Failures are
+      # tolerated (`|| true`) so a transient API hiccup on one dispatch
+      # doesn't fail an otherwise-successful release — the maintainer
+      # can re-dispatch any missed workflow by hand from the Actions
+      # tab.
+      - name: Dispatch downstream workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run building-docker-release.yml --ref "${{ steps.bump.outputs.tag }}" || true
+          gh workflow run building-docker-autobuild.yml --ref main || true
+          gh workflow run netlify.yml --ref main || true

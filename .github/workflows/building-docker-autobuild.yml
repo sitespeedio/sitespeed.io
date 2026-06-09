@@ -3,10 +3,16 @@ on:
   push:
     branches:
     - main
+  # release.yml dispatches this workflow after the "new version" commit lands,
+  # because that commit is pushed with GITHUB_TOKEN and so doesn't trigger
+  # push-based workflows on its own.
+  workflow_dispatch:
 jobs:
   docker:
     runs-on: ubuntu-24.04
-    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    # On workflow_dispatch the head_commit object is null, so the docs: skip
+    # heuristic only applies to real pushes.
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'docs:') }}
     steps:
       -
         name: Harden Runner
