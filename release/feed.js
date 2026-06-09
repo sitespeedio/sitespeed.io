@@ -1,5 +1,11 @@
 import { Feed } from 'feed';
-import { readdirSync, statSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  readdirSync,
+  statSync,
+  readFileSync,
+  writeFileSync,
+  existsSync
+} from 'node:fs';
 import path from 'node:path';
 import parseChangelog from 'changelog-parser';
 import { marked } from 'marked';
@@ -115,17 +121,49 @@ function getResultAsHTML(result) {
     .join('<br>\n');
 }
 
+// Where a tool's CHANGELOG.md lives, both on the maintainer's laptop (sibling
+// repos checked out next to this one) and on GitHub (used as a fallback when
+// the sibling isn't on disk, e.g. when this script runs from the release
+// workflow runner). The npm package `coach-core` lives in the
+// `sitespeedio/coach` repo, so the tool name and repo name diverge there.
+const changelogLocations = tool => {
+  if (tool === 'sitespeed.io') {
+    return {
+      local: './CHANGELOG.md',
+      remote:
+        'https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/CHANGELOG.md'
+    };
+  }
+  if (tool === 'server' || tool === 'testrunner') {
+    return {
+      local: `../onlinetest/${tool}/CHANGELOG.md`,
+      remote: `https://raw.githubusercontent.com/sitespeedio/onlinetest/main/${tool}/CHANGELOG.md`
+    };
+  }
+  const repo = tool === 'coach-core' ? 'coach' : tool;
+  return {
+    local: `../${tool}/CHANGELOG.md`,
+    remote: `https://raw.githubusercontent.com/sitespeedio/${repo}/main/CHANGELOG.md`
+  };
+};
+
 const getContent = async tool => {
   const content = [];
-  let changelog =
-    tool === 'sitespeed.io' ? './CHANGELOG.md' : '../' + tool + '/CHANGELOG.md';
-  if (tool === 'server' || tool === 'testrunner') {
-    changelog = `../onlinetest/${tool}/CHANGELOG.md`;
+  const { local, remote } = changelogLocations(tool);
+
+  let result;
+  if (existsSync(local)) {
+    result = await parseChangelog({ filePath: local, removeMarkdown: false });
+  } else {
+    const response = await fetch(remote);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch ${remote}: ${response.status} ${response.statusText}`
+      );
+    }
+    const text = await response.text();
+    result = await parseChangelog({ text, removeMarkdown: false });
   }
-  const result = await parseChangelog({
-    filePath: changelog,
-    removeMarkdown: false
-  });
 
   for (let index = 0; index < 10; index++) {
     // It's not unreleased
