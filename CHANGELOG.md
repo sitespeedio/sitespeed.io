@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 41.3.3 - 2026-06-09
+
+### Fixed
+* Release chain: dispatch `building-docker-release.yml`, `building-docker-autobuild.yml` and `netlify.yml` explicitly from `release.yml` instead of relying on the tag and main-branch pushes to fire them [#4786](https://github.com/sitespeedio/sitespeed.io/pull/4786).
+
  ## 41.3.2 - 2026-06-09
 
 ### Fixed
