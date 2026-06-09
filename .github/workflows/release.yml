@@ -49,6 +49,7 @@ on:
 permissions:
   contents: write   # push the version + regen commits and the tag back to main
   id-token: write   # OIDC token used by `npm publish --provenance`
+  actions: write    # `gh workflow run` against the downstream workflows in the dispatch step
 
 jobs:
   release:
@@ -150,15 +151,15 @@ jobs:
       # building-docker-release.yml, and the "new version" commit push
       # does NOT fire building-docker-autobuild.yml or netlify.yml.
       # workflow_dispatch is the one event GITHUB_TOKEN is allowed to
-      # raise, so kick each one off explicitly here. Failures are
-      # tolerated (`|| true`) so a transient API hiccup on one dispatch
-      # doesn't fail an otherwise-successful release — the maintainer
-      # can re-dispatch any missed workflow by hand from the Actions
-      # tab.
+      # raise, so kick each one off explicitly here. `gh workflow run`
+      # needs the actions: write scope (granted at the workflow level
+      # above) — without it the calls 403. Errors are surfaced (no
+      # `|| true`) so a silent dispatch failure can't repeat the
+      # 41.3.1 / 41.3.2 / 41.3.3 "npm out, Docker missing" outcome.
       - name: Dispatch downstream workflows
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run building-docker-release.yml --ref "${{ steps.bump.outputs.tag }}" || true
-          gh workflow run building-docker-autobuild.yml --ref main || true
-          gh workflow run netlify.yml --ref main || true
+          gh workflow run building-docker-release.yml --ref "${{ steps.bump.outputs.tag }}"
+          gh workflow run building-docker-autobuild.yml --ref main
+          gh workflow run netlify.yml --ref main
