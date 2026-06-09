@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  # release.yml dispatches this workflow after pushing the "new version"
+  # commit, which goes out under GITHUB_TOKEN and therefore doesn't trigger
+  # the push branch above.
+  workflow_dispatch:
 
 jobs:
   check-docs-changes:
