@@ -1,0 +1,146 @@
+name: Release
+
+# Triggered manually. There's intentionally no automatic trigger on push or
+# schedule — a release is an explicit human decision.
+#
+# The release flow is:
+#   1. Lint and test the working tree of main.
+#   2. Run `npm version <type>` locally on the runner, which writes a commit
+#      titled "<X.Y.Z>" and a tag "v<X.Y.Z>" (without pushing them yet).
+#   3. Regenerate all version-dependent files (docs version include, --help-all
+#      reference, publiccode.yml, friendly-name tables, RSS feeds) and add
+#      them as a second "new version" commit.
+#   4. Generate SBOMs (SPDX + CycloneDX) from the published dependency tree.
+#   5. `npm publish --provenance` using the workflow's OIDC token, so the
+#      published tarball carries a Sigstore provenance attestation that
+#      cryptographically binds the package on npmjs.com to this exact
+#      workflow run.
+#   6. Only after npm publish succeeded, push the version commit, the regen
+#      commit and the tag back to main. The tag push fans out to
+#      building-docker-release.yml (Docker Hub release images) and
+#      building-docker-autobuild.yml / netlify.yml (autobuild image, docs
+#      deploy) on its own.
+#   7. Create a GitHub Release with the SBOMs attached as assets.
+#
+# Failure semantics: if any step before "Publish to npm" fails, nothing is
+# pushed anywhere — the runner's local commits and tag are thrown away. If
+# `npm publish` itself fails, again nothing is pushed; re-run the workflow
+# after fixing whatever blocked the publish. The push-back step only runs
+# when publish succeeded, so the Docker release build never fires for a
+# never-published npm version.
+#
+# Prerequisite: the sitespeed.io npm package must be configured on npmjs.com
+# under Trusted Publishing to trust this workflow
+# (sitespeedio/sitespeed.io / release.yml). Without that, the publish step
+# fails with a 401 and the release aborts cleanly.
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseType:
+        description: "Release type (semver)"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write   # push the version + regen commits and the tag back to main
+  id-token: write   # OIDC token used by `npm publish --provenance`
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout main
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
+        with:
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version (local commit + tag, no push)
+        id: bump
+        run: |
+          npm version "${{ inputs.releaseType }}" -m "%s"
+          VERSION="$(node -p "require('./package.json').version")"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Regenerate version-dependent docs and metadata
+        env:
+          VERSION: ${{ steps.bump.outputs.version }}
+        run: |
+          printf '%s' "$VERSION" > docs/_includes/version/sitespeed.io.txt
+          bin/sitespeed.js --help-all > docs/documentation/sitespeed.io/configuration/config.md
+          if [ -f publiccode.yml ]; then
+            TODAY="$(date -u +%Y-%m-%d)"
+            sed -i.bak \
+              -e "s/^softwareVersion: .*/softwareVersion: \"${VERSION}\"/" \
+              -e "s/^releaseDate: .*/releaseDate: \"${TODAY}\"/" \
+              publiccode.yml
+            rm -f publiccode.yml.bak
+          fi
+          node release/friendlyNames.js > docs/documentation/sitespeed.io/configure-html/friendlynames.md
+          node release/friendlyNamesBudget.js > docs/documentation/sitespeed.io/performance-budget/friendlynames.md
+          node release/feed.js
+
+      - name: Commit regenerated files
+        run: |
+          if git diff --quiet; then
+            echo "No regenerated changes to commit"
+          else
+            git add -A
+            git commit -m "new version"
+          fi
+
+      - name: Generate SBOMs (SPDX and CycloneDX)
+        run: |
+          npm sbom --sbom-format=spdx > sbom.spdx.json
+          npm sbom --sbom-format=cyclonedx > sbom.cdx.json
+
+      - name: Publish to npm with provenance
+        run: npm publish --provenance --access public
+
+      - name: Push commit(s) and tag to main
+        run: |
+          git push origin HEAD:main
+          git push origin "${{ steps.bump.outputs.tag }}"
+
+      - name: Create GitHub Release with SBOMs attached
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.bump.outputs.tag }}" \
+            --title "${{ steps.bump.outputs.version }}" \
+            --generate-notes \
+            sbom.spdx.json \
+            sbom.cdx.json
