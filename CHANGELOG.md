@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+ ## 41.3.2 - 2026-06-09
+
+### Fixed
+* Docker release images are now signed with cosign and ship with a SLSA provenance attestation and an SPDX SBOM attached as separate OCI artefacts in the same Docker Hub repository. Users can verify an image was built and pushed by this repository's release workflow with `cosign verify --certificate-identity-regexp 'https://github\.com/sitespeedio/sitespeed\.io/\.github/workflows/building-docker-release\.yml@refs/tags/v .*' --certificate-oidc-issuer https://token.actions.githubusercontent.com sitespeedio/sitespeed.io:<version>`, and inspect the SBOM or provenance with `docker buildx imagetools inspect sitespeedio/sitespeed.io:<version> --format '{{ json .SBOM }}'`. The `-slim` and `-plus1` variants are signed the same way. Signing is keyless via Sigstore OIDC so there's no long-lived signing key to manage [#4783](https://github.com/sitespeedio/sitespeed.io/pull/4783).
+
+* Bump `step-security/harden-runner` from v2.14.2 to v2.19.4 across every workflow [#4782](https://github.com/sitespeedio/sitespeed.io/pull/4782).
+
 ## 41.3.1 - 2026-06-09
 
 ### Fixed
