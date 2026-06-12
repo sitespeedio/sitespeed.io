@@ -168,7 +168,7 @@ export default async function (context, commands) {
     // Do something smart that means you need to test the same URL again
     // ...
 
-    return commands.navigate('https://www.sitespeed.io/?dummy', 'BackToHomepage');
+    return commands.measure.start('https://www.sitespeed.io/?dummy', 'BackToHomepage');
 };
 ```
 

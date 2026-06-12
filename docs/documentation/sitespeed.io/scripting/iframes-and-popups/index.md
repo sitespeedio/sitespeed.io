@@ -71,35 +71,39 @@ export default async function (context, commands) {
 
 ## Switching back
 
-Three options for getting out of a frame:
+Two ways to get out of a frame:
 
 ```javascript
 // Up one level (back to the parent of the current frame)
 await commands.switch.toParentFrame();
 
-// All the way back to the top-level document
-await commands.switch.toTopFrame();
+// All the way back to the top-level document (through Selenium directly)
+await context.selenium.driver.switchTo().defaultContent();
 ```
 
-For nested iframes (an iframe inside an iframe), use `toParentFrame` repeatedly or jump straight to the top with `toTopFrame`.
+For nested iframes (an iframe inside an iframe), call `toParentFrame` repeatedly, or jump straight to the top-level document with `context.selenium.driver.switchTo().defaultContent()`.
 
 ## Popups and new tabs
 
 Clicks that open a new window or tab don't change the active context — Browsertime keeps targeting the original window. To drive the popup you have to switch:
 
 ```javascript
+// Remember the original window before the popup opens
+const original = await context.selenium.driver.getWindowHandle();
+
 // Click the link that opens the popup
 await commands.click('a[target="_blank"]');
 
 // Switch to the most recently opened window/tab
-await commands.switch.toNewTab();
+const handles = await context.selenium.driver.getAllWindowHandles();
+await commands.switch.toWindow(handles[handles.length - 1]);
 
 // Now interact with the popup
 await commands.wait('id:popup-content');
 await commands.click('id:popup-close');
 
 // Back to the original window
-await commands.switch.toPreviousTab();
+await commands.switch.toWindow(original);
 ```
 
 If the popup is the auth flow, this is the dance: click → switch into popup → fill form → click submit → switch back. The original tab usually waits for the popup to close before continuing — wait on a marker in the original page after the switch-back rather than guessing how long the auth round-trip takes.
