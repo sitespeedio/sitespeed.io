@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Pre and post scripts
-description: Run setup once before your test and cleanup once after — the standard pattern for log-in-once / measure-many.
+description: Run setup before your measured pages and cleanup after — the standard log-in-once / measure-many pattern, repeated for every iteration.
 keywords: scripting, tutorial, sitespeed.io, browsertime, prescript, postscript, login
 nav: documentation
 category: sitespeed.io
@@ -15,12 +15,14 @@ category: sitespeed.io
 
 The most common scripting question after "how do I measure a single page?" is "how do I log in *once* and then measure several pages as a logged-in user?". Re-doing the login on every page is slow, fragile, and pollutes the metrics.
 
-The answer is `--preScript` and `--postScript` — scripts that run once before / once after your actual test, sharing the browser session.
+The answer is `--preScript` and `--postScript` — scripts that run before / after the URLs you measure, sharing the same browser session.
 
 ## What pre and post scripts do
 
-* **`--preScript`** runs once before the URL list is tested. It uses the same browser instance, so anything it does (logging in, dismissing a banner, setting cookies, throttling the network) carries into the measurement run.
-* **`--postScript`** runs once after the test list is finished. The browser is still around — useful for logout, screenshot capture on failure, or pushing custom data somewhere.
+* **`--preScript`** runs before the URLs are tested, in the same browser instance, so anything it does (logging in, dismissing a banner, setting cookies, throttling the network) carries into the measurement run.
+* **`--postScript`** runs after the URLs are tested, while the browser is still around — useful for logout, screenshot capture on failure, or pushing custom data somewhere.
+
+Each iteration (`-n`) starts a fresh browser, so the preScript runs at the start of *every* iteration and the postScript at the end of *every* iteration. See [They run once per iteration](#what-pre-and-post-scripts-can-not-do) below for why.
 
 Both are completely separate `.mjs` files. They get the same `(context, commands)` signature as a regular script. Pre and post scripts do not run as part of a measurement and produce no metrics themselves; they exist to set up state.
 
@@ -106,7 +108,7 @@ sitespeed.io \
 
 ## What pre and post scripts can not do
 
-* **They do not loop.** If you have `-n 5` (five iterations), the preScript runs once at the start of the whole test, not once per iteration. If you need per-iteration setup, do it in your main script.
+* **They run once per iteration, not once for the whole test.** Each iteration (`-n 5` means five) starts a *fresh* browser, so the preScript runs at the start of every iteration and the postScript at the end of every iteration. That is required, not a quirk — otherwise iterations after the first would measure in a clean browser with none of your login / cookie / geolocation setup applied. Within a single iteration the setup still happens only once before the URLs are measured, so the log-in-once / measure-many pattern across several URLs works exactly as described above; it just repeats per iteration. There is no hook that runs only once before all iterations.
 * **They do not produce metrics.** Calls to `commands.measure.start` inside a preScript or postScript are ignored — these scripts are for state, not measurement. Put your `measure.start` calls in your test script.
 * **They share state through the browser, not through JavaScript.** Cookies, localStorage, the DOM you've navigated to — those carry over. Variables in the preScript do not — each script is its own module.
 
