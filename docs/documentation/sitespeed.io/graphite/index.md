@@ -18,7 +18,7 @@ twitterdescription: Store your metrics in Graphite.
 
 
 ## What is Graphite
-[Graphite](https://graphiteapp.org/) stores numeric time-series data and you can use that to store the metrics sitespeed.io collects. We provide an easy integration and you can use [our pre-made Docker container](https://hub.docker.com/r/sitespeedio/graphite/) and our [dashboard setup]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes) or use your current Graphite setup.
+[Graphite](https://graphiteapp.org/) stores numeric time-series data and you can use that to store the metrics sitespeed.io collects. We provide an easy integration and you can use [our pre-made Docker container](https://hub.docker.com/r/sitespeedio/graphite/) and our [dashboard setup]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#using-docker-compose) or use your current Graphite setup.
 
 ## Before you start
 If you are a new user of Graphite you need to read Etsy's write-up about [Graphite](https://github.com/statsd/statsd/blob/master/docs/graphite.md) so you have an understanding of how the data is stored and how to configure the metrics. Also read the [Graphite docs on how to get metrics into Graphite](https://graphite.readthedocs.io/en/latest/feeding-carbon.html#getting-your-data-into-graphite) for a better understanding of the metrics structure.
@@ -80,11 +80,11 @@ You can choose the namespace where sitespeed.io will publish the metrics. Defaul
 
 Each URL is by default split into domain and URL when we send it to Graphite. By default sitespeed.io removes query parameters from the URL, but if you need them you can change that by adding <code>--graphite.includeQueryParams</code>.
 
-If you want metrics from each iteration you can use <code>--graphite.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean).
+If you want the raw metrics from each run (not aggregated into min, max, median, mean) you can add `run` to <code>--graphite.messages</code>, for example <code>--graphite.messages pageSummary summary run</code>.
 
 If you use Graphite < 1.0 you need to make sure the tags in the annotations follow the old format, you do that by adding <code>--graphite.arrayTags</code>.
 
-You can choose to send metrics per page and summarised per domain. If you only test a couple of URLs you probably do not need the summarised per-domain metrics and you can disable them by adding <code>--graphite.skipSummary</code>.
+You can choose to send metrics per page and summarised per domain. If you only test a couple of URLs you probably do not need the summarised per-domain metrics and you can leave them out by setting <code>--graphite.messages pageSummary</code>.
 
 The slug of the test (`--slug`) is added to the Graphite key by default (`--graphite.addSlugToKey true`). This is what makes screenshots and the latest videos show up directly in Grafana. Use it like this:
 `--slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure **sitespeed_io.desktop.firstView.**. Set `--graphite.addSlugToKey false` if you have legacy data without the slug and need to keep the old layout.
