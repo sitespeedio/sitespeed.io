@@ -147,7 +147,7 @@ Plugins in sitespeed.io should inherit the [sitespeed.io plugin](https://github.
 In your dependencies for your plugin, make sure to add the latest version of the plugin.
 
 ~~~javascript
- "@sitespeed.io/plugin": "1.0.0"
+ "@sitespeed.io/plugin": "1.0.2"
 ~~~
 
 ### Basic structure
@@ -211,7 +211,8 @@ The *context* holds information for this specific run that is generated at runti
   timestamp, // The timestamp of when you started the run
   budget, // If you run with budget, the result will be here
   name, // The name of the run (the start URL )
-  intel, // The log system that is used within sitespeed.io https://github.com/seanmonstar/intel
+  log, // The logger used within sitespeed.io (from @sitespeed.io/log)
+  getLogger, // Create your own named logger with getLogger('sitespeedio.myplugin')
   messageMaker, // Help methods to send messages in the queue,
   statsHelpers, // Help methods to collect data per domain/tests instead of per URL
   filterRegistry // Register metrics that will be sent to Graphite/InfluxDB
@@ -273,7 +274,7 @@ Data from different tools is passed with three different message types:
 * ***.summary** - metrics collected for all pages tested.
 
 ### Debug/log
-You can use the sitespeed.io log to log messages. We use [intel](https://www.npmjs.com/package/intel) for logging.
+You can use the sitespeed.io log to log messages. We use [@sitespeed.io/log](https://github.com/sitespeedio/log) for logging.
 
 You get the log object in the context object (so there's no need to require the log), but you should get a specific instance so that you can filter the log/see which part of sitespeed.io is writing to the log.
 
@@ -332,7 +333,7 @@ queue.postMessage(
 );
 ~~~
 
-You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/plugin-webpagetest) as an example plugin that both sends run and pageSummary data.
 
 ## Let your plugin collect metrics using Browsertime
 
@@ -375,7 +376,7 @@ And if you want to use it in your pug template you will find it under **pageInfo
 
 ## Let your plugin add metrics to the performance budget
 
-In the *sitespeedio.config* phase (where plugins can talk to each other) make sure to tell the budget plugin that you want it to collect metrics from your plugin. Do that by sending a message of the type *budget.addMessageType* and add the type of the metrics message you want it to collect.
+In the *sitespeedio.setup* phase (where plugins can talk to each other) make sure to tell the budget plugin that you want it to collect metrics from your plugin. Do that by sending a message of the type *budget.addMessageType* and add the type of the metrics message you want it to collect.
 
 In this example we tell the budget plugin that it should collect metrics of the type *gpsi.pagesummary*.
 
@@ -390,7 +391,7 @@ queue.postMessage(make('budget.addMessageType', {type: 'gpsi.pagesummary'}));
 If your plugin lives on GitHub you can model your CI on the [GPSI plugin's GitHub Actions](https://github.com/sitespeedio/plugin-gpsi/actions) — it checks out sitespeed.io and runs the plugin against the latest main on a schedule.
 
 ## Example plugin(s)
-You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins/webpagetest).
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/plugin-webpagetest).
 
 ## Find plugins
 We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you want to add your plugin, send a PR!

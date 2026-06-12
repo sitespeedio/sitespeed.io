@@ -120,7 +120,7 @@ On your local machine you need:
 - Install Chrome/Firefox/Edge
 - Go to the cloned directory and run <code>npm install</code>
 - You are ready to go! To run locally: <code>bin/sitespeed.js https://www.sitespeed.io -n 1</code>
-- You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: <code>bin/sitespeed.io https://www.sitespeed.io -n 1 -v</code>
+- You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: <code>bin/sitespeed.js https://www.sitespeed.io -n 1 -v</code>
 
 
 To run the Docker version:
@@ -144,7 +144,7 @@ We use *main* as our default branch, send all PRs to *main*.
 ### Log and debug
 To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log at the lowest level and get all information, you can use <code>-vvv</code>. If that is too much information, use <code>-vv</code> or <code>-v</code>.
 
-You can also debug all the messages sent inside of the queue of sitespeed.io. That way you can see how plugins are communicating with each other. To turn that on use <code>--debug</code>.
+You can also debug all the messages sent inside of the queue of sitespeed.io. That way you can see how plugins are communicating with each other. To turn that on use <code>--debugMessages</code>.
 
 ### Plugins
 Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called, for each message sent in the application and then called when everything is finished.
