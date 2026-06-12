@@ -92,7 +92,7 @@ export default async function (context, commands) {
 };
 ```
 
-`addObject` takes a flat object of `{ name: value }` pairs. Booleans get sent as numbers (`true` → 1, `false` → 0) so they're chartable in Grafana.
+`addObject` takes a flat object of `{ name: value }` pairs. The values are stored as-is — nothing is coerced for you — so convert booleans to numbers yourself (`true` → `1`, `false` → `0`, as `hasSearchBox` does above) to make them chartable in Grafana.
 
 ## Pattern 3: time something the browser doesn't time for you
 
