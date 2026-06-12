@@ -57,7 +57,7 @@ By default we only show screenshots that differ or have a metric collected at th
 
 If you don't use those images you can turn them off with <code>--videoParams.createFilmstrip false</code>.
 
-If you use them and want them the same size as the video (they are 200x200 by default), you can turn on
+If you use them and want them the same size as the video (they are max 400 pixels in either direction by default), you can turn on
 full size with <code>--videoParams.filmstripFullSize</code>.
 
 If you want to change the quality (compression level 0-100) of the images, you do that with <code>--videoParams.filmstripQuality</code>.

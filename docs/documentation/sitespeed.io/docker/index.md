@@ -32,7 +32,7 @@ We have three ready-made containers:
 
 The Docker structure in the default container looks like this:
 
-[Node.js + VisualMetrics deps + Firefox/Chrome/Edge/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/main/Dockerfile)
+[Node.js + VisualMetrics deps + Firefox/Chrome/Edge/xvfb](https://github.com/sitespeedio/docker-webbrowsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/main/Dockerfile)
 
 The base container ([sitespeedio/webbrowsers](https://hub.docker.com/r/sitespeedio/webbrowsers)) bundles Node.js, the dependencies (FFmpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics), specific versions of Firefox, Chrome, and Edge, and xvfb. In the last step, we add sitespeed.io and tag it with the sitespeed.io version number.
 
