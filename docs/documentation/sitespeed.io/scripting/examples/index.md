@@ -377,7 +377,7 @@ export default async function (context, commands) {
 
 ### Test multiple URLs
 
-If you want to test multiple URLs and need to do some specific things before each URL, you can do something like this (we pass on our [own options](#pass-your-own-options-to-your-script) to the script):
+If you want to test multiple URLs and need to do some specific things before each URL, you can do something like this (we pass on our [own options]({{site.baseurl}}/documentation/sitespeed.io/scripting/tips-and-tricks/#pass-your-own-options-to-your-script) to the script):
 
 ```javascript
 /**

@@ -195,10 +195,10 @@ Another alternative to minimize the amount of data is to disable plugins. You sh
 You can list which plugins are running by adding the flag <code>--plugins.list</code> and in the log you will see something like:
 
 ~~~
-INFO: The following plugins are enabled: assets, browsertime, budget, coach, domains, harstorer, html, metrics, pagexray, screenshot, text, tracestorer
+INFO: The following plugins are enabled: assets, browsertime, budget, coach, domains, harstorer, html, lateststorer, metrics, pagexray, remove, text, thirdparty, tracestorer
 ~~~
 
-If you want to disable the screenshot plugin (that stores screenshots to disk) you do that by adding <code>--plugins.remove screenshot</code>.
+If you want to disable the screenshots (that are stored to disk) you do that by adding <code>--browsertime.screenshot false</code>.
 
 #### Graphite
 Make sure to edit your *storage-schemas.conf* to match your metrics and how long you want to keep them. See [Graphite setup in production]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#setup-important).

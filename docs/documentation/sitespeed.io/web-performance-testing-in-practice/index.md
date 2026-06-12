@@ -377,7 +377,7 @@ With scripting you can test the performance of visiting multiple pages, clicking
 
 
 ### What data storage should I choose (Graphite vs InfluxDB)
-By default sitespeed.io supports both Graphite and InfluxDB, and you can write your own plugin to store metrics elsewhere.
+sitespeed.io supports Graphite out of the box and InfluxDB through a separate plugin, and you can write your own plugin to store metrics elsewhere.
 
 But what should you choose? We recommend that you use Graphite. We use Graphite in our setup so Graphite will get a little more love. Keeping a Graphite instance up and running for years and years is really easy and the maintenance work is really small.
 
