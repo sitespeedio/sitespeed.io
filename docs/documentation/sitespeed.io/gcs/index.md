@@ -27,7 +27,7 @@ To set up a bucket on GCS you need to have a Google Cloud account.
 Do you need more help? First dive into the [Google Cloud Storage docs](https://cloud.google.com/storage/docs/), and if that doesn't help, [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) and we can try to help you.
 
 ## sitespeed.io configuration
-To push the metrics to GCS you need the **project id**, the **service account key file** and your **bucketname**. You get the ```--gcs.projectID``` from your Google Cloud Platform project and the ```--gcs.key``` from your IAM User. The ```--gcs.bucketname``` is the name you picked for your bucket.
+To push the metrics to GCS you need the **project id**, the **service account key file** and your **bucketname**. You get the ```--gcs.projectId``` from your Google Cloud Platform project and the ```--gcs.key``` from your IAM User. The ```--gcs.bucketname``` is the name you picked for your bucket.
 
 ## Using GCS as server
 
