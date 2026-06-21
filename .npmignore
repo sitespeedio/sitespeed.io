@@ -10,3 +10,8 @@ Gemfile
 Gemfile.lock
 wpr-record.log
 wpr-replay.log
+# Keep npm-shrinkwrap.json in the repo (used by `npm install` for
+# reproducible dev installs), but exclude it from the published package.
+# Some downstream users run internal npm proxies that reject packages
+# containing npm-shrinkwrap.json. See discussion in issue #4592.
+npm-shrinkwrap.json
