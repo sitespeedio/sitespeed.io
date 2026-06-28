@@ -1,5 +1,5 @@
-if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
-  - const clsValue = browsertime.pageinfo.cumulativeLayoutShift
+if browsertime.pageinfo
+  - const clsValue = browsertime.pageinfo.cumulativeLayoutShift !== undefined ? browsertime.pageinfo.cumulativeLayoutShift : 0
   - const clsLabel = (() => { if (clsValue >= 0.25) return 'error'; if (clsValue >= 0.1) return 'warning'; return 'ok'; })()
   - const shifts = (browsertime.pageinfo.cumulativeLayoutShiftInfo || []).slice().sort((a, b) => b.score - a.score)
   //- Attribute values can hold huge payloads (e.g. an ad iframe name containing a whole serialized document), so clip what we show.
