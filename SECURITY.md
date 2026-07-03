@@ -88,6 +88,8 @@ A CVE has three parts: a vulnerable code path in the library, an attacker capabi
 
 If you can show a concrete chain from "data flowing through sitespeed.io" → "the vulnerable code in the dependency" → "an impact a sitespeed.io user would feel", we'll treat it as a real vulnerability and ship a fix on the project's normal timeline. Without that chain, we'll close the report and pick up the upstream patch when it lands as a normal dependency bump.
 
+**The burden is on the reporter to show exploitability, not on us to disprove it.** Confirming that a CVE is *not* reachable — for every transitive dependency, on request — means proving a negative, and a small volunteer team can't do that on demand. Absence of a demonstrated exploit is not evidence of one. So if a report is a scanner list plus "please confirm these aren't exploitable", we'll point you to this document and close it. Demonstrating that a CVE *is* exploitable in sitespeed.io — the chain from attacker-controlled input to a real impact — is the reporter's to provide.
+
 ### Other things that aren't vulnerabilities
 
 - A site sitespeed.io is testing is slow, broken, or returns malformed HTML. That's the site under test — file it with them.
