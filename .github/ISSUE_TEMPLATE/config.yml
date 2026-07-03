@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/sitespeedio/sitespeed.io/security/advisories/new
+    about: Don't open a public issue for security problems. Use private vulnerability reporting so we can coordinate a fix and disclosure.
+  - name: A scanner flagged a CVE in a dependency
+    url: https://github.com/sitespeedio/sitespeed.io/blob/main/SECURITY.md#high-severity-cve-in-a-dependency-that-doesnt-apply-to-us
+    about: A CVE list on its own isn't a vulnerability report. Read SECURITY.md — we need the chain from attacker-controlled input to a real impact, or the upstream patch lands on the normal dependency bump.
