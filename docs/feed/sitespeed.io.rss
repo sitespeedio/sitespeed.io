@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 09 Jun 2026 14:24:37 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 03 Jul 2026 04:07:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,17 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 41.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</guid>
+            <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Update Chrome to 150 and Firefox to 152 in the Docker container #4798.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 41.3.3]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3</link>
@@ -166,17 +177,6 @@
 - Gzipped HAR files are now written by piping JSON through <code>createGzip</code> straight to disk instead of materialising the JSON string, a <code>Buffer</code> copy of it, and the full gzipped <code>Buffer</code> all at once. For a 200 MB HAR that removes several hundred MB of avoidable peak RSS, multiplied when multiple pages finish around the same time. The storage layer now accepts a <code>Readable</code> in addition to strings and Buffers; existing callers are unaffected #4728.<br>
 - Gzipped JSON result files (Chrome traces, console logs, etc.) are read by streaming through <code>createGunzip</code> and collecting utf-8 chunks rather than buffering the whole gzipped payload, gunzipping it into another Buffer, then stringifying. The parsed object still has to fit in memory, but the throwaway gzipped and unzipped buffer copies are gone — meaningful on 50+ MB traces #4726.<br>
 - The sustainable plugin and the S3 plugin pick up the same streaming treatment: the sustainable plugin now uses the shared streaming gzipped-JSON helper instead of its own buffer-everything copy, and the S3 plugin streams uploads via <code>createReadStream</code> with an explicit <code>ContentLength</code> instead of loading each file fully into memory before <code>PutObject</code>. With 20 concurrent S3 uploads, RSS no longer spikes to ~20× the size of the largest file in the result bundle #4727.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 40.4.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1</guid>
-            <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Stop parsing scripting files as URL-alias lists in <code>getAliases</code> #4724.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

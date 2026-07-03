@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 09 Jun 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 03 Jul 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,17 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 41.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</guid>
+            <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Update Chrome to 150 and Firefox to 152 in the Docker container #4798.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 41.3.3]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3</link>
@@ -302,17 +313,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 40.4.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.4.1</guid>
-            <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Stop parsing scripting files as URL-alias lists in <code>getAliases</code> #4724.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[onlinetest 3.7.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</guid>
@@ -387,17 +387,6 @@
 - Block sensitive sitespeed.io flags from the GUI&#39;s &quot;Command line args&quot; tab. The user-supplied extras textarea used to forward arbitrary flags to the testrunner with only <code>--verbose</code> filtered. A GUI submission could load plugin / JS code (<code>--plugins.add</code>, <code>--browsertime.preScript</code>), run any binary as the browser (<code>--browsertime.chrome.binaryPath</code>), redirect HARs and metrics to an attacker-controlled destination (whole <code>--graphite.*</code> / <code>--s3.*</code> / <code>--gcs.*</code> / <code>--scp.*</code> / <code>--slack.*</code> / <code>--matrix.*</code> / <code>--datadog.*</code> / <code>--influxdb.*</code> namespaces), or read arbitrary files via <code>--config</code>. A denylist now drops these tokens (and their value arguments) before they reach sitespeed.io, and <code>/sitespeed-help.json</code> filters the same set so the CLI picker stops suggesting them (277 → 187 entries). API submissions (which pass a <code>userConfig</code> object, not extras) are deliberately untouched #241.<br>
 ]]></description>
             <author>Sitespeed.io</author>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 27.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
-            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[compare 2.0.0]]></title>
@@ -477,6 +466,27 @@
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[browsertime 27.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.3.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
+            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
+]]></description>
+            <author>Sitespeed.io</author>
+        </item>
+        <item>
             <title><![CDATA[browsertime 27.1.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</guid>
@@ -491,16 +501,6 @@
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 1.3.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
-            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
-]]></description>
-            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[browsertime 27.0.4]]></title>
