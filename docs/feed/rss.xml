@@ -16,6 +16,17 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 41.4.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1</guid>
+            <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Update base Ubuntu and NodeJS #4799<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 41.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</guid>
@@ -264,22 +275,6 @@
 - Compare cookie list no longer renders domains like <code>.example.com\nUIDR=...</code> when a HAR concatenates multiple <code>Set-Cookie</code> response headers into one newline-joined value — the next cookie&#39;s name was leaking into the previous cookie&#39;s <code>Domain=</code> attribute. Picked up via the pagexray bump #262.<br>
 ]]></description>
             <author>Sitespeed.io</author>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 40.5.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#40.5.0</guid>
-            <pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Scripts are now auto-detected on the command line, so <code>--multi</code> is no longer required to run them. Any positional argument that looks like a script — <code>.js</code> / <code>.cjs</code> / <code>.mjs</code>, or any file whose first non-empty line doesn&#39;t start with <code>http</code> — flips multi mode on automatically, and mixed inputs like <code>login.js https://example.com logout.js</code> just work. <code>--multi</code> is kept as an explicit override for the one case auto-detection can&#39;t cover: sharing a single browser session across a list of plain URLs. All existing invocations behave exactly as before #4725.<br>
-<br>
-<strong>Fixed</strong><br>
-- Gzipped HAR files are now written by piping JSON through <code>createGzip</code> straight to disk instead of materialising the JSON string, a <code>Buffer</code> copy of it, and the full gzipped <code>Buffer</code> all at once. For a 200 MB HAR that removes several hundred MB of avoidable peak RSS, multiplied when multiple pages finish around the same time. The storage layer now accepts a <code>Readable</code> in addition to strings and Buffers; existing callers are unaffected #4728.<br>
-- Gzipped JSON result files (Chrome traces, console logs, etc.) are read by streaming through <code>createGunzip</code> and collecting utf-8 chunks rather than buffering the whole gzipped payload, gunzipping it into another Buffer, then stringifying. The parsed object still has to fit in memory, but the throwaway gzipped and unzipped buffer copies are gone — meaningful on 50+ MB traces #4726.<br>
-- The sustainable plugin and the S3 plugin pick up the same streaming treatment: the sustainable plugin now uses the shared streaming gzipped-JSON helper instead of its own buffer-everything copy, and the S3 plugin streams uploads via <code>createReadStream</code> with an explicit <code>ContentLength</code> instead of loading each file fully into memory before <code>PutObject</code>. With 20 concurrent S3 uploads, RSS no longer spikes to ~20× the size of the largest file in the result bundle #4727.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 5.0.0]]></title>
