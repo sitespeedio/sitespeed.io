@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 41.4.0 - 2026-07-03
+### Added
+* Update Chrome to 150 and Firefox to 152 in the Docker container [#4798](https://github.com/sitespeedio/sitespeed.io/pull/4798).
+
 ## 41.3.3 - 2026-06-09
 
 ### Fixed
