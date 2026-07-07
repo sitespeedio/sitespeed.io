@@ -70,6 +70,14 @@ style.
     font-size: 0.85em; color: #5b6370; white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
+  .waterfall-reset-zoom {
+    padding: 0.3em 0.85em; border: 1px solid #d6dbe0; border-radius: 999px;
+    background: #f5f7fa; color: #3a4250; cursor: pointer; user-select: none;
+    font: inherit; font-size: 0.95em;
+    transition: background 120ms, border-color 120ms;
+  }
+  .waterfall-reset-zoom:hover { background: #eaf0f7; border-color: #b8c4d2; }
+  .waterfall-reset-zoom[hidden] { display: none; }
   .waterfall-legend .marker-x {
     display: inline-flex; width: 12px; height: 12px;
   }
@@ -375,6 +383,10 @@ style.
     .waterfall-filter
       input(type='search', id='wt-req-filter', placeholder='Filter requests by URL…', aria-label='Filter requests by URL')
       span.waterfall-filter-count#wt-req-filter-count(hidden)
+
+    //- Shown by the onZoom callback in _waterfallRender.pug once a
+    //- drag/pinch gesture has narrowed the visible time window.
+    button.waterfall-reset-zoom#wt-reset-zoom(type='button', hidden) Reset zoom
 
   .waterfall-legend(aria-label='Page metric colors')
     span(title='First Paint')
