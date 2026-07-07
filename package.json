@@ -96,7 +96,7 @@
     "import-global": "1.1.1",
     "pug": "3.0.3",
     "ssh2-sftp-client": "12.1.1",
-    "waterfall-tools": "0.3.0",
+    "waterfall-tools": "0.4.0",
     "yargs": "18.0.0"
   },
   "overrides": {

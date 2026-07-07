@@ -588,14 +588,31 @@ script(type='text/javascript').
       grid: 'rgb(214, 219, 224)'
     };
 
+    // Drag-to-zoom (mouse) and pinch/pan (touch) are built into the
+    // renderer since waterfall-tools 0.4. The gesture leaves no visible
+    // affordance to undo it, so surface a Reset zoom button whenever the
+    // onZoom notification tells us the visible time window changed.
+    const resetZoomBtn = document.getElementById('wt-reset-zoom');
+    const onZoom = () => {
+      if (resetZoomBtn) resetZoomBtn.hidden = false;
+    };
+
     const renderer = await wt.renderTo(container, {
       ...WaterfallTools.getDefaultOptions(),
       ...readOptions(),
       pageId: initialPageId,
       palette,
       onHover,
-      onClick
+      onClick,
+      onZoom
     });
+
+    if (resetZoomBtn) {
+      resetZoomBtn.addEventListener('click', () => {
+        renderer.updateOptions({ startTime: null, endTime: null });
+        resetZoomBtn.hidden = true;
+      });
+    }
 
     // User-timing marks key — the canvas draws unlabelled vertical lines for
     // each entry in `pageTimings._userTimings`; pair them with a small
@@ -748,7 +765,10 @@ script(type='text/javascript').
       selector.addEventListener('change', () => {
         currentPageId = selector.value;
         const info = filterEl ? resolveReqFilter(filterEl.value) : { value: '', count: null, total: null };
-        renderer.updateOptions({ pageId: currentPageId, reqFilter: info.value });
+        // A zoom window from the previous page is meaningless on the new
+        // one — clear it so every page starts fully zoomed out.
+        renderer.updateOptions({ pageId: currentPageId, reqFilter: info.value, startTime: null, endTime: null });
+        if (resetZoomBtn) resetZoomBtn.hidden = true;
         populateUserTimings(currentPageId);
         populateExtLegend(currentPageId);
         updateFilterCount(info);
