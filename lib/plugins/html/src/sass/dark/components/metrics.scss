@@ -73,17 +73,6 @@
   word-break: break-word;
 }
 
-// See light theme for notes — larger metric-tile variant scoped to
-// cards where milestone numbers are the focus.
-.metric-tiles--lg {
-  .metric-tile-label {
-    font-size: 0.78rem;
-  }
-  .metric-tile-value {
-    font-size: 1.25rem;
-  }
-}
-
 .metric-tile-sub {
   font-size: 0.78rem;
   color: $color--text-muted;

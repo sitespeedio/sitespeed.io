@@ -76,85 +76,18 @@ if browsertime
   - gwvTbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
   - const wvStatusLabel = (c) => c === 'ok' ? 'Good' : (c === 'warning' ? 'Needs improvement' : (c === 'error' ? 'Poor' : ''))
 
-  //- 1. Visual Metrics — the milestones list and the visual-progress chart.
-  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
+  //- 1. Visual Metrics — the milestones card and the visual-progress chart,
+  //- stacked full width so the milestone timeline gets room to label its
+  //- ticks. `defaultVisualMetrics` lists every key the card renders by name
+  //- (or deliberately hides, like the progress arrays) — anything NOT in
+  //- the list is treated as a user-defined visual element and joins the
+  //- content milestones group. Keep `LargestContentfulPaint` in here: when
+  //- it was missing the metric rendered twice, raw key + friendly label.
+  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading', 'LargestContentfulPaint', 'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
   if (options.browsertime.visualMetrics && visualMetrics)
     a#visualmetrics
     h3 Visual Metrics
-    .row
-      .one-half.column
-        details.iter-group(open)
-          summary.iter-group-summary
-            span.iter-group-title Visual milestones
-          .metric-tiles.metric-tiles--lg
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
-              span.metric-tile-value #{h.time.ms(visualMetrics.FirstVisualChange.toFixed(0))}
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'SpeedIndex') Speed Index
-              span.metric-tile-value #{h.time.ms(visualMetrics.SpeedIndex.toFixed(0))}
-            if visualMetrics.PerceptualSpeedIndex
-              .metric-tile
-                span.metric-tile-label
-                  a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
-                span.metric-tile-value #{h.time.ms(visualMetrics.PerceptualSpeedIndex.toFixed(0))}
-            if visualMetrics.ContentfulSpeedIndex
-              .metric-tile
-                span.metric-tile-label
-                  a(href=baseHelpURL + 'ContentfulSpeedIndex') Contentful Speed Index
-                span.metric-tile-value #{h.time.ms(visualMetrics.ContentfulSpeedIndex.toFixed(0))}
-            if visualMetrics.LargestImage
-              .metric-tile
-                span.metric-tile-label
-                  a(href=baseHelpURL + 'LargestImage') Largest Image
-                span.metric-tile-value #{h.time.ms(visualMetrics.LargestImage.toFixed(0))}
-            if visualMetrics.Heading
-              .metric-tile
-                span.metric-tile-label
-                  a(href=baseHelpURL + 'Heading') Heading
-                span.metric-tile-value #{h.time.ms(visualMetrics.Heading.toFixed(0))}
-            each name in Object.keys(visualMetrics)
-              if (!defaultVisualMetrics.includes(name))
-                .metric-tile
-                  span.metric-tile-label #{name}
-                  span.metric-tile-value #{h.time.ms(visualMetrics[name].toFixed(0))}
-            if visualMetrics.LastMeaningfulPaint
-              .metric-tile
-                span.metric-tile-label
-                  a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
-                span.metric-tile-value #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
-            if visualMetrics.LargestContentfulPaint
-              .metric-tile
-                span.metric-tile-label
-                  a(href=baseHelpURL + 'LargestContentfulPaint') Largest Contentful Paint
-                span.metric-tile-value #{h.time.ms(visualMetrics.LargestContentfulPaint.toFixed(0))}
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
-              span.metric-tile-value #{h.time.ms(visualMetrics.VisualComplete85.toFixed(0))}
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'VisualComplete95') Visual Complete 95%
-              span.metric-tile-value #{h.time.ms(visualMetrics.VisualComplete95.toFixed(0))}
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'VisualComplete99') Visual Complete 99%
-              span.metric-tile-value #{h.time.ms(visualMetrics.VisualComplete99.toFixed(0))}
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
-              span.metric-tile-value #{h.time.ms(visualMetrics.LastVisualChange.toFixed(0))}
-            .metric-tile
-              span.metric-tile-label
-                a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
-              span.metric-tile-value #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))}
-      .one-half.column
-        details.iter-group(open)
-          summary.iter-group-summary
-            span.iter-group-title Visual progress
-          include ./visualProgress.pug
+    include ./_visualMilestones.pug
 
   //- 2. Web Vitals hero — sits below visual metrics so the reader sees
   //- the "what the user actually saw" filmstrip first, then the headline
@@ -163,7 +96,7 @@ if browsertime
     a#google-web-vitals
     - const wvTiles = []
     - if (timings.ttfb) wvTiles.push({short: 'TTFB', label: 'Time to first byte', formatted: h.time.ms(timings.ttfb.toFixed ? timings.ttfb.toFixed(0) : timings.ttfb), cls: gwvTtfbClass(timings.ttfb), href: baseHelpURL + 'ttfb'})
-    - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { const v = timings.paintTiming['first-contentful-paint']; wvTiles.push({short: 'FCP', label: 'First Contentful Paint', formatted: h.time.ms(v), cls: gwvFcpClass(v), href: baseHelpURL + 'firstContentfulPaint'}) }
+    - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { const v = timings.paintTiming['first-contentful-paint']; wvTiles.push({short: 'FCP', label: 'First Contentful Paint', formatted: h.time.ms(v), cls: gwvFcpClass(v), href: baseHelpURL + 'first-contentful-paint'}) }
     - if (timings.largestContentfulPaint) { const v = Math.max(timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.renderTime); wvTiles.push({short: 'LCP', label: 'Largest Contentful Paint', formatted: h.time.ms(v), cls: gwvLcpClass(v), href: '#largestContentfulPaint'}) }
     - if (browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined) { const v = browsertime.pageinfo.cumulativeLayoutShift; wvTiles.push({short: 'CLS', label: 'Cumulative Layout Shift', formatted: v.toFixed(2), cls: gwvClsClass(v), href: '#cumulativeLayoutShift'}) }
     - if (timings.interactionToNextPaint) { const v = timings.interactionToNextPaint; wvTiles.push({short: 'INP', label: 'Interaction to next paint', formatted: h.time.ms(v), cls: gwvInpClass(v), href: '#interactionToNextPaint'}) }

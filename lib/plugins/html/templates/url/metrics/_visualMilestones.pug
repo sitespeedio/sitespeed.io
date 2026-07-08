@@ -1,0 +1,228 @@
+//- Visual milestones card: headline stats, a milestone timeline and the
+//- exact values grouped by what they mean. Every metric here is a moment
+//- on one clock, so the card draws that clock once — the track fill shows
+//- how rendered the page is over time, content milestones flag above it,
+//- completeness ticks sit below and Visual Readiness becomes a bracket
+//- from first to last change.
+//-
+//- Expects `visualMetrics`, `timings`, `defaultVisualMetrics` and
+//- `baseHelpURL` from the including template. FirstVisualChange /
+//- SpeedIndex / the Visual Complete percentiles / LastVisualChange /
+//- VisualReadiness always come as a set from visualmetrics; content
+//- milestones (FCP, LCP, Largest Image, Heading, Last Meaningful Paint)
+//- and any user-defined visual elements are optional and only render
+//- when collected.
+
+//- One unit rule for the whole card: seconds with two decimals, so
+//- columns of values align and compare instantly. The space before the
+//- unit is non-breaking — a narrow row must not wrap "0.90 s" onto two
+//- lines between number and unit.
+- const vmFmt = v => (v / 1000).toFixed(2) + '\u00A0s'
+- const vmMax = visualMetrics.LastVisualChange
+- const vmPct = v => Math.min(100, Math.max(0, v / vmMax * 100))
+
+//- The five completeness metrics drive the ticks, the track segments and
+//- the Render progress list — defined once. The key doubles as the
+//- help-page anchor.
+- const vmProgress = [{ key: 'FirstVisualChange', name: 'First Visual Change' }, { key: 'VisualComplete85', name: 'Visual Complete 85%' }, { key: 'VisualComplete95', name: 'Visual Complete 95%' }, { key: 'VisualComplete99', name: 'Visual Complete 99%' }, { key: 'LastVisualChange', name: 'Last Visual Change' }].map(d => ({ ...d, value: visualMetrics[d.key] }))
+
+//- Content milestones: the named ones first, then any key we don't know
+//- about — that's where user-defined visual elements land. FCP comes
+//- from paint timing; LCP prefers the visual-metrics value and falls
+//- back to the browser timing.
+- const vmContent = []
+- const vmTimings = (typeof timings !== 'undefined' && timings) || {}
+- const vmFcp = vmTimings.paintTiming && vmTimings.paintTiming['first-contentful-paint']
+- if (vmFcp) vmContent.push({ name: 'First Contentful Paint', help: 'first-contentful-paint', value: vmFcp })
+- const vmLcp = visualMetrics.LargestContentfulPaint || (vmTimings.largestContentfulPaint && Math.max(vmTimings.largestContentfulPaint.loadTime || 0, vmTimings.largestContentfulPaint.renderTime || 0))
+- if (vmLcp) vmContent.push({ name: 'Largest Contentful Paint', help: 'largestContentfulPaint', value: vmLcp })
+- if (visualMetrics.LargestImage) vmContent.push({ name: 'Largest Image', help: 'LargestImage', value: visualMetrics.LargestImage })
+- if (visualMetrics.Heading) vmContent.push({ name: 'Heading', help: 'Heading', value: visualMetrics.Heading })
+- if (visualMetrics.LastMeaningfulPaint) vmContent.push({ name: 'Last Meaningful Paint', help: 'LastMeaningfulPaint', value: visualMetrics.LastMeaningfulPaint })
+- for (const name of Object.keys(visualMetrics)) { if (!defaultVisualMetrics.includes(name) && typeof visualMetrics[name] === 'number' && visualMetrics[name] > 0) vmContent.push({ name, help: null, value: visualMetrics[name] }) }
+- vmContent.sort((a, b) => a.value - b.value)
+
+//- Milestones that fire at (nearly) the same moment collapse into one
+//- marker on the timeline — four labels at 2.40 s would be unreadable.
+//- Every group gets its position and joined label precomputed here so
+//- the markup below never re-derives them.
+- const vmMerge = (list, threshold) => { const groups = []; for (const m of list) { const last = groups[groups.length - 1]; if (last && (m.value - last.value) / vmMax < threshold) { last.items.push(m) } else { groups.push({ value: m.value, items: [m] }) } } for (const g of groups) { g.pos = vmPct(g.value); g.label = g.items.map(m => m.name).join(' · '); g.edge = g.pos > 94 } return groups }
+
+//- Only milestones inside the track become flags — a value later than
+//- Last Visual Change (LCP can report after the screen settles) would
+//- clamp to the track edge and lie about its position. It stays in the
+//- grouped list below.
+- const vmFlags = vmMerge(vmContent.filter(m => m.value <= vmMax), 0.02)
+//- Two elevations keep neighbouring flag labels apart. A label extends
+//- right from its stem (or left, when the stem sits past 55% of the
+//- track); estimate its horizontal extent from the label text (~0.75%
+//- of the track per character) and drop a flag to the low band when
+//- its label would run into the previous flag's.
+- let vmPrevFlag = null
+- for (const f of vmFlags) { f.end = f.pos > 55; f.width = Math.max(7, f.label.length) * 0.75; const start = f.end ? f.pos - f.width : f.pos; const prevEnd = vmPrevFlag ? (vmPrevFlag.end ? vmPrevFlag.pos : vmPrevFlag.pos + vmPrevFlag.width) : -100; f.low = vmPrevFlag !== null && start < prevEnd + 2 ? !vmPrevFlag.low : false; vmPrevFlag = f }
+
+//- Completeness ticks below the track, merged the same way when they
+//- coincide (a page that hits 85% on its first paint is common).
+- const vmTicks = vmMerge(vmProgress.filter(d => d.value).sort((a, b) => a.value - b.value), 0.01)
+
+//- Track segments: the fill level after passing each completeness
+//- boundary. Between First Visual Change and 85% the page is still
+//- ramping, so that segment stays lightest and unlabelled.
+- const vmBounds = vmProgress.map(d => d.value || 0)
+- for (let i = 1; i < vmBounds.length; i++) { if (vmBounds[i] < vmBounds[i - 1]) vmBounds[i] = vmBounds[i - 1] }
+- const vmSegs = []
+- const vmSegMeta = [{ cls: 'vm-seg--85', label: null }, { cls: 'vm-seg--95', label: '≥85%' }, { cls: 'vm-seg--99', label: '≥95% rendered' }, { cls: 'vm-seg--100', label: '≥99%' }]
+- for (let i = 0; i < 4; i++) { const left = vmPct(vmBounds[i]); const width = vmPct(vmBounds[i + 1]) - left; if (width > 0.1) vmSegs.push({ left, width, cls: vmSegMeta[i].cls, label: width > 8 ? vmSegMeta[i].label : null }) }
+- const vmBlankWidth = vmPct(vmBounds[0])
+
+//- Time axis: a "nice" step that yields at most ~6 labels, skipping any
+//- that would crowd the right edge.
+- const vmStep = [100, 200, 250, 500, 1000, 2000, 2500, 5000, 10000, 20000, 30000, 60000].find(s => vmMax / s <= 6) || 60000
+- const vmAxis = []
+- for (let t = vmStep; t <= vmMax * 0.96; t += vmStep) vmAxis.push(t)
+
+//- The three perception indexes share one row shape.
+- const vmPerception = [{ key: 'SpeedIndex', name: 'Speed Index' }, { key: 'PerceptualSpeedIndex', name: 'Perceptual Speed Index' }, { key: 'ContentfulSpeedIndex', name: 'Contentful Speed Index' }].map(d => ({ ...d, value: visualMetrics[d.key] })).filter(d => d.value)
+
+.listing-card.vm-card
+  .listing-card-header
+    h3.listing-card-title Visual milestones
+    span.listing-card-meta all times from navigation start
+
+  .vm-stats
+    if visualMetrics.SpeedIndex
+      .vm-stat
+        span.vm-stat-label
+          span.vm-dot.vm-dot--blue
+          a(href=baseHelpURL + 'SpeedIndex') Speed Index
+        span.vm-stat-value #{vmFmt(visualMetrics.SpeedIndex)}
+        span.vm-stat-sub how quickly the page looked done
+    .vm-stat
+      span.vm-stat-label
+        span.vm-dot.vm-dot--purple
+        a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
+      span.vm-stat-value #{vmFmt(visualMetrics.FirstVisualChange)}
+      span.vm-stat-sub first paint reaches the screen
+    .vm-stat
+      span.vm-stat-label
+        span.vm-dot.vm-dot--purple
+        a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
+      span.vm-stat-value #{vmFmt(visualMetrics.LastVisualChange)}
+      if visualMetrics.VisualReadiness
+        span.vm-stat-sub screen stops changing · #{vmFmt(visualMetrics.VisualReadiness)} after first
+      else
+        span.vm-stat-sub screen stops changing
+
+  if vmMax > 0
+    .vm-timeline
+      .vm-canvas
+        .vm-upper
+          each flag in vmFlags
+            .vm-flag(class=(flag.low ? 'vm-flag--low' : ''), class=(flag.end ? 'vm-flag--end' : ''), style='left: ' + flag.pos.toFixed(2) + '%;')
+              span.vm-flag-stem
+              span.vm-flag-label
+                span.vm-flag-time #{vmFmt(flag.value)}
+                span.vm-flag-names
+                  each item, j in flag.items
+                    if j > 0
+                      | #{' · '}
+                    if item.help
+                      a(href=baseHelpURL + item.help) #{item.name}
+                    else
+                      | #{item.name}
+
+        //- Segments live inside the clipped track (rounded corners); the
+        //- dots sit on an unclipped overlay so a dot at 100% shows whole
+        //- instead of losing its outer half to overflow: hidden.
+        .vm-track-wrap
+          .vm-track
+            if vmBlankWidth > 0.1
+              .vm-seg.vm-seg--blank(style='left: 0; width: ' + vmBlankWidth.toFixed(2) + '%;')
+                if vmBlankWidth > 18
+                  span nothing painted yet
+            each seg in vmSegs
+              .vm-seg(class=seg.cls, style='left: ' + seg.left.toFixed(2) + '%; width: ' + seg.width.toFixed(2) + '%;')
+                if seg.label
+                  span #{seg.label}
+          .vm-track-dots
+            each tick in vmTicks
+              span.vm-track-dot(class=(tick.edge ? 'vm-track-dot--edge' : ''), style='left: ' + tick.pos.toFixed(2) + '%;', data-tip=tick.label + ' · ' + vmFmt(tick.value))
+            if visualMetrics.SpeedIndex && visualMetrics.SpeedIndex <= vmMax
+              span.vm-track-dot.vm-track-dot--blue(style='left: ' + vmPct(visualMetrics.SpeedIndex).toFixed(2) + '%;', data-tip='Speed Index · ' + vmFmt(visualMetrics.SpeedIndex))
+            each flag in vmFlags
+              span.vm-track-dot.vm-track-dot--orange(class=(flag.edge ? 'vm-track-dot--edge' : ''), style='left: ' + flag.pos.toFixed(2) + '%;', data-tip=flag.label + ' · ' + vmFmt(flag.value))
+
+        .vm-lower
+          each tick, i in vmTicks
+            - const tickEnd = tick.pos > 66 || (i === 0 && tick.pos > 25)
+            .vm-tick(class=(i % 2 === 1 ? 'vm-tick--r2' : 'vm-tick--r1'), class=(tickEnd ? 'vm-tick--end' : ''), style='left: ' + tick.pos.toFixed(2) + '%;')
+              span.vm-tick-stem
+              span.vm-tick-label
+                if tickEnd
+                  span.vm-tick-name #{tick.label}
+                  span.vm-tick-time #{vmFmt(tick.value)}
+                else
+                  span.vm-tick-time #{vmFmt(tick.value)}
+                  span.vm-tick-name #{tick.label}
+
+        if visualMetrics.VisualReadiness && vmBlankWidth < 90
+          .vm-bracket-row
+            .vm-bracket(style='left: ' + vmBlankWidth.toFixed(2) + '%; width: ' + (100 - vmBlankWidth).toFixed(2) + '%;')
+            .vm-bracket-label(style='left: ' + vmBlankWidth.toFixed(2) + '%; width: ' + (100 - vmBlankWidth).toFixed(2) + '%;')
+              a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
+              b #{vmFmt(visualMetrics.VisualReadiness)}
+              | — first to last change
+
+        .vm-axis
+          span(style='left: 0;') 0
+          each t in vmAxis
+            span(style='left: ' + vmPct(t).toFixed(2) + '%;') #{(t / 1000).toFixed(1) + '\u00A0s'}
+
+  //- Bottom row: exact values on the left, the visual-progress chart on
+  //- the right — the chart reads best at half width and the two views
+  //- share one card since they describe the same seconds.
+  - const vmHasProgress = Array.isArray(visualMetrics.VisualProgress) && visualMetrics.VisualProgress.length > 0
+  .vm-bottom(class=vmHasProgress ? '' : 'vm-bottom--single')
+    .vm-groups
+      .vm-group
+        .vm-group-title
+          span.vm-dot.vm-dot--purple
+          | Render progress
+        each d in vmProgress
+          if d.value
+            .vm-row
+              span.vm-row-name
+                a(href=baseHelpURL + d.key) #{d.name}
+              span.vm-row-value #{vmFmt(d.value)}
+        if visualMetrics.VisualReadiness
+          .vm-row.vm-row--derived
+            span.vm-row-name
+              a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
+            span.vm-row-value #{vmFmt(visualMetrics.VisualReadiness)}
+      if vmContent.length > 0
+        .vm-group
+          .vm-group-title
+            span.vm-dot.vm-dot--orange
+            | Content milestones
+          each m in vmContent
+            .vm-row
+              span.vm-row-name
+                if m.help
+                  a(href=baseHelpURL + m.help) #{m.name}
+                else
+                  | #{m.name}
+              span.vm-row-value #{vmFmt(m.value)}
+      if vmPerception.length > 0
+        .vm-group
+          .vm-group-title
+            span.vm-dot.vm-dot--blue
+            | Perception index
+          each d in vmPerception
+            .vm-row
+              span.vm-row-name
+                a(href=baseHelpURL + d.key) #{d.name}
+              span.vm-row-value #{vmFmt(d.value)}
+    if vmHasProgress
+      .vm-vp
+        .vm-group-title Visual progress
+        include ./visualProgress.pug

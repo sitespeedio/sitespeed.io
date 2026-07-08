@@ -133,6 +133,9 @@ block content
       h5(id='ContentfulSpeedIndex') Contentful Speed Index
       p This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
 
+      h5(id='PerceptualSpeedIndex') Perceptual Speed Index
+      p A Speed Index variant developed at Mozilla that compares each video frame to the final frame using the structural similarity index (SSIM), estimating how quickly the page visually approaches its finished state. Calculated by analysing a video.
+
       h5(id='FirstVisualChange') First Visual Change
       p The time when something for the first time is painted within the viewport. Calculated by analysing a video.
 
@@ -148,6 +151,9 @@ block content
       h5(id='LastVisualChange') Last Visual Change
       p The time when something for the last time changes within the viewport. Calculated by analysing a video.
 
+      h5(id='VisualReadiness') Visual Readiness
+      p The time between the first and the last visual change within the viewport (Last Visual Change minus First Visual Change) — how long the page keeps visually changing once rendering has started.
+
       h5(id='LargestImage') Largest Image
       p The time when the largest image within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
 
@@ -156,6 +162,9 @@ block content
 
       h5(id='Logo') Logo
       p The time when the logo (configured with --scriptInput.visualElements) within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
+
+      h5(id='LastMeaningfulPaint') Last Meaningful Paint
+      p The time when the last of the tracked visual elements (like the largest image, the heading or your own configured elements) has finished painting at its final position on the screen. Calculated by analysing a video.
 
       h5(id='memory') Memory usage
       p The page memory usage. Only measurable in Firefox using --firefox.memoryReport.
