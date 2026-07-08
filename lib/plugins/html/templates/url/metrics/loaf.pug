@@ -1,54 +1,142 @@
+//- Long Animation Frames, actionable-first: an overview of how much
+//- main-thread blocking the frames add up to, a culprit table that
+//- aggregates the scripts across all frames (the "what do I fix first"
+//- answer), then the per-frame breakdowns.
+//-
+//- Numbers to be careful with: `duration` is the real frame length and
+//- splits into work + render (render = pre-layout + style & layout).
+//- `blockingDuration` is NOT a phase — it's the part of the frame beyond
+//- the 50 ms threshold, the quantity that hurts INP and TBT — so it
+//- renders as its own chip, never as a bar segment. Browsertime ships
+//- the 10 frames with the most blocking time, not the 10 longest.
 if loaf
+    - const loafFrames = loaf.slice().sort((a, b) => b.blockingDuration - a.blockingDuration)
+    - const loafFmt = v => h.time.ms(h.decimals(v))
+    - const loafBlockingLabel = v => v >= 200 ? 'error' : (v >= 100 ? 'warning' : 'ok')
+    - const loafTotalBlocking = loafFrames.reduce((s, f) => s + f.blockingDuration, 0)
+    - const loafTotalForced = loafFrames.reduce((s, f) => s + f.scripts.reduce((x, sc) => x + (sc.forcedStyleAndLayoutDuration || 0), 0), 0)
+
+    //- First party vs third party by comparing the last two host labels
+    //- with the tested page's — coarse, but enough to point the finger.
+    - const loafBaseHost = u => { try { return new URL(u).hostname.split('.').slice(-2).join('.') } catch (e) { return null } }
+    - let loafPageHost = null
+    - try { loafPageHost = loafBaseHost((pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.info.url) || pageInfo.data.browsertime.run.info.url) } catch (e) {}
+    - const loafIsThirdParty = u => { const h2 = loafBaseHost(u); return !!(loafPageHost && h2 && h2 !== loafPageHost) }
+    - const loafScriptName = u => { try { const p = new URL(u); return p.pathname.split('/').pop() || p.hostname } catch (e) { return u } }
+
+    //- Roll the scripts up across frames: per script, how many frames it
+    //- ran in, how much blocking those frames carried and how much forced
+    //- style & layout it triggered itself. A frame's blocking is credited
+    //- to every script that ran in it (attribution below the frame level
+    //- isn't in the data), so the column can sum to more than the total.
+    - const loafCulprits = new Map()
+    - for (const f of loafFrames) { const seen = new Set(); for (const sc of f.scripts) { const key = sc.sourceURL || sc.invoker || 'unknown'; let c = loafCulprits.get(key); if (!c) { c = { key, isUrl: !!sc.sourceURL, frames: 0, blocking: 0, forced: 0, invokerTypes: new Set() }; loafCulprits.set(key, c) } c.forced += sc.forcedStyleAndLayoutDuration || 0; c.invokerTypes.add(sc.invokerType); if (!seen.has(key)) { seen.add(key); c.frames++; c.blocking += f.blockingDuration } } }
+    //- "What to fix first" only lists scripts that actually carry blame —
+    //- some blocking, or forced reflow they triggered themselves.
+    - const loafCulpritList = [...loafCulprits.values()].filter(c => c.blocking > 0 || c.forced > 0).sort((a, b) => b.blocking - a.blocking || b.forced - a.forced)
+
     a#longAnimationFrames
     h3 Long Animation Frames
-    p A long animation frame (LOAF) is a frame that took ≥ 50 ms from input to the next paint. The breakdown shows where that time went. Read more about&nbsp;
+    p A long animation frame (LOAF) is a frame that took ≥ 50 ms from input to the next paint. The part beyond the threshold is blocking time — the number that hurts Interaction to Next Paint and Total Blocking Time. Break long tasks up (
+        code scheduler.yield()
+        | , smaller chunks) or move the work off the main thread. Read more about&nbsp;
         a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') the Long Animation Frames API
         | .
-    p Showing the top 10 longest animation frames.
 
-    each oneLoaf, loafIdx in loaf
-        - const total = oneLoaf.blockingDuration + oneLoaf.workDuration + oneLoaf.renderDuration
-        - const phaseLabel = (() => { if (total >= 200) return 'error'; if (total >= 100) return 'warning'; return 'ok'; })()
-        - const phases = [{ key: 'blocking', name: 'Blocking', value: oneLoaf.blockingDuration }, { key: 'work', name: 'Work', value: oneLoaf.workDuration }, { key: 'render', name: 'Render', value: oneLoaf.renderDuration }, { key: 'pre-layout', name: 'Pre-layout', value: oneLoaf.preLayoutDuration }, { key: 'style-layout', name: 'Style & layout', value: oneLoaf.styleAndLayoutDuration }]
+    .loaf-overview
+        .loaf-overview-stat
+            span.loaf-overview-label Long animation frames
+            span.loaf-overview-value #{loafFrames.length}
+            span.loaf-overview-sub the #{loafFrames.length === 1 ? 'frame' : loafFrames.length + ' frames'} with the most blocking time
+        .loaf-overview-stat
+            span.loaf-overview-label Blocking time in these frames
+            span.loaf-overview-value.label(class=loafBlockingLabel(loafTotalBlocking)) #{loafFmt(loafTotalBlocking)}
+            span.loaf-overview-sub what hurts INP and TBT
+        if loafTotalForced > 0
+            .loaf-overview-stat
+                span.loaf-overview-label Forced style &amp; layout
+                span.loaf-overview-value #{loafFmt(loafTotalForced)}
+                span.loaf-overview-sub scripts reading layout mid-frame
+
+    if loafCulpritList.length > 0
+        h4.loaf-culprits-heading What to fix first
+        table.loaf-culprits
+            thead
+                tr
+                    th Script
+                    th Frames
+                    th Blocking in those frames
+                    th Forced style &amp; layout
+                    th Triggered by
+            tbody
+                each c in loafCulpritList
+                    tr
+                        td.loaf-culprit-script
+                            if c.isUrl
+                                a(href=c.key, title=c.key)= loafScriptName(c.key)
+                            else
+                                span(title=c.key)= loafScriptName(c.key)
+                            if loafIsThirdParty(c.key)
+                                span.loaf-3p 3rd party
+                        td.num #{c.frames}
+                        td.num #{loafFmt(c.blocking)}
+                        td.num #{c.forced > 0 ? loafFmt(c.forced) : '—'}
+                        td= [...c.invokerTypes].join(', ')
+
+    each oneLoaf, loafIdx in loafFrames
+        //- duration = work + render; render = pre-layout + style & layout
+        //- (plus whatever render time isn't attributed to either).
+        - const renderRest = Math.max(0, oneLoaf.renderDuration - oneLoaf.preLayoutDuration - oneLoaf.styleAndLayoutDuration)
+        - const phases = [{ key: 'work', name: 'Work', value: oneLoaf.workDuration }, { key: 'pre-layout', name: 'Pre-layout', value: oneLoaf.preLayoutDuration }, { key: 'style-layout', name: 'Style & layout', value: oneLoaf.styleAndLayoutDuration }, { key: 'render', name: 'Render', value: renderRest }]
         .loaf-card
             .loaf-header
-                .loaf-rank Long animation frame ##{loafIdx + 1}
-                span.label(class=phaseLabel) #{h.time.ms(h.decimals(total))}
+                .loaf-rank Long animation frame ##{loafIdx + 1} · #{loafFmt(oneLoaf.duration)}
+                span.label(class=loafBlockingLabel(oneLoaf.blockingDuration)) blocking #{loafFmt(oneLoaf.blockingDuration)}
             .loaf-bar
                 each phase in phases
                     if phase.value > 0
-                        - const pct = total > 0 ? (phase.value / total * 100) : 0
-                        span.loaf-bar-segment(class='loaf-' + phase.key, style='flex: ' + pct.toFixed(2) + ' 0 0', title=phase.name + ': ' + h.time.ms(h.decimals(phase.value)))
+                        - const pct = oneLoaf.duration > 0 ? (phase.value / oneLoaf.duration * 100) : 0
+                        span.loaf-bar-segment(class='loaf-' + phase.key, style='flex: ' + pct.toFixed(2) + ' 0 0', title=phase.name + ': ' + loafFmt(phase.value))
             ul.loaf-legend
                 each phase in phases
                     li
                         span.loaf-legend-swatch(class='loaf-' + phase.key)
                         span.loaf-legend-label= phase.name
-                        span.loaf-legend-value #{h.time.ms(h.decimals(phase.value))}
+                        span.loaf-legend-value #{loafFmt(phase.value)}
 
             if oneLoaf.scripts.length > 0
-                h4.loaf-scripts-heading Scripts that ran during this frame
-                each theScript in oneLoaf.scripts
-                    .loaf-script
-                        if theScript.sourceURL && theScript.sourceURL !== ''
+                - const frameForced = oneLoaf.scripts.reduce((s, sc) => s + (sc.forcedStyleAndLayoutDuration || 0), 0)
+                details.loaf-scripts
+                    summary #{oneLoaf.scripts.length === 1 ? '1 script' : oneLoaf.scripts.length + ' scripts'} ran during this frame#{frameForced > 0 ? ' · forced style & layout ' + loafFmt(frameForced) : ''}
+                    each theScript in oneLoaf.scripts
+                        .loaf-script
                             .loaf-script-url
-                                a(href=theScript.sourceURL)= theScript.sourceURL
-                        dl.loaf-script-meta
-                            if theScript.forcedStyleAndLayoutDuration !== 0
-                                dt Forced style and layout
-                                dd #{h.time.ms(h.decimals(theScript.forcedStyleAndLayoutDuration))}
-                            dt Invoker
-                            dd= theScript.invoker
-                            dt Invoker type
-                            dd= theScript.invokerType
-                            if theScript.sourceFunctionName
-                                dt Source function
-                                dd= theScript.sourceFunctionName
-                            if theScript.windowAttribution
-                                dt Window attribution
-                                dd= theScript.windowAttribution
-                            if theScript.sourceCharPosition
-                                dt Source char position
-                                dd= theScript.sourceCharPosition
+                                if theScript.sourceURL && theScript.sourceURL !== ''
+                                    a(href=theScript.sourceURL, title=theScript.sourceURL)= loafScriptName(theScript.sourceURL)
+                                else
+                                    span= theScript.invoker
+                                if loafIsThirdParty(theScript.sourceURL || theScript.invoker)
+                                    span.loaf-3p 3rd party
+                            dl.loaf-script-meta
+                                if theScript.forcedStyleAndLayoutDuration !== 0
+                                    dt Forced style and layout
+                                    dd #{loafFmt(theScript.forcedStyleAndLayoutDuration)}
+                                //- The invoker often just repeats the source
+                                //- URL (classic/module scripts) — only show
+                                //- it when it adds information.
+                                if theScript.invoker && theScript.invoker !== theScript.sourceURL
+                                    dt Invoker
+                                    dd= theScript.invoker
+                                dt Invoker type
+                                dd= theScript.invokerType
+                                if theScript.sourceFunctionName
+                                    dt Source function
+                                    dd= theScript.sourceFunctionName
+                                if theScript.windowAttribution && theScript.windowAttribution !== 'self'
+                                    dt Window attribution
+                                    dd= theScript.windowAttribution
+                                if theScript.sourceCharPosition > 0
+                                    dt Source char position
+                                    dd= theScript.sourceCharPosition
             else
                 p.loaf-no-scripts No script attribution available for this frame.
