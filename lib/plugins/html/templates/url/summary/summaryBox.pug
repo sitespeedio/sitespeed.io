@@ -25,8 +25,8 @@ mixin getRow(name, object, path, runPath, metric, f)
           - isSet = true
           td.number(data-title='min')
             a(href='./' + (index+1) + '.html', title='Go to the run with the min ' + name) #{f(min)}
-        if options.browsertime.iterations % 2 === 0 
-          td #{f(median)}
+        if options.browsertime.iterations % 2 === 0
+          td.number(data-title='median') #{f(median)}
         else
           - isSet = false
           each run, index in runPath
@@ -50,29 +50,29 @@ if btStatistics
   .listing-card
     .listing-card-header
       h2.listing-card-title Timings Summary
+      span.listing-card-meta min · median · mean · max of #{h.plural(options.browsertime.iterations, 'run')}
     .responsive
-      table
+      table.timings-table
         thead
           tr
             th Metric
-            th.number min
-            th.number median
-            th.number mean
-            th.number max
+            th.number Min
+            th.number.median Median
+            th.number Mean
+            th.number Max
         if btStatistics.visualMetrics
           tr
             td.extraheader(colspan='5') Visual Metrics
           each visualMetric, name in btStatistics.visualMetrics
             if name !== 'videoRecordingStart'
-              tr
-                +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
+              +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
         if btStatistics.timings && btStatistics.timings.pageTimings
           tr
             td.extraheader(colspan='5') Google Web Vitals
-            +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
-            +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
-            +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
-            +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
+          +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
+          +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
+          +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
+          +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
           tr
             td.extraheader(colspan='5') More metrics
           each timing in timingMetrics
