@@ -2,6 +2,8 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
   - const clsValue = browsertime.pageinfo.cumulativeLayoutShift
   - const clsLabel = (() => { if (clsValue >= 0.25) return 'error'; if (clsValue >= 0.1) return 'warning'; return 'ok'; })()
   - const shifts = (browsertime.pageinfo.cumulativeLayoutShiftInfo || []).slice().sort((a, b) => b.score - a.score)
+  //- Attribute values can hold huge payloads (e.g. an ad iframe name containing a whole serialized document), so clip what we show.
+  - const clip = text => text && text.length > 300 ? text.slice(0, 300) + '…' : text
   a#cumulativeLayoutShift
   h3 Cumulative Layout Shift
   p How much the page's content shifts as it loads, collected via the&nbsp;
@@ -26,10 +28,10 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
                     span.cls-shift-rank ##{idx + 1}
                     span.cls-shift-score #{info.score.toFixed(3)}
                     span.cls-shift-tags
-                      code= info.tags
+                      code= clip(info.tags)
                   if info.domPath
                     pre.cls-shift-dompath
-                      code= info.domPath
+                      code= clip(info.domPath)
         .one-half.column
           - const screenshotNo = medianRun ? medianRun.runIndex : (Number(runIndex) + 1)
           - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
