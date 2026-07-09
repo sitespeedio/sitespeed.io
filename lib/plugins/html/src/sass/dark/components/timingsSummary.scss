@@ -1,0 +1,65 @@
+//
+// TIMINGS SUMMARY — dark
+// =======================
+// The min/median/mean/max statistics table on the per-URL summary tab.
+// Scoped to .timings-table so the styling doesn't leak into the other
+// report tables that share the table foundation.
+//
+
+.timings-table {
+  // The .listing-card already frames the table — drop the trailing gap.
+  margin-bottom: 0;
+
+  // Same text size as the iter-group metric lists (Visual progress & co)
+  // on this tab so the card doesn't read bigger than its neighbours.
+  td {
+    font-size: 0.95rem;
+  }
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  // The median is the headline stat — make it read first.
+  th.median {
+    color: $color--text;
+  }
+
+  td[data-title='median'] {
+    font-weight: $font--weight--semibold;
+    color: $color--text;
+  }
+
+  // Group rows (Visual Metrics, Google Web Vitals, …) as section
+  // headers: small uppercase label with breathing room above and a
+  // stronger rule below, instead of a highlighted data cell. The solid
+  // background hides the base row-hover on these non-data rows.
+  td.extraheader {
+    background: $color--surface-card;
+    color: $color--text-muted;
+    font-size: 0.875rem; // same label size as the column headers
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 24px 14px 6px 14px;
+    border-bottom: 1px solid $color--border-strong;
+  }
+
+  tbody tr:first-child td.extraheader {
+    padding-top: 8px;
+  }
+
+  // Min/median/max values link to the run they came from — keep the
+  // affordance (dotted underline, link colour on hover) but skip the
+  // default link blue so the numbers read as one column.
+  td.number a {
+    color: inherit;
+    text-decoration: underline dotted $color--border-strong;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $color--blue;
+      text-decoration-color: currentColor;
+    }
+  }
+}
