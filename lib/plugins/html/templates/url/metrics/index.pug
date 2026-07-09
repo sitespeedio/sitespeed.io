@@ -95,11 +95,24 @@ if browsertime
   if googleWebVitals
     a#google-web-vitals
     - const wvTiles = []
-    - if (timings.ttfb) wvTiles.push({short: 'TTFB', label: 'Time to first byte', formatted: h.time.ms(timings.ttfb.toFixed ? timings.ttfb.toFixed(0) : timings.ttfb), cls: gwvTtfbClass(timings.ttfb), href: baseHelpURL + 'ttfb'})
-    - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { const v = timings.paintTiming['first-contentful-paint']; wvTiles.push({short: 'FCP', label: 'First Contentful Paint', formatted: h.time.ms(v), cls: gwvFcpClass(v), href: baseHelpURL + 'first-contentful-paint'}) }
-    - if (timings.largestContentfulPaint) { const v = Math.max(timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.renderTime); wvTiles.push({short: 'LCP', label: 'Largest Contentful Paint', formatted: h.time.ms(v), cls: gwvLcpClass(v), href: '#largestContentfulPaint'}) }
-    - if (browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined) { const v = browsertime.pageinfo.cumulativeLayoutShift; wvTiles.push({short: 'CLS', label: 'Cumulative Layout Shift', formatted: v.toFixed(2), cls: gwvClsClass(v), href: '#cumulativeLayoutShift'}) }
-    - if (timings.interactionToNextPaint) { const v = timings.interactionToNextPaint; wvTiles.push({short: 'INP', label: 'Interaction to next paint', formatted: h.time.ms(v), cls: gwvInpClass(v), href: '#interactionToNextPaint'}) }
+    //- CrUX field p75 for the same URL (only when the crux plugin ran).
+    //- The field line reuses the same lab thresholds so Good / Needs
+    //- improvement / Poor mean the same thing on the lab and field rows.
+    //- Match the CrUX form factor to the lab device so a mobile-emulated
+    //- run isn't compared against desktop-heavy field data; fall back to
+    //- ALL when the matched form factor wasn't collected (default is ALL).
+    - const cruxFF = h.get(pageInfo.data, 'crux.pageSummary.loadingExperience')
+    - const labIsMobile = !!(options.mobile || options.android || h.get(options, 'chrome.android.package') || h.get(options, 'firefox.android.package') || h.get(options, 'safari.ios') || h.get(options, 'safari.useSimulator'))
+    - const wantFF = labIsMobile ? 'PHONE' : 'DESKTOP'
+    - const cruxFFKey = cruxFF ? (cruxFF[wantFF] ? wantFF : (cruxFF.ALL ? 'ALL' : null)) : null
+    - const cruxField = cruxFFKey ? cruxFF[cruxFFKey] : null
+    - const cruxFFLabel = cruxFFKey === 'PHONE' ? 'phone' : (cruxFFKey === 'DESKTOP' ? 'desktop' : (cruxFFKey === 'TABLET' ? 'tablet' : 'all devices'))
+    - const fieldVital = (path, classifier, fmt) => { if (!cruxField) return null; const raw = h.get(cruxField, path); return raw == null ? null : {formatted: fmt(raw), cls: classifier(raw)} }
+    - if (timings.ttfb) wvTiles.push({short: 'TTFB', label: 'Time to first byte', formatted: h.time.ms(timings.ttfb.toFixed ? timings.ttfb.toFixed(0) : timings.ttfb), cls: gwvTtfbClass(timings.ttfb), href: baseHelpURL + 'ttfb', field: fieldVital('TIME_TO_FIRST_BYTE_MS.p75', gwvTtfbClass, (v) => h.time.ms(v))})
+    - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { const v = timings.paintTiming['first-contentful-paint']; wvTiles.push({short: 'FCP', label: 'First Contentful Paint', formatted: h.time.ms(v), cls: gwvFcpClass(v), href: baseHelpURL + 'first-contentful-paint', field: fieldVital('FIRST_CONTENTFUL_PAINT_MS.p75', gwvFcpClass, (v) => h.time.ms(v))}) }
+    - if (timings.largestContentfulPaint) { const v = Math.max(timings.largestContentfulPaint.loadTime, timings.largestContentfulPaint.renderTime); wvTiles.push({short: 'LCP', label: 'Largest Contentful Paint', formatted: h.time.ms(v), cls: gwvLcpClass(v), href: '#largestContentfulPaint', field: fieldVital('LARGEST_CONTENTFUL_PAINT_MS.p75', gwvLcpClass, (v) => h.time.ms(v))}) }
+    - if (browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined) { const v = browsertime.pageinfo.cumulativeLayoutShift; wvTiles.push({short: 'CLS', label: 'Cumulative Layout Shift', formatted: v.toFixed(2), cls: gwvClsClass(v), href: '#cumulativeLayoutShift', field: fieldVital('CUMULATIVE_LAYOUT_SHIFT_SCORE.p75', (v) => gwvClsClass(Number(v)), (v) => Number(v).toFixed(2))}) }
+    - if (timings.interactionToNextPaint) { const v = timings.interactionToNextPaint; wvTiles.push({short: 'INP', label: 'Interaction to next paint', formatted: h.time.ms(v), cls: gwvInpClass(v), href: '#interactionToNextPaint', field: fieldVital('INTERACTION_TO_NEXT_PAINT_MS.p75', gwvInpClass, (v) => h.time.ms(v))}) }
     - else if (cpu && cpu.longTasks) { const v = cpu.longTasks.totalBlockingTime; wvTiles.push({short: 'TBT', label: 'Total Blocking Time', formatted: h.time.ms(v), cls: gwvTbtClass(v), href: baseHelpURL + 'totalBlockingTime'}) }
     .listing-card.web-vitals-hero
       .listing-card-header
@@ -107,7 +120,9 @@ if browsertime
         if medianRun
           span.listing-card-meta from run #{medianRun.runIndex}
       .web-vitals-hero-grid
+        - const wvRank = (c) => c === 'error' ? 2 : (c === 'warning' ? 1 : (c === 'ok' ? 0 : -1))
         each tile in wvTiles
+          - const labRosier = tile.field && wvRank(tile.cls) >= 0 && wvRank(tile.field.cls) > wvRank(tile.cls)
           .web-vital(class=tile.cls ? 'web-vital--' + tile.cls : '')
             span.web-vital-dot
             .web-vital-body
@@ -117,7 +132,19 @@ if browsertime
               .web-vital-name
                 a(href=tile.href) #{tile.label}
               if tile.cls
-                .web-vital-status #{wvStatusLabel(tile.cls)}
+                .web-vital-status
+                  if tile.field
+                    span.web-vital-source Lab
+                  span #{wvStatusLabel(tile.cls)}
+              if tile.field
+                .web-vital-field
+                  span.web-vital-source Field p75 · #{cruxFFLabel}
+                  .web-vital-field-measure
+                    span.web-vital-field-dot(class='web-vital-field-dot--' + tile.field.cls)
+                    span.web-vital-field-value #{tile.field.formatted}
+                    span.web-vital-field-status #{wvStatusLabel(tile.field.cls)}
+              if labRosier
+                span.web-vital-flag ⚠ Lab is more optimistic than real users
 
   //- 3-5. The three "interactive" Web Vitals each get their own deep-dive
   //- card from a sub-template (LCP phase breakdown, CLS shift list, INP
