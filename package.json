@@ -88,7 +88,7 @@
     "@sitespeed.io/log": "2.0.0",
     "@sitespeed.io/plugin": "1.0.2",
     "@slack/webhook": "7.0.6",
-    "@tgwf/co2": "0.16.9",
+    "@tgwf/co2": "0.19.0",
     "axe-core": "4.11.4",
     "browsertime": "27.5.0",
     "coach-core": "9.2.1",
