@@ -10,31 +10,64 @@ mixin kbSizeBarCell(title, value, max)
     span.cell-bar-fill(style='width: ' + pct.toFixed(2) + '%')
     span.cell-bar-text= h.size.format(value)
 
-mixin rows(assets, showTiming, sizeMax, includeType)
+//- Wraps a cell value in a warning/error tone (coloured text + dot) when
+//- the value is clearly problematic, so the rows worth fixing first pop
+//- without reading every number. No tone = plain text.
+mixin toneText(tone, text)
+  if tone
+    span(class='cell-tone cell-tone--' + tone)= text
+  else
+    = text
+
+mixin rows(assets, showTiming, sizeMax, includeType, showPage)
+  //- Tone thresholds and WHY:
+  //- transfer — JavaScript and CSS cost main-thread time after download
+  //- (parse/compile/execute blocks rendering), so they get a tighter
+  //- budget: ~170 KB compressed is the widely used mobile JavaScript
+  //- budget (warning), double that is an error. Other types are cheap to
+  //- decode but heavy on the wire: 512 KB is roughly a quarter of a
+  //- median page's total weight (warning) and a megabyte-class single
+  //- file is an error.
+  - const transferTone = (asset) => { const bytes = asset.transferSize || 0; if (!bytes) return ''; if (asset.type === 'javascript' || asset.type === 'css') { if (bytes >= 340 * 1024) return 'error'; if (bytes >= 170 * 1024) return 'warning'; } else { if (bytes >= 1024 * 1024) return 'error'; if (bytes >= 512 * 1024) return 'warning'; } return '' }
+  //- cache time — an asset cached for less than an hour is re-downloaded
+  //- on almost every return visit (error); less than a week still misses
+  //- most returning visitors (warning). HTML documents are exempt:
+  //- revalidating the document itself is the normal, correct trade-off.
+  - const cacheTone = (asset) => { if (asset.type === 'html') return ''; const s = asset.cacheTime || 0; if (s < 3600) return 'error'; if (s < 7 * 24 * 3600) return 'warning'; return '' }
+  //- timing — 500 ms for a single response eats a whole "feels fast"
+  //- budget on its own (warning); a full second is a user-visible stall
+  //- (error).
+  - const timingTone = (ms) => ms >= 1000 ? 'error' : (ms >= 500 ? 'warning' : '')
   each asset in assets
     tr
       td.url.assetsurl(data-title='URL')
-        a(href=asset.url)= h.shortAsset(asset.url)
+        a(href=asset.url, title=asset.url)= h.shortAsset(asset.url)
         | &nbsp;
+        if showPage && asset.page
+          a.from-page(href=asset.page + 'index.html', title='Open the summary of the page that loaded this asset') → page
+          | &nbsp;
         a.from-page(href=asset.runPage + '.html', title='Open the iteration page where this asset was loaded') → run
       if includeType
         td.type-cell(data-title='type')
           if asset.type
             span(class='type-chip type-chip--' + asset.type)= asset.type
       +durationCell('last modified',asset.lastModification)
-      +durationCell('cache time',asset.cacheTime)
-      +kbSizeCell('transfer', asset.transferSize)
+      td.number(data-title='cache time', data-value=asset.cacheTime)
+        +toneText(cacheTone(asset), h.time.duration(asset.cacheTime))
+      td.number(data-title='transfer', data-value=asset.transferSize)
+        +toneText(transferTone(asset), h.size.format(asset.transferSize))
       +kbSizeBarCell('size', asset.contentSize, sizeMax)
       if showTiming
-        +numberCell('timing', asset.totalTime.toFixed(0))
+        td.number(data-title='timing', data-value=asset.totalTime)
+          +toneText(timingTone(asset.totalTime), h.time.ms(Math.round(asset.totalTime)))
 
 //- Each top-N table sits in its own card so the page reads as a stack
 //- of cleanly framed sections instead of a single long scroll of bare
-//- tables. Quicklinks above swap the old `| A | B | C |` separator
-//- strip for chip-style anchors. The header meta now also reports the
-//- summed transfer + content sizes so users can read the card's total
-//- footprint without scanning the table.
-mixin listingCard(id, title, count, headings, assets, showTiming, includeType)
+//- tables. The header meta reports the summed transfer + content sizes
+//- so users can read the card's total footprint without scanning the
+//- table, and every card carries a one-line hint explaining why the
+//- list matters.
+mixin listingCard(id, title, hint, headings, assets, showTiming, includeType, showPage)
   - const sizeMax = assets.reduce((m, a) => Math.max(m, a.contentSize || 0), 0)
   - const sizeTotal = assets.reduce((s, a) => s + (a.contentSize || 0), 0)
   - const transferTotal = assets.reduce((s, a) => s + (a.transferSize || 0), 0)
@@ -42,84 +75,103 @@ mixin listingCard(id, title, count, headings, assets, showTiming, includeType)
     .listing-card-header
       h3.listing-card-title= title
       span.listing-card-meta
-        | #{count} #{count === 1 ? 'file' : 'files'}
+        | #{assets.length} #{assets.length === 1 ? 'file' : 'files'}
         if sizeTotal
           span.listing-card-meta-sep ·
           | #{h.size.format(transferTotal)} transfer
           span.listing-card-meta-sep ·
           | #{h.size.format(sizeTotal)} size
+    if hint
+      p.listing-card-help= hint
     .responsive
       table(data-sortable)
         +rowHeading(headings)
-        +rows(assets, showTiming, sizeMax, includeType)
+        +rows(assets, showTiming, sizeMax, includeType, showPage)
 
 block content
   include runInfo
 
-  if (assetsBySize)
-    - const topLists = ['javascript', 'image', 'css', 'html'];
-    - const contentTypeNames = {javascript: 'JavaScript', image: 'image' , css: 'CSS', html : 'HTML'}
-    - const headingsBySize = ['url', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)']
-    //- Slow-responses + 3rd-party slowest cards include a `type` column so
-    //- a reader can see "slow because big image" vs "slow despite small XHR"
-    //- without leaving the page. Bytes columns get the same scaling bar.
-    - const headingsByTime = ['url', 'type', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)', 'timing (ms)']
-    - const headings3rdSize = ['url', 'type', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)']
+  p.toplist-intro The top lists point out the specific files to fix first: the largest and slowest assets across all tested pages, and the assets returning visitors have to download again.
 
+  //- Friendly display names for the content types PageXray emits; any
+  //- type missing here renders with its raw name.
+  - const typeNames = {javascript: 'JavaScript', css: 'CSS', image: 'image', font: 'font', html: 'HTML', svg: 'SVG', json: 'JSON', xml: 'XML', plain: 'text', video: 'video', audio: 'audio', favicon: 'favicon'}
+  //- One-line WHY per size section so the reader knows what fixing the
+  //- list buys them.
+  - const typeHints = {javascript: 'Every JavaScript byte is downloaded, parsed and executed on the main thread — trimming the biggest bundles pays off twice.', css: 'CSS blocks rendering until it is downloaded and parsed, so the biggest files delay first paint the most.', image: 'Images are usually the easiest bytes to win back: resize them, compress harder or switch to a modern format like AVIF or WebP.', font: 'Web fonts often keep text invisible until they arrive — subset the biggest ones or use font-display to show text earlier.', html: 'The HTML document is the first byte of everything — nothing starts rendering before it arrives.'}
+  - const bySize = assetsBySize || {}
+  //- Worst-offenders-first: JavaScript and CSS block rendering, images and
+  //- fonts are the usual byte hogs, the HTML document closes the group.
+  //- Any other content type in the data renders after these.
+  - const preferredOrder = ['javascript', 'css', 'image', 'font', 'html']
+  - const typeOrder = [...preferredOrder.filter(t => bySize[t] && bySize[t].length > 0), ...Object.keys(bySize).filter(t => !preferredOrder.includes(t) && bySize[t].length > 0).sort()]
+  - const slowest = slowestAssets || []
+  - const largest3rd = (options.firstParty && thirdPartyAssetsBySize) || []
+  - const slowest3rd = (options.firstParty && thirdPartySlowestAssets) || []
+  //- Per-page context on each row is only useful when more than one page
+  //- was tested — with a single page every asset belongs to it.
+  - const showPage = noPages > 1
+
+  //- The short-cache list is derived from the assets already collected
+  //- for the other top lists (no extra data collection): everything
+  //- cached for less than a week is re-downloaded by most returning
+  //- visitors, and the biggest transfer wastes the most bytes, so the
+  //- list sorts by transfer size. HTML documents are excluded — see the
+  //- cache tone comment above.
+  -
+    const SHORT_CACHE = 7 * 24 * 3600;
+    const topListSize = (options.html && options.html.topListSize) || 10;
+    const seen = new Set();
+    let shortCache = [];
+    for (const pool of [...Object.values(bySize), slowest]) {
+      for (const asset of pool) {
+        if (seen.has(asset.url)) continue;
+        seen.add(asset.url);
+        if (asset.type === 'html') continue;
+        if ((asset.cacheTime || 0) < SHORT_CACHE) shortCache.push(asset);
+      }
+    }
+    shortCache.sort((a, b) => (b.transferSize || 0) - (a.transferSize || 0));
+    shortCache = shortCache.slice(0, topListSize);
+
+  - const headingsBySize = ['url', 'time since last modified', 'cache time', 'transfer', 'size']
+  //- Slow-responses + 3rd-party cards include a `type` column so a reader
+  //- can see "slow because big image" vs "slow despite small XHR" without
+  //- leaving the page.
+  - const headingsWithType = ['url', 'type', 'time since last modified', 'cache time', 'transfer', 'size']
+  - const headingsByTime = ['url', 'type', 'time since last modified', 'cache time', 'transfer', 'size', 'timing']
+
+  if typeOrder.length > 0 || slowest.length > 0
     ul.listing-quicklinks
-      each type in topLists
-        if (assetsBySize[type] && assetsBySize[type].length > 1)
-          li
-            a(href='#' + type) Largest #{contentTypeNames[type]} files
-      li
-        a(href='#slowest') Slowest responses
-      if options.firstParty
+      each type in typeOrder
         li
-          a(href='#largestThirdParty') Largest 3rd party responses
+          a(href='#' + type) Largest #{typeNames[type] || type} files
+      if slowest.length > 0
         li
-          a(href='#slowestThirdParty') Slowest 3rd party responses
+          a(href='#slowest') Slowest responses
+      if shortCache.length > 0
+        li
+          a(href='#shortcache') Short cache times
+      if largest3rd.length > 0
+        li
+          a(href='#largestThirdParty') Largest third-party files
+      if slowest3rd.length > 0
+        li
+          a(href='#slowestThirdParty') Slowest third-party responses
 
-    each type in topLists
-      if (assetsBySize[type] && assetsBySize[type].length > 1)
-        +listingCard(type, 'Largest ' + contentTypeNames[type] + ' files', assetsBySize[type].length, headingsBySize, assetsBySize[type], false, false)
+    each type in typeOrder
+      +listingCard(type, 'Largest ' + (typeNames[type] || type) + ' files', typeHints[type] || 'The largest ' + (typeNames[type] || type) + ' files across the tested pages.', headingsBySize, bySize[type], false, false, showPage)
 
-    - const slowestSizeMax = slowestAssets.reduce((m, a) => Math.max(m, a.contentSize || 0), 0)
-    - const slowestTransferTotal = slowestAssets.reduce((s, a) => s + (a.transferSize || 0), 0)
-    - const slowestSizeTotal = slowestAssets.reduce((s, a) => s + (a.contentSize || 0), 0)
-    .listing-card(id='slowest')
-      .listing-card-header
-        h3.listing-card-title Slowest responses
-        span.listing-card-meta
-          | #{slowestAssets.length} #{slowestAssets.length === 1 ? 'file' : 'files'}
-          if slowestSizeTotal
-            span.listing-card-meta-sep ·
-            | #{h.size.format(slowestTransferTotal)} transfer
-            span.listing-card-meta-sep ·
-            | #{h.size.format(slowestSizeTotal)} size
-      p.listing-card-help These are the assets that took the longest time to download.
-      .responsive
-        table(data-sortable)
-          +rowHeading(headingsByTime)
-          +rows(slowestAssets, true, slowestSizeMax, true)
+    if slowest.length > 0
+      +listingCard('slowest', 'Slowest responses', 'These assets took the longest time to download — everything that waits for them (rendering, other requests on the same connection) is held up too.', headingsByTime, slowest, true, true, showPage)
 
-    if options.firstParty
-      +listingCard('largestThirdParty', '3rd party largest responses', thirdPartyAssetsBySize.length, headings3rdSize, thirdPartyAssetsBySize, false, true)
+    if shortCache.length > 0
+      +listingCard('shortcache', 'Short or no cache time', 'Assets with a short cache time are re-downloaded by returning visitors — a longer cache lifetime makes repeat visits faster for free.', headingsWithType, shortCache, false, true, showPage)
 
-      - const slow3rdSizeMax = thirdPartySlowestAssets.reduce((m, a) => Math.max(m, a.contentSize || 0), 0)
-      - const slow3rdTransferTotal = thirdPartySlowestAssets.reduce((s, a) => s + (a.transferSize || 0), 0)
-      - const slow3rdSizeTotal = thirdPartySlowestAssets.reduce((s, a) => s + (a.contentSize || 0), 0)
-      .listing-card(id='slowestThirdParty')
-        .listing-card-header
-          h3.listing-card-title 3rd party slowest responses
-          span.listing-card-meta
-            | #{thirdPartySlowestAssets.length} #{thirdPartySlowestAssets.length === 1 ? 'file' : 'files'}
-            if slow3rdSizeTotal
-              span.listing-card-meta-sep ·
-              | #{h.size.format(slow3rdTransferTotal)} transfer
-              span.listing-card-meta-sep ·
-              | #{h.size.format(slow3rdSizeTotal)} size
-        p.listing-card-help These are the 3rd party assets that took the longest time to download.
-        .responsive
-          table(data-sortable)
-            +rowHeading(headingsByTime)
-            +rows(thirdPartySlowestAssets, true, slow3rdSizeMax, true)
+    if largest3rd.length > 0
+      +listingCard('largestThirdParty', 'Largest third-party files', 'Third-party content is outside your direct control — the fix is usually to load less of it, or load it asynchronously.', headingsWithType, largest3rd, false, true, showPage)
+
+    if slowest3rd.length > 0
+      +listingCard('slowestThirdParty', 'Slowest third-party responses', 'Slow third-party responses delay your page even though you cannot fix their servers — load them asynchronously or drop them.', headingsByTime, slowest3rd, true, true, showPage)
+  else
+    p No asset data was collected in this run.
