@@ -1,3 +1,5 @@
+include ../includes/_quicklinks
+
 - const browsertime = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] : pageInfo.data.browsertime.run
 
 if browsertime
@@ -18,49 +20,35 @@ if browsertime
   //- CLS / INP), then the lower-level browser timings, and finally the
   //- diagnostic surfaces (long animation frames, element timings, custom
   //- scripts, CDP).
-  small
-    | |&nbsp;
-    if (options.browsertime.visualMetrics)
-      a(href='#visualmetrics') Visual Metrics
-      | &nbsp;|&nbsp;
-    if googleWebVitals
-      a(href='#google-web-vitals') Google Web Vitals
-      | &nbsp;|&nbsp;
-    if timings.largestContentfulPaint
-      a(href='#largestContentfulPaint') Largest Contentful Paint
-      | &nbsp;|&nbsp;
-    if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
-      a(href='#cumulativeLayoutShift') Cumulative Layout Shift
-      | &nbsp;|&nbsp;
-    if timings.interactionToNextPaint
-      a(href='#interactionToNextPaint') Interaction To Next Paint
-      | &nbsp;|&nbsp;
-    a(href='#browsermetrics') Browser metrics
-    | &nbsp;|&nbsp;
-    if loaf
-      a(href='#longAnimationFrames') Long Animation Frames
-      | &nbsp;|&nbsp;
-    if timings.elementTimings && Object.keys(timings.elementTimings).length > 0
-      a(href='#elementTimings') Element Timings
-      | &nbsp;|&nbsp;
-    if custom
-      a(href='#custom-scripts') Custom scripts
-      | &nbsp;|&nbsp;
-    if extras && Object.keys(extras).length > 0
-      a(href='#extra-metrics') Extra metrics
-      | &nbsp;|&nbsp;
-    if options.browsertime.visualElements
-      a(href='#visual-elements') Visual Elements
-      | &nbsp;|&nbsp;
-    if timings.firstInput !== undefined
-      a(href='#firstInput') First Input Delay
-      | &nbsp;|&nbsp;
-    if cdp
-      a(href='#cdp-performance') Metrics from CDP
-      | &nbsp;|&nbsp;
-    if timings.serverTimings && timings.serverTimings.length > 0
-      a(href='#server-timings') Server timings
-      | &nbsp;|&nbsp;
+  - const metricsLinks = []
+  if (options.browsertime.visualMetrics)
+    - metricsLinks.push({href: '#visualmetrics', label: 'Visual Metrics'})
+  if googleWebVitals
+    - metricsLinks.push({href: '#google-web-vitals', label: 'Google Web Vitals'})
+  if timings.largestContentfulPaint
+    - metricsLinks.push({href: '#largestContentfulPaint', label: 'Largest Contentful Paint'})
+  if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
+    - metricsLinks.push({href: '#cumulativeLayoutShift', label: 'Cumulative Layout Shift'})
+  if timings.interactionToNextPaint
+    - metricsLinks.push({href: '#interactionToNextPaint', label: 'Interaction To Next Paint'})
+  - metricsLinks.push({href: '#browsermetrics', label: 'Browser metrics'})
+  if loaf
+    - metricsLinks.push({href: '#longAnimationFrames', label: 'Long Animation Frames'})
+  if timings.elementTimings && Object.keys(timings.elementTimings).length > 0
+    - metricsLinks.push({href: '#elementTimings', label: 'Element Timings'})
+  if custom
+    - metricsLinks.push({href: '#custom-scripts', label: 'Custom scripts'})
+  if extras && Object.keys(extras).length > 0
+    - metricsLinks.push({href: '#extra-metrics', label: 'Extra metrics'})
+  if options.browsertime.visualElements
+    - metricsLinks.push({href: '#visual-elements', label: 'Visual Elements'})
+  if timings.firstInput !== undefined
+    - metricsLinks.push({href: '#firstInput', label: 'First Input Delay'})
+  if cdp
+    - metricsLinks.push({href: '#cdp-performance', label: 'Metrics from CDP'})
+  if timings.serverTimings && timings.serverTimings.length > 0
+    - metricsLinks.push({href: '#server-timings', label: 'Server timings'})
+  +quicklinks(metricsLinks)
 
   p
     small #{ medianRun ? 'Data from run ' + medianRun.runIndex : ''}

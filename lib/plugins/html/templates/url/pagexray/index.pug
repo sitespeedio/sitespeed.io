@@ -1,33 +1,25 @@
 include ../../_tableMixins
+include ../includes/_quicklinks
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 - const _btCov = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
 - const hasCoverage = _btCov && ((_btCov.js && _btCov.js.length) || (_btCov.css && _btCov.css.length))
 
-small
-  | |&nbsp;
-  a(href='#pagexray-summary') Summary
-  | &nbsp;|&nbsp;
-  a(href='#largest-assets') Largest responses
-  | &nbsp;|&nbsp;
-  a(href='#requests-and-sizes-per-content-type') Per content type
-  | &nbsp;|&nbsp;
-  a(href='#data-per-domain') Per domain
-  | &nbsp;|&nbsp;
-  a(href='#expires-and-last-modified-stats') Expires & last-modified
-  | &nbsp;|&nbsp;
-  if pageInfo.data.browsertime && pageInfo.data.browsertime.console
-    a(href='#console-log') Console
-    | &nbsp;|&nbsp;
-  if pagexray.afterOnLoad.requests > 0
-    a(href='#requests-after-onload') After onLoad
-    | &nbsp;|&nbsp;
-  if pagexray.renderBlocking
-    a(href='#requests-render-blocking') Render-blocking
-    | &nbsp;|&nbsp;
-  if hasCoverage
-    a(href='#coverage') Coverage
-    | &nbsp;|&nbsp;
+- const pagexrayLinks = []
+- pagexrayLinks.push({href: '#pagexray-summary', label: 'Summary'})
+- pagexrayLinks.push({href: '#largest-assets', label: 'Largest responses'})
+- pagexrayLinks.push({href: '#requests-and-sizes-per-content-type', label: 'Per content type'})
+- pagexrayLinks.push({href: '#data-per-domain', label: 'Per domain'})
+- pagexrayLinks.push({href: '#expires-and-last-modified-stats', label: 'Expires & last-modified'})
+if pageInfo.data.browsertime && pageInfo.data.browsertime.console
+  - pagexrayLinks.push({href: '#console-log', label: 'Console'})
+if pagexray.afterOnLoad.requests > 0
+  - pagexrayLinks.push({href: '#requests-after-onload', label: 'After onLoad'})
+if pagexray.renderBlocking
+  - pagexrayLinks.push({href: '#requests-render-blocking', label: 'Render-blocking'})
+if hasCoverage
+  - pagexrayLinks.push({href: '#coverage', label: 'Coverage'})
++quicklinks(pagexrayLinks)
 
 a
 h2 PageXray

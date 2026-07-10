@@ -139,3 +139,17 @@ tr.asset-reused {
     }
   }
 }
+
+// Run pills on the per-URL pages reuse the quicklinks chips; the
+// current page (the run being viewed, or the side-by-side page) is a
+// non-link chip with an active tint.
+.run-pills .current {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--info-border;
+  background: $color--info-bg;
+  color: $color--info;
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+}

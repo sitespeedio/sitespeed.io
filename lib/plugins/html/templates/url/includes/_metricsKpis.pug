@@ -1,0 +1,117 @@
+//- Hero KPIs (Core Web Vitals + Coach perf score) and the grouped
+//- metric sections, shared by the page summary (median values) and
+//- the per-run pages. Pug includes share the caller's scope: the
+//- caller pulls the metric values into locals (performanceScore,
+//- ttfb, firstPaint, fullyLoaded, fcp, lcp, cls, inp, tbt, mpFID,
+//- longTasks, maxLongTask, lastLongTask, firstVisualChange,
+//- speedIndex, visualComplete85, visualComplete99, lastVisualChange,
+//- totalTransferSize, memory, powerConsumption, requests) and sets
+//- overviewIsMedian before including.
+
+//- Threshold helpers shared by the hero band and inline badges.
+- lcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+- fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+- clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+- inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+- perfClass = (v) => v == null ? '' : (typeof h.scoreLabel === 'function' ? h.scoreLabel(v) : 'info')
+
+.iter-kpis
+  if fcp
+    .iter-kpi(class=fcpClass(fcp))
+      span.iter-kpi-label FCP
+      span.iter-kpi-value #{h.time.ms(fcp)}
+  if lcp
+    .iter-kpi(class=lcpClass(lcp))
+      span.iter-kpi-label LCP
+      span.iter-kpi-value #{h.time.ms(lcp)}
+  if cls || cls === 0
+    .iter-kpi(class=clsClass(cls))
+      span.iter-kpi-label CLS
+      span.iter-kpi-value #{cls.toFixed(3)}
+  if typeof performanceScore === 'number'
+    .iter-kpi(class=perfClass(performanceScore))
+      span.iter-kpi-label Coach
+      span.iter-kpi-value #{performanceScore}
+
+//- Grouped metric sections. Each is a card with a title and a
+//- 2-column dl; only renders when at least one of its metrics
+//- is present. <details open> lets readers collapse a group
+//- without losing the at-a-glance default view.
+if ttfb || firstPaint || fullyLoaded || inp || tbt || mpFID
+  details.iter-group(open)
+    summary.iter-group-summary
+      span.iter-group-title Loading & responsiveness#{overviewIsMedian ? ' (median)' : ''}
+    dl.iter-group-list
+      if ttfb
+        dt TTFB
+        dd #{h.time.ms(ttfb)}
+      if firstPaint
+        dt First Paint
+        dd #{h.time.ms(firstPaint)}
+      if fullyLoaded
+        dt Fully Loaded
+        dd #{h.time.ms(fullyLoaded)}
+      if inp
+        dt Interaction to Next Paint
+        dd
+          span.label(class=inpClass(inp)) #{h.time.ms(inp)}
+      if tbt
+        dt Total Blocking Time
+        dd #{h.time.ms(tbt)}
+      if mpFID
+        dt Max Potential FID
+        dd #{h.time.ms(mpFID)}
+
+if totalTransferSize || memory || powerConsumption || requests
+  details.iter-group(open)
+    summary.iter-group-summary
+      span.iter-group-title Page weight & requests
+    dl.iter-group-list
+      if totalTransferSize
+        dt Total transfer size
+        dd #{h.size.format(totalTransferSize)}
+      if requests
+        dt Requests
+        dd #{requests}
+      if memory
+        dt Memory
+        dd #{h.size.format(memory)}
+      if powerConsumption
+        dt Firefox CPU power
+        dd #{(powerConsumption * 1000).toFixed(1)} mWh
+
+if longTasks || maxLongTask || lastLongTask
+  details.iter-group(open)
+    summary.iter-group-summary
+      span.iter-group-title CPU
+    dl.iter-group-list
+      if longTasks
+        dt CPU long tasks
+        dd #{longTasks}
+      if maxLongTask
+        dt CPU longest task duration
+        dd #{h.time.ms(maxLongTask)}
+      if lastLongTask
+        dt CPU last long task at
+        dd #{h.time.ms(lastLongTask)}
+
+if firstVisualChange || speedIndex || visualComplete85 || visualComplete99 || lastVisualChange
+  details.iter-group(open)
+    summary.iter-group-summary
+      span.iter-group-title Visual progress
+    dl.iter-group-list
+      if firstVisualChange
+        dt First Visual Change
+        dd #{h.time.ms(firstVisualChange)}
+      if speedIndex
+        dt Speed Index
+        dd #{h.time.ms(speedIndex)}
+      if visualComplete85
+        dt Visual Complete 85%
+        dd #{h.time.ms(visualComplete85)}
+      if visualComplete99
+        dt Visual Complete 99%
+        dd #{h.time.ms(visualComplete99)}
+      if lastVisualChange
+        dt Last Visual Change
+        dd #{h.time.ms(lastVisualChange)}

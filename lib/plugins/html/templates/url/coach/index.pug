@@ -1,4 +1,5 @@
 include ../../_tableMixins
+include ../includes/_quicklinks
 
 //- Each advice category renders as a collection of `<details>` cards
 //- sorted by score ascending — most-urgent first. Native `<details>`
@@ -80,20 +81,15 @@ mixin adviceCategory(name, id, perfectMessage, node)
 - const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 - const coachVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.version : pageInfo.data.coach.pageSummary.version;
 
-small
-  if advice
-    | |&nbsp;
-    a(href='#coach-perf') Performance advice
-    | &nbsp;|&nbsp;
-    a(href='#coach-bestpractice') Best practice advice
-    | &nbsp;|&nbsp;
-    a(href='#coach-privacy') Privacy advice
-    | &nbsp;|&nbsp;
-    a(href='#page-info') Page info
-    | &nbsp;|&nbsp;
-  if advice.info.technology && advice.info.technology.length > 0 || (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
-    a(href='#technology') Technologies
-    | &nbsp;|&nbsp;
+- const coachLinks = []
+if advice
+  - coachLinks.push({href: '#coach-perf', label: 'Performance advice'})
+  - coachLinks.push({href: '#coach-bestpractice', label: 'Best practice advice'})
+  - coachLinks.push({href: '#coach-privacy', label: 'Privacy advice'})
+  - coachLinks.push({href: '#page-info', label: 'Page info'})
+if advice.info.technology && advice.info.technology.length > 0 || (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
+  - coachLinks.push({href: '#technology', label: 'Technologies'})
++quicklinks(coachLinks)
 
 h2 Coach
 p.small

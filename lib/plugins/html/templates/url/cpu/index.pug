@@ -1,3 +1,5 @@
+include ../includes/_quicklinks
+
 - const browsertime = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run
 - const cpu = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run.cpu
 
@@ -52,35 +54,26 @@ mixin cpuIcon(name)
 //- → third-party rollup → niche signals (animations, FID) at the
 //- bottom because they're either rare or supplanted by INP.
 if cpu
-  small
-    | |&nbsp;
-    if cpu.longTasks
-      a(href='#long-tasks') Long tasks
-      | &nbsp;|&nbsp;
-    if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
-      a(href='#cpu-loaf-blocking') Per script blocking
-      | &nbsp;|&nbsp;
-    if cpu.categories
-      a(href='#cpu-time-spent') Where time went
-      | &nbsp;|&nbsp;
-    if cpu.forcedReflows && cpu.forcedReflows.length > 0
-      a(href='#cpu-forced-reflows') Forced reflows
-      | &nbsp;|&nbsp;
-    if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
-      a(href='#cpu-forced-layout-per-script') Forced layout/script
-      | &nbsp;|&nbsp;
-    if cpu.urls && cpu.urls.length > 0
-      a(href='#cpu-time-spent-per-request') Per script
-      | &nbsp;|&nbsp;
-    if pageInfo.data.thirdparty
-      a(href='#cpu-time-per-tool') Per domain/tool
-      | &nbsp;|&nbsp;
-    if cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
-      a(href='#cpu-animations') Animations
-      | &nbsp;|&nbsp;
-    if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
-      a(href='#first-input-delay') First Input Delay
-      | &nbsp;|&nbsp;
+  - const cpuLinks = []
+  if cpu.longTasks
+    - cpuLinks.push({href: '#long-tasks', label: 'Long tasks'})
+  if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+    - cpuLinks.push({href: '#cpu-loaf-blocking', label: 'Per script blocking'})
+  if cpu.categories
+    - cpuLinks.push({href: '#cpu-time-spent', label: 'Where time went'})
+  if cpu.forcedReflows && cpu.forcedReflows.length > 0
+    - cpuLinks.push({href: '#cpu-forced-reflows', label: 'Forced reflows'})
+  if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+    - cpuLinks.push({href: '#cpu-forced-layout-per-script', label: 'Forced layout/script'})
+  if cpu.urls && cpu.urls.length > 0
+    - cpuLinks.push({href: '#cpu-time-spent-per-request', label: 'Per script'})
+  if pageInfo.data.thirdparty
+    - cpuLinks.push({href: '#cpu-time-per-tool', label: 'Per domain/tool'})
+  if cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
+    - cpuLinks.push({href: '#cpu-animations', label: 'Animations'})
+  if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+    - cpuLinks.push({href: '#first-input-delay', label: 'First Input Delay'})
+  +quicklinks(cpuLinks)
 
 a#cpu
 h2 CPU

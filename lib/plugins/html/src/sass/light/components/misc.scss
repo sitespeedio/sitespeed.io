@@ -116,3 +116,13 @@ a.from-page {
  -moz-hyphens: auto;
  hyphens: auto;
 }
+
+// The page URL line under the h1 on the per-URL pages — visually a
+// small heading but marked up as a <p> so the heading outline doesn't
+// jump from h1 to h5.
+p.url {
+ margin: 1.5rem 0 1rem;
+ font-weight: $font--weight--medium;
+ line-height: 1.25;
+ letter-spacing: -0.01em;
+}
