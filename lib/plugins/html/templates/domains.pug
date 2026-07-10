@@ -182,7 +182,7 @@ block content
             span.domains-callout-figure #{transferTotal > 0 ? Math.round(thirdPartyBytes / transferTotal * 100) + '% of all bytes' : 'no transfer size data'}
       p.listing-card-help Ordered worst first by estimated time footprint (requests × median request time). Phase times are per-request medians — hover a value for min and max. Yellow/red cells mark DNS, connect, SSL and wait medians above conservative thresholds. Click any column header to re-sort.
       .responsive
-        table.domains-table(data-sortable, id='domains')
+        table.domains-table.data-table(data-sortable, id='domains')
           +rowHeading(['Domain', 'Requests', 'Bytes', 'Blocked', 'DNS', 'Connect', 'SSL', 'Send', 'Wait (TTFB)', 'Receive', 'Total'])
           +rows(orderedDomains, transferMax, phaseTone, isThirdParty)
   else

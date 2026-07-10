@@ -48,14 +48,14 @@
 // Cell tones — text colour only, so they stack cleanly on top of the
 // in-cell scaling bar and the reused-row tint without fighting them.
 table#assets {
-  td.cell--tone-warning,
-  td.cell--tone-warning .cell-bar-text {
+  td.cell-tone--warning,
+  td.cell-tone--warning .cell-bar-text {
     color: $color--warning;
     font-weight: $font--weight--semibold;
   }
 
-  td.cell--tone-error,
-  td.cell--tone-error .cell-bar-text {
+  td.cell-tone--error,
+  td.cell-tone--error .cell-bar-text {
     color: $color--error;
     font-weight: $font--weight--semibold;
   }

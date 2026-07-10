@@ -64,7 +64,7 @@
 - const sevClass = (p) => p >= 70 ? 'cov-bar-fill--bad' : (p >= 40 ? 'cov-bar-fill--mid' : 'cov-bar-fill--ok')
 
 a#coverage
-h3.pagexray-section-heading Coverage
+h2 Coverage
 
 p
   | JavaScript and CSS coverage from the median iteration (run #{covRunIndex + 1}). For JS, Chrome's V8 profiler reports per-block execution counts — a byte is&nbsp;
@@ -191,33 +191,34 @@ else
       .listing-card-header
         h3.listing-card-title JavaScript files
         span.listing-card-meta showing #{jsSorted.length} of #{jsAgg.length} URLs (from #{jsFiles.length} scripts), sorted by unused bytes
-      table.cov-table.responsive
-        thead
-          tr
-            th URL
-            th.cov-num Total
-            th.cov-num Used
-            th.cov-num Unused
-            th.cov-bar Unused %
-        tbody
-          each f in jsSorted
-            - const inline = docUrl && f.url === docUrl
+      .responsive
+        table.cov-table
+          thead
             tr
-              td.cov-url
-                if inline
-                  span.cov-inline (inline)
-                else
-                  a(href=f.url, title=f.url) #{h.shortAsset(f.url, true)}
-                if f.count > 1
-                  | &nbsp;
-                  span.cov-count #{f.count} scripts
-              td.cov-num #{h.size.format(f.totalBytes)}
-              td.cov-num #{h.size.format(f.usedBytes)}
-              td.cov-num #{h.size.format(f.unusedBytes)}
-              td.cov-bar
-                .cov-bar-track
-                  span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
-                span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
+              th URL
+              th.number Total
+              th.number Used
+              th.number Unused
+              th.cov-bar Unused %
+          tbody
+            each f in jsSorted
+              - const inline = docUrl && f.url === docUrl
+              tr
+                td.cov-url
+                  if inline
+                    span.cov-inline (inline)
+                  else
+                    a(href=f.url, title=f.url) #{h.shortAsset(f.url, true)}
+                  if f.count > 1
+                    | &nbsp;
+                    span.cov-count #{f.count} scripts
+                td.number #{h.size.format(f.totalBytes)}
+                td.number #{h.size.format(f.usedBytes)}
+                td.number #{h.size.format(f.unusedBytes)}
+                td.cov-bar
+                  .cov-bar-track
+                    span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
+                  span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
 
   if cssAgg.length > 0
     - const cssSorted = cssAgg.slice().sort((a, b) => b.unusedBytes - a.unusedBytes).slice(0, MAX_ROWS)
@@ -225,32 +226,33 @@ else
       .listing-card-header
         h3.listing-card-title CSS files
         span.listing-card-meta showing #{cssSorted.length} of #{cssAgg.length} URLs (from #{cssFiles.length} stylesheets), sorted by unused bytes
-      table.cov-table.responsive
-        thead
-          tr
-            th URL
-            th.cov-num Total
-            th.cov-num Used
-            th.cov-num Unused
-            th.cov-bar Unused %
-        tbody
-          each f in cssSorted
+      .responsive
+        table.cov-table
+          thead
             tr
-              td.cov-url
-                if f.url
-                  a(href=f.url, title=f.url) #{h.shortAsset(f.url, true)}
-                else
-                  span.cov-inline (inline stylesheet)
-                if f.count > 1
-                  | &nbsp;
-                  span.cov-count #{f.count} stylesheets
-              td.cov-num #{h.size.format(f.totalBytes)}
-              td.cov-num #{h.size.format(f.usedBytes)}
-              td.cov-num #{h.size.format(f.unusedBytes)}
-              td.cov-bar
-                .cov-bar-track
-                  span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
-                span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
+              th URL
+              th.number Total
+              th.number Used
+              th.number Unused
+              th.cov-bar Unused %
+          tbody
+            each f in cssSorted
+              tr
+                td.cov-url
+                  if f.url
+                    a(href=f.url, title=f.url) #{h.shortAsset(f.url, true)}
+                  else
+                    span.cov-inline (inline stylesheet)
+                  if f.count > 1
+                    | &nbsp;
+                    span.cov-count #{f.count} stylesheets
+                td.number #{h.size.format(f.totalBytes)}
+                td.number #{h.size.format(f.usedBytes)}
+                td.number #{h.size.format(f.unusedBytes)}
+                td.cov-bar
+                  .cov-bar-track
+                    span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
+                  span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
 
   .listing-card.cov-advice
     .listing-card-header

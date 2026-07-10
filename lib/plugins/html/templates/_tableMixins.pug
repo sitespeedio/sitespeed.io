@@ -5,7 +5,7 @@ mixin rowHeading(items)
         th= item
 
 mixin numberCell(title, number)
-  td.number(data-title=title)= number
+  td.number(data-title=title, data-value= number)= number
 
 mixin durationCell(title, duration)
   td.number(data-title=title, data-value= duration)= h.time.duration(duration)

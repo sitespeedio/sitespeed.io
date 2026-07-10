@@ -222,7 +222,7 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
     p How much each script blocked the main thread, derived from the Long Animation Frame API. The script that started each long frame is credited with the frame's blocking time — the closest answer to "which script should I fix to improve TBT" the platform exposes.
     .listing-card
       .listing-card-header
-        h4.listing-card-title Top scripts blocking the main thread
+        h3.listing-card-title Top scripts blocking the main thread
         span.listing-card-meta #{loafEntries.length} of #{loafByScript.size} #{loafByScript.size === 1 ? 'script' : 'scripts'}
       .cpu-bars
         each entry in loafEntries
@@ -248,7 +248,7 @@ if cpu && cpu.categories
   - const catEntries = Object.entries(cpu.categories).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1])
   .listing-card
     .listing-card-header
-      h4.listing-card-title Categories
+      h3.listing-card-title Categories
       span.listing-card-meta #{h.time.ms(catTotal.toFixed(0))} total
     //- One wide horizontal bar with each category as a coloured
     //- segment sized by its share of total CPU. Replaces the old
@@ -287,7 +287,7 @@ if cpu && cpu.forcedReflows && cpu.forcedReflows.length > 0
     p A forced reflow happens when JavaScript reads a layout-triggering property (offsetTop, getBoundingClientRect, …) inside a handler, forcing the browser to synchronously recompute layout. The scripts below caused most of the page's reflows — fix them in priority order.
     .listing-card
       .listing-card-header
-        h4.listing-card-title Scripts causing reflows
+        h3.listing-card-title Scripts causing reflows
         span.listing-card-meta #{significant.length} #{significant.length === 1 ? 'reflow' : 'reflows'} ≥ 2 ms across #{reflowEntries.length} #{reflowEntries.length === 1 ? 'script' : 'scripts'}
       .cpu-bars
         each entry in reflowEntries
@@ -322,7 +322,7 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
     p Each long animation frame reports how much time each script spent forcing synchronous style and layout — i.e. JavaScript reading layout-triggering properties mid-execution. Same actionable answer as forced reflows above but measured directly by the browser instead of inferred from the trace.
     .listing-card
       .listing-card-header
-        h4.listing-card-title Scripts forcing layout
+        h3.listing-card-title Scripts forcing layout
         span.listing-card-meta #{fsEntries.length} of #{fsByScript.size} #{fsByScript.size === 1 ? 'script' : 'scripts'}
       .cpu-bars
         each entry in fsEntries
@@ -346,7 +346,7 @@ if cpu && cpu.urls && cpu.urls.length > 0
   - const urlMax = topUrls[0].value
   .listing-card
     .listing-card-header
-      h4.listing-card-title Scripts by main-thread time
+      h3.listing-card-title Scripts by main-thread time
       span.listing-card-meta
         | #{topUrls.length} of #{cpu.urls.length} #{cpu.urls.length === 1 ? 'script' : 'scripts'}
     .cpu-bars
@@ -371,7 +371,7 @@ if pageInfo.data.thirdparty
     - const toolMax = tools.length > 0 ? tools[0][1] : 0
     .listing-card
       .listing-card-header
-        h4.listing-card-title Domain / tool breakdown
+        h3.listing-card-title Domain / tool breakdown
         span.listing-card-meta #{tools.length} #{tools.length === 1 ? 'entity' : 'entities'}
       .cpu-bars
         each entry in tools
@@ -398,7 +398,7 @@ if cpu && cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
     p Animations that fell back from the compositor to the main thread, blocking each frame instead of running on the GPU. Each chip below is a CSS property the page tried to animate that Chrome couldn't hand to the compositor — swap it for a transform or opacity equivalent where you can.
     .listing-card
       .listing-card-header
-        h4.listing-card-title Properties to fix
+        h3.listing-card-title Properties to fix
         span.listing-card-meta #{propEntries.length} #{propEntries.length === 1 ? 'property' : 'properties'} · #{cpu.nonCompositedAnimations.length} #{cpu.nonCompositedAnimations.length === 1 ? 'animation' : 'animations'}
       ul.cpu-anim-list
         each entry in propEntries

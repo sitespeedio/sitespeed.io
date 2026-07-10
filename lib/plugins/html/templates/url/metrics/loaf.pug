@@ -60,28 +60,29 @@ if loaf
 
     if loafCulpritList.length > 0
         h4.loaf-culprits-heading What to fix first
-        table.loaf-culprits
-            thead
-                tr
-                    th Script
-                    th Frames
-                    th Blocking in those frames
-                    th Forced style &amp; layout
-                    th Triggered by
-            tbody
-                each c in loafCulpritList
+        .responsive
+            table.loaf-culprits
+                thead
                     tr
-                        td.loaf-culprit-script
-                            if c.isUrl
-                                a(href=c.key, title=c.key)= loafScriptName(c.key)
-                            else
-                                span(title=c.key)= loafScriptName(c.key)
-                            if loafIsThirdParty(c.key)
-                                span.loaf-3p 3rd party
-                        td.num #{c.frames}
-                        td.num #{loafFmt(c.blocking)}
-                        td.num #{c.forced > 0 ? loafFmt(c.forced) : '—'}
-                        td= [...c.invokerTypes].join(', ')
+                        th Script
+                        th Frames
+                        th Blocking in those frames
+                        th Forced style &amp; layout
+                        th Triggered by
+                tbody
+                    each c in loafCulpritList
+                        tr
+                            td.loaf-culprit-script
+                                if c.isUrl
+                                    a(href=c.key, title=c.key)= loafScriptName(c.key)
+                                else
+                                    span(title=c.key)= loafScriptName(c.key)
+                                if loafIsThirdParty(c.key)
+                                    span.loaf-3p 3rd party
+                            td.number #{c.frames}
+                            td.number #{loafFmt(c.blocking)}
+                            td.number #{c.forced > 0 ? loafFmt(c.forced) : '—'}
+                            td= [...c.invokerTypes].join(', ')
 
     each oneLoaf, loafIdx in loafFrames
         //- duration = work + render; render = pre-layout + style & layout

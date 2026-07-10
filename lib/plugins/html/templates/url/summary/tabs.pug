@@ -3,7 +3,7 @@
     | Summary
   if d.browsertime && d.browsertime.har
     a(id='waterfall', href='#waterfall', onclick='return selectTab(this, true);')
-      | Waterfall   
+      | Waterfall
   if d.browsertime && d.browsertime.pageSummary
     a(id='metrics', href='#metrics', onclick='return selectTab(this, true);')
       | Metrics
@@ -18,10 +18,10 @@
       | PageXray
   if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime &&options.browsertime.enableProfileRun
     a(id='cpu', href='#cpu', onclick='return selectTab(this, true);')
-      | CPU      
+      | CPU
   if d.thirdparty && d.thirdparty.pageSummary
     a(id='thirdparty', href='#thirdparty', onclick='return selectTab(this, true);')
-      | Third party   
+      | Third party
   each pageSummary in pageSummaries
     a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this, true);')
       | #{pageSummary.name}

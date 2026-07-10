@@ -6,7 +6,7 @@ mixin rows(assets, weightMax, heavyWarning, heavyError, shortCacheTime)
     //- When the HAR lacks transfer sizes (e.g. Safari on macOS) fall
     //- back to content size so sorting, bars and tones still work.
     - const weight = asset.transferSize || asset.size || 0
-    - const weightTone = weight >= heavyError ? 'cell--tone-error' : (weight >= heavyWarning ? 'cell--tone-warning' : '')
+    - const weightTone = weight >= heavyError ? 'cell-tone--error' : (weight >= heavyWarning ? 'cell-tone--warning' : '')
     - const shortCache = asset.type !== 'html' && typeof asset.cacheTime === 'number' && asset.cacheTime < shortCacheTime
     - const pct = weightMax > 0 ? Math.min(100, weight / weightMax * 100) : 0
     //- `count > 1` means this exact asset URL was requested across more
@@ -26,7 +26,7 @@ mixin rows(assets, weightMax, heavyWarning, heavyError, shortCacheTime)
         span.cell-bar-fill(style='width: ' + pct.toFixed(2) + '%')
         span.cell-bar-text= h.size.format(weight)
       +kbSizeCell('size', asset.size)
-      td.number(class=(shortCache ? 'cell--tone-warning' : ''), data-title='cache time', data-value=asset.cacheTime)= h.time.duration(asset.cacheTime)
+      td.number(class=(shortCache ? 'cell-tone--warning' : ''), data-title='cache time', data-value=asset.cacheTime)= h.time.duration(asset.cacheTime)
       +durationCell('last modified', asset.lastModification)
       +numberCell('count', asset.requestCount)
 
@@ -89,7 +89,7 @@ block content
           span.listing-card-meta #{fullCount} #{fullCount === 1 ? 'asset' : 'assets'}
       p.listing-card-help The heaviest assets across all tested pages, biggest first. Transfer is compressed bytes over the wire, size is uncompressed bytes after decoding; when the browser doesn't report transfer size — for example Safari — the content size is shown instead. Yellow/red transfer values mark assets whose wire bytes dominate page weight; yellow cache times expire within an hour. Click any column header to re-sort#{count < fullCount ? ', and use --maxAssets to list more' : ''}.
       .responsive
-        table(data-sortable, id='assets')
+        table.data-table(data-sortable, id='assets')
           +rowHeading(['url', 'type', 'transfer', 'size', 'cache time', 'time since last modified', 'count'])
           +rows(sortedAssets, weightMax, HEAVY_ASSET_WARNING, HEAVY_ASSET_ERROR, SHORT_CACHE_TIME)
   else
