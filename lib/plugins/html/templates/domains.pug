@@ -1,37 +1,148 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin rows(domainStats, transferMax)
+mixin phaseCell(stats, name, tone)
+  if stats && stats.median !== undefined
+    td.number(data-title=name, data-value=stats.median, class=tone ? 'cell-tone--' + tone : '', title='min ' + h.time.ms(stats.min) + ' · max ' + h.time.ms(stats.max))= h.time.ms(stats.median)
+  else
+    td.number(data-title=name, data-value=0) —
+
+mixin rows(domainStats, transferMax, phaseTone, isThirdParty)
   each domain in domainStats
     - const transferSum = (domain.transferSize && domain.transferSize.sum) || 0
     - const transferPct = transferMax > 0 ? Math.min(100, transferSum / transferMax * 100) : 0
+    - const tones = { dns: phaseTone('dns', domain.dns), connect: phaseTone('connect', domain.connect), ssl: phaseTone('ssl', domain.ssl), wait: phaseTone('wait', domain.wait) }
+    - const flagged = Object.keys(tones).filter(k => tones[k])
+    - const rowTone = Object.values(tones).includes('error') ? 'error' : (Object.values(tones).includes('warning') ? 'warning' : 'ok')
     tr
       td.url.assetsurl(data-title='Domain')
-        span.domain-name #{domain.domainName}
+        span.domain-dot(class='domain-dot--' + rowTone, title=flagged.length ? 'Slow phases: ' + flagged.join(', ') : 'Connection phases look fine')
+        span.domain-name(title=domain.domainName) #{domain.domainName}
+        if isThirdParty && isThirdParty(domain.domainName)
+          span.domain-chip-3p(title='Third-party domain') 3rd party
+      +numberCell('Requests', domain.requestCount)
       td.number.cell--bar(data-title='Bytes', data-value=transferSum)
         span.cell-bar-fill(style='width: ' + transferPct.toFixed(2) + '%')
         span.cell-bar-text= h.size.format(transferSum)
-      +statsCell(domain.blocked, 'Blocked', 'max')
-      +statsCell(domain.dns, 'DNS', 'max')
-      +statsCell(domain.connect, 'Connect', 'max')
-      +statsCell(domain.send, 'Send', 'max')
-      +statsCell(domain.ssl, 'SSL', 'max')
-      +statsCell(domain.wait, 'Wait', 'max')
-      +statsCell(domain.receive, 'Receive', 'max')
-      +statsCell(domain.totalTime, 'Total time', 'max')
-      +numberCell('Requests', domain.requestCount)
+      +phaseCell(domain.blocked, 'Blocked')
+      +phaseCell(domain.dns, 'DNS', tones.dns)
+      +phaseCell(domain.connect, 'Connect', tones.connect)
+      +phaseCell(domain.ssl, 'SSL', tones.ssl)
+      +phaseCell(domain.send, 'Send')
+      +phaseCell(domain.wait, 'Wait (TTFB)', tones.wait)
+      +phaseCell(domain.receive, 'Receive')
+      +phaseCell(domain.totalTime, 'Total')
 
 block content
   include runInfo
-  if topDomains
+  if topDomains && topDomains.length
+    -
+      // Tone thresholds for the per-domain MEDIAN phase timings, in ms.
+      // Deliberately conservative so only genuinely broken setups flag —
+      // a run on throttled connectivity should not paint the whole table:
+      // * dns: an uncached lookup is one round trip to the resolver,
+      //   normally tens of ms. A median above 150 ms means most lookups
+      //   for the domain are slow (slow authoritative servers or no DNS
+      //   caching on the path).
+      // * connect: the TCP handshake costs roughly one RTT. A median
+      //   above 150 ms points at a distant origin or connections that
+      //   never get reused.
+      // * ssl: the TLS handshake adds 1–2 RTT on top of connect. A
+      //   median above 250 ms usually means no TLS 1.3 or no session
+      //   resumption.
+      // * wait: time to first byte per request (server think time plus
+      //   one RTT). Lighthouse warns at 600 ms for the document;
+      //   per-request medians run lower, so 500 ms is already generous.
+      // The error line is ~2.5x the warning line: slow enough to be
+      // worth fixing no matter what connectivity the test used.
+      const phaseThresholds = {
+        dns: { warning: 150, error: 400 },
+        connect: { warning: 150, error: 400 },
+        ssl: { warning: 250, error: 600 },
+        wait: { warning: 500, error: 1200 }
+      };
+      const phaseTone = (name, stats) => {
+        if (!stats || stats.median === undefined) return '';
+        const t = phaseThresholds[name];
+        return stats.median >= t.error
+          ? 'error'
+          : (stats.median >= t.warning ? 'warning' : '');
+      };
+
+      // Worst-first: requests × median request time approximates how much
+      // wall-clock time the run spent talking to each domain. Requests
+      // overlap, so it is a proxy — but it reliably floats the expensive
+      // domains to the top, which is the question this page answers.
+      const timeFootprint = d =>
+        (d.totalTime ? d.totalTime.median : 0) * (d.requestCount || 0);
+      const orderedDomains = topDomains
+        .slice()
+        .sort((a, b) => timeFootprint(b) - timeFootprint(a));
+
+      // First vs third party: prefer the user-supplied --firstParty regex
+      // (the same signal the thirdparty plugin uses); otherwise fall back
+      // to the hostnames of the tested pages — a domain is first party
+      // when it equals a tested hostname (minus a leading www.) or is a
+      // subdomain of it. If neither source is usable we skip the marking
+      // rather than guess.
+      let isThirdParty;
+      try {
+        if (options.firstParty) {
+          const firstPartyRegEx = new RegExp(options.firstParty);
+          isThirdParty = domainName => !firstPartyRegEx.test(domainName);
+        } else {
+          const testedUrls =
+            headers && headers.pages && headers.pages.pages
+              ? Object.keys(headers.pages.pages)
+              : [];
+          const firstPartyBases = new Set();
+          for (const testedUrl of testedUrls) {
+            firstPartyBases.add(
+              new URL(testedUrl).hostname.replace(/^www\./, '')
+            );
+          }
+          if (firstPartyBases.size > 0) {
+            isThirdParty = domainName => {
+              const name = domainName.replace(/^www\./, '');
+              for (const base of firstPartyBases) {
+                if (name === base || name.endsWith('.' + base)) return false;
+              }
+              return true;
+            };
+          }
+        }
+      } catch {
+        // A broken --firstParty regex or an unparsable URL should never
+        // break the report — just skip the first/third-party marking.
+        isThirdParty = undefined;
+      }
+
+      const transferMax = topDomains.reduce((m, d) => Math.max(m, (d.transferSize && d.transferSize.sum) || 0), 0);
+      const transferTotal = topDomains.reduce((s, d) => s + ((d.transferSize && d.transferSize.sum) || 0), 0);
+
+      let slowest, heaviest, busiest;
+      for (const d of topDomains) {
+        if (d.totalTime && (!slowest || d.totalTime.median > slowest.totalTime.median)) slowest = d;
+        const bytes = (d.transferSize && d.transferSize.sum) || 0;
+        if (bytes > 0 && (!heaviest || bytes > heaviest.transferSize.sum)) heaviest = d;
+        if (!busiest || d.requestCount > busiest.requestCount) busiest = d;
+      }
+
+      let thirdPartyCount = 0;
+      let thirdPartyBytes = 0;
+      if (isThirdParty) {
+        for (const d of topDomains) {
+          if (isThirdParty(d.domainName)) {
+            thirdPartyCount++;
+            thirdPartyBytes += (d.transferSize && d.transferSize.sum) || 0;
+          }
+        }
+      }
     //- The old `.domains-summary` count panel collapses into the card
     //- header's meta slot — same information, but consistent with the
     //- rest of the report's card-driven layout. The total wire bytes
     //- across all listed domains is rolled up beside the count so the
     //- page's overall transfer footprint is visible up-front.
-    - const shownDomains = count < fullCount ? count : fullCount
-    - const transferMax = topDomains.reduce((m, d) => Math.max(m, (d.transferSize && d.transferSize.sum) || 0), 0)
-    - const transferTotal = topDomains.reduce((s, d) => s + ((d.transferSize && d.transferSize.sum) || 0), 0)
     .listing-card
       .listing-card-header
         h3.listing-card-title Domains
@@ -39,14 +150,40 @@ block content
           if count < fullCount
             | Top #{count} of #{fullCount}
           else
-            | #{fullCount} #{fullCount === 1 ? 'domain' : 'domains'}
+            | #{h.plural(fullCount, 'domain')}
           if transferTotal
             span.listing-card-meta-sep ·
             | #{h.size.format(transferTotal)} total transfer
-      p.listing-card-help Bytes are wire totals per domain; per-phase timings are max. Click any column header to sort.
+          if isThirdParty && thirdPartyCount
+            span.listing-card-meta-sep ·
+            | #{thirdPartyCount} third party
+      //- Lead with the answer: which domain is slow, which is heavy and
+      //- which is chatty — before the reader has to scan the table.
+      .domains-callouts
+        if slowest && slowest.totalTime
+          .domains-callout
+            span.domains-callout-label Slowest domain
+            span.domains-callout-domain(title=slowest.domainName)= slowest.domainName
+            span.domains-callout-figure #{h.time.ms(slowest.totalTime.median)} median request time
+        if heaviest
+          .domains-callout
+            span.domains-callout-label Heaviest domain
+            span.domains-callout-domain(title=heaviest.domainName)= heaviest.domainName
+            span.domains-callout-figure #{h.size.format(heaviest.transferSize.sum)} · #{Math.round(heaviest.transferSize.sum / transferTotal * 100)}% of all bytes
+        if busiest
+          .domains-callout
+            span.domains-callout-label Most requests
+            span.domains-callout-domain(title=busiest.domainName)= busiest.domainName
+            span.domains-callout-figure #{h.plural(busiest.requestCount, 'request')}
+        if isThirdParty
+          .domains-callout
+            span.domains-callout-label Third party
+            span.domains-callout-domain #{thirdPartyCount} of #{h.plural(topDomains.length, 'domain')}
+            span.domains-callout-figure #{transferTotal > 0 ? Math.round(thirdPartyBytes / transferTotal * 100) + '% of all bytes' : 'no transfer size data'}
+      p.listing-card-help Ordered worst first by estimated time footprint (requests × median request time). Phase times are per-request medians — hover a value for min and max. Yellow/red cells mark DNS, connect, SSL and wait medians above conservative thresholds. Click any column header to re-sort.
       .responsive
-        table(data-sortable, id='domains')
-          +rowHeading(['Domain', 'Bytes', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
-          +rows(topDomains, transferMax)
+        table.domains-table(data-sortable, id='domains')
+          +rowHeading(['Domain', 'Requests', 'Bytes', 'Blocked', 'DNS', 'Connect', 'SSL', 'Send', 'Wait (TTFB)', 'Receive', 'Total'])
+          +rows(orderedDomains, transferMax, phaseTone, isThirdParty)
   else
     p.domains-empty No domain information available — the HAR file wasn't generated.
