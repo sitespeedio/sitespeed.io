@@ -34,10 +34,7 @@ block content
     .listing-card
         .listing-card-header
             h3.listing-card-title Side by side
-            if runPages.length > 1
-                span.listing-card-meta #{h.plural(runPages.length, 'run')} · lowest and highest value per metric highlighted
-            else
-                span.listing-card-meta 1 run
+            span.listing-card-meta #{h.plural(runPages.length, 'run')}
         .responsive
             table.timings-table.sidebyside-table
                 thead
@@ -66,18 +63,11 @@ block content
                                 - const friendly = metrics[tool][metricType][metric]
                                 - const m = get(runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
                                 if (m !== 'notused')
-                                    //- Tint the lowest (best) and highest (worst) run value so
-                                    //- run-to-run variability jumps out — but only when the
-                                    //- runs actually differ, to keep stable rows quiet.
-                                    - const runValues = runPages.map((page) => get(page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))
-                                    - const numericValues = runValues.filter((v) => typeof v === 'number')
-                                    - const showSpread = runPages.length > 1 && numericValues.length > 1 && Math.min(...numericValues) !== Math.max(...numericValues)
                                     tr
                                         td(data-title='metric') #{friendly.name}
                                         each page, index in runPages
-                                            - const runValue = runValues[index]
-                                            - const spreadClass = showSpread && runValue === Math.min(...numericValues) ? 'best' : (showSpread && runValue === Math.max(...numericValues) ? 'worst' : '')
-                                            td.number(class=spreadClass, data-title='run ' + (Number(index) + 1))
+                                            - const runValue = get(page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path))
+                                            td.number(data-title='run ' + (Number(index) + 1))
                                                 a(href='./' + (Number(index) + 1) + '.html', title='Go to run ' + (Number(index) + 1)) #{friendly.format(runValue)}
                                         td.number(data-title='median') #{friendly.format(get(mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
                                         td.number(data-title='mean') #{friendly.format(get(mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
