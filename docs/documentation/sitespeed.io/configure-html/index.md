@@ -24,7 +24,7 @@ The start page of the report is a scorecard that answers two questions first: ho
 Runs without browsertime data (for example CrUx-only runs) fall back to showing the classic summary boxes.
 
 # Configure page metrics
-When you test, the pages page is generated where you can compare all the URLs that have been tested. By default we cherry-picked a couple of metrics that show in the table, but you can also change them. This is useful if there is a specific metric that is your main focus.
+When you test, the pages page is generated where you can compare all the URLs that have been tested. Each page gets a Web Vitals verdict (good / needs improvement / poor, judged by the worst of its measured Web Vitals against the Google thresholds) and the table is ordered worst page first, so the pages that need attention surface at the top. Click a column header to re-sort, and on runs with many pages a filter box lets you narrow the table by URL. The default columns are timing-first: Largest Contentful Paint, Cumulative Layout Shift, Total Blocking Time, Speed Index (when visual metrics are collected), total transfer size, total requests and the Coach performance score — but you can change them. This is useful if there is a specific metric that is your main focus.
 
 
 ![Page columns]({{site.baseurl}}/img/pagecolumns.png)
@@ -42,12 +42,12 @@ Or use a configuration json:
 ~~~json
 "html": {
     "pageSummaryMetrics": [
+      "googleWebVitals.largestContentfulPaint",
+      "googleWebVitals.cumulativeLayoutShift",
+      "googleWebVitals.totalBlockingTime",
+      "timings.SpeedIndex",
       "transferSize.total",
       "requests.total",
-      "thirdParty.requests",
-      "transferSize.javascript",
-      "transferSize.css",
-      "transferSize.image",
       "score.performance"
     ]
 }
