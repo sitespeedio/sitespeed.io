@@ -49,3 +49,94 @@
   font-variant-numeric: tabular-nums;
   opacity: 0.85;
 }
+
+// "What stands out" strip — plain-language anomaly chips (worst Web
+// Vital, response-code problems) using the shared warning/error tones.
+.detailed-standouts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px 0;
+}
+
+.detailed-standouts-label {
+  color: $color--text-muted;
+  font-size: 0.8rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailed-standout {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--border;
+  font-size: 0.9rem;
+
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+}
+
+// Some chips deep-link to their card (e.g. accessibility → the axe
+// card) — keep the tone colour instead of link blue, underline on
+// hover as the affordance.
+a.detailed-standout {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.detailed-intro {
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  max-width: 80ch;
+  margin: 0 0 18px 0;
+}
+
+// Status dot next to a metric's headline stat. The colour comes from
+// the global .ok/.warning/.error background classes.
+.detailed-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+// Anomaly badge on the response-code rows (errors / redirect heavy).
+.detailed-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 9px;
+  border-radius: $radius--pill;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  white-space: nowrap;
+
+  &.warning { background: $color--warning-bg; border: 1px solid $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border: 1px solid $color--error-border; color: $color--error; }
+}
+
+// Scoped treatment for the grouped metric tables — the .listing-card
+// frames each table, and the median (or the collapsed single Value)
+// is the headline stat.
+.detailed-table {
+  margin-bottom: 0;
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  td[data-title='median'],
+  td[data-title='Value'] {
+    font-weight: $font--weight--semibold;
+    color: $color--text;
+  }
+}
