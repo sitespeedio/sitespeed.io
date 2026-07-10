@@ -1,0 +1,36 @@
+//
+// TOPLIST — dark
+// ==============
+// See light variant for layout notes; this file mirrors that structure
+// with the dark theme's tokens.
+//
+
+.toplist-intro {
+  margin: 0 0 16px 0;
+  color: $color--text-muted;
+  max-width: 80ch;
+}
+
+.cell-tone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: $font--weight--medium;
+
+  &::before {
+    content: '';
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.cell-tone--warning {
+  color: $color--warning;
+}
+
+.cell-tone--error {
+  color: $color--error;
+}
