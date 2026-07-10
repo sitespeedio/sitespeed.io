@@ -37,7 +37,10 @@ mixin adviceCategory(name, id, perfectMessage, node)
         each entry in advices
           - const adviceName = entry[0]
           - const advice = entry[1]
-          details.coach-advice
+          //- The id is the anchor the "What to fix first" strip links
+          //- to; prefixed with the category id since coach rule names
+          //- are only guaranteed unique within a category.
+          details.coach-advice(id='advice-' + id + '-' + adviceName)
             summary.coach-advice-summary
               if advice.severity
                 span.coach-severity(class='coach-severity--' + advice.severity) #{advice.severity}
@@ -96,6 +99,49 @@ h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach
   | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on privacy and best practices. Tested using Coach-core version #{coachVersion}.
+
+//- "What to fix first" — the three most urgent advice items across all
+//- categories, surfaced above the fold so the reader doesn't have to
+//- scroll past the mascot and score tiles to find the actionable bad
+//- news. Reuses the worst-first ordering the advice cards use (severity
+//- tier, then score ascending) and renders nothing on a perfect score.
+//- Same callout idiom as the CPU tab's top-offender banner.
+- const sevRank = { error: 0, warn: 1, info: 2 }
+- const fixFirst = []
+- const collectFixes = (node, categoryId, categoryName) => { for (const [ruleName, a] of Object.entries(node.adviceList)) { if (a.score < 100) fixFirst.push({ ruleName, a, categoryId, categoryName }) } }
+- collectFixes(advice.performance, 'coach-perf', 'Performance')
+- collectFixes(advice.bestpractice, 'coach-bestpractice', 'Best practice')
+- collectFixes(advice.privacy, 'coach-privacy', 'Privacy')
+- fixFirst.sort((x, y) => (sevRank[x.a.severity] !== undefined ? sevRank[x.a.severity] : 3) - (sevRank[y.a.severity] !== undefined ? sevRank[y.a.severity] : 3) || x.a.score - y.a.score)
+- const topFixes = fixFirst.slice(0, 3)
+if topFixes.length > 0
+  .cpu-callout.coach-fix-first
+    .cpu-callout-icon(aria-hidden='true')
+      svg(width='28', height='28', viewbox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round')
+        path(d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z')
+        path(d='M12 9v4')
+        path(d='M12 17h.01')
+    .cpu-callout-body
+      .cpu-callout-headline What to fix first
+      ul.coach-fix-first-list
+        each fix in topFixes
+          li.coach-fix-first-item
+            if fix.a.severity
+              span.coach-severity(class='coach-severity--' + fix.a.severity) #{fix.a.severity}
+            a.coach-fix-first-link(href='#advice-' + fix.categoryId + '-' + fix.ruleName)= fix.a.title
+            span.coach-fix-first-cat= fix.categoryName
+  //- The advice cards are collapsed <details> — jumping to the anchor
+  //- without opening the card would land the reader on a shut box.
+  script.
+    (function () {
+      const links = document.querySelectorAll('.coach-fix-first-link');
+      for (const link of links) {
+        link.addEventListener('click', function () {
+          const target = document.getElementById(this.getAttribute('href').slice(1));
+          if (target && target.tagName === 'DETAILS') target.open = true;
+        });
+      }
+    })();
 
 .coach-summary
   .coach-summary-mascot

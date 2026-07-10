@@ -122,6 +122,15 @@ block content
   - const axeSeriousMedian = axeSeriousMetric && axeSeriousMetric.node ? axeSeriousMetric.node.median : 0
   - if (axeCriticalMetric && axeCriticalMetric.node && axeCriticalMetric.node.max > 0) standouts.push({ tone: 'error', href: '#detailed-card-axe', text: (axeCriticalMetric.node.median > 0 ? h.plural(axeCriticalMetric.node.median, 'critical accessibility violation') + (axeSeriousMedian > 0 ? ' (and ' + h.plural(axeSeriousMedian, 'serious one') + ')' : '') : 'Some runs had critical accessibility violations') })
 
+  //- Errors during testing lead the standouts strip — headers.errors is
+  //- the same per-URL error map the Errors tab renders (set in
+  //- htmlBuilder when any error message arrived), and metrics on this
+  //- page may be missing or skewed because of those failures.
+  - const errorMap = headers.errors ? headers.errors.errors : undefined
+  - let testErrorCount = 0
+  - if (errorMap) { for (const toolErrors of Object.values(errorMap)) { for (const list of Object.values(toolErrors)) { testErrorCount += list.length } } }
+  - if (testErrorCount > 0) standouts.unshift({ tone: 'error', href: rootPath + 'errors.html', text: h.plural(testErrorCount, 'error') + ' during testing → errors page' })
+
   if standouts.length
     .detailed-standouts
       span.detailed-standouts-label What stands out

@@ -119,3 +119,13 @@
   font-variant-numeric: tabular-nums;
   font-size: 0.85rem;
 }
+
+// The console-errors KPI is a link (it jumps to the Console log card) —
+// keep it looking like the other tiles instead of like body-text links.
+a.pagexray-kpi {
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: $shadow--sm;
+  }
+}

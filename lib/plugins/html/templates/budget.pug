@@ -1,42 +1,61 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin row(budget)
-  each results, urlOrAlias in budget
-    each result in results
-      tr
-        td
-          if (urlOrAlias && urlOrAlias.startsWith('http'))
-            a(href=urlOrAlias)= urlOrAlias
-          else
-            a(href=aliasToUrl[urlOrAlias])= urlOrAlias
-            p #{aliasToUrl[urlOrAlias]}
-        td #{result.metric} with value #{result.friendlyValue || result.value} limit #{result.limitType} #{result.friendlyLimit || result.limit}
+//- Each budget item carries metric, value, limit, limitType and status
+//- (see lib/plugins/budget/verify.js getItem) — split into columns so
+//- the reader compares value against limit instead of parsing the old
+//- one-sentence result cell. limitType is 'min' for higher-is-better
+//- scores (coach/lighthouse/gpsi) and 'max' for everything else.
+mixin budgetRow(result, failing)
+  tr(class=failing ? 'budget-row--failing' : undefined)
+    td(data-title='Metric') #{result.metric}
+    td.number(data-title='Value') #{result.friendlyValue || result.value}
+    td.number(data-title='Limit') #{result.limitType} #{result.friendlyLimit || result.limit}
+    td(data-title='Verdict')
+      if failing
+        span.budget-pill.budget-pill--fail fail
+      else
+        span.budget-pill.budget-pill--pass pass
 
 block content
-  h2 The budget
-  p The result of the performance budget. We got #{totalFailing} failing and #{totalWorking} working.
+  h2 Performance budget
+  p.small Every configured budget metric checked against its limit — failing checks first.
 
-  //- Failing first because that's what the reader actually came here
-  //- to find. Each list lives in a card with a count chip in the
-  //- header — the bare `h3 Failing budgets [N]` syntax was carrying
-  //- both the title and the count, the chip splits them visually.
-  if totalFailing > 0
-    .listing-card
-      .listing-card-header
-        h3.listing-card-title Failing budgets
-        span.listing-card-meta #{totalFailing} #{totalFailing === 1 ? 'failure' : 'failures'}
-      .responsive
-        table(data-sortable, id='budget-failing')
-          +rowHeading(['url', 'result'])
-          +row(budget.failing)
-
-  if totalWorking > 0
-    .listing-card
-      .listing-card-header
-        h3.listing-card-title Working budgets
-        span.listing-card-meta #{totalWorking} passing
-      .responsive
-        table(data-sortable, id='budget-working')
-          +rowHeading(['url', 'result'])
-          +row(budget.working)
+  //- The budget data is grouped per URL (or per alias), so the page is
+  //- too: one group per page, failing rows on top inside each group,
+  //- and the URLs with failures sort before the ones that pass.
+  - const urls = [...new Set([...Object.keys(budget.failing), ...Object.keys(budget.working)])]
+  - const failCount = (url) => budget.failing[url] ? budget.failing[url].length : 0
+  - urls.sort((a, b) => failCount(b) - failCount(a))
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Budget checks
+      span.listing-card-meta
+        if totalFailing > 0
+          span.errors-chip #{totalFailing} failing
+          span.listing-card-meta-sep ·
+        | #{totalWorking} passing
+    if totalFailing > 0
+      p.listing-card-help #{h.plural(totalFailing, 'check')} #{totalFailing === 1 ? 'is' : 'are'} over budget — those are the rows marked fail below.
+    else
+      p.listing-card-help Every configured budget check passes.
+    each urlOrAlias in urls
+      .budget-group
+        .budget-group-header
+          if (urlOrAlias && urlOrAlias.startsWith('http'))
+            a.budget-group-url(href=urlOrAlias)= urlOrAlias
+          else
+            a.budget-group-url(href=aliasToUrl[urlOrAlias])= urlOrAlias
+            span.budget-group-alias #{aliasToUrl[urlOrAlias]}
+          if failCount(urlOrAlias) > 0
+            span.budget-pill.budget-pill--fail #{failCount(urlOrAlias)} failing
+          else
+            span.budget-pill.budget-pill--pass all passing
+        .responsive
+          table.budget-table
+            +rowHeading(['Metric', 'Value', 'Limit', 'Verdict'])
+            tbody
+              each result in budget.failing[urlOrAlias] || []
+                +budgetRow(result, true)
+              each result in budget.working[urlOrAlias] || []
+                +budgetRow(result, false)

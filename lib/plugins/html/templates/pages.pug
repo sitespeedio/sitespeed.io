@@ -37,6 +37,14 @@ block content
   - const pageCount = rows.length
   - const hasVitals = rows.some((row) => row.vitals.length > 0)
 
+  //- Errors during testing are easy to miss when you land straight on
+  //- this page — headers.errors carries the same per-URL error map the
+  //- Errors tab renders (set in htmlBuilder when any error message
+  //- arrived), so surface a count that links there.
+  - const errorMap = headers.errors ? headers.errors.errors : undefined
+  - let testErrorCount = 0
+  - if (errorMap) { for (const toolErrors of Object.values(errorMap)) { for (const list of Object.values(toolErrors)) { testErrorCount += list.length } } }
+
   //- Resolve the configured metric columns once: friendly name, where the
   //- value lives and how to format it. Metrics no tool knows about are
   //- skipped instead of rendering a broken column.
@@ -54,6 +62,9 @@ block content
         .listing-card-header
           h3.listing-card-title Pages tested
           span.listing-card-meta
+            if testErrorCount > 0
+              a.errors-chip(href=rootPath + 'errors.html') #{h.plural(testErrorCount, 'error')} during testing →
+              span.listing-card-meta-sep ·
             | #{h.plural(pageCount, 'page')}
             if hasVitals && pageCount > 1
               span.listing-card-meta-sep ·

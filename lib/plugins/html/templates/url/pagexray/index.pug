@@ -38,6 +38,12 @@ a#pagexray-summary
 //- Summary stats as KPI tiles instead of two side-by-side tables.
 - const cookieCount = pagexray.cookies != null ? pagexray.cookies : 0
 - const thirdPartyCookies = pagexray.cookieNamesThirdParties ? pagexray.cookieNamesThirdParties.length : 0
+//- Console errors are otherwise buried below five tables in the
+//- Console log card — surface a count in the KPI row that jumps
+//- there. SEVERE is the level the console log aggregator counts as
+//- an error (see lib/plugins/browsertime/consoleLogAggregator.js).
+- const consoleLog = (pageInfo.data.browsertime && pageInfo.data.browsertime.console) || []
+- const consoleErrors = consoleLog.filter((entry) => entry.level === 'SEVERE').length
 .pagexray-kpis
   .pagexray-kpi.info
     span.pagexray-kpi-label HTTP version
@@ -63,6 +69,11 @@ a#pagexray-summary
       span.pagexray-kpi-label Cookies
       span.pagexray-kpi-value #{cookieCount}
       span.pagexray-kpi-sub #{thirdPartyCookies} third-party
+  if consoleErrors > 0
+    a.pagexray-kpi.error(href='#console-log')
+      span.pagexray-kpi-label Console errors
+      span.pagexray-kpi-value #{consoleErrors}
+      span.pagexray-kpi-sub see the console log ↓
 
 //- Response codes as a bar list — bigger codes (errors / redirects)
 //- read at a glance against 2xx counts.

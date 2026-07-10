@@ -414,3 +414,40 @@
   word-break: break-all;
   overflow-wrap: anywhere;
 }
+
+//
+// "What to fix first" strip — shares the CPU tab's callout shell
+// (.cpu-callout) for visual consistency; these rules only lay out the
+// top-3 advice rows inside it. Severity chips reuse .coach-severity.
+//
+.coach-fix-first-list {
+  margin: 8px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.coach-fix-first-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.coach-fix-first-link {
+  color: $color--blue;
+  text-decoration: none;
+  border-bottom: 1px dotted $color--blue;
+  overflow-wrap: anywhere;
+
+  &:hover {
+    border-bottom-style: solid;
+  }
+}
+
+.coach-fix-first-cat {
+  color: $color--text-muted;
+  font-size: 0.8rem;
+}
