@@ -15,7 +15,7 @@
         "@sitespeed.io/log": "2.0.0",
         "@sitespeed.io/plugin": "1.0.2",
         "@slack/webhook": "7.0.6",
-        "@tgwf/co2": "0.16.9",
+        "@tgwf/co2": "0.19.0",
         "axe-core": "4.11.4",
         "browsertime": "27.5.0",
         "coach-core": "9.2.1",
@@ -4111,9 +4111,9 @@
       "license": "MIT"
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.16.9",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.16.9.tgz",
-      "integrity": "sha512-+nuT7HS5r22lbW4MdgSPHhirYBjHR6Q8sz5kX6dKdK+yIkRukLAGaH6L/toZwVEOuEeeIRfWYJuaJIoxEGDMXg==",
+      "version": "0.19.0",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.19.0.tgz",
+      "integrity": "sha512-3VkpB5H6OGQF2P6nESbThVEOfQrFjBz8wBDTEmhbJ4uEi67TsMt+Oyq7YOweOdUkSOJBPsezjf/5i/ScXgqGDA==",
       "license": "Apache-2.0",
       "engines": {
         "node": ">=14.0.0"
