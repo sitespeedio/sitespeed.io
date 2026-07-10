@@ -1,0 +1,184 @@
+//- Rendering — the merged video + filmstrip experience. One card with
+//- the video player (or a large frame preview when the run has no
+//- video), a transport row, milestone HUD chips and a clickable
+//- milestone timeline, followed by the filmstrip as one chronological
+//- strip that stays in sync with the playhead.
+//-
+//- The view degrades by configuration, never by file sniffing:
+//-   video + filmstrip : player + transport + HUD + timeline + strip
+//-   filmstrip only    : a large frame preview replaces the player,
+//-                       frames/arrow keys drive it, play steps through
+//-                       the frames, speed buttons and the download
+//-                       link disappear
+//-   video only        : player + timeline + HUD, no strip
+//-   neither           : the section is never included (page gating)
+//-
+//- #video and #filmstrip stay as anchors inside this section so old
+//- deep links keep working — the tab script maps both to #rendering.
+
+- const isSummary = !!medianRun
+- const runIndex = isSummary ? medianRun.runIndex : iteration
+- const videoIndex = options.browsertime.enableVideoRun ? '1' : runIndex
+- const videoSrc = 'data/video/' + videoIndex + '.mp4'
+- const filmstripPath = 'data/filmstrip/' + runIndex + '/'
+- const hasVideo = !!(options.browsertime.video || (isSummary && options.browsertime.enableVideoRun))
+- const hasFilmstrip = !!(((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+
+if hasVideo || hasFilmstrip
+  //- Milestones come from the run the video/filmstrip was recorded for
+  //- (the median run on the summary page), not from the cross-run
+  //- medians — the flags must line up with what the recording shows.
+  - const bt = pageInfo.data.browsertime
+  - const btRun = isSummary ? (bt && bt.pageSummary && bt.pageSummary.browserScripts ? bt.pageSummary.browserScripts[medianRun.runIndex - 1] : undefined) : (bt ? bt.run : undefined)
+  - const timings = btRun ? btRun.timings : undefined
+  - const visualMetrics = isSummary ? (bt && bt.pageSummary && bt.pageSummary.visualMetrics ? bt.pageSummary.visualMetrics[medianRun.runIndex - 1] : undefined) : (btRun ? btRun.visualMetrics : undefined)
+
+  - const milestones = []
+  - const addMilestone = (name, value) => { if (typeof value === 'number' && value > 0) milestones.push({ name, t: Math.round(value) }) }
+  - if (timings && timings.pageTimings) addMilestone('TTFB', timings.pageTimings.backEndTime)
+  - if (timings && timings.paintTiming) addMilestone('FCP', timings.paintTiming['first-contentful-paint'])
+  - if (timings && timings.largestContentfulPaint) addMilestone('LCP', Math.max(timings.largestContentfulPaint.loadTime || 0, timings.largestContentfulPaint.renderTime || 0))
+  - if (visualMetrics) { addMilestone('First visual', visualMetrics.FirstVisualChange); addMilestone('85% complete', visualMetrics.VisualComplete85); addMilestone('Speed Index', visualMetrics.SpeedIndex); addMilestone('Last visual', visualMetrics.LastVisualChange) }
+  //- Sorted by when they actually happened — LCP can legitimately land
+  //- before First Visual Change. Never reorder to the "expected" order
+  //- and never clamp a value to make the timeline look tidy.
+  - milestones.sort((a, b) => a.t - b.t)
+  - const firstVisual = visualMetrics && visualMetrics.FirstVisualChange > 0 ? Math.round(visualMetrics.FirstVisualChange) : 0
+
+  //- Per-frame completeness. VisualProgress samples are event-based —
+  //- a sample is emitted only when the similarity-to-final-frame
+  //- percent changes, so a frame's completeness is the most recent
+  //- sample at or before its timestamp: stepped, never interpolated.
+  - const frames = []
+  - const vpSamples = (visualMetrics && visualMetrics.VisualProgress) || []
+  - if (hasFilmstrip && typeof filmstrip !== 'undefined' && filmstrip) {
+  -   let vpIndex = -1
+  -   let previousFile = ''
+  -   for (const frame of filmstrip) {
+  -     const t = Math.round(frame.time * 1000)
+  -     while (vpIndex + 1 < vpSamples.length && vpSamples[vpIndex + 1].timestamp <= t) vpIndex++
+  -     const pct = vpIndex >= 0 ? vpSamples[vpIndex].percent : (vpSamples.length > 0 ? 0 : undefined)
+  -     frames.push({ t, file: frame.file, pct, changed: previousFile !== '' && frame.file !== previousFile, timings: frame.timings })
+  -     previousFile = frame.file
+  -   }
+  - }
+
+  - const lastFrameT = frames.length > 0 ? frames[frames.length - 1].t : 0
+  - const lastMilestoneT = milestones.length > 0 ? milestones[milestones.length - 1].t : 0
+  - const renderingEnd = Math.max(Math.ceil(Math.max(lastFrameT, lastMilestoneT) * 1.05), 100)
+  - const tickStep = renderingEnd <= 2000 ? 500 : (renderingEnd <= 6000 ? 1000 : (renderingEnd <= 15000 ? 2000 : 5000))
+  - const ticks = []
+  - for (let t = 0; t <= renderingEnd; t += tickStep) ticks.push(t)
+
+  #rendering-view
+    a#rendering
+    a#video
+    .listing-card.rendering-card
+      .listing-card-header
+        h3.listing-card-title Rendering
+        span.listing-card-meta
+          | Run #{runIndex}
+          if isSummary
+            |  · median
+          if hasVideo && options.browsertime.enableVideoRun
+            |  · --enableVideoRun
+          if !hasVideo
+            |  · no video — the filmstrip drives the preview
+
+      .rendering-stage
+        if hasVideo
+          video.rendering-video(preload='metadata', playsinline)
+            source(src=videoSrc, type='video/mp4')
+        else if frames.length > 0
+          img.rendering-preview(src=filmstripPath + frames[0].file, alt='Selected filmstrip frame', title='Click to enlarge')
+
+      .rendering-transport
+        button.rendering-button.rendering-button--primary#rendering-play(type='button') ▶ Play
+        if hasVideo
+          button.rendering-button.rendering-speed.rendering-speed--active(type='button', data-speed='1') 1×
+          button.rendering-button.rendering-speed(type='button', data-speed='0.5') 0.5×
+          button.rendering-button.rendering-speed(type='button', data-speed='0.25') 0.25×
+        if frames.length > 0
+          button.rendering-button#rendering-step-back(type='button', aria-label='Previous frame') ⟨ frame
+          button.rendering-button#rendering-step-forward(type='button', aria-label='Next frame') frame ⟩
+        if firstVisual > 0
+          button.rendering-button#rendering-jump(type='button', data-t=firstVisual) Jump to first visual change
+        span.rendering-clock#rendering-clock 0.000 s
+
+      if milestones.length > 0
+        .rendering-hud
+          each m in milestones
+            button.rendering-chip(type='button', data-t=m.t)
+              | #{m.name}&nbsp;
+              b #{h.time.ms(m.t)}
+
+        .rendering-timeline#rendering-timeline(data-end=renderingEnd)
+          .rendering-axis#rendering-axis
+          .rendering-axis-fill#rendering-fill
+          .rendering-playhead#rendering-playhead
+          - let lastFlagPct = -100
+          - let lowLane = false
+          each m in milestones
+            - const flagPct = m.t / renderingEnd * 100
+            - lowLane = (flagPct - lastFlagPct < 7) ? !lowLane : false
+            - lastFlagPct = flagPct
+            button.rendering-flag(type='button', class=lowLane ? 'rendering-flag--low' : null, style='left: ' + flagPct.toFixed(2) + '%', data-t=m.t)
+              span.rendering-flag-label #{m.name} #{h.time.ms(m.t)}
+              span.rendering-flag-stem
+          each t in ticks
+            span.rendering-tick(style='left: ' + (t / renderingEnd * 100).toFixed(2) + '%') #{t / 1000}s
+
+      if hasVideo
+        a.button.button-download.rendering-download(href=videoSrc, download=downloadName + '-video.mp4') Download video
+
+    if hasFilmstrip
+      a#filmstrip
+      .listing-card.rendering-strip-card
+        .listing-card-header
+          h3.listing-card-title Filmstrip
+          span.listing-card-meta #{frames.length} #{frames.length === 1 ? 'frame' : 'frames'}
+          if frames.length > 0
+            label.rendering-zoom
+              | Zoom
+              input#rendering-zoom(type='range', min='70', max='260', value='104', aria-label='Filmstrip frame size')
+        if (options.filmstrip && options.filmstrip.showAll)
+          p.listing-card-help
+            | Showing all filmstrips. Set&nbsp;
+            code --filmstrip.showAll
+            | &nbsp;to false to only show the ones that contain a change.
+        else
+          p.listing-card-help
+            | Use&nbsp;
+            code --filmstrip.showAll
+            | &nbsp;to show all filmstrips.
+        if frames.length > 0
+          .rendering-strip-scroll
+            .rendering-strip#rendering-strip
+              each frame, index in frames
+                - const frameTitle = frame.timings && frame.timings.length > 0 ? frame.timings.map(timing => String(timing.name || timing.metric).replace(/<[^>]*>/g, '') + ' ' + h.time.ms(timing.duration || timing.value)).join(', ') : undefined
+                .rendering-frame(class=frame.changed ? 'rendering-frame--changed' : null, data-t=frame.t, data-index=index, title=frameTitle)
+                  img(src=filmstripPath + frame.file, alt='Frame at ' + h.time.ms(frame.t), loading='lazy')
+                  button.rendering-frame-zoom(type='button', aria-label='Enlarge frame') ⤢
+                  .rendering-frame-time #{h.time.ms(frame.t)}
+                  if frame.pct !== undefined
+                    .rendering-frame-pct #{frame.pct} %
+          p.rendering-strip-help
+            if hasVideo
+              | Click a frame to seek the video to that moment. The dot marks frames where the page changed visually.
+            else
+              | No video in this result — click a frame to preview it, use the frame buttons or arrow keys to step, play replays the strip at its real pace. The dot marks frames where the page changed visually.
+
+    if frames.length > 0
+      .rendering-lightbox#rendering-lightbox(hidden)
+        .rendering-lightbox-backdrop#rendering-lightbox-backdrop
+        figure.rendering-lightbox-figure
+          img.rendering-lightbox-img#rendering-lightbox-img(alt='Filmstrip frame')
+          figcaption.rendering-lightbox-bar
+            button.rendering-button#rendering-lightbox-prev(type='button', aria-label='Previous frame') ⟨
+            span.rendering-lightbox-meta#rendering-lightbox-meta
+            button.rendering-button#rendering-lightbox-next(type='button', aria-label='Next frame') ⟩
+            a.rendering-lightbox-original#rendering-lightbox-original(href='#', target='_blank', rel='noopener') Open original
+            button.rendering-button#rendering-lightbox-close(type='button', aria-label='Close') ✕
+
+  script(type='text/javascript')
+    include ../includes/renderingView.js

@@ -42,6 +42,11 @@ block content
           each error in errors
             li #{error} 
               b (#{tool})
+  //- Video and filmstrip are one merged Rendering tab/section. The old
+  //- #video and #filmstrip anchors stay alive inside it (see
+  //- rendering/index.pug and the alias mapping in tabScripts.js).
+  - const hasRendering = !!(options.browsertime.video || options.browsertime.enableVideoRun || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+
   include ./tabs.pug
 
   #tabSections
@@ -288,13 +293,9 @@ block content
       section#waterfall-panel
         include ../waterfall/index.pug
 
-    if options.browsertime.video || options.browsertime.enableVideoRun
-      section#video-panel
-        include ../video/index.pug
-
-    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
-      section#filmstrip-panel
-        include ../filmstrip/index.pug    
+    if hasRendering
+      section#rendering-panel
+        include ../rendering/index.pug
 
     if d.coach && d.coach.pageSummary
       section#coach-panel
