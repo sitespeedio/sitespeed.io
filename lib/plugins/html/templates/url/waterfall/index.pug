@@ -1,9 +1,9 @@
-small
-  | |&nbsp;
-  a(href='#waterfall') Waterfall
-  | &nbsp;|&nbsp;
-  a(href='#download-HAR') Download HAR
-  | &nbsp;|&nbsp;
+include ../includes/_quicklinks
+
+- const waterfallLinks = []
+- waterfallLinks.push({href: '#waterfall', label: 'Waterfall'})
+- waterfallLinks.push({href: '#download-HAR', label: 'Download HAR'})
++quicklinks(waterfallLinks)
 
 a#waterfall
 h2 Waterfall

@@ -71,3 +71,18 @@
   display: inline-block;
   margin-right: 6px;
 }
+
+// Side-by-side runs page (metrics.html): tint the lowest (best) and
+// highest (worst) value per metric row so run variability jumps out.
+// All metrics in the table are lower-is-better (times, sizes, counts).
+.sidebyside-table {
+  td.best {
+    background: $color--ok-bg;
+    color: $color--ok;
+  }
+
+  td.worst {
+    background: $color--error-bg;
+    color: $color--error;
+  }
+}
