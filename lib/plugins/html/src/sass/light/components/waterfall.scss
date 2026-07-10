@@ -1,0 +1,593 @@
+//
+// WATERFALL — light
+// =================
+// The per-URL waterfall tab. The card shell is the shared .listing-card
+// and the filter input reuses .pages-filter; this file styles the
+// waterfall-specific pieces: the pill toggles, the canvas frame, the
+// legend, the user-timings strip, the hover tooltip and the slide-in
+// per-request detail panel (populated by _waterfallRender.pug).
+//
+// The canvas itself is painted by waterfall-tools with its own fixed
+// light palette (background #ffffff baked into the renderer), so the
+// canvas frame keeps a white background in BOTH themes — don't swap it
+// to a surface token or the rounded corners show colored slivers
+// around the canvas.
+//
+
+.waterfall-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-bottom: 10px;
+}
+
+// Layer-toggle pills — checkbox labels styled as pills; the checked
+// state flips to the brand blue like a segmented control.
+.waterfall-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.waterfall-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 13px;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  background: $color--surface;
+  color: $color--text-secondary;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color $motion--fast, border-color $motion--fast,
+    color $motion--fast;
+
+  &:hover {
+    background: $color--blue-tint;
+    border-color: $color--border-strong;
+  }
+
+  &:has(input:checked) {
+    background: $color--blue;
+    border-color: $color--blue;
+    color: $color--white;
+  }
+}
+
+.waterfall-controls input {
+  margin: 0;
+  accent-color: $color--white;
+}
+
+// The input inside is a .pages-filter; the wrapper only handles the
+// flex sizing next to the pills and keeps the match count beside it.
+.waterfall-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 1 360px;
+  min-width: 200px;
+
+  .pages-filter {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.waterfall-reset-zoom {
+  padding: 4px 13px;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  background: $color--surface;
+  color: $color--text-secondary;
+  cursor: pointer;
+  user-select: none;
+  font: inherit;
+  font-size: 0.9rem;
+  transition: background-color $motion--fast, border-color $motion--fast;
+
+  &:hover {
+    background: $color--blue-tint;
+    border-color: $color--border-strong;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Legend — swatch colors are inline in the template/JS because they
+// mirror the canvas palette; only the text is themed here.
+.waterfall-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: $color--text-muted;
+  letter-spacing: 0.01em;
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  .swatch.dashed {
+    height: 0;
+    border-top: 2px dashed currentColor;
+    width: 16px;
+    border-radius: 0;
+  }
+
+  .swatch.row {
+    width: 18px;
+    height: 8px;
+    border-radius: 2px;
+  }
+
+  .marker-x {
+    display: inline-flex;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.waterfall-canvas-wrap {
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: #fff; // matches the canvas' own painted background
+  border: 1px solid $color--border;
+
+  > #output {
+    display: block;
+
+    > canvas {
+      display: block;
+    }
+  }
+}
+
+.waterfall-card .downloads {
+  margin-top: 14px;
+}
+
+.waterfall-user-timings {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed $color--border;
+  font-size: 0.9rem;
+  color: $color--text-muted;
+  line-height: 1.6;
+
+  .label {
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    margin-right: 9px;
+  }
+
+  .list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px 15px;
+
+    > span {
+      white-space: nowrap;
+    }
+  }
+
+  .name {
+    color: $color--text-secondary;
+  }
+
+  // Purple matches the user-timing marks waterfall-tools draws on the
+  // canvas, so keep it literal rather than a theme token.
+  .time {
+    margin-left: 5px;
+    padding: 0 6px;
+    border-radius: 4px;
+    color: rgb(105, 0, 158);
+    background: rgba(105, 0, 158, 0.07);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Hover tooltip — positioned by JS (left/top/display are set inline),
+// everything visual lives here.
+#wt-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  padding: 5px 9px;
+  font-size: 12px;
+  border-radius: $radius--sm;
+  z-index: 1000;
+  max-width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: none;
+  box-shadow: $shadow--md;
+}
+
+//
+// Per-request detail panel — slides in from the right when a request
+// is clicked on the canvas. Mobile (<= 760px): full-width with a dim
+// backdrop. Tabs split the request data into General / Headers /
+// Cookies / Timing / Body sections.
+//
+.wt-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  z-index: 990;
+  display: none;
+
+  &[data-open] {
+    display: block;
+  }
+}
+
+.wt-detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(640px, 50vw);
+  background: $color--surface-card;
+  box-shadow: -4px 0 24px rgba(15, 23, 42, 0.18);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.92rem;
+
+  &[data-open] {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .wt-detail-panel {
+    width: 100%;
+  }
+}
+
+.wt-detail-header {
+  flex: 0 0 auto;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid $color--border;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: $color--surface;
+}
+
+.wt-detail-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wt-detail-status {
+  flex: 0 0 auto;
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  font-size: 0.78rem;
+  font-weight: $font--weight--semibold;
+  color: $color--white;
+  background: $color--ok;
+  font-variant-numeric: tabular-nums;
+
+  &[data-status^='3'] {
+    background: $color--warning;
+  }
+
+  &[data-status^='4'],
+  &[data-status^='5'] {
+    background: $color--error;
+  }
+}
+
+.wt-detail-method {
+  flex: 0 0 auto;
+  font-family: $font--mono;
+  font-size: 0.78rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  padding: 1px 6px;
+  border: 1px solid $color--border-strong;
+  border-radius: 4px;
+}
+
+.wt-detail-close {
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: $radius--sm;
+  cursor: pointer;
+  color: $color--text-secondary;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: $color--grey;
+    color: $color--text;
+  }
+}
+
+.wt-detail-url {
+  flex: 1 1 auto;
+  min-width: 0;
+  word-break: break-all;
+  font-family: $font--mono;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+}
+
+.wt-detail-tabs {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid $color--border;
+  background: $color--surface;
+  padding: 0 8px;
+}
+
+.wt-detail-tab {
+  background: transparent;
+  border: 0;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  color: $color--text-secondary;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+
+  &:hover {
+    color: $color--info;
+  }
+
+  &[data-active] {
+    color: $color--info;
+    border-bottom-color: $color--blue;
+    font-weight: $font--weight--semibold;
+  }
+}
+
+.wt-detail-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 14px 16px;
+
+  &[hidden] {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid $color--border;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: $font--weight--semibold;
+    color: $color--text-secondary;
+    width: 35%;
+    font-family: $font--mono;
+    font-size: 0.82rem;
+  }
+
+  td {
+    color: $color--text;
+    word-break: break-word;
+    font-variant-numeric: tabular-nums;
+  }
+
+  td.url {
+    word-break: break-all;
+  }
+
+  pre {
+    background: $color--surface;
+    border: 1px solid $color--border;
+    border-radius: $radius--sm;
+    padding: 10px 12px;
+    overflow: auto;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  img.body-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: $radius--sm;
+    border: 1px solid $color--border;
+  }
+}
+
+.wt-detail-section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  font-weight: $font--weight--semibold;
+  margin: 4px 0 6px;
+}
+
+.wt-detail-section + .wt-detail-section {
+  margin-top: 18px;
+}
+
+.wt-detail-empty {
+  color: $color--text-muted;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.wt-copy-btn {
+  background: $color--surface;
+  color: $color--text-secondary;
+  border: 1px solid $color--border-strong;
+  border-radius: $radius--sm;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  cursor: pointer;
+  transition: background-color $motion--fast, color $motion--fast,
+    border-color $motion--fast;
+
+  &:hover {
+    background: $color--grey;
+    color: $color--text;
+  }
+
+  &[data-state='copied'] {
+    background: $color--ok-bg;
+    color: $color--ok;
+    border-color: $color--ok-border;
+  }
+}
+
+.wt-detail-body-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+// When a copy button sits next to the URL in the header, tighten
+// the spacing so it doesn't push the URL onto its own row needlessly.
+.wt-detail-header .wt-copy-btn {
+  margin-left: 6px;
+  flex: 0 0 auto;
+}
+
+// Cookies tab — small grey attribute chips per cookie (Secure /
+// HttpOnly / SameSite / domain / path / expiry). Missing-security
+// variants get a warning tint so the eye lands on them.
+.wt-cookie-attrs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin-top: 4px;
+
+  .chip {
+    display: inline-block;
+    padding: 1px 7px;
+    font-size: 0.72rem;
+    border-radius: $radius--pill;
+    background: $color--surface;
+    color: $color--text-secondary;
+    border: 1px solid $color--border;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chip.warn {
+    background: $color--warning-bg;
+    color: $color--warning;
+    border-color: $color--warning-border;
+  }
+
+  .chip.ok {
+    background: $color--ok-bg;
+    color: $color--ok;
+    border-color: $color--ok-border;
+  }
+}
+
+.wt-cookie-value {
+  font-family: $font--mono;
+  font-size: 0.78rem;
+  color: $color--text;
+  word-break: break-all;
+  background: $color--surface;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid $color--border;
+  margin-top: 4px;
+  display: block;
+}
+
+// Timing tab — one grid row per connection phase; the fill span's
+// width/color are inline (per-phase data), the track is themed here.
+.wt-detail-timing-bar {
+  display: grid;
+  grid-template-columns: 130px 1fr 80px;
+  gap: 6px 10px;
+  align-items: center;
+  margin-top: 6px;
+
+  .label {
+    font-family: $font--mono;
+    font-size: 0.78rem;
+    color: $color--text-secondary;
+  }
+
+  .track {
+    height: 12px;
+    background: $color--surface;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+
+    > span {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 3px;
+    }
+  }
+
+  .ms {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    color: $color--text;
+  }
+}
+
+.wt-detail-timing-total {
+  margin-top: 12px;
+  border-top: 1px solid $color--border;
+  padding-top: 10px;
+
+  .label,
+  .ms {
+    font-weight: $font--weight--semibold;
+    color: $color--text;
+  }
+
+  .track {
+    background: transparent;
+  }
+}

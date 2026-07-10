@@ -442,10 +442,10 @@ script(type='text/javascript').
           + '<span class="ms">' + escAttr(v < 0 ? '—' : fmtMs(v)) + '</span>'
           + '</div>';
       }).join('');
-      const totalRow = '<div class="wt-detail-timing-bar" style="margin-top:12px;border-top:1px solid #e3e7ed;padding-top:10px;">'
-        + '<span class="label" style="font-weight:600;color:#0f172a;">Total</span>'
-        + '<span class="track" style="background:transparent;"></span>'
-        + '<span class="ms" style="font-weight:600;">' + escAttr(fmtMs(totalKnown)) + '</span>'
+      const totalRow = '<div class="wt-detail-timing-bar wt-detail-timing-total">'
+        + '<span class="label">Total</span>'
+        + '<span class="track"></span>'
+        + '<span class="ms">' + escAttr(fmtMs(totalKnown)) + '</span>'
         + '</div>';
       timingEl.innerHTML = rows + totalRow;
 

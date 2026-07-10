@@ -19,353 +19,8 @@ if (options.html.showAllWaterfallSummary === true)
   p Choose HAR:
   select#page-selector
 
-style.
-  .waterfall-card {
-    background: #fdfdfe;
-    border: 1px solid #e3e7ed;
-    border-radius: 12px;
-    padding: 14px 16px 18px;
-    margin: 0.5em 0 1.25em;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.04);
-  }
-  .waterfall-card-header {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.75em 1em;
-    margin-bottom: 0.5em;
-  }
-  .waterfall-controls { display: flex; flex-wrap: wrap; gap: 0.4em; font-size: 0.95em; }
-  .waterfall-controls label {
-    display: inline-flex; align-items: center; gap: 0.4em;
-    padding: 0.3em 0.85em; border: 1px solid #d6dbe0; border-radius: 999px;
-    background: #f5f7fa; color: #3a4250; cursor: pointer; user-select: none;
-    transition: background 120ms, border-color 120ms, color 120ms, box-shadow 120ms;
-  }
-  .waterfall-controls label:hover { background: #eaf0f7; border-color: #b8c4d2; }
-  .waterfall-controls label:has(input:checked) {
-    background: #0095d2; border-color: #0095d2; color: #fff;
-    box-shadow: 0 1px 2px rgba(0, 149, 210, 0.25);
-  }
-  .waterfall-controls input { margin: 0; accent-color: #fff; }
-  .waterfall-filter {
-    display: inline-flex; align-items: center; gap: 0.5em;
-    flex: 0 1 360px; min-width: 200px;
-  }
-  .waterfall-filter input {
-    width: 100%;
-    padding: 0.35em 0.85em;
-    border: 1px solid #d6dbe0;
-    border-radius: 999px;
-    background: #fff;
-    color: #3a4250;
-    font: inherit; font-size: 0.95em;
-    transition: border-color 120ms, box-shadow 120ms;
-  }
-  .waterfall-filter input::placeholder { color: #9aa3af; }
-  .waterfall-filter input:focus {
-    outline: none;
-    border-color: #0095d2;
-    box-shadow: 0 0 0 3px rgba(0, 149, 210, 0.18);
-  }
-  .waterfall-filter-count {
-    font-size: 0.85em; color: #5b6370; white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-  .waterfall-reset-zoom {
-    padding: 0.3em 0.85em; border: 1px solid #d6dbe0; border-radius: 999px;
-    background: #f5f7fa; color: #3a4250; cursor: pointer; user-select: none;
-    font: inherit; font-size: 0.95em;
-    transition: background 120ms, border-color 120ms;
-  }
-  .waterfall-reset-zoom:hover { background: #eaf0f7; border-color: #b8c4d2; }
-  .waterfall-reset-zoom[hidden] { display: none; }
-  .waterfall-legend .marker-x {
-    display: inline-flex; width: 12px; height: 12px;
-  }
-  .waterfall-legend { display: flex; flex-wrap: wrap; gap: 0.4em 1.1em; margin: 0 0 0.75em; font-size: 0.9em; color: #5b6370; letter-spacing: 0.01em; }
-  .waterfall-legend > span { display: inline-flex; align-items: center; gap: 0.4em; }
-  .waterfall-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
-  .waterfall-legend .swatch.dashed { height: 0; border-top: 2px dashed currentColor; width: 16px; border-radius: 0; }
-  .waterfall-legend .swatch.row { width: 18px; height: 8px; border-radius: 2px; }
-  .waterfall-canvas-wrap {
-    border-radius: 8px;
-    overflow: hidden;
-    background: #fff;
-    border: 1px solid #ecedf0;
-  }
-  .waterfall-canvas-wrap > #output { display: block; }
-  .waterfall-canvas-wrap > #output > canvas { display: block; }
-  .waterfall-card .downloads { margin-top: 0.85em; display: flex; gap: 0.5em; flex-wrap: wrap; }
-  .waterfall-card .downloads .button-download {
-    display: inline-flex; align-items: center;
-    padding: 0.4em 1em; border-radius: 8px;
-    background: #0095d2; color: #fff; text-decoration: none;
-    font-size: 0.95em; font-weight: 500; letter-spacing: 0.02em;
-    border: 1px solid transparent;
-    transition: background 120ms, transform 80ms;
-  }
-  .waterfall-card .downloads .button-download:hover { background: #007aae; }
-  .waterfall-card .downloads .button-download:active { transform: translateY(1px); }
-  .waterfall-user-timings {
-    margin-top: 0.85em;
-    padding-top: 0.65em;
-    border-top: 1px dashed #e3e7ed;
-    font-size: 0.9em;
-    color: #5b6370;
-    line-height: 1.6;
-  }
-  .waterfall-user-timings .label { font-weight: 500; color: #3a4250; margin-right: 0.55em; }
-  .waterfall-user-timings .list { display: inline-flex; flex-wrap: wrap; gap: 0.25em 0.95em; }
-  .waterfall-user-timings .list > span { white-space: nowrap; }
-  .waterfall-user-timings .name { color: #3a4250; }
-  .waterfall-user-timings .time {
-    margin-left: 0.3em; padding: 0 0.4em; border-radius: 4px;
-    color: rgb(105, 0, 158); background: rgba(105, 0, 158, 0.07);
-    font-variant-numeric: tabular-nums;
-  }
-
-  /* Per-request detail panel — slides in from the right when a request
-   * is clicked on the canvas. Mobile (<= 760px): full-width with a dim
-   * backdrop. Tabs split the request data into General / Headers /
-   * Timing / Body sections. */
-  .wt-detail-backdrop {
-    position: fixed; inset: 0;
-    background: rgba(15, 23, 42, 0.35);
-    z-index: 990;
-    display: none;
-  }
-  .wt-detail-backdrop[data-open] { display: block; }
-  .wt-detail-panel {
-    position: fixed; top: 0; right: 0; bottom: 0;
-    width: min(640px, 50vw);
-    background: #fff;
-    box-shadow: -4px 0 24px rgba(15, 23, 42, 0.18);
-    z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    display: flex; flex-direction: column;
-    font-size: 0.92rem;
-  }
-  .wt-detail-panel[data-open] { transform: translateX(0); }
-  @media (max-width: 760px) {
-    .wt-detail-panel { width: 100%; }
-  }
-  .wt-detail-header {
-    flex: 0 0 auto;
-    padding: 14px 16px 10px;
-    border-bottom: 1px solid #e3e7ed;
-    display: flex; flex-direction: column; gap: 6px;
-    background: #f8fafc;
-  }
-  .wt-detail-header-row {
-    display: flex; align-items: center; gap: 8px;
-  }
-  .wt-detail-status {
-    flex: 0 0 auto;
-    display: inline-block;
-    padding: 1px 8px; border-radius: 999px;
-    font-size: 0.78rem; font-weight: 600;
-    color: #fff;
-    background: #15803d;
-    font-variant-numeric: tabular-nums;
-  }
-  .wt-detail-status[data-status^="3"] { background: #d97706; }
-  .wt-detail-status[data-status^="4"], .wt-detail-status[data-status^="5"] { background: #b91c1c; }
-  .wt-detail-method {
-    flex: 0 0 auto;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.78rem; font-weight: 600;
-    color: #475569; padding: 1px 6px; border: 1px solid #cbd5e1; border-radius: 4px;
-  }
-  .wt-detail-close {
-    margin-left: auto;
-    background: transparent; border: 0;
-    width: 30px; height: 30px;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #475569;
-    font-size: 18px; line-height: 1;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .wt-detail-close:hover { background: #e2e8f0; color: #0f172a; }
-  .wt-detail-url {
-    word-break: break-all;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.85rem;
-    color: #334155;
-  }
-  .wt-detail-tabs {
-    flex: 0 0 auto;
-    display: flex; gap: 0;
-    border-bottom: 1px solid #e3e7ed;
-    background: #f8fafc;
-    padding: 0 8px;
-  }
-  .wt-detail-tab {
-    background: transparent; border: 0;
-    padding: 10px 14px;
-    font-size: 0.92rem;
-    color: #475569;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-  }
-  .wt-detail-tab:hover { color: #0073b0; }
-  .wt-detail-tab[data-active] {
-    color: #0073b0;
-    border-bottom-color: #0095d2;
-    font-weight: 600;
-  }
-  .wt-detail-body {
-    flex: 1 1 auto;
-    overflow: auto;
-    padding: 14px 16px;
-  }
-  .wt-detail-body[hidden] { display: none; }
-  .wt-detail-body table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.88rem;
-  }
-  .wt-detail-body th, .wt-detail-body td {
-    text-align: left;
-    padding: 6px 10px;
-    border-bottom: 1px solid #f1f5f9;
-    vertical-align: top;
-  }
-  .wt-detail-body th {
-    font-weight: 600; color: #334155;
-    width: 35%;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.82rem;
-  }
-  .wt-detail-body td {
-    color: #0f172a;
-    word-break: break-word;
-    font-variant-numeric: tabular-nums;
-  }
-  .wt-detail-body td.url { word-break: break-all; }
-  .wt-detail-section-title {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #64748b;
-    font-weight: 600;
-    margin: 4px 0 6px;
-  }
-  .wt-detail-section + .wt-detail-section { margin-top: 18px; }
-  .wt-detail-body pre {
-    background: #f8fafc;
-    border: 1px solid #e3e7ed;
-    border-radius: 6px;
-    padding: 10px 12px;
-    overflow: auto;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    margin: 0;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-  .wt-detail-body img.body-preview {
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-    border: 1px solid #e3e7ed;
-  }
-  .wt-detail-empty {
-    color: #64748b;
-    font-style: italic;
-    font-size: 0.9rem;
-  }
-  .wt-copy-btn {
-    background: #f1f5f9; color: #334155;
-    border: 1px solid #cbd5e1; border-radius: 6px;
-    padding: 3px 10px;
-    font-size: 0.78rem; font-weight: 500;
-    cursor: pointer;
-    transition: background 100ms, color 100ms, border-color 100ms;
-  }
-  .wt-copy-btn:hover {
-    background: #e2e8f0; color: #0f172a; border-color: #94a3b8;
-  }
-  .wt-copy-btn[data-state="copied"] {
-    background: #f0fdf4; color: #15803d; border-color: #bbf7d0;
-  }
-  .wt-detail-body-toolbar {
-    display: flex; justify-content: flex-end;
-    margin-bottom: 8px;
-  }
-  /* When a copy button sits next to the URL in the header, tighten
-   * the spacing so it doesn't push the URL onto its own row needlessly. */
-  .wt-detail-header .wt-copy-btn { margin-left: 6px; flex: 0 0 auto; }
-
-  /* Cookies tab — small grey attribute chips per cookie (Secure /
-   * HttpOnly / SameSite / domain / path / expiry). Missing-security
-   * variants get a warning tint so the eye lands on them. */
-  .wt-cookie-attrs {
-    display: flex; flex-wrap: wrap; gap: 4px 6px;
-    margin-top: 4px;
-  }
-  .wt-cookie-attrs .chip {
-    display: inline-block;
-    padding: 1px 7px;
-    font-size: 0.72rem;
-    border-radius: 999px;
-    background: #f1f5f9;
-    color: #475569;
-    border: 1px solid #e2e8f0;
-    font-variant-numeric: tabular-nums;
-  }
-  .wt-cookie-attrs .chip.warn {
-    background: #fef3c7; color: #92400e; border-color: #fde68a;
-  }
-  .wt-cookie-attrs .chip.ok {
-    background: #f0fdf4; color: #15803d; border-color: #bbf7d0;
-  }
-  .wt-cookie-value {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.78rem;
-    color: #0f172a;
-    word-break: break-all;
-    background: #f8fafc;
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid #e3e7ed;
-    margin-top: 4px;
-    display: block;
-  }
-  .wt-detail-timing-bar {
-    display: grid;
-    grid-template-columns: 130px 1fr 80px;
-    gap: 6px 10px;
-    align-items: center;
-    margin-top: 6px;
-  }
-  .wt-detail-timing-bar .label {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.78rem;
-    color: #475569;
-  }
-  .wt-detail-timing-bar .track {
-    height: 12px;
-    background: #f1f5f9;
-    border-radius: 3px;
-    overflow: hidden;
-    position: relative;
-  }
-  .wt-detail-timing-bar .track > span {
-    position: absolute;
-    top: 0; bottom: 0;
-    border-radius: 3px;
-  }
-  .wt-detail-timing-bar .ms {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-    font-size: 0.85rem;
-    color: #0f172a;
-  }
-
-.waterfall-card
-  .waterfall-card-header
+.listing-card.waterfall-card
+  .waterfall-toolbar
     .waterfall-controls
       label
         input(type='checkbox', id='wt-show-page-metrics', checked)
@@ -381,8 +36,8 @@ style.
         span Connection view
 
     .waterfall-filter
-      input(type='search', id='wt-req-filter', placeholder='Filter requests by URL…', aria-label='Filter requests by URL')
-      span.waterfall-filter-count#wt-req-filter-count(hidden)
+      input.pages-filter(type='search', id='wt-req-filter', placeholder='Filter requests by URL…', aria-label='Filter requests by URL')
+      span.pages-filter-count#wt-req-filter-count(hidden)
 
     //- Shown by the onZoom callback in _waterfallRender.pug once a
     //- drag/pinch gesture has narrowed the visible time window.
@@ -395,9 +50,12 @@ style.
     span(title='First Contentful Paint')
       span.swatch(style='background: rgb(57,230,0)')
       | FCP
-    span(title='Largest Contentful Paint (dashed)', style='color: rgb(0,128,0)')
-      span.swatch.dashed
-      span(style='color: #5b6370') LCP
+    span(title='Largest Contentful Paint (dashed)')
+      //- the dashed swatch is drawn with border-top: currentColor, so the
+      //- canvas-matching green goes on the swatch itself and the label
+      //- keeps the legend's themed text color.
+      span.swatch.dashed(style='color: rgb(0,128,0)')
+      | LCP
     span(title='DOMContentLoaded')
       span.swatch(style='background: rgb(216,136,223)')
       | DOMContentLoaded
@@ -447,7 +105,7 @@ style.
       - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl, daurlAlias) + harName
       a.button.button-download(href=compareURL) Compare
 
-#wt-tooltip(style='position: fixed; pointer-events: none; background: rgba(15, 23, 42, 0.92); color: #fff; padding: 5px 9px; font-size: 12px; border-radius: 6px; z-index: 1000; max-width: 600px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: none; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);')
+#wt-tooltip
 
 //- Per-request detail panel — populated and shown by the waterfall
 //- onClick handler in _waterfallRender.pug.
@@ -458,8 +116,8 @@ style.
       span.wt-detail-status#wt-detail-status -
       span.wt-detail-method#wt-detail-method GET
       button.wt-detail-close(type='button', id='wt-detail-close', aria-label='Close request detail') ×
-    .wt-detail-header-row(style='gap:8px;')
-      .wt-detail-url#wt-detail-url(style='flex:1 1 auto;min-width:0;')
+    .wt-detail-header-row
+      .wt-detail-url#wt-detail-url
       button.wt-copy-btn#wt-detail-copy-url(type='button', title='Copy URL') Copy URL
   .wt-detail-tabs(role='tablist')
     button.wt-detail-tab(type='button', data-tab='general', data-active) General
