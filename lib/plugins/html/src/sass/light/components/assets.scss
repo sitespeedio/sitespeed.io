@@ -1,0 +1,62 @@
+//
+// ASSETS PAGE — light
+// ===================
+// Overview strip additions (the KPI tiles themselves reuse .iter-kpis),
+// the per-content-type count chips and the cell tones that flag heavy
+// assets / short cache times in the assets table.
+//
+
+// The biggest-asset KPI tile shows which file it is under the number.
+.assets-kpi-note {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Tinted tiles inherit their tone colour on the value — keep the file
+// name readable by letting the note follow the tile colour too.
+.iter-kpi.warning .assets-kpi-note,
+.iter-kpi.error .assets-kpi-note {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.assets-type-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0 0 18px 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+  }
+}
+
+.assets-type-count {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+// Cell tones — text colour only, so they stack cleanly on top of the
+// in-cell scaling bar and the reused-row tint without fighting them.
+table#assets {
+  td.cell--tone-warning,
+  td.cell--tone-warning .cell-bar-text {
+    color: $color--warning;
+    font-weight: $font--weight--semibold;
+  }
+
+  td.cell--tone-error,
+  td.cell--tone-error .cell-bar-text {
+    color: $color--error;
+    font-weight: $font--weight--semibold;
+  }
+}
