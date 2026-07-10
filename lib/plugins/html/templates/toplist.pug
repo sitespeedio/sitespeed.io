@@ -84,7 +84,7 @@ mixin listingCard(id, title, hint, headings, assets, showTiming, includeType, sh
     if hint
       p.listing-card-help= hint
     .responsive
-      table(data-sortable)
+      table.data-table(data-sortable)
         +rowHeading(headings)
         +rows(assets, showTiming, sizeMax, includeType, showPage)
 

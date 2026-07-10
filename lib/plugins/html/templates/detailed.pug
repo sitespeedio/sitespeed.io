@@ -175,7 +175,7 @@ block content
           span.listing-card-meta #{rows.length} #{rows.length === 1 ? 'metric' : 'metrics'}
         p.listing-card-help= group.sub
         .responsive
-          table.detailed-table(data-sortable, id='detailed-' + group.key)
+          table.detailed-table.data-table(data-sortable, id='detailed-' + group.key)
             thead
               tr
                 th Metric

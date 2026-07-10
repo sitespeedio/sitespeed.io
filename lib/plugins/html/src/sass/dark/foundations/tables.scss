@@ -87,10 +87,29 @@ td.extraheader {
   color: $color--text-secondary;
 }
 
+// Shared cell treatment for the report's data tables (assets, toplist,
+// detailed, domains) — same 0.95rem cells as .pages-table and
+// .timings-table so the data-heavy pages read as one system. Headers
+// keep the 0.875rem foundation size.
+.data-table {
+  td {
+    font-size: 0.95rem;
+  }
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
+
 /** Responsive tables, wrap them in a div
 * We use Chris Coyiers (old) hide the table
 * solution https://css-tricks.com/responsive-data-tables/
 */
+.responsive {
+  overflow-x: auto;
+}
+
 @media only screen and (max-width: 800px) {
   /* Force table to not be like tables anymore */
   .responsive table,

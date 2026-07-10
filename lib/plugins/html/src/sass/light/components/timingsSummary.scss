@@ -63,3 +63,11 @@
     }
   }
 }
+
+// The Web Vitals medians carry the same status dot as the pages table
+// (.pages-dot, components/pages). The dot sits before the value so the
+// right-aligned digits keep lining up with the rows that have no dot.
+.timings-table .pages-dot {
+  display: inline-block;
+  margin-right: 6px;
+}

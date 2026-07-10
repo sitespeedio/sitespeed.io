@@ -1,6 +1,6 @@
 extends ./layout.pug
 
-//- Each top-level h2 section becomes a .listing-card so the page reads
+//- Each top-level h3 section becomes a .listing-card so the page reads
 //- in the same idiom as the rest of the report. Inside the "Timing
 //- metrics" card the h5+p definition entries stay as-is — that's a
 //- long flat reference list, not a table of cards.
@@ -9,26 +9,26 @@ block content
   .help-page
     .listing-card
       .listing-card-header
-        h2.listing-card-title Welcome to the wonderful world of performance
+        h3.listing-card-title Welcome to the wonderful world of performance
       p The help file explains different metrics, so it easier to understand what sitespeed.io collects. When you need more information, you should checkout&nbsp;
         a(href='https://www.sitespeed.io') https://www.sitespeed.io
         | .
 
     .listing-card
       .listing-card-header
-        h2.listing-card-title(id='overallScore') Overall score
+        h3.listing-card-title(id='overallScore') Overall score
       p The average combined performance, accessibility and best practices score from the Coach. If the score is 100 you are doing fantastic, there's no more you can do here.
 
     .listing-card
       .listing-card-header
-        h2.listing-card-title(id='performanceScore') Performance score
+        h3.listing-card-title(id='performanceScore') Performance score
       p The coach knows much about performance best practices and match your pages against them. Checkout the full&nbsp;
         a(href='#performanceAdvice') advice list
         | .
 
     .listing-card
       .listing-card-header
-        h2.listing-card-title(id='accessibilityScore') Accessibility score
+        h3.listing-card-title(id='accessibilityScore') Accessibility score
       p Make sure your site is accessible and usable for everyone. The coach can learn more about accessibility so please&nbsp;
         a(href='https://github.com/sitespeedio/coach/issues/new') help out
         | . You can read more about making the web accessible&nbsp;
@@ -37,7 +37,7 @@ block content
 
     .listing-card
       .listing-card-header
-        h2.listing-card-title(id='bestPracticeScore') Web best practice score
+        h3.listing-card-title(id='bestPracticeScore') Web best practice score
       p You want your page to follow web best practice and the coach helps you with that. Making sure your page is set up for search engines, have good URL structure and more. Read all&nbsp;
         a(href='#bestPracticeAdvice') the advice
         | .
@@ -45,7 +45,7 @@ block content
     if (coach)
       .listing-card
         .listing-card-header
-          h2.listing-card-title(id='performanceAdvice') Performance advice
+          h3.listing-card-title(id='performanceAdvice') Performance advice
           - const perfAdviceCount = Object.keys(coach.performance.adviceList).length
           span.listing-card-meta #{perfAdviceCount} #{perfAdviceCount === 1 ? 'rule' : 'rules'}
         each advice, adviceKey in coach.performance.adviceList
@@ -54,7 +54,7 @@ block content
 
       .listing-card
         .listing-card-header
-          h2.listing-card-title(id='bestPracticeAdvice') Best practice advice
+          h3.listing-card-title(id='bestPracticeAdvice') Best practice advice
           - const bestAdviceCount = Object.keys(coach.bestpractice.adviceList).length
           span.listing-card-meta #{bestAdviceCount} #{bestAdviceCount === 1 ? 'rule' : 'rules'}
         each advice, adviceKey in coach.bestpractice.adviceList
@@ -63,7 +63,7 @@ block content
 
     .listing-card
       .listing-card-header
-        h2.listing-card-title(id='timingMetrics') Timing metrics
+        h3.listing-card-title(id='timingMetrics') Timing metrics
 
       h5(id='backEndTime') BackEndTime / TTFB
       p The time it takes for the network and the server to generate and start sending the HTML. Collected using the Navigation Timing API with the definition: responseStart - navigationStart
