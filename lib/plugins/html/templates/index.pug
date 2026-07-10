@@ -18,21 +18,450 @@ mixin box(box, hero)
 block content
     include runInfo
 
-    //- Hero KPIs picked by their help-anchor name. Order here = display order.
-    //- Anything not in this list flows into the regular summary grid below.
-    - const HERO_URLS = ['FirstContentfulPaint', 'LargestContentfulPaint', 'CumulativeLayoutShift', 'CoachPerformanceScore'];
-    - const heroByUrl = Object.fromEntries(boxes.filter(b => HERO_URLS.includes(b.url)).map(b => [b.url, b]));
-    - const heroBoxes = HERO_URLS.map(u => heroByUrl[u]).filter(Boolean);
-    - const restBoxes = boxes.filter(b => !HERO_URLS.includes(b.url));
+    - const btSummary = browsertime ? browsertime.summary : undefined
+    - const px = pagexray ? pagexray.summary : undefined
+    - const coachSummary = coach ? coach.summary : undefined
 
-    if heroBoxes.length > 0
-      .summary-hero
-        each box in heroBoxes
-          +box(box, true)
+    //- Scorecard thresholds. good/poor follow the Web Vitals rating cutoffs
+    //- (the same good/needs improvement boundaries the Web Vitals hero on the
+    //- page reports uses); max only scales the threshold track drawing.
+    //- coach is a higher-is-better score: good means AT LEAST t.good and
+    //- poor means BELOW t.poor — graded via gradeHib, drawn with the zones
+    //- mirrored (poor left, good right).
+    - const TH = { lcp: { good: 2500, poor: 4000, max: 6000 }, cls: { good: 0.1, poor: 0.25, max: 0.5 }, tbt: { good: 200, poor: 600, max: 1000 }, transfer: { good: 1536000, poor: 3072000, max: 6144000 }, speedIndex: { good: 3400, poor: 5800, max: 8000 }, coach: { good: 90, poor: 70, max: 100 } }
+    - const RANKS = { good: 0, warn: 1, poor: 2 }
+    - const RANK_CLASS = ['good', 'warn', 'poor']
+    - const RANK_WORD = ['passes', 'needs work', 'poor']
+    - const gradeOf = (v, t) => v <= t.good ? 'good' : (v <= t.poor ? 'warn' : 'poor')
+    - const gradeHib = (v, t) => v >= t.good ? 'good' : (v >= t.poor ? 'warn' : 'poor')
+    - const gradeFor = (v, s) => s.hib ? gradeHib(v, s.t) : gradeOf(v, s.t)
+    - const pct = (v, max) => Math.round(Math.min(v / max * 100, 98) * 10) / 10
+    - const msShort = v => v >= 1000 ? String(Number((v / 1000).toFixed(1))) + ' s' : Math.round(v) + ' ms'
+    - const MAX_DOTS = 25
 
-    if restBoxes.length > 0
-      .summary-grid
-        each box in restBoxes
-          +box(box, false)
+    //- The graded subjects. Each one only exists when its summary stat does,
+    //- so runs without visual metrics lose the Speed Index row, HAR-less
+    //- runs lose Page weight and so on. key = the per-page metric name in
+    //- scorecardPages that draws the page dots on the threshold track.
+    //- hib marks a higher-is-better subject (the Coach score): grading
+    //- inverts and the worst page is the MIN instead of the max.
+    - const subjects = []
+    //- The small line shows the worst page instead of p90: the extreme dot
+    //- on the track IS that value, so the number matches what the eye sees.
+    //- statWorst (the summary max/min, aggregated over ALL RUNS) is only a
+    //- fallback — the displayed worst is computed from the per-page medians
+    //- in the render loop so it always equals the extreme dot exactly.
+    - const addSubject = (name, small, anchor, key, stat, t, fmt, zoneFmt, hib) => { if (stat && stat.median !== undefined) subjects.push({ name, small, anchor, key, t, fmt, hib: hib === true, median: stat.median, fmtMedian: fmt(stat.median), statWorst: hib ? stat.min : stat.max, zoneGood: zoneFmt(t.good), zonePoor: zoneFmt(t.poor) }) }
+    - addSubject('Largest Contentful Paint', 'when the main content showed', 'LargestContentfulPaint', 'lcp', get(btSummary, 'timings.largestContentfulPaint'), TH.lcp, h.time.ms, msShort)
+    - addSubject('Cumulative Layout Shift', 'how much the layout jumped', 'CumulativeLayoutShift', 'cls', get(btSummary, 'pageinfo.cumulativeLayoutShift'), TH.cls, h.decimals, h.decimals)
+    - addSubject('Total Blocking Time', 'how long the main thread was blocked', 'TotalBlockingTime', 'tbt', get(btSummary, 'cpu.longTasks.totalBlockingTime'), TH.tbt, h.time.ms, msShort)
+    - addSubject('Speed Index', 'how quickly content filled the screen', 'SpeedIndex', 'speedIndex', get(btSummary, 'visualMetrics.SpeedIndex'), TH.speedIndex, h.time.ms, msShort)
+    - addSubject('Page weight', 'bytes shipped over the wire', 'TotalTransferSize', 'transferSize', get(px, 'transferSize'), TH.transfer, h.size.format, h.size.format)
+    - addSubject('Coach performance score', 'how well pages follow performance advice', 'CoachPerformanceScore', 'coachScore', get(coachSummary, 'performance.score'), TH.coach, v => v, v => v, true)
 
-    p.small * The value inside of the parentheses are the 90th percentile (90% of the time, the number is below this amount)
+    if btSummary && subjects.length > 0
+      //- Page by page: per-page medians computed in htmlBuilder. A page's
+      //- verdict is the worst of its subjects that have data; pages without
+      //- any gradeable metric stay unranked and don't count in the verdict.
+      - const pageRank = p => { let r = null; for (const s of subjects) { if (p[s.key] !== undefined) { const rr = RANKS[gradeFor(p[s.key], s)]; r = r === null ? rr : Math.max(r, rr) } } return r }
+      //- INVARIANT: a page's vertical lane on the dot tracks is assigned
+      //- ONCE from its position in the master scorecardPages order — never
+      //- from a per-track (sorted/capped) index — so the same page sits at
+      //- the same height on every subject and can be traced across tracks.
+      - const pageIndex = new Map();
+      - (scorecardPages || []).forEach((pp, ppi) => pageIndex.set(pp, ppi))
+      - const pupils = (scorecardPages || []).map(p => ({ p, rank: pageRank(p) }))
+      - pupils.sort((a, b) => (b.rank === null ? -1 : b.rank) - (a.rank === null ? -1 : a.rank) || (b.p.transferSize || 0) - (a.p.transferSize || 0))
+      - const counts = [0, 0, 0]
+      - pupils.forEach(x => { if (x.rank !== null) counts[x.rank]++ })
+      - const graded = counts[0] + counts[1] + counts[2]
+      - const failing = counts[1] + counts[2]
+      - let verdict
+      - if (graded === 1) verdict = failing === 0 ? 'The page passes every check.' : (counts[2] > 0 ? 'The page is below the bar — the dots show where.' : 'The page needs work — the dots show where.')
+      - else if (failing === 0) verdict = 'Every page passes every subject.'
+      - else verdict = h.plural(failing, 'page') + (counts[2] > 0 ? ' below the bar — the dots show which.' : ' need work — the dots show which.')
+
+      //- URLs that errored and produced no data never reach scorecardPages
+      //- (getWorkingUrls filters them out), so they would silently shrink
+      //- the verdict. headers.errors carries the same per-URL error map the
+      //- Errors tab renders; anything in there that is not a tested page
+      //- failed completely. 'generic' holds non-URL errors — skip it.
+      - const testedUrls = new Set((scorecardPages || []).map(p => p.url))
+      - const errorMap = headers.errors ? headers.errors.errors : undefined
+      - const failedPages = errorMap ? Object.keys(errorMap).filter(u => u !== 'generic' && !testedUrls.has(u)).length : 0
+
+      .reportcard(class=graded > 0 ? undefined : 'reportcard--noverdict')
+        if graded > 0
+          .verdictcard
+            .verdictcard-label Pages passing every check
+            .verdictcard-frac #{counts[0]}
+              small  / #{graded}
+            .verdictcard-for
+              | #{verdict}
+              b= options.name ? options.name : context.name
+            if graded > 1
+              .verdictcard-dist
+                span
+                  i.bullet.bullet--good
+                  b= counts[0]
+                  |  pass every check
+                span
+                  i.bullet.bullet--warn
+                  b= counts[1]
+                  |  need work
+                span
+                  i.bullet.bullet--poor
+                  b= counts[2]
+                  |  poor on something
+            if failedPages > 0
+              .verdictcard-failed
+                i.bullet.bullet--poor
+                a(href='errors.html') #{h.plural(failedPages, 'page')} could not be tested
+            //- The call to action is the report's standard .button so it
+            //- matches every other button in the report.
+            if pupils.length === 1
+              a.button.verdictcard-open(href=pupils[0].p.href) Open the page report →
+            else
+              a.button.verdictcard-open(href='#pagebypage') Worst page first →
+        .subjects
+          each s in subjects
+            - const sg = gradeFor(s.median, s)
+            - const mp = pct(s.median, s.t.max)
+            - const withMetric = (scorecardPages || []).filter(pp => pp[s.key] !== undefined)
+            - const flagged = withMetric.filter(pp => gradeFor(pp[s.key], s) !== 'good').length
+            //- Worst = the extreme PAGE MEDIAN (what the dots show), not the
+            //- summary max/min which aggregates all runs and can exceed the
+            //- rightmost dot when iterations > 1. The summary stat is only
+            //- the fallback when no page carries this metric.
+            - let worstVal = s.statWorst
+            - if (withMetric.length > 0) worstVal = withMetric.reduce((a, pp) => s.hib ? Math.min(a, pp[s.key]) : Math.max(a, pp[s.key]), withMetric[0][s.key])
+            - const fmtWorst = worstVal === undefined ? undefined : s.fmt(worstVal)
+            //- With many pages the track becomes soup — keep the 25 worst
+            //- values (highest, or lowest for a higher-is-better score)
+            //- and say so in the row.
+            - let dotPages = withMetric
+            - if (withMetric.length > MAX_DOTS) dotPages = withMetric.slice().sort((a, b) => s.hib ? a[s.key] - b[s.key] : b[s.key] - a[s.key]).slice(0, MAX_DOTS)
+            - let pill
+            - if (withMetric.length === 0) pill = undefined
+            - else if (withMetric.length === 1) pill = flagged === 0 ? 'passes' : 'flagged'
+            - else pill = flagged === 0 ? 'all pages pass' : flagged + ' of ' + withMetric.length + ' pages flagged'
+            .subject
+              span.subject-name
+                a(href='help.html#' + s.anchor)= s.name
+                small= s.small
+                if pill
+                  span.subject-status(class='subject-status--' + sg)= pill
+              span.trackwrap
+                //- track--flip mirrors the zones for higher-is-better
+                //- subjects: poor sits on the LEFT, good on the RIGHT.
+                span.track(class=s.hib ? 'track--flip' : undefined, style='--zone-good:' + pct(s.t.good, s.t.max) + '%;--zone-poor:' + pct(s.t.poor, s.t.max) + '%')
+                  span.med(style='left:' + mp + '%')
+                  each dp in dotPages
+                    - const dg = gradeFor(dp[s.key], s)
+                    - const dleft = pct(dp[s.key], s.t.max)
+                    - const dtop = 30 + (pageIndex.get(dp) % 3) * 20
+                    - const tipside = dleft > 78 ? ' pagedot--tipleft' : (dleft < 8 ? ' pagedot--tipright' : '')
+                    - const dotName = h.short(decodeURIComponent(dp.displayName), 40)
+                    a.pagedot(class='pagedot--' + dg + tipside, href=dp.href, style='left:' + dleft + '%;top:' + dtop + '%', data-page=pageIndex.get(dp), data-tip=dotName + ' · ' + s.fmt(dp[s.key]) + ' — open report', aria-label=dotName + ' — ' + s.name + ' ' + s.fmt(dp[s.key]) + ' — open the page report')
+                  if s.hib
+                    span.zonelabel.zonelabel--left poor under #{s.zonePoor}
+                    span.zonelabel.zonelabel--right good over #{s.zoneGood}
+                  else
+                    span.zonelabel.zonelabel--left good under #{s.zoneGood}
+                    span.zonelabel.zonelabel--right poor over #{s.zonePoor}
+                  if withMetric.length > dotPages.length
+                    span.zonelabel.zonelabel--hint worst #{dotPages.length} of #{withMetric.length} shown
+              span.subject-val
+                b= s.fmtMedian
+                if fmtWorst !== undefined && fmtWorst !== s.fmtMedian
+                  small median · worst #{fmtWorst}
+                else
+                  small median
+          if (scorecardPages || []).length === 1
+            .subjects-hint The dot on each track is your page — click it to open the page report.
+          else if (scorecardPages || []).length > 1
+            .subjects-hint Each dot is one page — hover to trace it across metrics, click to open its report.
+
+      //- Trace one page across metrics: hovering any dot highlights the
+      //- same page's dots (matched on data-page) on every track and dims
+      //- the rest. A page capped away from one track simply has no dot
+      //- there to light up.
+      script.
+        (function () {
+          const dots = document.querySelectorAll('.pagedot');
+          const subjects = document.querySelector('.subjects');
+          if (!subjects || dots.length === 0) return;
+          for (const dot of dots) {
+            dot.addEventListener('mouseenter', function () {
+              subjects.classList.add('subjects--tracing');
+              const page = this.getAttribute('data-page');
+              for (const other of dots) {
+                if (other.getAttribute('data-page') === page) {
+                  other.classList.add('pagedot--hi');
+                }
+              }
+            });
+            dot.addEventListener('mouseleave', function () {
+              subjects.classList.remove('subjects--tracing');
+              for (const other of dots) {
+                other.classList.remove('pagedot--hi');
+              }
+            });
+          }
+        })();
+
+      if pupils.length > 0
+        - const hasSI = pupils.some(x => x.p.speedIndex !== undefined)
+        - const hasCoach = pupils.some(x => x.p.coachScore !== undefined)
+        //- The row grid needs one track per metric column; SI and Coach
+        //- may be missing, so the modifier picks the matching template.
+        - const metricCols = 4 + (hasSI ? 1 : 0) + (hasCoach ? 1 : 0)
+        .classlist#pagebypage(class=metricCols === 6 ? undefined : 'classlist--cols-' + metricCols)
+          h3 Page by page
+          .classlist-sub Worst first · median of the runs · click a page for its full report
+          .pupil.pupil--header
+            span Verdict
+            span Page
+            span.pupil-m LCP
+            span.pupil-m.hide-m CLS
+            span.pupil-m.hide-m TBT
+            if hasSI
+              span.pupil-m.hide-m Speed Index
+            span.pupil-m Weight
+            if hasCoach
+              span.pupil-m.hide-m Coach
+            span
+          each x in pupils
+            - const p = x.p
+            .pupil
+              if x.rank === null
+                span.pupil-verdict.pupil-verdict--none –
+              else
+                span.pupil-verdict(class='pupil-verdict--' + RANK_CLASS[x.rank])= RANK_WORD[x.rank]
+              span.pupil-path
+                a(href=p.href)= h.short(decodeURIComponent(p.displayName), 60)
+              span.pupil-m
+                if p.lcp === undefined
+                  | –
+                else
+                  | #{h.time.ms(p.lcp)}
+                  span.dot(class='dot--' + gradeOf(p.lcp, TH.lcp))
+              span.pupil-m.hide-m
+                if p.cls === undefined
+                  | –
+                else
+                  | #{h.decimals(p.cls)}
+                  span.dot(class='dot--' + gradeOf(p.cls, TH.cls))
+              span.pupil-m.hide-m
+                if p.tbt === undefined
+                  | –
+                else
+                  | #{h.time.ms(p.tbt)}
+                  span.dot(class='dot--' + gradeOf(p.tbt, TH.tbt))
+              if hasSI
+                span.pupil-m.hide-m
+                  if p.speedIndex === undefined
+                    | –
+                  else
+                    | #{h.time.ms(p.speedIndex)}
+                    span.dot(class='dot--' + gradeOf(p.speedIndex, TH.speedIndex))
+              span.pupil-m
+                if p.transferSize === undefined
+                  | –
+                else
+                  | #{h.size.format(p.transferSize)}
+                  span.dot(class='dot--' + gradeOf(p.transferSize, TH.transfer))
+              if hasCoach
+                span.pupil-m.hide-m
+                  if p.coachScore === undefined
+                    | –
+                  else
+                    | #{p.coachScore}
+                    span.dot(class='dot--' + gradeHib(p.coachScore, TH.coach))
+              a.pupil-go(href=p.href, aria-label='Open the page report') →
+
+      //- Milestones card: how the median page rendered, earliest event first.
+      //- Gated on visual metrics — an all-zero LastVisualChange means broken
+      //- video capture and the card must silently disappear.
+      - const vm = btSummary.visualMetrics
+      - const milestones = []
+      - if (vm) { const fcp = btSummary.paintTiming ? btSummary.paintTiming['first-contentful-paint'] : undefined; const add = (nm, stat) => { if (stat && stat.median !== undefined) milestones.push([nm, stat.median]) }; add('First Visual Change', vm.FirstVisualChange); add('First Contentful Paint', fcp); add('Largest Contentful Paint', get(btSummary, 'timings.largestContentfulPaint')); add('Speed Index', vm.SpeedIndex); add('Last Visual Change', vm.LastVisualChange); add('Fully Loaded', get(btSummary, 'timings.fullyLoaded')) }
+      - milestones.sort((a, b) => a[1] - b[1])
+      - const mmax = milestones.length > 0 ? milestones[milestones.length - 1][1] : 0
+      - const showMilestones = milestones.length > 0 && mmax > 0
+
+      //- Composition card: bytes AND requests per content type, one stacked
+      //- bar each. Both read the same pagexray summary that feeds the
+      //- transfer/request summary boxes.
+      - const totalTransfer = get(px, 'transferSize.median')
+      - const totalRequests = get(px, 'requests.median')
+      - const contentTypes = px ? px.contentTypes : undefined
+      - const perType = metric => contentTypes ? Object.keys(contentTypes).map(t => ({ type: t, value: get(contentTypes[t], metric + '.median', 0) })).filter(w => w.value > 0).sort((a, b) => b.value - a.value) : []
+      - const weightTypes = perType('transferSize')
+      - const weightSum = weightTypes.reduce((a, w) => a + w.value, 0)
+      - const requestTypes = perType('requests')
+      - const requestSum = requestTypes.reduce((a, w) => a + w.value, 0)
+      - const showTransferBar = totalTransfer !== undefined && weightSum > 0
+      - const showRequestBar = totalRequests !== undefined && requestSum > 0
+      - const showComposition = showTransferBar || showRequestBar
+
+      //- Coach card. Performance shows both here (the full score family)
+      //- and as a graded subject above — kept on purpose.
+      - const coachRows = []
+      - const addCoach = (label, path) => { const v = get(coachSummary, path); if (v !== undefined) coachRows.push({ label, value: v }) }
+      - addCoach('Performance', 'performance.score.median')
+      - addCoach('Best practice', 'bestpractice.score.median')
+      - addCoach('Privacy', 'privacy.score.median')
+      - addCoach('Overall', 'score.median')
+      - const scoreTone = v => gradeHib(v, TH.coach)
+      - const showCoach = coachRows.length > 0
+
+      //- CPU card. The summary only aggregates long-task count, total
+      //- duration and Max Potential FID across pages (see
+      //- browsertimeAggregator) — per-run extremes like the longest or
+      //- last long task exist per URL but are not summarised site-wide.
+      //- cpu.categories (parseHTML / styleLayout / scriptEvaluation / … from
+      //- the Chrome trace, needs --cpu) is summarised though, so it gets a
+      //- "where the time went" sub-group matching the per-URL CPU tab.
+      - const cpuRows = []
+      - const addCpu = (label, path, fmt) => { const v = get(btSummary, path); if (v !== undefined) cpuRows.push({ label, value: fmt(v) }) }
+      - addCpu('Long tasks', 'cpu.longTasks.tasks.median', v => v)
+      - addCpu('Long task time', 'cpu.longTasks.totalDuration.median', h.time.ms)
+      - addCpu('Max Potential FID', 'cpu.longTasks.maxPotentialFid.median', h.time.ms)
+      - const cpuCategories = get(btSummary, 'cpu.categories')
+      - let cpuCategoryRows = []
+      - if (cpuCategories) cpuCategoryRows = Object.keys(cpuCategories).map(nm => ({ label: nm, value: get(cpuCategories[nm], 'median', 0) })).filter(r => r.value > 0).sort((a, b) => b.value - a.value)
+      - const showCpu = cpuRows.length > 0 || cpuCategoryRows.length > 0
+
+      //- Accessibility card (axe plugin).
+      - const axeSummary = axe ? axe.summary : undefined
+      - const axeRows = []
+      - const addAxe = (label, severity, badTone) => { const v = get(axeSummary, 'violations.' + severity + '.median'); if (v !== undefined) axeRows.push({ label, value: v, tone: v > 0 ? badTone : 'good' }) }
+      - addAxe('Critical violations', 'critical', 'poor')
+      - addAxe('Serious violations', 'serious', 'poor')
+      - addAxe('Moderate violations', 'moderate', 'warn')
+      - addAxe('Minor violations', 'minor', 'warn')
+      - const showAxe = axeRows.length > 0
+
+      //- Sustainability card (co2 plugin).
+      - const sustainableSummary = sustainable ? sustainable.summary : undefined
+      - const co2Rows = []
+      - const addCo2 = (label, key) => { const v = get(sustainableSummary, key + '.median'); if (v !== undefined) co2Rows.push({ label, value: h.co2(v) }) }
+      - addCo2('CO₂ per page view', 'co2PerPageView')
+      - addCo2('Total CO₂', 'totalCO2')
+      - addCo2('First party', 'co2FirstParty')
+      - addCo2('Third party', 'co2ThirdParty')
+      - const showSustainable = co2Rows.length > 0
+
+      if showMilestones || showComposition || showCoach || showCpu || showAxe || showSustainable
+        .scorecard-cards
+          if showMilestones
+            .scorecard-card
+              h3 How the median page rendered
+              .scorecard-card-sub Visual milestones
+              ul.milestones
+                each m in milestones
+                  //- Division inside an attribute trips pug's character
+                  //- parser (regex heuristic), so compute the width first.
+                  - const mw = Math.round(Math.max((m[1] * 46) / mmax, 2) * 10) / 10
+                  li
+                    span.milestone-t= h.time.ms(m[1])
+                    span.milestone-bar(style='width:' + mw + '%')
+                    span.milestone-n= m[0]
+          if showComposition
+            .scorecard-card
+              h3 What the median page is made of
+              .scorecard-card-sub Bytes and requests by content type
+              if showTransferBar
+                .comp
+                  .comp-head
+                    span Transfer
+                    b= h.size.format(totalTransfer)
+                  .compbar
+                    each w in weightTypes
+                      span.comp-seg(class='ctype--' + w.type, style='flex:' + w.value, title=w.type + ': ' + h.size.format(w.value))
+                  .complegend
+                    each w in weightTypes
+                      span.comp-key
+                        span.comp-swatch(class='ctype--' + w.type)
+                        | #{w.type}
+                        b= h.size.format(w.value)
+              if showRequestBar
+                .comp
+                  .comp-head
+                    span Requests
+                    b= totalRequests
+                  .compbar
+                    each w in requestTypes
+                      span.comp-seg(class='ctype--' + w.type, style='flex:' + w.value, title=w.type + ': ' + w.value)
+                  .complegend
+                    each w in requestTypes
+                      span.comp-key
+                        span.comp-swatch(class='ctype--' + w.type)
+                        | #{w.type}
+                        b= w.value
+          if showCoach
+            .scorecard-card
+              h3 Coach's notes
+              .scorecard-card-sub Median scores out of 100
+              ul.scores
+                each row in coachRows
+                  li
+                    span.score-row
+                      span.score-name= row.label
+                      b= row.value
+                    span.score-meter
+                      span.score-fill(class='score-fill--' + scoreTone(row.value), style='width:' + row.value + '%')
+          if showCpu
+            .scorecard-card
+              h3 CPU
+              .scorecard-card-sub Median across all pages
+              if cpuRows.length > 0
+                ul.kvlist
+                  each row in cpuRows
+                    li
+                      span.kv-name= row.label
+                      b.kv-value= row.value
+              if cpuCategoryRows.length > 0
+                .kvlist-subhead Where the time went
+                ul.kvlist
+                  each row in cpuCategoryRows
+                    li
+                      span.kv-name= row.label
+                      b.kv-value= h.time.ms(row.value)
+          if showAxe
+            .scorecard-card
+              h3 Accessibility
+              .scorecard-card-sub AXE violations · median per page
+              ul.kvlist
+                each row in axeRows
+                  li
+                    span.kv-name= row.label
+                    b.kv-value(class='kv-value--' + row.tone)= row.value
+          if showSustainable
+            .scorecard-card
+              h3 Sustainability
+              .scorecard-card-sub Estimated emissions · median per page
+              ul.kvlist
+                each row in co2Rows
+                  li
+                    span.kv-name= row.label
+                    b.kv-value= row.value
+
+    else
+      //- No browsertime summary (crux-only runs, custom setups): keep the
+      //- classic summary boxes so the start page never comes up empty.
+      - const HERO_URLS = ['FirstContentfulPaint', 'LargestContentfulPaint', 'CumulativeLayoutShift', 'CoachPerformanceScore'];
+      - const heroByUrl = Object.fromEntries(boxes.filter(b => HERO_URLS.includes(b.url)).map(b => [b.url, b]));
+      - const heroBoxes = HERO_URLS.map(u => heroByUrl[u]).filter(Boolean);
+      - const restBoxes = boxes.filter(b => !HERO_URLS.includes(b.url));
+
+      if heroBoxes.length > 0
+        .summary-hero
+          each box in heroBoxes
+            +box(box, true)
+
+      if restBoxes.length > 0
+        .summary-grid
+          each box in restBoxes
+            +box(box, false)
