@@ -35,3 +35,25 @@ test(`CLI should support --help`, async t => {
     'Should include Browsertime help'
   );
 });
+
+test(`CLI should silently ignore the removed summary boxes options`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--html.summaryBoxes',
+      'foo.bar',
+      '--html.summaryBoxesThresholds',
+      'limits.json'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(
+    stderr.includes('You need to supply one/multiple URLs or scripts'),
+    'Should fail on the missing URL, not on the removed options'
+  );
+  t.false(
+    stderr.includes('summary box'),
+    'Should not validate the removed summary boxes options'
+  );
+});

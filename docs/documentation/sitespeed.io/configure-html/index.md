@@ -60,64 +60,8 @@ Which metric can you use? It is the same setup as when you create a budget file.
 
 [Let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if there are any metrics that you are missing!
 
-# Configure page summary boxes
-
-The summary boxes on the start page are also configurable. You can choose which metrics to show.
-
-![Summary boxes]({{site.baseurl}}/img/summary-boxes.png)
-{: .img-thumbnail}
-
-
-It follows the same pattern as page columns and uses the same friendly names.
-
-~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.summaryBoxes timings.pageLoadTime  --html.summaryBoxes requests.total https://www.sitespeed.io 
-~~~
-
-
-Or use a configuration json:
-
-~~~json
-"html": {
-    "summaryBoxes": [
-      "transferSize.total",
-      "requests.total",
-      "thirdParty.requests",
-      "transferSize.javascript",
-      "transferSize.css",
-      "transferSize.image",
-      "score.performance"
-    ]
-}
-~~~
-
-# Configure the thresholds for red/yellow/green summary boxes
-
-You can override the default configuration that defines the colors of the summary boxes. The default code is set [here](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/html/setup/summaryBoxesDefaultLimits.js) and is a good starting point for what you can set.
-
-Define your JSON file with the limits and feed it to sitespeed.io with `--html.summaryBoxesThresholds`.
-
-Say that you are testing on a slow 3g connection and the default settings for first paint are unrealistic (1000 ms for green and over 2000 gives you red). Create a JSON file and name it summaryLimits.json:
-
-~~~json
-{
-    "timings": {
-        "firstPaint": { 
-            "green": 2000, 
-            "yellow": 4000 
-        }
-    }
-}
-~~~
-
-And then run:
- ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.summaryBoxesThresholds summaryLimits.json https://www.sitespeed.io 
-~~~
-
-
 # Configurable metrics
-Here are the different metrics that you can show in the summary boxes or in the page HTML. Any metric missing? [Make a PR](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/friendlynames.js) or [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!
+Here are the different metrics that you can show in the page HTML. Any metric missing? [Make a PR](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/friendlynames.js) or [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!
 
 
 ~~~
