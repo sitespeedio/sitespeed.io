@@ -93,6 +93,7 @@ The whole report is now built around a unified card-based design language. Every
 
 * Per-URL tabs: Summary, Metrics (LCP / INP / CLS / LOAF / Element Timings / Visual Elements / First Input / Server timings / Visual progress filmstrip), Coach, CrUX, Sustainable, Axe, CPU, PageXray, Third-party, Compare, Video, Filmstrip.
 * Top-level pages: Pages, Toplist, Detailed, Domains, Assets, Errors, Budget, Help, Settings.
+* The Detailed summary is no longer one long table: metrics are grouped into cards by concern (Coach scores, Web Vitals & load timings, visual metrics, CPU, page weight, requests, response codes, …), Web Vitals are marked against the good/needs improvement/poor thresholds, response-code anomalies (4xx/5xx, redirect-heavy pages) get badges, and a "What stands out" strip on top calls out the worst findings (worst Web Vital, failing responses, redirect share, critical accessibility violations when axe ran). When a test has a single run, the identical min/median/mean/p90/max columns collapse into one Value column — run more iterations to get the spread back.
 
 Two practical knock-on effects:
 
