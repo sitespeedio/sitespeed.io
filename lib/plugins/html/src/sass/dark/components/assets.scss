@@ -1,0 +1,56 @@
+//
+// ASSETS PAGE — dark
+// ==================
+// See light variant for layout notes; this file mirrors that structure
+// with the dark theme's tokens.
+//
+
+.assets-kpi-note {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.iter-kpi.warning .assets-kpi-note,
+.iter-kpi.error .assets-kpi-note {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.assets-type-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0 0 18px 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+  }
+}
+
+.assets-type-count {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+table#assets {
+  td.cell--tone-warning,
+  td.cell--tone-warning .cell-bar-text {
+    color: $color--warning;
+    font-weight: $font--weight--semibold;
+  }
+
+  td.cell--tone-error,
+  td.cell--tone-error .cell-bar-text {
+    color: $color--error;
+    font-weight: $font--weight--semibold;
+  }
+}
