@@ -1,29 +1,41 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin row(errors)
-  each error, url in errors
-    tr
-      td
-        - if (url !== 'generic')
-          a(href=url)= url
-      td
-        ul
-          each pageerrors, tool in error
-            each myerror in pageerrors
-              li #{myerror}
-                b  (#{tool})
-
 block content
   //- One framed card around the errors table so the page matches the
-  //- rest of the modernised report. The count chip surfaces how many
-  //- URLs reported errors at a glance.
-  - const errorUrlCount = Object.keys(errors).length
+  //- rest of the modernised report. The header chip counts the actual
+  //- error messages (not just URLs) and is error-toned — this is the
+  //- one page in the report that is only about bad news, so it should
+  //- read that way at a glance.
+  - let errorCount = 0
+  - for (const toolErrors of Object.values(errors)) { for (const list of Object.values(toolErrors)) { errorCount += list.length } }
   .listing-card
     .listing-card-header
       h3.listing-card-title Errors
-      span.listing-card-meta #{errorUrlCount} #{errorUrlCount === 1 ? 'URL' : 'URLs'}
+      if errorCount > 0
+        span.errors-chip #{h.plural(errorCount, 'error')} during testing
+    p.listing-card-help Something went wrong while these pages were tested, so their data may be missing or incomplete in the rest of the report. The pill on each error shows which tool reported it — re-run the test and check the log if an error keeps coming back.
     .responsive
-      table(data-sortable, id='errors')
-        +rowHeading(['url', 'errors'])
-        +row(errors)
+      //- Two non-numeric columns — sorting them is meaningless, so no
+      //- data-sortable. The data-title attributes keep the labels when
+      //- the responsive table stacks on mobile.
+      table#errors
+        +rowHeading(['URL', 'Errors'])
+        tbody
+          each error, url in errors
+            tr.errors-row
+              td.url(data-title='URL')
+                if url !== 'generic'
+                  a(href=url)= url
+                else
+                  //- Errors not tied to a URL land under the 'generic'
+                  //- key (see htmlBuilder) — say so instead of showing
+                  //- an empty cell.
+                  span.errors-generic Not tied to a URL
+              td(data-title='Errors')
+                ul.errors-list
+                  each pageerrors, tool in error
+                    each myerror in pageerrors
+                      li
+                        span.errors-tool= tool
+                        | #{myerror}
