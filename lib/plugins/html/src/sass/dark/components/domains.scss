@@ -5,11 +5,121 @@
 // listings.scss; only the domain-specific bits live here.
 //
 
+// Callout tiles above the table — "Slowest domain", "Heaviest domain",
+// "Most requests", "Third party". Same tile idiom as .iter-kpi but with
+// a domain-name line, so it gets its own component classes.
+.domains-callouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin: 0 0 14px 0;
+}
+
+.domains-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface;
+  min-width: 0; // let the domain name ellipsis instead of growing the grid
+}
+
+.domains-callout-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+}
+
+.domains-callout-domain {
+  font-family: $font--mono;
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.domains-callout-figure {
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  font-variant-numeric: tabular-nums;
+}
+
 .domain-name {
   font-family: $font--mono;
   font-size: 0.9em;
   color: $color--text;
-  word-break: break-word;
+  // Truncate instead of wrapping — long tracker hostnames were folding
+  // onto three lines and made row heights jump. Full name in the title.
+  display: inline-block;
+  max-width: 34ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+// Per-row status dot: worst tone across the dns/connect/ssl/wait medians,
+// so a slow domain is spottable without reading every phase column.
+.domain-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: $color--ok;
+}
+
+.domain-dot--warning {
+  background: $color--warning;
+}
+
+.domain-dot--error {
+  background: $color--error;
+}
+
+.domain-chip-3p {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--border;
+  background: $color--surface;
+  color: $color--text-muted;
+  font-size: 0.72rem;
+  font-weight: $font--weight--medium;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.domains-table {
+  // The .listing-card already frames the table — drop the trailing gap.
+  margin-bottom: 0;
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  // Status tones on genuinely slow phase medians. Cell background wins
+  // over the row hover background, so the tint stays visible on hover.
+  td.cell-tone--warning {
+    color: $color--warning;
+    background: $color--warning-bg;
+    font-weight: $font--weight--semibold;
+  }
+
+  td.cell-tone--error {
+    color: $color--error;
+    background: $color--error-bg;
+    font-weight: $font--weight--semibold;
+  }
 }
 
 .domains-empty {
