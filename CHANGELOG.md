@@ -1,6 +1,32 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.0.0 - UNRELEASED
+
+### Breaking
+* Removed `--html.summaryBoxes` and `--html.summaryBoxesThresholds`. The scorecard replaced the summary boxes on the start page, so the options no longer changed anything you see. Leaving the flags in an existing command line is harmless — they are ignored, not fatal. The scorecard grades against the Google Web Vitals thresholds; for custom pass/fail thresholds use a performance budget (`--budget.configPath`) [#4814](https://github.com/sitespeedio/sitespeed.io/pull/4814).
+
+### Changed
+* The Pages tab's default columns are now timing-first — LCP, CLS, TBT, Speed Index, total transfer, total requests and the Coach score — and the auto-appended visual metrics columns are gone. Any old column can be restored with `--html.pageSummaryMetrics` [#4813](https://github.com/sitespeedio/sitespeed.io/pull/4813).
+* The Assets page selects the heaviest assets instead of the most requested ones (a huge asset requested once could be missing entirely) and `--maxAssets` defaults to 100 instead of 20 [#4811](https://github.com/sitespeedio/sitespeed.io/pull/4811).
+
+### Added
+* The start page is a scorecard: one verdict for the whole test ("2 of 6 pages pass every check") and every tested page plotted as a dot on each metric's threshold track — hover a dot to trace that page across metrics, click to open its report. Failed URLs are called out instead of silently lowering the page count. The classic summary boxes remain only as a fallback for runs without browsertime data [#4807](https://github.com/sitespeedio/sitespeed.io/pull/4807).
+* CrUX field data is shown alongside the lab Web Vitals, so you can see what real Chrome users experience next to what the lab measured [#4794](https://github.com/sitespeedio/sitespeed.io/pull/4794).
+* The Domains page answers "which domain is hurting me": callout tiles for the slowest/heaviest/chattiest domains, worst-first ordering, warning/error tones on slow DNS/connect/SSL/TTFB and third-party marking [#4808](https://github.com/sitespeedio/sitespeed.io/pull/4808).
+* The Toplist page answers "which files do I fix first": a plain-language hint per list, warning/error tones on huge transfers, short cache times and slow responses, and a new short-cache-time list. Fonts and other content types are no longer dropped [#4809](https://github.com/sitespeedio/sitespeed.io/pull/4809).
+* The Assets page opens with an overview (unique assets, total transfer/size, biggest asset, per-type counts) and spells out transfer (wire bytes) vs size (decoded bytes) so the numbers can't be misread [#4811](https://github.com/sitespeedio/sitespeed.io/pull/4811).
+* The Detailed Summary groups all metrics into cards by concern and leads with a "What stands out" strip (worst Web Vital, 4xx/5xx responses, redirect-heavy pages, critical accessibility violations). Single-run results collapse the five identical stat columns into one value column [#4812](https://github.com/sitespeedio/sitespeed.io/pull/4812).
+* The Pages tab sorts pages worst Web Vitals first with a per-page verdict and per-metric status dots, and large runs get a URL filter. Missing data renders as a dash instead of a misleading zero, and an unknown metric name no longer breaks the whole page [#4813](https://github.com/sitespeedio/sitespeed.io/pull/4813).
+* Long Animation Frames are actionable: the frames with the most blocking time, split into phases, with the scripts that ran in them [#4803](https://github.com/sitespeedio/sitespeed.io/pull/4803).
+* Visual metrics are easier to understand: a milestones timeline on the page summary shows when the page started rendering, hit 85% and finished [#4804](https://github.com/sitespeedio/sitespeed.io/pull/4804).
+
+### Fixed
+* The Timings Summary table matches the modern report styling, and its markup no longer relies on browser error recovery [#4806](https://github.com/sitespeedio/sitespeed.io/pull/4806).
+* Cap the "Elements that shifted" text in the CLS card at 300 characters — an ad iframe attribute could dump an entire serialized HTML document into the report [#4805](https://github.com/sitespeedio/sitespeed.io/pull/4805).
+* Upgrade waterfall-tools to 0.4.0 [#4801](https://github.com/sitespeedio/sitespeed.io/pull/4801).
+* Upgrade @tgwf/co2 to 0.19.0. Reported CO2 numbers are unchanged — sitespeed.io always passes an explicit model — but co2.js's own default changed to SWD v4, which affects library users who enable the sustainable plugin without setting `sustainable.model` [#4810](https://github.com/sitespeedio/sitespeed.io/pull/4810).
+
 ## 41.4.1 - 2026-07-03
 ### Fixed
 * Update base Ubuntu and NodeJS [#4799](https://github.com/sitespeedio/sitespeed.io/pull/4799)
