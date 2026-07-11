@@ -19,7 +19,8 @@ mixin rows(assets, weightMax, heavyWarning, heavyError, shortCacheTime)
         a.from-page(href=asset.page + 'index.html', title='Open the page that loaded this asset') → page
       td.type-cell(data-title='type')
         if asset.type
-          span(class='type-chip type-chip--' + asset.type)= asset.type
+          span.assets-type-swatch(class='type-chip--' + asset.type)
+          | #{asset.type}
         else
           | —
       td.number.cell--bar(class=weightTone, data-title='transfer', data-value=weight)
@@ -65,13 +66,20 @@ block content
           span.iter-kpi-value #{h.size.format(biggestWeight)}
           span.assets-kpi-note= h.shortAsset(biggestAsset.url)
     if typeCounts && Object.keys(typeCounts).length
-      //- Per-content-type counts, chip colours mirror the waterfall legend.
+      //- Per-content-type share as a stacked bar + legend — the same
+      //- composition idiom as the start page's "made of" card. Segment
+      //- and swatch colours reuse the type-chip-- palette (background
+      //- only; the pill base class is deliberately not applied).
       - const typeList = Object.keys(typeCounts).sort((a, b) => typeCounts[b] - typeCounts[a])
-      ul.assets-type-chips
+      .assets-type-bar
+        each type in typeList
+          span.assets-type-seg(class='type-chip--' + type, style='flex:' + typeCounts[type], title=type + ': ' + typeCounts[type])
+      ul.assets-type-legend
         each type in typeList
           li
-            span(class='type-chip type-chip--' + type)= type
-            span.assets-type-count= typeCounts[type]
+            span.assets-type-swatch(class='type-chip--' + type)
+            | #{type}
+            b= typeCounts[type]
     //- Worst-first: rows are pre-sorted by wire weight so the heaviest
     //- assets surface without a click; every header still re-sorts.
     - const sortedAssets = topAssets.slice().sort((a, b) => (b.transferSize || b.size || 0) - (a.transferSize || a.size || 0))
