@@ -3,11 +3,14 @@ if pagexray.renderBlocking
   //- Chrome ships the status in two spelling families (potentially_blocking
   //- AND potentiallyblocking can appear in the same HAR, depending on which
   //- Chrome source browsertime got the value from) — normalize before
-  //- matching. non_blocking assets are explicitly not render blocking and
-  //- are excluded (the old table listed them, and pagexray's page counters
+  //- matching. non_blocking and non_blocking_dynamic (a dynamically
+  //- injected resource that doesn't block — Chrome's more specific
+  //- flavour of non_blocking) are explicitly not render blocking and are
+  //- excluded (the old table listed them, and pagexray's page counters
   //- even count them as blocking).
   - const rbNorm = v => String(v).split('_').join('').toLowerCase()
-  - const renderBlockingAssets = pagexray.assets.filter(a => a.renderBlocking && rbNorm(a.renderBlocking) !== 'nonblocking')
+  - const RB_NOT_BLOCKING = ['nonblocking', 'nonblockingdynamic', 'dynamicallyinjectednonblocking']
+  - const renderBlockingAssets = pagexray.assets.filter(a => a.renderBlocking && !RB_NOT_BLOCKING.includes(rbNorm(a.renderBlocking)))
   //- Chrome's renderBlocking enum, one section per status. Friendly
   //- names and a one-line explanation per section because the raw
   //- values (in_body_parser_blocking) mean nothing to most readers.
