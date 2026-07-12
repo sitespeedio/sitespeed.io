@@ -1,29 +1,46 @@
 if pagexray.renderBlocking
   a#requests-render-blocking
-  - const renderBlockingAssets = pagexray.assets.filter(a => a.renderBlocking)
+  //- Chrome ships the status in two spelling families (potentially_blocking
+  //- AND potentiallyblocking can appear in the same HAR, depending on which
+  //- Chrome source browsertime got the value from) — normalize before
+  //- matching. non_blocking assets are explicitly not render blocking and
+  //- are excluded (the old table listed them, and pagexray's page counters
+  //- even count them as blocking).
+  - const rbNorm = v => String(v).split('_').join('').toLowerCase()
+  - const renderBlockingAssets = pagexray.assets.filter(a => a.renderBlocking && rbNorm(a.renderBlocking) !== 'nonblocking')
+  //- Chrome's renderBlocking enum, one section per status. Friendly
+  //- names and a one-line explanation per section because the raw
+  //- values (in_body_parser_blocking) mean nothing to most readers.
+  -
+    const RB_SECTIONS = [
+      { key: 'blocking', label: 'Blocking', tone: 'error', explain: 'The browser paints nothing until these are downloaded and processed — they directly delay first paint and LCP. Load JavaScript with defer or async, and keep non-critical CSS out of the critical path with media attributes.' },
+      { key: 'inbodyparserblocking', label: 'Blocks the body parser', tone: 'warning', explain: 'Loaded inside the body in a way that halts the HTML parser — nothing after them in the document can render until they finish. Move them out of the body or load them with defer or async.' },
+      { key: 'potentiallyblocking', label: 'Potentially blocking', tone: '', explain: 'Chrome could not tell up front whether these block rendering — depending on how the page uses them, they may. Worth a look if the metrics above point at slow rendering.' }
+    ]
+    const known = new Set(RB_SECTIONS.map(x => x.key))
+    const other = renderBlockingAssets.filter(a => !known.has(rbNorm(a.renderBlocking)))
+    if (other.length > 0) RB_SECTIONS.push({ key: '__other', label: 'Other', tone: '', explain: 'Chrome reported a blocking status this report does not know about yet — shown here so nothing is hidden.', raw: true })
   .listing-card
     .listing-card-header
       h3.listing-card-title Render blocking requests
       span.listing-card-meta #{renderBlockingAssets.length} #{renderBlockingAssets.length === 1 ? 'asset' : 'assets'}
-    p.listing-card-help Render blocking information directly from Chrome.
-    .responsive
-      table(data-sortable, id='renderBlockingSummary')
-        +rowHeading(['Blocking', 'In body parser blocking', 'Potentially blocking'])
-        tr
-          +numberCell('blocking', pagexray.renderBlocking.blocking)
-          +numberCell('in_body_parser_blocking', pagexray.renderBlocking.in_body_parser_blocking)
-          +numberCell('potentiallyBlocking', pagexray.renderBlocking.potentiallyBlocking)
-
-  if renderBlockingAssets.length > 0
-    .listing-card
-      .listing-card-header
-        h3.listing-card-title Render blocking assets
-        span.listing-card-meta #{renderBlockingAssets.length} #{renderBlockingAssets.length === 1 ? 'asset' : 'assets'}
-      .responsive
-        table(data-sortable, id='renderBlockingAssets')
-          +rowHeading(['URL', 'Type'])
-          each asset in renderBlockingAssets
-            tr
-              td.url.assetsurl(data-title='URL')
-                a(href=asset.url)= h.shortAsset(asset.url)
-              td(data-title='Render Blocking Type') #{asset.renderBlocking}
+    each section in RB_SECTIONS
+      - const sectionAssets = (section.key === '__other' ? other : renderBlockingAssets.filter(a => rbNorm(a.renderBlocking) === section.key)).sort((a, b) => (b.transferSize || 0) - (a.transferSize || 0))
+      if sectionAssets.length > 0
+        .rb-section
+          h4.rb-section-title(class=section.tone ? 'rb-section-title--' + section.tone : undefined)
+            | #{section.label}
+            span.rb-section-count #{sectionAssets.length}
+          p.rb-section-explain= section.explain
+          .responsive
+            table(data-sortable, id='renderBlocking-' + section.key)
+              +rowHeading(section.raw ? ['URL', 'Type', 'Transfer', 'Total time', 'Status'] : ['URL', 'Type', 'Transfer', 'Total time'])
+              each asset in sectionAssets
+                tr
+                  td.url.assetsurl(data-title='URL')
+                    a(href=asset.url, title=asset.url)= h.shortAsset(asset.url)
+                  td(data-title='Type') #{asset.type}
+                  td.number(data-title='Transfer', data-value=asset.transferSize || 0) #{h.size.format(asset.transferSize || 0)}
+                  td.number(data-title='Total time', data-value=asset.totalTime || 0) #{h.time.ms(asset.totalTime || 0)}
+                  if section.raw
+                    td(data-title='Status') #{asset.renderBlocking}

@@ -129,3 +129,40 @@ a.pagexray-kpi {
     box-shadow: $shadow--sm;
   }
 }
+
+// Render blocking: one section per Chrome blocking status, each with a
+// toned title, a count and a plain-language explanation.
+.rb-section {
+  margin-top: 18px;
+
+  &:first-of-type {
+    margin-top: 4px;
+  }
+}
+
+.rb-section-title {
+  font-size: 1rem;
+  margin: 0 0 2px 0;
+
+  &--error {
+    color: $color--error;
+  }
+
+  &--warning {
+    color: $color--warning;
+  }
+}
+
+.rb-section-count {
+  margin-left: 8px;
+  font-size: 0.85rem;
+  font-weight: $font--weight--regular;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.rb-section-explain {
+  font-size: 0.875rem;
+  color: $color--text-muted;
+  margin: 0 0 10px 0;
+}
