@@ -50,7 +50,8 @@ mixin rows(assets, showTiming, sizeMax, includeType, showPage)
       if includeType
         td.type-cell(data-title='type')
           if asset.type
-            span(class='type-chip type-chip--' + asset.type)= asset.type
+            span.assets-type-swatch(class='type-chip--' + asset.type)
+            | #{asset.type}
       +durationCell('last modified',asset.lastModification)
       td.number(data-title='cache time', data-value=asset.cacheTime)
         +toneText(cacheTone(asset), h.time.duration(asset.cacheTime))
