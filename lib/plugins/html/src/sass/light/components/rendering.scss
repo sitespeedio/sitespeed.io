@@ -479,3 +479,11 @@
   font-size: 0.9rem;
   color: $color--text-muted;
 }
+
+// A quiet one-line note in the why-section that cross-links to another
+// tab (e.g. main-thread animations pointing at the CPU tab).
+.rendering-why-note {
+  margin: 0 0 18px 0;
+  font-size: 0.9rem;
+  color: $color--text-muted;
+}

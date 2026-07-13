@@ -50,7 +50,21 @@ block content
   //- it (see rendering/index.pug and the alias mapping in tabScripts.js).
   - const hasRenderingMedia = !!(options.browsertime.video || options.browsertime.enableVideoRun || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
   - const summaryRecalculateStyle = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.renderBlocking && d.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] ? d.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1].recalculateStyle : undefined
-  - const hasRendering = hasRenderingMedia || !!(d.pagexray && d.pagexray.pageSummary && d.pagexray.pageSummary.renderBlocking) || !!(summaryRecalculateStyle && (summaryRecalculateStyle.beforeFCP || summaryRecalculateStyle.beforeLCP))
+  //- The trace-derived CPU signals (forced reflows before first paint,
+  //- non-composited animations) can exist while the recalculate-style
+  //- data is empty — recalc needs an FCP/LCP event in the trace, the
+  //- other trace analyses don't — so they get their own gate clause.
+  //- Forced reflows only count when the run has an FCP: the why-section
+  //- windows them to before first paint and hides them otherwise.
+  - const summaryCpu = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.cpu ? d.browsertime.pageSummary.cpu[medianRun.runIndex - 1] : undefined
+  - const summaryCpuTimings = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.browserScripts && d.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] ? d.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].timings : undefined
+  - const summaryCpuFcp = summaryCpuTimings && summaryCpuTimings.paintTiming ? summaryCpuTimings.paintTiming['first-contentful-paint'] : undefined
+  - const summaryCpuLcp = summaryCpuTimings && summaryCpuTimings.largestContentfulPaint ? summaryCpuTimings.largestContentfulPaint.renderTime : undefined
+  //- Reflows are windowed to the latest paint milestone (LCP can land
+  //- before FCP) — mirrors the why-section's prePaintReflows window.
+  - const summaryCpuPaintEnd = Math.max(summaryCpuFcp || 0, summaryCpuLcp || 0) || undefined
+  - const hasCpuRenderSignals = !!(summaryCpu && ((summaryCpuPaintEnd && summaryCpu.forcedReflows && summaryCpu.forcedReflows.filter(r => r.startTime < summaryCpuPaintEnd).reduce((total, r) => total + r.duration, 0) >= 10) || (summaryCpu.nonCompositedAnimations && summaryCpu.nonCompositedAnimations.length > 0)))
+  - const hasRendering = hasRenderingMedia || !!(d.pagexray && d.pagexray.pageSummary && d.pagexray.pageSummary.renderBlocking) || !!(summaryRecalculateStyle && (summaryRecalculateStyle.beforeFCP || summaryRecalculateStyle.beforeLCP)) || hasCpuRenderSignals
 
   include ./tabs.pug
 
