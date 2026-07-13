@@ -49,7 +49,20 @@ block content
   //- rendering/index.pug and the alias mapping in tabScripts.js).
   - const hasRenderingMedia = !!(options.browsertime.video || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
   - const runRecalculateStyle = d.browsertime && d.browsertime.run && d.browsertime.run.renderBlocking ? d.browsertime.run.renderBlocking.recalculateStyle : undefined
-  - const hasRendering = hasRenderingMedia || !!(d.browsertime && d.browsertime.run && d.browsertime.run.screenshots && d.browsertime.run.screenshots.length > 0) || !!(d.pagexray && d.pagexray.run && d.pagexray.run.renderBlocking) || !!(runRecalculateStyle && (runRecalculateStyle.beforeFCP || runRecalculateStyle.beforeLCP))
+  //- The trace-derived CPU signals (forced reflows before first paint,
+  //- non-composited animations) can exist while the recalculate-style
+  //- data is empty — recalc needs an FCP/LCP event in the trace, the
+  //- other trace analyses don't — so they get their own gate clause.
+  //- Forced reflows only count when the run has an FCP: the why-section
+  //- windows them to before first paint and hides them otherwise.
+  - const runCpu = d.browsertime && d.browsertime.run ? d.browsertime.run.cpu : undefined
+  - const runCpuFcp = d.browsertime && d.browsertime.run && d.browsertime.run.timings && d.browsertime.run.timings.paintTiming ? d.browsertime.run.timings.paintTiming['first-contentful-paint'] : undefined
+  - const runCpuLcp = d.browsertime && d.browsertime.run && d.browsertime.run.timings && d.browsertime.run.timings.largestContentfulPaint ? d.browsertime.run.timings.largestContentfulPaint.renderTime : undefined
+  //- Reflows are windowed to the latest paint milestone (LCP can land
+  //- before FCP) — mirrors the why-section's prePaintReflows window.
+  - const runCpuPaintEnd = Math.max(runCpuFcp || 0, runCpuLcp || 0) || undefined
+  - const hasCpuRenderSignals = !!(runCpu && ((runCpuPaintEnd && runCpu.forcedReflows && runCpu.forcedReflows.filter(r => r.startTime < runCpuPaintEnd).reduce((total, r) => total + r.duration, 0) >= 10) || (runCpu.nonCompositedAnimations && runCpu.nonCompositedAnimations.length > 0)))
+  - const hasRendering = hasRenderingMedia || !!(d.browsertime && d.browsertime.run && d.browsertime.run.screenshots && d.browsertime.run.screenshots.length > 0) || !!(d.pagexray && d.pagexray.run && d.pagexray.run.renderBlocking) || !!(runRecalculateStyle && (runRecalculateStyle.beforeFCP || runRecalculateStyle.beforeLCP)) || hasCpuRenderSignals
 
   include ./tabs.pug
 

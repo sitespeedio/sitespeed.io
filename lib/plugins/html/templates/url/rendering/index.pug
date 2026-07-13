@@ -1,8 +1,9 @@
 //- Rendering — the full render story on one tab. In reading order:
 //- what the user saw (video player and/or filmstrip, or the
 //- per-run screenshot gallery), then why rendering was delayed
-//- (recalculate-style work from the Chrome trace and the
-//- render-blocking requests from the HAR).
+//- (recalculate-style work and forced reflows before first paint from
+//- the Chrome trace, the render-blocking requests from the HAR, and a
+//- cross-link to the CPU tab when animations run on the main thread).
 //-
 //- The playback view degrades by configuration, never by file sniffing:
 //-   video + filmstrip : player + transport + HUD + timeline + strip
@@ -43,12 +44,44 @@ include ../../_tableMixins
 - const screenshots = (pageInfo.data.browsertime && pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.screenshots) || []
 - const showRecalculateHint = !hasRecalculateStyle && (options.browser === 'chrome' || options.browser === 'edge')
 
+//- CPU-trace signals for the why-section: forced reflows before first
+//- paint and non-composited animations. `whyCpu` follows the CPU tab's
+//- run picking (per-run indexed array on the summary page, the run
+//- object on iteration pages) and FCP comes from the same run, so the
+//- before-first-paint window lines up with that run's trace.
+- const whyBt = pageInfo.data.browsertime
+- const whyCpu = whyBt ? (isSummary ? (whyBt.pageSummary && whyBt.pageSummary.cpu ? whyBt.pageSummary.cpu[medianRun.runIndex - 1] : undefined) : (whyBt.run ? whyBt.run.cpu : undefined)) : undefined
+- const whyTimings = whyBt ? (isSummary ? (whyBt.pageSummary && whyBt.pageSummary.browserScripts && whyBt.pageSummary.browserScripts[medianRun.runIndex - 1] ? whyBt.pageSummary.browserScripts[medianRun.runIndex - 1].timings : undefined) : (whyBt.run ? whyBt.run.timings : undefined)) : undefined
+- const whyFcp = whyTimings && whyTimings.paintTiming ? whyTimings.paintTiming['first-contentful-paint'] : undefined
+- const whyLcp = whyTimings && whyTimings.largestContentfulPaint ? whyTimings.largestContentfulPaint.renderTime : undefined
+//- Reflows are windowed to before the page painted — a reflow between
+//- FCP and LCP still delays the largest paint (pages that paint early
+//- and then thrash layout would otherwise show nothing here). The
+//- window ends at the LATEST known paint milestone (LCP can land
+//- before FCP in real runs). Whole-load reflow numbers live on the
+//- CPU tab; without any paint milestone there is no window, so the
+//- block stays hidden instead of falling back to whole-load numbers.
+- const whyPaintEnd = Math.max(whyFcp || 0, whyLcp || 0) || undefined
+- const preFcpReflows = whyCpu && whyCpu.forcedReflows && whyFcp ? whyCpu.forcedReflows.filter(r => r.startTime < whyFcp) : []
+- const preLcpReflows = whyCpu && whyCpu.forcedReflows && whyLcp ? whyCpu.forcedReflows.filter(r => r.startTime < whyLcp) : []
+- const prePaintReflows = whyCpu && whyCpu.forcedReflows && whyPaintEnd ? whyCpu.forcedReflows.filter(r => r.startTime < whyPaintEnd) : []
+//- Materiality floor: a handful of milliseconds of pre-paint reflow on
+//- a paint measured in hundreds is noise — showing it as a "why" card
+//- oversells it. 10 ms is deliberately low (thrashing multiplies on
+//- slower devices) but keeps the trivial cases out. The page-level
+//- hasRendering gates mirror this constant — keep them in sync.
+- const prePaintReflowTotal = Math.round(prePaintReflows.reduce((total, r) => total + r.duration, 0) * 10) / 10
+- const reflowsMaterial = prePaintReflowTotal >= 10
+- const nonCompositedCount = whyCpu && whyCpu.nonCompositedAnimations ? whyCpu.nonCompositedAnimations.length : 0
+
 - const renderingLinks = []
 - if (hasVideo || hasFilmstrip) renderingLinks.push({href: '#video', label: 'Playback'})
 - if (hasFilmstrip) renderingLinks.push({href: '#filmstrip', label: 'Filmstrip'})
 - if (screenshots.length > 0) renderingLinks.push({href: '#screenshots', label: 'Screenshots'})
 - if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
+- if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
 - if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
+- if (nonCompositedCount > 0) renderingLinks.push({href: '#main-thread-animations', label: 'Animations'})
 //- A lone Playback pill is just noise — only show jump links when the
 //- tab has more than one section to jump between.
 if renderingLinks.length > 1
@@ -59,7 +92,7 @@ a#rendering
 //- Runs without any playback media still land here for the why-section —
 //- tell the reader what a video/visual-metrics run adds instead of
 //- silently showing a smaller tab.
-if !(hasVideo || hasFilmstrip) && (hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || screenshots.length > 0)
+if !(hasVideo || hasFilmstrip) && (hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || screenshots.length > 0 || reflowsMaterial || nonCompositedCount > 0)
   p.rendering-nomedia
     | This test ran without&nbsp;
     code --video
@@ -248,7 +281,7 @@ if screenshots.length > 0
           .screenshot-card-caption #{filename}
 
 //- Why was rendering delayed — the diagnostic half of the story.
-if hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint
+if hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
   h3 Why was rendering delayed?
 
 if hasRecalculateStyle
@@ -285,4 +318,73 @@ else if showRecalculateHint
     code --cpu
     | .
 
+if reflowsMaterial
+  a#reflows-before-paint
+  //- The totals count every pre-paint reflow, but the offender list drops
+  //- sub-millisecond ones: a busy trace easily carries dozens of sub-ms
+  //- layout events that are individually noise (they round to 0 ms) and
+  //- would bury the reflows worth fixing — while leaving them out of the
+  //- totals would under-report the aggregate cost.
+  //- Round the float sums to one decimal so the tiles never show the
+  //- 51.900000000000006-style floating point residue.
+  - const preFcpTotal = Math.round(preFcpReflows.reduce((total, r) => total + r.duration, 0) * 10) / 10
+  - const preLcpTotal = Math.round(preLcpReflows.reduce((total, r) => total + r.duration, 0) * 10) / 10
+  - const topReflows = prePaintReflows.filter(r => r.duration >= 1).sort((a, b) => b.duration - a.duration).slice(0, 5)
+  - const topReflowMax = topReflows.length > 0 ? topReflows[0].duration : 0
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Forced reflows before the page painted
+      span.listing-card-meta from the Chrome trace
+    p.listing-card-help
+      | JavaScript read a layout value (offsetTop, getBoundingClientRect, …) while the page was mid-change, so the browser had to re-layout synchronously — work that blocks rendering. Reflows before First Contentful Paint delayed the first pixels; reflows before Largest Contentful Paint delayed the main content.
+    .metric-tiles
+      if whyFcp
+        .metric-tile
+          span.metric-tile-label Forced reflows before FCP
+          span.metric-tile-value #{preFcpReflows.length}
+        .metric-tile
+          span.metric-tile-label Time spent in forced reflows before FCP
+          span.metric-tile-value #{h.time.ms(preFcpTotal)}
+      if whyLcp
+        .metric-tile
+          span.metric-tile-label Forced reflows before LCP
+          span.metric-tile-value #{preLcpReflows.length}
+        .metric-tile
+          span.metric-tile-label Time spent in forced reflows before LCP
+          span.metric-tile-value #{h.time.ms(preLcpTotal)}
+    //- Share of the milestone so the reader can judge scale — many small
+    //- reflows are a thrashing pattern worth fixing, but the milliseconds
+    //- alone rarely explain a slow paint.
+    - const shareBase = whyLcp || whyFcp
+    - const shareTotal = whyLcp ? preLcpTotal : preFcpTotal
+    - const reflowShare = shareBase ? Math.round(shareTotal / shareBase * 1000) / 10 : undefined
+    if reflowShare !== undefined
+      p.rendering-why-note That is #{reflowShare} % of the time to #{whyLcp ? 'Largest' : 'First'} Contentful Paint — the number of reflows matters more than the milliseconds: layout thrashing multiplies on slower devices.
+    if topReflows.length > 0
+      .cpu-bars
+        each reflow in topReflows
+          - const pct = topReflowMax > 0 ? (reflow.duration / topReflowMax * 100) : 0
+          .cpu-bar-row
+            span.cpu-bar-asset
+              if reflow.triggeredByUrl
+                a(href=reflow.triggeredByUrl, title=reflow.triggeredByUrl)= h.shortAsset(reflow.triggeredByUrl, true)
+              else
+                span.cpu-bar-anon Anonymous / inline
+            .cpu-bar-track
+              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
+            span.cpu-bar-value
+              | #{reflow.duration.toFixed(0)} ms
+              span.cpu-bar-sub  · at #{h.time.ms(reflow.startTime)}
+    p.listing-card-help
+      a(href='#cpu-forced-reflows', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See every forced reflow for the whole page load on the CPU tab
+
 include ./blocking.pug
+
+//- Non-composited animations are a jank signal, not a first-paint
+//- delay — one quiet cross-link is enough, the CPU tab owns the detail.
+if nonCompositedCount > 0
+  a#main-thread-animations
+  p.rendering-why-note
+    | #{nonCompositedCount} #{nonCompositedCount === 1 ? 'animation runs' : 'animations run'} on the main thread instead of the compositor — they can make the rendering you see above janky.&nbsp;
+    a(href='#cpu-animations', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See them on the CPU tab
+    | .
