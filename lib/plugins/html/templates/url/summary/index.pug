@@ -43,10 +43,14 @@ block content
           each error in errors
             li #{error} 
               b (#{tool})
-  //- Video and filmstrip are one merged Rendering tab/section. The old
-  //- #video and #filmstrip anchors stay alive inside it (see
-  //- rendering/index.pug and the alias mapping in tabScripts.js).
-  - const hasRendering = !!(options.browsertime.video || options.browsertime.enableVideoRun || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+  //- The Rendering tab exists whenever there is a render story to tell:
+  //- video or filmstrip, render-blocking requests from the HAR, or
+  //- recalculate-style data from the Chrome trace. The old #video,
+  //- #filmstrip and #requests-render-blocking anchors stay alive inside
+  //- it (see rendering/index.pug and the alias mapping in tabScripts.js).
+  - const hasRenderingMedia = !!(options.browsertime.video || options.browsertime.enableVideoRun || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+  - const summaryRecalculateStyle = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.renderBlocking && d.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] ? d.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1].recalculateStyle : undefined
+  - const hasRendering = hasRenderingMedia || !!(d.pagexray && d.pagexray.pageSummary && d.pagexray.pageSummary.renderBlocking) || !!(summaryRecalculateStyle && (summaryRecalculateStyle.beforeFCP || summaryRecalculateStyle.beforeLCP))
 
   include ./tabs.pug
 

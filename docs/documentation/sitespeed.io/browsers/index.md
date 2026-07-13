@@ -143,8 +143,8 @@ You can also click on the request and see the exact blocking info from Chrome.
 ![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-You can also see a summary on the Page Xray tab and see what kind of blocking information Chrome provides.
-![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg){:loading="lazy"}
+You can also see a summary on the Rendering tab (together with the video/filmstrip and the recalculate-style metrics) and see what kind of blocking information Chrome provides.
+![Render blocking requests on the Rendering tab]({{site.baseurl}}/img/page-xray-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Choosing Chrome version

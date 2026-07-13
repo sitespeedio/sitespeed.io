@@ -1,4 +1,7 @@
-if pagexray.renderBlocking
+//- Included from rendering/index.pug, which defines `pagexray` as the
+//- run (iteration page) or pageSummary (summary page) shape — or
+//- undefined when the pagexray plugin didn't run, hence the guard.
+if pagexray && pagexray.renderBlocking
   a#requests-render-blocking
   //- Chrome ships the status in two spelling families (potentially_blocking
   //- AND potentiallyblocking can appear in the same HAR, depending on which

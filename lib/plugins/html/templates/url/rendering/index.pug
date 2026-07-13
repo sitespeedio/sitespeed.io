@@ -1,20 +1,26 @@
-//- Rendering — the merged video + filmstrip experience. One card with
-//- the video player (or a large frame preview when the run has no
-//- video), a transport row, milestone HUD chips and a clickable
-//- milestone timeline, followed by the filmstrip as one chronological
-//- strip that stays in sync with the playhead.
+//- Rendering — the full render story on one tab. In reading order:
+//- what the user saw (video player and/or filmstrip, or the
+//- per-run screenshot gallery), then why rendering was delayed
+//- (recalculate-style work from the Chrome trace and the
+//- render-blocking requests from the HAR).
 //-
-//- The view degrades by configuration, never by file sniffing:
+//- The playback view degrades by configuration, never by file sniffing:
 //-   video + filmstrip : player + transport + HUD + timeline + strip
 //-   filmstrip only    : a large frame preview replaces the player,
 //-                       frames/arrow keys drive it, play steps through
 //-                       the frames, speed buttons and the download
 //-                       link disappear
 //-   video only        : player + timeline + HUD, no strip
-//-   neither           : the section is never included (page gating)
+//-   neither           : no player, preview, transport or strip at all —
+//-                       the tab can still exist for the screenshots and
+//-                       the why-was-rendering-delayed cards (page gating)
 //-
-//- #video and #filmstrip stay as anchors inside this section so old
-//- deep links keep working — the tab script maps both to #rendering.
+//- #video, #filmstrip, #screenshots and #requests-render-blocking stay
+//- as anchors inside this section so old deep links keep working — the
+//- tab script maps them all to #rendering.
+
+include ../includes/_quicklinks
+include ../../_tableMixins
 
 - const isSummary = !!medianRun
 - const runIndex = isSummary ? medianRun.runIndex : iteration
@@ -23,6 +29,43 @@
 - const filmstripPath = 'data/filmstrip/' + runIndex + '/'
 - const hasVideo = !!(options.browsertime.video || (isSummary && options.browsertime.enableVideoRun))
 - const hasFilmstrip = !!(((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+
+//- Why-section data. `pagexray` mirrors how the PageXray tab picks its
+//- shape (run on iteration pages, pageSummary on the summary page) and
+//- the recalculate-style block mirrors how the Metrics tab picks the
+//- browsertime renderBlocking data for the same run.
+- const pagexray = pageInfo.data.pagexray ? (pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary) : undefined
+- const btRenderBlocking = pageInfo.data.browsertime ? (isSummary ? (pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.renderBlocking ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : undefined) : (pageInfo.data.browsertime.run ? pageInfo.data.browsertime.run.renderBlocking : undefined)) : undefined
+- const recalculateStyle = btRenderBlocking ? btRenderBlocking.recalculateStyle : undefined
+- const hasRecalculateStyle = !!(recalculateStyle && (recalculateStyle.beforeFCP || recalculateStyle.beforeLCP))
+//- Screenshots are stored per iteration, so the gallery only exists on
+//- the run pages — the summary page never had a screenshot gallery.
+- const screenshots = (pageInfo.data.browsertime && pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.screenshots) || []
+- const showRecalculateHint = !hasRecalculateStyle && (options.browser === 'chrome' || options.browser === 'edge')
+
+- const renderingLinks = []
+- if (hasVideo || hasFilmstrip) renderingLinks.push({href: '#video', label: 'Playback'})
+- if (hasFilmstrip) renderingLinks.push({href: '#filmstrip', label: 'Filmstrip'})
+- if (screenshots.length > 0) renderingLinks.push({href: '#screenshots', label: 'Screenshots'})
+- if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
+- if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
+//- A lone Playback pill is just noise — only show jump links when the
+//- tab has more than one section to jump between.
+if renderingLinks.length > 1
+  +quicklinks(renderingLinks)
+
+a#rendering
+
+//- Runs without any playback media still land here for the why-section —
+//- tell the reader what a video/visual-metrics run adds instead of
+//- silently showing a smaller tab.
+if !(hasVideo || hasFilmstrip) && (hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || screenshots.length > 0)
+  p.rendering-nomedia
+    | This test ran without&nbsp;
+    code --video
+    | &nbsp;and&nbsp;
+    code --visualMetrics
+    | , so there is no video, filmstrip or milestone timeline of how the page rendered. Add them to your run to see the page paint over time and to get visual metrics like First Visual Change and Speed Index.
 
 if hasVideo || hasFilmstrip
   //- Milestones come from the run the video/filmstrip was recorded for
@@ -71,7 +114,6 @@ if hasVideo || hasFilmstrip
   - for (let t = 0; t <= renderingEnd; t += tickStep) ticks.push(t)
 
   #rendering-view
-    a#rendering
     a#video
     .listing-card.rendering-card
       .listing-card-header
@@ -182,3 +224,65 @@ if hasVideo || hasFilmstrip
 
   script(type='text/javascript')
     include ../includes/renderingView.js
+
+//- Screenshots — the automatic (and user generated) screenshots from
+//- this run. They exist without video, so the card is gated on the
+//- data, not on the playback options.
+if screenshots.length > 0
+  a#screenshots
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Screenshots
+      span.listing-card-meta #{screenshots.length} #{screenshots.length === 1 ? 'screenshot' : 'screenshots'}
+    //- Responsive thumbnail grid; click a card to open the full-size
+    //- screenshot in a new tab. Auto-fit columns adapt to whatever
+    //- viewport size the report is opened in, instead of stacking each
+    //- screenshot at full width.
+    .screenshots-gallery
+      each screenshot in screenshots
+        - const filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
+        - const screenshotName = rootPath + screenshot
+        a.screenshot-card(id=filename, href=screenshotName)
+          .screenshot-card-thumb-wrap
+            img.screenshot-card-thumb(src=screenshotName, alt=filename, loading='lazy')
+          .screenshot-card-caption #{filename}
+
+//- Why was rendering delayed — the diagnostic half of the story.
+if hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint
+  h3 Why was rendering delayed?
+
+if hasRecalculateStyle
+  a#recalculate-style
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Recalculate style
+      span.listing-card-meta from the Chrome trace
+    p.listing-card-help
+      | Style the browser had to recalculate before it could paint — many elements or a lot of time spent here points at expensive CSS on the critical rendering path.
+    .metric-tiles
+      if recalculateStyle.beforeFCP
+        .metric-tile
+          span.metric-tile-label Elements that needed recalculate style before FCP
+          span.metric-tile-value #{recalculateStyle.beforeFCP.elements}
+        .metric-tile
+          span.metric-tile-label Time spent in recalculate style before FCP
+          span.metric-tile-value #{h.time.ms(recalculateStyle.beforeFCP.durationInMillis)}
+      if recalculateStyle.beforeLCP
+        .metric-tile
+          span.metric-tile-label Elements that needed recalculate style before LCP
+          span.metric-tile-value #{recalculateStyle.beforeLCP.elements}
+        .metric-tile
+          span.metric-tile-label Time spent in recalculate style before LCP
+          span.metric-tile-value #{h.time.ms(recalculateStyle.beforeLCP.durationInMillis)}
+else if showRecalculateHint
+  //- The recalculate-style counts come from parsing a Chrome timeline
+  //- trace, gated on --cpu / --chrome.timeline. The matching Firefox
+  //- Gecko profile doesn't carry the same `UpdateLayoutTree.elementCount`
+  //- events, so the hint is Chromium-only — pointing Firefox or Safari
+  //- users at --cpu would be misleading.
+  p.metrics-cpu-hint
+    | Want recalculate-style metrics for FCP and LCP, plus CPU long tasks? Run with&nbsp;
+    code --cpu
+    | .
+
+include ./blocking.pug

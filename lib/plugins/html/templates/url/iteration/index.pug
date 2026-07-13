@@ -41,10 +41,15 @@ block content
   .index-link
     a.button.button--primary(href=urlLink) Back to summary
 
-  //- Video and filmstrip are one merged Rendering tab/section. The old
-  //- #video and #filmstrip anchors stay alive inside it (see
+  //- The Rendering tab exists whenever there is a render story to tell:
+  //- video or filmstrip, this run's screenshots, render-blocking
+  //- requests from the HAR, or recalculate-style data from the Chrome
+  //- trace. The old #video, #filmstrip, #screenshots and
+  //- #requests-render-blocking anchors stay alive inside it (see
   //- rendering/index.pug and the alias mapping in tabScripts.js).
-  - const hasRendering = !!(options.browsertime.video || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+  - const hasRenderingMedia = !!(options.browsertime.video || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+  - const runRecalculateStyle = d.browsertime && d.browsertime.run && d.browsertime.run.renderBlocking ? d.browsertime.run.renderBlocking.recalculateStyle : undefined
+  - const hasRendering = hasRenderingMedia || !!(d.browsertime && d.browsertime.run && d.browsertime.run.screenshots && d.browsertime.run.screenshots.length > 0) || !!(d.pagexray && d.pagexray.run && d.pagexray.run.renderBlocking) || !!(runRecalculateStyle && (runRecalculateStyle.beforeFCP || runRecalculateStyle.beforeLCP))
 
   include ./tabs.pug
 
@@ -124,10 +129,6 @@ block content
     if d.thirdparty && d.thirdparty.run
       section#thirdparty-panel
         include ../thirdparty/index.pug
-
-    if d.browsertime && d.browsertime.run
-      section#screenshots-panel
-        include ../screenshots/index.pug
 
     each pageRun in pageRuns
       - panelName = pageRun.id + '-panel'

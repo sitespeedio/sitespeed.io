@@ -10,6 +10,12 @@
   margin: 0 0 1.5rem 0;
 }
 
+// The gallery sits inside a .listing-card — the card already provides
+// the trailing space, so drop the gallery's own bottom margin there.
+.listing-card > .screenshots-gallery {
+  margin-bottom: 0;
+}
+
 .screenshot-card {
   display: flex;
   flex-direction: column;

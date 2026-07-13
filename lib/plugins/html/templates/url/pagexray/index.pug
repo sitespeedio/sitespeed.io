@@ -15,8 +15,6 @@ if pageInfo.data.browsertime && pageInfo.data.browsertime.console
   - pagexrayLinks.push({href: '#console-log', label: 'Console'})
 if pagexray.afterOnLoad.requests > 0
   - pagexrayLinks.push({href: '#requests-after-onload', label: 'After onLoad'})
-if pagexray.renderBlocking
-  - pagexrayLinks.push({href: '#requests-render-blocking', label: 'Render-blocking'})
 if hasCoverage
   - pagexrayLinks.push({href: '#coverage', label: 'Coverage'})
 +quicklinks(pagexrayLinks)
@@ -116,7 +114,9 @@ if pageInfo.data.browsertime && pageInfo.data.browsertime.console
 
 include ./after.pug
 
-include ./blocking.pug
+//- The render-blocking requests card lives on the Rendering tab
+//- (rendering/blocking.pug) — it is part of the render story, not of
+//- how the page is built.
 
 if hasCoverage
   include ../coverage/index.pug
