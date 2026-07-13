@@ -1,9 +1,9 @@
 //
 // SCREENSHOTS — light
 // ===================
-// Per-page Screenshots tab gallery. Each screenshot is a card with a
-// thumbnail and filename caption; the card itself links to the full
-// resolution image.
+// Per-run screenshot gallery on the Rendering tab. Each screenshot is
+// a card with a thumbnail and filename caption; the card itself links
+// to the full resolution image.
 //
 
 .screenshots-gallery {
@@ -11,6 +11,12 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
   margin: 0 0 1.5rem 0;
+}
+
+// The gallery sits inside a .listing-card — the card already provides
+// the trailing space, so drop the gallery's own bottom margin there.
+.listing-card > .screenshots-gallery {
+  margin-bottom: 0;
 }
 
 .screenshot-card {

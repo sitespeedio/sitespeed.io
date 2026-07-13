@@ -157,28 +157,10 @@ if browsertime
             a(href=baseHelpURL + name) #{name}
           span.metric-tile-value #{h.time.ms(value)}
 
-  if renderBlocking && renderBlocking.recalculateStyle.beforeFCP
-    details.iter-group(open)
-      summary.iter-group-summary
-        span.iter-group-title First Contentful Paint info
-      .metric-tiles
-        .metric-tile
-          span.metric-tile-label Elements that needed recalculate style before FCP
-          span.metric-tile-value #{renderBlocking.recalculateStyle.beforeFCP.elements}
-        .metric-tile
-          span.metric-tile-label Time spent in recalculate style before FCP
-          span.metric-tile-value #{h.time.ms(renderBlocking.recalculateStyle.beforeFCP.durationInMillis)}
-  else if options.browser === 'chrome' || options.browser === 'edge'
-    //- The render-blocking + recalculate-style counts come from
-    //- parsing a Chrome timeline trace, gated on --cpu /
-    //- --chrome.timeline. The matching Firefox Gecko profile doesn't
-    //- carry the same `UpdateLayoutTree.elementCount` events, so the
-    //- hint is Chromium-only — pointing Firefox or Safari users at
-    //- --cpu would be misleading.
-    p.metrics-cpu-hint
-      | Want render-blocking and recalculate-style metrics for FCP and LCP, plus CPU long tasks? Run with&nbsp;
-      code --cpu
-      | .
+  //- The recalculate-style tiles (and the run-with---cpu hint) live on
+  //- the Rendering tab now — they explain why rendering was delayed.
+  //- `renderBlocking` stays declared above because the LCP card keeps
+  //- its one-line recalculate-before-LCP entry (see lcp.pug).
 
   details.iter-group(open)
     summary.iter-group-summary
