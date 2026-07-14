@@ -224,12 +224,12 @@ script(type='text/javascript').
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     const fmtBytes = n => {
-      if (n == null || !isFinite(n)) return '—';
+      if (n == null || !isFinite(n)) return '–';
       if (n < 1024) return n + ' B';
       if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
       return (n / 1024 / 1024).toFixed(2) + ' MB';
     };
-    const fmtMs = n => (n == null || n < 0) ? '—'
+    const fmtMs = n => (n == null || n < 0) ? '–'
       : (n < 1000 ? Math.round(n) + ' ms' : (n / 1000).toFixed(2) + ' s');
 
     // Decode the request body. waterfall-tools' loader hoists the HAR
@@ -284,7 +284,7 @@ script(type='text/javascript').
       const status = response.status || req.status || req._status || 0;
       const statusText = response.statusText || req.statusText || '';
       detailUrl.textContent = url;
-      detailStatus.textContent = status || '—';
+      detailStatus.textContent = status || '–';
       detailStatus.dataset.status = String(status || '');
       detailMethod.textContent = method;
 
@@ -292,10 +292,10 @@ script(type='text/javascript').
       const general = document.getElementById('wt-detail-body-general');
       const responseSize = content.size || response.bodySize || req.bytes_in || 0;
       const transferSize = response._transferSize || response.bodySize || 0;
-      const protocol = response.httpVersion || req.httpVersion || req._protocol || '—';
-      const mimeType = content.mimeType || req.mimeType || '—';
-      const priority = req._priority || entry._priority || '—';
-      const initiator = req._initiator || entry._initiator || req._initiator_detail || '—';
+      const protocol = response.httpVersion || req.httpVersion || req._protocol || '–';
+      const mimeType = content.mimeType || req.mimeType || '–';
+      const priority = req._priority || entry._priority || '–';
+      const initiator = req._initiator || entry._initiator || req._initiator_detail || '–';
       general.innerHTML = '<table>'
         + '<tr><th>Status</th><td>' + escAttr(status) + ' ' + escAttr(statusText) + '</td></tr>'
         + '<tr><th>Method</th><td>' + escAttr(method) + '</td></tr>'
@@ -305,7 +305,7 @@ script(type='text/javascript').
         + (transferSize && transferSize !== responseSize ? '<tr><th>Transferred</th><td>' + escAttr(fmtBytes(transferSize)) + '</td></tr>' : '')
         + '<tr><th>Protocol</th><td>' + escAttr(protocol) + '</td></tr>'
         + '<tr><th>Priority</th><td>' + escAttr(priority) + '</td></tr>'
-        + (initiator !== '—' ? '<tr><th>Initiated by</th><td>' + escAttr(initiator) + '</td></tr>' : '')
+        + (initiator !== '–' ? '<tr><th>Initiated by</th><td>' + escAttr(initiator) + '</td></tr>' : '')
         + '</table>';
 
       // Headers tab — request + response sections.
@@ -439,7 +439,7 @@ script(type='text/javascript').
         return '<div class="wt-detail-timing-bar">'
           + '<span class="label">' + p + '</span>'
           + '<span class="track">' + (v > 0 ? '<span style="width: ' + w + '%; background: ' + color + ';"></span>' : '') + '</span>'
-          + '<span class="ms">' + escAttr(v < 0 ? '—' : fmtMs(v)) + '</span>'
+          + '<span class="ms">' + escAttr(v < 0 ? '–' : fmtMs(v)) + '</span>'
           + '</div>';
       }).join('');
       const totalRow = '<div class="wt-detail-timing-bar wt-detail-timing-total">'
@@ -494,13 +494,13 @@ script(type='text/javascript').
         const truncated = displayText.length > RENDER_CAP;
         if (truncated) {
           displayText = displayText.slice(0, RENDER_CAP)
-            + '\n\n…[truncated — body is ' + fmtBytes(fullText.length)
+            + '\n\n…[truncated: body is ' + fmtBytes(fullText.length)
             + ', showing first ' + fmtBytes(RENDER_CAP)
             + '. Copy body grabs the full content.]';
         }
 
         const note = truncated
-          ? '<p class="wt-detail-empty" style="margin:0 0 8px;">Body is ' + fmtBytes(fullText.length) + ' — preview truncated for performance. Use Copy body for the full content.</p>'
+          ? '<p class="wt-detail-empty" style="margin:0 0 8px;">Body is ' + fmtBytes(fullText.length) + '; preview truncated for performance. Use Copy body for the full content.</p>'
           : '';
 
         bodyEl.innerHTML = '<div class="wt-detail-body-toolbar"><button type="button" class="wt-copy-btn" id="wt-detail-copy-body">Copy body</button></div>'

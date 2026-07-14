@@ -14,7 +14,7 @@ if ttfb && fcp && lcp
   - const rpSegments = []
   - rpSegments.push({label: 'Network', short: '0 → TTFB', ms: ttfb, color: 'rgb(185,28,28)', help: 'Time spent in DNS, TCP, TLS and waiting for the server to start sending bytes.'})
   - rpSegments.push({label: 'Render-blocking', short: 'TTFB → FCP', ms: fcp - ttfb, color: 'rgb(217,119,6)', help: 'Time spent parsing HTML, fetching and parsing render-blocking CSS and critical JS before any pixel was painted.'})
-  - rpSegments.push({label: 'Largest paint', short: 'FCP → LCP', ms: lcp - fcp, color: 'rgb(0, 149, 210)', help: 'Time between the first paint and the largest contentful paint — usually waiting on the hero image or a large block of text.'})
+  - rpSegments.push({label: 'Largest paint', short: 'FCP → LCP', ms: lcp - fcp, color: 'rgb(0, 149, 210)', help: 'Time between the first paint and the largest contentful paint, usually waiting on the hero image or a large block of text.'})
   - if (fullyLoaded && fullyLoaded > lcp) rpSegments.push({label: 'Tail', short: 'LCP → loaded', ms: fullyLoaded - lcp, color: 'rgb(124,58,237)', help: 'Time after LCP until the load event fires. Doesn\'t affect Web Vitals but still uses bandwidth and CPU.'})
   .listing-card.render-phase
     .listing-card-header
@@ -24,7 +24,7 @@ if ttfb && fcp && lcp
       .render-phase-bar
         each seg in rpSegments
           - const w = (seg.ms / rpEnd * 100).toFixed(2)
-          .render-phase-segment(style='width: ' + w + '%; --rp-color: ' + seg.color + ';', title=seg.label + ': ' + seg.ms.toFixed(0) + ' ms — ' + seg.help)
+          .render-phase-segment(style='width: ' + w + '%; --rp-color: ' + seg.color + ';', title=seg.label + ': ' + seg.ms.toFixed(0) + ' ms · ' + seg.help)
             if Number(w) >= 8
               span.render-phase-segment-label #{seg.label} #{h.time.ms(seg.ms.toFixed(0))}
       ul.render-phase-legend

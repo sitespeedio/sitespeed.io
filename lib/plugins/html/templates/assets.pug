@@ -22,7 +22,7 @@ mixin rows(assets, weightMax, heavyWarning, heavyError, shortCacheTime)
           span.assets-type-swatch(class='type-chip--' + asset.type)
           | #{asset.type}
         else
-          | —
+          | –
       td.number.cell--bar(class=weightTone, data-title='transfer', data-value=weight)
         span.cell-bar-fill(style='width: ' + pct.toFixed(2) + '%')
         span.cell-bar-text= h.size.format(weight)
@@ -95,7 +95,7 @@ block content
           span.listing-card-meta Top #{count} of #{fullCount}
         else
           span.listing-card-meta #{fullCount} #{fullCount === 1 ? 'asset' : 'assets'}
-      p.listing-card-help The heaviest assets across all tested pages, biggest first. Transfer is compressed bytes over the wire, size is uncompressed bytes after decoding; when the browser doesn't report transfer size — for example Safari — the content size is shown instead. Yellow/red transfer values mark assets whose wire bytes dominate page weight; yellow cache times expire within an hour. Click any column header to re-sort#{count < fullCount ? ', and use --maxAssets to list more' : ''}.
+      p.listing-card-help The heaviest assets across all tested pages, biggest first. Transfer is compressed bytes over the wire, size is uncompressed bytes after decoding; when the browser doesn't report transfer size (for example Safari), the content size is shown instead. Yellow/red transfer values mark assets whose wire bytes dominate page weight; yellow cache times expire within an hour. Click any column header to re-sort#{count < fullCount ? ', and use --maxAssets to list more' : ''}.
       .responsive
         table.data-table(data-sortable, id='assets')
           +rowHeading(['url', 'type', 'transfer', 'size', 'cache time', 'time since last modified', 'count'])

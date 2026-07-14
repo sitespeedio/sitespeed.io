@@ -14,7 +14,7 @@ block content
       h3.listing-card-title Errors
       if errorCount > 0
         span.errors-chip #{h.plural(errorCount, 'error')} during testing
-    p.listing-card-help Something went wrong while these pages were tested, so their data may be missing or incomplete in the rest of the report. The pill on each error shows which tool reported it — re-run the test and check the log if an error keeps coming back.
+    p.listing-card-help Something went wrong while these pages were tested, so their data may be missing or incomplete in the rest of the report. The pill on each error shows which tool reported it. Re-run the test and check the log if an error keeps coming back.
     .responsive
       //- Two non-numeric columns — sorting them is meaningless, so no
       //- data-sortable. The data-title attributes keep the labels when

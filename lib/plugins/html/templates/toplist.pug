@@ -99,7 +99,7 @@ block content
   - const typeNames = {javascript: 'JavaScript', css: 'CSS', image: 'image', font: 'font', html: 'HTML', svg: 'SVG', json: 'JSON', xml: 'XML', plain: 'text', video: 'video', audio: 'audio', favicon: 'favicon'}
   //- One-line WHY per size section so the reader knows what fixing the
   //- list buys them.
-  - const typeHints = {javascript: 'Every JavaScript byte is downloaded, parsed and executed on the main thread — trimming the biggest bundles pays off twice.', css: 'CSS blocks rendering until it is downloaded and parsed, so the biggest files delay first paint the most.', image: 'Images are usually the easiest bytes to win back: resize them, compress harder or switch to a modern format like AVIF or WebP.', font: 'Web fonts often keep text invisible until they arrive — subset the biggest ones or use font-display to show text earlier.', html: 'The HTML document is the first byte of everything — nothing starts rendering before it arrives.'}
+  - const typeHints = {javascript: 'Every JavaScript byte is downloaded, parsed and executed on the main thread, so trimming the biggest bundles pays off twice.', css: 'CSS blocks rendering until it is downloaded and parsed, so the biggest files delay first paint the most.', image: 'Images are usually the easiest bytes to win back: resize them, compress harder or switch to a modern format like AVIF or WebP.', font: 'Web fonts often keep text invisible until they arrive. Subset the biggest ones or use font-display to show text earlier.', html: 'The HTML document is the first byte of everything: nothing starts rendering before it arrives.'}
   - const bySize = assetsBySize || {}
   //- Worst-offenders-first: JavaScript and CSS block rendering, images and
   //- fonts are the usual byte hogs, the HTML document closes the group.
@@ -164,15 +164,15 @@ block content
       +listingCard(type, 'Largest ' + (typeNames[type] || type) + ' files', typeHints[type] || 'The largest ' + (typeNames[type] || type) + ' files across the tested pages.', headingsBySize, bySize[type], false, false, showPage)
 
     if slowest.length > 0
-      +listingCard('slowest', 'Slowest responses', 'These assets took the longest time to download — everything that waits for them (rendering, other requests on the same connection) is held up too.', headingsByTime, slowest, true, true, showPage)
+      +listingCard('slowest', 'Slowest responses', 'These assets took the longest time to download. Everything that waits for them (rendering, other requests on the same connection) is held up too.', headingsByTime, slowest, true, true, showPage)
 
     if shortCache.length > 0
-      +listingCard('shortcache', 'Short or no cache time', 'Assets with a short cache time are re-downloaded by returning visitors — a longer cache lifetime makes repeat visits faster for free.', headingsWithType, shortCache, false, true, showPage)
+      +listingCard('shortcache', 'Short or no cache time', 'Assets with a short cache time are re-downloaded by returning visitors. A longer cache lifetime makes repeat visits faster for free.', headingsWithType, shortCache, false, true, showPage)
 
     if largest3rd.length > 0
-      +listingCard('largestThirdParty', 'Largest third-party files', 'Third-party content is outside your direct control — the fix is usually to load less of it, or load it asynchronously.', headingsWithType, largest3rd, false, true, showPage)
+      +listingCard('largestThirdParty', 'Largest third-party files', 'Third-party content is outside your direct control: the fix is usually to load less of it, or load it asynchronously.', headingsWithType, largest3rd, false, true, showPage)
 
     if slowest3rd.length > 0
-      +listingCard('slowestThirdParty', 'Slowest third-party responses', 'Slow third-party responses delay your page even though you cannot fix their servers — load them asynchronously or drop them.', headingsByTime, slowest3rd, true, true, showPage)
+      +listingCard('slowestThirdParty', 'Slowest third-party responses', 'Slow third-party responses delay your page even though you cannot fix their servers. Load them asynchronously or drop them.', headingsByTime, slowest3rd, true, true, showPage)
   else
     p No asset data was collected in this run.

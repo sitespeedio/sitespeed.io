@@ -19,13 +19,13 @@ if pagexray && pagexray.renderBlocking
   //- values (in_body_parser_blocking) mean nothing to most readers.
   -
     const RB_SECTIONS = [
-      { key: 'blocking', label: 'Blocking', tone: 'error', explain: 'The browser paints nothing until these are downloaded and processed — they directly delay first paint and LCP. Load JavaScript with defer or async, and keep non-critical CSS out of the critical path with media attributes.' },
-      { key: 'inbodyparserblocking', label: 'Blocks the body parser', tone: 'warning', explain: 'Loaded inside the body in a way that halts the HTML parser — nothing after them in the document can render until they finish. Move them out of the body or load them with defer or async.' },
-      { key: 'potentiallyblocking', label: 'Potentially blocking', tone: '', explain: 'Chrome could not tell up front whether these block rendering — depending on how the page uses them, they may. Worth a look if the metrics above point at slow rendering.' }
+      { key: 'blocking', label: 'Blocking', tone: 'error', explain: 'The browser paints nothing until these are downloaded and processed; they directly delay first paint and LCP. Load JavaScript with defer or async, and keep non-critical CSS out of the critical path with media attributes.' },
+      { key: 'inbodyparserblocking', label: 'Blocks the body parser', tone: 'warning', explain: 'Loaded inside the body in a way that halts the HTML parser: nothing after them in the document can render until they finish. Move them out of the body or load them with defer or async.' },
+      { key: 'potentiallyblocking', label: 'Potentially blocking', tone: '', explain: 'Chrome could not tell up front whether these block rendering; depending on how the page uses them, they may. Worth a look if the metrics above point at slow rendering.' }
     ]
     const known = new Set(RB_SECTIONS.map(x => x.key))
     const other = renderBlockingAssets.filter(a => !known.has(rbNorm(a.renderBlocking)))
-    if (other.length > 0) RB_SECTIONS.push({ key: '__other', label: 'Other', tone: '', explain: 'Chrome reported a blocking status this report does not know about yet — shown here so nothing is hidden.', raw: true })
+    if (other.length > 0) RB_SECTIONS.push({ key: '__other', label: 'Other', tone: '', explain: 'Chrome reported a blocking status this report does not know about yet, shown here so nothing is hidden.', raw: true })
   .listing-card
     .listing-card-header
       h3.listing-card-title Render blocking requests

@@ -68,7 +68,7 @@ block content
             | #{h.plural(pageCount, 'page')}
             if hasVitals && pageCount > 1
               span.listing-card-meta-sep ·
-              | worst first — click a column header to re-sort
+              | worst first, click a column header to re-sort
         if pageCount > 5
           .pages-toolbar
             span.pages-filter-count(id='pages-filter-count')
@@ -87,7 +87,7 @@ block content
                       if row.vitals.length > 0
                         //- Verdict pill and the dots each get their own row
                         //- in the cell; hovering a dot spells out which
-                        //- metric it is: "<metric> <value> — <status>".
+                        //- metric it is: "<metric> <value> · <status>".
                         .pages-status-cell
                           span.pages-verdict(class=severityClass[row.severity], title='Worst status across the Web Vitals measured for this page')= wvStatusLabel(severityClass[row.severity])
                           span.pages-dots
@@ -95,7 +95,7 @@ block content
                               //- Instant CSS tooltip (data-tip) — the native
                               //- title only shows after a hover delay and the
                               //- help cursor read as a broken "?" affordance.
-                              - const tip = v.label + ' ' + v.text + ' \u2014 ' + wvStatusLabel(v.cssClass)
+                              - const tip = v.label + ' ' + v.text + ' \u00b7 ' + wvStatusLabel(v.cssClass)
                               span.pages-dot(class=v.cssClass, data-tip=tip, aria-label=tip)
                       else
                         | –

@@ -77,9 +77,9 @@ block content
       - const graded = counts[0] + counts[1] + counts[2]
       - const failing = counts[1] + counts[2]
       - let verdict
-      - if (graded === 1) verdict = failing === 0 ? 'The page passes every check.' : (counts[2] > 0 ? 'The page is below the bar — the dots show where.' : 'The page needs work — the dots show where.')
+      - if (graded === 1) verdict = failing === 0 ? 'The page passes every check.' : (counts[2] > 0 ? 'The page is below the bar; the dots show where.' : 'The page needs work; the dots show where.')
       - else if (failing === 0) verdict = 'Every page passes every subject.'
-      - else verdict = h.plural(failing, 'page') + (counts[2] > 0 ? ' below the bar — the dots show which.' : ' need work — the dots show which.')
+      - else verdict = h.plural(failing, 'page') + (counts[2] > 0 ? ' below the bar; the dots show which.' : ' need work; the dots show which.')
 
       //- URLs that errored and produced no data never reach scorecardPages
       //- (getWorkingUrls filters them out), so they would silently shrink
@@ -162,7 +162,7 @@ block content
                     - const dtop = 30 + (pageIndex.get(dp) % 3) * 20
                     - const tipside = dleft > 78 ? ' pagedot--tipleft' : (dleft < 8 ? ' pagedot--tipright' : '')
                     - const dotName = h.short(decodeURIComponent(dp.displayName), 40)
-                    a.pagedot(class='pagedot--' + dg + tipside, href=dp.href, style='left:' + dleft + '%;top:' + dtop + '%', data-page=pageIndex.get(dp), data-tip=dotName + ' · ' + s.fmt(dp[s.key]) + ' — open report', aria-label=dotName + ' — ' + s.name + ' ' + s.fmt(dp[s.key]) + ' — open the page report')
+                    a.pagedot(class='pagedot--' + dg + tipside, href=dp.href, style='left:' + dleft + '%;top:' + dtop + '%', data-page=pageIndex.get(dp), data-tip=dotName + ' · ' + s.fmt(dp[s.key]) + ' · open report', aria-label=dotName + ', ' + s.name + ' ' + s.fmt(dp[s.key]) + ', open the page report')
                   if s.hib
                     span.zonelabel.zonelabel--left poor under #{s.zonePoor}
                     span.zonelabel.zonelabel--right good over #{s.zoneGood}
@@ -178,9 +178,9 @@ block content
                 else
                   small median
           if (scorecardPages || []).length === 1
-            .subjects-hint The dot on each track is your page — click it to open the page report.
+            .subjects-hint The dot on each track is your page; click it to open the page report.
           else if (scorecardPages || []).length > 1
-            .subjects-hint Each dot is one page — hover to trace it across metrics, click to open its report.
+            .subjects-hint Each dot is one page; hover to trace it across metrics, click to open its report.
 
       //- Trace one page across metrics: hovering any dot highlights the
       //- same page's dots (matched on data-page) on every track and dims
