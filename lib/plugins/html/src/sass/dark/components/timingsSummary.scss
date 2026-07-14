@@ -71,3 +71,32 @@
   display: inline-block;
   margin-right: 6px;
 }
+
+// The "Runs agree?" pill grades run-to-run agreement, never speed
+// (see the agreeCell mixin in summaryBox.pug). stable/disagree use
+// the shared status tints; identical stays neutral on purpose —
+// sameness is good news but shouldn't compete with the Web Vitals
+// verdict dots for attention.
+.timings-table .timings-agree {
+  display: inline-flex;
+  padding: 1px 9px;
+  border-radius: $radius--pill;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  white-space: nowrap;
+}
+
+.timings-table .timings-agree--stable {
+  background: $color--ok-bg;
+  color: $color--ok;
+}
+
+.timings-table .timings-agree--identical {
+  background: $color--surface;
+  color: $color--text-muted;
+}
+
+.timings-table .timings-agree--disagree {
+  background: $color--warning-bg;
+  color: $color--warning;
+}
