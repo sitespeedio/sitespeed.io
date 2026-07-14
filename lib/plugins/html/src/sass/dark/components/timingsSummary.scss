@@ -74,9 +74,10 @@
 
 // The "Runs agree?" pill grades run-to-run agreement, never speed
 // (see the agreeCell mixin in summaryBox.pug). stable/disagree use
-// the shared status tints; identical stays neutral on purpose —
-// sameness is good news but shouldn't compete with the Web Vitals
-// verdict dots for attention.
+// the shared status tints; identical and varies stay neutral on
+// purpose — sameness is good news but shouldn't compete with the
+// Web Vitals verdict dots for attention, and varies is ordinary
+// run noise, not a verdict.
 .timings-table .timings-agree {
   display: inline-flex;
   padding: 1px 9px;
@@ -92,6 +93,11 @@
 }
 
 .timings-table .timings-agree--identical {
+  background: $color--surface;
+  color: $color--text-muted;
+}
+
+.timings-table .timings-agree--varies {
   background: $color--surface;
   color: $color--text-muted;
 }
