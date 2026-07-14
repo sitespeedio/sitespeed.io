@@ -3,12 +3,10 @@ extends ./layout.pug
 block content
   include runInfo
 
-  //- Surface the four Core-Web-Vitals-class metrics in a hero band so the
-  //- page leads with the same scanning treatment as index.html instead of
-  //- making the reader sort through every metric to find them. Threshold
-  //- helpers + `find` over the metrics list keep this resilient to the
-  //- exact set of metrics being collected — anything missing is simply
-  //- skipped rather than rendered as an empty tile.
+  //- Threshold helpers for the "What stands out" strip and the per-row
+  //- status dots. `find` over the metrics list keeps this resilient to
+  //- the exact set of metrics being collected — anything missing is
+  //- simply skipped.
   //- The cutoffs are the Google Web Vitals ones used on the per-URL
   //- metrics tab (gwv*Class in url/metrics/index.pug): LCP 2.5/4 s,
   //- FCP 1.8/3 s, CLS 0.1/0.25, INP 200/500 ms. TBT 200/600 ms and
@@ -26,7 +24,6 @@ block content
   - const fcpMetric = findMetric('First Contentful Paint')
   - const clsMetric = findMetric('Cumulative Layout Shift')
   - const inpMetric = findMetric('Interaction to Next Paint')
-  - const coachMetric = findMetric('Coach performance score')
   - const tbtMetric = findMetric('Total Blocking Time')
   - const ttfbMetric = findMetric('backEndTime')
 
@@ -37,39 +34,6 @@ block content
   //- do produce a spread keep the full five-column layout.
   - const visibleMetrics = metrics.filter(m => m.node && (m.node.min || m.node.min === 0))
   - const hasSpread = visibleMetrics.some(m => m.node.min !== m.node.max)
-
-  if (lcpMetric && lcpMetric.node) || (fcpMetric && fcpMetric.node) || (clsMetric && clsMetric.node) || (inpMetric && inpMetric.node) || (coachMetric && coachMetric.node)
-    .detailed-kpis
-      if fcpMetric && fcpMetric.node
-        .detailed-kpi(class=fcpClass(fcpMetric.node.median))
-          span.detailed-kpi-label FCP
-          span.detailed-kpi-value #{fcpMetric.h(fcpMetric.node.median)}
-          if hasSpread
-            span.detailed-kpi-sub p90 #{fcpMetric.h(fcpMetric.node.p90)}
-      if lcpMetric && lcpMetric.node
-        .detailed-kpi(class=lcpClass(lcpMetric.node.median))
-          span.detailed-kpi-label LCP
-          span.detailed-kpi-value #{lcpMetric.h(lcpMetric.node.median)}
-          if hasSpread
-            span.detailed-kpi-sub p90 #{lcpMetric.h(lcpMetric.node.p90)}
-      if clsMetric && clsMetric.node
-        .detailed-kpi(class=clsClass(clsMetric.node.median))
-          span.detailed-kpi-label CLS
-          span.detailed-kpi-value #{clsMetric.h(clsMetric.node.median)}
-          if hasSpread
-            span.detailed-kpi-sub p90 #{clsMetric.h(clsMetric.node.p90)}
-      if coachMetric && coachMetric.node
-        .detailed-kpi(class=perfClass(coachMetric.node.median))
-          span.detailed-kpi-label Coach
-          span.detailed-kpi-value #{coachMetric.h(coachMetric.node.median)}
-          if hasSpread
-            span.detailed-kpi-sub p90 #{coachMetric.h(coachMetric.node.p90)}
-      if inpMetric && inpMetric.node
-        .detailed-kpi(class=inpClass(inpMetric.node.median))
-          span.detailed-kpi-label INP
-          span.detailed-kpi-value #{inpMetric.h(inpMetric.node.median)}
-          if hasSpread
-            span.detailed-kpi-sub p90 #{inpMetric.h(inpMetric.node.p90)}
 
   //- Response-code anomalies. A 4xx/5xx in ANY run means the page fetches
   //- something that fails, so flag on max > 0 — a median of 0 with a
