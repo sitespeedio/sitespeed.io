@@ -64,7 +64,11 @@ block content
   //- before FCP) — mirrors the why-section's prePaintReflows window.
   - const summaryCpuPaintEnd = Math.max(summaryCpuFcp || 0, summaryCpuLcp || 0) || undefined
   - const hasCpuRenderSignals = !!(summaryCpu && ((summaryCpuPaintEnd && summaryCpu.forcedReflows && summaryCpu.forcedReflows.filter(r => r.startTime < summaryCpuPaintEnd).reduce((total, r) => total + r.duration, 0) >= 10) || (summaryCpu.nonCompositedAnimations && summaryCpu.nonCompositedAnimations.length > 0)))
-  - const hasRendering = hasRenderingMedia || !!(d.pagexray && d.pagexray.pageSummary && d.pagexray.pageSummary.renderBlocking) || !!(summaryRecalculateStyle && (summaryRecalculateStyle.beforeFCP || summaryRecalculateStyle.beforeLCP)) || hasCpuRenderSignals
+  //- A slow server delays everything that renders after it, so a TTFB
+  //- past the Web Vitals good threshold (800 ms, same cutoff as the
+  //- why-section's ttfbSlow — keep in sync) earns the tab on its own.
+  - const summaryTtfbSlow = !!(summaryCpuTimings && summaryCpuTimings.ttfb && summaryCpuTimings.ttfb >= 800)
+  - const hasRendering = hasRenderingMedia || summaryTtfbSlow || !!(d.pagexray && d.pagexray.pageSummary && d.pagexray.pageSummary.renderBlocking) || !!(summaryRecalculateStyle && (summaryRecalculateStyle.beforeFCP || summaryRecalculateStyle.beforeLCP)) || hasCpuRenderSignals
 
   include ./tabs.pug
 
