@@ -34,14 +34,16 @@ mixin getUserTimings(path, name, metric, type)
 //- One "Runs agree?" cell: grades run-to-run agreement (half the
 //- min–max span as a share of the median), never speed, so it works
 //- for every metric without per-metric limits. identical = every run
-//- returned the same value; stable = the span stays within 20% of
-//- the median; anything wider means the runs genuinely disagree and
-//- the median alone hides it. The disagree pill carries the same ±N%
-//- so the reader sees HOW MUCH they disagree — except when the median
-//- is 0 (a flaky Total Blocking Time of 0/0/214 ms): a percentage of
-//- nothing means nothing, and the max column next door carries the
-//- value. Only renders with more than one iteration; a single-run
-//- table would read "identical" on every row.
+//- returned the same value; stable = the span stays within 10% of
+//- the median (±5%, what a controlled rig produces); varies = within
+//- 20% (±5–10%, ordinary run noise on shared/cloud hardware — quiet
+//- tone, not a verdict); anything wider means the runs genuinely
+//- disagree and the median alone hides it. The disagree pill carries
+//- the same ±N% so the reader sees HOW MUCH they disagree — except
+//- when the median is 0 (a flaky Total Blocking Time of 0/0/214 ms):
+//- a percentage of nothing means nothing, and the max column next
+//- door carries the value. Only renders with more than one iteration;
+//- a single-run table would read "identical" on every row.
 mixin agreeCell(min, median, max)
   if options.browsertime.iterations > 1
     - const span = max - min
@@ -49,7 +51,8 @@ mixin agreeCell(min, median, max)
     - let agreeTone = 'disagree'
     - let agreeText = spreadPct ? 'runs disagree ±' + spreadPct + '%' : 'runs disagree'
     - if (span === 0) { agreeTone = 'identical'; agreeText = 'identical' }
-    - else if (median > 0 && span <= median * 0.2) { agreeTone = 'stable'; agreeText = 'stable ±' + spreadPct + '%' }
+    - else if (median > 0 && span <= median * 0.1) { agreeTone = 'stable'; agreeText = 'stable ±' + spreadPct + '%' }
+    - else if (median > 0 && span <= median * 0.2) { agreeTone = 'varies'; agreeText = 'varies ±' + spreadPct + '%' }
     td.number(data-title='runs agree')
       span.timings-agree(class='timings-agree--' + agreeTone)= agreeText
 
