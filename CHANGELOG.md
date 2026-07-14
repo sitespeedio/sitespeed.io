@@ -1,6 +1,12 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.0.1 - 2026-07-14
+
+### Fixed
+* The Timings Summary's "Runs agree?" column grades agreement in three bands instead of two. A single stable/disagree cutoff had to choose between two audiences: on a controlled test rig ±10% is too forgiving to call "stable", while on shared cloud runners ±5% flags ordinary noise as disagreement on most rows — and a column that always warns stops meaning anything. Stable now means within ±5%, a neutral uncolored "varies" band covers the ±5–10% range that is normal run-to-run noise, and "runs disagree" is reserved for spreads past ±10% where the median genuinely hides something [#4837](https://github.com/sitespeedio/sitespeed.io/pull/4837).
+* Removed em dashes from user-facing text in the HTML report [#4838](https://github.com/sitespeedio/sitespeed.io/pull/4838).
+
 ## 42.0.0 - 2026-07-14
 
 ### Highlights
