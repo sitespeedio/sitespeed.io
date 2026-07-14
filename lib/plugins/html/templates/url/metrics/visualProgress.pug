@@ -98,11 +98,18 @@ if vpData.length > 0
     if vpLongTasks.length > 0
       .vp-longtask-lane(title=vpLongTasks.length + ' long tasks (≥50ms blocking the main thread)')
         span.vp-longtask-lane-label Long tasks
+        //- The Long Task API keeps reporting until browsertime stops
+        //- collecting, which is after the last visual change — but the
+        //- lane's axis ends at vpMax and nothing clips it, so a task
+        //- starting past vpMax would paint outside the card. Drop those
+        //- (the CPU tab still lists every long task) and clamp a bar
+        //- straddling the edge to the end of the lane.
         each task in vpLongTasks
-          - const ltLeft = (task.startTime / vpMax * 100).toFixed(2)
-          - const ltWidth = Math.max(0.4, task.duration / vpMax * 100).toFixed(2)
-          - const ltClass = task.duration >= 250 ? 'vp-longtask--severe' : (task.duration >= 100 ? 'vp-longtask--major' : 'vp-longtask--minor')
-          .vp-longtask(class=ltClass, style='left: ' + ltLeft + '%; width: ' + ltWidth + '%;', title='Long task ' + task.duration.toFixed(0) + ' ms at ' + task.startTime.toFixed(0) + ' ms (' + (task.attribution && task.attribution[0] ? task.attribution[0].containerType : 'unknown') + ')')
+          if task.startTime < vpMax
+            - const ltLeft = task.startTime / vpMax * 100
+            - const ltWidth = Math.min(Math.max(0.4, task.duration / vpMax * 100), 100 - ltLeft).toFixed(2)
+            - const ltClass = task.duration >= 250 ? 'vp-longtask--severe' : (task.duration >= 100 ? 'vp-longtask--major' : 'vp-longtask--minor')
+            .vp-longtask(class=ltClass, style='left: ' + ltLeft.toFixed(2) + '%; width: ' + ltWidth + '%;', title='Long task ' + task.duration.toFixed(0) + ' ms at ' + task.startTime.toFixed(0) + ' ms (' + (task.attribution && task.attribution[0] ? task.attribution[0].containerType : 'unknown') + ')')
     .vp-axis
       each tick in vpTicks
         span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
