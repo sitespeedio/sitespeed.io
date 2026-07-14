@@ -54,6 +54,12 @@ include ../../_tableMixins
 - const whyTimings = whyBt ? (isSummary ? (whyBt.pageSummary && whyBt.pageSummary.browserScripts && whyBt.pageSummary.browserScripts[medianRun.runIndex - 1] ? whyBt.pageSummary.browserScripts[medianRun.runIndex - 1].timings : undefined) : (whyBt.run ? whyBt.run.timings : undefined)) : undefined
 - const whyFcp = whyTimings && whyTimings.paintTiming ? whyTimings.paintTiming['first-contentful-paint'] : undefined
 - const whyLcp = whyTimings && whyTimings.largestContentfulPaint ? whyTimings.largestContentfulPaint.renderTime : undefined
+//- A slow server delays every render milestone that follows, so it
+//- belongs in the why-section. Same field and cutoff as the Metrics
+//- tab's TTFB tile (gwvTtfbClass): 800 ms is where Web Vitals stops
+//- calling a TTFB good.
+- const whyTtfb = whyTimings && whyTimings.ttfb ? Math.round(whyTimings.ttfb) : undefined
+- const ttfbSlow = !!(whyTtfb && whyTtfb >= 800)
 //- Reflows are windowed to before the page painted — a reflow between
 //- FCP and LCP still delays the largest paint (pages that paint early
 //- and then thrash layout would otherwise show nothing here). The
@@ -78,6 +84,7 @@ include ../../_tableMixins
 - if (hasVideo || hasFilmstrip) renderingLinks.push({href: '#video', label: 'Playback'})
 - if (hasFilmstrip) renderingLinks.push({href: '#filmstrip', label: 'Filmstrip'})
 - if (screenshots.length > 0) renderingLinks.push({href: '#screenshots', label: 'Screenshots'})
+- if (ttfbSlow) renderingLinks.push({href: '#slow-ttfb', label: 'TTFB'})
 - if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
 - if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
 - if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
@@ -92,7 +99,7 @@ a#rendering
 //- Runs without any playback media still land here for the why-section —
 //- tell the reader what a video/visual-metrics run adds instead of
 //- silently showing a smaller tab.
-if !(hasVideo || hasFilmstrip) && (hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || screenshots.length > 0 || reflowsMaterial || nonCompositedCount > 0)
+if !(hasVideo || hasFilmstrip) && (ttfbSlow || hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || screenshots.length > 0 || reflowsMaterial || nonCompositedCount > 0)
   p.rendering-nomedia
     | This test ran without&nbsp;
     code --video
@@ -281,8 +288,30 @@ if screenshots.length > 0
           .screenshot-card-caption #{filename}
 
 //- Why was rendering delayed — the diagnostic half of the story.
-if hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
+if ttfbSlow || hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
   h3 Why was rendering delayed?
+
+//- The server answer comes before everything else in the render story,
+//- so a slow TTFB leads the why-list. One number carries the message —
+//- a note with the share of FCP for scale, not a card of tiles.
+if ttfbSlow
+  a#slow-ttfb
+  p.rendering-why-note
+    | The server took&nbsp;
+    b #{h.time.ms(whyTtfb)}
+    | &nbsp;to deliver the first byte
+    if whyFcp
+      |  — #{Math.round(whyTtfb / whyFcp * 100)} % of the time to First Contentful Paint
+    | . Nothing can render before the first byte arrives, and Google Web Vitals considers a TTFB over 800 ms in need of improvement.
+    //- The Waterfall tab only exists when the run produced a HAR — don't
+    //- render a dead cross-link without one. The HAR sits on
+    //- browsertime.har on the summary page and browsertime.run.har on
+    //- run pages, mirroring how each page's tabs.pug gates the tab.
+    - const whyHar = whyBt ? (isSummary ? whyBt.har : (whyBt.run && whyBt.run.har)) : undefined
+    if whyHar
+      | &nbsp;
+      a(href='#waterfall', onclick='const waterfallTab = document.querySelector("#tabs #waterfall"); if (waterfallTab) selectTab(waterfallTab, false)') See the request timing on the Waterfall tab
+      | .
 
 if hasRecalculateStyle
   a#recalculate-style
