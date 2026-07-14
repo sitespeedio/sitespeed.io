@@ -1,29 +1,89 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin rows(assets)
+mixin rows(assets, weightMax, heavyWarning, heavyError, shortCacheTime)
   each asset in assets
+    //- When the HAR lacks transfer sizes (e.g. Safari on macOS) fall
+    //- back to content size so sorting, bars and tones still work.
+    - const weight = asset.transferSize || asset.size || 0
+    - const weightTone = weight >= heavyError ? 'cell-tone--error' : (weight >= heavyWarning ? 'cell-tone--warning' : '')
+    - const shortCache = asset.type !== 'html' && typeof asset.cacheTime === 'number' && asset.cacheTime < shortCacheTime
+    - const pct = weightMax > 0 ? Math.min(100, weight / weightMax * 100) : 0
     //- `count > 1` means this exact asset URL was requested across more
     //- than one page in the run — i.e. cache reuse is already happening
     //- or a candidate for it. Tinting the row makes those wins pop.
     tr(class=(asset.requestCount > 1 ? 'asset-reused' : ''))
       td.url.assetsurl(data-title='URL')
-        a(href=asset.url)= h.shortAsset(asset.url)
+        a(href=asset.url, title=asset.url)= h.shortAsset(asset.url)
         | &nbsp;
         a.from-page(href=asset.page + 'index.html', title='Open the page that loaded this asset') → page
       td.type-cell(data-title='type')
         if asset.type
-          span(class='type-chip type-chip--' + asset.type)= asset.type
+          span.assets-type-swatch(class='type-chip--' + asset.type)
+          | #{asset.type}
         else
           | —
-      +durationCell('last modified',asset.lastModification)
-      +durationCell('cache time',asset.cacheTime)
+      td.number.cell--bar(class=weightTone, data-title='transfer', data-value=weight)
+        span.cell-bar-fill(style='width: ' + pct.toFixed(2) + '%')
+        span.cell-bar-text= h.size.format(weight)
       +kbSizeCell('size', asset.size)
+      td.number(class=(shortCache ? 'cell-tone--warning' : ''), data-title='cache time', data-value=asset.cacheTime)= h.time.duration(asset.cacheTime)
+      +durationCell('last modified', asset.lastModification)
       +numberCell('count', asset.requestCount)
 
 block content
   include runInfo
+  //- A single asset at 500 KB on the wire is roughly a quarter of a median
+  //- page's total weight (HTTP Archive puts the median page around 2 MB),
+  //- and at 1 MB it is half — either dominates the page on its own, so
+  //- bytes get a warning tone from 500 KB and an error tone from 1 MB.
+  - const HEAVY_ASSET_WARNING = 500 * 1024;
+  - const HEAVY_ASSET_ERROR = 1024 * 1024;
+  //- Anything cached for less than an hour is re-downloaded on a quick
+  //- return visit, so static assets that short-lived get a warning tone.
+  //- HTML documents legitimately use no/short caching and are exempt.
+  - const SHORT_CACHE_TIME = 60 * 60;
   if fullCount > 0
+    //- Overview strip: totals across every unique asset in the run (not
+    //- just the capped table below), reusing the KPI-tile idiom from the
+    //- per-URL summary so the report keeps one visual language.
+    .iter-kpis.assets-kpis
+      .iter-kpi
+        span.iter-kpi-label Unique assets
+        span.iter-kpi-value #{fullCount}
+      if totalTransferSize
+        .iter-kpi(title='Compressed bytes over the wire, summed over all unique assets')
+          span.iter-kpi-label Total transfer
+          span.iter-kpi-value #{h.size.format(totalTransferSize)}
+      if totalContentSize
+        .iter-kpi(title='Uncompressed bytes after decoding, summed over all unique assets')
+          span.iter-kpi-label Total size
+          span.iter-kpi-value #{h.size.format(totalContentSize)}
+      if biggestAsset
+        - const biggestWeight = biggestAsset.transferSize || biggestAsset.size || 0
+        .iter-kpi(class=(biggestWeight >= HEAVY_ASSET_ERROR ? 'error' : (biggestWeight >= HEAVY_ASSET_WARNING ? 'warning' : '')), title='Heaviest single asset by transfer size (content size when transfer is missing): ' + biggestAsset.url)
+          span.iter-kpi-label Biggest asset (transfer)
+          span.iter-kpi-value #{h.size.format(biggestWeight)}
+          span.assets-kpi-note= h.shortAsset(biggestAsset.url)
+    if typeCounts && Object.keys(typeCounts).length
+      //- Per-content-type share as a stacked bar + legend — the same
+      //- composition idiom as the start page's "made of" card. Segment
+      //- and swatch colours reuse the type-chip-- palette (background
+      //- only; the pill base class is deliberately not applied).
+      - const typeList = Object.keys(typeCounts).sort((a, b) => typeCounts[b] - typeCounts[a])
+      .assets-type-bar
+        each type in typeList
+          span.assets-type-seg(class='type-chip--' + type, style='flex:' + typeCounts[type], title=type + ': ' + typeCounts[type])
+      ul.assets-type-legend
+        each type in typeList
+          li
+            span.assets-type-swatch(class='type-chip--' + type)
+            | #{type}
+            b= typeCounts[type]
+    //- Worst-first: rows are pre-sorted by wire weight so the heaviest
+    //- assets surface without a click; every header still re-sorts.
+    - const sortedAssets = topAssets.slice().sort((a, b) => (b.transferSize || b.size || 0) - (a.transferSize || a.size || 0))
+    - const weightMax = sortedAssets.reduce((m, a) => Math.max(m, a.transferSize || a.size || 0), 0)
     //- Top-N assets across the run, framed as a card so the page reads
     //- in the same idiom as Toplist / Pages / Detailed. The "showing N
     //- of M" hint moves into the header meta when truncated, otherwise
@@ -35,9 +95,10 @@ block content
           span.listing-card-meta Top #{count} of #{fullCount}
         else
           span.listing-card-meta #{fullCount} #{fullCount === 1 ? 'asset' : 'assets'}
+      p.listing-card-help The heaviest assets across all tested pages, biggest first. Transfer is compressed bytes over the wire, size is uncompressed bytes after decoding; when the browser doesn't report transfer size — for example Safari — the content size is shown instead. Yellow/red transfer values mark assets whose wire bytes dominate page weight; yellow cache times expire within an hour. Click any column header to re-sort#{count < fullCount ? ', and use --maxAssets to list more' : ''}.
       .responsive
-        table(data-sortable, id='assets')
-          +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
-          +rows(topAssets)
+        table.data-table(data-sortable, id='assets')
+          +rowHeading(['url', 'type', 'transfer', 'size', 'cache time', 'time since last modified', 'count'])
+          +rows(sortedAssets, weightMax, HEAVY_ASSET_WARNING, HEAVY_ASSET_ERROR, SHORT_CACHE_TIME)
   else
     p We are missing assets metrics, the HAR was not created.

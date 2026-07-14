@@ -48,7 +48,6 @@
   margin: 0 0 12px 0;
   color: $color--text-muted;
   font-size: 0.9rem;
-  max-width: 80ch;
 }
 
 // Tiny middot separator between meta items (e.g. "47 files · 3.2 MB").
@@ -164,4 +163,18 @@ tr.asset-reused {
       color: $color--text;
     }
   }
+}
+
+// Run pills on the per-URL pages reuse the quicklinks chips; the
+// current page (the run being viewed, or the side-by-side page) is a
+// non-link chip with an active tint.
+.run-pills .current {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--info-border;
+  background: $color--info-bg;
+  color: $color--info;
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
 }

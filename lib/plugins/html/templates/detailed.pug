@@ -1,5 +1,4 @@
 extends ./layout.pug
-include _tableMixins
 
 block content
   include runInfo
@@ -10,17 +9,34 @@ block content
   //- helpers + `find` over the metrics list keep this resilient to the
   //- exact set of metrics being collected — anything missing is simply
   //- skipped rather than rendered as an empty tile.
+  //- The cutoffs are the Google Web Vitals ones used on the per-URL
+  //- metrics tab (gwv*Class in url/metrics/index.pug): LCP 2.5/4 s,
+  //- FCP 1.8/3 s, CLS 0.1/0.25, INP 200/500 ms. TBT 200/600 ms and
+  //- TTFB 800/1800 ms follow the same Lighthouse / web.dev guidance.
   - const lcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
   - const fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
   - const clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
   - const inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const tbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const ttfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
   - const perfClass = (v) => v == null ? '' : (typeof h.scoreLabel === 'function' ? h.scoreLabel(v) : 'info')
+  - const statusLabel = (c) => c === 'ok' ? 'Good' : (c === 'warning' ? 'Needs improvement' : (c === 'error' ? 'Poor' : ''))
   - const findMetric = (name) => metrics.find(m => m.name === name)
   - const lcpMetric = findMetric('Largest Contentful Paint')
   - const fcpMetric = findMetric('First Contentful Paint')
   - const clsMetric = findMetric('Cumulative Layout Shift')
   - const inpMetric = findMetric('Interaction to Next Paint')
   - const coachMetric = findMetric('Coach performance score')
+  - const tbtMetric = findMetric('Total Blocking Time')
+  - const ttfbMetric = findMetric('backEndTime')
+
+  //- With one run min = median = mean = p90 = max, so five identical
+  //- columns are pure noise — collapse them to a single Value column.
+  //- Detect it from the data (every metric has min === max) rather than
+  //- from the iteration option, so multi-page single-iteration runs that
+  //- do produce a spread keep the full five-column layout.
+  - const visibleMetrics = metrics.filter(m => m.node && (m.node.min || m.node.min === 0))
+  - const hasSpread = visibleMetrics.some(m => m.node.min !== m.node.max)
 
   if (lcpMetric && lcpMetric.node) || (fcpMetric && fcpMetric.node) || (clsMetric && clsMetric.node) || (inpMetric && inpMetric.node) || (coachMetric && coachMetric.node)
     .detailed-kpis
@@ -28,59 +44,188 @@ block content
         .detailed-kpi(class=fcpClass(fcpMetric.node.median))
           span.detailed-kpi-label FCP
           span.detailed-kpi-value #{fcpMetric.h(fcpMetric.node.median)}
-          span.detailed-kpi-sub p90 #{fcpMetric.h(fcpMetric.node.p90)}
+          if hasSpread
+            span.detailed-kpi-sub p90 #{fcpMetric.h(fcpMetric.node.p90)}
       if lcpMetric && lcpMetric.node
         .detailed-kpi(class=lcpClass(lcpMetric.node.median))
           span.detailed-kpi-label LCP
           span.detailed-kpi-value #{lcpMetric.h(lcpMetric.node.median)}
-          span.detailed-kpi-sub p90 #{lcpMetric.h(lcpMetric.node.p90)}
+          if hasSpread
+            span.detailed-kpi-sub p90 #{lcpMetric.h(lcpMetric.node.p90)}
       if clsMetric && clsMetric.node
         .detailed-kpi(class=clsClass(clsMetric.node.median))
           span.detailed-kpi-label CLS
           span.detailed-kpi-value #{clsMetric.h(clsMetric.node.median)}
-          span.detailed-kpi-sub p90 #{clsMetric.h(clsMetric.node.p90)}
+          if hasSpread
+            span.detailed-kpi-sub p90 #{clsMetric.h(clsMetric.node.p90)}
       if coachMetric && coachMetric.node
         .detailed-kpi(class=perfClass(coachMetric.node.median))
           span.detailed-kpi-label Coach
           span.detailed-kpi-value #{coachMetric.h(coachMetric.node.median)}
-          span.detailed-kpi-sub p90 #{coachMetric.h(coachMetric.node.p90)}
+          if hasSpread
+            span.detailed-kpi-sub p90 #{coachMetric.h(coachMetric.node.p90)}
       if inpMetric && inpMetric.node
         .detailed-kpi(class=inpClass(inpMetric.node.median))
           span.detailed-kpi-label INP
           span.detailed-kpi-value #{inpMetric.h(inpMetric.node.median)}
-          span.detailed-kpi-sub p90 #{inpMetric.h(inpMetric.node.p90)}
+          if hasSpread
+            span.detailed-kpi-sub p90 #{inpMetric.h(inpMetric.node.p90)}
 
-  //- Full metrics table sits in its own card so it gets the same frame
-  //- as the rest of the modernised report. Help text moves into the
-  //- card header's right-hand meta slot so it doesn't compete with the
-  //- hero band above.
-  - const visibleMetricCount = metrics.filter(m => m.node && (m.node.min || m.node.min === 0)).length
-  .listing-card
-    .listing-card-header
-      h3.listing-card-title All metrics
-      span.listing-card-meta #{visibleMetricCount} #{visibleMetricCount === 1 ? 'metric' : 'metrics'}
-    p.listing-card-help Every collected metric, with min / median / mean / p90 / max across all runs. Click any column header to sort.
-    .responsive
-      table(data-sortable, id='detailed')
-        thead
-          tr
-            th Name
-            th.number min
-            th.number median
-            th.number mean
-            th.number p90
-            th.number max
-        each metric in metrics
-          if metric.node && (metric.node.min  || metric.node.min === 0)
-            tr
-              td(data-title='Metric', data-value=metric.name)
-                if (metric.metricName)
-                  - url = 'help.html#' + metric.metricName
-                  a(href=url) #{metric.name}
+  //- Response-code anomalies. A 4xx/5xx in ANY run means the page fetches
+  //- something that fails, so flag on max > 0 — a median of 0 with a
+  //- flaky 404 is still worth seeing. 304 is a cache revalidation, not a
+  //- redirect hop, so it never counts towards "redirect heavy". The 10%
+  //- redirect cutoff: every redirect adds a full round trip before the
+  //- real resource, so when 1 request in 10 is a 3xx the site redirects
+  //- systematically (http→https chains, tracking hops) rather than by
+  //- accident. Without a total-request count (e.g. macOS Safari has no
+  //- HAR) fall back to an absolute 20 redirects per page.
+  - const responseCodeMetrics = visibleMetrics.filter(m => m.group === 'responseCodes')
+  - const totalRequestsMetric = findMetric('Total requests')
+  - const totalRequestsMedian = totalRequestsMetric && totalRequestsMetric.node ? totalRequestsMetric.node.median : 0
+  - const isRedirectCode = (code) => code >= 300 && code < 400 && code !== 304
+  - const redirectHeavy = (m) => totalRequestsMedian > 0 ? m.node.median >= totalRequestsMedian * 0.1 : m.node.median >= 20
+  - const responseCodeBadge = (m) => { const code = Number.parseInt(m.name, 10); if (!Number.isFinite(code)) return; if (code >= 400 && m.node.max > 0) return { tone: 'error', text: code >= 500 ? 'server errors' : 'errors' }; if (isRedirectCode(code) && redirectHeavy(m)) return { tone: 'warning', text: 'redirect heavy' }; }
+
+  //- "What stands out" — the things worth acting on, in plain language,
+  //- so the reader doesn't have to scan every table to find them: the
+  //- worst Web Vital (most severe first, in impact order) plus the
+  //- response-code anomalies. Everything is derived from metrics already
+  //- on this page.
+  - const standouts = []
+  - const vitalChecks = []
+  - if (lcpMetric && lcpMetric.node) vitalChecks.push({ name: 'Largest Contentful Paint', status: lcpClass(lcpMetric.node.median), value: lcpMetric.h(lcpMetric.node.median), target: 'good is 2.5 s or less' })
+  - if (clsMetric && clsMetric.node) vitalChecks.push({ name: 'Cumulative Layout Shift', status: clsClass(clsMetric.node.median), value: clsMetric.h(clsMetric.node.median), target: 'good is 0.1 or less' })
+  - if (inpMetric && inpMetric.node) vitalChecks.push({ name: 'Interaction to Next Paint', status: inpClass(inpMetric.node.median), value: inpMetric.h(inpMetric.node.median), target: 'good is 200 ms or less' })
+  - if (tbtMetric && tbtMetric.node) vitalChecks.push({ name: 'Total Blocking Time', status: tbtClass(tbtMetric.node.median), value: tbtMetric.h(tbtMetric.node.median), target: 'good is 200 ms or less' })
+  - if (fcpMetric && fcpMetric.node) vitalChecks.push({ name: 'First Contentful Paint', status: fcpClass(fcpMetric.node.median), value: fcpMetric.h(fcpMetric.node.median), target: 'good is 1.8 s or less' })
+  - if (ttfbMetric && ttfbMetric.node) vitalChecks.push({ name: 'Time To First Byte', status: ttfbClass(ttfbMetric.node.median), value: ttfbMetric.h(ttfbMetric.node.median), target: 'good is 800 ms or less' })
+  - const worstVital = vitalChecks.find(v => v.status === 'error') || vitalChecks.find(v => v.status === 'warning')
+  - if (worstVital) standouts.push({ tone: worstVital.status, text: worstVital.name + ' is ' + worstVital.value + ' — ' + statusLabel(worstVital.status).toLowerCase() + ' (' + worstVital.target + ')' })
+  - const errorResponses = responseCodeMetrics.filter(m => Number.parseInt(m.name, 10) >= 400 && m.node.max > 0).reduce((total, m) => total + m.node.median, 0)
+  - if (errorResponses > 0) standouts.push({ tone: 'error', text: h.plural(errorResponses, '4xx/5xx response') + ' per page — something the pages fetch is failing' })
+  - if (errorResponses === 0 && responseCodeMetrics.some(m => Number.parseInt(m.name, 10) >= 400 && m.node.max > 0)) standouts.push({ tone: 'warning', text: 'Some runs had 4xx/5xx error responses' })
+  - const redirectResponses = responseCodeMetrics.filter(m => isRedirectCode(Number.parseInt(m.name, 10))).reduce((total, m) => total + m.node.median, 0)
+  - if (totalRequestsMedian > 0 && redirectResponses >= totalRequestsMedian * 0.1) standouts.push({ tone: 'warning', text: 'Redirect heavy — ' + Math.round(100 * redirectResponses / totalRequestsMedian) + '% of all requests are 3xx redirects' })
+
+  //- Accessibility: axe's "critical" severity means some users can't use
+  //- the page at all (missing form labels, keyboard traps, …), so one
+  //- appearing in ANY run matters — flag on max > 0 like the error
+  //- responses, showing the median count when there is one. Serious
+  //- violations only ride along when criticals exist: a serious-only chip
+  //- would sit on the strip for most of the web and stop meaning anything,
+  //- and the Accessibility card below lists them anyway. The chip only
+  //- renders when the axe plugin ran (the metric exists) and deep-links
+  //- to the Accessibility card.
+  - const axeCriticalMetric = findMetric('Axe Critical Violations')
+  - const axeSeriousMetric = findMetric('Axe Serious Violations')
+  - const axeSeriousMedian = axeSeriousMetric && axeSeriousMetric.node ? axeSeriousMetric.node.median : 0
+  - if (axeCriticalMetric && axeCriticalMetric.node && axeCriticalMetric.node.max > 0) standouts.push({ tone: 'error', href: '#detailed-card-axe', text: (axeCriticalMetric.node.median > 0 ? h.plural(axeCriticalMetric.node.median, 'critical accessibility violation') + (axeSeriousMedian > 0 ? ' (and ' + h.plural(axeSeriousMedian, 'serious one') + ')' : '') : 'Some runs had critical accessibility violations') })
+
+  //- Errors during testing lead the standouts strip — headers.errors is
+  //- the same per-URL error map the Errors tab renders (set in
+  //- htmlBuilder when any error message arrived), and metrics on this
+  //- page may be missing or skewed because of those failures.
+  - const errorMap = headers.errors ? headers.errors.errors : undefined
+  - let testErrorCount = 0
+  - if (errorMap) { for (const toolErrors of Object.values(errorMap)) { for (const list of Object.values(toolErrors)) { testErrorCount += list.length } } }
+  - if (testErrorCount > 0) standouts.unshift({ tone: 'error', href: rootPath + 'errors.html', text: h.plural(testErrorCount, 'error') + ' during testing → errors page' })
+
+  if standouts.length
+    .detailed-standouts
+      span.detailed-standouts-label What stands out
+      each standout in standouts
+        if standout.href
+          a.detailed-standout(class=standout.tone, href=standout.href) #{standout.text}
+        else
+          span.detailed-standout(class=standout.tone) #{standout.text}
+
+  if hasSpread
+    p.detailed-intro Every collected metric, grouped by what it tells you, with min / median / mean / p90 / max across all runs. Click a column header to sort.
+  else
+    p.detailed-intro Every collected metric, grouped by what it tells you. All runs produced a single value per metric, so the min / median / mean / p90 / max columns are collapsed into one — run more iterations (#[code -n 5]) to see how the metrics vary between runs. Click a column header to sort.
+
+  //- One card per concern. A metric's card comes from the group tag set
+  //- in setup/detailed.js; anything untagged (future metrics) falls
+  //- through to "Other metrics" so nothing silently disappears.
+  - const groups = []
+  - groups.push({ key: 'coach', title: 'Coach scores', sub: 'How the Coach rates the pages, 0–100 — higher is better.' })
+  - groups.push({ key: 'timings', title: 'Web Vitals & load timings', sub: 'The user experience milestones, plus the classic navigation timings.' })
+  - groups.push({ key: 'visual', title: 'Visual metrics', sub: 'What the film strip shows — when content became visible on screen.' })
+  - groups.push({ key: 'cpu', title: 'CPU', sub: 'Main thread work — long tasks block the page from reacting to input.' })
+  - groups.push({ key: 'pageWeight', title: 'Page weight', sub: 'Bytes over the wire, by content type.' })
+  - groups.push({ key: 'requests', title: 'Requests', sub: 'How many round trips the browser needed to build the page.' })
+  - groups.push({ key: 'responseCodes', title: 'Response codes', sub: 'Everything that is not a 2xx is a detour — redirects cost time, 4xx/5xx are errors.' })
+  - groups.push({ key: 'axe', title: 'Accessibility', sub: 'Accessibility violations found by axe, by severity.' })
+  - groups.push({ key: 'sustainable', title: 'Sustainability', sub: 'Estimated CO2 emissions from loading the pages.' })
+  - groups.push({ key: 'custom', title: 'Custom metrics', sub: 'Metrics collected by your own scripts.' })
+  - groups.push({ key: 'other', title: 'Other metrics', sub: 'Collected metrics without a group.' })
+  - const groupKeys = new Set(groups.map(group => group.key))
+  - const groupOf = (m) => groupKeys.has(m.group) ? m.group : 'other'
+
+  //- Web Vitals lead the timings card (the group title promises them
+  //- first); the classic navigation timings follow in collection order.
+  - const timingsFirst = ['Largest Contentful Paint', 'First Contentful Paint', 'First Paint', 'Cumulative Layout Shift', 'Total Blocking Time', 'Max Potential First Input Delay']
+
+  //- The status dot marks the headline stat (median) against the same
+  //- thresholds as the hero band; Coach scores reuse the score coloring
+  //- from the summary boxes.
+  - const metricStatus = (m) => { switch (m.name) { case 'Largest Contentful Paint': { return lcpClass(m.node.median); } case 'First Contentful Paint': { return fcpClass(m.node.median); } case 'Cumulative Layout Shift': { return clsClass(m.node.median); } case 'Interaction to Next Paint': { return inpClass(m.node.median); } case 'Total Blocking Time': { return tbtClass(m.node.median); } case 'backEndTime': { return ttfbClass(m.node.median); } } return m.group === 'coach' ? perfClass(m.node.median) : '' }
+
+  each group in groups
+    - let rows = visibleMetrics.filter(m => groupOf(m) === group.key)
+    - if (group.key === 'timings') rows = [...timingsFirst.flatMap(name => rows.filter(m => m.name === name)), ...rows.filter(m => !timingsFirst.includes(m.name))]
+    if rows.length
+      //- The id is the anchor the standout chips deep-link to; the
+      //- .listing-card scroll-margin keeps the header visible on jump.
+      .listing-card(id='detailed-card-' + group.key)
+        .listing-card-header
+          h3.listing-card-title= group.title
+          span.listing-card-meta #{rows.length} #{rows.length === 1 ? 'metric' : 'metrics'}
+        p.listing-card-help= group.sub
+        .responsive
+          table.detailed-table.data-table(data-sortable, id='detailed-' + group.key)
+            thead
+              tr
+                th Metric
+                if hasSpread
+                  th.number min
+                  th.number median
+                  th.number mean
+                  th.number p90
+                  th.number max
                 else
-                  | #{metric.name}
-              td.number(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
-              td.number(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
-              td.number(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
-              td.number(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
-              td.number(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
+                  th.number Value
+            tbody
+              each metric in rows
+                - const status = metricStatus(metric)
+                - const badge = group.key === 'responseCodes' ? responseCodeBadge(metric) : undefined
+                tr
+                  td(data-title='Metric', data-value=metric.name)
+                    if (metric.metricName)
+                      - url = 'help.html#' + metric.metricName
+                      a(href=url) #{metric.name}
+                    else
+                      | #{metric.name}
+                    if badge
+                      span.detailed-badge(class=badge.tone) #{badge.text}
+                  if hasSpread
+                    td.number(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
+                    td.number(data-title='median', data-value=metric.node.median)
+                      | #{metric.h(metric.node.median)}
+                      if status
+                        span.detailed-dot(class=status, title=statusLabel(status))
+                    td.number(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
+                    td.number(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
+                    td.number(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
+                  else
+                    td.number(data-title='Value', data-value=metric.node.median)
+                      | #{metric.h(metric.node.median)}
+                      if status
+                        span.detailed-dot(class=status, title=statusLabel(status))
+
+  if visibleMetrics.length === 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title No metrics
+      p.listing-card-help No metrics were collected for this run.

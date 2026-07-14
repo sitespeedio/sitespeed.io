@@ -366,13 +366,17 @@
   gap: 4px;
 }
 
+// Plain text labels — these are information, not buttons; the pill look
+// made them read as the quicklink navigation at the top of the page.
 .tech-category {
-  font-size: 0.75rem;
-  padding: 1px 8px;
-  border: 1px solid $color--border;
-  border-radius: $radius--pill;
-  background: $color--surface;
-  color: $color--text-secondary;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+
+  & + &::before {
+    content: '\00b7';
+    margin-right: 6px;
+    color: $color--text-muted;
+  }
 }
 
 //
@@ -410,11 +414,13 @@
 
   li {
     font-size: 0.85rem;
-    padding: 2px 9px;
-    border: 1px solid $color--border;
-    border-radius: $radius--pill;
-    background: $color--surface;
-    color: $color--text;
+    color: $color--text-secondary;
+
+    & + &::before {
+      content: '\00b7';
+      margin-right: 6px;
+      color: $color--text-muted;
+    }
   }
 }
 
@@ -457,4 +463,41 @@
   color: $color--text-secondary;
   word-break: break-all;
   overflow-wrap: anywhere;
+}
+
+//
+// "What to fix first" strip — shares the CPU tab's callout shell
+// (.cpu-callout) for visual consistency; these rules only lay out the
+// top-3 advice rows inside it. Severity chips reuse .coach-severity.
+//
+.coach-fix-first-list {
+  margin: 8px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.coach-fix-first-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.coach-fix-first-link {
+  color: $color--blue;
+  text-decoration: none;
+  border-bottom: 1px dotted $color--blue;
+  overflow-wrap: anywhere;
+
+  &:hover {
+    border-bottom-style: solid;
+  }
+}
+
+.coach-fix-first-cat {
+  color: $color--text-muted;
+  font-size: 0.8rem;
 }

@@ -1,0 +1,71 @@
+//
+// ERRORS — dark
+// ==============
+// The Errors page, plus the small error-toned chip other pages use to
+// cross-link to it ("2 errors during testing →") and the Budget page
+// reuses for its failing count.
+//
+
+.errors-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.8rem;
+  font-weight: $font--weight--semibold;
+  white-space: nowrap;
+  color: $color--error;
+  background: $color--error-bg;
+  border: 1px solid $color--error-border;
+}
+
+a.errors-chip {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Every row on the Errors page is bad news — a light error tint keeps
+// the tone without shouting when a run has many errors. Declared with
+// the same specificity as the tbody hover rule so the tint also wins
+// on hover (components import after foundations).
+tbody tr.errors-row,
+tbody tr.errors-row:hover {
+  background: $color--error-bg;
+}
+
+.errors-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  li {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+// Which tool reported the error — mono pill so it reads as metadata
+// next to the message text.
+.errors-tool {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  font-family: $font--mono;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  color: $color--error;
+  background: $color--surface-card;
+  border: 1px solid $color--error-border;
+}
+
+.errors-generic {
+  color: $color--text-muted;
+  font-style: italic;
+}

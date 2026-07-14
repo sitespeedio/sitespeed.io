@@ -5,7 +5,6 @@
 // 400-tier shades that read against the dark surface.
 //
 
-$loaf--blocking: #f87171;
 $loaf--work: #fbbf24;
 $loaf--render: #4ade80;
 $loaf--pre-layout: #38bdf8;
@@ -49,7 +48,6 @@ $loaf--style-layout: #a78bfa;
   display: block;
   height: 100%;
 
-  &.loaf-blocking { background: $loaf--blocking; }
   &.loaf-work { background: $loaf--work; }
   &.loaf-render { background: $loaf--render; }
   &.loaf-pre-layout { background: $loaf--pre-layout; }
@@ -80,7 +78,6 @@ $loaf--style-layout: #a78bfa;
   display: inline-block;
   flex: 0 0 auto;
 
-  &.loaf-blocking { background: $loaf--blocking; }
   &.loaf-work { background: $loaf--work; }
   &.loaf-render { background: $loaf--render; }
   &.loaf-pre-layout { background: $loaf--pre-layout; }
@@ -95,15 +92,6 @@ $loaf--style-layout: #a78bfa;
   color: $color--text;
   font-weight: $font--weight--medium;
   font-variant-numeric: tabular-nums;
-}
-
-.loaf-scripts-heading {
-  font-size: 0.95rem;
-  font-weight: $font--weight--semibold;
-  color: $color--text-secondary;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 12px 0 8px 0;
 }
 
 .loaf-script {
@@ -151,6 +139,125 @@ $loaf--style-layout: #a78bfa;
   font-style: italic;
   font-size: 0.9rem;
 }
+
+// Actionable additions: the overview strip, the cross-frame culprit
+// table and the collapsed per-frame script details.
+.loaf-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.loaf-overview-stat {
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  padding: 12px 16px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.loaf-overview-label {
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color--text-muted;
+}
+
+.loaf-overview-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  align-self: flex-start;
+}
+
+.loaf-overview-sub {
+  font-size: 0.8rem;
+  color: $color--text-muted;
+}
+
+.loaf-culprits-heading {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+.loaf-culprits {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-bottom: 22px;
+
+  th {
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: $font--weight--semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color--text-muted;
+    padding: 6px 12px 6px 0;
+    border-bottom: 1px solid $color--border-strong;
+  }
+
+  td {
+    padding: 7px 12px 7px 0;
+    border-bottom: 1px solid $color--border;
+    vertical-align: top;
+  }
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .loaf-culprit-script {
+    font-family: $font--mono;
+    font-size: 0.82rem;
+    word-break: break-all;
+  }
+}
+
+.loaf-3p {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  font-family: $base--font-family;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.03em;
+  color: $color--text-secondary;
+  background: $color--surface;
+  border: 1px solid $color--border-strong;
+  white-space: nowrap;
+}
+
+.loaf-scripts {
+  margin-top: 12px;
+
+  summary {
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    user-select: none;
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  .loaf-script {
+    margin-top: 10px;
+  }
+}
+
 
 .inp-card {
   background: $color--surface-card;
@@ -742,4 +849,75 @@ $lcp--render-delay: #a78bfa;
   .web-vital--ok & { color: $color--ok; }
   .web-vital--warning & { color: #facc15; }
   .web-vital--error & { color: $color--error; }
+}
+
+// Lab / Field eyebrow label that prefixes the lab status word and the
+// CrUX field line, so the two measurements can't be confused.
+.web-vital-source {
+  font-size: 0.7rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+  margin-right: 6px;
+}
+
+// CrUX field p75 line below the lab status. Its own dot is coloured by
+// the field's own Web Vitals class, independent of the tile background
+// (which tracks the lab value).
+.web-vital-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: $color--text-secondary;
+}
+
+// Dot + value + status sit on one line; nowrap keeps the number and its
+// unit (e.g. "490 ms") together instead of breaking across lines.
+.web-vital-field-measure {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.web-vital-field-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: $color--text-muted;
+
+  &.web-vital-field-dot--ok { background: $color--ok; }
+  &.web-vital-field-dot--warning { background: #facc15; }
+  &.web-vital-field-dot--error { background: $color--error; }
+}
+
+.web-vital-field-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: $font--weight--medium;
+}
+
+.web-vital-field-status {
+  color: $color--text-muted;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+// Shown only when the lab classifies a Vital better than the field does
+// — i.e. the test conditions are rosier than what real users see.
+.web-vital-flag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border-radius: $radius--sm;
+  background: $color--warning-bg;
+  border: 1px solid $color--warning-border;
+  color: $color--warning;
+  font-size: 0.72rem;
+  font-weight: $font--weight--medium;
+  line-height: 1.4;
 }

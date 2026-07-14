@@ -1,0 +1,390 @@
+//- Rendering — the full render story on one tab. In reading order:
+//- what the user saw (video player and/or filmstrip, or the
+//- per-run screenshot gallery), then why rendering was delayed
+//- (recalculate-style work and forced reflows before first paint from
+//- the Chrome trace, the render-blocking requests from the HAR, and a
+//- cross-link to the CPU tab when animations run on the main thread).
+//-
+//- The playback view degrades by configuration, never by file sniffing:
+//-   video + filmstrip : player + transport + HUD + timeline + strip
+//-   filmstrip only    : a large frame preview replaces the player,
+//-                       frames/arrow keys drive it, play steps through
+//-                       the frames, speed buttons and the download
+//-                       link disappear
+//-   video only        : player + timeline + HUD, no strip
+//-   neither           : no player, preview, transport or strip at all —
+//-                       the tab can still exist for the screenshots and
+//-                       the why-was-rendering-delayed cards (page gating)
+//-
+//- #video, #filmstrip, #screenshots and #requests-render-blocking stay
+//- as anchors inside this section so old deep links keep working — the
+//- tab script maps them all to #rendering.
+
+include ../includes/_quicklinks
+include ../../_tableMixins
+
+- const isSummary = !!medianRun
+- const runIndex = isSummary ? medianRun.runIndex : iteration
+- const videoIndex = options.browsertime.enableVideoRun ? '1' : runIndex
+- const videoSrc = 'data/video/' + videoIndex + '.mp4'
+- const filmstripPath = 'data/filmstrip/' + runIndex + '/'
+- const hasVideo = !!(options.browsertime.video || (isSummary && options.browsertime.enableVideoRun))
+- const hasFilmstrip = !!(((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+
+//- Why-section data. `pagexray` mirrors how the PageXray tab picks its
+//- shape (run on iteration pages, pageSummary on the summary page) and
+//- the recalculate-style block mirrors how the Metrics tab picks the
+//- browsertime renderBlocking data for the same run.
+- const pagexray = pageInfo.data.pagexray ? (pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary) : undefined
+- const btRenderBlocking = pageInfo.data.browsertime ? (isSummary ? (pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.renderBlocking ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : undefined) : (pageInfo.data.browsertime.run ? pageInfo.data.browsertime.run.renderBlocking : undefined)) : undefined
+- const recalculateStyle = btRenderBlocking ? btRenderBlocking.recalculateStyle : undefined
+- const hasRecalculateStyle = !!(recalculateStyle && (recalculateStyle.beforeFCP || recalculateStyle.beforeLCP))
+//- Screenshots are stored per iteration, so the gallery only exists on
+//- the run pages — the summary page never had a screenshot gallery.
+- const screenshots = (pageInfo.data.browsertime && pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.screenshots) || []
+- const showRecalculateHint = !hasRecalculateStyle && (options.browser === 'chrome' || options.browser === 'edge')
+
+//- CPU-trace signals for the why-section: forced reflows before first
+//- paint and non-composited animations. `whyCpu` follows the CPU tab's
+//- run picking (per-run indexed array on the summary page, the run
+//- object on iteration pages) and FCP comes from the same run, so the
+//- before-first-paint window lines up with that run's trace.
+- const whyBt = pageInfo.data.browsertime
+- const whyCpu = whyBt ? (isSummary ? (whyBt.pageSummary && whyBt.pageSummary.cpu ? whyBt.pageSummary.cpu[medianRun.runIndex - 1] : undefined) : (whyBt.run ? whyBt.run.cpu : undefined)) : undefined
+- const whyTimings = whyBt ? (isSummary ? (whyBt.pageSummary && whyBt.pageSummary.browserScripts && whyBt.pageSummary.browserScripts[medianRun.runIndex - 1] ? whyBt.pageSummary.browserScripts[medianRun.runIndex - 1].timings : undefined) : (whyBt.run ? whyBt.run.timings : undefined)) : undefined
+- const whyFcp = whyTimings && whyTimings.paintTiming ? whyTimings.paintTiming['first-contentful-paint'] : undefined
+- const whyLcp = whyTimings && whyTimings.largestContentfulPaint ? whyTimings.largestContentfulPaint.renderTime : undefined
+//- Reflows are windowed to before the page painted — a reflow between
+//- FCP and LCP still delays the largest paint (pages that paint early
+//- and then thrash layout would otherwise show nothing here). The
+//- window ends at the LATEST known paint milestone (LCP can land
+//- before FCP in real runs). Whole-load reflow numbers live on the
+//- CPU tab; without any paint milestone there is no window, so the
+//- block stays hidden instead of falling back to whole-load numbers.
+- const whyPaintEnd = Math.max(whyFcp || 0, whyLcp || 0) || undefined
+- const preFcpReflows = whyCpu && whyCpu.forcedReflows && whyFcp ? whyCpu.forcedReflows.filter(r => r.startTime < whyFcp) : []
+- const preLcpReflows = whyCpu && whyCpu.forcedReflows && whyLcp ? whyCpu.forcedReflows.filter(r => r.startTime < whyLcp) : []
+- const prePaintReflows = whyCpu && whyCpu.forcedReflows && whyPaintEnd ? whyCpu.forcedReflows.filter(r => r.startTime < whyPaintEnd) : []
+//- Materiality floor: a handful of milliseconds of pre-paint reflow on
+//- a paint measured in hundreds is noise — showing it as a "why" card
+//- oversells it. 10 ms is deliberately low (thrashing multiplies on
+//- slower devices) but keeps the trivial cases out. The page-level
+//- hasRendering gates mirror this constant — keep them in sync.
+- const prePaintReflowTotal = Math.round(prePaintReflows.reduce((total, r) => total + r.duration, 0) * 10) / 10
+- const reflowsMaterial = prePaintReflowTotal >= 10
+- const nonCompositedCount = whyCpu && whyCpu.nonCompositedAnimations ? whyCpu.nonCompositedAnimations.length : 0
+
+- const renderingLinks = []
+- if (hasVideo || hasFilmstrip) renderingLinks.push({href: '#video', label: 'Playback'})
+- if (hasFilmstrip) renderingLinks.push({href: '#filmstrip', label: 'Filmstrip'})
+- if (screenshots.length > 0) renderingLinks.push({href: '#screenshots', label: 'Screenshots'})
+- if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
+- if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
+- if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
+- if (nonCompositedCount > 0) renderingLinks.push({href: '#main-thread-animations', label: 'Animations'})
+//- A lone Playback pill is just noise — only show jump links when the
+//- tab has more than one section to jump between.
+if renderingLinks.length > 1
+  +quicklinks(renderingLinks)
+
+a#rendering
+
+//- Runs without any playback media still land here for the why-section —
+//- tell the reader what a video/visual-metrics run adds instead of
+//- silently showing a smaller tab.
+if !(hasVideo || hasFilmstrip) && (hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || screenshots.length > 0 || reflowsMaterial || nonCompositedCount > 0)
+  p.rendering-nomedia
+    | This test ran without&nbsp;
+    code --video
+    | &nbsp;and&nbsp;
+    code --visualMetrics
+    | , so there is no video, filmstrip or milestone timeline of how the page rendered. Add them to your run to see the page paint over time and to get visual metrics like First Visual Change and Speed Index.
+
+if hasVideo || hasFilmstrip
+  //- Milestones come from the run the video/filmstrip was recorded for
+  //- (the median run on the summary page), not from the cross-run
+  //- medians — the flags must line up with what the recording shows.
+  - const bt = pageInfo.data.browsertime
+  - const btRun = isSummary ? (bt && bt.pageSummary && bt.pageSummary.browserScripts ? bt.pageSummary.browserScripts[medianRun.runIndex - 1] : undefined) : (bt ? bt.run : undefined)
+  - const timings = btRun ? btRun.timings : undefined
+  - const visualMetrics = isSummary ? (bt && bt.pageSummary && bt.pageSummary.visualMetrics ? bt.pageSummary.visualMetrics[medianRun.runIndex - 1] : undefined) : (btRun ? btRun.visualMetrics : undefined)
+
+  - const milestones = []
+  - const addMilestone = (name, value) => { if (typeof value === 'number' && value > 0) milestones.push({ name, t: Math.round(value) }) }
+  - if (timings && timings.pageTimings) addMilestone('TTFB', timings.pageTimings.backEndTime)
+  - if (timings && timings.paintTiming) addMilestone('FCP', timings.paintTiming['first-contentful-paint'])
+  - if (timings && timings.largestContentfulPaint) addMilestone('LCP', Math.max(timings.largestContentfulPaint.loadTime || 0, timings.largestContentfulPaint.renderTime || 0))
+  - if (visualMetrics) { addMilestone('First visual', visualMetrics.FirstVisualChange); addMilestone('85% complete', visualMetrics.VisualComplete85); addMilestone('Speed Index', visualMetrics.SpeedIndex); addMilestone('Last visual', visualMetrics.LastVisualChange) }
+  //- Sorted by when they actually happened — LCP can legitimately land
+  //- before First Visual Change. Never reorder to the "expected" order
+  //- and never clamp a value to make the timeline look tidy.
+  - milestones.sort((a, b) => a.t - b.t)
+  - const firstVisual = visualMetrics && visualMetrics.FirstVisualChange > 0 ? Math.round(visualMetrics.FirstVisualChange) : 0
+
+  //- Per-frame completeness. VisualProgress samples are event-based —
+  //- a sample is emitted only when the similarity-to-final-frame
+  //- percent changes, so a frame's completeness is the most recent
+  //- sample at or before its timestamp: stepped, never interpolated.
+  - const frames = []
+  - const vpSamples = (visualMetrics && visualMetrics.VisualProgress) || []
+  - if (hasFilmstrip && typeof filmstrip !== 'undefined' && filmstrip) {
+  -   let vpIndex = -1
+  -   let previousFile = ''
+  -   for (const frame of filmstrip) {
+  -     const t = Math.round(frame.time * 1000)
+  -     while (vpIndex + 1 < vpSamples.length && vpSamples[vpIndex + 1].timestamp <= t) vpIndex++
+  -     const pct = vpIndex >= 0 ? vpSamples[vpIndex].percent : (vpSamples.length > 0 ? 0 : undefined)
+  -     frames.push({ t, file: frame.file, pct, changed: previousFile !== '' && frame.file !== previousFile, timings: frame.timings })
+  -     previousFile = frame.file
+  -   }
+  - }
+
+  - const lastFrameT = frames.length > 0 ? frames[frames.length - 1].t : 0
+  - const lastMilestoneT = milestones.length > 0 ? milestones[milestones.length - 1].t : 0
+  - const renderingEnd = Math.max(Math.ceil(Math.max(lastFrameT, lastMilestoneT) * 1.05), 100)
+  - const tickStep = renderingEnd <= 2000 ? 500 : (renderingEnd <= 6000 ? 1000 : (renderingEnd <= 15000 ? 2000 : 5000))
+  - const ticks = []
+  - for (let t = 0; t <= renderingEnd; t += tickStep) ticks.push(t)
+
+  #rendering-view
+    a#video
+    .listing-card.rendering-card
+      .listing-card-header
+        h3.listing-card-title Rendering
+        span.listing-card-meta
+          | Run #{runIndex}
+          if isSummary
+            |  · median
+          if hasVideo && options.browsertime.enableVideoRun
+            |  · --enableVideoRun
+          if !hasVideo
+            |  · no video — the filmstrip drives the preview
+
+      .rendering-stage
+        if hasVideo
+          video.rendering-video(preload='metadata', playsinline)
+            source(src=videoSrc, type='video/mp4')
+        else if frames.length > 0
+          img.rendering-preview(src=filmstripPath + frames[0].file, alt='Selected filmstrip frame', title='Click to enlarge')
+
+      .rendering-transport
+        button.rendering-button.rendering-button--primary#rendering-play(type='button') ▶ Play
+        if hasVideo
+          button.rendering-button.rendering-speed.rendering-speed--active(type='button', data-speed='1') 1×
+          button.rendering-button.rendering-speed(type='button', data-speed='0.5') 0.5×
+          button.rendering-button.rendering-speed(type='button', data-speed='0.25') 0.25×
+        if frames.length > 0
+          button.rendering-button#rendering-step-back(type='button', aria-label='Previous frame') ⟨ frame
+          button.rendering-button#rendering-step-forward(type='button', aria-label='Next frame') frame ⟩
+        if firstVisual > 0
+          button.rendering-button#rendering-jump(type='button', data-t=firstVisual) Jump to first visual change
+        span.rendering-clock#rendering-clock 0.000 s
+
+      if milestones.length > 0
+        .rendering-hud
+          each m in milestones
+            button.rendering-chip(type='button', data-t=m.t)
+              | #{m.name}&nbsp;
+              b #{h.time.ms(m.t)}
+
+        .rendering-timeline#rendering-timeline(data-end=renderingEnd)
+          .rendering-axis#rendering-axis
+          .rendering-axis-fill#rendering-fill
+          .rendering-playhead#rendering-playhead
+          - let lastFlagPct = -100
+          - let lowLane = false
+          each m in milestones
+            - const flagPct = m.t / renderingEnd * 100
+            - lowLane = (flagPct - lastFlagPct < 7) ? !lowLane : false
+            - lastFlagPct = flagPct
+            button.rendering-flag(type='button', class=lowLane ? 'rendering-flag--low' : null, style='left: ' + flagPct.toFixed(2) + '%', data-t=m.t)
+              span.rendering-flag-label #{m.name} #{h.time.ms(m.t)}
+              span.rendering-flag-stem
+          each t in ticks
+            span.rendering-tick(style='left: ' + (t / renderingEnd * 100).toFixed(2) + '%') #{t / 1000}s
+
+      if hasVideo
+        a.button.button-download.rendering-download(href=videoSrc, download=downloadName + '-video.mp4') Download video
+
+    if hasFilmstrip
+      a#filmstrip
+      .listing-card.rendering-strip-card
+        .listing-card-header
+          h3.listing-card-title Filmstrip
+          span.listing-card-meta #{frames.length} #{frames.length === 1 ? 'frame' : 'frames'}
+          if frames.length > 0
+            label.rendering-zoom
+              | Zoom
+              input#rendering-zoom(type='range', min='70', max='260', value='104', aria-label='Filmstrip frame size')
+        if (options.filmstrip && options.filmstrip.showAll)
+          p.listing-card-help
+            | Showing all filmstrips. Set&nbsp;
+            code --filmstrip.showAll
+            | &nbsp;to false to only show the ones that contain a change.
+        else
+          p.listing-card-help
+            | Use&nbsp;
+            code --filmstrip.showAll
+            | &nbsp;to show all filmstrips.
+        if frames.length > 0
+          .rendering-strip-scroll
+            .rendering-strip#rendering-strip
+              each frame, index in frames
+                - const frameTitle = frame.timings && frame.timings.length > 0 ? frame.timings.map(timing => String(timing.name || timing.metric).replace(/<[^>]*>/g, '') + ' ' + h.time.ms(timing.duration || timing.value)).join(', ') : undefined
+                .rendering-frame(class=frame.changed ? 'rendering-frame--changed' : null, data-t=frame.t, data-index=index, title=frameTitle)
+                  img(src=filmstripPath + frame.file, alt='Frame at ' + h.time.ms(frame.t), loading='lazy')
+                  button.rendering-frame-zoom(type='button', aria-label='Enlarge frame') ⤢
+                  .rendering-frame-time #{h.time.ms(frame.t)}
+                  if frame.pct !== undefined
+                    .rendering-frame-pct #{frame.pct} %
+          p.rendering-strip-help
+            if hasVideo
+              | Click a frame to seek the video to that moment. The dot marks frames where the page changed visually.
+            else
+              | No video in this result — click a frame to preview it, use the frame buttons or arrow keys to step, play replays the strip at its real pace. The dot marks frames where the page changed visually.
+
+    if frames.length > 0
+      .rendering-lightbox#rendering-lightbox(hidden)
+        .rendering-lightbox-backdrop#rendering-lightbox-backdrop
+        figure.rendering-lightbox-figure
+          img.rendering-lightbox-img#rendering-lightbox-img(alt='Filmstrip frame')
+          figcaption.rendering-lightbox-bar
+            button.rendering-button#rendering-lightbox-prev(type='button', aria-label='Previous frame') ⟨
+            span.rendering-lightbox-meta#rendering-lightbox-meta
+            button.rendering-button#rendering-lightbox-next(type='button', aria-label='Next frame') ⟩
+            a.rendering-lightbox-original#rendering-lightbox-original(href='#', target='_blank', rel='noopener') Open original
+            button.rendering-button#rendering-lightbox-close(type='button', aria-label='Close') ✕
+
+  script(type='text/javascript')
+    include ../includes/renderingView.js
+
+//- Screenshots — the automatic (and user generated) screenshots from
+//- this run. They exist without video, so the card is gated on the
+//- data, not on the playback options.
+if screenshots.length > 0
+  a#screenshots
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Screenshots
+      span.listing-card-meta #{screenshots.length} #{screenshots.length === 1 ? 'screenshot' : 'screenshots'}
+    //- Responsive thumbnail grid; click a card to open the full-size
+    //- screenshot in a new tab. Auto-fit columns adapt to whatever
+    //- viewport size the report is opened in, instead of stacking each
+    //- screenshot at full width.
+    .screenshots-gallery
+      each screenshot in screenshots
+        - const filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
+        - const screenshotName = rootPath + screenshot
+        a.screenshot-card(id=filename, href=screenshotName)
+          .screenshot-card-thumb-wrap
+            img.screenshot-card-thumb(src=screenshotName, alt=filename, loading='lazy')
+          .screenshot-card-caption #{filename}
+
+//- Why was rendering delayed — the diagnostic half of the story.
+if hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
+  h3 Why was rendering delayed?
+
+if hasRecalculateStyle
+  a#recalculate-style
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Recalculate style
+      span.listing-card-meta from the Chrome trace
+    p.listing-card-help
+      | Style the browser had to recalculate before it could paint — many elements or a lot of time spent here points at expensive CSS on the critical rendering path.
+    .metric-tiles
+      if recalculateStyle.beforeFCP
+        .metric-tile
+          span.metric-tile-label Elements that needed recalculate style before FCP
+          span.metric-tile-value #{recalculateStyle.beforeFCP.elements}
+        .metric-tile
+          span.metric-tile-label Time spent in recalculate style before FCP
+          span.metric-tile-value #{h.time.ms(recalculateStyle.beforeFCP.durationInMillis)}
+      if recalculateStyle.beforeLCP
+        .metric-tile
+          span.metric-tile-label Elements that needed recalculate style before LCP
+          span.metric-tile-value #{recalculateStyle.beforeLCP.elements}
+        .metric-tile
+          span.metric-tile-label Time spent in recalculate style before LCP
+          span.metric-tile-value #{h.time.ms(recalculateStyle.beforeLCP.durationInMillis)}
+else if showRecalculateHint
+  //- The recalculate-style counts come from parsing a Chrome timeline
+  //- trace, gated on --cpu / --chrome.timeline. The matching Firefox
+  //- Gecko profile doesn't carry the same `UpdateLayoutTree.elementCount`
+  //- events, so the hint is Chromium-only — pointing Firefox or Safari
+  //- users at --cpu would be misleading.
+  p.metrics-cpu-hint
+    | Want recalculate-style metrics for FCP and LCP, plus CPU long tasks? Run with&nbsp;
+    code --cpu
+    | .
+
+if reflowsMaterial
+  a#reflows-before-paint
+  //- The totals count every pre-paint reflow, but the offender list drops
+  //- sub-millisecond ones: a busy trace easily carries dozens of sub-ms
+  //- layout events that are individually noise (they round to 0 ms) and
+  //- would bury the reflows worth fixing — while leaving them out of the
+  //- totals would under-report the aggregate cost.
+  //- Round the float sums to one decimal so the tiles never show the
+  //- 51.900000000000006-style floating point residue.
+  - const preFcpTotal = Math.round(preFcpReflows.reduce((total, r) => total + r.duration, 0) * 10) / 10
+  - const preLcpTotal = Math.round(preLcpReflows.reduce((total, r) => total + r.duration, 0) * 10) / 10
+  - const topReflows = prePaintReflows.filter(r => r.duration >= 1).sort((a, b) => b.duration - a.duration).slice(0, 5)
+  - const topReflowMax = topReflows.length > 0 ? topReflows[0].duration : 0
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Forced reflows before the page painted
+      span.listing-card-meta from the Chrome trace
+    p.listing-card-help
+      | JavaScript read a layout value (offsetTop, getBoundingClientRect, …) while the page was mid-change, so the browser had to re-layout synchronously — work that blocks rendering. Reflows before First Contentful Paint delayed the first pixels; reflows before Largest Contentful Paint delayed the main content.
+    .metric-tiles
+      if whyFcp
+        .metric-tile
+          span.metric-tile-label Forced reflows before FCP
+          span.metric-tile-value #{preFcpReflows.length}
+        .metric-tile
+          span.metric-tile-label Time spent in forced reflows before FCP
+          span.metric-tile-value #{h.time.ms(preFcpTotal)}
+      if whyLcp
+        .metric-tile
+          span.metric-tile-label Forced reflows before LCP
+          span.metric-tile-value #{preLcpReflows.length}
+        .metric-tile
+          span.metric-tile-label Time spent in forced reflows before LCP
+          span.metric-tile-value #{h.time.ms(preLcpTotal)}
+    //- Share of the milestone so the reader can judge scale — many small
+    //- reflows are a thrashing pattern worth fixing, but the milliseconds
+    //- alone rarely explain a slow paint.
+    - const shareBase = whyLcp || whyFcp
+    - const shareTotal = whyLcp ? preLcpTotal : preFcpTotal
+    - const reflowShare = shareBase ? Math.round(shareTotal / shareBase * 1000) / 10 : undefined
+    if reflowShare !== undefined
+      p.rendering-why-note That is #{reflowShare} % of the time to #{whyLcp ? 'Largest' : 'First'} Contentful Paint — the number of reflows matters more than the milliseconds: layout thrashing multiplies on slower devices.
+    if topReflows.length > 0
+      .cpu-bars
+        each reflow in topReflows
+          - const pct = topReflowMax > 0 ? (reflow.duration / topReflowMax * 100) : 0
+          .cpu-bar-row
+            span.cpu-bar-asset
+              if reflow.triggeredByUrl
+                a(href=reflow.triggeredByUrl, title=reflow.triggeredByUrl)= h.shortAsset(reflow.triggeredByUrl, true)
+              else
+                span.cpu-bar-anon Anonymous / inline
+            .cpu-bar-track
+              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
+            span.cpu-bar-value
+              | #{reflow.duration.toFixed(0)} ms
+              span.cpu-bar-sub  · at #{h.time.ms(reflow.startTime)}
+    p.listing-card-help
+      a(href='#cpu-forced-reflows', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See every forced reflow for the whole page load on the CPU tab
+
+include ./blocking.pug
+
+//- Non-composited animations are a jank signal, not a first-paint
+//- delay — one quiet cross-link is enough, the CPU tab owns the detail.
+if nonCompositedCount > 0
+  a#main-thread-animations
+  p.rendering-why-note
+    | #{nonCompositedCount} #{nonCompositedCount === 1 ? 'animation runs' : 'animations run'} on the main thread instead of the compositor — they can make the rendering you see above janky.&nbsp;
+    a(href='#cpu-animations', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See them on the CPU tab
+    | .

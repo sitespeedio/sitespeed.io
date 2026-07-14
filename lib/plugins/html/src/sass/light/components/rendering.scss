@@ -1,0 +1,489 @@
+//
+// RENDERING — light
+// =================
+// The merged video + filmstrip experience: player/preview stage,
+// transport buttons, milestone HUD chips, the clickable milestone
+// timeline, the chronological filmstrip strip and the frame lightbox.
+//
+
+.rendering-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: $color--black;
+  border-radius: $radius--sm;
+  overflow: hidden;
+}
+
+.rendering-video,
+.rendering-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 480px;
+}
+
+.rendering-preview {
+  background: $color--white;
+  cursor: zoom-in;
+}
+
+//
+// Transport row — compact buttons, tighter than the page-level .button
+// so play / speed / step / jump fit on one line next to the clock.
+//
+
+.rendering-transport {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.rendering-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  line-height: 1;
+  color: $color--text;
+  background: $color--surface-card;
+  border: 1px solid $color--border-strong;
+  border-radius: $radius--sm;
+  cursor: pointer;
+  transition: background-color $motion--fast, border-color $motion--fast,
+    color $motion--fast;
+
+  &:hover {
+    background: $color--surface;
+    border-color: $color--text-secondary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color--blue;
+    outline-offset: 2px;
+  }
+}
+
+.rendering-button--primary {
+  color: $color--white;
+  background: $color--blue;
+  border-color: $color--blue;
+
+  &:hover {
+    color: $color--white;
+    background: $color--blue-dark;
+    border-color: $color--blue-dark;
+  }
+}
+
+.rendering-speed--active {
+  color: $color--info;
+  background: $color--info-bg;
+  border-color: $color--blue;
+}
+
+.rendering-clock {
+  min-width: 76px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+}
+
+//
+// HUD — milestone chips that light up as playback passes them.
+//
+
+.rendering-hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.rendering-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-muted;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  cursor: pointer;
+  transition: background-color $motion--fast, border-color $motion--fast,
+    color $motion--fast;
+
+  &::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $color--border;
+  }
+
+  b {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.rendering-chip--passed {
+  color: $color--text;
+  background: $color--ok-bg;
+  border-color: $color--ok-border;
+
+  &::before {
+    background: $color--ok;
+  }
+}
+
+//
+// Milestone timeline — clickable flags over a scrubbable axis with a
+// playhead. Flags alternate into a lower lane when they would collide.
+//
+
+.rendering-timeline {
+  position: relative;
+  height: 76px;
+  margin-top: 18px;
+  user-select: none;
+}
+
+.rendering-axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48px;
+  height: 8px;
+  border-radius: 4px;
+  background: $color--border;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.rendering-axis-fill {
+  position: absolute;
+  left: 0;
+  top: 48px;
+  height: 8px;
+  width: 0;
+  border-radius: 4px 0 0 4px;
+  background: $color--blue;
+  pointer-events: none;
+}
+
+.rendering-playhead {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 2px;
+  height: 24px;
+  background: $color--text;
+  border-radius: 1px;
+  pointer-events: none;
+  translate: -50%;
+}
+
+.rendering-flag {
+  position: absolute;
+  top: 0;
+  translate: -50%;
+  text-align: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color--blue;
+    outline-offset: 2px;
+  }
+}
+
+.rendering-flag-label {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: $color--text-secondary;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+}
+
+.rendering-flag:hover .rendering-flag-label {
+  color: $color--white;
+  background: $color--blue-dark;
+  border-color: $color--blue-dark;
+}
+
+.rendering-flag-stem {
+  display: block;
+  width: 2px;
+  height: 16px;
+  margin: 2px auto 0;
+  background: $color--blue;
+  border-radius: 1px;
+}
+
+.rendering-flag--low {
+  top: 18px;
+
+  .rendering-flag-stem {
+    height: 8px;
+  }
+}
+
+.rendering-tick {
+  position: absolute;
+  top: 60px;
+  translate: -50%;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+}
+
+.rendering-download {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+//
+// Filmstrip — one horizontal chronological strip. Frame width is a
+// custom property so the zoom slider can resize every frame at once.
+//
+
+.rendering-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+
+  input {
+    margin: 0;
+  }
+}
+
+.rendering-strip-scroll {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.rendering-strip {
+  --rendering-frame-width: 104px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.rendering-frame {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 4px 4px 6px;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: $radius--sm;
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: var(--rendering-frame-width);
+    border: 1px solid $color--border;
+    border-radius: 4px;
+    background: $color--white;
+  }
+
+  &:hover {
+    background: $color--surface;
+  }
+}
+
+.rendering-frame--current {
+  border-color: $color--blue;
+  background: $color--blue-tint;
+}
+
+.rendering-frame-time {
+  margin-top: 5px;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+}
+
+// The dot marking a frame where the page changed visually.
+.rendering-frame--changed .rendering-frame-time::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background: $color--blue;
+  translate: 0 -1px;
+}
+
+.rendering-frame-pct {
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+}
+
+.rendering-frame-zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: $color--text;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  cursor: zoom-in;
+  opacity: 0;
+  transition: opacity $motion--fast;
+}
+
+.rendering-frame:hover .rendering-frame-zoom,
+.rendering-frame-zoom:focus-visible {
+  opacity: 1;
+}
+
+.rendering-strip-help {
+  margin: 10px 0 0 0;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+}
+
+//
+// Lightbox — dependency-free frame viewer.
+//
+
+.rendering-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.rendering-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.rendering-lightbox-figure {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 14px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--lg;
+}
+
+.rendering-lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  background: $color--white;
+}
+
+.rendering-lightbox-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rendering-lightbox-meta {
+  margin-right: auto;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-secondary;
+}
+
+.rendering-lightbox-original {
+  font-size: 0.85rem;
+}
+
+// Render-blocking requests card (rendering/blocking.pug): one section
+// per Chrome blocking status, each with a toned title, a count and a
+// plain-language explanation.
+.rb-section {
+  margin-top: 18px;
+
+  &:first-of-type {
+    margin-top: 4px;
+  }
+}
+
+.rb-section-title {
+  font-size: 1rem;
+  margin: 0 0 2px 0;
+
+  &--error {
+    color: $color--error;
+  }
+
+  &--warning {
+    color: $color--warning;
+  }
+}
+
+.rb-section-count {
+  margin-left: 8px;
+  font-size: 0.85rem;
+  font-weight: $font--weight--regular;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.rb-section-explain {
+  font-size: 0.875rem;
+  color: $color--text-muted;
+  margin: 0 0 10px 0;
+}
+
+// Shown when the tab only has the why-section because the run had no
+// playback media.
+.rendering-nomedia {
+  margin: 0 0 18px 0;
+  font-size: 0.9rem;
+  color: $color--text-muted;
+}
+
+// A quiet one-line note in the why-section that cross-links to another
+// tab (e.g. main-thread animations pointing at the CPU tab).
+.rendering-why-note {
+  margin: 0 0 18px 0;
+  font-size: 0.9rem;
+  color: $color--text-muted;
+}

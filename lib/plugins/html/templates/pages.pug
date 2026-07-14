@@ -1,78 +1,126 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin rows(pages)
-  each pageInfo, url in pages
-    - p = pageInfo.data.pagexray && pageInfo.data.pagexray.pageSummary ? pageInfo.data.pagexray.pageSummary : {}
-    - tp = pageInfo.data.thirdparty ? pageInfo.data.thirdparty.pageSummary : {}
-    - b = pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary : {}
-    - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
-    - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].urlAlias) ? options.urlsMetaData[url].urlAlias : url
-    - display = (pageInfo.data.browsertime && b.info.alias) ? b.info.alias : display
-    - metricList = html.pageSummaryMetrics
-    tr
-      td.url.pagesurl(data-title='URL')
-        a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
-      if (b.visualMetrics && b.visualMetrics[0]) && (!hasPageSummaryMetricInput)
-        +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
-        +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
-        +numberCell('Last Visual Change', b.visualMetrics[0].LastVisualChange)
-
-      each metric in metricList
-        - [m, metricType] = metric.split('.')
-        - fullPath = ''
-        - toolName = ''
-        each tool in Object.keys(friendlyNames)
-          - toolName = tool
-          - fullPath = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].path : undefined
-          - name = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].name : ''
-          if (fullPath !== undefined)
-            - break
-        - value = pageInfo.data[toolName] ? get(pageInfo.data[toolName].pageSummary, fullPath, 0) : 0
-        if (fullPath.indexOf('Size') > -1)
-          +kbSizeCell(name, value)
-        else if metricType === 'performance'
-          td.number(data-title=name, data-value=value)
-            - label = 'label ' +  h.scoreLabel(value)
-            span(class=label) #{value}
-        else if metricType.toLowerCase() === 'httperrors'
-          - errors = Object.keys(value).filter(code => code > 399).length
-          +numberCell(name, errors)
-        else
-          +numberCell(name, value)
+//- Every tested page in one sortable table so the reader can compare
+//- pages and jump to a page report. Rows render worst Web Vitals first
+//- so the pages that need attention surface at the top; any column
+//- header re-sorts on click (sortable.min.js). The metric columns are
+//- driven by --html.pageSummaryMetrics — only the URL and the Web
+//- Vitals verdict columns are fixed. Metrics that weren't collected
+//- (Speed Index without video, a failed run) render as – instead of 0.
 
 block content
-  - headings = ['URL']
-  if (options.browsertime.visualMetrics && !hasPageSummaryMetricInput)
-    - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
-  - metricList = html.pageSummaryMetrics
-  each kv in metricList
-    - [k, v] = kv.split('.')
-    - headingText = ''
-    each tool in Object.keys(friendlyNames)
-      if (friendlyNames[tool] && friendlyNames[tool][k] && friendlyNames[tool][k][v])
-        - headingText = friendlyNames[tool][k][v].name
-    - headings.push(headingText)
-  - const pageCount = Object.keys(pages).length
+  //- Same cutoffs as the Web Vitals helpers in url/metrics/index.pug —
+  //- keep them in sync so the verdict here matches the per-page report.
+  - const gwvTtfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
+  - const gwvFcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+  - const gwvLcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+  - const gwvClsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+  - const gwvInpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const gwvTbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const wvStatusLabel = (c) => c === 'ok' ? 'Good' : (c === 'warning' ? 'Needs improvement' : (c === 'error' ? 'Poor' : ''))
+  - const severityOf = (c) => c === 'error' ? 3 : (c === 'warning' ? 2 : (c === 'ok' ? 1 : 0))
+  - const severityClass = ['', 'ok', 'warning', 'error']
+
+  //- The verdict is the worst status across the Web Vitals we could
+  //- measure for the page (medians across runs). INP is usually missing
+  //- in lab tests without scripted interactions — the dots only show
+  //- what was actually collected.
+  - const vitalsFor = (stats) => { const list = []; const ttfb = get(stats, 'timings.pageTimings.backEndTime.median'); if (ttfb !== undefined) list.push({ label: 'TTFB', cssClass: gwvTtfbClass(ttfb), text: h.time.ms(ttfb) }); const fcp = get(stats, 'timings.paintTiming.first-contentful-paint.median'); if (fcp !== undefined) list.push({ label: 'FCP', cssClass: gwvFcpClass(fcp), text: h.time.ms(fcp) }); const lcp = get(stats, 'timings.largestContentfulPaint.renderTime.median'); if (lcp !== undefined) list.push({ label: 'LCP', cssClass: gwvLcpClass(lcp), text: h.time.ms(lcp) }); const tbt = get(stats, 'cpu.longTasks.totalBlockingTime.median'); if (tbt !== undefined) list.push({ label: 'TBT', cssClass: gwvTbtClass(tbt), text: h.time.ms(tbt) }); const cls = get(stats, 'pageinfo.cumulativeLayoutShift.median'); if (cls !== undefined) list.push({ label: 'CLS', cssClass: gwvClsClass(cls), text: '' + h.decimals(cls) }); const inp = get(stats, 'timings.interactionToNextPaint.median'); if (inp !== undefined) list.push({ label: 'INP', cssClass: gwvInpClass(inp), text: h.time.ms(inp) }); return list; }
+  - const rowFor = (url) => { const pageInfo = pages[url]; const bt = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary; let display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].urlAlias) ? options.urlsMetaData[url].urlAlias : url; if (bt && bt.info && bt.info.alias) display = bt.info.alias; const stats = bt ? bt.statistics : undefined; const vitals = vitalsFor(stats); const severity = vitals.reduce((worst, v) => Math.max(worst, severityOf(v.cssClass)), 0); const lcp = get(stats, 'timings.largestContentfulPaint.renderTime.median', -1); const fcp = get(stats, 'timings.paintTiming.first-contentful-paint.median', -1); return { url, pageInfo, display, vitals, severity, lcp, fcp }; }
+
+  //- Worst page first: severity, then LCP, then FCP. The sort is stable
+  //- so pages without any Web Vitals data keep their test order and sink
+  //- to the bottom.
+  - const rows = Object.keys(pages).map(rowFor)
+  - rows.sort((a, b) => b.severity - a.severity || b.lcp - a.lcp || b.fcp - a.fcp)
+  - const pageCount = rows.length
+  - const hasVitals = rows.some((row) => row.vitals.length > 0)
+
+  //- Errors during testing are easy to miss when you land straight on
+  //- this page — headers.errors carries the same per-URL error map the
+  //- Errors tab renders (set in htmlBuilder when any error message
+  //- arrived), so surface a count that links there.
+  - const errorMap = headers.errors ? headers.errors.errors : undefined
+  - let testErrorCount = 0
+  - if (errorMap) { for (const toolErrors of Object.values(errorMap)) { for (const list of Object.values(toolErrors)) { testErrorCount += list.length } } }
+
+  //- Resolve the configured metric columns once: friendly name, where the
+  //- value lives and how to format it. Metrics no tool knows about are
+  //- skipped instead of rendering a broken column.
+  - const columns = []
+  - for (const metric of html.pageSummaryMetrics) { const [group, key] = metric.split('.'); for (const tool of Object.keys(friendlyNames)) { const def = friendlyNames[tool][group] && friendlyNames[tool][group][key]; if (def) { columns.push({ tool, path: def.path, name: def.name, format: def.format, isScore: group === 'score', isHttpErrors: key.toLowerCase() === 'httperrors' }); break; } } }
+
+  - const headings = ['URL']
+  - if (hasVitals) headings.push('Web Vitals')
+  - for (const col of columns) headings.push(col.name)
+
   .row
     .column
       include runInfo
-      //- One card framing the per-URL table. The budget-removed list is
-      //- rendered as extra rows in the same table so the count chip in
-      //- the header reflects only the URLs that have data.
       .listing-card
         .listing-card-header
           h3.listing-card-title Pages tested
-          span.listing-card-meta #{pageCount} #{pageCount === 1 ? 'page' : 'pages'}
+          span.listing-card-meta
+            if testErrorCount > 0
+              a.errors-chip(href=rootPath + 'errors.html') #{h.plural(testErrorCount, 'error')} during testing →
+              span.listing-card-meta-sep ·
+            | #{h.plural(pageCount, 'page')}
+            if hasVitals && pageCount > 1
+              span.listing-card-meta-sep ·
+              | worst first — click a column header to re-sort
+        if pageCount > 5
+          .pages-toolbar
+            span.pages-filter-count(id='pages-filter-count')
+            input.pages-filter(type='search', id='pages-filter', placeholder='Filter pages…', autocomplete='off', aria-label='Filter the table of pages')
         .responsive
-          table(data-sortable, id='pages')
+          table.pages-table(data-sortable, id='pages')
             +rowHeading(headings)
-            +rows(pages)
-            if removedUrls.length > 0
-              tr
-                td(colspan=headings.length)
-                  b The following pages metrics/data was removed because they passed the budget configuration.
-              each url in removedUrls
+            tbody
+              each row in rows
+                - const d = row.pageInfo.data
                 tr
-                  td.url.pagesurl(data-title='URL', colspan=headings.length)
-                    a(href= url)= decodeURIComponent(url)
+                  td.url.pagesurl(data-title='URL')
+                    a(href=row.pageInfo.path + 'index.html', title=row.url)= decodeURIComponent(row.display)
+                  if hasVitals
+                    td.pages-status(data-title='Web Vitals', data-value=row.severity)
+                      if row.vitals.length > 0
+                        //- Verdict pill and the dots each get their own row
+                        //- in the cell; hovering a dot spells out which
+                        //- metric it is: "<metric> <value> — <status>".
+                        .pages-status-cell
+                          span.pages-verdict(class=severityClass[row.severity], title='Worst status across the Web Vitals measured for this page')= wvStatusLabel(severityClass[row.severity])
+                          span.pages-dots
+                            each v in row.vitals
+                              //- Instant CSS tooltip (data-tip) — the native
+                              //- title only shows after a hover delay and the
+                              //- help cursor read as a broken "?" affordance.
+                              - const tip = v.label + ' ' + v.text + ' \u2014 ' + wvStatusLabel(v.cssClass)
+                              span.pages-dot(class=v.cssClass, data-tip=tip, aria-label=tip)
+                      else
+                        | –
+                  each col in columns
+                    - const raw = d[col.tool] && d[col.tool].pageSummary ? get(d[col.tool].pageSummary, col.path) : undefined
+                    if raw === undefined || raw === null
+                      td.number(data-title=col.name, data-value=-1) –
+                    else if col.isScore
+                      td.number(data-title=col.name, data-value=raw)
+                        span.label(class=h.scoreLabel(raw))= raw
+                    else if col.isHttpErrors
+                      - const errors = Object.keys(raw).filter((code) => code > 399).length
+                      td.number(data-title=col.name, data-value=errors)= errors
+                    else
+                      td.number(data-title=col.name, data-value=(typeof raw === 'number' ? raw : ''))= col.format ? col.format(raw) : raw
+      if removedUrls.length > 0
+        .listing-card
+          .listing-card-header
+            h3.listing-card-title Removed by budget
+            span.listing-card-meta #{h.plural(removedUrls.length, 'page')}
+          p.listing-card-help The result data for these pages was removed because they passed the performance budget.
+          ul.pages-removed-list
+            each url in removedUrls
+              li
+                a(href=url)= decodeURIComponent(url)
+      if pageCount > 5
+        script(type='text/javascript')
+          include includes/pagesFilter.js

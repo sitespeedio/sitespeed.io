@@ -1,0 +1,95 @@
+//
+// ASSETS PAGE — light
+// ===================
+// Overview strip additions (the KPI tiles themselves reuse .iter-kpis),
+// the per-content-type count chips and the cell tones that flag heavy
+// assets / short cache times in the assets table.
+//
+
+// The biggest-asset KPI tile shows which file it is under the number.
+.assets-kpi-note {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Tinted tiles inherit their tone colour on the value — keep the file
+// name readable by letting the note follow the tile colour too.
+.iter-kpi.warning .assets-kpi-note,
+.iter-kpi.error .assets-kpi-note {
+  color: inherit;
+  opacity: 0.85;
+}
+
+// Content-type composition: stacked bar + legend, mirroring the start
+// page's "made of" card. Colours come from the shared type-chip--*
+// background classes in listings.scss.
+.assets-type-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+  margin: 0 0 10px 0;
+}
+
+.assets-type-seg {
+  min-width: 2px;
+}
+
+.assets-type-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 18px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+
+  li {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 0;
+  }
+
+  b {
+    font-variant-numeric: tabular-nums;
+    color: $color--text;
+  }
+}
+
+.assets-type-swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  translate: 0 1px;
+  margin-right: 2px;
+}
+
+// The type column shows swatch + plain text (same idiom as the legend)
+// instead of a pill per row.
+.type-cell {
+  white-space: nowrap;
+  color: $color--text-secondary;
+}
+
+// Cell tones — text colour only, so they stack cleanly on top of the
+// in-cell scaling bar and the reused-row tint without fighting them.
+table#assets {
+  td.cell-tone--warning,
+  td.cell-tone--warning .cell-bar-text {
+    color: $color--warning;
+    font-weight: $font--weight--semibold;
+  }
+
+  td.cell-tone--error,
+  td.cell-tone--error .cell-bar-text {
+    color: $color--error;
+    font-weight: $font--weight--semibold;
+  }
+}

@@ -48,7 +48,7 @@ When you record a video, the video is first recorded with settings to make the r
 The video will by default include a timer and show when visual metrics happen. If you want the video without any text/timer, just add <code>--browsertime.videoParams.addTimer false</code>.
 
 ### Filmstrip parameters
-When the video is analysed with [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics) screenshots for a filmstrip are also created, and shown on the per-iteration page in the HTML report.
+When the video is analysed with [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics) screenshots for a filmstrip are also created, and shown on the Rendering tab in the HTML report (on the page summary and on each per-iteration page) together with the video: clicking a frame seeks the video to that moment, and if you test without `--video` the filmstrip drives a large frame preview instead.
 
 ![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg){:loading="lazy"}
 {: .img-thumbnail}
