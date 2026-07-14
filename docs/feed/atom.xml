@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-07-03T00:00:00.000Z</updated>
+    <updated>2026-07-14T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,52 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- The start page is a scorecard: one verdict for the whole test (&quot;2 of 6 pages pass every check&quot;) and every tested page plotted as a dot on each metric&#39;s threshold track — hover a dot to trace that page across metrics, click to open its report. Failed URLs are called out instead of silently lowering the page count. The classic summary boxes remain only as a fallback for runs without browsertime data #4807.<br>
+- CrUX field data is shown alongside the lab Web Vitals, so you can see what real Chrome users experience next to what the lab measured #4794.<br>
+- The Domains page answers &quot;which domain is hurting me&quot;: callout tiles for the slowest/heaviest/chattiest domains, worst-first ordering, warning/error tones on slow DNS/connect/SSL/TTFB and third-party marking #4808.<br>
+- The Toplist page answers &quot;which files do I fix first&quot;: a plain-language hint per list, warning/error tones on huge transfers, short cache times and slow responses, and a new short-cache-time list. Fonts and other content types are no longer dropped #4809.<br>
+- The Assets page opens with an overview (unique assets, total transfer/size, biggest asset, per-type counts) and spells out transfer (wire bytes) vs size (decoded bytes) so the numbers can&#39;t be misread #4811.<br>
+- The Detailed Summary groups all metrics into cards by concern and leads with a &quot;What stands out&quot; strip (worst Web Vital, 4xx/5xx responses, redirect-heavy pages, critical accessibility violations). Single-run results collapse the five identical stat columns into one value column #4812.<br>
+- The Pages tab sorts pages worst Web Vitals first with a per-page verdict and per-metric status dots, and large runs get a URL filter. Missing data renders as a dash instead of a misleading zero, and an unknown metric name no longer breaks the whole page #4813.<br>
+- Long Animation Frames are actionable: the frames with the most blocking time, split into phases, with the scripts that ran in them #4803.<br>
+- Visual metrics are easier to understand: a milestones timeline on the page summary shows when the page started rendering, hit 85% and finished #4804.<br>
+- Video and Filmstrip are merged into one Rendering tab: the video plays with a clickable milestone timeline (TTFB/FCP/LCP/visual metrics), the filmstrip is one chronological strip with per-frame completeness that seeks the video, and frames open full size in a lightbox. Runs that keep a filmstrip but no video get the same experience with a frame preview instead of the player. Old <code>#video</code> and <code>#filmstrip</code> links keep working #4816.<br>
+- The Rendering tab tells the full render story: what the user saw (video, filmstrip, this run&#39;s screenshots) followed by why it was delayed — recalculate-style work from the Chrome trace, render-blocking requests, forced reflows before the page painted (a page can paint early and still thrash layout before its largest paint) and animations running on the main thread instead of the compositor. The tab shows up whenever any of that exists, so a <code>--cpu</code> run without video still gets its render story, and old <code>#screenshots</code> and <code>#requests-render-blocking</code> links keep working #4827 #4828. A server that is slow to answer is part of the story too: when TTFB is past the 800 ms Web Vitals threshold, the why-section opens with the value and its share of the time to first contentful paint — and a slow TTFB alone brings the tab up, even for runs without video, filmstrip or trace data #4834.<br>
+- The render blocking section answers &quot;what do I attack first&quot;: one section per blocking type with a plain-language line on what the status means and how to fix it, and the assets in a sortable table with transfer size and total time, heaviest first — instead of raw URLs and Chrome&#39;s enum values. Dynamically injected resources that never block rendering no longer show up as something to investigate #4824 #4826.<br>
+- Problems are easier to find: the Errors page counts and tints its errors, the Budget page shows value/limit/verdict per check with failing URLs first, the Coach tab leads with a &quot;What to fix first&quot; strip, the Pages and Detailed pages link to the Errors page when a run had errors, and console errors surface as a red KPI tile on the PageXray tab #4819.<br>
+- The side-by-side runs page got the modern card treatment; run navigation is now compact number chips with the current run highlighted — a 21-run test fits on one line instead of three — and all tabs share the same jump-link style #4820 #4835.<br>
+- The Timings Summary table answers &quot;do the runs agree?&quot;: a new column grades run-to-run agreement per metric (identical, stable ±N%, or runs disagree ±N%), so a flaky Total Blocking Time of 0/0/214 ms no longer hides behind a perfect-looking median of 0. It grades agreement rather than speed, so it works for every metric without per-metric limits, and only renders with more than one iteration #4832.<br>
+- The page summary&#39;s stacked metric boxes became one overview stat card that leads with the values — big numbers, quiet labels, opening with a Google Web Vitals group so the summary shares vocabulary with the Timings Summary and the Metrics tab — and the screenshot now says which run it shows #4833.<br>
+- The Compare tab is one row per metric: the p-value, a distribution strip showing every baseline and current run on a shared value axis, median → median with the delta, and a verdict chip — replacing a nine-column statistics table cross-referenced against 24 scatter charts. A verdict card on top gives the headline count with chips that jump to the flagged metrics, significant rows are tinted by direction (regressions red, improvements green — the old layout showed a significant improvement in error-red), and old chart deep links keep landing on their metric #4836.<br>
+<br>
+<strong>Fixed</strong><br>
+- Runs that collect no asset data at all (for example a CrUX-only configuration) no longer crash the Toplist page — the empty aggregator fallbacks were plain objects where the populated case ships arrays, so the template died with &quot;pool is not iterable&quot; and the whole page was lost #4829.<br>
+- A User Timing mark that fires several times in one run (or only in some runs) produces statistics whose computed median matches no run; the Timings Summary silently dropped that cell and shifted every later column left. The cell is now always emitted, just without a run link when no run matches #4832.<br>
+- Report polish: asset content types render as a color swatch plus plain text instead of pill chips, and the Assets overview shows the type composition as the same stacked bar the start page uses #4822; explanation texts use the full card width instead of wrapping at 80 characters #4823; information labels no longer look like clickable buttons #4825; and the Pages tab&#39;s verdict pill is centered over its status dots #4830.<br>
+- The Waterfall tab works in dark mode: its ~350 lines of inline light-only CSS moved into proper light/dark stylesheets built on the theme tokens, reusing the report&#39;s card, button and filter components #4818.<br>
+- Style consistency across all report pages: one cell size for data tables, one numeric-cell class, one cell-tone spelling, h3 card titles/h2 tab leads, and the nav no longer narrower than the content on wide screens. Also fixes the Screenshots tab id typo that broke <code>#screenshots</code> deep links, screenshots glowing white in dark mode, and adds the missing good/poor dots to the Timings Summary Web Vitals #4817.<br>
+- The Timings Summary table matches the modern report styling, and its markup no longer relies on browser error recovery #4806.<br>
+- Cap the &quot;Elements that shifted&quot; text in the CLS card at 300 characters — an ad iframe attribute could dump an entire serialized HTML document into the report #4805.<br>
+- Upgrade waterfall-tools to 0.4.0 #4801.<br>
+- Upgrade @tgwf/co2 to 0.19.0. Reported CO2 numbers are unchanged — sitespeed.io always passes an explicit model — but co2.js&#39;s own default changed to SWD v4, which affects library users who enable the sustainable plugin without setting <code>sustainable.model</code> #4810.<br>
+<br>
+<strong>Changed</strong><br>
+- The Pages tab&#39;s default columns are now timing-first — LCP, CLS, TBT, Speed Index, total transfer, total requests and the Coach score — and the auto-appended visual metrics columns are gone. Any old column can be restored with <code>--html.pageSummaryMetrics</code> #4813.<br>
+- The Assets page selects the heaviest assets instead of the most requested ones (a huge asset requested once could be missing entirely) and <code>--maxAssets</code> defaults to 100 instead of 20 #4811.<br>
+- The green/yellow/red KPI tiles are gone from the Detailed and page summaries. They duplicated verdicts that already live elsewhere — the &quot;What stands out&quot; strip, the &quot;Runs agree?&quot; column and the Web Vitals verdicts — so every summary led with a second color-coded scoreboard that added noise without adding information #4831.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 41.4.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1</id>
@@ -269,29 +315,6 @@
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Drop unused fast-crc32c dependency #4735<br>
 - Fix visual-progress curve and scrubber to match the data&#39;s semantics<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 41.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- HTTP/3 / HTTP/3.0 connections are now classified as <code>h3</code> instead of falling through to <code>h1</code>, so the HTTP-version breakdown is correct on HTTP/3 traffic.<br>
-- <code>Cache-Control</code> is parsed case-insensitively (RFC 7234), so <code>Max-Age=42</code> is read as 42 instead of 0 and <code>No-Cache</code> / <code>No-Store</code> are honoured — caching advice and <code>expireStats</code> no longer over-report problems on origins that capitalise the directive.<br>
-- <code>missingCompression</code> no longer flags already-gzipped assets (the encoding check was comparing a flattened header array against a string), accepts compound encodings like <code>br, gzip</code>, and recognises <code>zstd</code>. <code>xml</code> is now also considered for compression reporting.<br>
-- The <code>Domain=</code> cookie attribute is matched case-insensitively (RFC 6265), so third-party cookies set with lowercase <code>domain=</code> are detected.<br>
-- <code>getMainDomain</code> recognises common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, …), so the auto-generated first-party regex stops misclassifying same-site requests on non-<code>.co.uk</code> country domains.<br>
-- <code>defaultContentTypes</code> now includes <code>favicon</code>, so every page has a consistent shape in the content-type breakdown.<br>
-- <code>getDocumentRequests</code> returns an empty array for pages with no matching entries instead of throwing.<br>
-<br>
-<strong>Changed</strong><br>
-- <code>coach-core</code> bumped to 9.1.0, which pulls in <code>pagexray</code> 5.0.0 #4731.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
