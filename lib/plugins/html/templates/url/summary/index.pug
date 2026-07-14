@@ -94,6 +94,7 @@ block content
       //- Pull all values once up front so the markup below is just rendering.
       - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
       - totalTransferSize = get(d, 'pagexray.pageSummary.transferSize')
+      - totalContentSize = get(d, 'pagexray.pageSummary.contentSize')
       - memory = get(d, 'browsertime.pageSummary.memory')
       - powerConsumption = get(d, 'browsertime.pageSummary.statistics.powerConsumption.median')
       - requests = get(d, 'pagexray.pageSummary.requests')
@@ -159,8 +160,12 @@ block content
             - const width = options.mobile ? 150 : '100%';
             - const screenshotNo = medianRun ? medianRun.runIndex : 1
             - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
-            a(href=screenshotName)
-              img.screenshot.iter-screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
+            figure.shot-card
+              a(href=screenshotName)
+                img.iter-screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
+              figcaption
+                b Median run (run #{screenshotNo})
+                |  · after page complete
       include ./summaryBox.pug
 
       #downloads

@@ -143,3 +143,117 @@
   width: auto;
   height: auto;
 }
+
+//
+// Summary overview card — the stat grid that replaced the old stacked
+// metric-group boxes (values lead, labels whisper, groups are quiet
+// subheads inside ONE card). The CrUx block still renders as an
+// .iter-group card below it, so those styles stay too.
+//
+.overview-card {
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  box-shadow: $shadow--sm;
+  padding: 4px 20px 16px;
+  margin-bottom: 14px;
+}
+
+.overview-group {
+  padding: 16px 0 4px;
+}
+
+.overview-group + .overview-group {
+  border-top: 1px solid $color--border;
+}
+
+.overview-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+
+  h3 {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: $font--weight--heavy;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color--text-secondary;
+  }
+
+  small {
+    font-size: 0.72rem;
+    color: $color--text-muted;
+  }
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px 18px;
+}
+
+.overview-stat {
+  min-width: 0;
+
+  b {
+    display: block;
+    font-size: 1.28rem;
+    font-weight: $font--weight--heavy;
+    letter-spacing: -0.4px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+
+    small {
+      font-size: 0.8rem;
+      font-weight: $font--weight--semibold;
+      color: $color--text-secondary;
+      letter-spacing: 0;
+    }
+  }
+
+  > span {
+    display: block;
+    font-size: 0.74rem;
+    color: $color--text-muted;
+    margin-top: 1px;
+  }
+}
+
+//
+// Screenshot card: frames the screenshot and captions WHICH run it
+// shows. The img keeps .iter-screenshot for the portrait height cap;
+// the card supplies the frame, so the img's own border goes.
+//
+.shot-card {
+  margin: 0;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  box-shadow: $shadow--sm;
+  overflow: hidden;
+
+  a {
+    display: flex;
+    justify-content: center;
+  }
+
+  .iter-screenshot {
+    border: 0;
+    border-radius: 0;
+    display: block;
+  }
+
+  figcaption {
+    padding: 9px 14px;
+    font-size: 0.75rem;
+    color: $color--text-muted;
+    border-top: 1px solid $color--border;
+
+    b {
+      color: $color--text-secondary;
+      font-weight: $font--weight--semibold;
+    }
+  }
+}

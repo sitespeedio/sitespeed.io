@@ -73,6 +73,7 @@ block content
       //- Pull all values once up front so the markup below is just rendering.
       - performanceScore = get(d, 'coach.run.advice.performance.score')
       - totalTransferSize = get(d, 'pagexray.run.transferSize')
+      - totalContentSize = get(d, 'pagexray.run.contentSize')
       - memory = get(d, 'browsertime.run.memory')
       - powerConsumption = get(d, 'browsertime.run.cpuConsumption')
       - requests = get(d, 'pagexray.run.requests')
@@ -110,8 +111,12 @@ block content
           if hasScreenShots
             - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
             - const width = options.mobile ? 150 : '100%';
-            a(href=screenshotName)
-              img.screenshot.iter-screenshot(src=screenshotName, width=width, alt='Screenshot')
+            figure.shot-card
+              a(href=screenshotName)
+                img.iter-screenshot(src=screenshotName, width=width, alt='Screenshot')
+              figcaption
+                b Run #{iteration}
+                |  · after page complete
       .downloads
         include ./downloads.pug
         include ./tcpdump.pug
