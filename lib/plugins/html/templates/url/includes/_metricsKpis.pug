@@ -1,95 +1,110 @@
-//- Grouped metric sections, shared by the page summary (median
+//- The summary overview card, shared by the page summary (median
 //- values) and the per-run pages. Pug includes share the caller's
-//- scope: the caller pulls the metric values into locals (ttfb,
-//- firstPaint, fullyLoaded, inp, tbt, mpFID, longTasks, maxLongTask,
-//- lastLongTask, firstVisualChange, speedIndex, visualComplete85,
-//- visualComplete99, lastVisualChange, totalTransferSize, memory,
-//- powerConsumption, requests) and sets overviewIsMedian before
-//- including.
+//- scope: the caller pulls the metric values into locals (ttfb, fcp,
+//- lcp, cls, inp, tbt, firstPaint, fullyLoaded, mpFID, longTasks,
+//- maxLongTask, lastLongTask, firstVisualChange, speedIndex,
+//- visualComplete85, visualComplete99, lastVisualChange,
+//- totalTransferSize, totalContentSize, memory, powerConsumption,
+//- requests) and sets overviewIsMedian before including — the
+//- include must stay data-source-agnostic.
+//- One card, values first: each group is a quiet uppercase subhead
+//- over a grid of stats (big tabular value, small unit, muted label).
+//- The card leads with a Google Web Vitals group so the summary
+//- opens with the same vocabulary as the Timings Summary and the
+//- Metrics tab. No verdict colors or badges here on purpose — that
+//- story lives in the Timings Summary's "Runs agree?" column and the
+//- Web Vitals verdicts elsewhere in the report.
 
-//- Threshold helper for the inline INP badge (Google Web Vitals
-//- cutoffs, same as gwv*Class in url/metrics/index.pug).
-- inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+//- One stat: value leads, unit rendered small, label whispers below.
+//- The unit is the tail after the LAST space so "4.6 MB", "6.944 s"
+//- and unitless values ("129") all work.
+mixin overviewStat(formatted, label)
+  - const statString = String(formatted)
+  - const statSplit = statString.lastIndexOf(' ')
+  .overview-stat
+    b #{statSplit > 0 ? statString.slice(0, statSplit) : statString}
+      if statSplit > 0
+        small  #{statString.slice(statSplit + 1)}
+    span #{label}
 
-//- Grouped metric sections. Each is a card with a title and a
-//- 2-column dl; only renders when at least one of its metrics
-//- is present. <details open> lets readers collapse a group
-//- without losing the at-a-glance default view.
-if ttfb || firstPaint || fullyLoaded || inp || tbt || mpFID
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title Loading & responsiveness#{overviewIsMedian ? ' (median)' : ''}
-    dl.iter-group-list
-      if ttfb
-        dt TTFB
-        dd #{h.time.ms(ttfb)}
-      if firstPaint
-        dt First Paint
-        dd #{h.time.ms(firstPaint)}
-      if fullyLoaded
-        dt Fully Loaded
-        dd #{h.time.ms(fullyLoaded)}
-      if inp
-        dt Interaction to Next Paint
-        dd
-          span.label(class=inpClass(inp)) #{h.time.ms(inp)}
-      if tbt
-        dt Total Blocking Time
-        dd #{h.time.ms(tbt)}
-      if mpFID
-        dt Max Potential FID
-        dd #{h.time.ms(mpFID)}
+- const hasGwvGroup = ttfb || fcp || lcp || cls || cls === 0 || inp || tbt
+- const hasLoadingGroup = firstPaint || fullyLoaded || mpFID
+- const hasWeightGroup = totalTransferSize || memory || powerConsumption || requests
+- const hasCpuGroup = longTasks || maxLongTask || lastLongTask
+- const hasVisualGroup = firstVisualChange || speedIndex || visualComplete85 || visualComplete99 || lastVisualChange
 
-if totalTransferSize || memory || powerConsumption || requests
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title Page weight & requests
-    dl.iter-group-list
-      if totalTransferSize
-        dt Total transfer size
-        dd #{h.size.format(totalTransferSize)}
-      if requests
-        dt Requests
-        dd #{requests}
-      if memory
-        dt Memory
-        dd #{h.size.format(memory)}
-      if powerConsumption
-        dt Firefox CPU power
-        dd #{(powerConsumption * 1000).toFixed(1)} mWh
-
-if longTasks || maxLongTask || lastLongTask
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title CPU
-    dl.iter-group-list
-      if longTasks
-        dt CPU long tasks
-        dd #{longTasks}
-      if maxLongTask
-        dt CPU longest task duration
-        dd #{h.time.ms(maxLongTask)}
-      if lastLongTask
-        dt CPU last long task at
-        dd #{h.time.ms(lastLongTask)}
-
-if firstVisualChange || speedIndex || visualComplete85 || visualComplete99 || lastVisualChange
-  details.iter-group(open)
-    summary.iter-group-summary
-      span.iter-group-title Visual progress
-    dl.iter-group-list
-      if firstVisualChange
-        dt First Visual Change
-        dd #{h.time.ms(firstVisualChange)}
-      if speedIndex
-        dt Speed Index
-        dd #{h.time.ms(speedIndex)}
-      if visualComplete85
-        dt Visual Complete 85%
-        dd #{h.time.ms(visualComplete85)}
-      if visualComplete99
-        dt Visual Complete 99%
-        dd #{h.time.ms(visualComplete99)}
-      if lastVisualChange
-        dt Last Visual Change
-        dd #{h.time.ms(lastVisualChange)}
+if hasGwvGroup || hasLoadingGroup || hasWeightGroup || hasCpuGroup || hasVisualGroup
+  .overview-card
+    if hasGwvGroup
+      .overview-group
+        .overview-group-head
+          h3 Google Web Vitals
+          if overviewIsMedian
+            small median of #{h.plural(options.browsertime.iterations, 'run')}
+        .overview-stats
+          if ttfb
+            +overviewStat(h.time.ms(ttfb), 'TTFB')
+          if fcp
+            +overviewStat(h.time.ms(fcp), 'First Contentful Paint')
+          if lcp
+            +overviewStat(h.time.ms(lcp), 'Largest Contentful Paint')
+          if cls || cls === 0
+            +overviewStat(Number(cls).toFixed(3), 'Cumulative Layout Shift')
+          if inp
+            +overviewStat(h.time.ms(inp), 'Interaction to Next Paint')
+          if tbt
+            +overviewStat(h.time.ms(tbt), 'Total Blocking Time')
+    if hasLoadingGroup
+      .overview-group
+        .overview-group-head
+          h3 Loading
+        .overview-stats
+          if firstPaint
+            +overviewStat(h.time.ms(firstPaint), 'First Paint')
+          if fullyLoaded
+            +overviewStat(h.time.ms(fullyLoaded), 'Fully Loaded')
+          if mpFID
+            +overviewStat(h.time.ms(mpFID), 'Max Potential FID')
+    if hasWeightGroup
+      .overview-group
+        .overview-group-head
+          h3 Page weight & requests
+        .overview-stats
+          if totalTransferSize
+            +overviewStat(h.size.format(totalTransferSize), 'Total transfer size')
+          //- Content size only makes sense next to the wire bytes —
+          //- on its own it reads as a second, contradicting "size".
+          if totalTransferSize && totalContentSize
+            +overviewStat(h.size.format(totalContentSize), 'Total content size')
+          if requests
+            +overviewStat(requests, 'Requests')
+          if memory
+            +overviewStat(h.size.format(memory), 'Memory')
+          if powerConsumption
+            +overviewStat((powerConsumption * 1000).toFixed(1) + ' mWh', 'Firefox CPU power')
+    if hasCpuGroup
+      .overview-group
+        .overview-group-head
+          h3 CPU
+        .overview-stats
+          if longTasks
+            +overviewStat(longTasks, 'Long tasks')
+          if maxLongTask
+            +overviewStat(h.time.ms(maxLongTask), 'Longest task')
+          if lastLongTask
+            +overviewStat(h.time.ms(lastLongTask), 'Last long task at')
+    if hasVisualGroup
+      .overview-group
+        .overview-group-head
+          h3 Visual progress
+        .overview-stats
+          if firstVisualChange
+            +overviewStat(h.time.ms(firstVisualChange), 'First Visual Change')
+          if speedIndex
+            +overviewStat(h.time.ms(speedIndex), 'Speed Index')
+          if visualComplete85
+            +overviewStat(h.time.ms(visualComplete85), 'Visual Complete 85%')
+          if visualComplete99
+            +overviewStat(h.time.ms(visualComplete99), 'Visual Complete 99%')
+          if lastVisualChange
+            +overviewStat(h.time.ms(lastVisualChange), 'Last Visual Change')
