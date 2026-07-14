@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-07-14T11:02:40.304Z</updated>
+    <updated>2026-07-14T12:56:08.131Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.0.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- The Timings Summary&#39;s &quot;Runs agree?&quot; column grades agreement in three bands instead of two. A single stable/disagree cutoff had to choose between two audiences: on a controlled test rig ±10% is too forgiving to call &quot;stable&quot;, while on shared cloud runners ±5% flags ordinary noise as disagreement on most rows — and a column that always warns stops meaning anything. Stable now means within ±5%, a neutral uncolored &quot;varies&quot; band covers the ±5–10% range that is normal run-to-run noise, and &quot;runs disagree&quot; is reserved for spreads past ±10% where the median genuinely hides something #4837.<br>
+- Removed em dashes from user-facing text in the HTML report #4838.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.0</id>
@@ -208,21 +223,6 @@
 - Docker: use <code>--omit=dev</code> instead of the deprecated <code>--production</code>, and fix the <code>skip edgedriver</code> typo #4752.<br>
 - Release tooling: bump <code>feed</code> to 5.2.1 and <code>marked</code> to 18.0.3 (used only by <code>release/feed.js</code> when refreshing documentation RSS feeds). API usage unchanged, regenerated feeds are content-identical #4751.<br>
 - Dev tooling: align with eslint 10 and unicorn 64, drop the dead legacy <code>.eslintrc.json</code> and the stale <code>eslint-check</code> script, minor bumps to prettier/sass/esbuild #4747.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 41.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Drop unused fast-crc32c dependency #4735<br>
-- Fix visual-progress curve and scrubber to match the data&#39;s semantics<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

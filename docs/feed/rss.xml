@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 42.0.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</guid>
+            <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- The Timings Summary&#39;s &quot;Runs agree?&quot; column grades agreement in three bands instead of two. A single stable/disagree cutoff had to choose between two audiences: on a controlled test rig ±10% is too forgiving to call &quot;stable&quot;, while on shared cloud runners ±5% flags ordinary noise as disagreement on most rows — and a column that always warns stops meaning anything. Stable now means within ±5%, a neutral uncolored &quot;varies&quot; band covers the ±5–10% range that is normal run-to-run noise, and &quot;runs disagree&quot; is reserved for spreads past ±10% where the median genuinely hides something #4837.<br>
+- Removed em dashes from user-facing text in the HTML report #4838.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 42.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.0</guid>
@@ -262,18 +274,6 @@
             <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 41.0.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.1</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.0.1</guid>
-            <pubDate>Sat, 16 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Drop unused fast-crc32c dependency #4735<br>
-- Fix visual-progress curve and scrubber to match the data&#39;s semantics<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[onlinetest 4.0.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</guid>
@@ -407,6 +407,28 @@
             <author>Sitespeed.io</author>
         </item>
         <item>
+            <title><![CDATA[pagexray 4.5.0]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface page-level style recalculation work on <code>renderBlocking.recalculateStyle</code><br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 27.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[compare 2.0.0]]></title>
             <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</guid>
@@ -473,38 +495,6 @@
             <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[pagexray 4.5.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.5.0</guid>
-            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Surface page-level style recalculation work on <code>renderBlocking.recalculateStyle</code><br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 27.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
-            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 1.3.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
-            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
-]]></description>
-            <author>Sitespeed.io</author>
-        </item>
-        <item>
             <title><![CDATA[browsertime 27.1.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</guid>
@@ -519,6 +509,16 @@
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.3.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
+            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
+]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[browsertime 27.0.4]]></title>
