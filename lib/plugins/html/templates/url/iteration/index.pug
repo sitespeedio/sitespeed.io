@@ -16,20 +16,23 @@ block content
     b #{d.browsertime.run.title}
     p !{d.browsertime.run.description}
 
-  //- Run pills: one chip per run (the current run highlighted) plus
-  //- the side-by-side comparison page. Keep the #pageNavigation id —
-  //- tabScripts.js forwards the active tab hash when a run link is
-  //- clicked.
-  ul.listing-quicklinks.run-pills#pageNavigation
-    each val, index in runPages
-      - value = Number(index) + 1
-      li
-        if (runNumber === value)
-          span.current Run #{value}
-        else
-          a(href='./' + value + '.html') Run #{value}
-    li
-      a(href='metrics.html') Side by side
+  //- Run navigation: number-only chips (the current run highlighted)
+  //- plus the side-by-side comparison page — no Summary pill here, the
+  //- "Back to summary" button below already covers it. Keep the
+  //- #pageNavigation id — tabScripts.js forwards the active tab hash
+  //- when any link in it is clicked.
+  nav.run-nav#pageNavigation(aria-label='Runs')
+    span.run-nav-label Runs
+    ul.run-nav-chips
+      each val, index in runPages
+        - value = Number(index) + 1
+        li
+          if (runNumber === value)
+            span.run-nav-chip.run-nav-chip--current(aria-label='Run ' + value, aria-current='page') #{value}
+          else
+            a.run-nav-chip(href='./' + value + '.html', aria-label='Run ' + value) #{value}
+    span.run-nav-sep
+    a.run-nav-link(href='metrics.html') Side by side
 
   if d.browsertime && d.browsertime.run.errors  && d.browsertime.run.errors.length > 0
     .errors

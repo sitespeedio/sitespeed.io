@@ -8,16 +8,19 @@ block content
 
     include ../../includes/pageRunInfo
 
-    //- Run pills: one chip per run, with this side-by-side page as the
-    //- highlighted current chip. Keep the #pageNavigation id — it is the
-    //- same navigation row as on the summary and run pages.
-    ul.listing-quicklinks.run-pills#pageNavigation
-        each val, index in runPages
-            - value = Number(index) + 1
-            li
-                a(href='./' + value + '.html') Run #{value}
-        li
-            span.current Side by side
+    //- Run navigation: number-only chips, with this side-by-side page
+    //- as the highlighted current pill. Keep the #pageNavigation id —
+    //- it is the same navigation row as on the summary and run pages.
+    nav.run-nav#pageNavigation(aria-label='Runs')
+        span.run-nav-label Runs
+        ul.run-nav-chips
+            each val, index in runPages
+                - value = Number(index) + 1
+                li
+                    a.run-nav-chip(href='./' + value + '.html', aria-label='Run ' + value) #{value}
+        span.run-nav-sep
+        a.run-nav-link(href='index.html') Summary
+        span.run-nav-link.run-nav-link--current(aria-current='page') Side by side
 
     - const tools = ['browsertime', 'pagexray']
     - const metrics = {};

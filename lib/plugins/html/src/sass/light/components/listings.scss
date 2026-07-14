@@ -165,16 +165,98 @@ tr.asset-reused {
   }
 }
 
-// Run pills on the per-URL pages reuse the quicklinks chips; the
-// current page (the run being viewed, or the side-by-side page) is a
+// Run navigation on the per-URL pages: number-only chips so tests
+// with 20+ runs stay on one line, a divider, then the pill-shaped
+// page links (Summary / Side by side). The current run or page is a
 // non-link chip with an active tint.
-.run-pills .current {
-  display: inline-block;
-  padding: 4px 12px;
+.run-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 18px 0;
+}
+
+.run-nav-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  font-weight: $font--weight--semibold;
+  margin-right: 4px;
+}
+
+.run-nav-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li { margin: 0; }
+}
+
+.run-nav-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 26px;
+  padding: 0 6px;
   border-radius: $radius--pill;
-  border: 1px solid $color--info-border;
+  border: 1px solid $color--border;
+  background: $color--surface;
+  color: $color--text-secondary;
+  font-size: 0.8rem;
+  font-weight: $font--weight--medium;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+
+a.run-nav-chip:hover {
+  background: $color--surface-card;
+  border-color: $color--border-strong;
+  color: $color--text;
+}
+
+.run-nav-chip--current {
+  border-color: $color--info-border;
   background: $color--info-bg;
   color: $color--info;
+  font-weight: $font--weight--semibold;
+}
+
+.run-nav-sep {
+  width: 1px;
+  height: 18px;
+  background: $color--border;
+  margin: 0 2px;
+}
+
+.run-nav-link {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--border;
+  background: $color--surface;
+  color: $color--text-secondary;
   font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  text-decoration: none;
+}
+
+a.run-nav-link:hover {
+  background: $color--surface-card;
+  border-color: $color--border-strong;
+  color: $color--text;
+}
+
+.run-nav-link--current {
+  border-color: $color--info-border;
+  background: $color--info-bg;
+  color: $color--info;
   font-weight: $font--weight--semibold;
 }

@@ -24,16 +24,19 @@ block content
         each failureMessage in d.browsertime.pageSummary.failureMessages
           li #{failureMessage}
 
-  //- Run pills: one chip per run plus the side-by-side comparison
-  //- page. Keep the #pageNavigation id — tabScripts.js forwards the
-  //- active tab hash when a run link is clicked.
-  ul.listing-quicklinks.run-pills#pageNavigation
-    each val, index in runPages
-      - value = Number(index) + 1
-      li
-        a(href='./' + value + '.html') Run #{value}
-    li
-      a(href='metrics.html') Side by side
+  //- Run navigation: number-only chips so tests with 20+ runs stay on
+  //- one line, plus the side-by-side comparison page. Keep the
+  //- #pageNavigation id — tabScripts.js forwards the active tab hash
+  //- when any link in it is clicked.
+  nav.run-nav#pageNavigation(aria-label='Runs')
+    span.run-nav-label Runs
+    ul.run-nav-chips
+      each val, index in runPages
+        - value = Number(index) + 1
+        li
+          a.run-nav-chip(href='./' + value + '.html', aria-label='Run ' + value) #{value}
+    span.run-nav-sep
+    a.run-nav-link(href='metrics.html') Side by side
 
   if pageInfo.errors
     .errors
