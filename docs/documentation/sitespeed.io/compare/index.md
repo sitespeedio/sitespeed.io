@@ -77,34 +77,22 @@ docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/si
 
 ## Results
 
-When you run your test it will create a new tab in the HTML results. This tab includes **a results table** showing the result data and, for each metric, **comparison graphs** comparing the baseline (previous data) with the latest run.
+When you run your test it will create a new tab in the HTML results. The tab opens with the test setup on one line, a verdict ("2 of 24 metrics are significantly slower compared to the baseline") with chips that jump to the flagged metrics, and then one row per compared metric, grouped by area (timings, visual metrics, Google Web Vitals, CPU and so on).
 
-
-The result table looks something like this:
-
-![Compare result]({{site.baseurl}}/img/compare-table.jpg){:loading="lazy"}
+![Compare rows]({{site.baseurl}}/img/compare-rows.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-The columns:
-1. **Metric Name**: This column lists the names of the performance metrics that were tested. These could be timings for different events (like Time to First Byte, load event completion, first contentful paint, etc.), or CPU-related metrics (like total duration of CPU tasks, duration of the last long task, etc.).
-2. **Score (mannwhitneyu/wilcox)**: This column shows the Mann-Whitney U/Wilcox scores for the comparisons between baseline and current test runs for each metric. A lower score typically indicates more significant differences between the two groups being compared.
-3. **Baseline Mean**: The average (mean) value for the baseline test run for each metric.
-4. **Current Mean**: The average (mean) value for the current test run for each metric.
-5. **Baseline Median**: The median value for the baseline test run for each metric. The median is the middle value when all the results are ordered from lowest to highest.
-6. **Current Median**: The median value for the current test run for each metric.
-7. **Baseline Std Dev**: Standard deviation for the baseline test run for each metric. This measures the amount of variation from the average.
-8. **Current Std Dev**: Standard deviation for the current test run for each metric.
-9. **Significant Change?**: This column indicates whether the change between the baseline and current test runs is statistically significant for each metric. If the change is statistically significant we use [Cliff's Delta](https://en.wikipedia.org/wiki/Effect_size#Effect_size_for_ordinal_data) to tell if the change is small, medium or large.
+Each row shows:
+1. **Metric name and p-value**: the metric that was tested and the score from the Mann-Whitney U/Wilcoxon test. A score below 0.05 means the difference is statistically significant.
+2. **The distribution strip**: every baseline run (orange) and every current run (blue) as dots on a shared value axis, with a taller tick marking each median. Baseline and current are independent samples, so the strip shows the two distributions directly — a real shift is visible as the two clusters separating. Hover a dot for the exact run value.
+3. **Median → median**: the baseline and current medians with the difference in absolute numbers and percent. When both medians are zero but the runs differ (flaky CPU long tasks do this), the means are shown instead.
+4. **The verdict**: whether the change is statistically significant. If it is, we use [Cliff's Delta](https://en.wikipedia.org/wiki/Effect_size#Effect_size_for_ordinal_data) to tell if the change is small, medium or large, and the row is tinted by direction — regressions in red, improvements in green.
 
-
-And the compare graphs will look like this for every metric:
-
-![Compare graphs]({{site.baseurl}}/img/compare-graph.jpg){:loading="lazy"}
-{: .img-thumbnail}
+The screenshots and video of the baseline and current runs live in the collapsed *Run setup* section above the verdict.
 
 ### Understanding Significant Changes
 
-In the results table, you'll see a list of all metrics with their corresponding scores.
+Every metric row carries its score (the p-value).
 
 If a score is below 0.05 it indicates a statistically significant difference between the baseline and the current data. By default we test if the current data is greater than the baseline. You can change that using `--compare.alternative`. You can test if it's smaller or if there is any difference between the two ('two-sided').
 

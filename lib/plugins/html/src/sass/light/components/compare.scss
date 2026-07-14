@@ -1,31 +1,30 @@
 //
 // COMPARE — light
 // ===============
-// Layout for the compare plugin's A/B view: an introductory band, four
-// information cards (Settings / Run setup / Content breakdown /
-// Comparison data) and a per-metric scatter plot for each measured
-// metric.
+// Layout for the compare plugin's A/B view: a one-line setup strip, a
+// collapsed run-setup details block, the content-breakdown table, a
+// verdict card, and one row per compared metric — name + p-value, a
+// distribution strip (baseline and current runs as dots on a shared
+// value axis), median → median with the delta, and a verdict chip.
 //
-// The scatter plots are rendered as absolutely-positioned DOM elements
-// inside a relative wrapper rather than as SVG circles. Inline SVG with
-// `preserveAspectRatio='none'` stretched into a wide rectangle distorted
-// circles into ellipses; HTML dots stay round at any width and the
-// median guides are simple dashed border-tops.
+// The strips are absolutely-positioned DOM dots inside a relative rail
+// rather than SVG: inline SVG with `preserveAspectRatio='none'`
+// stretched into a wide rectangle distorted circles into ellipses;
+// HTML dots stay round at any width. Baseline and current are two
+// separate rails on the SAME value scale — run order carries no
+// meaning for independent samples, so there is no run-index axis.
 //
 
-// Per-series colours — kept distinct enough to read without relying on
-// hue alone (they're paired with text labels everywhere they appear).
-$cmp--baseline: #468847;
-$cmp--current: #c09853;
-$cmp--overlap: #59922b;
+// Per-series colours — baseline is the warm reference, current the
+// cool subject. Validated as a pair for CVD separation and >= 3:1
+// contrast against the card surface; every use is paired with a text
+// label so identity never rides on hue alone. Keep in sync with the
+// dark theme's pair (its steps are brightened for the dark surface).
+$cmp--baseline: #b25e12;
+$cmp--current: #2a78d6;
 
 .cmp-title {
   margin: 0 0 12px 0;
-}
-
-.cmp-intro {
-  margin: 0 0 20px 0;
-  color: $color--text-secondary;
 }
 
 .cmp-alert {
@@ -71,44 +70,85 @@ $cmp--overlap: #59922b;
   font-weight: $font--weight--semibold;
 }
 
-.cmp-card-help {
-  margin: 12px 0 0 0;
-  color: $color--text-muted;
-  font-size: 0.9rem;
-}
-
 //
-// Settings card — compact dl with the test parameters. Same grid shape
-// as the INP/LCP meta blocks.
+// Setup strip — the test parameters on one line, replacing the old
+// Settings and Run setup cards.
 //
-.cmp-meta {
-  display: grid;
-  grid-template-columns: minmax(160px, auto) 1fr;
-  column-gap: 16px;
-  row-gap: 8px;
-  margin: 0;
-  font-size: 0.95rem;
+.cmp-setupline {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  padding: 12px 18px;
+  margin: 0 0 14px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  align-items: baseline;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
 
-  dt {
-    color: $color--text-muted;
-    font-weight: $font--weight--medium;
-  }
-
-  dd {
-    margin: 0;
+  b {
+    font-weight: $font--weight--semibold;
     color: $color--text;
-    word-break: break-word;
-  }
-
-  code {
-    font-size: 0.85em;
   }
 }
 
+.cmp-setup-key {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  font-weight: $font--weight--semibold;
+  margin-right: 5px;
+}
+
+.cmp-setup-extra {
+  color: $color--text-muted;
+}
+
 //
-// Run setup — baseline | current side by side; collapses to stacked on
-// narrow screens so both columns stay readable.
+// Run setup lives in a collapsed details block — the screenshots and
+// videos are useful for eyeballing an A/B but too heavy to lead with.
 //
+.cmp-run-details {
+  margin: 0 0 14px 0;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    padding: 4px 0;
+    list-style: none;
+
+    // The foundation strips the native disclosure triangle, so draw
+    // our own — without it the summary reads as inert text.
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 6px;
+      transition: rotate 0.12s;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  &[open] > summary {
+    margin-bottom: 10px;
+  }
+}
+
 .cmp-runs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -226,284 +266,313 @@ $cmp--overlap: #59922b;
 }
 
 //
-// Comparison data — the wide stats table. Wraps in a horizontally-
-// scrollable container so narrow viewports don't blow up the page
-// layout, and pairs each baseline/current column with a thin divider so
-// the eye can group them.
+// Verdict card — the headline answer plus jump chips to the flagged
+// metrics, and the one shared legend for all the strips below.
 //
-.cmp-data-scroll {
-  overflow-x: auto;
-  margin: 0 -4px;
+.cmp-verdict {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  padding: 14px 18px;
+  margin: 0 0 18px 0;
 }
 
-.cmp-data {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
+.cmp-verdict-line {
+  font-size: 1rem;
 
-  th, td {
-    padding: 6px 10px;
-    border-bottom: 1px solid $color--border;
-    text-align: left;
-    white-space: nowrap;
+  b {
+    font-size: 1.15rem;
+  }
+}
+
+.cmp-verdict-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+// Chip tone follows the direction of the change: an improvement is
+// good news even when it is statistically significant.
+.cmp-verdict-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  text-decoration: none;
+
+  &--error {
+    background: $color--error-bg;
+    color: $color--error;
+    border: 1px solid $color--error-border;
+
+    &:hover { border-color: $color--error; }
   }
 
-  thead th {
-    color: $color--text-muted;
+  &--ok {
+    background: $color--ok-bg;
+    color: $color--ok;
+    border: 1px solid $color--ok-border;
+
+    &:hover { border-color: $color--ok; }
+  }
+
+  &--neutral {
+    background: $color--surface;
+    color: $color--text-secondary;
+    border: 1px solid $color--border;
+
+    &:hover { border-color: $color--border-strong; }
+  }
+}
+
+.cmp-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid $color--border;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.cmp-swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
+
+//
+// Metric groups — one card per group, one row per metric.
+//
+.cmp-group {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  margin: 0 0 14px 0;
+}
+
+.cmp-group-head {
+  padding: 12px 18px 8px 18px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cmp-group-title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: $font--weight--semibold;
+}
+
+.cmp-metric {
+  display: grid;
+  grid-template-columns: 200px 1fr 170px 150px;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 18px;
+  scroll-margin-top: 16px;
+
+  & + & {
+    border-top: 1px solid $color--border;
+  }
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr 140px;
+    grid-template-rows: auto auto;
+  }
+}
+
+// Significant rows are tinted by the direction of the change —
+// regressions in the error tone, improvements in the good tone, and
+// a two-sided hit with no rank direction stays neutral. The chip gets
+// the card surface as backing there — its own tint would melt into
+// the identically-tinted row.
+.cmp-metric--significant {
+  .cmp-chip {
+    background: $color--surface-card;
+  }
+
+  &.cmp-metric--error {
+    background: $color--error-bg;
+    box-shadow: inset 3px 0 0 $color--error;
+  }
+
+  &.cmp-metric--ok {
+    background: $color--ok-bg;
+    box-shadow: inset 3px 0 0 $color--ok;
+  }
+
+  &.cmp-metric--neutral {
+    background: $color--surface;
+    box-shadow: inset 3px 0 0 $color--border-strong;
+  }
+}
+
+.cmp-metric-name {
+  b {
+    display: block;
+    font-size: 0.88rem;
     font-weight: $font--weight--semibold;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    background: $color--surface;
+    word-break: break-word;
   }
 
-  thead tr:last-child th {
-    border-bottom: 1px solid $color--border-strong;
-  }
-
-  tbody tr:hover {
-    background: $color--surface;
-  }
-
-  td {
+  small {
+    font-size: 0.7rem;
+    color: $color--text-muted;
     font-variant-numeric: tabular-nums;
   }
 }
 
-.cmp-data-pair {
-  text-align: center !important;
-  border-left: 1px solid $color--border;
+.cmp-metric-strip {
+  min-width: 0;
+
+  @media (max-width: 860px) {
+    grid-column: 1 / -1;
+  }
 }
 
-// Right-align numeric columns and put a subtle divider before each
-// "Baseline" cell so paired columns read as one logical group.
-.cmp-data-base, .cmp-data-curr {
-  text-align: right !important;
+.cmp-metric-flat {
+  margin: 0;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+
+  b {
+    color: $color--text-secondary;
+  }
 }
 
-.cmp-data-base {
-  border-left: 1px solid $color--border;
+.cmp-metric-delta {
+  text-align: right;
+
+  b {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: $font--weight--semibold;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  small {
+    font-size: 0.72rem;
+    color: $color--text-muted;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
 }
 
-.cmp-data-metric a {
-  font-weight: $font--weight--medium;
+.cmp-arrow {
+  color: $color--text-muted;
+  font-weight: $font--weight--regular;
 }
 
-.cmp-data-score {
-  text-align: right !important;
-  color: $color--text-secondary;
+.cmp-metric-chip {
+  text-align: right;
 }
 
 //
-// Status chips — small, high-contrast pills that work both inline in
-// table cells and next to the chart titles.
+// Distribution strip — two rails (baseline over current) on a shared
+// value axis. Dots get a small deterministic vertical jitter from the
+// template so identical values stay visible as a cluster instead of a
+// single dot.
+//
+.cmp-strip-rail {
+  position: relative;
+  height: 22px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 11px;
+    height: 1px;
+    background: $color--border;
+  }
+}
+
+.cmp-strip-dot {
+  position: absolute;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  translate: -50% -50%;
+  border: 1.5px solid $color--surface-card;
+  opacity: 0.9;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+
+  &:hover {
+    transform: scale(1.7);
+    opacity: 1;
+    z-index: 4;
+  }
+}
+
+.cmp-strip-median {
+  position: absolute;
+  top: 11px;
+  width: 2.5px;
+  height: 18px;
+  translate: -50% -50%;
+  border-radius: 1px;
+  z-index: 2;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
+
+.cmp-strip-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+}
+
+//
+// Status chips — the verdict column. Borderless tinted badges (same
+// treatment as the Timings Summary agree pills): in this report a
+// border on a pill signals "clickable", and these are labels. Only
+// the verdict-card jump chips keep a border — they are links.
 //
 .cmp-chip {
   display: inline-block;
-  padding: 2px 10px;
+  padding: 1px 9px;
   border-radius: $radius--pill;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: $font--weight--semibold;
   white-space: normal;
 
   &--ok {
     color: $color--ok;
     background: $color--ok-bg;
-    border: 1px solid $color--ok-border;
   }
 
   &--error {
     color: $color--error;
     background: $color--error-bg;
-    border: 1px solid $color--error-border;
   }
 
   &--neutral {
     color: $color--text-muted;
     background: $color--surface;
-    border: 1px solid $color--border;
   }
-}
-
-//
-// Per-metric chart card — the scatter plot, anchored by id so the
-// "Metric" links in the comparison-data table jump straight to it.
-//
-.cmp-graphs {
-  margin-top: 24px;
-
-  > .cmp-card-title {
-    margin: 0 0 12px 0;
-  }
-}
-
-.cmp-chart-card {
-  background: $color--surface-card;
-  border: 1px solid $color--border;
-  border-radius: $radius--md;
-  padding: 14px 16px 16px 16px;
-  margin: 0 0 18px 0;
-  box-shadow: $shadow--sm;
-  scroll-margin-top: 16px;
-}
-
-.cmp-chart-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.cmp-chart-title {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: $font--weight--semibold;
-  word-break: break-word;
-}
-
-// Chart body lays the y-axis gutter (tick labels) next to the plot
-// rectangle in a flex row. Both children stretch to the plot's height,
-// so the tick labels stay vertically aligned with their grid lines.
-.cmp-chart-body {
-  display: flex;
-  align-items: stretch;
-  margin-bottom: 10px;
-}
-
-.cmp-y-axis {
-  position: relative;
-  flex: 0 0 auto;
-  width: 56px;
-  font-size: 0.7rem;
-  color: $color--text-muted;
-  font-variant-numeric: tabular-nums;
-}
-
-.cmp-y-tick {
-  position: absolute;
-  right: 6px;
-  transform: translateY(-50%);
-  white-space: nowrap;
-
-  // First and last tick sit flush against the plot edges; nudge their
-  // labels in slightly so they don't appear clipped at the chart card
-  // edge.
-  &:first-child { transform: translateY(0); }
-  &:last-child { transform: translateY(-100%); }
-}
-
-// The plot itself — fixed pixel height so dots stay round, but its
-// width is fluid. Each .cmp-point sits at a (left%, top%) coordinate.
-.cmp-plot {
-  position: relative;
-  flex: 1 1 auto;
-  height: 220px;
-  background: $color--surface;
-  border: 1px solid $color--border;
-  border-radius: $radius--sm;
-}
-
-// Faint horizontal grid line at each y-tick — sits behind the data so
-// dots and median guides stay visually dominant.
-.cmp-grid {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 0;
-  border-top: 1px solid $color--border;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.cmp-median {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 0;
-  border-top: 1px dashed transparent;
-  opacity: 0.6;
-  pointer-events: none;
-
-  &--baseline { border-top-color: $cmp--baseline; }
-  &--current { border-top-color: $cmp--current; }
-}
-
-// Solid filled dots, no ring — matches the old chartist look. When a
-// baseline run and the current run produced the same value the pug
-// emits a single .cmp-point--overlap dot (instead of two stacked dots),
-// rendered slightly larger so it reads as a "double hit".
-.cmp-point {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-
-  &--baseline { background: $cmp--baseline; }
-  &--current { background: $cmp--current; }
-  &--overlap {
-    background: $cmp--overlap;
-    width: 20px;
-    height: 20px;
-  }
-}
-
-// Run-count read-out — bottom-right corner of the plot. Y-axis values
-// are rendered as a separate gutter (.cmp-y-axis) instead of corner
-// badges, so the reader can read off any dot's value.
-.cmp-axis-x {
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  font-size: 0.7rem;
-  color: $color--text-muted;
-  font-variant-numeric: tabular-nums;
-  background: $color--surface-card;
-  border: 1px solid $color--border;
-  border-radius: $radius--sm;
-  padding: 1px 6px;
-  pointer-events: none;
-}
-
-.cmp-legend {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  font-size: 0.85rem;
-  color: $color--text-secondary;
-  word-break: break-word;
-
-  li {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    min-width: 0;
-  }
-}
-
-.cmp-swatch {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex: 0 0 auto;
-
-  &--baseline { background: $cmp--baseline; }
-  &--current { background: $cmp--current; }
-}
-
-.cmp-legend-label {
-  color: $color--text-muted;
-  font-weight: $font--weight--medium;
-}
-
-.cmp-legend-value {
-  font-family: $font--mono;
-  font-size: 0.8rem;
-  color: $color--text;
 }

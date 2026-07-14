@@ -5,13 +5,17 @@
 - const baselineXray = baselineRaw.pagexray.statistics
 - const currentXray = currentRaw.pagexray.statistics
 
-- var createGraphLink = function(metricGroup, metricName) {
--   return '#chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_')
+//- The per-metric row ids keep the old graph-anchor scheme
+//- (#chart-<group>_<metric>) so deep links into the previous layout
+//- keep landing on the right metric.
+- var chartId = function(metricGroup, metricName) {
+-   return 'chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_')
 - }
 - var cliffDeltaHelper = function(delta) {
--   if (delta < 0.3) return 'Small effect (' + h.decimals(delta) + ')'
--   if (delta < 0.5) return 'Medium effect (' + h.decimals(delta) + ')'
--   return 'Large effect (' + h.decimals(delta) + ')'
+-   const size = Math.abs(delta)
+-   if (size < 0.3) return 'small effect (' + h.decimals(delta) + ')'
+-   if (size < 0.5) return 'medium effect (' + h.decimals(delta) + ')'
+-   return 'large effect (' + h.decimals(delta) + ')'
 - }
 - var isInformational = function(s) {
 -   return s === 'N/A' || s === 'Datasets are identical' || s === 'No variability' || s === 'Datasets have different lengths'
@@ -26,6 +30,63 @@
 -   else if (transfer) extra = ' (' + transfer + ')'
 -   return count + extra
 - }
+//- Adaptive precision: whole numbers from three digits up, one decimal
+//- in the tens, two below — keeps 5.593 from meeting 288 in the same
+//- column with different noise levels.
+- var fmtVal = function(v) {
+-   if (v === null || v === undefined || Number.isNaN(v)) return '–'
+-   const size = Math.abs(v)
+-   if (size >= 100 || v === Math.round(v)) return String(Math.round(v))
+-   if (size >= 10) return v.toFixed(1)
+-   return String(Math.round(v * 100) / 100)
+- }
+//- The compare helper only ships a fixed set of groups (helper.js), so
+//- units can be derived from group + metric name. Unknown groups (user
+//- extras) get no unit rather than a guessed one.
+- var metricUnit = function(groupName, metricName) {
+-   if (groupName === 'timings' || groupName === 'visualMetrics' || groupName === 'userTimings' || groupName === 'elementTimings') return ' ms'
+-   if (groupName === 'googleWebVitals') return metricName === 'cumulativeLayoutShift' ? '' : ' ms'
+-   if (groupName === 'renderBlocking') return metricName.endsWith('ms') ? ' ms' : ''
+-   if (groupName === 'cpu') return metricName === 'tasks' ? '' : ' ms'
+-   return ''
+- }
+
+- const testName = meta.testOptions.testType === 'mannwhitneyu' ? 'Mann-Whitney U' : 'Wilcoxon signed-rank'
+- const alternative = meta.testOptions.alternative
+- const sigWord = alternative === 'greater' ? 'slower' : (alternative === 'less' ? 'faster' : 'changed')
+//- A significant change is only bad news when it points the wrong way:
+//- "faster" gets the good tone, "slower" the error tone. All compared
+//- metrics are lower-is-better. For two-sided tests the direction
+//- comes from the Cliff's delta sign per metric (positive = current
+//- ranks higher = slower).
+- var directionFor = function(cliffs) {
+-   if (alternative === 'greater') return 'slower'
+-   if (alternative === 'less') return 'faster'
+-   if (cliffs > 0) return 'slower'
+-   if (cliffs < 0) return 'faster'
+-   return 'changed'
+- }
+- var toneFor = function(direction) {
+-   return direction === 'faster' ? 'ok' : (direction === 'slower' ? 'error' : 'neutral')
+- }
+
+//- Count the metrics once so the verdict can say "5 of 24". Guard on
+//- baseline/current existing — extras metrics can arrive half-shaped
+//- when a metric is missing on one side.
+- const significantMetrics = []
+- let totalMetrics = 0
+- for (const vGroupName in compare.metrics) {
+-   const vMetricGroup = compare.metrics[vGroupName]
+-   for (const vMetricName in vMetricGroup) {
+-     const v = vMetricGroup[vMetricName]
+-     if (!v || !v.baseline || !v.current || !Array.isArray(v.baseline.values)) continue
+-     totalMetrics++
+-     const vScore = v.statisticalTestU
+-     if (!isInformational(vScore) && vScore < 0.05) significantMetrics.push({ name: vGroupName + '.' + vMetricName, tone: toneFor(directionFor(v.cliffsDelta)) })
+-   }
+- }
+
+- const groupTitles = { timings: 'Timings', visualMetrics: 'Visual metrics', googleWebVitals: 'Google Web Vitals', renderBlocking: 'Render blocking', elementTimings: 'Element timings', userTimings: 'User timings', cpu: 'CPU long tasks', browser: 'Browser' }
 
 a#compare
 h1.cmp-title Compare
@@ -36,62 +97,44 @@ if meta.iterations < 21
     a(href='https://en.wikipedia.org/wiki/Mann–Whitney_U_test#Calculations') recommended minimum of 21
     | . This may impact the reliability of the statistical comparison.
 
-p.cmp-intro
-  | Statistical tests highlight whether the difference between baseline and current measurements is real or noise.
-  | The Mann-Whitney U test compares independent samples (e.g. two pages or two conditions); the Wilcoxon signed-rank test compares paired samples (e.g. the same page before and after a change).
+//- ---------------------------------------------------------------------
+//- Setup strip — what was tested against what and how. One line instead
+//- of the old Settings + Run setup cards; the screenshots/video live in
+//- the collapsed details block below.
+//- ---------------------------------------------------------------------
+.cmp-setupline
+  span
+    span.cmp-setup-key Test
+    b #{testName}
+    if alternative === 'greater'
+      |  · greater (is current slower/higher?)
+    else if alternative === 'less'
+      |  · less (is current faster/lower?)
+    else
+      |  · two-sided (change in either direction)
+  span
+    span.cmp-setup-key Iterations
+    b #{meta.iterations}
+  span
+    span.cmp-setup-key Baseline
+    | #{meta.baseline.timestamp}
+  span
+    span.cmp-setup-key Current
+    | #{meta.current.timestamp}
+  if meta.testOptions.testType === 'mannwhitneyu'
+    span.cmp-setup-extra
+      | method #{meta.testOptions.mannwhitneyu.method} · continuity #{meta.testOptions.mannwhitneyu.useContinuity ? 'enabled' : 'disabled'} ·&nbsp;
+      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') about the test
+  else if meta.testOptions.testType === 'wilcoxon'
+    span.cmp-setup-extra
+      | correction #{meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'} ·&nbsp;
+      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') about the test
 
-//- ---------------------------------------------------------------------
-//- Settings — which test was run and how it was parameterised. Keeps the
-//- knobs separate from the data so a reader can quickly answer "what is
-//- this comparison even doing?" before diving into numbers.
-//- ---------------------------------------------------------------------
 //- Cards use <div> rather than <section> because the page-level tab JS
 //- hides every `#tabSections section` and only un-hides the active
 //- panel — nested <section> elements stay display:none.
-.cmp-card
-  .cmp-card-header
-    h2.cmp-card-title Settings
-  dl.cmp-meta
-    dt Test type
-    dd
-      code= meta.testOptions.testType
-    dt Alternative
-    dd
-      code= meta.testOptions.alternative
-    dt Iterations
-    dd #{meta.iterations}
-    if meta.testOptions.testType === 'mannwhitneyu'
-      dt Continuity
-      dd #{meta.testOptions.mannwhitneyu.useContinuity ? 'enabled' : 'disabled'}
-      dt Method
-      dd
-        code= meta.testOptions.mannwhitneyu.method
-    else if meta.testOptions.testType === 'wilcoxon'
-      dt Correction
-      dd #{meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'}
-  p.cmp-card-help
-    if meta.testOptions.alternative === 'less'
-      | We test whether the current run is significantly faster/lower than the baseline.&nbsp;
-    else if meta.testOptions.alternative === 'greater'
-      | We test whether the current run is significantly slower/higher than the baseline.&nbsp;
-    else if meta.testOptions.alternative === 'two-sided'
-      | We test for change in either direction.&nbsp;
-    if meta.testOptions.testType === 'mannwhitneyu'
-      | More on the&nbsp;
-      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') Mann-Whitney U test
-      | .
-    else if meta.testOptions.testType === 'wilcoxon'
-      | More on the&nbsp;
-      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') Wilcoxon test
-      | .
-
-//- ---------------------------------------------------------------------
-//- Run setup — baseline and current side by side: alias / URL, when it
-//- ran, and the visual artefacts (screenshot, video, full result link).
-//- ---------------------------------------------------------------------
-.cmp-card
-  .cmp-card-header
-    h2.cmp-card-title Run setup
+details.cmp-run-details
+  summary Run setup — screenshots, video and full results
   .cmp-runs
     each run, key in {baseline: {meta: meta.baseline, raw: baselineRaw}, current: {meta: meta.current, raw: currentRaw}}
       .cmp-run(class='cmp-run--' + key)
@@ -111,9 +154,7 @@ p.cmp-intro
 
 //- ---------------------------------------------------------------------
 //- Content breakdown — request counts and transfer sizes per resource
-//- type. Pulled out of the old "Setup" table because it answers a very
-//- different question ("did the page get heavier?") from the run
-//- metadata above.
+//- type. Answers "did the page get heavier?" before the timing story.
 //- ---------------------------------------------------------------------
 .cmp-card
   .cmp-card-header
@@ -151,131 +192,118 @@ p.cmp-intro
         td.cmp-types-num #{currentRaw.browsertime.statistics.pageinfo.domElements.median}
 
 //- ---------------------------------------------------------------------
-//- Comparison data — the wide stats table. Wrapped so it scrolls
-//- horizontally on narrow screens instead of breaking the layout, with
-//- baseline / current columns paired visually so the eye doesn't have
-//- to count cells.
+//- Verdict — the headline answer, with chips that jump to the flagged
+//- metrics. The legend for the strips lives here so it renders once,
+//- not once per row.
 //- ---------------------------------------------------------------------
-.cmp-card
-  .cmp-card-header
-    h2.cmp-card-title Comparison data
-  .cmp-data-scroll
-    table.cmp-data
-      thead
-        tr
-          th(rowspan=2) Metric
-          th(rowspan=2) Score #{meta.testOptions.testType}
-          th.cmp-data-pair(colspan=2) Mean
-          th.cmp-data-pair(colspan=2) Median
-          th.cmp-data-pair(colspan=2) Std dev
-          th(rowspan=2) Significant change?
-        tr
-          th.cmp-data-base Baseline
-          th.cmp-data-curr Current
-          th.cmp-data-base Baseline
-          th.cmp-data-curr Current
-          th.cmp-data-base Baseline
-          th.cmp-data-curr Current
-      tbody
-        each metricGroup, groupName in compare.metrics
-          each values, metricName in metricGroup
-            - const score = values.statisticalTestU
-            - const informational = isInformational(score)
-            - const significant = !informational && score !== 'N/A' && score !== 'Datasets are identical' && score < 0.05
-            tr
-              td.cmp-data-metric
-                a(href=createGraphLink(groupName, metricName)) #{groupName}.#{metricName}
-              td.cmp-data-score #{informational ? score : h.decimals(score)}
-              td.cmp-data-base #{h.decimals(values.baseline.mean)}
-              td.cmp-data-curr #{h.decimals(values.current.mean)}
-              td.cmp-data-base #{h.decimals(values.baseline.median)}
-              td.cmp-data-curr #{h.decimals(values.current.median)}
-              td.cmp-data-base #{h.decimals(values.baseline.stdev)}
-              td.cmp-data-curr #{h.decimals(values.current.stdev)}
-              td.cmp-data-sig
-                if score === 'N/A' || score === 'Datasets are identical'
-                  span.cmp-chip.cmp-chip--neutral No test
-                else if significant
-                  span.cmp-chip.cmp-chip--error Yes — #{cliffDeltaHelper(values.cliffsDelta)}
-                else
-                  span.cmp-chip.cmp-chip--ok No
+.cmp-verdict
+  .cmp-verdict-line
+    if significantMetrics.length > 0
+      b #{significantMetrics.length} of #{totalMetrics}
+      |  #{significantMetrics.length === 1 ? 'metrics is' : 'metrics are'} significantly #{sigWord} compared to the baseline (p &lt; 0.05).
+    else
+      b None
+      |  of the #{totalMetrics} compared metrics show a significant change against the baseline (p &lt; 0.05).
+  if significantMetrics.length > 0
+    .cmp-verdict-chips
+      each sig in significantMetrics
+        a.cmp-verdict-chip(class='cmp-verdict-chip--' + sig.tone, href='#' + chartId(sig.name.split('.')[0], sig.name.split('.').slice(1).join('.'))) #{sig.name}
+  .cmp-legend
+    span
+      span.cmp-swatch.cmp-swatch--baseline
+      | Baseline — each dot is one run, the tall tick is the median
+    span
+      span.cmp-swatch.cmp-swatch--current
+      | Current
 
 //- ---------------------------------------------------------------------
-//- Graphs — one card per metric, with a scatter plot rendered as
-//- absolutely-positioned dots over a relative wrapper. SVG circles got
-//- distorted into ellipses because the previous chart used a 100×100
-//- viewBox stretched into a wide rectangle with preserveAspectRatio
-//- 'none' — DOM dots stay round at any width.
+//- One row per metric: name + p-value, the distribution strip (both
+//- runs on a shared value axis — run order carries no meaning for
+//- independent samples, distributions do), median → median with the
+//- delta, and the verdict chip. Replaces the old wide stats table and
+//- the per-metric run-index scatter cards.
 //- ---------------------------------------------------------------------
-.cmp-graphs
-  h2.cmp-card-title Graphs
-
-  each metricGroup, groupName in compare.metrics
-    each values, metricName in metricGroup
-      - const fullMetricName = groupName + '.' + metricName
-      - const metricId = fullMetricName.replace(/\./g, '_')
-      - const baseline = values.baseline.values
-      - const current = values.current.values
-      - const allValues = baseline.concat(current).filter(v => typeof v === 'number')
-      - const yMin = allValues.length ? Math.min.apply(null, allValues) : 0
-      - const yMax = allValues.length ? Math.max.apply(null, allValues) : 1
-      - const ySpan = yMax - yMin || 1
-      - const xMax = Math.max(baseline.length, current.length, 1)
-      - const sortedBaseline = baseline.slice().sort((a, b) => a - b)
-      - const sortedCurrent = current.slice().sort((a, b) => a - b)
-      - const baseMedian = sortedBaseline.length ? sortedBaseline[Math.floor(sortedBaseline.length / 2)] : null
-      - const currMedian = sortedCurrent.length ? sortedCurrent[Math.floor(sortedCurrent.length / 2)] : null
-      - const score = values.statisticalTestU
-      - const informational = isInformational(score)
-      - const significant = !informational && score !== 'N/A' && score !== 'Datasets are identical' && score < 0.05
-
-      //- Y-axis ticks: 5 evenly-spaced values from yMax down to yMin so
-      //- the reader can read off any dot's value, not just guess between
-      //- the corner badges. Each tick also drops a faint horizontal grid
-      //- line across the plot.
-      - const yTickCount = 5
-      - const yTicks = []
-      - for (let t = 0; t < yTickCount; t++) {
-      -   const value = yMax - (t / (yTickCount - 1)) * ySpan
-      -   yTicks.push({ value: value, top: (t / (yTickCount - 1) * 100).toFixed(2) })
-      - }
-
-      .cmp-chart-card(id='chart-' + metricId)
-        .cmp-chart-header
-          h3.cmp-chart-title #{fullMetricName}
-          if significant
-            span.cmp-chip.cmp-chip--error Significant change
-        .cmp-chart-body
-          .cmp-y-axis
-            each t in yTicks
-              span.cmp-y-tick(style='top: ' + t.top + '%') #{h.decimals(t.value)}
-          .cmp-plot
-            each t in yTicks
-              .cmp-grid(style='top: ' + t.top + '%')
-            if baseMedian !== null
-              - const baseMedianTop = (100 - (baseMedian - yMin) / ySpan * 100).toFixed(2)
-              .cmp-median.cmp-median--baseline(style='top: ' + baseMedianTop + '%', title='Baseline median ' + h.decimals(baseMedian))
-            if currMedian !== null
-              - const currMedianTop = (100 - (currMedian - yMin) / ySpan * 100).toFixed(2)
-              .cmp-median.cmp-median--current(style='top: ' + currMedianTop + '%', title='Current median ' + h.decimals(currMedian))
-            each v, i in baseline
-              if typeof v === 'number'
-                - const overlap = current[i] === v
-                - const left = ((i + 0.5) / xMax * 100).toFixed(2)
-                - const top = (100 - (v - yMin) / ySpan * 100).toFixed(2)
-                .cmp-point(class=overlap ? 'cmp-point--overlap' : 'cmp-point--baseline', style='left: ' + left + '%; top: ' + top + '%', title='Baseline run ' + (i + 1) + ': ' + h.decimals(v))
-            each v, i in current
-              if typeof v === 'number' && current[i] !== baseline[i]
-                - const left = ((i + 0.5) / xMax * 100).toFixed(2)
-                - const top = (100 - (v - yMin) / ySpan * 100).toFixed(2)
-                .cmp-point.cmp-point--current(style='left: ' + left + '%; top: ' + top + '%', title='Current run ' + (i + 1) + ': ' + h.decimals(v))
-            span.cmp-axis-x #{xMax} run#{xMax === 1 ? '' : 's'}
-        ul.cmp-legend
-          li
-            span.cmp-swatch.cmp-swatch--baseline
-            span.cmp-legend-label Baseline
-            span.cmp-legend-value [#{values.baseline.values.join(', ')}]
-          li
-            span.cmp-swatch.cmp-swatch--current
-            span.cmp-legend-label Current
-            span.cmp-legend-value [#{values.current.values.join(', ')}]
+each metricGroup, groupName in compare.metrics
+  - const groupRows = []
+  - for (const rowMetricName in metricGroup) {
+  -   const v = metricGroup[rowMetricName]
+  -   if (v && v.baseline && v.current && Array.isArray(v.baseline.values) && Array.isArray(v.current.values)) groupRows.push({ metricName: rowMetricName, values: v })
+  - }
+  if groupRows.length > 0
+    .cmp-group
+      .cmp-group-head
+        h2.cmp-group-title #{groupTitles[groupName] || groupName}
+      each row in groupRows
+        - const metricName = row.metricName
+        - const values = row.values
+        - const unit = metricUnit(groupName, metricName)
+        - const score = values.statisticalTestU
+        - const informational = isInformational(score)
+        - const significant = !informational && score < 0.05
+        - const direction = directionFor(values.cliffsDelta)
+        - const tone = toneFor(direction)
+        - const baseline = values.baseline.values
+        - const current = values.current.values
+        - const allValues = baseline.concat(current).filter(v => typeof v === 'number')
+        - const lo = allValues.length > 0 ? Math.min.apply(null, allValues) : 0
+        - const hi = allValues.length > 0 ? Math.max.apply(null, allValues) : 0
+        - const span = hi - lo
+        - const medB = values.baseline.median
+        - const medC = values.current.median
+        - const delta = medC - medB
+        - const deltaPct = medB !== 0 ? Math.round(delta / medB * 1000) / 10 : undefined
+        //- Positions are percentages with a small inset so edge dots
+        //- don't clip; computed in code lines because pug's attribute
+        //- parser trips on division after a bracket.
+        - const pad = 4
+        - const xPos = function(v) { return (pad + (v - lo) / span * (100 - 2 * pad)).toFixed(2) }
+        .cmp-metric(id=chartId(groupName, metricName), class=significant ? 'cmp-metric--significant cmp-metric--' + tone : null)
+          .cmp-metric-name
+            b #{metricName}
+            small #{informational ? 'no test' : 'p = ' + h.decimals(score)}
+          .cmp-metric-strip
+            if span > 0
+              .cmp-strip
+                .cmp-strip-rail
+                  span.cmp-strip-median.cmp-strip-median--baseline(style='left:' + xPos(medB) + '%', title='Baseline median ' + fmtVal(medB) + unit)
+                  each v, i in baseline
+                    if typeof v === 'number'
+                      - const left = xPos(v)
+                      - const jitter = (i % 3 - 1) * 3
+                      span.cmp-strip-dot.cmp-strip-dot--baseline(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Baseline run ' + (i + 1) + ': ' + fmtVal(v) + unit)
+                .cmp-strip-rail
+                  span.cmp-strip-median.cmp-strip-median--current(style='left:' + xPos(medC) + '%', title='Current median ' + fmtVal(medC) + unit)
+                  each v, i in current
+                    if typeof v === 'number'
+                      - const left = xPos(v)
+                      - const jitter = (i % 3 - 1) * 3
+                      span.cmp-strip-dot.cmp-strip-dot--current(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Current run ' + (i + 1) + ': ' + fmtVal(v) + unit)
+                .cmp-strip-axis
+                  span #{fmtVal(lo)}#{unit}
+                  span #{fmtVal(hi)}#{unit}
+            else
+              p.cmp-metric-flat
+                | all #{baseline.length}+#{current.length} runs measured&nbsp;
+                b #{fmtVal(lo)}#{unit}
+                | &nbsp;— nothing to compare
+          .cmp-metric-delta
+            if span > 0
+              b
+                | #{fmtVal(medB)}&nbsp;
+                span.cmp-arrow →
+                | &nbsp;#{fmtVal(medC)}#{unit}
+              if medB !== 0
+                small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit} (#{deltaPct > 0 ? '+' : ''}#{deltaPct} %)
+              else if delta !== 0
+                small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
+              else
+                //- Both medians are zero but the runs differ — the
+                //- means carry the story (flaky CPU long tasks do this).
+                small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
+          .cmp-metric-chip
+            if informational
+              span.cmp-chip.cmp-chip--neutral #{score === 'Datasets are identical' ? 'identical runs' : String(score).toLowerCase()}
+            else if significant
+              span.cmp-chip(class='cmp-chip--' + tone) #{direction} · #{cliffDeltaHelper(values.cliffsDelta)}
+            else
+              span.cmp-chip.cmp-chip--neutral no change
