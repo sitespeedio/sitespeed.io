@@ -1,13 +1,14 @@
 //
 // ITERATION SUMMARY — light
 // =========================
-// Per-run summary tab. Hero KPI tiles + collapsible metric groups +
-// screenshot column. Same visual language as the index-page hero
-// and the metrics-card series.
+// Per-run summary tab: collapsible metric groups + screenshot column.
+// Same visual language as the metrics-card series.
 //
 
 //
-// Hero KPI tiles
+// KPI tiles. The page summary / run pages dropped their hero band,
+// but the Assets page overview strip still renders these classes
+// (assets.pug + assets.scss) — don't remove on an "unused" sweep.
 //
 .iter-kpis {
   display: grid;

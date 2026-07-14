@@ -1,37 +1,15 @@
-//- Hero KPIs (Core Web Vitals + Coach perf score) and the grouped
-//- metric sections, shared by the page summary (median values) and
-//- the per-run pages. Pug includes share the caller's scope: the
-//- caller pulls the metric values into locals (performanceScore,
-//- ttfb, firstPaint, fullyLoaded, fcp, lcp, cls, inp, tbt, mpFID,
-//- longTasks, maxLongTask, lastLongTask, firstVisualChange,
-//- speedIndex, visualComplete85, visualComplete99, lastVisualChange,
-//- totalTransferSize, memory, powerConsumption, requests) and sets
-//- overviewIsMedian before including.
+//- Grouped metric sections, shared by the page summary (median
+//- values) and the per-run pages. Pug includes share the caller's
+//- scope: the caller pulls the metric values into locals (ttfb,
+//- firstPaint, fullyLoaded, inp, tbt, mpFID, longTasks, maxLongTask,
+//- lastLongTask, firstVisualChange, speedIndex, visualComplete85,
+//- visualComplete99, lastVisualChange, totalTransferSize, memory,
+//- powerConsumption, requests) and sets overviewIsMedian before
+//- including.
 
-//- Threshold helpers shared by the hero band and inline badges.
-- lcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
-- fcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
-- clsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+//- Threshold helper for the inline INP badge (Google Web Vitals
+//- cutoffs, same as gwv*Class in url/metrics/index.pug).
 - inpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
-- perfClass = (v) => v == null ? '' : (typeof h.scoreLabel === 'function' ? h.scoreLabel(v) : 'info')
-
-.iter-kpis
-  if fcp
-    .iter-kpi(class=fcpClass(fcp))
-      span.iter-kpi-label FCP
-      span.iter-kpi-value #{h.time.ms(fcp)}
-  if lcp
-    .iter-kpi(class=lcpClass(lcp))
-      span.iter-kpi-label LCP
-      span.iter-kpi-value #{h.time.ms(lcp)}
-  if cls || cls === 0
-    .iter-kpi(class=clsClass(cls))
-      span.iter-kpi-label CLS
-      span.iter-kpi-value #{cls.toFixed(3)}
-  if typeof performanceScore === 'number'
-    .iter-kpi(class=perfClass(performanceScore))
-      span.iter-kpi-label Coach
-      span.iter-kpi-value #{performanceScore}
 
 //- Grouped metric sections. Each is a card with a title and a
 //- 2-column dl; only renders when at least one of its metrics
