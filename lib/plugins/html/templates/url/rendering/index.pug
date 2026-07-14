@@ -165,7 +165,7 @@ if hasVideo || hasFilmstrip
           if hasVideo && options.browsertime.enableVideoRun
             |  · --enableVideoRun
           if !hasVideo
-            |  · no video — the filmstrip drives the preview
+            |  · no video: the filmstrip drives the preview
 
       .rendering-stage
         if hasVideo
@@ -248,7 +248,7 @@ if hasVideo || hasFilmstrip
             if hasVideo
               | Click a frame to seek the video to that moment. The dot marks frames where the page changed visually.
             else
-              | No video in this result — click a frame to preview it, use the frame buttons or arrow keys to step, play replays the strip at its real pace. The dot marks frames where the page changed visually.
+              | No video in this result. Click a frame to preview it, use the frame buttons or arrow keys to step, play replays the strip at its real pace. The dot marks frames where the page changed visually.
 
     if frames.length > 0
       .rendering-lightbox#rendering-lightbox(hidden)
@@ -301,7 +301,7 @@ if ttfbSlow
     b #{h.time.ms(whyTtfb)}
     | &nbsp;to deliver the first byte
     if whyFcp
-      |  — #{Math.round(whyTtfb / whyFcp * 100)} % of the time to First Contentful Paint
+      |  (#{Math.round(whyTtfb / whyFcp * 100)} % of the time to First Contentful Paint)
     | . Nothing can render before the first byte arrives, and Google Web Vitals considers a TTFB over 800 ms in need of improvement.
     //- The Waterfall tab only exists when the run produced a HAR — don't
     //- render a dead cross-link without one. The HAR sits on
@@ -320,7 +320,7 @@ if hasRecalculateStyle
       h3.listing-card-title Recalculate style
       span.listing-card-meta from the Chrome trace
     p.listing-card-help
-      | Style the browser had to recalculate before it could paint — many elements or a lot of time spent here points at expensive CSS on the critical rendering path.
+      | Style the browser had to recalculate before it could paint: many elements or a lot of time spent here points at expensive CSS on the critical rendering path.
     .metric-tiles
       if recalculateStyle.beforeFCP
         .metric-tile
@@ -365,7 +365,7 @@ if reflowsMaterial
       h3.listing-card-title Forced reflows before the page painted
       span.listing-card-meta from the Chrome trace
     p.listing-card-help
-      | JavaScript read a layout value (offsetTop, getBoundingClientRect, …) while the page was mid-change, so the browser had to re-layout synchronously — work that blocks rendering. Reflows before First Contentful Paint delayed the first pixels; reflows before Largest Contentful Paint delayed the main content.
+      | JavaScript read a layout value (offsetTop, getBoundingClientRect, …) while the page was mid-change, so the browser had to re-layout synchronously, work that blocks rendering. Reflows before First Contentful Paint delayed the first pixels; reflows before Largest Contentful Paint delayed the main content.
     .metric-tiles
       if whyFcp
         .metric-tile
@@ -388,7 +388,7 @@ if reflowsMaterial
     - const shareTotal = whyLcp ? preLcpTotal : preFcpTotal
     - const reflowShare = shareBase ? Math.round(shareTotal / shareBase * 1000) / 10 : undefined
     if reflowShare !== undefined
-      p.rendering-why-note That is #{reflowShare} % of the time to #{whyLcp ? 'Largest' : 'First'} Contentful Paint — the number of reflows matters more than the milliseconds: layout thrashing multiplies on slower devices.
+      p.rendering-why-note That is #{reflowShare} % of the time to #{whyLcp ? 'Largest' : 'First'} Contentful Paint. The number of reflows matters more than the milliseconds: layout thrashing multiplies on slower devices.
     if topReflows.length > 0
       .cpu-bars
         each reflow in topReflows
@@ -414,6 +414,6 @@ include ./blocking.pug
 if nonCompositedCount > 0
   a#main-thread-animations
   p.rendering-why-note
-    | #{nonCompositedCount} #{nonCompositedCount === 1 ? 'animation runs' : 'animations run'} on the main thread instead of the compositor — they can make the rendering you see above janky.&nbsp;
+    | #{nonCompositedCount} #{nonCompositedCount === 1 ? 'animation runs' : 'animations run'} on the main thread instead of the compositor; they can make the rendering you see above janky.&nbsp;
     a(href='#cpu-animations', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See them on the CPU tab
     | .

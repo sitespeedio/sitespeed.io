@@ -67,7 +67,7 @@ a#coverage
 h2 Coverage
 
 p
-  | JavaScript and CSS coverage from the median iteration (run #{covRunIndex + 1}). For JS, Chrome's V8 profiler reports per-block execution counts — a byte is&nbsp;
+  | JavaScript and CSS coverage from the median iteration (run #{covRunIndex + 1}). For JS, Chrome's V8 profiler reports per-block execution counts: a byte is&nbsp;
   em unused
   | &nbsp;when its innermost containing range executed zero times. For CSS, Chrome's rule tracker flags every selector that no element on the page matched during the iteration. Enable with&nbsp;
   code --chrome.coverage
@@ -79,14 +79,14 @@ details.cov-method
   summary How is "unused" calculated?
   .cov-method-body
     p
-      | sitespeed.io drives Chrome's V8 profiler and CSS rule tracker via the DevTools Protocol — the same machinery the DevTools Coverage panel uses. The two columns are populated by two different mechanisms.
+      | sitespeed.io drives Chrome's V8 profiler and CSS rule tracker via the DevTools Protocol, the same machinery the DevTools Coverage panel uses. The two columns are populated by two different mechanisms.
     h4 JavaScript
     p
       | Browsertime calls&nbsp;
       code Profiler.startPreciseCoverage
       | &nbsp;with detailed (block-level) mode at the start of the iteration and&nbsp;
       code Profiler.takePreciseCoverage
-      | &nbsp;at the end. V8 returns nested ranges per function: an outer range covering the function body and inner ranges for sub-blocks (if/else, switch arms, ternaries). Each range has an execution count. A byte is "used" if the innermost range that covers it has count > 0, "unused" if it has count = 0 — so we catch both functions that never ran AND dead branches inside functions that did.
+      | &nbsp;at the end. V8 returns nested ranges per function: an outer range covering the function body and inner ranges for sub-blocks (if/else, switch arms, ternaries). Each range has an execution count. A byte is "used" if the innermost range that covers it has count > 0, "unused" if it has count = 0, so we catch both functions that never ran AND dead branches inside functions that did.
     h4 CSS
     p
       | Browsertime calls&nbsp;
@@ -95,7 +95,7 @@ details.cov-method
       code CSS.stopRuleUsageTracking
       | &nbsp;at the end. Chrome returns a flat list of rule-text ranges with a&nbsp;
       code used
-      | &nbsp;flag — a rule is "used" if at least one element on the page matched it during the iteration. Both inline&nbsp;
+      | &nbsp;flag: a rule is "used" if at least one element on the page matched it during the iteration. Both inline&nbsp;
       code &lt;style&gt;
       | &nbsp;blocks and external stylesheets are included.
     h4 What "this iteration" means
@@ -114,7 +114,7 @@ details.cov-method
       code --preScript
       | &nbsp;runs before the URL is loaded so it can't interact with the page being measured, and&nbsp;
       code --postScript
-      | &nbsp;runs after coverage has already been collected, so neither helps here. Detailed coverage also tells V8 to skip some optimisations, which drifts timing metrics like LCP and TBT — that's why&nbsp;
+      | &nbsp;runs after coverage has already been collected, so neither helps here. Detailed coverage also tells V8 to skip some optimisations, which drifts timing metrics like LCP and TBT; that's why&nbsp;
       code --enableProfileRun
       | &nbsp;is the safer option for production measurement (it collects coverage in a separate iteration that doesn't count towards the medians).
 
@@ -154,7 +154,7 @@ else
         if fpRegex
           span.listing-card-meta first-party regex #{fpRegexStr}
         else
-          span.listing-card-meta no first-party regex — counted as first-party
+          span.listing-card-meta no first-party regex · counted as first-party
       .cov-split
         if jsCov && (jsSplit.fp || jsSplit.tp)
           - const jsTotal = jsSplit.fp + jsSplit.tp
@@ -259,13 +259,13 @@ else
       h3.listing-card-title What to do about unused bytes
       span.listing-card-meta one iteration is a sample, not a verdict
     p.listing-card-help
-      | A high unused-% on one run means this iteration loaded code that didn't get exercised — typical on first-load journeys before any user interaction. Drive the real flow by passing a&nbsp;
+      | A high unused-% on one run means this iteration loaded code that didn't get exercised, typical on first-load journeys before any user interaction. Drive the real flow by passing a&nbsp;
       a(href='https://www.sitespeed.io/documentation/sitespeed.io/scripting/') navigation script
       | &nbsp;as the input instead of a plain URL, with clicks and form fills placed between&nbsp;
       code measure.start()
       | &nbsp;and&nbsp;
       code measure.stop()
-      |  — anything in that window counts toward "used". The advice below is for code that's still unused after a representative run.
+      | ; anything in that window counts toward "used". The advice below is for code that's still unused after a representative run.
     .cov-advice-grid
       div
         h4 JavaScript
@@ -273,7 +273,7 @@ else
           li Route-split and lazy-load below-the-fold features with dynamic&nbsp;
             code import()
             | . Bundlers turn the import boundary into a separate chunk.
-          li Audit big bundles for dead exports, legacy polyfills, and feature flags that no longer ship — most modern bundlers tree-shake but only when imports are precise.
+          li Audit big bundles for dead exports, legacy polyfills, and feature flags that no longer ship; most modern bundlers tree-shake but only when imports are precise.
           li Question third-party scripts. Tag managers, analytics SDKs and A/B test loaders often ship far more than the page uses and dominate the third-party column above.
           li Move non-critical scripts to&nbsp;
             code defer
@@ -283,7 +283,7 @@ else
       div
         h4 CSS
         ul
-          li Strip selectors no shipped HTML matches — PurgeCSS, build-time scoping in your component framework, or your CSS-in-JS extractor.
+          li Strip selectors no shipped HTML matches: PurgeCSS, build-time scoping in your component framework, or your CSS-in-JS extractor.
           li Drop legacy browser fallbacks if your target floor has moved (vendor prefixes, IE hacks, old flexbox syntax).
           li Split route- or component-specific CSS so the home page doesn't carry the checkout's styles.
           li Inline the critical-path CSS (above-the-fold) and lazy-load the rest with&nbsp;

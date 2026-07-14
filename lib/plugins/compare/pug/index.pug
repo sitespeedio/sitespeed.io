@@ -134,7 +134,7 @@ if meta.iterations < 21
 //- hides every `#tabSections section` and only un-hides the active
 //- panel — nested <section> elements stay display:none.
 details.cmp-run-details
-  summary Run setup — screenshots, video and full results
+  summary Run setup: screenshots, video and full results
   .cmp-runs
     each run, key in {baseline: {meta: meta.baseline, raw: baselineRaw}, current: {meta: meta.current, raw: currentRaw}}
       .cmp-run(class='cmp-run--' + key)
@@ -211,7 +211,7 @@ details.cmp-run-details
   .cmp-legend
     span
       span.cmp-swatch.cmp-swatch--baseline
-      | Baseline — each dot is one run, the tall tick is the median
+      | Baseline: each dot is one run, the tall tick is the median
     span
       span.cmp-swatch.cmp-swatch--current
       | Current
@@ -285,7 +285,7 @@ each metricGroup, groupName in compare.metrics
               p.cmp-metric-flat
                 | all #{baseline.length}+#{current.length} runs measured&nbsp;
                 b #{fmtVal(lo)}#{unit}
-                | &nbsp;— nothing to compare
+                | , so nothing to compare
           .cmp-metric-delta
             if span > 0
               b

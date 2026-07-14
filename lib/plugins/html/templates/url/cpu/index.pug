@@ -102,7 +102,7 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
           a(href=calloutTopOffender.url, title=calloutTopOffender.url)= h.shortAsset(calloutTopOffender.url, true)
           | &nbsp;is responsible for #{Math.round(calloutTopOffender.blocking / calloutTotal * 100)}% of blocking time
         .cpu-callout-detail
-          | #{calloutTopOffender.blocking.toFixed(0)} ms of #{calloutTotal.toFixed(0)} ms total — defer it, replace it with a lighter alternative, or move its work off the main thread to recover most of your TBT.
+          | #{calloutTopOffender.blocking.toFixed(0)} ms of #{calloutTotal.toFixed(0)} ms total. Defer it, replace it with a lighter alternative, or move its work off the main thread to recover most of your TBT.
 
 //- Trace download buttons (Chrome / Firefox / extra-run profile).
 if cpu && cpu.events && !options.browsertime.enableProfileRun
@@ -212,7 +212,7 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
     h3
       +cpuIcon('ban')
       | Blocking time per script
-    p How much each script blocked the main thread, derived from the Long Animation Frame API. The script that started each long frame is credited with the frame's blocking time — the closest answer to "which script should I fix to improve TBT" the platform exposes.
+    p How much each script blocked the main thread, derived from the Long Animation Frame API. The script that started each long frame is credited with the frame's blocking time, the closest answer to "which script should I fix to improve TBT" the platform exposes.
     .listing-card
       .listing-card-header
         h3.listing-card-title Top scripts blocking the main thread
@@ -277,7 +277,7 @@ if cpu && cpu.forcedReflows && cpu.forcedReflows.length > 0
     h3
       +cpuIcon('refresh')
       | Forced reflows
-    p A forced reflow happens when JavaScript reads a layout-triggering property (offsetTop, getBoundingClientRect, …) inside a handler, forcing the browser to synchronously recompute layout. The scripts below caused most of the page's reflows — fix them in priority order.
+    p A forced reflow happens when JavaScript reads a layout-triggering property (offsetTop, getBoundingClientRect, …) inside a handler, forcing the browser to synchronously recompute layout. The scripts below caused most of the page's reflows. Fix them in priority order.
     .listing-card
       .listing-card-header
         h3.listing-card-title Scripts causing reflows
@@ -312,7 +312,7 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
     h3
       +cpuIcon('layout')
       | Forced layout per script
-    p Each long animation frame reports how much time each script spent forcing synchronous style and layout — i.e. JavaScript reading layout-triggering properties mid-execution. Same actionable answer as forced reflows above but measured directly by the browser instead of inferred from the trace.
+    p Each long animation frame reports how much time each script spent forcing synchronous style and layout, i.e. JavaScript reading layout-triggering properties mid-execution. Same actionable answer as forced reflows above but measured directly by the browser instead of inferred from the trace.
     .listing-card
       .listing-card-header
         h3.listing-card-title Scripts forcing layout
@@ -388,7 +388,7 @@ if cpu && cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
     h3
       +cpuIcon('activity')
       | Non-composited animations
-    p Animations that fell back from the compositor to the main thread, blocking each frame instead of running on the GPU. Each chip below is a CSS property the page tried to animate that Chrome couldn't hand to the compositor — swap it for a transform or opacity equivalent where you can.
+    p Animations that fell back from the compositor to the main thread, blocking each frame instead of running on the GPU. Each chip below is a CSS property the page tried to animate that Chrome couldn't hand to the compositor. Swap it for a transform or opacity equivalent where you can.
     .listing-card
       .listing-card-header
         h3.listing-card-title Properties to fix

@@ -19,7 +19,7 @@ mixin budgetRow(result, failing)
 
 block content
   h2 Performance budget
-  p.small Every configured budget metric checked against its limit — failing checks first.
+  p.small Every configured budget metric checked against its limit, failing checks first.
 
   //- The budget data is grouped per URL (or per alias), so the page is
   //- too: one group per page, failing rows on top inside each group,
@@ -36,7 +36,7 @@ block content
           span.listing-card-meta-sep ·
         | #{totalWorking} passing
     if totalFailing > 0
-      p.listing-card-help #{h.plural(totalFailing, 'check')} #{totalFailing === 1 ? 'is' : 'are'} over budget — those are the rows marked fail below.
+      p.listing-card-help #{h.plural(totalFailing, 'check')} #{totalFailing === 1 ? 'is' : 'are'} over budget. Those are the rows marked fail below.
     else
       p.listing-card-help Every configured budget check passes.
     each urlOrAlias in urls

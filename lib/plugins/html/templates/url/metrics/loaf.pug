@@ -37,7 +37,7 @@ if loaf
 
     a#longAnimationFrames
     h3 Long Animation Frames
-    p A long animation frame (LOAF) is a frame that took ≥ 50 ms from input to the next paint. The part beyond the threshold is blocking time — the number that hurts Interaction to Next Paint and Total Blocking Time. Break long tasks up (
+    p A long animation frame (LOAF) is a frame that took ≥ 50 ms from input to the next paint. The part beyond the threshold is blocking time, the number that hurts Interaction to Next Paint and Total Blocking Time. Break long tasks up (
         code scheduler.yield()
         | , smaller chunks) or move the work off the main thread. Read more about&nbsp;
         a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') the Long Animation Frames API
@@ -81,7 +81,7 @@ if loaf
                                     span.loaf-3p 3rd party
                             td.number #{c.frames}
                             td.number #{loafFmt(c.blocking)}
-                            td.number #{c.forced > 0 ? loafFmt(c.forced) : '—'}
+                            td.number #{c.forced > 0 ? loafFmt(c.forced) : '–'}
                             td= [...c.invokerTypes].join(', ')
 
     each oneLoaf, loafIdx in loafFrames

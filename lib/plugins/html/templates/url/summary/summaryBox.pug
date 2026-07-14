@@ -64,7 +64,7 @@ mixin getRow(name, object, path, runPath, metric, f, toneClass)
   //- Web Vitals rows pass a classifier so the median carries the same
   //- status dot as the pages table.
   - const tone = toneClass ? toneClass(median) : ''
-  - const tip = tone ? name + ' ' + f(median) + ' — ' + sbStatusLabel(tone) : ''
+  - const tip = tone ? name + ' ' + f(median) + ' · ' + sbStatusLabel(tone) : ''
   if min || min === 0
     tr
       td(data-title='metric') #{name}

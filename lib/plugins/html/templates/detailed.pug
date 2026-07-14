@@ -65,12 +65,12 @@ block content
   - if (fcpMetric && fcpMetric.node) vitalChecks.push({ name: 'First Contentful Paint', status: fcpClass(fcpMetric.node.median), value: fcpMetric.h(fcpMetric.node.median), target: 'good is 1.8 s or less' })
   - if (ttfbMetric && ttfbMetric.node) vitalChecks.push({ name: 'Time To First Byte', status: ttfbClass(ttfbMetric.node.median), value: ttfbMetric.h(ttfbMetric.node.median), target: 'good is 800 ms or less' })
   - const worstVital = vitalChecks.find(v => v.status === 'error') || vitalChecks.find(v => v.status === 'warning')
-  - if (worstVital) standouts.push({ tone: worstVital.status, text: worstVital.name + ' is ' + worstVital.value + ' — ' + statusLabel(worstVital.status).toLowerCase() + ' (' + worstVital.target + ')' })
+  - if (worstVital) standouts.push({ tone: worstVital.status, text: worstVital.name + ' is ' + worstVital.value + ', ' + statusLabel(worstVital.status).toLowerCase() + ' (' + worstVital.target + ')' })
   - const errorResponses = responseCodeMetrics.filter(m => Number.parseInt(m.name, 10) >= 400 && m.node.max > 0).reduce((total, m) => total + m.node.median, 0)
-  - if (errorResponses > 0) standouts.push({ tone: 'error', text: h.plural(errorResponses, '4xx/5xx response') + ' per page — something the pages fetch is failing' })
+  - if (errorResponses > 0) standouts.push({ tone: 'error', text: h.plural(errorResponses, '4xx/5xx response') + ' per page: something the pages fetch is failing' })
   - if (errorResponses === 0 && responseCodeMetrics.some(m => Number.parseInt(m.name, 10) >= 400 && m.node.max > 0)) standouts.push({ tone: 'warning', text: 'Some runs had 4xx/5xx error responses' })
   - const redirectResponses = responseCodeMetrics.filter(m => isRedirectCode(Number.parseInt(m.name, 10))).reduce((total, m) => total + m.node.median, 0)
-  - if (totalRequestsMedian > 0 && redirectResponses >= totalRequestsMedian * 0.1) standouts.push({ tone: 'warning', text: 'Redirect heavy — ' + Math.round(100 * redirectResponses / totalRequestsMedian) + '% of all requests are 3xx redirects' })
+  - if (totalRequestsMedian > 0 && redirectResponses >= totalRequestsMedian * 0.1) standouts.push({ tone: 'warning', text: 'Redirect heavy: ' + Math.round(100 * redirectResponses / totalRequestsMedian) + '% of all requests are 3xx redirects' })
 
   //- Accessibility: axe's "critical" severity means some users can't use
   //- the page at all (missing form labels, keyboard traps, …), so one
@@ -107,19 +107,19 @@ block content
   if hasSpread
     p.detailed-intro Every collected metric, grouped by what it tells you, with min / median / mean / p90 / max across all runs. Click a column header to sort.
   else
-    p.detailed-intro Every collected metric, grouped by what it tells you. All runs produced a single value per metric, so the min / median / mean / p90 / max columns are collapsed into one — run more iterations (#[code -n 5]) to see how the metrics vary between runs. Click a column header to sort.
+    p.detailed-intro Every collected metric, grouped by what it tells you. All runs produced a single value per metric, so the min / median / mean / p90 / max columns are collapsed into one. Run more iterations (#[code -n 5]) to see how the metrics vary between runs. Click a column header to sort.
 
   //- One card per concern. A metric's card comes from the group tag set
   //- in setup/detailed.js; anything untagged (future metrics) falls
   //- through to "Other metrics" so nothing silently disappears.
   - const groups = []
-  - groups.push({ key: 'coach', title: 'Coach scores', sub: 'How the Coach rates the pages, 0–100 — higher is better.' })
+  - groups.push({ key: 'coach', title: 'Coach scores', sub: 'How the Coach rates the pages, 0–100; higher is better.' })
   - groups.push({ key: 'timings', title: 'Web Vitals & load timings', sub: 'The user experience milestones, plus the classic navigation timings.' })
-  - groups.push({ key: 'visual', title: 'Visual metrics', sub: 'What the film strip shows — when content became visible on screen.' })
-  - groups.push({ key: 'cpu', title: 'CPU', sub: 'Main thread work — long tasks block the page from reacting to input.' })
+  - groups.push({ key: 'visual', title: 'Visual metrics', sub: 'What the film strip shows: when content became visible on screen.' })
+  - groups.push({ key: 'cpu', title: 'CPU', sub: 'Main thread work: long tasks block the page from reacting to input.' })
   - groups.push({ key: 'pageWeight', title: 'Page weight', sub: 'Bytes over the wire, by content type.' })
   - groups.push({ key: 'requests', title: 'Requests', sub: 'How many round trips the browser needed to build the page.' })
-  - groups.push({ key: 'responseCodes', title: 'Response codes', sub: 'Everything that is not a 2xx is a detour — redirects cost time, 4xx/5xx are errors.' })
+  - groups.push({ key: 'responseCodes', title: 'Response codes', sub: 'Everything that is not a 2xx is a detour: redirects cost time, 4xx/5xx are errors.' })
   - groups.push({ key: 'axe', title: 'Accessibility', sub: 'Accessibility violations found by axe, by severity.' })
   - groups.push({ key: 'sustainable', title: 'Sustainability', sub: 'Estimated CO2 emissions from loading the pages.' })
   - groups.push({ key: 'custom', title: 'Custom metrics', sub: 'Metrics collected by your own scripts.' })
