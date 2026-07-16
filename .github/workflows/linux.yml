@@ -51,13 +51,13 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
-        node-version: '22.x'
+        node-version: '24.x'
         cache: 'npm'
     - name: Install sitespeed.io
       run: npm ci
     - name: Install Chrome
       run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
         sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         sudo apt-get update
         sudo apt-get --only-upgrade install google-chrome-stable
@@ -83,11 +83,11 @@ jobs:
       run: (serve test/data/html/ -l 3001&)
     - name: Test old budget
       run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3001/simple/
-    - name: Test new budget file with junit 
+    - name: Test new budget file with junit
       run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output junit http://127.0.0.1:3001/simple/#heybaberia
-    - name: Test new budget file with tap 
+    - name: Test new budget file with tap
       run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output tap http://127.0.0.1:3001/simple/#heybaberia
-    - name: Test new budget file with json 
+    - name: Test new budget file with json
       run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output json http://127.0.0.1:3001/simple/#heybaberia
     - name: Use AXE
       run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb http://127.0.0.1:3001/simple/
@@ -101,7 +101,7 @@ jobs:
       run: bin/sitespeed.js -n 3 test/prepostscripts/multi.js --xvfb --browsertime.cjs
     - name: Test setting HTML output pageSummaries
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance --xvfb
-    - name: Test setting HTML output summary boxes 
+    - name: Test setting HTML output summary boxes
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint --xvfb
     - name: Run test with Graphite
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --graphite.host 127.0.0.1 --xvfb
