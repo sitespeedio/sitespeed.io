@@ -105,33 +105,33 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
           | #{calloutTopOffender.blocking.toFixed(0)} ms of #{calloutTotal.toFixed(0)} ms total. Defer it, replace it with a lighter alternative, or move its work off the main thread to recover most of your TBT.
 
 //- Trace download buttons (Chrome / Firefox / extra-run profile).
-if cpu && cpu.events && !options.browsertime.enableProfileRun
+//- Per-run buttons are gated on the per-run data existing (cpu.events /
+//- geckoProfiler), not on enableProfileRun — with --cpu both the
+//- measured-run trace and the extra-run trace exist side by side and
+//- share one downloads row.
+- const hasChromeTrace = cpu && cpu.events
+- const hasChromeExtraTrace = options.browsertime && options.browsertime.enableProfileRun && options.browser === 'chrome'
+if hasChromeTrace || hasChromeExtraTrace
   p Download the Chrome trace and drag-and-drop it into Performance in DevTools.
   .downloads
-    if options.browsertime.chrome && options.browsertime.chrome.timeline
-    - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
-    a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download trace log
+    if hasChromeTrace
+      - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
+      a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download trace log
+    if hasChromeExtraTrace
+      a.button.button-download(href='data/trace-1-extra-run.json.gz', download=downloadName + '-extra-run-timeline.json.gz') Download extra-run trace
 
-if options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox' && !options.browsertime.enableProfileRun
+- const hasGeckoProfile = options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox'
+- const hasGeckoExtraProfile = options.browsertime && options.browsertime.enableProfileRun && options.browser === 'firefox'
+if hasGeckoProfile || hasGeckoExtraProfile
   p Download the Firefox Gecko profile and drop it into&nbsp;
     a(href='https://profiler.firefox.com') profiler.firefox.com
     | .
   .downloads
-    - const tracePath = 'data/geckoProfile-' + (runNumber? runNumber : 1) + '.json.gz'
-    a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download trace
-
-if options.browsertime && options.browsertime.enableProfileRun
-  if options.browser === 'firefox'
-    p Download the extra-run Firefox profile and drop it into&nbsp;
-      a(href='https://profiler.firefox.com') profiler.firefox.com
-      | .
-    .downloads
-      - const tracePath = 'data/geckoProfile-1-extra.json.gz'
-      a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download extra-run trace
-  else if options.browser === 'chrome'
-    p Download the extra-run Chrome trace.
-    - const tracePath = 'data/trace-1-extra-run.json.gz'
-    a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download extra-run trace
+    if hasGeckoProfile
+      - const tracePath = 'data/geckoProfile-' + (runNumber? runNumber : 1) + '.json.gz'
+      a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download trace
+    if hasGeckoExtraProfile
+      a.button.button-download(href='data/geckoProfile-1-extra.json.gz', download=downloadName + '-extra-geckoProfile.json.gz') Download extra-run trace
 
 //- Long tasks: KPI tiles for the headline numbers, then the
 //- before/after breakdown as a small definition list, and the
