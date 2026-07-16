@@ -19,7 +19,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
-        node-version: '22.x'
+        node-version: '24.x'
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
@@ -37,7 +37,7 @@ jobs:
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     strategy:
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
     steps:
     - name: Harden Runner
       uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4

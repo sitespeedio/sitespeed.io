@@ -19,7 +19,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
-        node-version: '22.x'
+        node-version: '24.x'
         cache: 'npm'
     - name: Install sitespeed.io
       run: npm ci
@@ -40,4 +40,3 @@ jobs:
     - name: Run Edge test with config
       run: node bin/sitespeed.js -b edge --config test/exampleConfig.json https://www.sitespeed.io/
       shell: cmd
-    
