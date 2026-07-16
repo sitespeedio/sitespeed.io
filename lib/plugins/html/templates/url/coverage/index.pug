@@ -1,7 +1,10 @@
 - const coverage = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
 - const covRunIndex = medianRun ? medianRun.runIndex - 1 : 0
-- const jsCov = coverage && coverage.js ? coverage.js[covRunIndex] : undefined
-- const cssCov = coverage && coverage.css ? coverage.css[covRunIndex] : undefined
+//- Coverage from --enableProfileRun is a single side-run sample, so the
+//- array has length 1 regardless of -n; fall back to it when the median
+//- run has no per-iteration sample of its own.
+- const jsCov = coverage && coverage.js ? (coverage.js[covRunIndex] || coverage.js[0]) : undefined
+- const cssCov = coverage && coverage.css ? (coverage.css[covRunIndex] || coverage.css[0]) : undefined
 - const jsFiles = jsCov && jsCov.files ? jsCov.files : []
 - const cssFiles = cssCov && cssCov.files ? cssCov.files : []
 - const MAX_ROWS = 25
