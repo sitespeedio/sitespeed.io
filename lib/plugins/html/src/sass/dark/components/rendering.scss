@@ -487,6 +487,14 @@
   color: $color--text-muted;
 }
 
+// The foundation code style is nowrap, but Chrome's selector stats
+// produce very long selectors (:has()/:not() chains) — unwrapped they
+// push the metric columns behind a horizontal scroll.
+td.selector-cell code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 // Small heading above each recalculate-style tile row, so the tiles
 // can keep short labels (Events / Elements / ...) without repeating
 // the phase in every tile.

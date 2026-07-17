@@ -480,7 +480,7 @@ if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 
         tbody
           each s in selectorStats.selectors.slice(0, 10)
             tr
-              td
+              td.selector-cell
                 code= s.selector
               td.number #{s.elapsed.toFixed(2)} ms
               td.number #{s.matchAttempts.toLocaleString('sv-SE')}
@@ -500,7 +500,7 @@ if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 
           tbody
             each s in selectorStats.wastedSelectors.slice(0, 10)
               tr
-                td
+                td.selector-cell
                   code= s.selector
                 td.number #{s.matchAttempts.toLocaleString('sv-SE')}
                 td.number #{s.elapsed.toFixed(2)} ms
