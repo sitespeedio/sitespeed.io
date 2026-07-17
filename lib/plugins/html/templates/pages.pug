@@ -51,9 +51,16 @@ block content
   - const columns = []
   - for (const metric of html.pageSummaryMetrics) { const [group, key] = metric.split('.'); for (const tool of Object.keys(friendlyNames)) { const def = friendlyNames[tool][group] && friendlyNames[tool][group][key]; if (def) { columns.push({ tool, path: def.path, name: def.name, format: def.format, isScore: group === 'score', isHttpErrors: key.toLowerCase() === 'httperrors' }); break; } } }
 
+  //- Long metric names make the header row the widest thing in the
+  //- table and force a horizontal scroll even for a single page. The
+  //- report speaks TTFB/FCP/LCP/CLS/INP/TBT everywhere else (Web Vitals
+  //- tiles, the verdict dots in this very table), so headers use the
+  //- short vocabulary with the full name in the tooltip. Cells keep the
+  //- full name in data-title for the stacked mobile view.
+  - const shortHeadings = { 'Time to First Byte': 'TTFB', 'First Contentful Paint': 'FCP', 'Largest Contentful Paint': 'LCP', 'Interaction to Next Paint': 'INP', 'Total Blocking Time': 'TBT', 'Cumulative Layout Shift': 'CLS', 'Total Transfer Size': 'Transfer', 'Total Requests': 'Requests', 'Coach Performance Score': 'Coach score' }
   - const headings = ['URL']
   - if (hasVitals) headings.push('Web Vitals')
-  - for (const col of columns) headings.push(col.name)
+  - for (const col of columns) headings.push(shortHeadings[col.name] ? { text: shortHeadings[col.name], title: col.name } : col.name)
 
   .row
     .column

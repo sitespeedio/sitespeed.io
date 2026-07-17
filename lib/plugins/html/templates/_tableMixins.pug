@@ -1,8 +1,13 @@
+//- Items are strings, or { text, title } when the visible heading is an
+//- abbreviation and the full name should live in the tooltip.
 mixin rowHeading(items)
   thead
     tr
       each item in items
-        th= item
+        if typeof item === 'object'
+          th(title=item.title)= item.text
+        else
+          th= item
 
 mixin numberCell(title, number)
   td.number(data-title=title, data-value= number)= number
