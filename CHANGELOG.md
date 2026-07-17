@@ -1,6 +1,25 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.1.0 - 2026-07-17
+
+### Added
+* Browsertime 28 [#4844](https://github.com/sitespeedio/sitespeed.io/pull/4844) and 28.1 [#4850](https://github.com/sitespeedio/sitespeed.io/pull/4850). The engine can now tell you not just *that* the main thread was busy but *what* kept it busy: function-level CPU sampling, setTimeout/setInterval pressure per install site, per-selector style-recalculation cost, style/layout invalidation tracking, blocking time split by kind, CPU time per module — and in 28.1 the Long Animation Frame data carries per-script timings, frame timestamps, whole-page totals and readable `load.php` labels. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) for the full list.
+* The CPU tab leads with the verdict: a top-offender callout, then long tasks and blocking time split into script, style/layout and HTML parsing (a page blocked by parsing its own huge document is named as such instead of hiding as "unknown"). Two new sections: Slowest JS functions (self vs total time from the V8 sampling profiler) and Timers (setTimeout/setInterval churn credited to the script that installed each timer). The tab is always present on Chrome and points to `--enableProfileRun` when the deeper data is missing [#4845](https://github.com/sitespeedio/sitespeed.io/pull/4845).
+* Long Animation Frames are actionable and live on the CPU tab next to Long tasks: exact totals over every frame, each frame placed on the page timeline (blocking before LCP = fix first, after load = a different conversation), frames where an input was waiting flagged for INP, and one attribution model everywhere — blocking split by run-time share of the frame's work, capped at each script's own run time, so a parse-heavy frame can't pin 240 ms on an 8 ms inline script. Inline scripts and `load.php` batches get readable names, zero-blocking frames collapse into one quiet line, and old `#longAnimationFrames` links keep working [#4851](https://github.com/sitespeedio/sitespeed.io/pull/4851).
+* The Rendering tab explains where style time goes: the slowest CSS selectors during style recalculation — including wasted selectors with thousands of match attempts and zero matches — and style invalidations: which class/attribute changes keep forcing recalculation and which scripts cause them [#4845](https://github.com/sitespeedio/sitespeed.io/pull/4845). Frame delivery (dropped frames, effective FPS, longest gap) also moved here from the CPU tab — it is the smoothness half of "what did the user see" [#4849](https://github.com/sitespeedio/sitespeed.io/pull/4849).
+* Big JavaScript bundles are split into their modules: CPU time and code coverage per module (ResourceLoader bundles, including TemplateStyles labels for inline CSS). Everything sourced from the extra profile run carries a "Profile run" badge, and the PageXray tab shows the main document's response headers per run [#4845](https://github.com/sitespeedio/sitespeed.io/pull/4845).
+
+### Fixed
+* Long tasks that started after the last visual change painted outside the visual progress timeline. Tasks past the axis end are dropped from the lane (the CPU tab still lists them all) and an edge-straddling task is clamped [#4839](https://github.com/sitespeedio/sitespeed.io/pull/4839).
+* With `--enableProfileRun` the coverage section claimed no data was collected whenever the median run wasn't run 1 — the profile run is a single sample and is now shown regardless of which iteration became the median [#4841](https://github.com/sitespeedio/sitespeed.io/pull/4841).
+* `--enableProfileRun` leaked into the measured runs, misnaming every measured trace as the profile trace and letting the profile trace overwrite the first iteration's. Per-run traces and the extra-run trace now coexist with correct names [#4842](https://github.com/sitespeedio/sitespeed.io/pull/4842).
+* The Toplist page's run links were off by one ever since iteration pages became 1-based: with one iteration every link 404:ed, with more the link silently opened the previous run's page [#4843](https://github.com/sitespeedio/sitespeed.io/pull/4843).
+* Long CSS selectors (deep `:has()`/`:not()` chains) made the Rendering tab's selector tables horizontally scrollable, pushing the metric columns out of view — selectors now wrap [#4846](https://github.com/sitespeedio/sitespeed.io/pull/4846).
+* The timers table underlined its whole install-site cell, running a blue line under the code pills — the links are quiet now and tint on hover [#4847](https://github.com/sitespeedio/sitespeed.io/pull/4847).
+* The Pages table forced a horizontal scroll even for a single tested page: the full metric names made the header row the widest thing in it. Headers now use the short Web Vitals vocabulary (LCP, CLS, TBT, …) with the full name in the tooltip [#4848](https://github.com/sitespeedio/sitespeed.io/pull/4848).
+* GitHub Actions use Node.js 24 by default, with Node.js 26 added to the test matrix [#4840](https://github.com/sitespeedio/sitespeed.io/pull/4840).
+
 ## 42.0.1 - 2026-07-14
 
 ### Fixed
