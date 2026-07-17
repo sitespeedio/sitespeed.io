@@ -13,7 +13,6 @@ if browsertime
   - const cdp = medianRun ? pageInfo.data.browsertime.pageSummary.cdp[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cdp
   - const renderBlocking = medianRun ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.renderBlocking
   - const loaf = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].pageinfo.loaf : pageInfo.data.browsertime.run.pageinfo.loaf
-
   //- Section ordering follows the perf-debugging story: visual progress
   //- first (what the user actually saw), then the Web Vitals headline,
   //- then the deep-dive cards for the three "loaf-shaped" Vitals (LCP /

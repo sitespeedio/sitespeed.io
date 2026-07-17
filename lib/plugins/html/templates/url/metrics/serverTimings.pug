@@ -12,6 +12,8 @@
 if timings.serverTimings && timings.serverTimings.length > 0
   - const serverTimingsCount = timings.serverTimings.length
   a#server-timings
+  h3 Server timings
+  p Timing data the server chose to expose through Server-Timing response headers on the main document — typically backend time, cache status or experiment flags.
   .listing-card
     .listing-card-header
       h3.listing-card-title Server timings

@@ -3,10 +3,12 @@ include ../includes/_quicklinks
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 - const _btCov = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
-- const hasCoverage = _btCov && ((_btCov.js && _btCov.js.length) || (_btCov.css && _btCov.css.length))
+- const hasCoverage = _btCov && (_btCov.source === 'profileRun' || (_btCov.js && _btCov.js.length) || (_btCov.css && _btCov.css.length))
 
+- const mainDocument = medianRun ? (pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary.mainDocument ? pageInfo.data.browsertime.pageSummary.mainDocument[medianRun.runIndex - 1] : undefined) : (pageInfo.data.browsertime && pageInfo.data.browsertime.run ? pageInfo.data.browsertime.run.mainDocument : undefined)
 - const pagexrayLinks = []
 - pagexrayLinks.push({href: '#pagexray-summary', label: 'Summary'})
+- if (mainDocument) pagexrayLinks.push({href: '#main-document', label: 'Main document'})
 - pagexrayLinks.push({href: '#largest-assets', label: 'Largest responses'})
 - pagexrayLinks.push({href: '#requests-and-sizes-per-content-type', label: 'Per content type'})
 - pagexrayLinks.push({href: '#data-per-domain', label: 'Per domain'})
@@ -64,6 +66,8 @@ a#pagexray-summary
       span.pagexray-kpi-label Console errors
       span.pagexray-kpi-value #{consoleErrors}
       span.pagexray-kpi-sub see the console log ↓
+
+include ./mainDocument.pug
 
 //- Response codes as a bar list — bigger codes (errors / redirects)
 //- read at a glance against 2xx counts.

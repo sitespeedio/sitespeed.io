@@ -1,10 +1,12 @@
 - const coverage = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
 - const covRunIndex = medianRun ? medianRun.runIndex - 1 : 0
-//- Coverage from --enableProfileRun is a single side-run sample, so the
-//- array has length 1 regardless of -n; fall back to it when the median
-//- run has no per-iteration sample of its own.
-- const jsCov = coverage && coverage.js ? (coverage.js[covRunIndex] || coverage.js[0]) : undefined
-- const cssCov = coverage && coverage.css ? (coverage.css[covRunIndex] || coverage.css[0]) : undefined
+//- Coverage from --enableProfileRun is a single side-run sample marked
+//- with source: 'profileRun' (js/css are objects, not per-iteration
+//- arrays). The array indexing with a [0] fallback keeps older
+//- browsertime data working.
+- const fromProfileRun = coverage && coverage.source === 'profileRun'
+- const jsCov = coverage && coverage.js ? (fromProfileRun ? coverage.js : (coverage.js[covRunIndex] || coverage.js[0])) : undefined
+- const cssCov = coverage && coverage.css ? (fromProfileRun ? coverage.css : (coverage.css[covRunIndex] || coverage.css[0])) : undefined
 - const jsFiles = jsCov && jsCov.files ? jsCov.files : []
 - const cssFiles = cssCov && cssCov.files ? cssCov.files : []
 - const MAX_ROWS = 25
@@ -40,18 +42,26 @@
 //- rows. Sum bytes, count occurrences, recompute unused-% from the sums
 //- (averaging the percentages would weight tiny scripts the same as
 //- large bundles).
+//- `modules` is browsertime's per-module breakdown of a bundled
+//- response (MediaWiki ResourceLoader batches), already sorted by
+//- unused bytes — carry it through so the row can expand into it.
 - function aggregateByUrl(files) {
 -   const map = new Map()
 -   for (const f of files) {
--     const key = f.url || ''
+-     //- Labeled inline sheets (MediaWiki TemplateStyles) share the
+-     //- document URL, so the label is the real identity — group by it
+-     //- so each template gets its own row instead of one merged blob.
+-     const key = f.label || f.url || ''
 -     const cur = map.get(key)
 -     if (cur) {
 -       cur.totalBytes += f.totalBytes
 -       cur.usedBytes += f.usedBytes
 -       cur.unusedBytes += f.unusedBytes
 -       cur.count += 1
+-       if (f.modules) cur.modules = cur.modules ? [...cur.modules, ...f.modules] : f.modules
+-       if (!cur.label && f.label) cur.label = f.label
 -     } else {
--       map.set(key, { url: key, totalBytes: f.totalBytes, usedBytes: f.usedBytes, unusedBytes: f.unusedBytes, count: 1 })
+-       map.set(key, { url: key, totalBytes: f.totalBytes, usedBytes: f.usedBytes, unusedBytes: f.unusedBytes, count: 1, modules: f.modules, label: f.label })
 -     }
 -   }
 -   const out = []
@@ -67,10 +77,21 @@
 - const sevClass = (p) => p >= 70 ? 'cov-bar-fill--bad' : (p >= 40 ? 'cov-bar-fill--mid' : 'cov-bar-fill--ok')
 
 a#coverage
-h2 Coverage
+h2
+  | Coverage
+  if fromProfileRun
+    span.profile-run-badge(title='Collected in the single extra profile run made by --enableProfileRun, not in the timed iterations the rest of this report is based on.') Profile run
 
 p
-  | JavaScript and CSS coverage from the median iteration (run #{covRunIndex + 1}). For JS, Chrome's V8 profiler reports per-block execution counts: a byte is&nbsp;
+  if fromProfileRun
+    | JavaScript and CSS coverage from the extra profile run made by&nbsp;
+    code --enableProfileRun
+    | , not from the timed iterations.
+  else
+    | JavaScript and CSS coverage collected on every timed iteration (
+    code --chrome.coverage
+    | ); shown here is the median iteration (run #{covRunIndex + 1}). Note that detailed coverage instrumentation deoptimizes V8 and can affect the timing metrics of the same runs.
+  |  For JS, Chrome's V8 profiler reports per-block execution counts: a byte is&nbsp;
   em unused
   | &nbsp;when its innermost containing range executed zero times. For CSS, Chrome's rule tracker flags every selector that no element on the page matched during the iteration. Enable with&nbsp;
   code --chrome.coverage
@@ -211,7 +232,10 @@ else
                   if inline
                     span.cov-inline (inline)
                   else
-                    a(href=f.url, title=f.url) #{h.shortAsset(f.url, true)}
+                    //- `label` is browsertime's stable name for bundled
+                    //- URLs (load.php[startup], …); the full URL stays
+                    //- in href/title.
+                    a(href=f.url, title=f.url) #{f.label || h.shortAsset(f.url, true)}
                   if f.count > 1
                     | &nbsp;
                     span.cov-count #{f.count} scripts
@@ -222,6 +246,38 @@ else
                   .cov-bar-track
                     span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
                   span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
+              //- Per-module breakdown for bundled responses (MediaWiki
+              //- ResourceLoader). Browsertime maps the coverage ranges
+              //- back to the modules inside the batch, so the row can
+              //- expand into which modules carry the unused bytes.
+              if f.modules && f.modules.length > 0
+                - const topModules = f.modules.slice(0, 15)
+                tr.cov-modules-row
+                  td(colspan='5')
+                    details.cov-modules
+                      summary #{f.modules.length} #{f.modules.length === 1 ? 'module' : 'modules'} in this bundle, top #{topModules.length} by unused bytes
+                      table.cov-table
+                        thead
+                          tr
+                            th Module
+                            th Version
+                            th.number Total
+                            th.number Used
+                            th.number Unused
+                            th.cov-bar Unused %
+                        tbody
+                          each m in topModules
+                            tr
+                              td.cov-url
+                                code= m.name
+                              td= m.version || '–'
+                              td.number #{h.size.format(m.totalBytes)}
+                              td.number #{h.size.format(m.usedBytes)}
+                              td.number #{h.size.format(m.unusedBytes)}
+                              td.cov-bar
+                                .cov-bar-track
+                                  span.cov-bar-fill(class=sevClass(m.unusedPercent), style='width: ' + m.unusedPercent.toFixed(2) + '%')
+                                span.cov-bar-value #{m.unusedPercent.toFixed(1)}%
 
   if cssAgg.length > 0
     - const cssSorted = cssAgg.slice().sort((a, b) => b.unusedBytes - a.unusedBytes).slice(0, MAX_ROWS)
@@ -243,7 +299,7 @@ else
               tr
                 td.cov-url
                   if f.url
-                    a(href=f.url, title=f.url) #{h.shortAsset(f.url, true)}
+                    a(href=f.url, title=f.url) #{f.label || h.shortAsset(f.url, true)}
                   else
                     span.cov-inline (inline stylesheet)
                   if f.count > 1

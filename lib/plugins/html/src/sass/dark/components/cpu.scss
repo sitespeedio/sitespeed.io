@@ -357,3 +357,31 @@
   margin-right: 8px;
   color: $color--text-muted;
 }
+
+// Category definitions inside the "What do these categories mean?"
+// fold — swatch + name on the dt so definitions map back to the bar.
+.cpu-cat-defs {
+  margin: 0;
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 2px 0;
+    font-weight: $font--weight--medium;
+    color: $color--text;
+  }
+
+  dd {
+    margin: 0 0 0 18px;
+    font-size: 0.92rem;
+  }
+}
+
+// "runs: x (n ms), y (m ms)" sub-line under orchestrator functions in
+// the slowest-functions table.
+.cpu-fn-callees {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: $color--text-muted;
+}
