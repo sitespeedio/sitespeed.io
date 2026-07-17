@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 14 Jul 2026 12:56:08 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 17 Jul 2026 16:57:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,31 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 42.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.0</guid>
+            <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Browsertime 28 #4844 and 28.1 #4850. The engine can now tell you not just <em>that</em> the main thread was busy but <em>what</em> kept it busy: function-level CPU sampling, setTimeout/setInterval pressure per install site, per-selector style-recalculation cost, style/layout invalidation tracking, blocking time split by kind, CPU time per module — and in 28.1 the Long Animation Frame data carries per-script timings, frame timestamps, whole-page totals and readable <code>load.php</code> labels. See the Browsertime changelog for the full list.<br>
+- The CPU tab leads with the verdict: a top-offender callout, then long tasks and blocking time split into script, style/layout and HTML parsing (a page blocked by parsing its own huge document is named as such instead of hiding as &quot;unknown&quot;). Two new sections: Slowest JS functions (self vs total time from the V8 sampling profiler) and Timers (setTimeout/setInterval churn credited to the script that installed each timer). The tab is always present on Chrome and points to <code>--enableProfileRun</code> when the deeper data is missing #4845.<br>
+- Long Animation Frames are actionable and live on the CPU tab next to Long tasks: exact totals over every frame, each frame placed on the page timeline (blocking before LCP = fix first, after load = a different conversation), frames where an input was waiting flagged for INP, and one attribution model everywhere — blocking split by run-time share of the frame&#39;s work, capped at each script&#39;s own run time, so a parse-heavy frame can&#39;t pin 240 ms on an 8 ms inline script. Inline scripts and <code>load.php</code> batches get readable names, zero-blocking frames collapse into one quiet line, and old <code>#longAnimationFrames</code> links keep working #4851.<br>
+- The Rendering tab explains where style time goes: the slowest CSS selectors during style recalculation — including wasted selectors with thousands of match attempts and zero matches — and style invalidations: which class/attribute changes keep forcing recalculation and which scripts cause them #4845. Frame delivery (dropped frames, effective FPS, longest gap) also moved here from the CPU tab — it is the smoothness half of &quot;what did the user see&quot; #4849.<br>
+- Big JavaScript bundles are split into their modules: CPU time and code coverage per module (ResourceLoader bundles, including TemplateStyles labels for inline CSS). Everything sourced from the extra profile run carries a &quot;Profile run&quot; badge, and the PageXray tab shows the main document&#39;s response headers per run #4845.<br>
+<br>
+<strong>Fixed</strong><br>
+- Long tasks that started after the last visual change painted outside the visual progress timeline. Tasks past the axis end are dropped from the lane (the CPU tab still lists them all) and an edge-straddling task is clamped #4839.<br>
+- With <code>--enableProfileRun</code> the coverage section claimed no data was collected whenever the median run wasn&#39;t run 1 — the profile run is a single sample and is now shown regardless of which iteration became the median #4841.<br>
+- <code>--enableProfileRun</code> leaked into the measured runs, misnaming every measured trace as the profile trace and letting the profile trace overwrite the first iteration&#39;s. Per-run traces and the extra-run trace now coexist with correct names #4842.<br>
+- The Toplist page&#39;s run links were off by one ever since iteration pages became 1-based: with one iteration every link 404:ed, with more the link silently opened the previous run&#39;s page #4843.<br>
+- Long CSS selectors (deep <code>:has()</code>/<code>:not()</code> chains) made the Rendering tab&#39;s selector tables horizontally scrollable, pushing the metric columns out of view — selectors now wrap #4846.<br>
+- The timers table underlined its whole install-site cell, running a blue line under the code pills — the links are quiet now and tint on hover #4847.<br>
+- The Pages table forced a horizontal scroll even for a single tested page: the full metric names made the header row the widest thing in it. Headers now use the short Web Vitals vocabulary (LCP, CLS, TBT, …) with the full name in the tooltip #4848.<br>
+- GitHub Actions use Node.js 24 by default, with Node.js 26 added to the test matrix #4840.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.0.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</link>
@@ -170,31 +195,6 @@
 - CI: pin the Safari workflow to <code>macos-14</code> #4765.<br>
 - Drop an unnecessary <code>\.</code> escape inside a character class in <code>pathToFolder</code> that was tripping eslint&#39;s <code>no-useless-escape</code> and failing lint on every PR #4763.<br>
 - Docs: remove unused CSS #4768.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 41.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.1.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.1.0</guid>
-            <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- New <code>rsync</code> plugin for result uploads. The existing <code>scp</code> plugin walks files one at a time over a single SFTP channel, which is the worst case for a result directory of thousands of small files. The new plugin shells out to <code>rsync</code> over <code>ssh</code>, pipelines the wire protocol and reuses the channel — the same upload finishes in a small fraction of the time on a typical Linux host. Exposed as <code>--rsync.host</code> / <code>--rsync.username</code> / <code>--rsync.privateKey</code> / <code>--rsync.destinationPath</code> etc., sitting alongside <code>scp</code>, <code>s3</code> and <code>gcs</code>; existing scp users keep their exact behaviour and opt in to rsync only when they want it #4739.<br>
-- Upload performance on the existing <code>scp</code> plugin: swapped <code>node-scp</code> (serial uploads, stuck on 0.0.25) for <code>ssh2-sftp-client</code>, which fans out 16 concurrent uploads on the same ssh2 transport. Same auth, same options, same CLI surface — just faster on result directories with many small files #4738.<br>
-<br>
-<strong>Fixed</strong><br>
-- Bring back the visual-change markers on the waterfall. The renderer that replaced PerfCascade in #4614 only drew vertical lines for a fixed set of page-event names, so the <code>_firstVisualChange</code> / <code>_lastVisualChange</code> / <code>_visualComplete85</code> lines silently disappeared with the swap. They&#39;re now hoisted into the user-timing-marks bag the renderer does draw, the &quot;Marks &amp; visual metrics&quot; toggle is on by default, and the hover tooltip identifies which metric or user mark the cursor is on #4755.<br>
-- Browsertime 27.3.0 #4754.<br>
-- <code>coach-core</code> bumped to 9.2.1 #4750.<br>
-- Bump <code>@sitespeed.io/log</code> and the bundled plugin to latest #4746.<br>
-- Crawler rewrite: <code>simplecrawler</code> (unmaintained since 2020, ~1000 lines of transitive code) is replaced by an in-tree <code>node:fetch</code>-based crawler in ~285 lines with no new dependency. Same BFS semantics, same depth/maxPages/include/exclude/content-type/skip-extension rules, same robots.txt handling (<code>--crawler.ignoreRobotsTxt</code> still opts out), same cookies/basicAuth/userAgent passthrough. Parity verified across four real-site runs at different depths and page caps; natural completion is ~6× faster on the sample runs #4745.<br>
-- Dependency pruning, no behaviour change for users: <code>lodash.get</code>, <code>lodash.set</code> and <code>lodash.merge</code> are replaced by small in-tree helpers in <code>lib/support/objectPath.js</code>, with the <code>merge</code> replacement verified byte-for-byte against <code>lodash.merge</code> across 23 edge cases and an A/B <code>parseCommandLine()</code> run. <code>dayjs</code> (plus the utc plugin) is replaced by an ~80-line <code>lib/support/time.js</code>, with every <code>.format()</code> pattern actually used in the codebase pinned in a new test. <code>ora</code> is replaced by a ~60-line blinking-dot spinner used only by <code>--api.add</code> / <code>--api.addAndGetResult</code>. The lodash subtree is now gone entirely [#4737, #4741, #4742, #4744, #4740].<br>
-- The <code>markdown</code> template helper exposed to pug templates is removed. It was added in 2018 (#2161) but no shipped <code>.pug</code> template has ever called it, and the underlying <code>markdown@0.5.0</code> package has been unmaintained for over a decade with an open ReDoS advisory. Anyone with a custom pug template that calls <code>markdown(...)</code> will need to import their own renderer #4743.<br>
-- Slimmer main Docker image: <code>apt-get install --no-install-recommends</code> + <code>/var/lib/apt/lists</code> cleanup, <code>npm ci</code> (lockfile-strict) instead of <code>npm install</code>, and the <code>selenium-webdriver/bin</code> cleanup folded into the install layer so the deleted bytes no longer ship in an earlier layer #4753.<br>
-- Docker: use <code>--omit=dev</code> instead of the deprecated <code>--production</code>, and fix the <code>skip edgedriver</code> typo #4752.<br>
-- Release tooling: bump <code>feed</code> to 5.2.1 and <code>marked</code> to 18.0.3 (used only by <code>release/feed.js</code> when refreshing documentation RSS feeds). API usage unchanged, regenerated feeds are content-identical #4751.<br>
-- Dev tooling: align with eslint 10 and unicorn 64, drop the dead legacy <code>.eslintrc.json</code> and the stale <code>eslint-check</code> script, minor bumps to prettier/sass/esbuild #4747.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

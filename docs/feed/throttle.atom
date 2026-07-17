@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>throttle-release-feed</id>
     <title>throttle release feed</title>
-    <updated>2026-07-14T12:55:33.231Z</updated>
+    <updated>2026-07-17T16:57:28.089Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,19 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[throttle 6.0.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.1"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Make throttle work on GitHub Actions again: Linux throttling no longer fails with &quot;Exclusivity flag on, cannot modify&quot; when another tool already holds the ingress qdisc slot on the interface. GitHub-hosted Actions runners now come with an eBPF network-monitoring agent that attaches a clsact qdisc to the default interface (other eBPF-based security agents do the same), and since only one ingress/clsact qdisc can exist per device, throttle&#39;s <code>tc qdisc add ... ingress</code> failed and took the whole measurement run down with it. The original code path is unchanged and runs first; only when it fails does throttle fall back to attaching its redirect filters to the existing qdisc (on the clsact ingress hook when needed), with explicit filter priorities so stop removes exactly its own filters and leaves the other tool&#39;s qdisc and filters untouched. #108.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[throttle 6.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0</id>
@@ -134,19 +147,6 @@
         <updated>2021-12-26T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
 - Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 3.0.0]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0"/>
-        <updated>2021-08-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Changed</strong><br>
-- When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
