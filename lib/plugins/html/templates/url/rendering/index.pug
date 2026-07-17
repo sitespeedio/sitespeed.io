@@ -399,11 +399,11 @@ if hasRecalculateStyle
           span.metric-tile-label Total time
           span.metric-tile-value #{h.time.ms(recalc.durationInMillis)}
         if recalc.maxElements !== undefined
+          //- One value line like the neighbouring tiles — a sub-line
+          //- here made this the only two-row tile in the row.
           .metric-tile
             span.metric-tile-label Largest event
-            span.metric-tile-value #{recalc.maxElements} elements
-            if recalc.maxDurationInMillis !== undefined
-              span.metric-tile-sub #{h.time.ms(recalc.maxDurationInMillis)}
+            span.metric-tile-value #{recalc.maxElements} elements#{recalc.maxDurationInMillis !== undefined ? ' · ' + h.time.ms(recalc.maxDurationInMillis) : ''}
 else if showRecalculateHint
   //- The recalculate-style counts come from parsing a Chrome timeline
   //- trace, gated on --cpu / --chrome.timeline. The matching Firefox

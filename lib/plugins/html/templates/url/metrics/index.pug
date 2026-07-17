@@ -12,13 +12,13 @@ if browsertime
   - const custom = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].custom : pageInfo.data.browsertime.run.custom
   - const cdp = medianRun ? pageInfo.data.browsertime.pageSummary.cdp[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cdp
   - const renderBlocking = medianRun ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.renderBlocking
-  - const loaf = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].pageinfo.loaf : pageInfo.data.browsertime.run.pageinfo.loaf
   //- Section ordering follows the perf-debugging story: visual progress
   //- first (what the user actually saw), then the Web Vitals headline,
   //- then the deep-dive cards for the three "loaf-shaped" Vitals (LCP /
   //- CLS / INP), then the lower-level browser timings, and finally the
-  //- diagnostic surfaces (long animation frames, element timings, custom
-  //- scripts, CDP).
+  //- diagnostic surfaces (element timings, custom scripts, CDP). The
+  //- Long Animation Frames deep dive lives on the CPU tab with the
+  //- rest of the main-thread story.
   - const metricsLinks = []
   if (options.browsertime.visualMetrics)
     - metricsLinks.push({href: '#visualmetrics', label: 'Visual Metrics'})
@@ -31,8 +31,6 @@ if browsertime
   if timings.interactionToNextPaint
     - metricsLinks.push({href: '#interactionToNextPaint', label: 'Interaction To Next Paint'})
   - metricsLinks.push({href: '#browsermetrics', label: 'Browser metrics'})
-  if loaf
-    - metricsLinks.push({href: '#longAnimationFrames', label: 'Long Animation Frames'})
   if timings.elementTimings && Object.keys(timings.elementTimings).length > 0
     - metricsLinks.push({href: '#elementTimings', label: 'Element Timings'})
   if custom
@@ -238,7 +236,6 @@ if browsertime
   //- 7+. Diagnostic surfaces — long animation frames, element/server
   //- timings, custom scripts, CDP, visual elements. Most page reports
   //- skip these so each block guards on the data being present.
-  include ./loaf.pug
   include ./firstInput.pug
   include ./elementTimings.pug
   include ./serverTimings.pug

@@ -2,6 +2,17 @@ include ../includes/_quicklinks
 
 - const browsertime = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run
 - const cpu = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run.cpu
+//- The Long Animation Frames deep dive (./loaf.pug) renders on this
+//- tab — frames ARE the main-thread story — and needs the same run's
+//- timings for its FCP/LCP/load placement.
+- const loaf = browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0 ? browsertime.pageinfo.loaf : undefined
+- const timings = browsertime ? browsertime.timings : undefined
+//- A LoAF script whose sourceURL is the page itself is an inline
+//- script — show that instead of the article URL. Shared by the
+//- callout and both per-script LoAF sections.
+- let cpuPageUrl = null
+- try { cpuPageUrl = (pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.info.url) || pageInfo.data.browsertime.run.info.url } catch (e) {}
+- const cpuScriptDisplay = entry => entry.label || (entry.url === cpuPageUrl ? 'inline script in the document' : h.shortAsset(entry.url, true))
 //- Per-module CPU needs the trace and the coverage-derived bundle
 //- boundaries from the same iteration. With --enableProfileRun that
 //- only happens in the profile run, whose sample the browsertime
@@ -38,6 +49,24 @@ include ../includes/_quicklinks
 - const useProfileTimers = !!profileTimers && (!measuredTimers || (timersHaveModules(profileTimers) && !timersHaveModules(measuredTimers)))
 - const timers = useProfileTimers ? profileTimers : measuredTimers
 - const timersFromProfileRun = useProfileTimers
+
+//- The LoAF per-script rollups and the per-tool CPU data are computed
+//- once, up here: a quicklink must only render when its section does,
+//- and the callout, the links and the sections all need the same
+//- lists. With per-script durations (browsertime 28.1+) a frame's
+//- blocking is split by run-time share of the frame's work, capped at
+//- each script's own run time (parse-dominated frames must not pin
+//- their blocking on one tiny listed script); older data credits the
+//- frame-starting script.
+- const loafScriptShare = (frame, sc, totalRun) => { const divisor = Math.max(totalRun, frame.workDuration || 0, 1); return Math.min((frame.blockingDuration || 0) * ((sc.duration || 0) / divisor), sc.duration || 0) }
+- const loafByScript = new Map()
+- if (browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf) { for (const loafFrame of browsertime.pageinfo.loaf) { const blockingDur = loafFrame.blockingDuration || 0; if (blockingDur === 0) continue; const scr = (loafFrame.scripts || []).filter(s => s.sourceURL); if (scr.length === 0) continue; const totalRun = scr.reduce((s, sc) => s + (sc.duration || 0), 0); for (const [scIndex, sc] of scr.entries()) { const share = totalRun > 0 ? loafScriptShare(loafFrame, sc, totalRun) : (scIndex === 0 ? blockingDur : 0); if (share === 0) continue; const entry = loafByScript.get(sc.sourceURL) || { url: sc.sourceURL, label: sc.label, blocking: 0, count: 0, worst: 0, fn: sc.sourceFunctionName || '' }; entry.blocking += share; entry.count++; if (share > entry.worst) entry.worst = share; if (!entry.fn && sc.sourceFunctionName) entry.fn = sc.sourceFunctionName; loafByScript.set(sc.sourceURL, entry) } } }
+- const loafEntries = Array.from(loafByScript.values()).sort((a, b) => b.blocking - a.blocking).slice(0, 10)
+- const fsByScript = new Map()
+- if (browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf) { for (const loafFrame of browsertime.pageinfo.loaf) { for (const s of (loafFrame.scripts || [])) { const dur = s.forcedStyleAndLayoutDuration || 0; if (dur === 0) continue; const url = s.sourceURL || ''; if (!url) continue; const entry = fsByScript.get(url) || { url, label: s.label, total: 0, count: 0 }; entry.total += dur; entry.count++; fsByScript.set(url, entry) } } }
+- const fsEntries = Array.from(fsByScript.values()).filter(e => e.total >= 1).sort((a, b) => b.total - a.total).slice(0, 10)
+- const thirdpartyRun = pageInfo.data.thirdparty ? (medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run) : undefined
+- const cpuPerTool = thirdpartyRun && thirdpartyRun.cpuPerTool && Object.keys(thirdpartyRun.cpuPerTool).length > 0 ? thirdpartyRun.cpuPerTool : undefined
 
 //- Inline SVG glyph mixin — small Lucide-style stroke icons next to
 //- each h3 section heading. Stroke colour inherits from the heading
@@ -96,7 +125,9 @@ if cpu
   - const cpuLinks = []
   if cpu.longTasks
     - cpuLinks.push({href: '#long-tasks', label: 'Long tasks'})
-  if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+  if loaf
+    - cpuLinks.push({href: '#longAnimationFrames', label: 'Long animation frames'})
+  if loafEntries.length > 0
     - cpuLinks.push({href: '#cpu-loaf-blocking', label: 'Per script blocking'})
   if cpu.blocking && cpu.blocking.urls && cpu.blocking.urls.length > 0
     - cpuLinks.push({href: '#cpu-blocking', label: 'TBT per script'})
@@ -110,13 +141,15 @@ if cpu
     - cpuLinks.push({href: '#cpu-function-costs', label: 'Per function'})
   if timers && timers.fires > 0
     - cpuLinks.push({href: '#cpu-timers', label: 'Timers'})
-  if cpu.forcedReflows && cpu.forcedReflows.length > 0
+  //- Same threshold as the section body: reflows under 2 ms never
+  //- render a card, so they must not render a link either.
+  if cpu.forcedReflows && cpu.forcedReflows.some(r => r.duration >= 2)
     - cpuLinks.push({href: '#cpu-forced-reflows', label: 'Forced reflows'})
-  if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
+  if fsEntries.length > 0
     - cpuLinks.push({href: '#cpu-forced-layout-per-script', label: 'Forced layout/script'})
   if cpu.domains
     - cpuLinks.push({href: '#cpu-first-third-party', label: 'First vs third party'})
-  if pageInfo.data.thirdparty
+  if cpuPerTool
     - cpuLinks.push({href: '#cpu-time-per-tool', label: 'Per domain/tool'})
   if cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
     - cpuLinks.push({href: '#cpu-animations', label: 'Animations'})
@@ -136,10 +169,8 @@ h2 CPU
 //- X" isn't really the answer) or when the page barely blocked at
 //- all (no clear win available).
 - let calloutTopOffender, calloutTotal
-if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
-  - const calloutByScript = new Map()
-  - for (const loaf of browsertime.pageinfo.loaf) { const blockingDur = loaf.blockingDuration || 0; if (blockingDur === 0) continue; const firstScript = loaf.scripts && loaf.scripts[0]; const url = (firstScript && firstScript.sourceURL) || ''; if (!url) continue; const entry = calloutByScript.get(url) || { url, blocking: 0 }; entry.blocking += blockingDur; calloutByScript.set(url, entry) }
-  - const calloutSorted = Array.from(calloutByScript.values()).sort((a, b) => b.blocking - a.blocking)
+if loafByScript.size > 0
+  - const calloutSorted = Array.from(loafByScript.values()).sort((a, b) => b.blocking - a.blocking)
   - calloutTopOffender = calloutSorted[0]
   - calloutTotal = calloutSorted.reduce((s, e) => s + e.blocking, 0)
 else if cpu && cpu.blocking && cpu.blocking.urls && cpu.blocking.urls.length > 0
@@ -154,7 +185,7 @@ if calloutTopOffender && calloutTotal >= 100 && (calloutTopOffender.blocking / c
         path(d='M12 17h.01')
     .cpu-callout-body
       .cpu-callout-headline
-        a(href=calloutTopOffender.url, title=calloutTopOffender.url)= calloutTopOffender.label || h.shortAsset(calloutTopOffender.url, true)
+        a(href=calloutTopOffender.url, title=calloutTopOffender.url)= cpuScriptDisplay(calloutTopOffender)
         | &nbsp;is responsible for #{Math.round(calloutTopOffender.blocking / calloutTotal * 100)}% of blocking time
       .cpu-callout-detail
         | #{calloutTopOffender.blocking.toFixed(0)} ms of #{calloutTotal.toFixed(0)} ms total. Defer it, replace it with a lighter alternative, or move its work off the main thread to recover most of your TBT.
@@ -234,29 +265,25 @@ if cpu && cpu.longTasks
   else
     p.cpu-no-tasks ✓ No long tasks observed during this run.
 
+//- The Long Animation Frames deep dive: overview totals, the
+//- cross-frame culprit table and the per-frame anatomy.
+include ./loaf.pug
+
 //- Blocking time per script — derived from the Long Animation Frame
 //- API. The Long Task API deliberately doesn't expose script-level
 //- attribution (privacy: cross-origin script identity), so it's
 //- the wrong source for "which script caused TBT". LoAF was
 //- designed to fix that gap and ships per-script attribution
-//- (sourceURL, sourceFunctionName, sourceCharPosition).
-//-
-//- Each LoAF's `blockingDuration` is credited to its **first**
-//- entry in `scripts[]` — Chrome lists scripts in execution order,
-//- so the first one is the script that started the long frame
-//- (typically the trigger). LoAFs without a script attribution
-//- (e.g. browser-internal work) are skipped.
-if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
-  - const loafByScript = new Map()
-  - for (const loaf of browsertime.pageinfo.loaf) { const blockingDur = loaf.blockingDuration || 0; if (blockingDur === 0) continue; const firstScript = loaf.scripts && loaf.scripts[0]; const url = (firstScript && firstScript.sourceURL) || ''; if (!url) continue; const entry = loafByScript.get(url) || { url, blocking: 0, count: 0, worst: 0, fn: firstScript.sourceFunctionName || '' }; entry.blocking += blockingDur; entry.count++; if (blockingDur > entry.worst) entry.worst = blockingDur; if (!entry.fn && firstScript.sourceFunctionName) entry.fn = firstScript.sourceFunctionName; loafByScript.set(url, entry) }
-  - const loafEntries = Array.from(loafByScript.values()).sort((a, b) => b.blocking - a.blocking).slice(0, 10)
-  if loafEntries.length > 0
+//- (sourceURL, sourceFunctionName, sourceCharPosition). LoAFs
+//- without any script attribution (browser-internal work) are
+//- skipped.
+if loafEntries.length > 0
     - const loafBlockingMax = loafEntries[0].blocking
     a#cpu-loaf-blocking
     h3
       +cpuIcon('ban')
       | Blocking time per script
-    p How much each script blocked the main thread, derived from the Long Animation Frame API. The script that started each long frame is credited with the frame's blocking time, the closest answer to "which script should I fix to improve TBT" the platform exposes.
+    p How much each script blocked the main thread, derived from the Long Animation Frame API. Each frame's blocking time is split between its scripts by their share of the frame's work, capped at each script's own run time — blocking from work no script owns (HTML parsing, browser internals) is not attributed (older data credits the script that started the frame). The closest answer to "which script should I fix to improve TBT" the platform exposes.
     .listing-card
       .listing-card-header
         h3.listing-card-title Top scripts blocking the main thread
@@ -265,22 +292,12 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
         each entry in loafEntries
           - const pct = loafBlockingMax > 0 ? (entry.blocking / loafBlockingMax * 100) : 0
           .cpu-bar-row
-            a.cpu-bar-asset(href=entry.url, title=entry.url)= h.shortAsset(entry.url, true)
+            a.cpu-bar-asset(href=entry.url, title=entry.url)= cpuScriptDisplay(entry)
             .cpu-bar-track
               span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
             span.cpu-bar-value
               | #{entry.blocking.toFixed(0)} ms
               span.cpu-bar-sub  · #{entry.count} #{entry.count === 1 ? 'frame' : 'frames'} · worst #{entry.worst.toFixed(0)} ms
-
-//- The per-script LoAF sections above/below need script attribution,
-//- which page-load frames often lack — but the frame-level story
-//- (work vs render split, blocking per frame) always renders on the
-//- Metrics tab. Point there so the LoAF data isn't invisible from
-//- this tab when attribution is missing. Same cross-tab link pattern
-//- as the Rendering tab's why-section.
-if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
-  p.small
-    a(href='#longAnimationFrames', onclick='const metricsTab = document.querySelector("#tabs #metrics"); if (metricsTab) selectTab(metricsTab, false)') See the frame-by-frame long animation frame breakdown on the Metrics tab
 
 //- Blocking time per script from the Chrome trace (cpu.blocking).
 //- Complements the LoAF list above: LoAF is the browser's own
@@ -708,11 +725,7 @@ if cpu && cpu.forcedReflows && cpu.forcedReflows.length > 0
 //- that script forcing synchronous style/layout work. This is
 //- direct, browser-reported data; complements the trace-derived
 //- forced-reflows above (which counts events, not durations).
-if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browsertime.pageinfo.loaf.length > 0
-  - const fsByScript = new Map()
-  - for (const loaf of browsertime.pageinfo.loaf) { for (const s of (loaf.scripts || [])) { const dur = s.forcedStyleAndLayoutDuration || 0; if (dur === 0) continue; const url = s.sourceURL || ''; if (!url) continue; const entry = fsByScript.get(url) || { url, total: 0, count: 0 }; entry.total += dur; entry.count++; fsByScript.set(url, entry) } }
-  - const fsEntries = Array.from(fsByScript.values()).filter(e => e.total >= 1).sort((a, b) => b.total - a.total).slice(0, 10)
-  if fsEntries.length > 0
+if fsEntries.length > 0
     - const fsMax = fsEntries[0].total
     a#cpu-forced-layout-per-script
     h3
@@ -727,7 +740,7 @@ if browsertime && browsertime.pageinfo && browsertime.pageinfo.loaf && browserti
         each entry in fsEntries
           - const pct = fsMax > 0 ? (entry.total / fsMax * 100) : 0
           .cpu-bar-row
-            a.cpu-bar-asset(href=entry.url, title=entry.url)= h.shortAsset(entry.url, true)
+            a.cpu-bar-asset(href=entry.url, title=entry.url)= cpuScriptDisplay(entry)
             .cpu-bar-track
               span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
             span.cpu-bar-value
@@ -758,14 +771,12 @@ if cpu && cpu.domains
 
 //- CPU time per third-party tool / domain — context for the per-script
 //- list above.
-if pageInfo.data.thirdparty
-  - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
-  if thirdparty && thirdparty.cpuPerTool && Object.keys(thirdparty.cpuPerTool).length > 0
+if cpuPerTool
     a#cpu-time-per-tool
     h3
       +cpuIcon('globe')
       | CPU time per domain/tool
-    - const tools = Object.entries(thirdparty.cpuPerTool).sort((a, b) => b[1] - a[1])
+    - const tools = Object.entries(cpuPerTool).sort((a, b) => b[1] - a[1])
     - const toolMax = tools.length > 0 ? tools[0][1] : 0
     .listing-card
       .listing-card-header
