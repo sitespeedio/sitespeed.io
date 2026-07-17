@@ -100,9 +100,13 @@ include ../../_tableMixins
 - const renderingProfileRunExplanation = 'Collected in the single extra profile run made by --enableProfileRun, not in the timed iterations the rest of this page reports on.'
 
 - const renderingLinks = []
+//- Frame delivery lives here, not on the CPU tab: dropped frames and
+//- long gaps are the smoothness half of "what did the user see".
+- const hasFrames = !!(whyCpu && whyCpu.frames && whyCpu.frames.presented !== undefined)
 - if (hasVideo || hasFilmstrip) renderingLinks.push({href: '#video', label: 'Playback'})
 - if (hasFilmstrip) renderingLinks.push({href: '#filmstrip', label: 'Filmstrip'})
 - if (screenshots.length > 0) renderingLinks.push({href: '#screenshots', label: 'Screenshots'})
+- if (hasFrames) renderingLinks.push({href: '#frames', label: 'Frames'})
 - if (ttfbSlow) renderingLinks.push({href: '#slow-ttfb', label: 'TTFB'})
 - if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
 - if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
@@ -307,6 +311,35 @@ if screenshots.length > 0
           .screenshot-card-thumb-wrap
             img.screenshot-card-thumb(src=screenshotName, alt=filename, loading='lazy')
           .screenshot-card-caption #{filename}
+
+//- Frame delivery (cpu.frames) — how smoothly the compositor produced
+//- frames during the traced window. Dropped frames and long gaps
+//- between visual updates are invisible in the load metrics but very
+//- visible on screen. effectiveFps and longestGap are omitted by
+//- browsertime when fewer than two frames were presented.
+if hasFrames
+  a#frames
+  h3 Frames
+  p Frame delivery from the Chrome trace. Dropped counts only frames Chrome flags as affecting smoothness. On mostly-static pages the longest gap includes idle time where there was simply nothing to draw.
+  .cpu-kpis
+    .cpu-kpi
+      span.cpu-kpi-label Presented
+      span.cpu-kpi-value #{whyCpu.frames.presented}
+    .cpu-kpi
+      span.cpu-kpi-label Partial
+      span.cpu-kpi-value #{whyCpu.frames.partial}
+    .cpu-kpi(class=whyCpu.frames.dropped === 0 ? 'ok' : (whyCpu.frames.dropped <= 5 ? 'warning' : 'error'))
+      span.cpu-kpi-label Dropped
+      span.cpu-kpi-value #{whyCpu.frames.dropped}
+    if whyCpu.frames.effectiveFps !== undefined
+      .cpu-kpi
+        span.cpu-kpi-label Effective FPS
+        span.cpu-kpi-value #{whyCpu.frames.effectiveFps}
+    if whyCpu.frames.longestGap
+      .cpu-kpi
+        span.cpu-kpi-label Longest gap
+        span.cpu-kpi-value #{h.time.ms(whyCpu.frames.longestGap.duration.toFixed(0))}
+        span.cpu-kpi-sub at #{h.time.ms(whyCpu.frames.longestGap.startTime.toFixed(0))}
 
 //- Why was rendering delayed — the diagnostic half of the story.
 if ttfbSlow || hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
