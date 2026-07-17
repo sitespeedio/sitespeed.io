@@ -487,3 +487,15 @@
   font-size: 0.9rem;
   color: $color--text-muted;
 }
+
+// Small heading above each recalculate-style tile row, so the tiles
+// can keep short labels (Events / Elements / ...) without repeating
+// the phase in every tile.
+.rendering-phase-heading {
+  margin: 14px 0 8px 0;
+  font-size: 0.8rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+}

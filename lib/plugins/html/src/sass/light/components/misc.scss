@@ -126,3 +126,23 @@ p.url {
  line-height: 1.25;
  letter-spacing: -0.01em;
 }
+
+// Marks sections whose data was collected in the single extra profile
+// run made by --enableProfileRun, not in the timed iterations. Readers
+// comparing numbers across sections need to know these came from a
+// different, instrumented run.
+.profile-run-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--info-border;
+  background: $color--info-bg;
+  color: $color--info;
+  font-size: 0.7rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+  cursor: help;
+}

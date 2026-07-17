@@ -49,8 +49,15 @@ if timings.largestContentfulPaint
           dt Load time
           dd #{h.time.ms(lcp.loadTime)}
           if renderBlocking && renderBlocking.recalculateStyle.beforeLCP
+            - const recalcLCP = renderBlocking.recalculateStyle.beforeLCP
             dt Recalculate-style elements before LCP
-            dd #{renderBlocking.recalculateStyle.beforeLCP.elements} (#{h.time.ms(renderBlocking.recalculateStyle.beforeLCP.durationInMillis)})
+            //- count/maxElements/maxDurationInMillis are additive
+            //- (Browsertime PR #2496); the full picture lives on the
+            //- Rendering tab — this stays a one-liner.
+            if recalcLCP.count !== undefined
+              dd #{recalcLCP.count} events, #{recalcLCP.elements} elements (#{h.time.ms(recalcLCP.durationInMillis)}) — largest #{recalcLCP.maxElements} elements (#{h.time.ms(recalcLCP.maxDurationInMillis)})
+            else
+              dd #{recalcLCP.elements} (#{h.time.ms(recalcLCP.durationInMillis)})
 
         if lcp.domPath
           h4.lcp-section-heading DOM path

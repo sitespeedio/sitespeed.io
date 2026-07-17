@@ -80,6 +80,25 @@ include ../../_tableMixins
 - const reflowsMaterial = prePaintReflowTotal >= 10
 - const nonCompositedCount = whyCpu && whyCpu.nonCompositedAnimations ? whyCpu.nonCompositedAnimations.length : 0
 
+//- Selector stats and style invalidations belong to the rendering
+//- story (they explain the style/layout work behind it). With
+//- --enableProfileRun the samples come marked from the profile run
+//- (pageSummary.<key> = { source, data }) — same fallback pattern as
+//- the CPU tab's profile-run data.
+- const renderingProfileAnalysis = key => isSummary && whyBt && whyBt.pageSummary && whyBt.pageSummary[key] ? whyBt.pageSummary[key].data : undefined
+- const selectorStats = (whyCpu && whyCpu.selectorStats) || renderingProfileAnalysis('selectorStats')
+- const selectorStatsFromProfileRun = !(whyCpu && whyCpu.selectorStats) && !!renderingProfileAnalysis('selectorStats')
+//- With --cpu the measured runs carry invalidations too, but only
+//- the profile run has the coverage bundles that resolve sources to
+//- modules — prefer whichever sample carries that attribution.
+- const measuredInvalidations = whyCpu && whyCpu.styleInvalidations
+- const profileInvalidations = renderingProfileAnalysis('styleInvalidations')
+- const invalidationsHaveModules = t => !!(t && t.sources && t.sources.some(source => source.module))
+- const useProfileInvalidations = !!profileInvalidations && (!measuredInvalidations || (invalidationsHaveModules(profileInvalidations) && !invalidationsHaveModules(measuredInvalidations)))
+- const styleInvalidations = useProfileInvalidations ? profileInvalidations : measuredInvalidations
+- const styleInvalidationsFromProfileRun = useProfileInvalidations
+- const renderingProfileRunExplanation = 'Collected in the single extra profile run made by --enableProfileRun, not in the timed iterations the rest of this page reports on.'
+
 - const renderingLinks = []
 - if (hasVideo || hasFilmstrip) renderingLinks.push({href: '#video', label: 'Playback'})
 - if (hasFilmstrip) renderingLinks.push({href: '#filmstrip', label: 'Filmstrip'})
@@ -88,6 +107,8 @@ include ../../_tableMixins
 - if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
 - if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
 - if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
+- if (selectorStats && selectorStats.selectors && selectorStats.selectors.length > 0) renderingLinks.push({href: '#css-selectors', label: 'CSS selectors'})
+- if (styleInvalidations) renderingLinks.push({href: '#style-invalidations', label: 'Invalidations'})
 - if (nonCompositedCount > 0) renderingLinks.push({href: '#main-thread-animations', label: 'Animations'})
 //- A lone Playback pill is just noise — only show jump links when the
 //- tab has more than one section to jump between.
@@ -320,22 +341,36 @@ if hasRecalculateStyle
       h3.listing-card-title Recalculate style
       span.listing-card-meta from the Chrome trace
     p.listing-card-help
-      | Style the browser had to recalculate before it could paint: many elements or a lot of time spent here points at expensive CSS on the critical rendering path.
-    .metric-tiles
-      if recalculateStyle.beforeFCP
+      | Style the browser had to recalculate before it could paint: many elements or a lot of time spent here points at expensive CSS on the critical rendering path. The event count and the largest single event tell the two problems apart: one massive style invalidation (few events, the largest close to the total) needs different medicine than thousands of small forced recalcs (many events, each tiny).
+    //- count / maxElements / maxDurationInMillis are additive fields
+    //- (Browsertime PR #2496) — guard each so older browsertime data
+    //- still renders the totals. One tile row per phase with a small
+    //- heading, so the tile labels stay short and every tile keeps the
+    //- same shape (value + sub-line where there is one).
+    - const recalcPhases = []
+    - if (recalculateStyle.beforeFCP) recalcPhases.push(['Before first contentful paint', recalculateStyle.beforeFCP])
+    - if (recalculateStyle.beforeLCP) recalcPhases.push(['Before largest contentful paint', recalculateStyle.beforeLCP])
+    each phase in recalcPhases
+      - const phaseName = phase[0]
+      - const recalc = phase[1]
+      h4.rendering-phase-heading= phaseName
+      .metric-tiles
+        if recalc.count !== undefined
+          .metric-tile
+            span.metric-tile-label Events
+            span.metric-tile-value #{recalc.count}
         .metric-tile
-          span.metric-tile-label Elements that needed recalculate style before FCP
-          span.metric-tile-value #{recalculateStyle.beforeFCP.elements}
+          span.metric-tile-label Elements
+          span.metric-tile-value #{recalc.elements}
         .metric-tile
-          span.metric-tile-label Time spent in recalculate style before FCP
-          span.metric-tile-value #{h.time.ms(recalculateStyle.beforeFCP.durationInMillis)}
-      if recalculateStyle.beforeLCP
-        .metric-tile
-          span.metric-tile-label Elements that needed recalculate style before LCP
-          span.metric-tile-value #{recalculateStyle.beforeLCP.elements}
-        .metric-tile
-          span.metric-tile-label Time spent in recalculate style before LCP
-          span.metric-tile-value #{h.time.ms(recalculateStyle.beforeLCP.durationInMillis)}
+          span.metric-tile-label Total time
+          span.metric-tile-value #{h.time.ms(recalc.durationInMillis)}
+        if recalc.maxElements !== undefined
+          .metric-tile
+            span.metric-tile-label Largest event
+            span.metric-tile-value #{recalc.maxElements} elements
+            if recalc.maxDurationInMillis !== undefined
+              span.metric-tile-sub #{h.time.ms(recalc.maxDurationInMillis)}
 else if showRecalculateHint
   //- The recalculate-style counts come from parsing a Chrome timeline
   //- trace, gated on --cpu / --chrome.timeline. The matching Firefox
@@ -408,6 +443,139 @@ if reflowsMaterial
       a(href='#cpu-forced-reflows', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See every forced reflow for the whole page load on the CPU tab
 
 include ./blocking.pug
+
+//- Slowest CSS selectors (cpu.selectorStats, profile run): the only
+//- signal that says WHICH selectors the style-recalc time goes to.
+//- Wasted selectors (thousands of match attempts, zero matches) get
+//- their own list — they're pure removable cost.
+if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 0
+  a#css-selectors
+  h3
+    | Slowest CSS selectors
+    if selectorStatsFromProfileRun
+      span.profile-run-badge(title=renderingProfileRunExplanation) Profile run
+  p Per-selector matching cost during style recalculation, from Chrome's selector stats. A selector with many match attempts and zero matches is evaluated against the document over and over for rules that never apply.
+  .cpu-kpis
+    .cpu-kpi
+      span.cpu-kpi-label Matching time
+      span.cpu-kpi-value #{h.time.ms(selectorStats.totalElapsed.toFixed(0))}
+    .cpu-kpi
+      span.cpu-kpi-label Match attempts
+      span.cpu-kpi-value #{selectorStats.totalMatchAttempts.toLocaleString('sv-SE')}
+    .cpu-kpi
+      span.cpu-kpi-label Matches
+      span.cpu-kpi-value #{selectorStats.totalMatchCount.toLocaleString('sv-SE')}
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Selectors by matching time
+      span.listing-card-meta top #{selectorStats.selectors.length}
+    .responsive
+      table
+        thead
+          tr
+            th Selector
+            th.number Time
+            th.number Attempts
+            th.number Matches
+        tbody
+          each s in selectorStats.selectors.slice(0, 10)
+            tr
+              td
+                code= s.selector
+              td.number #{s.elapsed.toFixed(2)} ms
+              td.number #{s.matchAttempts.toLocaleString('sv-SE')}
+              td.number #{s.matchCount.toLocaleString('sv-SE')}
+  if selectorStats.wastedSelectors && selectorStats.wastedSelectors.length > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Wasted selector work — attempts that never match
+        span.listing-card-meta top #{selectorStats.wastedSelectors.length}
+      .responsive
+        table
+          thead
+            tr
+              th Selector
+              th.number Attempts
+              th.number Time
+          tbody
+            each s in selectorStats.wastedSelectors.slice(0, 10)
+              tr
+                td
+                  code= s.selector
+                td.number #{s.matchAttempts.toLocaleString('sv-SE')}
+                td.number #{s.elapsed.toFixed(2)} ms
+
+//- Style invalidations (cpu.styleInvalidations): why style/layout is
+//- recalculated — which class/attribute changes keep invalidating
+//- and which script causes it. The counts side of the
+//- recalculate-style durations above.
+if styleInvalidations
+  a#style-invalidations
+  h3
+    | Style invalidations
+    if styleInvalidationsFromProfileRun
+      span.profile-run-badge(title=renderingProfileRunExplanation) Profile run
+  p Why the browser had to recalculate style and layout: every DOM/style change invalidates some set of nodes, and the same class or attribute churning over and over is the pattern to hunt. Counts, not milliseconds — the time is in the recalculate style numbers above.
+  .cpu-kpis
+    .cpu-kpi
+      span.cpu-kpi-label Style recalcs
+      span.cpu-kpi-value #{styleInvalidations.styleRecalcs.toLocaleString('sv-SE')}
+    .cpu-kpi
+      span.cpu-kpi-label Layout invalidations
+      span.cpu-kpi-value #{styleInvalidations.layoutInvalidations.toLocaleString('sv-SE')}
+  if styleInvalidations.triggers && styleInvalidations.triggers.length > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Changes that keep invalidating
+        span.listing-card-meta top #{styleInvalidations.triggers.length}
+      ul.cpu-anim-list
+        each trigger in styleInvalidations.triggers
+          li.cpu-anim-prop
+            code #{trigger.kind}: #{trigger.name}
+            span.cpu-anim-prop-count #{trigger.count}×
+  if styleInvalidations.recalcReasons && styleInvalidations.recalcReasons.length > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Invalidation reasons
+      .responsive
+        table
+          thead
+            tr
+              th Reason
+              th.number Style recalc
+              th.number Layout
+          tbody
+            each reason in styleInvalidations.recalcReasons
+              tr
+                td= reason.reason
+                td.number #{reason.count.toLocaleString('sv-SE')}
+                td.number –
+            each reason in styleInvalidations.layoutReasons
+              tr
+                td= reason.reason
+                td.number –
+                td.number #{reason.count.toLocaleString('sv-SE')}
+  if styleInvalidations.sources && styleInvalidations.sources.length > 0
+    - const invalidationMax = styleInvalidations.sources[0].count
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Scripts causing invalidations
+        span.listing-card-meta top #{styleInvalidations.sources.length}
+      .cpu-bars
+        each entry in styleInvalidations.sources
+          - const pct = invalidationMax > 0 ? (entry.count / invalidationMax * 100) : 0
+          .cpu-bar-row
+            //- `module` is the resolved ResourceLoader module owning
+            //- the source position — one giant load.php row split
+            //- into the modules that actually churn the DOM.
+            a.cpu-bar-asset(href=entry.url, title=entry.url)
+              if entry.module
+                code= entry.module
+              else
+                | #{entry.label || h.shortAsset(entry.url, true)}
+            .cpu-bar-track
+              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
+            span.cpu-bar-value #{entry.count.toLocaleString('sv-SE')}
 
 //- Non-composited animations are a jank signal, not a first-paint
 //- delay — one quiet cross-link is enough, the CPU tab owns the detail.
