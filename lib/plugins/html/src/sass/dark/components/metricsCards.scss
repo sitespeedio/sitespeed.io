@@ -33,6 +33,22 @@ $loaf--style-layout: #a78bfa;
   font-size: 0.95rem;
 }
 
+// When the frame happened ("at 1.2 s · before LCP") — quiet, next to
+// the rank so the card answers fix-now vs ignore at a glance.
+.loaf-when {
+  margin-left: 8px;
+  font-weight: $font--weight--regular;
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+// One-liner replacing full cards for frames without blocking time.
+.loaf-quiet-note {
+  color: $color--text-muted;
+  font-size: 0.9rem;
+}
+
 .loaf-bar {
   display: flex;
   width: 100%;
