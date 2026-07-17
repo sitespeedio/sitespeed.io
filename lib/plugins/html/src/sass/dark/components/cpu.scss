@@ -221,6 +221,18 @@
   color: $color--text-muted;
 }
 
+// Install-site links in the timers table wrap code pills — the default
+// blue underline strikes through the pills and reads as clutter. Keep
+// the link quiet; hover tints it to show it's clickable.
+a.cpu-site-link {
+  color: $color--text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color--blue;
+  }
+}
+
 .cpu-anim-list {
   list-style: none;
   margin: 8px 0 1.5rem 0;

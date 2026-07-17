@@ -656,7 +656,7 @@ if timers && timers.fires > 0
                     //- owning the install position — far more useful
                     //- than a line number inside a bundle. Full
                     //- url:line:column stays in the title.
-                    a(href=site.url, title=site.url + (site.line ? ':' + site.line + ':' + site.column : ''))
+                    a.cpu-site-link(href=site.url, title=site.url + (site.line ? ':' + site.line + ':' + site.column : ''))
                       if site.functionName
                         code= site.functionName
                         |  in&nbsp;
