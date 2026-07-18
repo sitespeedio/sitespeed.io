@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.1.1 - 2026-07-18
+
+### Fixed
+* The HTML report no longer speaks Chrome internals: raw data keys shown as metric labels (backEndTime, RecalcStyleCount, FirstVisualChange), LoAF/Long Task spec tokens, HAR phase keys (blocked, ssl, wait), trace event names used as headings and profiler jargon (self time, invoker) are replaced with plain language across every page. The raw keys stay in tooltips and explainer folds since the exported JSON and metrics still use them, and the help page's Firefox metric entries now lead with what each metric means instead of which browser preference enables it [#4854](https://github.com/sitespeedio/sitespeed.io/pull/4854).
+* The CPU tab tells you what to do, not just what happened: the blocking-time card leads with a verdict and links each dominant kind to the section that names the culprits, the Timers section calls out the page's own polling and timeout-0 offenders with their cost and a suggested fix, and headings, KPI labels and quicklinks were renamed so the chip row scans as a table of contents [#4853](https://github.com/sitespeedio/sitespeed.io/pull/4853).
+* On the Pages listing the Web Vitals verdict pill and the metric dots were centered against each other, so whichever was wider pushed the other sideways and the column looked randomly misaligned from row to row. Both are left-aligned now and line up across every row [#4852](https://github.com/sitespeedio/sitespeed.io/pull/4852).
+
 ## 42.1.0 - 2026-07-17
 
 ### Added
