@@ -30,7 +30,7 @@ block content
     -    }
     - }
 
-    - const categoryNames = {googleWebVitals: "Google Web Vitals", timings: "Timing metrics", cpu: "CPU metrics", browser: 'Browser metrics', pageinfo: "Page metrics", thirdParty: "Third Party metrics", firstParty: "First Party metrics"}
+    - const categoryNames = {googleWebVitals: "Google Web Vitals", timings: "Timing metrics", cpu: "CPU metrics", browser: 'Browser metrics', pageinfo: "Page metrics", visualMetrics: "Visual Metrics", thirdParty: "Third Party metrics", firstParty: "First Party metrics"}
     - const noCategory = ['requests','transferSize', 'contentSize']
     - const columnCount = runPages.length + 5
 
@@ -57,7 +57,7 @@ block content
                                 - if (noCategory.indexOf(metricType) === -1) {
                                     - category = metricType
                                     tr
-                                        td.extraheader(colspan=columnCount) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
+                                        td.extraheader(colspan=columnCount) #{categoryNames[metricType] ? categoryNames[metricType] : h.metricName(metricType)}
                                 - } else {
                                     - category = metricType
                                 - }

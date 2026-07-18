@@ -60,11 +60,11 @@ block content
           span.settings-tile-value #{get(browser, 'userAgent')}
         if get(browser, 'traceCategories') !== undefined
           .settings-tile.settings-tile--wide
-            span.settings-tile-label Trace categories
+            span.settings-tile-label Chrome trace categories
             span.settings-tile-value #{get(browser, 'traceCategories')}
         if get(browser, 'geckoProfilerFeatures') !== undefined
           .settings-tile.settings-tile--wide
-            span.settings-tile-label Gecko Profiler Features
+            span.settings-tile-label Firefox profiler features (Gecko)
             span.settings-tile-value #{get(browser, 'geckoProfilerFeatures')}
 
     //- Mobile emulation (Chrome only) — recorded by Browsertime 27 from the
@@ -214,7 +214,7 @@ block content
               span.settings-tile-label Wifi
               span.settings-tile-value #{android.wifi}
           .settings-tile
-            span.settings-tile-label Using gnirehtet
+            span.settings-tile-label Reverse tethering (gnirehtet)
             span.settings-tile-value #{get(options, 'browsertime.android.gnirehtet', 'No')}
           .settings-tile
             span.settings-tile-label Rooted phone

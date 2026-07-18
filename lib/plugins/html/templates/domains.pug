@@ -24,7 +24,7 @@ mixin rows(domainStats, transferMax, phaseTone, isThirdParty)
       td.number.cell--bar(data-title='Bytes', data-value=transferSum)
         span.cell-bar-fill(style='width: ' + transferPct.toFixed(2) + '%')
         span.cell-bar-text= h.size.format(transferSum)
-      +phaseCell(domain.blocked, 'Blocked')
+      +phaseCell(domain.blocked, 'Queued')
       +phaseCell(domain.dns, 'DNS', tones.dns)
       +phaseCell(domain.connect, 'Connect', tones.connect)
       +phaseCell(domain.ssl, 'SSL', tones.ssl)
@@ -183,7 +183,7 @@ block content
       p.listing-card-help Ordered worst first by estimated time footprint (requests × median request time). Phase times are per-request medians; hover a value for min and max. Yellow/red cells mark DNS, connect, SSL and wait medians above conservative thresholds. Click any column header to re-sort.
       .responsive
         table.domains-table.data-table(data-sortable, id='domains')
-          +rowHeading(['Domain', 'Requests', 'Bytes', 'Blocked', 'DNS', 'Connect', 'SSL', 'Send', 'Wait (TTFB)', 'Receive', 'Total'])
+          +rowHeading(['Domain', 'Requests', 'Bytes', 'Queued', 'DNS', 'Connect', 'SSL', 'Send', 'Wait (TTFB)', 'Receive', 'Total'])
           +rows(orderedDomains, transferMax, phaseTone, isThirdParty)
   else
     p.domains-empty No domain information available: the HAR file wasn't generated.

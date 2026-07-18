@@ -304,7 +304,7 @@ script(type='text/javascript').
         + '<tr><th>Response body</th><td>' + escAttr(fmtBytes(responseSize)) + '</td></tr>'
         + (transferSize && transferSize !== responseSize ? '<tr><th>Transferred</th><td>' + escAttr(fmtBytes(transferSize)) + '</td></tr>' : '')
         + '<tr><th>Protocol</th><td>' + escAttr(protocol) + '</td></tr>'
-        + '<tr><th>Priority</th><td>' + escAttr(priority) + '</td></tr>'
+        + '<tr><th>Fetch priority</th><td>' + escAttr(priority) + '</td></tr>'
         + (initiator !== '–' ? '<tr><th>Initiated by</th><td>' + escAttr(initiator) + '</td></tr>' : '')
         + '</table>';
 
@@ -429,6 +429,9 @@ script(type='text/javascript').
         ssl: '#facc15', send: '#22c55e', wait: '#0ea5e9', receive: '#0073b0'
       };
       const phaseRows = ['blocked','dns','connect','ssl','send','wait','receive'];
+      // The HAR's raw phase keys mean little outside waterfall tools -
+      // show readable labels in the detail panel.
+      const PHASE_LABELS = { blocked: 'Queued (blocked)', dns: 'DNS lookup', connect: 'Connecting', ssl: 'TLS setup', send: 'Sending request', wait: 'Waiting (TTFB)', receive: 'Downloading' };
       let totalKnown = 0;
       for (const p of phaseRows) if (typeof t[p] === 'number' && t[p] > 0) totalKnown += t[p];
       const max = Math.max(totalKnown, 1);
@@ -437,7 +440,7 @@ script(type='text/javascript').
         const w = v > 0 ? (v / max * 100).toFixed(1) : 0;
         const color = PHASE_COLORS[p] || '#cbd5e1';
         return '<div class="wt-detail-timing-bar">'
-          + '<span class="label">' + p + '</span>'
+          + '<span class="label">' + (PHASE_LABELS[p] || p) + '</span>'
           + '<span class="track">' + (v > 0 ? '<span style="width: ' + w + '%; background: ' + color + ';"></span>' : '') + '</span>'
           + '<span class="ms">' + escAttr(v < 0 ? '–' : fmtMs(v)) + '</span>'
           + '</div>';

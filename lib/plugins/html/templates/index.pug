@@ -330,7 +330,7 @@ block content
       - addCpu('Max Potential FID', 'cpu.longTasks.maxPotentialFid.median', h.time.ms)
       - const cpuCategories = get(btSummary, 'cpu.categories')
       - let cpuCategoryRows = []
-      - if (cpuCategories) cpuCategoryRows = Object.keys(cpuCategories).map(nm => ({ label: nm, value: get(cpuCategories[nm], 'median', 0) })).filter(r => r.value > 0).sort((a, b) => b.value - a.value)
+      - if (cpuCategories) cpuCategoryRows = Object.keys(cpuCategories).map(nm => ({ label: h.cpuCategoryName(nm), value: get(cpuCategories[nm], 'median', 0) })).filter(r => r.value > 0).sort((a, b) => b.value - a.value)
       - const showCpu = cpuRows.length > 0 || cpuCategoryRows.length > 0
 
       //- Accessibility card (axe plugin).

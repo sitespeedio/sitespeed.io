@@ -49,4 +49,4 @@ if pagexray && pagexray.renderBlocking
                   td.number(data-title='Transfer', data-value=asset.transferSize || 0) #{h.size.format(asset.transferSize || 0)}
                   td.number(data-title='Total time', data-value=asset.totalTime || 0) #{h.time.ms(asset.totalTime || 0)}
                   if section.raw
-                    td(data-title='Status') #{asset.renderBlocking}
+                    td(data-title='Status') #{asset.renderBlocking.split('_').join(' ')}

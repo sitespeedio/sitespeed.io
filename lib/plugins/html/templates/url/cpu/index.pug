@@ -50,12 +50,12 @@ include ../includes/_quicklinks
 - const timers = useProfileTimers ? profileTimers : measuredTimers
 - const timersFromProfileRun = useProfileTimers
 
-//- Human names for the trace work categories, shared by "What kind of
-//- work blocked" and "Where the time went" so both cards read the
-//- same. The raw trace keys stay visible in the category definitions
-//- card because the JSON data and exported metrics use them.
-- const cpuCategoryLabels = { parseHTML: 'Parsing HTML & CSS', styleLayout: 'Style & layout', scriptParseCompile: 'Parsing & compiling JavaScript', scriptEvaluation: 'Running JavaScript', paintCompositeRender: 'Paint & composite', garbageCollection: 'Garbage collection', other: 'Other browser work' }
-- const cpuCategoryLabel = key => cpuCategoryLabels[key] || key
+//- Human names for the trace work categories (h.cpuCategoryName),
+//- shared by "What kind of work blocked", "Where the time went" and
+//- the start page's CPU card so they all read the same. The raw trace
+//- keys stay visible in the category definitions card because the
+//- JSON data and exported metrics use them.
+- const cpuCategoryLabel = h.cpuCategoryName
 
 //- Cross-link targets for the "what kind of work blocked" remedy
 //- lines. Each link only renders when its target section does:
@@ -269,7 +269,7 @@ if cpu && cpu.longTasks
     - const phaseClass = (ms) => ms === 0 ? 'ok' : (ms <= 200 ? 'warning' : 'error')
     .cpu-kpis.cpu-kpis-secondary
       .cpu-kpi(class=phaseClass(cpu.longTasks.beforeFirstPaint.totalDuration))
-        span.cpu-kpi-label Before FP
+        span.cpu-kpi-label Before first paint
         span.cpu-kpi-value #{h.time.ms(cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0))}
         span.cpu-kpi-sub #{cpu.longTasks.beforeFirstPaint.tasks} #{cpu.longTasks.beforeFirstPaint.tasks === 1 ? 'task' : 'tasks'}
       .cpu-kpi(class=phaseClass(cpu.longTasks.beforeFirstContentfulPaint.totalDuration))
@@ -336,7 +336,7 @@ if cpu && cpu.blocking && cpu.blocking.urls && cpu.blocking.urls.length > 0
   h3
     +cpuIcon('ban')
     | Blocking time per script (trace)
-  p Total Blocking Time attributed per script from the Chrome trace: every main-thread task longer than 50 ms blocks input for the remainder, and each blocking task is credited to the script that contributed the most self-time.
+  p Total Blocking Time attributed per script from the Chrome trace: every main-thread task longer than 50 ms blocks input for the remainder, and each blocking task is credited to the script whose own code ran the longest during that task.
   .cpu-kpis
     - const traceTbtClass = cpu.blocking.totalBlockingTime >= 600 ? 'error' : (cpu.blocking.totalBlockingTime >= 200 ? 'warning' : 'ok')
     .cpu-kpi(class=traceTbtClass)
@@ -432,7 +432,7 @@ if cpu && cpu.blocking && cpu.blocking.urls && cpu.blocking.urls.length > 0
         .cpu-bar-row
           if entry.url === 'unknown'
             span.cpu-bar-asset
-              span.cpu-bar-anon Browser internal / unattributed
+              span.cpu-bar-anon Browser's own work (no script responsible)
           else if entry.url === daurl
             //- Blocking HTML-parse tasks are attributed to the
             //- document itself — name it so nobody hunts for a
@@ -481,7 +481,7 @@ if cpu && cpu.categories
     //- so on quiet pages the note simply doesn't render.
     - const schedulingEventNames = ['RunTask', 'ThreadControllerImpl::RunTask', 'ThreadControllerImpl::DoWork', 'MessageLoop::RunTask', 'TaskQueueManager::ProcessTaskFromWorkQueue']
     - const schedulingMs = cpu.events ? schedulingEventNames.reduce((s, n) => s + (cpu.events[n] || 0), 0) : 0
-    - const schedulingTitle = 'Mostly Chrome task-scheduling overhead: per-task entry/exit cost and thousands of sub-millisecond scheduler ticks (RunTask self time), not attributable page work.'
+    - const schedulingTitle = 'Mostly the browser\'s own cost of starting and finishing each task, spread over thousands of tiny slices. Not page work you can optimize away.'
     .cpu-cat-legend
       each entry in catEntries
         - const pct = catTotal > 0 ? (entry[1] / catTotal * 100) : 0
@@ -539,7 +539,7 @@ if cpu && cpu.categories
         dd
           | Chrome’s own task management: per-task overhead and thousands of sub-millisecond scheduler ticks — not page work you can attribute or optimize away.
           if schedulingMs > 0
-            |  On this page #{h.time.ms(schedulingMs.toFixed(0))} of it is RunTask self time.
+            |  On this page #{h.time.ms(schedulingMs.toFixed(0))} of it is this per-task bookkeeping (RunTask self time in the trace).
 
 //- CPU time per script — the top of the drill-down ladder: which
 //- URL is costing main thread. Capped at top 10 because longer
@@ -603,7 +603,7 @@ if moduleCosts && moduleCosts.length > 0
             tr
               th Module
               th Version
-              th.number Self time
+              th.number(title='Time spent running code inside the module itself') Self time
           tbody
             each m in shownModules
               tr
@@ -614,7 +614,7 @@ if moduleCosts && moduleCosts.length > 0
             if bundle.otherTime > 0
               tr
                 td
-                  span.cpu-bar-anon (other)
+                  span.cpu-bar-anon (rest of the bundle, not tied to one module)
                 td –
                 td.number #{bundle.otherTime.toFixed(1)} ms
 
@@ -633,7 +633,7 @@ if functionCosts && functionCosts.length > 0
     | Slowest JS functions
     if functionCostsFromProfileRun
       span.profile-run-badge(title=profileRunExplanation) Profile run
-  p The functions where main-thread JavaScript time was actually spent, sampled by the V8 profiler. Self time is spent in the function itself; total time includes the functions it called. For loader/dispatcher functions whose total dwarfs their self time, the #[em runs] line shows the top functions and modules (up to five, ≥ 1 ms) the total was actually spent running.
+  p The functions where main-thread JavaScript time was actually spent, sampled by Chrome's JavaScript profiler. Self time is spent in the function itself; total time includes the functions it called. For loader/dispatcher functions whose total dwarfs their self time, the #[em runs] line shows the top functions and modules (up to five, ≥ 1 ms) the total was actually spent running.
   if functionCostsFromProfileRun
     p.small The data comes from the extra profile run, not from the timed iterations.
   .listing-card
@@ -673,7 +673,7 @@ if functionCosts && functionCosts.length > 0
                 else if fn.url
                   a(href=fn.url, title=fn.url)= fn.label || h.shortAsset(fn.url, true)
                 else
-                  span.cpu-bar-anon Browser / engine
+                  span.cpu-bar-anon Browser internal (not your code)
               td.number #{fn.selfTime.toFixed(1)} ms
               td.number #{fn.totalTime.toFixed(1)} ms
 
@@ -688,7 +688,7 @@ if timers && timers.fires > 0
     | Timers
     if timersFromProfileRun
       span.profile-run-badge(title=profileRunExplanation) Profile run
-  p How much setTimeout/setInterval work the page runs, credited to the script that scheduled each timer. Many timeout-0 installs mean work sliced into a machine-gun of tiny tasks; recurring installs are polling.
+  p How much setTimeout/setInterval work the page runs, credited to the script that scheduled each timer. Many zero-delay timers mean work sliced into a machine-gun of tiny tasks; repeating timers are polling.
   .cpu-kpis
     .cpu-kpi
       span.cpu-kpi-label Timers set
@@ -700,10 +700,10 @@ if timers && timers.fires > 0
       span.cpu-kpi-label Fire time
       span.cpu-kpi-value #{h.time.ms(timers.fireTime)}
     .cpu-kpi
-      span.cpu-kpi-label Timeout-0 installs
+      span.cpu-kpi-label Zero-delay timers
       span.cpu-kpi-value #{timers.timeoutZeroInstalls}
     .cpu-kpi
-      span.cpu-kpi-label Recurring installs
+      span.cpu-kpi-label Repeating timers
       span.cpu-kpi-value #{timers.recurringInstalls}
   //- Turn the intro's generic warnings into this page's findings:
   //- name the worst polling loop and the worst timeout-0 slicer with
@@ -714,9 +714,9 @@ if timers && timers.fires > 0
   - const timerSiteOwner = site => { const where = site.module || site.label || (site.url === 'unknown' ? 'an unattributed script' : h.shortAsset(site.url, true)); return site.functionName ? site.functionName + ' in ' + where : where }
   - const timerFindings = []
   - const topPoller = (timers.sites || []).filter(s => s.recurring && s.fires >= 10).sort((a, b) => b.fireTime - a.fireTime)[0]
-  - if (topPoller) timerFindings.push({ label: 'Polling', text: timerSiteOwner(topPoller) + ' keeps a ' + topPoller.timeout + ' ms timer running: ' + topPoller.fires + ' fires costing ' + topPoller.fireTime.toFixed(0) + ' ms. Consider reacting to events instead, or a longer interval.' })
+  - if (topPoller) timerFindings.push({ label: 'Polling', text: timerSiteOwner(topPoller) + ' keeps a ' + topPoller.timeout + ' ms timer running: it fired ' + topPoller.fires + ' times costing ' + topPoller.fireTime.toFixed(0) + ' ms. Consider reacting to events instead, or a longer interval.' })
   - const topSlicer = (timers.sites || []).filter(s => !s.recurring && s.timeout === 0 && s.installs >= 10).sort((a, b) => b.fireTime - a.fireTime)[0]
-  - if (topSlicer) timerFindings.push({ label: 'Timeout-0 slicing', text: timerSiteOwner(topSlicer) + ' split work into ' + topSlicer.installs + ' back-to-back tasks costing ' + topSlicer.fireTime.toFixed(0) + ' ms. Consider batching the work or moving it to requestIdleCallback or a worker.' })
+  - if (topSlicer) timerFindings.push({ label: 'Zero-delay slicing', text: timerSiteOwner(topSlicer) + ' split work into ' + topSlicer.installs + ' back-to-back tasks costing ' + topSlicer.fireTime.toFixed(0) + ' ms. Consider batching the work or moving it to requestIdleCallback or a worker.' })
   if timerFindings.length > 0
     .cpu-kind-actions
       each finding in timerFindings
@@ -736,14 +736,14 @@ if timers && timers.fires > 0
           .cpu-bar-row
             if entry.url === 'unknown'
               span.cpu-bar-asset
-                span.cpu-bar-anon Unattributed
+                span.cpu-bar-anon Unknown script
             else
               a.cpu-bar-asset(href=entry.url, title=entry.url)= entry.label || h.shortAsset(entry.url, true)
             .cpu-bar-track
               span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
             span.cpu-bar-value
               | #{entry.fireTime.toFixed(0)} ms
-              span.cpu-bar-sub  · #{entry.installs} #{entry.installs === 1 ? 'install' : 'installs'} · #{entry.fires} #{entry.fires === 1 ? 'fire' : 'fires'}
+              span.cpu-bar-sub  · set #{entry.installs} #{entry.installs === 1 ? 'time' : 'times'} · fired #{entry.fires} #{entry.fires === 1 ? 'time' : 'times'}
   //- The individual timers, identified by install site (source
   //- position + timeout + kind). A polling loop reinstalling from
   //- the same line collapses into one row, so "45 installs,
@@ -751,24 +751,24 @@ if timers && timers.fires > 0
   if timers.sites && timers.sites.length > 0
     .listing-card
       .listing-card-header
-        h3.listing-card-title The timers, by install site
+        h3.listing-card-title The timers, by where they were set
         span.listing-card-meta top #{timers.sites.length} by fire time
       .responsive
         table
           thead
             tr
-              th Installed by
-              th.number Timeout
+              th Set by
+              th.number Delay
               th Type
-              th.number Installs
-              th.number Fires
+              th.number Times set
+              th.number Times fired
               th.number Fire time
           tbody
             each site in timers.sites
               tr
                 td
                   if site.url === 'unknown'
-                    span.cpu-bar-anon Unattributed
+                    span.cpu-bar-anon Unknown script
                   else
                     //- `module` is the resolved ResourceLoader module
                     //- owning the install position — far more useful
@@ -816,7 +816,7 @@ if cpu && cpu.forcedReflows && cpu.forcedReflows.length > 0
               if entry.url
                 a(href=entry.url, title=entry.url)= entry.label || h.shortAsset(entry.url, true)
               else
-                span.cpu-bar-anon Anonymous / inline
+                span.cpu-bar-anon Inline or unnamed script
             .cpu-bar-track
               span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
             span.cpu-bar-value
