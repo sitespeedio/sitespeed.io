@@ -96,7 +96,7 @@ block content
       p The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
 
       h5(id='firstPaint') FirstPaint
-      p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
+      p This is when the first paint happens on the screen. In Firefox this comes from the browser's time-to-non-blank-paint measurement, which sitespeed.io enables automatically (it is off by default in Firefox).
 
       h5(id='first-contentful-paint') First Contentful Paint
       p First Contentful Paint (FCP) measures the time from navigation to the time when the browser renders the first bit of content from the DOM.
@@ -105,19 +105,19 @@ block content
       p The Largest Contentful Paint (LCP) metric reports the render time of the largest content element visible in the viewport.
 
       h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
-      p Internal Firefox metric activated by setting the preference
+      p When Firefox has finished laying out the initial page content. Firefox only; sitespeed.io enables it automatically via the browser preference
         i dom.performance.time_to_dom_content_flushed.enabled
-        | &nbsp;to true.
+        | .
 
       h5(id='timeToContentfulPaint') Time To Contentful Paint
-      p Firefox implementation of First Contentful Paint. Activated by setting the preference
+      p Firefox's equivalent of First Contentful Paint. Firefox only; sitespeed.io enables it automatically via the browser preference
         i dom.performance.time_to_contentful_paint.enabled
-        | &nbsp;to true.
+        | .
 
       h5(id='timeToFirstInteractive') Time To First Interactive
-      p Firefox implementation of Time to first interactive. Activated by setting the preference
+      p When Firefox considers the page ready to respond to input. Firefox only; sitespeed.io enables it automatically via the browser preference
         i dom.performance.time_to_first_interactive.enabled
-        | &nbsp;to true.
+        | .
 
       h5(id='loadEventEnd') Load Event End
       p The time when the load event of the current document is completed.

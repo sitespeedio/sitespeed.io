@@ -123,7 +123,7 @@ if btStatistics
             td.extraheader(colspan=extraColspan) Visual Metrics
           each visualMetric, name in btStatistics.visualMetrics
             if name !== 'videoRecordingStart'
-              +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
+              +getRow(h.metricName(name), pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
         if btStatistics.timings && btStatistics.timings.pageTimings
           tr
             td.extraheader(colspan=extraColspan) Google Web Vitals
@@ -134,7 +134,7 @@ if btStatistics
           tr
             td.extraheader(colspan=extraColspan) More metrics
           each timing in timingMetrics
-            +getRow(timing, pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
+            +getRow(h.metricName(timing), pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
 
         if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
           tr

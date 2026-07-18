@@ -90,10 +90,10 @@ p
   else
     | JavaScript and CSS coverage collected on every timed iteration (
     code --chrome.coverage
-    | ); shown here is the median iteration (run #{covRunIndex + 1}). Note that detailed coverage instrumentation deoptimizes V8 and can affect the timing metrics of the same runs.
-  |  For JS, Chrome's V8 profiler reports per-block execution counts: a byte is&nbsp;
+    | ); shown here is the median iteration (run #{covRunIndex + 1}). Note that detailed coverage measurement slows down Chrome's JavaScript engine and can affect the timing metrics of the same runs.
+  |  For JS, Chrome tracks which blocks of each script actually ran: a byte is&nbsp;
   em unused
-  | &nbsp;when its innermost containing range executed zero times. For CSS, Chrome's rule tracker flags every selector that no element on the page matched during the iteration. Enable with&nbsp;
+  | &nbsp;when the innermost block of code around it never ran. For CSS, Chrome records every selector that no element on the page matched during the iteration. Enable with&nbsp;
   code --chrome.coverage
   | &nbsp;on every run, or&nbsp;
   code --enableProfileRun

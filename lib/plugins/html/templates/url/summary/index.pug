@@ -88,7 +88,7 @@ block content
       if options.browsertime.video
         - summaryLinks.push({href: '#downloads', label: 'Download Video'})
       if options.browsertime.chrome && options.browsertime.chrome.timeline
-        - summaryLinks.push({href: '#downloads', label: 'Download Timeline Log'})
+        - summaryLinks.push({href: '#downloads', label: 'Download Chrome trace'})
       if d.browsertime && d.browsertime.har
         - summaryLinks.push({href: '#downloads', label: 'Download HAR'})
       if options.browsertime.chrome && options.browsertime.chrome.collectConsoleLog
@@ -137,7 +137,7 @@ block content
           if cruxFCP || cruxLCP || cruxFID || (cruxCLS || cruxCLS === 0) || (d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime)
             details.iter-group(open)
               summary.iter-group-summary
-                span.iter-group-title Chrome UX Report (CrUx p75)
+                span.iter-group-title Chrome UX Report (real users, p75)
               dl.iter-group-list
                 if cruxFCP
                   dt First Contentful Paint

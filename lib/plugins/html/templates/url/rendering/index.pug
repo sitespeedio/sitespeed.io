@@ -108,11 +108,11 @@ include ../../_tableMixins
 - if (screenshots.length > 0) renderingLinks.push({href: '#screenshots', label: 'Screenshots'})
 - if (hasFrames) renderingLinks.push({href: '#frames', label: 'Frames'})
 - if (ttfbSlow) renderingLinks.push({href: '#slow-ttfb', label: 'TTFB'})
-- if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Recalculate style'})
+- if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Style recalculation'})
 - if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
 - if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
 - if (selectorStats && selectorStats.selectors && selectorStats.selectors.length > 0) renderingLinks.push({href: '#css-selectors', label: 'CSS selectors'})
-- if (styleInvalidations) renderingLinks.push({href: '#style-invalidations', label: 'Invalidations'})
+- if (styleInvalidations) renderingLinks.push({href: '#style-invalidations', label: 'Style invalidations'})
 - if (nonCompositedCount > 0) renderingLinks.push({href: '#main-thread-animations', label: 'Animations'})
 //- A lone Playback pill is just noise — only show jump links when the
 //- tab has more than one section to jump between.
@@ -320,12 +320,12 @@ if screenshots.length > 0
 if hasFrames
   a#frames
   h3 Frames
-  p Frame delivery from the Chrome trace. Dropped counts only frames Chrome flags as affecting smoothness. On mostly-static pages the longest gap includes idle time where there was simply nothing to draw.
+  p How smoothly Chrome delivered frames to the screen during the test. Dropped counts only frames Chrome flags as affecting smoothness. On mostly-static pages the longest gap includes idle time where there was simply nothing to draw.
   .cpu-kpis
     .cpu-kpi
-      span.cpu-kpi-label Presented
+      span.cpu-kpi-label Frames shown
       span.cpu-kpi-value #{whyCpu.frames.presented}
-    .cpu-kpi
+    .cpu-kpi(title='Frames where only part of the screen updated in time')
       span.cpu-kpi-label Partial
       span.cpu-kpi-value #{whyCpu.frames.partial}
     .cpu-kpi(class=whyCpu.frames.dropped === 0 ? 'ok' : (whyCpu.frames.dropped <= 5 ? 'warning' : 'error'))
@@ -371,10 +371,10 @@ if hasRecalculateStyle
   a#recalculate-style
   .listing-card
     .listing-card-header
-      h3.listing-card-title Recalculate style
-      span.listing-card-meta from the Chrome trace
+      h3.listing-card-title Style recalculation
+      span.listing-card-meta measured by Chrome during this run
     p.listing-card-help
-      | Style the browser had to recalculate before it could paint: many elements or a lot of time spent here points at expensive CSS on the critical rendering path. The event count and the largest single event tell the two problems apart: one massive style invalidation (few events, the largest close to the total) needs different medicine than thousands of small forced recalcs (many events, each tiny).
+      | Style the browser had to recalculate before it could paint: many elements or a lot of time spent here points at expensive CSS on the critical rendering path. The recalculation count and the largest single one tell the two problems apart: one massive style change touching most of the page (few recalculations, the largest close to the total) needs different medicine than thousands of tiny ones (many recalculations, each tiny).
     //- count / maxElements / maxDurationInMillis are additive fields
     //- (Browsertime PR #2496) — guard each so older browsertime data
     //- still renders the totals. One tile row per phase with a small
@@ -390,7 +390,7 @@ if hasRecalculateStyle
       .metric-tiles
         if recalc.count !== undefined
           .metric-tile
-            span.metric-tile-label Events
+            span.metric-tile-label Recalculations
             span.metric-tile-value #{recalc.count}
         .metric-tile
           span.metric-tile-label Elements
@@ -402,7 +402,7 @@ if hasRecalculateStyle
           //- One value line like the neighbouring tiles — a sub-line
           //- here made this the only two-row tile in the row.
           .metric-tile
-            span.metric-tile-label Largest event
+            span.metric-tile-label Largest recalculation
             span.metric-tile-value #{recalc.maxElements} elements#{recalc.maxDurationInMillis !== undefined ? ' · ' + h.time.ms(recalc.maxDurationInMillis) : ''}
 else if showRecalculateHint
   //- The recalculate-style counts come from parsing a Chrome timeline
@@ -411,7 +411,7 @@ else if showRecalculateHint
   //- events, so the hint is Chromium-only — pointing Firefox or Safari
   //- users at --cpu would be misleading.
   p.metrics-cpu-hint
-    | Want recalculate-style metrics for FCP and LCP, plus CPU long tasks? Run with&nbsp;
+    | Want to see how much CSS style-recalculation work delayed FCP and LCP, plus CPU long tasks? Run with&nbsp;
     code --cpu
     | .
 
@@ -431,7 +431,7 @@ if reflowsMaterial
   .listing-card
     .listing-card-header
       h3.listing-card-title Forced reflows before the page painted
-      span.listing-card-meta from the Chrome trace
+      span.listing-card-meta measured by Chrome during this run
     p.listing-card-help
       | JavaScript read a layout value (offsetTop, getBoundingClientRect, …) while the page was mid-change, so the browser had to re-layout synchronously, work that blocks rendering. Reflows before First Contentful Paint delayed the first pixels; reflows before Largest Contentful Paint delayed the main content.
     .metric-tiles
@@ -466,7 +466,7 @@ if reflowsMaterial
               if reflow.triggeredByUrl
                 a(href=reflow.triggeredByUrl, title=reflow.triggeredByUrl)= h.shortAsset(reflow.triggeredByUrl, true)
               else
-                span.cpu-bar-anon Anonymous / inline
+                span.cpu-bar-anon Inline or unnamed script
             .cpu-bar-track
               span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
             span.cpu-bar-value
@@ -487,7 +487,7 @@ if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 
     | Slowest CSS selectors
     if selectorStatsFromProfileRun
       span.profile-run-badge(title=renderingProfileRunExplanation) Profile run
-  p Per-selector matching cost during style recalculation, from Chrome's selector stats. A selector with many match attempts and zero matches is evaluated against the document over and over for rules that never apply.
+  p How long Chrome spent testing each CSS selector against the page while recalculating styles. A selector with many match attempts and zero matches is evaluated against the document over and over for rules that never apply.
   .cpu-kpis
     .cpu-kpi
       span.cpu-kpi-label Matching time
@@ -548,10 +548,10 @@ if styleInvalidations
     | Style invalidations
     if styleInvalidationsFromProfileRun
       span.profile-run-badge(title=renderingProfileRunExplanation) Profile run
-  p Why the browser had to recalculate style and layout: every DOM/style change invalidates some set of nodes, and the same class or attribute churning over and over is the pattern to hunt. Counts, not milliseconds — the time is in the recalculate style numbers above.
+  p Why the browser had to recalculate style and layout: every DOM/style change invalidates some set of nodes, and the same class or attribute churning over and over is the pattern to hunt. Counts, not milliseconds — the time is in the style recalculation numbers above.
   .cpu-kpis
     .cpu-kpi
-      span.cpu-kpi-label Style recalcs
+      span.cpu-kpi-label Style recalculations
       span.cpu-kpi-value #{styleInvalidations.styleRecalcs.toLocaleString('sv-SE')}
     .cpu-kpi
       span.cpu-kpi-label Layout invalidations
@@ -575,7 +575,7 @@ if styleInvalidations
           thead
             tr
               th Reason
-              th.number Style recalc
+              th.number Style recalculations
               th.number Layout
           tbody
             each reason in styleInvalidations.recalcReasons
@@ -615,6 +615,6 @@ if styleInvalidations
 if nonCompositedCount > 0
   a#main-thread-animations
   p.rendering-why-note
-    | #{nonCompositedCount} #{nonCompositedCount === 1 ? 'animation runs' : 'animations run'} on the main thread instead of the compositor; they can make the rendering you see above janky.&nbsp;
+    | #{nonCompositedCount} #{nonCompositedCount === 1 ? 'animation runs' : 'animations run'} on the main thread instead of on the browser's fast path that animates without blocking other page work (the compositor); they can make the rendering you see above janky.&nbsp;
     a(href='#cpu-animations', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See them on the CPU tab
     | .

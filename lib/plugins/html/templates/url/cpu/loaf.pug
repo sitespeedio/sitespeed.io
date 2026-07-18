@@ -38,6 +38,11 @@ if loaf
     //- page itself is an inline script — say so instead of rendering
     //- the article name as if it were a file.
     - const loafDisplayName = sc => sc.label || (sc.sourceURL ? (sc.sourceURL === loafPageUrl ? 'inline script in the document' : loafScriptName(sc.sourceURL)) : (sc.invoker || 'unknown'))
+    //- The LoAF API reports how a script started and where it ran as
+    //- raw spec tokens (classic-script, descendant, ...) - translate
+    //- them, falling back to the raw token for values the maps miss.
+    - const loafInvokerLabel = t => ({ 'classic-script': 'script tag', 'module-script': 'module script', 'event-listener': 'event handler', 'user-callback': 'timer or animation callback', 'resolve-promise': 'promise callback', 'reject-promise': 'promise rejection' })[t] || t
+    - const loafWindowLabel = t => ({ 'descendant': 'an iframe inside this page', 'ancestor': 'a parent page', 'same-page': 'another frame of this page', 'other': 'another window' })[t] || t
 
     //- Frame start: shipped directly by browsertime 28.1+; older data
     //- recovers it from renderStart − workDuration for frames that
@@ -146,7 +151,7 @@ if loaf
                                 td.number #{c.runTime > 0 ? loafFmt(c.runTime) : '–'}
                             td.number #{loafFmt(c.blocking)}
                             td.number #{c.forced > 0 ? loafFmt(c.forced) : '–'}
-                            td= [...c.invokerTypes].join(', ')
+                            td= [...c.invokerTypes].map(loafInvokerLabel).join(', ')
         if loafHasDurations
             p.small A frame's blocking time is split between its scripts by their share of the frame's work, capped at each script's own run time — blocking from work no script owns (HTML parsing, browser internals) stays unattributed. #[a(href='#cpu-loaf-blocking') The per-script blocking view below] uses the same attribution.
         else
@@ -157,7 +162,7 @@ if loaf
             //- duration = work + render; render = pre-layout + style & layout
             //- (plus whatever render time isn't attributed to either).
             - const renderRest = Math.max(0, oneLoaf.renderDuration - oneLoaf.preLayoutDuration - oneLoaf.styleAndLayoutDuration)
-            - const phases = [{ key: 'work', name: 'Work', value: oneLoaf.workDuration }, { key: 'pre-layout', name: 'Pre-layout', value: oneLoaf.preLayoutDuration }, { key: 'style-layout', name: 'Style & layout', value: oneLoaf.styleAndLayoutDuration }, { key: 'render', name: 'Render', value: renderRest }]
+            - const phases = [{ key: 'work', name: 'Scripts & other work', value: oneLoaf.workDuration }, { key: 'pre-layout', name: 'Animation callbacks', value: oneLoaf.preLayoutDuration }, { key: 'style-layout', name: 'Style & layout', value: oneLoaf.styleAndLayoutDuration }, { key: 'render', name: 'Render', value: renderRest }]
             - const loafWhenText = loafWhen(oneLoaf)
             .loaf-card
                 .loaf-header
@@ -212,21 +217,21 @@ if loaf
                                     //- URL (classic/module scripts) — only show
                                     //- it when it adds information.
                                     if theScript.invoker && theScript.invoker !== theScript.sourceURL
-                                        dt Invoker
+                                        dt Started by
                                         dd= theScript.invoker
-                                    dt Invoker type
-                                    dd= theScript.invokerType
+                                    dt How it started
+                                    dd= loafInvokerLabel(theScript.invokerType)
                                     if theScript.sourceFunctionName
                                         dt Source function
                                         dd= theScript.sourceFunctionName
                                     if theScript.windowAttribution && theScript.windowAttribution !== 'self'
-                                        dt Window attribution
-                                        dd= theScript.windowAttribution
+                                        dt Ran in
+                                        dd= loafWindowLabel(theScript.windowAttribution)
                                     if theScript.sourceCharPosition > 0
-                                        dt Source char position
-                                        dd #{theScript.sourceCharPosition} (locate it via DevTools → Performance → the LoAF track)
+                                        dt Position in source
+                                        dd character #{theScript.sourceCharPosition} into the file (locate it via DevTools → Performance → the Long Animation Frames track)
                 else
-                    p.loaf-no-scripts No script attribution for this frame — typically browser-internal style/layout or cross-origin work.
+                    p.loaf-no-scripts The browser did not report which script was responsible for this frame — typically its own style/layout work, or a cross-origin script it will not name.
 
     - const loafQuiet = loafFrames.filter(f => f.blockingDuration === 0).length
     if loafQuiet > 0

@@ -42,7 +42,7 @@ if browsertime
   if timings.firstInput !== undefined
     - metricsLinks.push({href: '#firstInput', label: 'First Input Delay'})
   if cdp
-    - metricsLinks.push({href: '#cdp-performance', label: 'Metrics from CDP'})
+    - metricsLinks.push({href: '#cdp-performance', label: 'Chrome internal metrics'})
   if timings.serverTimings && timings.serverTimings.length > 0
     - metricsLinks.push({href: '#server-timings', label: 'Server timings'})
   +quicklinks(metricsLinks)
@@ -119,11 +119,11 @@ if browsertime
               if tile.cls
                 .web-vital-status
                   if tile.field
-                    span.web-vital-source Lab
+                    span.web-vital-source This test
                   span #{wvStatusLabel(tile.cls)}
               if tile.field
                 .web-vital-field
-                  span.web-vital-source Field p75 · #{cruxFFLabel}
+                  span.web-vital-source(title='75th percentile of real Chrome users over the last 28 days (Chrome UX Report)') Real users p75 · #{cruxFFLabel}
                   .web-vital-field-measure
                     span.web-vital-field-dot(class='web-vital-field-dot--' + tile.field.cls)
                     span.web-vital-field-value #{tile.field.formatted}
@@ -151,7 +151,7 @@ if browsertime
       each value, name in timings.pageTimings
         .metric-tile
           span.metric-tile-label
-            a(href=baseHelpURL + name) #{name}
+            a(href=baseHelpURL + name, title=name) #{h.metricName(name)}
           span.metric-tile-value #{h.time.ms(value)}
 
   //- The recalculate-style tiles (and the run-with---cpu hint) live on
@@ -183,7 +183,7 @@ if browsertime
             a(href=baseHelpURL + 'firstPaint') First paint
           span.metric-tile-value #{h.time.ms(timings.firstPaint.toFixed(0))}
       if timings.timeToDomContentFlushed
-        .metric-tile
+        .metric-tile(title='When Firefox has laid out the initial page content. Firefox only.')
           span.metric-tile-label
             a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
           span.metric-tile-value #{h.time.ms(timings.timeToDomContentFlushed.toFixed(0))}
@@ -276,12 +276,14 @@ if browsertime
     a#cdp-performance
     details.iter-group(open)
       summary.iter-group-summary
-        span.iter-group-title CDP Performance
+        span.iter-group-title Chrome internal metrics (CDP)
         span.iter-group-count #{Object.keys(cdp.performance).length}
       .metric-tiles
         each value, name in cdp.performance
           .metric-tile
-            span.metric-tile-label #{name}
+            //- The raw protocol key stays in the tooltip - it is the
+            //- name in the JSON data.
+            span.metric-tile-label(title=name) #{h.metricName(name)}
             span.metric-tile-value #{value.toFixed(0)}
 
   if options.browsertime.visualElements

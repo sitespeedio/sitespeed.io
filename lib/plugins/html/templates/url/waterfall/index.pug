@@ -27,11 +27,11 @@ if (options.html.showAllWaterfallSummary === true)
         span Page metrics
       label
         input(type='checkbox', id='wt-show-marks', checked)
-        span Marks &amp; visual metrics
+        span User Timing marks &amp; visual metrics
       label
         input(type='checkbox', id='wt-show-longtasks', checked)
         span Long tasks
-      label
+      label(title='Group requests by network connection instead of one row per request')
         input(type='checkbox', id='wt-connection-view')
         span Connection view
 

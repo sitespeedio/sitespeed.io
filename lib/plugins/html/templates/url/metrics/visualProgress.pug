@@ -109,7 +109,11 @@ if vpData.length > 0
             - const ltLeft = task.startTime / vpMax * 100
             - const ltWidth = Math.min(Math.max(0.4, task.duration / vpMax * 100), 100 - ltLeft).toFixed(2)
             - const ltClass = task.duration >= 250 ? 'vp-longtask--severe' : (task.duration >= 100 ? 'vp-longtask--major' : 'vp-longtask--minor')
-            .vp-longtask(class=ltClass, style='left: ' + ltLeft.toFixed(2) + '%; width: ' + ltWidth + '%;', title='Long task ' + task.duration.toFixed(0) + ' ms at ' + task.startTime.toFixed(0) + ' ms (' + (task.attribution && task.attribution[0] ? task.attribution[0].containerType : 'unknown') + ')')
+            //- The Long Task API reports where the task ran as a raw
+            //- container type (window/iframe/embed) - translate it.
+            - const ltContainer = task.attribution && task.attribution[0] ? task.attribution[0].containerType : undefined
+            - const ltWhere = ltContainer ? (ltContainer === 'window' ? 'in the main page' : 'in an ' + ltContainer) : 'unknown origin'
+            .vp-longtask(class=ltClass, style='left: ' + ltLeft.toFixed(2) + '%; width: ' + ltWidth + '%;', title='Long task ' + task.duration.toFixed(0) + ' ms at ' + task.startTime.toFixed(0) + ' ms (' + ltWhere + ')')
     .vp-axis
       each tick in vpTicks
         span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
