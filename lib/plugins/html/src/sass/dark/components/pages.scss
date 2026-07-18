@@ -97,7 +97,10 @@ td.pages-status {
 .pages-status-cell {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  // Left-align the pill and the dots so they line up column-wise across
+  // rows - centering makes them start at different x depending on
+  // whether the pill or the dot row is wider.
+  align-items: flex-start;
   gap: 6px;
 }
 
