@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 17 Jul 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 18 Jul 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,19 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 42.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.1</guid>
+            <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- The HTML report no longer speaks Chrome internals: raw data keys shown as metric labels (backEndTime, RecalcStyleCount, FirstVisualChange), LoAF/Long Task spec tokens, HAR phase keys (blocked, ssl, wait), trace event names used as headings and profiler jargon (self time, invoker) are replaced with plain language across every page. The raw keys stay in tooltips and explainer folds since the exported JSON and metrics still use them, and the help page&#39;s Firefox metric entries now lead with what each metric means instead of which browser preference enables it #4854.<br>
+- The CPU tab tells you what to do, not just what happened: the blocking-time card leads with a verdict and links each dominant kind to the section that names the culprits, the Timers section calls out the page&#39;s own polling and timeout-0 offenders with their cost and a suggested fix, and headings, KPI labels and quicklinks were renamed so the chip row scans as a table of contents #4853.<br>
+- On the Pages listing the Web Vitals verdict pill and the metric dots were centered against each other, so whichever was wider pushed the other sideways and the column looked randomly misaligned from row to row. Both are left-aligned now and line up across every row #4852.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.0</link>
@@ -232,33 +245,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 41.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.0</guid>
-            <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- JS/CSS coverage in the report. Browsertime 27.4.0 collects per-iteration coverage when you pass <code>--chrome.coverage</code>, and the HTML report now surfaces it as a Coverage section in the per-URL view: median JS/CSS total/unused/percent KPIs, first-party vs third-party split, top-25 worst-offender tables, and a methodology + recommendations panel. <code>--chrome.coverage</code> is declared in sitespeed.io&#39;s own CLI so it shows up in <code>--help</code> and the config reference, and the <code>--enableProfileRun</code> path now collects coverage on the profile run and merges it into the main result #4769, #4767.<br>
-<br>
-<strong>Fixed</strong><br>
-- Visual-change lines (<code>_firstVisualChange</code> / <code>_lastVisualChange</code> / <code>_visualComplete85</code>) are back on the waterfall when the HAR is gzipped on disk (the default). The renderer&#39;s user-timing injection was parsing the raw gzip bytes as JSON and silently falling back to the unannotated HAR; it now sniffs the gzip magic bytes and inflates via <code>DecompressionStream</code> first #4758.<br>
-- Per-request detail panel on the waterfall now shows real data again. The panel was reading HAR-shape fields (<code>req.response.content.size</code>, <code>req.response.headers</code>, <code>req.response.status</code>, <code>req.timings</code>, …) but waterfall-tools&#39; click payload is its own flat internal <code>Request</code> object, so Response body always showed <code>0 B</code>, Status was blank, MIME type and Protocol were <code>—</code>, and the response-headers and timing tabs were empty. Look up the matching HAR entry by index and read the rich HAR shape from it, falling back to the waterfall-tools shape only when the HAR is missing.<br>
-- Folder path aliases now accept Unicode letters and digits, so non-ASCII URLs no longer collapse to <code>-</code> in result paths (issue #3880) #4759.<br>
-- <code>scp</code> plugin: retry the initial SFTP handshake up to 3× with linear backoff. <code>ssh2-sftp-client</code> v12 removed its built-in connect retries, so a single &quot;Connection lost before handshake&quot; blip was failing the whole upload #4760.<br>
-- Graphite: retry the post-run annotation POST up to 3× on network errors and 5xx responses. 4xx still fails fast #4761.ß<br>
-- <code>waterfall-tools</code> bumped to the first proper npm release, 0.3.0 — no more pinning to a GitHub tarball, and the bundling script drops to ~30 fewer lines now that the published browser bundle has the platform aliases baked in #4764.<br>
-- Browsertime 27.4.0 #4767.<br>
-- Docker base image rev&#39;d to <code>chrome-148.0-firefox-150.0-edge-147.0-d</code> #4762.<br>
-- Slim Docker image cleanup #4757.<br>
-- Drop now-unused npm <code>overrides</code> from <code>package.json</code> #4756.<br>
-- CI: PR Docker workflow now builds and exercises the image on arm64 in addition to amd64, so arch-specific breakage surfaces pre-merge instead of at release-tag time. Edge step is skipped on arm64 (Linux Edge is amd64-only) #4766.<br>
-- CI: pin the Safari workflow to <code>macos-14</code> #4765.<br>
-- Drop an unnecessary <code>\.</code> escape inside a character class in <code>pathToFolder</code> that was tripping eslint&#39;s <code>no-useless-escape</code> and failing lint on every PR #4763.<br>
-- Docs: remove unused CSS #4768.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 27.4.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.4.1</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.4.1</guid>
@@ -452,17 +438,6 @@
             <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[browsertime 27.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
-            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[compare 2.0.0]]></title>
             <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#2.0.0</guid>
@@ -540,6 +515,27 @@
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[browsertime 27.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</guid>
+            <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.3.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
+            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
+]]></description>
+            <author>Sitespeed.io</author>
+        </item>
+        <item>
             <title><![CDATA[browsertime 27.1.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</link>
             <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.1.0</guid>
@@ -554,16 +550,6 @@
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 1.3.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.0</guid>
-            <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Lift CDP <code>renderBlockingStatus</code> onto entries as <code>_renderBlocking</code> (Chrome 108+) so downstream HAR consumers (waterfall-tools&#39;<br>
-]]></description>
-            <author>Sitespeed.io</author>
         </item>
         <item>
             <title><![CDATA[browsertime 27.0.4]]></title>
