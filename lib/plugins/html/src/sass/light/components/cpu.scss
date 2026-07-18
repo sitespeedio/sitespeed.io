@@ -387,6 +387,36 @@ a.cpu-site-link {
 .cpu-cat-value { color: $color--text; font-weight: $font--weight--medium; }
 .cpu-cat-pct { color: $color--text-muted; }
 
+// Remedy lines under the "what kind of work blocked" legend: one line
+// per kind that carried a meaningful share of blocking, routing to
+// the section that names the culprit selector/script/function.
+.cpu-kind-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.cpu-kind-action {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  .cpu-cat-swatch {
+    margin-top: 4px;
+  }
+}
+
+// The raw trace key next to the human category name in the
+// definitions fold - it is the name used in the JSON data and the
+// exported metrics.
+.cpu-cat-key {
+  color: $color--text-muted;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
 //
 // Inline icon next to each h3 section heading on the CPU tab.
 // Stroke colour inherits the heading colour so light/dark themes

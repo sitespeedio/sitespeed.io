@@ -50,6 +50,25 @@ include ../includes/_quicklinks
 - const timers = useProfileTimers ? profileTimers : measuredTimers
 - const timersFromProfileRun = useProfileTimers
 
+//- Human names for the trace work categories, shared by "What kind of
+//- work blocked" and "Where the time went" so both cards read the
+//- same. The raw trace keys stay visible in the category definitions
+//- card because the JSON data and exported metrics use them.
+- const cpuCategoryLabels = { parseHTML: 'Parsing HTML & CSS', styleLayout: 'Style & layout', scriptParseCompile: 'Parsing & compiling JavaScript', scriptEvaluation: 'Running JavaScript', paintCompositeRender: 'Paint & composite', garbageCollection: 'Garbage collection', other: 'Other browser work' }
+- const cpuCategoryLabel = key => cpuCategoryLabels[key] || key
+
+//- Cross-link targets for the "what kind of work blocked" remedy
+//- lines. Each link only renders when its target section does:
+//- selector stats and style invalidations live on the Rendering tab
+//- (availability mirrors rendering/index.pug), coverage on the
+//- PageXray tab (mirrors pagexray/index.pug).
+- const cpuSelectorStats = (cpu && cpu.selectorStats) || profileCpuAnalysis('selectorStats')
+- const hasSelectorStatsSection = !!(cpuSelectorStats && cpuSelectorStats.selectors && cpuSelectorStats.selectors.length > 0)
+- const hasStyleInvalidationsSection = !!((cpu && cpu.styleInvalidations) || profileCpuAnalysis('styleInvalidations'))
+- const cpuCov = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
+- const hasCoverageSection = !!(cpuCov && (cpuCov.source === 'profileRun' || (cpuCov.js && cpuCov.js.length) || (cpuCov.css && cpuCov.css.length)))
+- const hasForcedReflowsSection = !!(cpu && cpu.forcedReflows && cpu.forcedReflows.some(r => r.duration >= 2))
+
 //- The LoAF per-script rollups and the per-tool CPU data are computed
 //- once, up here: a quicklink must only render when its section does,
 //- and the callout, the links and the sections all need the same
@@ -123,22 +142,25 @@ mixin cpuIcon(name)
 //- order.
 if cpu
   - const cpuLinks = []
+  //- Chip labels match the section headings word for word (minus the
+  //- long "(browser-reported)" qualifier) so the chip row scans as a
+  //- table of contents.
   if cpu.longTasks
     - cpuLinks.push({href: '#long-tasks', label: 'Long tasks'})
   if loaf
-    - cpuLinks.push({href: '#longAnimationFrames', label: 'Long animation frames'})
+    - cpuLinks.push({href: '#longAnimationFrames', label: 'Long Animation Frames'})
   if loafEntries.length > 0
-    - cpuLinks.push({href: '#cpu-loaf-blocking', label: 'Per script blocking'})
+    - cpuLinks.push({href: '#cpu-loaf-blocking', label: 'Blocking per script (browser)'})
   if cpu.blocking && cpu.blocking.urls && cpu.blocking.urls.length > 0
-    - cpuLinks.push({href: '#cpu-blocking', label: 'TBT per script'})
+    - cpuLinks.push({href: '#cpu-blocking', label: 'Blocking per script (trace)'})
   if cpu.categories
-    - cpuLinks.push({href: '#cpu-time-spent', label: 'Where time went'})
+    - cpuLinks.push({href: '#cpu-time-spent', label: 'Where the time went'})
   if cpu.urls && cpu.urls.length > 0
-    - cpuLinks.push({href: '#cpu-time-spent-per-request', label: 'Per script'})
+    - cpuLinks.push({href: '#cpu-time-spent-per-request', label: 'CPU time per script'})
   if moduleCosts && moduleCosts.length > 0
-    - cpuLinks.push({href: '#cpu-module-costs', label: 'Per module'})
+    - cpuLinks.push({href: '#cpu-module-costs', label: 'CPU time per module'})
   if functionCosts && functionCosts.length > 0
-    - cpuLinks.push({href: '#cpu-function-costs', label: 'Per function'})
+    - cpuLinks.push({href: '#cpu-function-costs', label: 'Slowest JS functions'})
   if timers && timers.fires > 0
     - cpuLinks.push({href: '#cpu-timers', label: 'Timers'})
   //- Same threshold as the section body: reflows under 2 ms never
@@ -146,13 +168,13 @@ if cpu
   if cpu.forcedReflows && cpu.forcedReflows.some(r => r.duration >= 2)
     - cpuLinks.push({href: '#cpu-forced-reflows', label: 'Forced reflows'})
   if fsEntries.length > 0
-    - cpuLinks.push({href: '#cpu-forced-layout-per-script', label: 'Forced layout/script'})
+    - cpuLinks.push({href: '#cpu-forced-layout-per-script', label: 'Forced layout per script'})
   if cpu.domains
-    - cpuLinks.push({href: '#cpu-first-third-party', label: 'First vs third party'})
+    - cpuLinks.push({href: '#cpu-first-third-party', label: 'First vs third party CPU time'})
   if cpuPerTool
-    - cpuLinks.push({href: '#cpu-time-per-tool', label: 'Per domain/tool'})
+    - cpuLinks.push({href: '#cpu-time-per-tool', label: 'CPU time per domain/tool'})
   if cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0
-    - cpuLinks.push({href: '#cpu-animations', label: 'Animations'})
+    - cpuLinks.push({href: '#cpu-animations', label: 'Non-composited animations'})
   if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
     - cpuLinks.push({href: '#first-input-delay', label: 'First Input Delay'})
   +quicklinks(cpuLinks)
@@ -223,8 +245,8 @@ if cpu && cpu.longTasks
       .cpu-kpi(class=tbtClass)
         span.cpu-kpi-label TBT
         span.cpu-kpi-value #{h.time.ms(cpu.longTasks.totalBlockingTime)}
-      .cpu-kpi
-        span.cpu-kpi-label Max FID
+      .cpu-kpi(title='The longest a tap or click could have waited for the main thread during this run: the duration of the single longest task.')
+        span.cpu-kpi-label Max potential input delay
         span.cpu-kpi-value #{h.time.ms(cpu.longTasks.maxPotentialFid)}
       .cpu-kpi
         span.cpu-kpi-label Total long tasks
@@ -280,9 +302,12 @@ include ./loaf.pug
 if loafEntries.length > 0
     - const loafBlockingMax = loafEntries[0].blocking
     a#cpu-loaf-blocking
+    //- The trace section below reports the same question from a
+    //- different source; the qualifiers in both headings are what
+    //- tell the two lists apart, so keep them in sync.
     h3
       +cpuIcon('ban')
-      | Blocking time per script
+      | Blocking time per script (browser-reported)
     p How much each script blocked the main thread, derived from the Long Animation Frame API. Each frame's blocking time is split between its scripts by their share of the frame's work, capped at each script's own run time — blocking from work no script owns (HTML parsing, browser internals) is not attributed (older data credits the script that started the frame). The closest answer to "which script should I fix to improve TBT" the platform exposes.
     .listing-card
       .listing-card-header
@@ -328,32 +353,78 @@ if cpu && cpu.blocking && cpu.blocking.urls && cpu.blocking.urls.length > 0
   //- What KIND of work blocked (cpu.blocking.kinds) — script blocking
   //- needs code changes, parse blocking needs a smaller document,
   //- style/layout blocking needs cheaper CSS. Reuses the category-bar
-  //- segments so the colors match "Where the time went".
+  //- segments so the colors match "Where the time went". The remedy
+  //- lines under the legend say that out loud for every kind that
+  //- carried a meaningful share, and route to the section that names
+  //- the culprit selector/script/function.
   if cpu.blocking.kinds && Object.keys(cpu.blocking.kinds).length > 0
-    - const blockingKinds = Object.entries(cpu.blocking.kinds)
+    - const blockingKinds = Object.entries(cpu.blocking.kinds).sort((a, b) => b[1] - a[1])
     - const blockingKindTotal = blockingKinds.reduce((s, e) => s + e[1], 0)
+    - const blockingRemedies = {}
+    - blockingRemedies.styleLayout = { text: 'usually a large DOM, expensive CSS selectors or JavaScript forcing synchronous layout.', links: [] }
+    - if (hasForcedReflowsSection) blockingRemedies.styleLayout.links.push({ href: '#cpu-forced-reflows', label: 'Forced reflows' })
+    - if (fsEntries.length > 0) blockingRemedies.styleLayout.links.push({ href: '#cpu-forced-layout-per-script', label: 'Forced layout per script' })
+    - if (hasSelectorStatsSection) blockingRemedies.styleLayout.links.push({ href: '#css-selectors', label: 'Slowest CSS selectors (Rendering tab)', tab: 'rendering' })
+    - if (hasStyleInvalidationsSection) blockingRemedies.styleLayout.links.push({ href: '#style-invalidations', label: 'Style invalidations (Rendering tab)', tab: 'rendering' })
+    - blockingRemedies.scriptEvaluation = { text: 'the scripts responsible are listed right below.', links: [] }
+    - if (functionCosts && functionCosts.length > 0) blockingRemedies.scriptEvaluation.links.push({ href: '#cpu-function-costs', label: 'Slowest JS functions' })
+    - if (timers && timers.fires > 0) blockingRemedies.scriptEvaluation.links.push({ href: '#cpu-timers', label: 'Timers' })
+    - blockingRemedies.scriptParseCompile = { text: 'the cost of shipping JavaScript bytes, used or not. Ship less of it.', links: [] }
+    - if (hasCoverageSection) blockingRemedies.scriptParseCompile.links.push({ href: '#coverage', label: 'Unused JS in Coverage (PageXray tab)', tab: 'pagexray' })
+    - blockingRemedies.parseHTML = { text: 'reading the HTML document. A smaller document parses faster.', links: [] }
+    - blockingRemedies.garbageCollection = { text: 'memory cleanup from allocation-heavy JavaScript, usually caused by the biggest scripts below.', links: [] }
+    - blockingRemedies.paintCompositeRender = { text: 'painting pixels and assembling frames.', links: [] }
+    - if (cpu.nonCompositedAnimations && cpu.nonCompositedAnimations.length > 0) blockingRemedies.paintCompositeRender.links.push({ href: '#cpu-animations', label: 'Non-composited animations' })
+    //- ≥ 10 % of blocking makes a kind worth a remedy line; below
+    //- that fixing it can't move TBT much.
+    - const dominantKinds = blockingKinds.filter(e => blockingKindTotal > 0 && (e[1] / blockingKindTotal * 100) >= 10 && blockingRemedies[e[0]])
+    - const topKindPct = blockingKindTotal > 0 ? (blockingKinds[0][1] / blockingKindTotal * 100) : 0
     .listing-card
       .listing-card-header
         h3.listing-card-title What kind of work blocked
-        span.listing-card-meta #{h.time.ms(blockingKindTotal.toFixed(0))} total
+        //- The verdict belongs in the header: past 40 % one kind
+        //- dominates and the answer fits in three words.
+        span.listing-card-meta #{topKindPct >= 40 ? 'mostly ' + cpuCategoryLabel(blockingKinds[0][0]).toLowerCase() + ' · ' : ''}#{h.time.ms(blockingKindTotal.toFixed(0))} total
       .cpu-cat-bar
         each entry in blockingKinds
           - const pct = blockingKindTotal > 0 ? (entry[1] / blockingKindTotal * 100) : 0
           if pct >= 1.5
-            span.cpu-cat-seg(class='cpu-cat-seg--' + entry[0], style='flex: ' + pct.toFixed(3) + ' 0 0', title=entry[0] + ' · ' + entry[1].toFixed(1) + ' ms · ' + pct.toFixed(1) + '%')
+            span.cpu-cat-seg(class='cpu-cat-seg--' + entry[0], style='flex: ' + pct.toFixed(3) + ' 0 0', title=cpuCategoryLabel(entry[0]) + ' · ' + entry[1].toFixed(1) + ' ms · ' + pct.toFixed(1) + '%')
       .cpu-cat-legend
         each entry in blockingKinds
           - const pct = blockingKindTotal > 0 ? (entry[1] / blockingKindTotal * 100) : 0
           .cpu-cat-legend-item
             span.cpu-cat-swatch(class='cpu-cat-seg--' + entry[0])
-            span.cpu-cat-name #{entry[0]}
+            span.cpu-cat-name #{cpuCategoryLabel(entry[0])}
             span.cpu-cat-value #{h.time.ms(entry[1].toFixed(1))}
             span.cpu-cat-pct #{pct.toFixed(1)}%
+      if dominantKinds.length > 0
+        .cpu-kind-actions
+          each entry in dominantKinds
+            - const remedy = blockingRemedies[entry[0]]
+            - const kindPct = (entry[1] / blockingKindTotal * 100).toFixed(0)
+            .cpu-kind-action
+              span.cpu-cat-swatch(class='cpu-cat-seg--' + entry[0])
+              span.cpu-kind-action-text
+                strong #{cpuCategoryLabel(entry[0])} (#{kindPct}%):
+                |  #{remedy.text}
+                if remedy.links.length > 0
+                  |  See&nbsp;
+                  each link, index in remedy.links
+                    if index > 0
+                      |  ·&nbsp;
+                    if link.tab
+                      a(href=link.href, onclick=`const t = document.querySelector("#tabs #${link.tab}"); if (t) selectTab(t, false)`)= link.label
+                    else
+                      a(href=link.href)= link.label
   - const blockingUrls = cpu.blocking.urls.slice(0, 10)
   - const blockingMax = blockingUrls[0].value
   .listing-card
     .listing-card-header
-      h3.listing-card-title Blocking time by script
+      //- Same card title as the browser-reported section above: the
+      //- two lists answer the same question, the section headings
+      //- carry which source answered it.
+      h3.listing-card-title Top scripts blocking the main thread
       span.listing-card-meta #{blockingUrls.length} of #{cpu.blocking.urls.length} #{cpu.blocking.urls.length === 1 ? 'script' : 'scripts'}
     .cpu-bars
       each entry in blockingUrls
@@ -382,7 +453,10 @@ if cpu && cpu.categories
   h3
     +cpuIcon('piechart')
     | Where the time went
-  p.small Calculated from the Chrome trace.
+  //- The blocking card above shows the same categories but only for
+  //- the blocking share - without the scope sentence readers can't
+  //- tell why the two bars disagree.
+  p.small All main-thread work during the full page load, not just the share that blocked input. Calculated from the Chrome trace.
   - const catTotal = Object.values(cpu.categories).reduce((s, v) => s + v, 0)
   - const catEntries = Object.entries(cpu.categories).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1])
   .listing-card
@@ -398,7 +472,7 @@ if cpu && cpu.categories
       each entry in catEntries
         - const pct = catTotal > 0 ? (entry[1] / catTotal * 100) : 0
         if pct >= 1.5
-          span.cpu-cat-seg(class='cpu-cat-seg--' + entry[0], style='flex: ' + pct.toFixed(3) + ' 0 0', title=entry[0] + ' · ' + entry[1].toFixed(0) + ' ms · ' + pct.toFixed(1) + '%')
+          span.cpu-cat-seg(class='cpu-cat-seg--' + entry[0], style='flex: ' + pct.toFixed(3) + ' 0 0', title=cpuCategoryLabel(entry[0]) + ' · ' + entry[1].toFixed(0) + ' ms · ' + pct.toFixed(1) + '%')
     //- 'other' is almost entirely Chrome's task-scheduling overhead
     //- (RunTask-family self time: per-task entry/exit cost plus
     //- thousands of sub-millisecond scheduler ticks) — say so instead
@@ -413,7 +487,7 @@ if cpu && cpu.categories
         - const pct = catTotal > 0 ? (entry[1] / catTotal * 100) : 0
         .cpu-cat-legend-item(title=entry[0] === 'other' && schedulingMs > 0 ? schedulingTitle : undefined)
           span.cpu-cat-swatch(class='cpu-cat-seg--' + entry[0])
-          span.cpu-cat-name #{entry[0] === 'other' && schedulingMs > 0 ? 'other (browser scheduling)' : entry[0]}
+          span.cpu-cat-name #{entry[0] === 'other' && schedulingMs > 0 ? 'Other browser work (scheduling)' : cpuCategoryLabel(entry[0])}
           span.cpu-cat-value #{h.time.ms(entry[1].toFixed(0))}
           span.cpu-cat-pct #{pct.toFixed(1)}%
   //- Folded explainer for the category names — short, plain-language
@@ -424,34 +498,44 @@ if cpu && cpu.categories
   details.cov-method
     summary What do these categories mean?
     .cov-method-body
+      //- Each definition leads with the human name the legends use;
+      //- the raw trace key follows as a badge because that's the name
+      //- in the JSON data and the exported metrics.
       dl.cpu-cat-defs
         dt
           span.cpu-cat-swatch.cpu-cat-seg--parseHTML
-          | parseHTML
+          | Parsing HTML & CSS
+          code.cpu-cat-key parseHTML
         dd Reading the HTML and CSS and building the page structure. Grows with document size — a big server-rendered page costs more here.
         dt
           span.cpu-cat-swatch.cpu-cat-seg--styleLayout
-          | styleLayout
+          | Style & layout
+          code.cpu-cat-key styleLayout
         dd Working out which CSS rules apply and where every element goes on the page. Grows with DOM size and selector complexity.
         dt
           span.cpu-cat-swatch.cpu-cat-seg--scriptParseCompile
-          | scriptParseCompile
+          | Parsing & compiling JavaScript
+          code.cpu-cat-key scriptParseCompile
         dd Parsing and compiling JavaScript before it can run — the cost of shipping bytes of JS, even unused ones.
         dt
           span.cpu-cat-swatch.cpu-cat-seg--scriptEvaluation
-          | scriptEvaluation
+          | Running JavaScript
+          code.cpu-cat-key scriptEvaluation
         dd Running JavaScript: event handlers, timers, promise callbacks and script execution.
         dt
           span.cpu-cat-swatch.cpu-cat-seg--paintCompositeRender
-          | paintCompositeRender
+          | Paint & composite
+          code.cpu-cat-key paintCompositeRender
         dd Painting pixels and assembling layers into the frames you see on screen.
         dt
           span.cpu-cat-swatch.cpu-cat-seg--garbageCollection
-          | garbageCollection
+          | Garbage collection
+          code.cpu-cat-key garbageCollection
         dd Reclaiming memory JavaScript no longer uses. A lot of it means allocation-heavy code.
         dt
           span.cpu-cat-swatch.cpu-cat-seg--other
-          | other (browser scheduling)
+          | Other browser work (scheduling)
+          code.cpu-cat-key other
         dd
           | Chrome’s own task management: per-task overhead and thousands of sub-millisecond scheduler ticks — not page work you can attribute or optimize away.
           if schedulingMs > 0
@@ -607,20 +691,39 @@ if timers && timers.fires > 0
   p How much setTimeout/setInterval work the page runs, credited to the script that scheduled each timer. Many timeout-0 installs mean work sliced into a machine-gun of tiny tasks; recurring installs are polling.
   .cpu-kpis
     .cpu-kpi
-      span.cpu-kpi-label Installs
+      span.cpu-kpi-label Timers set
       span.cpu-kpi-value #{timers.installs}
     .cpu-kpi
-      span.cpu-kpi-label Fires
+      span.cpu-kpi-label Times fired
       span.cpu-kpi-value #{timers.fires}
     .cpu-kpi
       span.cpu-kpi-label Fire time
       span.cpu-kpi-value #{h.time.ms(timers.fireTime)}
     .cpu-kpi
-      span.cpu-kpi-label Timeout 0
+      span.cpu-kpi-label Timeout-0 installs
       span.cpu-kpi-value #{timers.timeoutZeroInstalls}
     .cpu-kpi
-      span.cpu-kpi-label Recurring
+      span.cpu-kpi-label Recurring installs
       span.cpu-kpi-value #{timers.recurringInstalls}
+  //- Turn the intro's generic warnings into this page's findings:
+  //- name the worst polling loop and the worst timeout-0 slicer with
+  //- their owner and cost, so the patterns are verdicts instead of
+  //- things to hunt for in the table below. Ten fires/installs from
+  //- one site is the line between "used a timer" and "runs a
+  //- pattern". Reuses the remedy-line layout from the blocking card.
+  - const timerSiteOwner = site => { const where = site.module || site.label || (site.url === 'unknown' ? 'an unattributed script' : h.shortAsset(site.url, true)); return site.functionName ? site.functionName + ' in ' + where : where }
+  - const timerFindings = []
+  - const topPoller = (timers.sites || []).filter(s => s.recurring && s.fires >= 10).sort((a, b) => b.fireTime - a.fireTime)[0]
+  - if (topPoller) timerFindings.push({ label: 'Polling', text: timerSiteOwner(topPoller) + ' keeps a ' + topPoller.timeout + ' ms timer running: ' + topPoller.fires + ' fires costing ' + topPoller.fireTime.toFixed(0) + ' ms. Consider reacting to events instead, or a longer interval.' })
+  - const topSlicer = (timers.sites || []).filter(s => !s.recurring && s.timeout === 0 && s.installs >= 10).sort((a, b) => b.fireTime - a.fireTime)[0]
+  - if (topSlicer) timerFindings.push({ label: 'Timeout-0 slicing', text: timerSiteOwner(topSlicer) + ' split work into ' + topSlicer.installs + ' back-to-back tasks costing ' + topSlicer.fireTime.toFixed(0) + ' ms. Consider batching the work or moving it to requestIdleCallback or a worker.' })
+  if timerFindings.length > 0
+    .cpu-kind-actions
+      each finding in timerFindings
+        .cpu-kind-action
+          span.cpu-kind-action-text
+            strong #{finding.label}:
+            |  #{finding.text}
   if timers.byUrl && timers.byUrl.length > 0
     - const timerMax = timers.byUrl[0].fireTime
     .listing-card
@@ -648,7 +751,7 @@ if timers && timers.fires > 0
   if timers.sites && timers.sites.length > 0
     .listing-card
       .listing-card-header
-        h3.listing-card-title The timers themselves
+        h3.listing-card-title The timers, by install site
         span.listing-card-meta top #{timers.sites.length} by fire time
       .responsive
         table
