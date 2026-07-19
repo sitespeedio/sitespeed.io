@@ -102,13 +102,17 @@ include ../../_tableMixins
     if (mime.includes('font')) return 'font'
     return mime.split('/').pop().split(';')[0]
   }
+  //- The tested URL and the page's _url can differ by a redirect adding
+  //- a trailing slash (www.cnet.com → www.cnet.com/) — compare with it
+  //- stripped or the document row silently disappears.
+  const rbSameUrl = (a, b) => !!a && !!b && (a === b || a.replace(/\/$/, '') === b.replace(/\/$/, ''))
   let rbHarPage
   let rbHarAware = false
   if (whyHar && whyHar.log && whyHar.log.pages && whyHar.log.entries) {
     //- Multi-page scripts store one HAR page per visited URL per run, so
     //- match on _url first and only then index by run; a single-page HAR
     //- without _url (older browsertime) still resolves.
-    const candidates = whyHar.log.pages.filter(p => p._url === daurl)
+    const candidates = whyHar.log.pages.filter(p => rbSameUrl(p._url, daurl))
     rbHarPage = isSummary ? candidates[medianRun.runIndex - 1] : (candidates.length === 1 ? candidates[0] : candidates[iteration - 1])
     if (!rbHarPage && whyHar.log.pages.length === 1) rbHarPage = whyHar.log.pages[0]
     rbHarAware = whyHar.log.entries.some(e => e._renderBlocking !== undefined)
@@ -125,7 +129,7 @@ include ../../_tableMixins
       const start = Date.parse(entry.startedDateTime) - rbPageStart
       const transfer = entry.response ? (entry.response._transferSize > 0 ? entry.response._transferSize : Math.max(entry.response.bodySize || 0, 0)) : 0
       const row = { url: entry.request.url, start, end: start + entry.time, duration: entry.time, transfer, type: rbShortType(entry.response && entry.response.content ? entry.response.content.mimeType : '') }
-      if (!rbDocRow && entry.request.url === (rbHarPage._url || daurl)) rbDocRow = row
+      if (!rbDocRow && rbSameUrl(entry.request.url, rbHarPage._url || daurl)) rbDocRow = row
       if (!rbLcpRow && rbLcpElement && rbLcpElement.url && entry.request.url === rbLcpElement.url) rbLcpRow = row
       if (status && !RB_NOT_BLOCKING.includes(rbNorm(status))) {
         row.status = rbNorm(status)
@@ -491,9 +495,16 @@ if hasRecalculateStyle
     //- still renders the totals. One tile row per phase with a small
     //- heading, so the tile labels stay short and every tile keeps the
     //- same shape (value + sub-line where there is one).
+    //- FCP and LCP are routinely the same paint on text pages, and the
+    //- two windows then carry identical numbers — printed twice they
+    //- read like a template bug. Collapse into one combined block when
+    //- every field matches; windows that differ render separately.
+    - const recalcSame = !!(recalculateStyle.beforeFCP && recalculateStyle.beforeLCP && ['count', 'elements', 'durationInMillis', 'maxElements', 'maxDurationInMillis'].every(key => recalculateStyle.beforeFCP[key] === recalculateStyle.beforeLCP[key]))
+    - const recalcSamePaint = !!(whyFcp && whyLcp && Math.abs(whyLcp - whyFcp) <= 100)
     - const recalcPhases = []
-    - if (recalculateStyle.beforeFCP) recalcPhases.push(['Before first contentful paint', recalculateStyle.beforeFCP])
-    - if (recalculateStyle.beforeLCP) recalcPhases.push(['Before largest contentful paint', recalculateStyle.beforeLCP])
+    - if (recalcSame) recalcPhases.push(['Before first & largest contentful paint' + (recalcSamePaint ? ' (same paint, ' + h.time.ms(Math.round(Math.max(whyFcp, whyLcp))) + ')' : ''), recalculateStyle.beforeFCP])
+    - if (!recalcSame && recalculateStyle.beforeFCP) recalcPhases.push(['Before first contentful paint', recalculateStyle.beforeFCP])
+    - if (!recalcSame && recalculateStyle.beforeLCP) recalcPhases.push(['Before largest contentful paint', recalculateStyle.beforeLCP])
     each phase in recalcPhases
       - const phaseName = phase[0]
       - const recalc = phase[1]
@@ -592,6 +603,51 @@ include ./blocking.pug
 //- signal that says WHICH selectors the style-recalc time goes to.
 //- Wasted selectors (thousands of match attempts, zero matches) get
 //- their own list — they're pure removable cost.
+//- The tables live in a mixin because they render in two states: open
+//- as today when the totals matter, folded into a details element when
+//- they don't. Mixins compile to standalone functions and can't see
+//- block consts — the stats travel as the argument.
+mixin selectorTables(stats)
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Selectors by matching time
+      span.listing-card-meta top #{stats.selectors.length}
+    .responsive
+      table
+        thead
+          tr
+            th Selector
+            th.number Time
+            th.number Attempts
+            th.number Matches
+        tbody
+          each s in stats.selectors.slice(0, 10)
+            tr
+              td.selector-cell
+                code= s.selector
+              td.number #{s.elapsed.toFixed(2)} ms
+              td.number #{s.matchAttempts.toLocaleString('sv-SE')}
+              td.number #{s.matchCount.toLocaleString('sv-SE')}
+  if stats.wastedSelectors && stats.wastedSelectors.length > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Wasted selector work — attempts that never match
+        span.listing-card-meta top #{stats.wastedSelectors.length}
+      .responsive
+        table
+          thead
+            tr
+              th Selector
+              th.number Attempts
+              th.number Time
+          tbody
+            each s in stats.wastedSelectors.slice(0, 10)
+              tr
+                td.selector-cell
+                  code= s.selector
+                td.number #{s.matchAttempts.toLocaleString('sv-SE')}
+                td.number #{s.elapsed.toFixed(2)} ms
+
 if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 0
   a#css-selectors
   h3
@@ -599,6 +655,28 @@ if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 
     if selectorStatsFromProfileRun
       span.profile-run-badge(title=renderingProfileRunExplanation) Profile run
   p How long Chrome spent testing each CSS selector against the page while recalculating styles. A selector with many match attempts and zero matches is evaluated against the document over and over for rules that never apply.
+  //- Micro-totals invite someone to spend an afternoon refactoring
+  //- 0.07 ms selectors, so the card says whether acting on it can move
+  //- anything. The threshold is on REAL time (the CPU throttle rate
+  //- divided out): below ~50 ms of selector matching across the whole
+  //- load, no paint metric can move enough to notice. Above it, the
+  //- tables open and the verdict points at the wasted-work list.
+  - const selectorThrottle = (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.CPUThrottlingRate) || 1
+  - const selectorRealMs = selectorStats.totalElapsed / selectorThrottle
+  - const selectorsQuiet = selectorRealMs < 50
+  .rendering-verdict(class=selectorsQuiet ? 'rendering-verdict--ok' : 'rendering-verdict--warning')
+    span.rendering-verdict-dot
+    p.rendering-verdict-text
+      if selectorsQuiet
+        b Not worth optimizing on this page.
+        |  All selector matching cost&nbsp;
+        b #{h.time.ms(selectorStats.totalElapsed.toFixed(0))}
+        if selectorThrottle > 1
+          |  under the #{selectorThrottle}× CPU throttle — roughly #{h.time.ms(Math.round(selectorRealMs))} real time
+        | , and the worst single selector #{selectorStats.selectors[0].elapsed.toFixed(2)} ms. The tables are kept for reference.
+      else
+        b Selector matching cost #{h.time.ms(selectorStats.totalElapsed.toFixed(0))}#{selectorThrottle > 1 ? ' (roughly ' + h.time.ms(Math.round(selectorRealMs)) + ' without the ' + selectorThrottle + '× CPU throttle)' : ''}.
+        |  The wasted-work list below — selectors tried thousands of times that never match — is the place to start.
   .cpu-kpis
     .cpu-kpi
       span.cpu-kpi-label Matching time
@@ -609,45 +687,12 @@ if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 
     .cpu-kpi
       span.cpu-kpi-label Matches
       span.cpu-kpi-value #{selectorStats.totalMatchCount.toLocaleString('sv-SE')}
-  .listing-card
-    .listing-card-header
-      h3.listing-card-title Selectors by matching time
-      span.listing-card-meta top #{selectorStats.selectors.length}
-    .responsive
-      table
-        thead
-          tr
-            th Selector
-            th.number Time
-            th.number Attempts
-            th.number Matches
-        tbody
-          each s in selectorStats.selectors.slice(0, 10)
-            tr
-              td.selector-cell
-                code= s.selector
-              td.number #{s.elapsed.toFixed(2)} ms
-              td.number #{s.matchAttempts.toLocaleString('sv-SE')}
-              td.number #{s.matchCount.toLocaleString('sv-SE')}
-  if selectorStats.wastedSelectors && selectorStats.wastedSelectors.length > 0
-    .listing-card
-      .listing-card-header
-        h3.listing-card-title Wasted selector work — attempts that never match
-        span.listing-card-meta top #{selectorStats.wastedSelectors.length}
-      .responsive
-        table
-          thead
-            tr
-              th Selector
-              th.number Attempts
-              th.number Time
-          tbody
-            each s in selectorStats.wastedSelectors.slice(0, 10)
-              tr
-                td.selector-cell
-                  code= s.selector
-                td.number #{s.matchAttempts.toLocaleString('sv-SE')}
-                td.number #{s.elapsed.toFixed(2)} ms
+  if selectorsQuiet
+    details.rendering-details
+      summary Show the selector tables anyway
+      +selectorTables(selectorStats)
+  else
+    +selectorTables(selectorStats)
 
 //- Style invalidations (cpu.styleInvalidations): why style/layout is
 //- recalculated — which class/attribute changes keep invalidating
@@ -678,27 +723,63 @@ if styleInvalidations
             code #{trigger.kind}: #{trigger.name}
             span.cpu-anim-prop-count #{trigger.count}×
   if styleInvalidations.recalcReasons && styleInvalidations.recalcReasons.length > 0
+    //- "Added to layout" dominating the table is mostly the DOM being
+    //- built the first time — ranking it first sent readers chasing a
+    //- non-problem while the churn signal drowned below it. The split
+    //- is by reason category, not by timestamp, so it is approximate:
+    //- nodes inserted by scripts after load land in the construction
+    //- bucket too, which the whisper says out loud. A timestamp-based
+    //- split (before/after first paint) needs the trace and belongs
+    //- upstream in browsertime.
+    - const INVALIDATION_CONSTRUCTION = ['Added to layout', 'Node was inserted into tree']
+    - const invalidationSplit = list => [list.filter(r => !INVALIDATION_CONSTRUCTION.includes(r.reason)), list.filter(r => INVALIDATION_CONSTRUCTION.includes(r.reason))]
+    - const recalcChurnBuild = invalidationSplit(styleInvalidations.recalcReasons)
+    - const layoutChurnBuild = invalidationSplit(styleInvalidations.layoutReasons || [])
     .listing-card
       .listing-card-header
         h3.listing-card-title Invalidation reasons
-      .responsive
-        table
-          thead
-            tr
-              th Reason
-              th.number Style recalculations
-              th.number Layout
-          tbody
-            each reason in styleInvalidations.recalcReasons
+      if recalcChurnBuild[0].length > 0 || layoutChurnBuild[0].length > 0
+        h4.rendering-phase-heading Churn after the page was built
+        p.listing-card-help Invalidations from styles and scripts changing things that already existed — the actionable half.
+        .responsive
+          table
+            thead
               tr
-                td= reason.reason
-                td.number #{reason.count.toLocaleString('sv-SE')}
-                td.number –
-            each reason in styleInvalidations.layoutReasons
+                th Reason
+                th.number Style recalculations
+                th.number Layout
+            tbody
+              each reason in recalcChurnBuild[0]
+                tr
+                  td= reason.reason
+                  td.number #{reason.count.toLocaleString('sv-SE')}
+                  td.number –
+              each reason in layoutChurnBuild[0]
+                tr
+                  td= reason.reason
+                  td.number –
+                  td.number #{reason.count.toLocaleString('sv-SE')}
+      if recalcChurnBuild[1].length > 0 || layoutChurnBuild[1].length > 0
+        h4.rendering-phase-heading Building the page
+        p.listing-card-help Nodes being added to the document and its layout — expected work for the initial render (scripts inserting content later land here too). Shown for scale, not as a problem.
+        .responsive.invalidation-build
+          table
+            thead
               tr
-                td= reason.reason
-                td.number –
-                td.number #{reason.count.toLocaleString('sv-SE')}
+                th Reason
+                th.number Style recalculations
+                th.number Layout
+            tbody
+              each reason in recalcChurnBuild[1]
+                tr
+                  td= reason.reason
+                  td.number #{reason.count.toLocaleString('sv-SE')}
+                  td.number –
+              each reason in layoutChurnBuild[1]
+                tr
+                  td= reason.reason
+                  td.number –
+                  td.number #{reason.count.toLocaleString('sv-SE')}
   if styleInvalidations.sources && styleInvalidations.sources.length > 0
     - const invalidationMax = styleInvalidations.sources[0].count
     .listing-card
