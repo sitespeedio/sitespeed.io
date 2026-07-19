@@ -434,42 +434,242 @@
   font-size: 0.85rem;
 }
 
-// Render-blocking requests card (rendering/blocking.pug): one section
-// per Chrome blocking status, each with a toned title, a count and a
-// plain-language explanation.
-.rb-section {
-  margin-top: 18px;
+// Why-verdict: one tinted sentence that answers "why was rendering
+// delayed?" before the cards do. Two tones only — a warning names the
+// dominant cause, everything else is calm; no red, it is a summary,
+// not a grade.
+.rendering-verdict {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid $color--border;
+  border-radius: 10px;
+  padding: 13px 16px;
+  margin: 0 0 18px 0;
 
-  &:first-of-type {
-    margin-top: 4px;
-  }
-}
+  &--ok {
+    background: $color--ok-bg;
+    border-color: $color--ok-border;
 
-.rb-section-title {
-  font-size: 1rem;
-  margin: 0 0 2px 0;
-
-  &--error {
-    color: $color--error;
+    .rendering-verdict-dot {
+      background: $color--ok;
+    }
   }
 
   &--warning {
-    color: $color--warning;
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+
+    .rendering-verdict-dot {
+      background: $color--warning;
+    }
   }
 }
 
-.rb-section-count {
-  margin-left: 8px;
-  font-size: 0.85rem;
+.rendering-verdict-dot {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 6px;
+  background: $color--border;
+}
+
+.rendering-verdict-text {
+  margin: 0;
+  font-size: 0.95rem;
+
+  b {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Render-blocking requests card (rendering/blocking.pug): one table
+// for every Chrome blocking status — a pill per row carries the
+// status, and the span column (only when the run's HAR gave us start
+// offsets) draws each download window on the paint clock.
+.rb-table td {
+  vertical-align: middle;
+}
+
+.rb-request-name {
+  font-weight: $font--weight--semibold;
+}
+
+.rb-request-more {
+  color: $color--text-muted;
   font-weight: $font--weight--regular;
+  font-size: 0.85rem;
+}
+
+.rb-request-meta {
+  color: $color--text-muted;
+  font-size: 0.8rem;
+  margin-top: 1px;
+}
+
+.rb-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  border: 1px solid $color--border;
+  border-radius: 999px;
+  padding: 1px 8px;
+  margin-left: 8px;
+  vertical-align: 1px;
+  color: $color--text-secondary;
+
+  &--blocking {
+    color: $color--error;
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+
+  &--inbody {
+    color: $color--warning;
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+  }
+
+  &--maybe {
+    color: $color--text-secondary;
+    background: $color--surface;
+  }
+}
+
+.rb-row--quiet td {
+  color: $color--text-muted;
+
+  .rb-request-name {
+    font-weight: $font--weight--regular;
+  }
+}
+
+.rb-span-cell {
+  width: 38%;
+  min-width: 220px;
+}
+
+.rb-span {
+  position: relative;
+  height: 22px;
+}
+
+.rb-span-track {
+  position: absolute;
+  inset: 7px 0;
+  border-radius: 3px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+}
+
+.rb-span-bar {
+  position: absolute;
+  top: 6px;
+  height: 10px;
+  border-radius: 3px;
+  background: $color--blue;
+
+  &--doc {
+    background: $color--border-strong;
+  }
+
+  &--inbody {
+    background: $color--warning;
+  }
+
+  &--maybe {
+    background: repeating-linear-gradient(
+      45deg,
+      $color--warning-border 0 4px,
+      $color--warning-bg 4px 8px
+    );
+    border: 1px solid $color--warning-border;
+  }
+
+  &--lcp {
+    background: $color--ok;
+  }
+
+  // Clamped at the axis end because the request outlived the last
+  // paint — the fade says "continues", the row text says until when.
+  &--overflow {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    mask-image: linear-gradient(90deg, #000 70%, transparent);
+  }
+}
+
+// Positioned from the template: after the bar when there is room,
+// before it when the bar ends near the axis. The background chip keeps
+// the text readable if it ever has to sit on top of a bar.
+.rb-span-ms {
+  position: absolute;
+  top: -2px;
+  font-size: 0.7rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  background: $color--surface-card;
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+// FCP hairline through every bar row when LCP owns the axis end, so a
+// request reads against both paints; named by the FCP label on the
+// axis row below.
+.rb-span-fcpline {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  border-left: 1px dashed $color--border-strong;
+}
+
+.rb-axis-row td {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.rb-axis {
+  position: relative;
+  height: 20px;
+}
+
+.rb-axis-tick {
+  position: absolute;
+  top: 2px;
+  translate: -50%;
+  font-size: 0.7rem;
   color: $color--text-muted;
   font-variant-numeric: tabular-nums;
 }
 
-.rb-section-explain {
-  font-size: 0.875rem;
-  color: $color--text-muted;
-  margin: 0 0 10px 0;
+.rb-axis-marklabel {
+  position: absolute;
+  top: 2px;
+  translate: -50%;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  font-variant-numeric: tabular-nums;
+
+  &--end {
+    right: 0;
+    translate: 0;
+  }
+}
+
+.rb-empty {
+  border: 1px dashed $color--ok-border;
+  background: $color--ok-bg;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  margin: 0;
+
+  b {
+    color: $color--ok;
+  }
 }
 
 // Shown when the tab only has the why-section because the run had no

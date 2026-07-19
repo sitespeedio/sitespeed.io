@@ -80,6 +80,81 @@ include ../../_tableMixins
 - const reflowsMaterial = prePaintReflowTotal >= 10
 - const nonCompositedCount = whyCpu && whyCpu.nonCompositedAnimations ? whyCpu.nonCompositedAnimations.length : 0
 
+//- Render-blocking model for the verdict and the blocking card. When
+//- this run's HAR is in the locals (browsertime.har on the summary
+//- page, browsertime.run.har on run pages — the same gating the
+//- waterfall cross-link uses) the rows come from the median/current
+//- run's entries: one self-consistent set of timings, with start
+//- offsets so requests can be drawn on the paint clock. Without a HAR
+//- (Safari, old result data) the rows fall back to the pagexray shape,
+//- which has durations but no start times — the table stays, the bars
+//- disappear. rbHarAware means Chrome reported blocking status at all:
+//- only then is an empty list a real "nothing blocked rendering".
+- const whyHar = whyBt ? (isSummary ? whyBt.har : (whyBt.run && whyBt.run.har)) : undefined
+-
+  const rbNorm = v => String(v).split('_').join('').toLowerCase()
+  const RB_NOT_BLOCKING = ['nonblocking', 'nonblockingdynamic', 'dynamicallyinjectednonblocking']
+  const rbShortType = mime => {
+    if (!mime) return ''
+    if (mime.includes('css')) return 'css'
+    if (mime.includes('javascript') || mime.includes('ecmascript')) return 'javascript'
+    if (mime.includes('html')) return 'html'
+    if (mime.includes('font')) return 'font'
+    return mime.split('/').pop().split(';')[0]
+  }
+  let rbHarPage
+  let rbHarAware = false
+  if (whyHar && whyHar.log && whyHar.log.pages && whyHar.log.entries) {
+    //- Multi-page scripts store one HAR page per visited URL per run, so
+    //- match on _url first and only then index by run; a single-page HAR
+    //- without _url (older browsertime) still resolves.
+    const candidates = whyHar.log.pages.filter(p => p._url === daurl)
+    rbHarPage = isSummary ? candidates[medianRun.runIndex - 1] : (candidates.length === 1 ? candidates[0] : candidates[iteration - 1])
+    if (!rbHarPage && whyHar.log.pages.length === 1) rbHarPage = whyHar.log.pages[0]
+    rbHarAware = whyHar.log.entries.some(e => e._renderBlocking !== undefined)
+  }
+  let rbRows = []
+  let rbDocRow
+  let rbLcpRow
+  const rbLcpElement = whyTimings ? whyTimings.largestContentfulPaint : undefined
+  if (rbHarAware && rbHarPage) {
+    const rbPageStart = Date.parse(rbHarPage.startedDateTime)
+    const rbEntries = whyHar.log.entries.filter(e => e.pageref === rbHarPage.id)
+    for (const entry of rbEntries) {
+      const status = entry._renderBlocking
+      const start = Date.parse(entry.startedDateTime) - rbPageStart
+      const transfer = entry.response ? (entry.response._transferSize > 0 ? entry.response._transferSize : Math.max(entry.response.bodySize || 0, 0)) : 0
+      const row = { url: entry.request.url, start, end: start + entry.time, duration: entry.time, transfer, type: rbShortType(entry.response && entry.response.content ? entry.response.content.mimeType : '') }
+      if (!rbDocRow && entry.request.url === (rbHarPage._url || daurl)) rbDocRow = row
+      if (!rbLcpRow && rbLcpElement && rbLcpElement.url && entry.request.url === rbLcpElement.url) rbLcpRow = row
+      if (status && !RB_NOT_BLOCKING.includes(rbNorm(status))) {
+        row.status = rbNorm(status)
+        row.rawStatus = status
+        rbRows.push(row)
+      }
+    }
+  } else if (pagexray && pagexray.renderBlocking && pagexray.assets) {
+    rbRows = pagexray.assets.filter(a => a.renderBlocking && !RB_NOT_BLOCKING.includes(rbNorm(a.renderBlocking))).map(a => ({ url: a.url, duration: a.totalTime, transfer: a.transferSize, type: a.type, status: rbNorm(a.renderBlocking), rawStatus: a.renderBlocking }))
+  }
+  //- Worst first inside each status group: hard-blocking before in-body
+  //- parser blocking before potentially blocking, longest download first.
+  const RB_ORDER = { blocking: 0, inbodyparserblocking: 1, potentiallyblocking: 2 }
+  rbRows.sort((a, b) => ((a.status in RB_ORDER ? RB_ORDER[a.status] : 3) - (b.status in RB_ORDER ? RB_ORDER[b.status] : 3)) || (b.duration || 0) - (a.duration || 0))
+  const rbBlockingRows = rbRows.filter(r => r.status === 'blocking')
+  //- Only blocking requests that finished before first paint can have
+  //- held it up — Chrome marks late-injected resources (a reCAPTCHA
+  //- bundle loading seconds after onload) as blocking too, and claiming
+  //- the paint waited for those would be false. The verdict's "done by"
+  //- clause covers the pre-paint ones; the rest surface as late rows.
+  const rbBlockingBeforeFcp = whyFcp ? rbBlockingRows.filter(r => r.end !== undefined && r.end <= whyFcp) : []
+  const rbBlockingDone = rbBlockingBeforeFcp.length > 0 ? Math.round(Math.max.apply(null, rbBlockingBeforeFcp.map(r => r.end))) : undefined
+  //- The paint clock the bars draw on. Ends at the latest paint
+  //- milestone (LCP can trail FCP); a bar that outlives the axis is
+  //- clamped and marked, never drawn outside the card.
+  const rbAxisEnd = Math.max(whyFcp || 0, whyLcp || 0) || undefined
+  const rbHasSpans = !!(rbAxisEnd && rbHarAware && (rbDocRow || rbRows.some(r => r.start !== undefined)))
+  const hasRenderBlockingCard = rbHarAware || rbRows.length > 0
+
 //- Selector stats and style invalidations belong to the rendering
 //- story (they explain the style/layout work behind it). With
 //- --enableProfileRun the samples come marked from the profile run
@@ -110,7 +185,7 @@ include ../../_tableMixins
 - if (ttfbSlow) renderingLinks.push({href: '#slow-ttfb', label: 'TTFB'})
 - if (hasRecalculateStyle) renderingLinks.push({href: '#recalculate-style', label: 'Style recalculation'})
 - if (reflowsMaterial) renderingLinks.push({href: '#reflows-before-paint', label: 'Forced reflows'})
-- if (pagexray && pagexray.renderBlocking) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
+- if (hasRenderBlockingCard) renderingLinks.push({href: '#requests-render-blocking', label: 'Render-blocking requests'})
 - if (selectorStats && selectorStats.selectors && selectorStats.selectors.length > 0) renderingLinks.push({href: '#css-selectors', label: 'CSS selectors'})
 - if (styleInvalidations) renderingLinks.push({href: '#style-invalidations', label: 'Style invalidations'})
 - if (nonCompositedCount > 0) renderingLinks.push({href: '#main-thread-animations', label: 'Animations'})
@@ -342,30 +417,66 @@ if hasFrames
         span.cpu-kpi-sub at #{h.time.ms(whyCpu.frames.longestGap.startTime.toFixed(0))}
 
 //- Why was rendering delayed — the diagnostic half of the story.
-if ttfbSlow || hasRecalculateStyle || (pagexray && pagexray.renderBlocking) || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
+if ttfbSlow || hasRecalculateStyle || hasRenderBlockingCard || showRecalculateHint || reflowsMaterial || nonCompositedCount > 0
   h3 Why was rendering delayed?
 
-//- The server answer comes before everything else in the render story,
-//- so a slow TTFB leads the why-list. One number carries the message —
-//- a note with the share of FCP for scale, not a card of tiles.
-if ttfbSlow
+//- The verdict answers the section heading before the cards do, built
+//- from milestones rather than sums (the document and the blocking
+//- requests overlap — adding their durations double-counts): first
+//- byte, last blocking request done, first paint; whatever first paint
+//- time those leave unexplained is style and layout work. It absorbs
+//- the old standalone slow-TTFB note (same 800 ms Web Vitals cutoff as
+//- the Metrics tab's TTFB tile, same waterfall cross-link), so the
+//- #slow-ttfb anchor now lands here. The FCP cutoff is Web Vitals'
+//- good boundary. Only two tones on purpose: a warning names the
+//- dominant cause, everything else is calm — it is a summary, not a
+//- grade, so no red.
+- const fcpSlow = !!(whyFcp && whyFcp > 1800)
+- const verdictTone = (ttfbSlow || fcpSlow) ? 'warning' : 'ok'
+- const rbResidual = rbHarAware && whyFcp && rbBlockingDone && rbBlockingDone < whyFcp ? Math.round(whyFcp - Math.max(rbBlockingDone, whyTtfb || 0)) : undefined
+- const rbLateBlocking = whyFcp && whyLcp && whyLcp - whyFcp > 100 ? rbRows.filter(r => r.status === 'blocking' && r.end !== undefined && r.end > whyFcp && r.end <= whyLcp) : []
+if whyFcp || ttfbSlow
   a#slow-ttfb
-  p.rendering-why-note
-    | The server took&nbsp;
-    b #{h.time.ms(whyTtfb)}
-    | &nbsp;to deliver the first byte
-    if whyFcp
-      |  (#{Math.round(whyTtfb / whyFcp * 100)} % of the time to First Contentful Paint)
-    | . Nothing can render before the first byte arrives, and Google Web Vitals considers a TTFB over 800 ms in need of improvement.
-    //- The Waterfall tab only exists when the run produced a HAR — don't
-    //- render a dead cross-link without one. The HAR sits on
-    //- browsertime.har on the summary page and browsertime.run.har on
-    //- run pages, mirroring how each page's tabs.pug gates the tab.
-    - const whyHar = whyBt ? (isSummary ? whyBt.har : (whyBt.run && whyBt.run.har)) : undefined
-    if whyHar
-      | &nbsp;
-      a(href='#waterfall', onclick='const waterfallTab = document.querySelector("#tabs #waterfall"); if (waterfallTab) selectTab(waterfallTab, false)') See the request timing on the Waterfall tab
-      | .
+  .rendering-verdict(class='rendering-verdict--' + verdictTone)
+    span.rendering-verdict-dot
+    p.rendering-verdict-text
+      if ttfbSlow
+        b The server dominated the wait.
+        |  The first byte took&nbsp;
+        b #{h.time.ms(whyTtfb)}
+        if whyFcp
+          |  (#{Math.round(whyTtfb / whyFcp * 100)} % of the time to First Contentful Paint)
+        | &nbsp;— nothing can render before it arrives, and Google Web Vitals considers a TTFB over 800 ms in need of improvement.
+        if whyHar
+          | &nbsp;
+          a(href='#waterfall', onclick='const waterfallTab = document.querySelector("#tabs #waterfall"); if (waterfallTab) selectTab(waterfallTab, false)') See the request timing on the Waterfall tab
+          | .
+      else if fcpSlow
+        b First paint took #{h.time.ms(whyFcp)}.
+      else
+        b Rendering was not meaningfully delayed.
+      if whyFcp
+        |  First paint landed at&nbsp;
+        b #{h.time.ms(whyFcp)}
+        if !ttfbSlow && whyTtfb
+          |  on a #{h.time.ms(whyTtfb)} first byte
+        if rbHarAware && rbRows.length === 0
+          | , with no render-blocking requests
+        else if rbBlockingDone
+          | ; the #{rbBlockingBeforeFcp.length} render-blocking #{rbBlockingBeforeFcp.length === 1 ? 'request was' : 'requests were'} done by #{h.time.ms(rbBlockingDone)}
+          if rbResidual !== undefined && rbResidual > 100
+            |  and the remaining ~#{h.time.ms(rbResidual)} is style and layout work
+        else if rbHarAware && rbBlockingRows.length > 0 && rbBlockingRows.every(r => r.end !== undefined)
+          | ; none of the #{rbBlockingRows.length} render-blocking #{rbBlockingRows.length === 1 ? 'request' : 'requests'} held it up — #{rbBlockingRows.length === 1 ? 'it' : 'they'} loaded after the paint
+        | .
+      if whyFcp && whyLcp && whyLcp - whyFcp > 100
+        |  The largest paint followed at&nbsp;
+        b #{h.time.ms(whyLcp)}
+        | .
+        if rbLateBlocking.length > 0
+          |  Note #{h.assetName(rbLateBlocking[0].url).name} finished at #{h.time.ms(Math.round(rbLateBlocking[0].end))}, between first and largest paint.
+        if rbLcpElement && rbLcpElement.url && rbLcpElement.loadTime && whyLcp - rbLcpElement.loadTime > 300
+          |  The LCP image itself was downloaded by #{h.time.ms(Math.round(rbLcpElement.loadTime))} — the wait was render work, not the network.
 
 if hasRecalculateStyle
   a#recalculate-style

@@ -1,52 +1,171 @@
-//- Included from rendering/index.pug, which defines `pagexray` as the
-//- run (iteration page) or pageSummary (summary page) shape — or
-//- undefined when the pagexray plugin didn't run, hence the guard.
-if pagexray && pagexray.renderBlocking
+//- Included from rendering/index.pug, which builds the render-blocking
+//- model (rbRows, rbDocRow, rbLcpRow, rbHasSpans, rbAxisEnd,
+//- rbHarAware) — HAR-driven with start offsets when this run's HAR is
+//- in the locals, pagexray-driven without them otherwise. One table
+//- for every blocking status: the pill on the row carries what used to
+//- be a section per status. Pre-sorted worst-first by the model, so the
+//- table is deliberately not sortable — sorting would break the doc /
+//- summary / LCP context rows apart from the requests.
+if hasRenderBlockingCard
   a#requests-render-blocking
-  //- Chrome ships the status in two spelling families (potentially_blocking
-  //- AND potentiallyblocking can appear in the same HAR, depending on which
-  //- Chrome source browsertime got the value from) — normalize before
-  //- matching. non_blocking and non_blocking_dynamic (a dynamically
-  //- injected resource that doesn't block — Chrome's more specific
-  //- flavour of non_blocking) are explicitly not render blocking and are
-  //- excluded (the old table listed them, and pagexray's page counters
-  //- even count them as blocking).
-  - const rbNorm = v => String(v).split('_').join('').toLowerCase()
-  - const RB_NOT_BLOCKING = ['nonblocking', 'nonblockingdynamic', 'dynamicallyinjectednonblocking']
-  - const renderBlockingAssets = pagexray.assets.filter(a => a.renderBlocking && !RB_NOT_BLOCKING.includes(rbNorm(a.renderBlocking)))
-  //- Chrome's renderBlocking enum, one section per status. Friendly
-  //- names and a one-line explanation per section because the raw
-  //- values (in_body_parser_blocking) mean nothing to most readers.
+  //- Chrome ships the status in two spelling families
+  //- (potentially_blocking AND potentiallyblocking can appear in the
+  //- same HAR) — the model normalized them; unknown statuses render
+  //- their raw value so nothing is hidden.
   -
-    const RB_SECTIONS = [
-      { key: 'blocking', label: 'Blocking', tone: 'error', explain: 'The browser paints nothing until these are downloaded and processed; they directly delay first paint and LCP. Load JavaScript with defer or async, and keep non-critical CSS out of the critical path with media attributes.' },
-      { key: 'inbodyparserblocking', label: 'Blocks the body parser', tone: 'warning', explain: 'Loaded inside the body in a way that halts the HTML parser: nothing after them in the document can render until they finish. Move them out of the body or load them with defer or async.' },
-      { key: 'potentiallyblocking', label: 'Potentially blocking', tone: '', explain: 'Chrome could not tell up front whether these block rendering; depending on how the page uses them, they may. Worth a look if the metrics above point at slow rendering.' }
-    ]
-    const known = new Set(RB_SECTIONS.map(x => x.key))
-    const other = renderBlockingAssets.filter(a => !known.has(rbNorm(a.renderBlocking)))
-    if (other.length > 0) RB_SECTIONS.push({ key: '__other', label: 'Other', tone: '', explain: 'Chrome reported a blocking status this report does not know about yet, shown here so nothing is hidden.', raw: true })
+    const RB_PILLS = {
+      blocking: { label: 'blocking', cls: 'rb-pill--blocking', explain: 'The browser paints nothing until this is downloaded and processed; it directly delays first paint and LCP.' },
+      inbodyparserblocking: { label: 'blocks parser in body', cls: 'rb-pill--inbody', explain: 'Loaded inside the body in a way that halts the HTML parser: nothing after it in the document can render until it finishes.' },
+      potentiallyblocking: { label: 'potentially blocking', cls: 'rb-pill--maybe', explain: 'Chrome could not tell up front whether this blocks rendering; depending on how the page uses it, it may.' }
+    }
+    //- Cap the list so a 20-stylesheet page stays readable; the summary
+    //- row keeps the totals honest (no silent truncation).
+    const RB_CAP = 8
+    const rbShown = rbRows.slice(0, RB_CAP)
+    const rbHidden = rbRows.slice(RB_CAP)
+    const rbHiddenTransfer = rbHidden.reduce((total, r) => total + (r.transfer || 0), 0)
+    const rbHiddenEnds = rbHidden.filter(r => r.end !== undefined).map(r => r.end)
+    const rbHiddenDone = rbHiddenEnds.length === rbHidden.length && rbHidden.length > 0 ? Math.round(Math.max.apply(null, rbHiddenEnds)) : undefined
+    const rbTotalTransfer = rbRows.reduce((total, r) => total + (r.transfer || 0), 0)
+    const rbPct = v => Math.min(100, Math.max(0, v / rbAxisEnd * 100))
+    const rbSpanHeader = 'When it loaded'
+    //- Which paint owns the axis end, for the overflow label and copy.
+    const rbLcpOwnsAxis = !!(whyLcp && whyLcp > (whyFcp || 0))
+    const rbEndName = rbLcpOwnsAxis ? 'LCP' : 'FCP'
+    //- FCP gets a hairline through every bar row when LCP owns the axis
+    //- end, so each request reads against BOTH paints. Skipped when the
+    //- two paints coincide — the axis end mark is both.
+    const rbFcpLine = rbLcpOwnsAxis && whyFcp && rbPct(whyFcp) < 97 ? rbPct(whyFcp) : undefined
+    //- The duration label goes after the bar when there is room, before
+    //- it when the bar ends near the axis, and stays right-aligned only
+    //- when the bar covers most of the track (the label's background
+    //- chip keeps it readable on top of a bar).
+    const rbLabelStyle = (startPct, endPct) => {
+      if (endPct <= 68) return 'left: ' + (endPct + 1.5).toFixed(2) + '%'
+      if (startPct >= 30) return 'right: ' + (100 - startPct + 1.5).toFixed(2) + '%'
+      return 'right: 0.5%'
+    }
   .listing-card
     .listing-card-header
       h3.listing-card-title Render blocking requests
-      span.listing-card-meta #{renderBlockingAssets.length} #{renderBlockingAssets.length === 1 ? 'asset' : 'assets'}
-    each section in RB_SECTIONS
-      - const sectionAssets = (section.key === '__other' ? other : renderBlockingAssets.filter(a => rbNorm(a.renderBlocking) === section.key)).sort((a, b) => (b.transferSize || 0) - (a.transferSize || 0))
-      if sectionAssets.length > 0
-        .rb-section
-          h4.rb-section-title(class=section.tone ? 'rb-section-title--' + section.tone : undefined)
-            | #{section.label}
-            span.rb-section-count #{sectionAssets.length}
-          p.rb-section-explain= section.explain
-          .responsive
-            table(data-sortable, id='renderBlocking-' + section.key)
-              +rowHeading(section.raw ? ['URL', 'Type', 'Transfer', 'Total time', 'Status'] : ['URL', 'Type', 'Transfer', 'Total time'])
-              each asset in sectionAssets
-                tr
-                  td.url.assetsurl(data-title='URL')
-                    a(href=asset.url, title=asset.url)= h.shortAsset(asset.url)
-                  td(data-title='Type') #{asset.type}
-                  td.number(data-title='Transfer', data-value=asset.transferSize || 0) #{h.size.format(asset.transferSize || 0)}
-                  td.number(data-title='Total time', data-value=asset.totalTime || 0) #{h.time.ms(asset.totalTime || 0)}
-                  if section.raw
-                    td(data-title='Status') #{asset.renderBlocking.split('_').join(' ')}
+      span.listing-card-meta #{rbRows.length} #{rbRows.length === 1 ? 'request' : 'requests'}#{rbTotalTransfer > 0 ? ' · ' + h.size.format(rbTotalTransfer) : ''}
+    p.listing-card-help
+      | Blocking requests delay both paints: the browser renders nothing until they arrive, so they push First Contentful Paint and everything after it, including the largest paint (LCP). Requests that block the parser inside the body stall everything after them in the document. Load JavaScript with defer or async, and keep non-critical CSS off the critical path with media attributes.
+      if rbHasSpans
+        |  Bars show when each request loaded on a clock that runs to the last paint#{rbFcpLine !== undefined ? ' (the dashed line is FCP, the clock ends at LCP)' : ''}; the gap after the bars is style and layout work.
+    if rbHarAware && rbRows.length === 0
+      p.rb-empty
+        b None.
+        |  Nothing except the document itself blocked rendering.
+    else
+      .responsive
+        table.rb-table
+          +rowHeading(rbHasSpans ? ['Request', rbSpanHeader, 'Transfer', 'Download'] : ['Request', 'Type', 'Transfer', 'Download'])
+          //- The document is context, not a finding: nothing paints
+          //- before it, so the quiet row anchors the bars that follow.
+          if rbHasSpans && rbDocRow
+            - const docStartPct = rbPct(rbDocRow.start)
+            - const docEndPct = rbPct(Math.min(rbDocRow.end, rbAxisEnd))
+            tr.rb-row--quiet
+              td.rb-request(data-title='Request')
+                .rb-request-name document
+                .rb-request-meta #{h.assetName(rbDocRow.url).host}#{whyTtfb ? ' · TTFB ' + h.time.ms(whyTtfb) : ''}
+              td.rb-span-cell(data-title=rbSpanHeader)
+                .rb-span
+                  span.rb-span-track
+                  span.rb-span-bar.rb-span-bar--doc(style=`left: ${docStartPct.toFixed(2)}%; width: ${(docEndPct - docStartPct).toFixed(2)}%`)
+                  if rbFcpLine !== undefined
+                    span.rb-span-fcpline(style=`left: ${rbFcpLine.toFixed(2)}%`)
+                  span.rb-span-ms(style=rbLabelStyle(docStartPct, docEndPct)) #{h.time.ms(Math.round(rbDocRow.end))}
+              td.number(data-title='Transfer') #{h.size.format(rbDocRow.transfer || 0)}
+              td.number(data-title='Download') #{h.time.ms(Math.round(rbDocRow.duration))}
+          each row in rbShown
+            - const named = h.assetName(row.url)
+            - const pill = RB_PILLS[row.status]
+            - const hasBar = rbHasSpans && row.start !== undefined && row.start < rbAxisEnd
+            - const overflows = hasBar && row.end > rbAxisEnd
+            - const barWidth = hasBar ? rbPct(Math.min(row.end, rbAxisEnd)) - rbPct(row.start) : 0
+            tr
+              td.rb-request(data-title='Request')
+                .rb-request-name
+                  a(href=row.url, title=row.url)= named.name
+                  if named.moduleCount > 1
+                    span.rb-request-more  + #{named.moduleCount - 1} more modules
+                  if pill
+                    span.rb-pill(class=pill.cls, title=pill.explain)= pill.label
+                  else
+                    span.rb-pill(title='Chrome reported a blocking status this report does not know about yet.')= String(row.rawStatus).split('_').join(' ')
+                .rb-request-meta #{row.type ? row.type + ' · ' : ''}#{named.batch ? named.batch + ' · ' : ''}#{named.host}
+              if rbHasSpans
+                - const rowStartPct = hasBar ? rbPct(row.start) : undefined
+                - const rowEndPct = hasBar ? rbPct(Math.min(row.end, rbAxisEnd)) : undefined
+                td.rb-span-cell(data-title=rbSpanHeader)
+                  .rb-span
+                    span.rb-span-track
+                    if hasBar
+                      span.rb-span-bar(class=(row.status === 'potentiallyblocking' ? 'rb-span-bar--maybe' : row.status === 'inbodyparserblocking' ? 'rb-span-bar--inbody' : undefined) + (overflows ? ' rb-span-bar--overflow' : ''), style=`left: ${rowStartPct.toFixed(2)}%; width: ${Math.max(barWidth, 0.8).toFixed(2)}%`)
+                      if rbFcpLine !== undefined
+                        span.rb-span-fcpline(style=`left: ${rbFcpLine.toFixed(2)}%`)
+                      span.rb-span-ms(style=rbLabelStyle(rowStartPct, rowEndPct), title=overflows ? 'Still downloading when the last paint happened' : undefined) #{h.time.ms(Math.round(row.duration))}#{overflows ? ' · past ' + rbEndName : ''}
+                    else if row.start !== undefined
+                      span.rb-span-ms(style='right: 0.5%') loaded after #{rbEndName}, at #{h.time.ms(Math.round(row.start))}
+              else
+                td(data-title='Type') #{row.type}
+              td.number(data-title='Transfer') #{h.size.format(row.transfer || 0)}
+              td.number(data-title='Download') #{h.time.ms(Math.round(row.duration || 0))}
+          if rbHidden.length > 0
+            tr.rb-row--quiet.rb-row--summary
+              td.rb-request(data-title='Request') #{rbHidden.length} more #{rbHidden.length === 1 ? 'request' : 'requests'}
+              if rbHasSpans
+                td.rb-span-cell(data-title=rbSpanHeader)
+                  .rb-span
+                    span.rb-span-track
+                    if rbFcpLine !== undefined
+                      span.rb-span-fcpline(style=`left: ${rbFcpLine.toFixed(2)}%`)
+                    if rbHiddenDone !== undefined
+                      span.rb-span-ms(style='right: 0.5%') all done by #{h.time.ms(rbHiddenDone)}
+              else
+                td
+              td.number(data-title='Transfer') #{h.size.format(rbHiddenTransfer)}
+              td.number(data-title='Download')
+          //- The LCP resource is the other half of "what did the paint
+          //- wait for" — a green context row, only when it is a request
+          //- (a text LCP has no row) and only when bars are drawn.
+          if rbHasSpans && rbLcpRow
+            - const lcpStartPct = rbPct(rbLcpRow.start)
+            - const lcpEndPct = rbPct(Math.min(rbLcpRow.end, rbAxisEnd))
+            tr.rb-row--quiet
+              td.rb-request(data-title='Request')
+                .rb-request-name LCP resource
+                .rb-request-meta
+                  a(href=rbLcpRow.url, title=rbLcpRow.url)= h.assetName(rbLcpRow.url).name
+                  | #{' — downloaded by ' + h.time.ms(Math.round(rbLcpRow.end)) + (whyLcp ? ', rendered at ' + h.time.ms(Math.round(whyLcp)) : '')}
+              td.rb-span-cell(data-title=rbSpanHeader)
+                .rb-span
+                  span.rb-span-track
+                  span.rb-span-bar.rb-span-bar--lcp(style=`left: ${lcpStartPct.toFixed(2)}%; width: ${Math.max(lcpEndPct - lcpStartPct, 0.8).toFixed(2)}%`)
+                  if rbFcpLine !== undefined
+                    span.rb-span-fcpline(style=`left: ${rbFcpLine.toFixed(2)}%`)
+                  span.rb-span-ms(style=rbLabelStyle(lcpStartPct, lcpEndPct)) #{h.time.ms(Math.round(rbLcpRow.duration))}
+              td.number(data-title='Transfer') #{h.size.format(rbLcpRow.transfer || 0)}
+              td.number(data-title='Download') #{h.time.ms(Math.round(rbLcpRow.duration))}
+          if rbHasSpans
+            - const rbEndLabel = rbLcpOwnsAxis ? 'LCP ' + h.time.ms(Math.round(whyLcp)) : 'FCP ' + h.time.ms(Math.round(whyFcp))
+            - const rbBothLabel = whyLcp && whyFcp && Math.abs(whyLcp - whyFcp) <= 100 ? 'FCP · LCP ' + h.time.ms(Math.round(Math.max(whyLcp, whyFcp))) : undefined
+            tr.rb-axis-row
+              td
+              td
+                .rb-axis
+                  //- Ticks give scale, the paint labels carry the
+                  //- meaning; the FCP label names the dashed line that
+                  //- runs through the rows above. Ticks that would sit
+                  //- under a paint label are skipped — colliding text
+                  //- is worse than a missing tick.
+                  each tick in [0, 25, 50, 75]
+                    if (rbFcpLine === undefined || Math.abs(tick - rbFcpLine) >= 9) && (tick !== 75 || !rbBothLabel)
+                      span.rb-axis-tick(style=`left: ${tick}%`) #{tick === 0 ? '0' : h.time.ms(Math.round(rbAxisEnd * tick / 100))}
+                  if rbFcpLine !== undefined
+                    span.rb-axis-marklabel(style=`left: ${rbFcpLine.toFixed(2)}%`) FCP #{h.time.ms(Math.round(whyFcp))}
+                  span.rb-axis-marklabel.rb-axis-marklabel--end= rbBothLabel || rbEndLabel
+              td
+              td
