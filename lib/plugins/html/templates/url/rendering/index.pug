@@ -148,7 +148,11 @@ include ../../_tableMixins
         rbFontRows.push(row)
       }
     }
-    rbFontRows = rbFontRows.toSorted((a, b) => b.end - a.end).slice(0, 3).toSorted((a, b) => a.start - b.start)
+    //- Materiality floor: on repeat-view tests every font comes from
+    //- cache in a millisecond or two — three 0 ms rows explain
+    //- nothing. A font has to have cost real download time to earn a
+    //- context row.
+    rbFontRows = rbFontRows.filter(f => f.duration >= 10).toSorted((a, b) => b.end - a.end).slice(0, 3).toSorted((a, b) => a.start - b.start)
   } else if (pagexray && pagexray.renderBlocking && pagexray.assets) {
     rbRows = pagexray.assets.filter(a => a.renderBlocking && !RB_NOT_BLOCKING.includes(rbNorm(a.renderBlocking))).map(a => ({ url: a.url, duration: a.totalTime, transfer: a.transferSize, type: a.type, status: rbNorm(a.renderBlocking), rawStatus: a.renderBlocking }))
   }
@@ -449,7 +453,21 @@ if ttfbSlow || hasRecalculateStyle || hasRenderBlockingCard || showRecalculateHi
 //- grade, so no red.
 - const fcpSlow = !!(whyFcp && whyFcp > 1800)
 - const verdictTone = (ttfbSlow || fcpSlow) ? 'warning' : 'ok'
-- const rbResidual = rbHarAware && whyFcp && rbBlockingDone && rbBlockingDone < whyFcp ? Math.round(whyFcp - Math.max(rbBlockingDone, whyTtfb || 0)) : undefined
+//- The residual window is not only style and layout: web fonts can be
+//- downloading through it (smashingmagazine: fonts loading until 94 %
+//- of the paint clock while the old copy claimed pure style work),
+//- and the trace has real numbers for part of it — recalc time before
+//- FCP and pre-FCP forced reflows. Say what is known instead of
+//- hand-waving; skip the parenthesis when the measured sum would
+//- exceed the residual (overlap accounting can under throttle). With
+//- nothing blocking, the residual anchors on the document instead —
+//- the zero-blocking pages are exactly where the doc→paint gap begs
+//- for an explanation.
+- const rbResidualStart = !whyFcp ? undefined : (rbBlockingDone ? Math.max(rbBlockingDone, whyTtfb || 0) : (rbDocRow ? Math.max(Math.round(rbDocRow.end), whyTtfb || 0) : undefined))
+- const rbResidual = rbHarAware && rbResidualStart !== undefined && rbResidualStart < whyFcp ? Math.round(whyFcp - rbResidualStart) : undefined
+- const rbResidualFonts = rbResidualStart === undefined ? [] : rbFontRows.filter(f => f.end > rbResidualStart && f.end <= whyFcp)
+- const rbResidualReflowMs = preFcpReflows.reduce((total, r) => total + r.duration, 0)
+- const rbResidualMeasuredMs = Math.round(((recalculateStyle && recalculateStyle.beforeFCP && recalculateStyle.beforeFCP.durationInMillis) || 0) + rbResidualReflowMs)
 - const rbLateBlocking = whyFcp && whyLcp && whyLcp - whyFcp > 100 ? rbRows.filter(r => r.status === 'blocking' && r.end !== undefined && r.end > whyFcp && r.end <= whyLcp) : []
 if whyFcp || ttfbSlow
   a#slow-ttfb
@@ -478,10 +496,16 @@ if whyFcp || ttfbSlow
           |  on a #{h.time.ms(whyTtfb)} first byte
         if rbHarAware && rbRows.length === 0
           | , with no render-blocking requests
+          if rbResidual !== undefined && rbResidual > 100
+            |  — the ~#{h.time.ms(rbResidual)} after the document is style#{rbResidualFonts.length > 0 ? ', layout and web-font loading' : ' and layout work'}
+            if rbResidualMeasuredMs >= 5 && rbResidualMeasuredMs <= rbResidual
+              |  (#{h.time.ms(rbResidualMeasuredMs)} of it measured style recalculation#{rbResidualReflowMs >= 1 ? ' and forced reflows' : ''})
         else if rbBlockingDone
           | ; the #{rbBlockingBeforeFcp.length} render-blocking #{rbBlockingBeforeFcp.length === 1 ? 'request was' : 'requests were'} done by #{h.time.ms(rbBlockingDone)}
           if rbResidual !== undefined && rbResidual > 100
-            |  and the remaining ~#{h.time.ms(rbResidual)} is style and layout work
+            |  and the remaining ~#{h.time.ms(rbResidual)} is style#{rbResidualFonts.length > 0 ? ', layout and web-font loading' : ' and layout work'}
+            if rbResidualMeasuredMs >= 5 && rbResidualMeasuredMs <= rbResidual
+              |  (#{h.time.ms(rbResidualMeasuredMs)} of it measured style recalculation#{rbResidualReflowMs >= 1 ? ' and forced reflows' : ''})
         else if rbHarAware && rbBlockingRows.length > 0 && rbBlockingRows.every(r => r.end !== undefined)
           | ; none of the #{rbBlockingRows.length} render-blocking #{rbBlockingRows.length === 1 ? 'request' : 'requests'} held it up — #{rbBlockingRows.length === 1 ? 'it' : 'they'} loaded after the paint
         | .
@@ -538,6 +562,11 @@ if hasRecalculateStyle
           .metric-tile
             span.metric-tile-label Largest recalculation
             span.metric-tile-value #{recalc.maxElements} elements#{recalc.maxDurationInMillis !== undefined ? ' · ' + h.time.ms(recalc.maxDurationInMillis) : ''}
+    //- Scale for the numbers, mirroring the forced-reflows share note:
+    //- milliseconds alone don't say whether recalculation mattered.
+    - const recalcFcpShare = recalculateStyle.beforeFCP && whyFcp ? Math.round(recalculateStyle.beforeFCP.durationInMillis / whyFcp * 1000) / 10 : undefined
+    if recalcFcpShare !== undefined
+      p.rendering-why-note The recalculation work before first paint is #{recalcFcpShare} % of the time to First Contentful Paint.
 else if showRecalculateHint
   //- The recalculate-style counts come from parsing a Chrome timeline
   //- trace, gated on --cpu / --chrome.timeline. The matching Firefox
