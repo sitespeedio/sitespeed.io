@@ -155,18 +155,19 @@
 //
 // Bar lists for categories / events / per-request / per-tool
 //
+// The container owns the grid and rows are display: contents, so all
+// rows in a card share the same column tracks: the value column sizes
+// to the widest row and every bar track starts at the same x.
 .cpu-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 2fr minmax(80px, auto);
+  gap: 5px 12px;
+  align-items: center;
   margin-bottom: 1.5rem;
 }
 
 .cpu-bar-row {
-  display: grid;
-  grid-template-columns: minmax(140px, 1fr) 2fr minmax(80px, auto);
-  gap: 12px;
-  align-items: center;
+  display: contents;
   font-size: 0.9rem;
 }
 
