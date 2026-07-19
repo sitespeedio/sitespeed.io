@@ -752,10 +752,30 @@ if styleInvalidations
     -
       const invalidationGroups = []
       if (invalidationsTimed) {
-        const windowed = (list, after) => list.map(r => ({ reason: r.reason, count: after ? (r.afterFirstPaint || 0) : r.count - (r.afterFirstPaint || 0) })).filter(r => r.count > 0)
+        const recalcList = styleInvalidations.recalcReasons
+        const layoutList = styleInvalidations.layoutReasons || []
+        const winOf = (list, pick) => list.map(r => ({ reason: r.reason, count: pick(r) })).filter(r => r.count > 0)
+        const afterFcpOf = r => r.afterFirstPaint || 0
+        const afterLcpOf = r => r.afterLargestContentfulPaint || 0
+        //- Three windows when the LCP boundary is there and usable:
+        //- invalidations BETWEEN the paints delayed the largest paint —
+        //- the sharpest bucket on a "why was rendering delayed" tab.
+        //- LCP can land before FCP in real traces; the between-window
+        //- is then not derivable by subtraction, so those runs keep the
+        //- plain first-paint split (the totals reveal the ordering).
+        const lcpTimed = recalcList.some(r => r.afterLargestContentfulPaint !== undefined) || layoutList.some(r => r.afterLargestContentfulPaint !== undefined)
+        const lcpUsable = lcpTimed && (styleInvalidations.styleRecalcsAfterLargestContentfulPaint || 0) <= (styleInvalidations.styleRecalcsAfterFirstPaint || 0) && (styleInvalidations.layoutInvalidationsAfterLargestContentfulPaint || 0) <= (styleInvalidations.layoutInvalidationsAfterFirstPaint || 0)
+        let between
+        if (lcpUsable) {
+          between = { title: 'Between first and largest paint', help: 'Invalidations while the largest paint was still pending — these delayed it.', quiet: false, recalc: winOf(recalcList, r => Math.max(0, afterFcpOf(r) - afterLcpOf(r))), layout: winOf(layoutList, r => Math.max(0, afterFcpOf(r) - afterLcpOf(r))) }
+          if (between.recalc.length > 0 || between.layout.length > 0) invalidationGroups.push(between)
+          else between = undefined
+        }
         invalidationGroups.push(
-          { title: 'After first paint', help: 'Invalidations on a page the user was already looking at — the actionable half.', quiet: false, recalc: windowed(styleInvalidations.recalcReasons, true), layout: windowed(styleInvalidations.layoutReasons || [], true) },
-          { title: 'Before first paint — building the page', help: 'The page being constructed and styled for the first render. Expected work, shown for scale.', quiet: true, recalc: windowed(styleInvalidations.recalcReasons, false), layout: windowed(styleInvalidations.layoutReasons || [], false) }
+          between
+            ? { title: 'After the largest paint', help: 'Churn on the fully rendered page — wasted work and possible jank, but no paint delay.', quiet: false, recalc: winOf(recalcList, afterLcpOf), layout: winOf(layoutList, afterLcpOf) }
+            : { title: 'After first paint', help: 'Invalidations on a page the user was already looking at — the actionable half.', quiet: false, recalc: winOf(recalcList, afterFcpOf), layout: winOf(layoutList, afterFcpOf) },
+          { title: 'Before first paint — building the page', help: 'The page being constructed and styled for the first render. Expected work, shown for scale.', quiet: true, recalc: winOf(recalcList, r => r.count - afterFcpOf(r)), layout: winOf(layoutList, r => r.count - afterFcpOf(r)) }
         )
       } else {
         const split = (list, construction) => list.filter(r => INVALIDATION_CONSTRUCTION.includes(r.reason) === construction)
