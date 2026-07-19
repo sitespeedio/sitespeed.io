@@ -591,6 +591,13 @@
     background: $color--ok;
   }
 
+  // Fonts are context, not blocking work — hollow tint so they never
+  // read as part of the critical path.
+  &--font {
+    background: $color--info-bg;
+    border: 1px solid $color--info-border;
+  }
+
   // Clamped at the axis end because the request outlived the last
   // paint — the fade says "continues", the row text says until when.
   &--overflow {

@@ -118,9 +118,13 @@ include ../../_tableMixins
     rbHarAware = whyHar.log.entries.some(e => e._renderBlocking !== undefined)
   }
   let rbRows = []
+  let rbFontRows = []
   let rbDocRow
   let rbLcpRow
   const rbLcpElement = whyTimings ? whyTimings.largestContentfulPaint : undefined
+  //- Some servers ship fonts as application/octet-stream — fall back to
+  //- the file extension so those fonts still get a context row.
+  const rbIsFont = (type, url) => type === 'font' || /\.(woff2?|otf|ttf)([#?]|$)/i.test(url.split('?')[0])
   if (rbHarAware && rbHarPage) {
     const rbPageStart = Date.parse(rbHarPage.startedDateTime)
     const rbEntries = whyHar.log.entries.filter(e => e.pageref === rbHarPage.id)
@@ -135,8 +139,16 @@ include ../../_tableMixins
         row.status = rbNorm(status)
         row.rawStatus = status
         rbRows.push(row)
+      } else if (rbIsFont(row.type, row.url)) {
+        //- Web fonts are the classic "document done, text late" cause:
+        //- text renders invisible or in a fallback face while they
+        //- load. They are not render-blocking in Chrome's sense, so
+        //- they join as context rows — the latest-finishing fonts are
+        //- the interesting ones.
+        rbFontRows.push(row)
       }
     }
+    rbFontRows = rbFontRows.toSorted((a, b) => b.end - a.end).slice(0, 3).toSorted((a, b) => a.start - b.start)
   } else if (pagexray && pagexray.renderBlocking && pagexray.assets) {
     rbRows = pagexray.assets.filter(a => a.renderBlocking && !RB_NOT_BLOCKING.includes(rbNorm(a.renderBlocking))).map(a => ({ url: a.url, duration: a.totalTime, transfer: a.transferSize, type: a.type, status: rbNorm(a.renderBlocking), rawStatus: a.renderBlocking }))
   }
@@ -709,9 +721,13 @@ if styleInvalidations
     .cpu-kpi
       span.cpu-kpi-label Style recalculations
       span.cpu-kpi-value #{styleInvalidations.styleRecalcs.toLocaleString('sv-SE')}
+      if styleInvalidations.styleRecalcsAfterFirstPaint !== undefined
+        span.cpu-kpi-sub #{styleInvalidations.styleRecalcsAfterFirstPaint.toLocaleString('sv-SE')} after first paint
     .cpu-kpi
       span.cpu-kpi-label Layout invalidations
       span.cpu-kpi-value #{styleInvalidations.layoutInvalidations.toLocaleString('sv-SE')}
+      if styleInvalidations.layoutInvalidationsAfterFirstPaint !== undefined
+        span.cpu-kpi-sub #{styleInvalidations.layoutInvalidationsAfterFirstPaint.toLocaleString('sv-SE')} after first paint
   if styleInvalidations.triggers && styleInvalidations.triggers.length > 0
     .listing-card
       .listing-card-header
@@ -723,63 +739,58 @@ if styleInvalidations
             code #{trigger.kind}: #{trigger.name}
             span.cpu-anim-prop-count #{trigger.count}×
   if styleInvalidations.recalcReasons && styleInvalidations.recalcReasons.length > 0
-    //- "Added to layout" dominating the table is mostly the DOM being
-    //- built the first time — ranking it first sent readers chasing a
-    //- non-problem while the churn signal drowned below it. The split
-    //- is by reason category, not by timestamp, so it is approximate:
-    //- nodes inserted by scripts after load land in the construction
-    //- bucket too, which the whisper says out loud. A timestamp-based
-    //- split (before/after first paint) needs the trace and belongs
-    //- upstream in browsertime.
+    //- Two splits, best data wins. Browsertime 28.2+ stamps every
+    //- reason with afterFirstPaint from the trace timestamps — the
+    //- honest boundary: what invalidated after the user saw content is
+    //- churn, what came before is the page being built. Older data
+    //- falls back to guessing by reason CATEGORY ("Added to layout",
+    //- "Node was inserted into tree" are mostly construction) — an
+    //- approximation the whisper copy admits: post-load script
+    //- insertions land in the construction bucket too.
+    - const invalidationsTimed = styleInvalidations.recalcReasons.some(r => r.afterFirstPaint !== undefined) || (styleInvalidations.layoutReasons || []).some(r => r.afterFirstPaint !== undefined)
     - const INVALIDATION_CONSTRUCTION = ['Added to layout', 'Node was inserted into tree']
-    - const invalidationSplit = list => [list.filter(r => !INVALIDATION_CONSTRUCTION.includes(r.reason)), list.filter(r => INVALIDATION_CONSTRUCTION.includes(r.reason))]
-    - const recalcChurnBuild = invalidationSplit(styleInvalidations.recalcReasons)
-    - const layoutChurnBuild = invalidationSplit(styleInvalidations.layoutReasons || [])
+    -
+      const invalidationGroups = []
+      if (invalidationsTimed) {
+        const windowed = (list, after) => list.map(r => ({ reason: r.reason, count: after ? (r.afterFirstPaint || 0) : r.count - (r.afterFirstPaint || 0) })).filter(r => r.count > 0)
+        invalidationGroups.push(
+          { title: 'After first paint', help: 'Invalidations on a page the user was already looking at — the actionable half.', quiet: false, recalc: windowed(styleInvalidations.recalcReasons, true), layout: windowed(styleInvalidations.layoutReasons || [], true) },
+          { title: 'Before first paint — building the page', help: 'The page being constructed and styled for the first render. Expected work, shown for scale.', quiet: true, recalc: windowed(styleInvalidations.recalcReasons, false), layout: windowed(styleInvalidations.layoutReasons || [], false) }
+        )
+      } else {
+        const split = (list, construction) => list.filter(r => INVALIDATION_CONSTRUCTION.includes(r.reason) === construction)
+        invalidationGroups.push(
+          { title: 'Churn after the page was built', help: 'Invalidations from styles and scripts changing things that already existed — the actionable half.', quiet: false, recalc: split(styleInvalidations.recalcReasons, false), layout: split(styleInvalidations.layoutReasons || [], false) },
+          { title: 'Building the page', help: 'Nodes being added to the document and its layout — expected work for the initial render (scripts inserting content later land here too). Shown for scale, not as a problem.', quiet: true, recalc: split(styleInvalidations.recalcReasons, true), layout: split(styleInvalidations.layoutReasons || [], true) }
+        )
+      }
     .listing-card
       .listing-card-header
         h3.listing-card-title Invalidation reasons
-      if recalcChurnBuild[0].length > 0 || layoutChurnBuild[0].length > 0
-        h4.rendering-phase-heading Churn after the page was built
-        p.listing-card-help Invalidations from styles and scripts changing things that already existed — the actionable half.
-        .responsive
-          table
-            thead
-              tr
-                th Reason
-                th.number Style recalculations
-                th.number Layout
-            tbody
-              each reason in recalcChurnBuild[0]
+        if invalidationsTimed
+          span.listing-card-meta split at first paint
+      each group in invalidationGroups
+        if group.recalc.length > 0 || group.layout.length > 0
+          h4.rendering-phase-heading= group.title
+          p.listing-card-help= group.help
+          .responsive(class=group.quiet ? 'invalidation-build' : undefined)
+            table
+              thead
                 tr
-                  td= reason.reason
-                  td.number #{reason.count.toLocaleString('sv-SE')}
-                  td.number –
-              each reason in layoutChurnBuild[0]
-                tr
-                  td= reason.reason
-                  td.number –
-                  td.number #{reason.count.toLocaleString('sv-SE')}
-      if recalcChurnBuild[1].length > 0 || layoutChurnBuild[1].length > 0
-        h4.rendering-phase-heading Building the page
-        p.listing-card-help Nodes being added to the document and its layout — expected work for the initial render (scripts inserting content later land here too). Shown for scale, not as a problem.
-        .responsive.invalidation-build
-          table
-            thead
-              tr
-                th Reason
-                th.number Style recalculations
-                th.number Layout
-            tbody
-              each reason in recalcChurnBuild[1]
-                tr
-                  td= reason.reason
-                  td.number #{reason.count.toLocaleString('sv-SE')}
-                  td.number –
-              each reason in layoutChurnBuild[1]
-                tr
-                  td= reason.reason
-                  td.number –
-                  td.number #{reason.count.toLocaleString('sv-SE')}
+                  th Reason
+                  th.number Style recalculations
+                  th.number Layout
+              tbody
+                each reason in group.recalc
+                  tr
+                    td= reason.reason
+                    td.number #{reason.count.toLocaleString('sv-SE')}
+                    td.number –
+                each reason in group.layout
+                  tr
+                    td= reason.reason
+                    td.number –
+                    td.number #{reason.count.toLocaleString('sv-SE')}
   if styleInvalidations.sources && styleInvalidations.sources.length > 0
     - const invalidationMax = styleInvalidations.sources[0].count
     .listing-card
@@ -800,7 +811,15 @@ if styleInvalidations
                 | #{entry.label || h.shortAsset(entry.url, true)}
             .cpu-bar-track
               span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
-            span.cpu-bar-value #{entry.count.toLocaleString('sv-SE')}
+            span.cpu-bar-value
+              | #{entry.count.toLocaleString('sv-SE')}
+              //- "230 · 230 after first paint" reads clumsily — say
+              //- all/none when the split is one-sided.
+              if entry.afterFirstPaint !== undefined
+                - let afterWords = entry.afterFirstPaint.toLocaleString('sv-SE')
+                - if (entry.afterFirstPaint === entry.count) afterWords = 'all'
+                - if (entry.afterFirstPaint === 0) afterWords = 'none'
+                span.cpu-bar-sub  · #{afterWords} after first paint
 
 //- Non-composited animations are a jank signal, not a first-paint
 //- delay — one quiet cross-link is enough, the CPU tab owns the detail.
