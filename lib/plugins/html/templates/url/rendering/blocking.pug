@@ -53,11 +53,16 @@ if hasRenderBlockingCard
       | Blocking requests delay both paints: the browser renders nothing until they arrive, so they push First Contentful Paint and everything after it, including the largest paint (LCP). Requests that block the parser inside the body stall everything after them in the document. Load JavaScript with defer or async, and keep non-critical CSS off the critical path with media attributes.
       if rbHasSpans
         |  Bars show when each request loaded on a clock that runs to the last paint#{rbFcpLine !== undefined ? ' (the dashed line is FCP, the clock ends at LCP)' : ''}; the gap after the bars is style and layout work.
+      if rbHasSpans && rbFontRows.length > 0
+        |  Web fonts are context, not blockers: text renders invisible or in a fallback face while they load, so a font finishing after a paint is the classic reason text changed late.
     if rbHarAware && rbRows.length === 0
       p.rb-empty
         b None.
         |  Nothing except the document itself blocked rendering.
-    else
+    //- The context rows (document, web fonts, LCP resource) still tell
+    //- the paint-clock story when there is nothing blocking — the
+    //- empty note and the table are not mutually exclusive.
+    if rbRows.length > 0 || (rbHasSpans && (rbDocRow || rbLcpRow || rbFontRows.length > 0))
       .responsive
         table.rb-table
           +rowHeading(rbHasSpans ? ['Request', rbSpanHeader, 'Transfer', 'Download'] : ['Request', 'Type', 'Transfer', 'Download'])
@@ -149,6 +154,33 @@ if hasRenderBlockingCard
                   span.rb-span-ms(style=rbLabelStyle(lcpStartPct, lcpEndPct)) #{h.time.ms(Math.round(rbLcpRow.duration))}
               td.number(data-title='Transfer') #{h.size.format(rbLcpRow.transfer || 0)}
               td.number(data-title='Download') #{h.time.ms(Math.round(rbLcpRow.duration))}
+          //- Fonts as quiet context rows: the latest-finishing ones,
+          //- flagged when they landed after a paint the text was part
+          //- of. Hollow bars so they never read as blocking work.
+          each font in rbFontRows
+            - const named = h.assetName(font.url)
+            - const fontStartPct = rbPct(font.start)
+            - const fontHasBar = font.start < rbAxisEnd
+            - const fontEndPct = rbPct(Math.min(font.end, rbAxisEnd))
+            - const fontOverflows = fontHasBar && font.end > rbAxisEnd
+            - const fontLate = whyFcp && font.end > whyFcp
+            tr.rb-row--quiet
+              td.rb-request(data-title='Request')
+                .rb-request-name
+                  a(href=font.url, title=font.url)= named.name
+                .rb-request-meta web font · #{named.host}#{fontLate ? ' · finished after first paint' : ''}
+              td.rb-span-cell(data-title=rbSpanHeader)
+                .rb-span
+                  span.rb-span-track
+                  if fontHasBar
+                    span.rb-span-bar.rb-span-bar--font(class=fontOverflows ? 'rb-span-bar--overflow' : undefined, style=`left: ${fontStartPct.toFixed(2)}%; width: ${Math.max(fontEndPct - fontStartPct, 0.8).toFixed(2)}%`)
+                    if rbFcpLine !== undefined
+                      span.rb-span-fcpline(style=`left: ${rbFcpLine.toFixed(2)}%`)
+                    span.rb-span-ms(style=rbLabelStyle(fontStartPct, fontEndPct)) #{h.time.ms(Math.round(font.duration))}#{fontOverflows ? ' · past ' + rbEndName : ''}
+                  else
+                    span.rb-span-ms(style='right: 0.5%') loaded after #{rbEndName}, at #{h.time.ms(Math.round(font.start))}
+              td.number(data-title='Transfer') #{h.size.format(font.transfer || 0)}
+              td.number(data-title='Download') #{h.time.ms(Math.round(font.duration))}
           if rbHasSpans
             - const rbEndLabel = rbLcpOwnsAxis ? 'LCP ' + h.time.ms(Math.round(whyLcp)) : 'FCP ' + h.time.ms(Math.round(whyFcp))
             - const rbBothLabel = whyLcp && whyFcp && Math.abs(whyLcp - whyFcp) <= 100 ? 'FCP · LCP ' + h.time.ms(Math.round(Math.max(whyLcp, whyFcp))) : undefined
