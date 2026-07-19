@@ -672,6 +672,51 @@
   }
 }
 
+// Collapsed reference tables (the selector tables when the verdict says
+// they are not worth acting on). The summary is the only affordance —
+// keep it reading like a link, chevron included.
+.rendering-details {
+  margin: 0 0 18px 0;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: $font--weight--semibold;
+    color: $color--text-secondary;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 7px;
+      font-size: 0.7rem;
+      transition: rotate 0.12s;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  > summary + * {
+    margin-top: 12px;
+  }
+}
+
+// The construction half of the invalidation reasons — expected work,
+// quieted so the churn table above it reads as the finding.
+.invalidation-build {
+  opacity: 0.75;
+}
+
 // Shown when the tab only has the why-section because the run had no
 // playback media.
 .rendering-nomedia {
