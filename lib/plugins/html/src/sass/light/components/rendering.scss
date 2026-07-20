@@ -746,6 +746,22 @@
   opacity: 0.75;
 }
 
+// Plain-language reason label plus, on the reasons a developer can act
+// on, a muted one-line fix under it. The raw Chrome reason stays on the
+// label's title attribute for anyone who wants it.
+.invalidation-reason {
+  display: block;
+}
+
+.invalidation-reason-hint {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: $color--text-muted;
+  max-width: 52ch;
+}
+
 // Shown when the tab only has the why-section because the run had no
 // playback media.
 .rendering-nomedia {
