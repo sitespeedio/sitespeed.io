@@ -314,9 +314,23 @@ if hasVideo || hasFilmstrip
               | #{m.name}&nbsp;
               b #{h.time.ms(m.t)}
 
+        //- The CPU half of "why did nothing change here" while
+        //- scrubbing: long tasks as a thin band under the axis. Same
+        //- run-picking as the rest of the why-section. The Long Task
+        //- API keeps reporting past the recording end (the
+        //- visual-progress lane learned this the hard way), so bars
+        //- starting past the end are dropped and a straddler clamps.
+        - const whyPageinfo = whyBt ? (isSummary ? (whyBt.pageSummary && whyBt.pageSummary.browserScripts && whyBt.pageSummary.browserScripts[medianRun.runIndex - 1] ? whyBt.pageSummary.browserScripts[medianRun.runIndex - 1].pageinfo : undefined) : (whyBt.run ? whyBt.run.pageinfo : undefined)) : undefined
+        - const busyTasks = ((whyPageinfo && whyPageinfo.longTask) || []).filter(task => task.startTime < renderingEnd)
         .rendering-timeline#rendering-timeline(data-end=renderingEnd)
           .rendering-axis#rendering-axis
           .rendering-axis-fill#rendering-fill
+          if busyTasks.length > 0
+            .rendering-busy
+              each task in busyTasks
+                - const busyLeft = task.startTime / renderingEnd * 100
+                - const busyWidth = (Math.min(task.startTime + task.duration, renderingEnd) - task.startTime) / renderingEnd * 100
+                span.rendering-busy-bar(style='left: ' + busyLeft.toFixed(2) + '%; width: ' + Math.max(busyWidth, 0.4).toFixed(2) + '%', title='Main thread busy ' + Math.round(task.duration) + ' ms at ' + h.time.ms(Math.round(task.startTime)))
           .rendering-playhead#rendering-playhead
           - let lastFlagPct = -100
           - let lowLane = false
@@ -329,6 +343,8 @@ if hasVideo || hasFilmstrip
               span.rendering-flag-stem
           each t in ticks
             span.rendering-tick(style='left: ' + (t / renderingEnd * 100).toFixed(2) + '%') #{t / 1000}s
+        if busyTasks.length > 0
+          p.rendering-why-note The red band on the timeline marks when the main thread was busy with long tasks — moments when the page could not paint or respond, however the video looks.
 
       if hasVideo
         a.button.button-download.rendering-download(href=videoSrc, download=downloadName + '-video.mp4') Download video

@@ -148,7 +148,7 @@
 
 .rendering-timeline {
   position: relative;
-  height: 76px;
+  height: 82px;
   margin-top: 18px;
   user-select: none;
 }
@@ -241,9 +241,31 @@
   }
 }
 
+// Long-task lane under the playback axis — when the main thread was
+// busy, the CPU half of "why did nothing change here". Bars past the
+// recording end are dropped in the template, a straddler clamps.
+.rendering-busy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 58px;
+  height: 4px;
+  pointer-events: none;
+}
+
+.rendering-busy-bar {
+  position: absolute;
+  top: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: $color--error;
+  opacity: 0.75;
+  pointer-events: auto;
+}
+
 .rendering-tick {
   position: absolute;
-  top: 60px;
+  top: 66px;
   translate: -50%;
   font-size: 0.7rem;
   font-variant-numeric: tabular-nums;
