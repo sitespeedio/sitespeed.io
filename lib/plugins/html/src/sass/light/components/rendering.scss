@@ -65,6 +65,19 @@
     outline: 2px solid $color--blue;
     outline-offset: 2px;
   }
+
+  // Toggle state (the lightbox Diff button) — same treatment as the
+  // active speed button so pressed reads consistently.
+  &[aria-pressed='true'] {
+    color: $color--white;
+    background: $color--blue;
+    border-color: $color--blue;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
 }
 
 .rendering-button--primary {
@@ -390,6 +403,28 @@
 }
 
 //
+// Visual instability heatmap (browsertime --videoParams.filmstripDiff).
+//
+
+.rendering-instability {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+
+  img {
+    max-width: min(340px, 100%);
+    height: auto;
+    border: 1px solid $color--border;
+    border-radius: 4px;
+  }
+}
+
+.rendering-instability-notes {
+  flex: 1 1 280px;
+}
+
+//
 // Lightbox — dependency-free frame viewer.
 //
 
@@ -436,6 +471,28 @@
   border: 1px solid $color--border;
   border-radius: $radius--sm;
   background: $color--white;
+}
+
+// file:// fallback for the lightbox diff: canvas pixel access is
+// blocked there, so the current frame blends over the previous in
+// difference mode — amplified and inverted, identical pixels read
+// white and changes dark. Approximate by design (no threshold, no
+// counts); the canvas path stays primary on http(s).
+.rendering-lightbox-blend {
+  position: relative;
+  isolation: isolate;
+  filter: brightness(4) invert(1) grayscale(1);
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  img + img {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: difference;
+  }
 }
 
 .rendering-lightbox-bar {
