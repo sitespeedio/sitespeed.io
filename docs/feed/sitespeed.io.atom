@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-07-18T05:52:50.116Z</updated>
+    <updated>2026-07-20T10:04:13.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,29 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Browsertime 28.2 #4862, with the report surfacing its new visual diagnostics #4863. <code>--videoParams.filmstripDiff</code> adds a Diff toggle in the filmstrip lightbox (working on file:// too, where a tainted canvas used to block it) and a heatmap that tells a restless element apart from sub-pixel noise that inflates Last Visual Change and Speed Index. <code>--videoParams.noiseTolerance</code> ignores that noise at the source.<br>
+- The Rendering tab&#39;s &quot;Why was rendering delayed?&quot; section now opens with a verdict, and the render-blocking requests are one sortable table named by file (ResourceLoader <code>load.php</code> batches by their first module) with each download drawn on a clock ending at the paint, so a late-injected resource is visibly not the culprit Chrome&#39;s blocking flag makes it look like. Falls back to the pagexray shape without bars when the run has no HAR (Safari, old data) #4856 #4859.<br>
+- The Rendering tab&#39;s style cards lead with a verdict on whether to act and where, and Chrome&#39;s raw invalidation reasons (<code>Affected by :has()</code>, <code>Inline CSS style declaration was mutated</code>) are translated to plain language with a one-line fix on the four a developer can act on #4857 #4861.<br>
+- Web fonts, the classic &quot;document done, text late&quot; cause, appear in the render-blocking table as context rows flagged when they finished after a paint. With browsertime 28.2 the style-invalidation split uses the real first-paint boundary from the trace instead of guessing by reason category #4858.<br>
+- The playback timeline marks when the main thread was busy: the run&#39;s long tasks draw as a thin red band under the axis, so a filmstrip stall shows whether the CPU was the cause without leaving the tab #4860.<br>
+<br>
+<strong>Fixed</strong><br>
+- The CPU tab&#39;s bar lists now line up: each row was its own grid, so bars started at a different x position whenever the value text length changed #4855.<br>
+- Shared links to the newer Rendering anchors (<code>#slow-ttfb</code>, <code>#recalculate-style</code>, <code>#reflows-before-paint</code>, <code>#main-thread-animations</code>) loaded onto the default tab with the target hidden #4859.<br>
+- The render-blocking document row disappeared on sites that redirect to a trailing slash #4857.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.1.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.1</id>
@@ -193,22 +216,6 @@
 <br>
 <strong>Fixed</strong><br>
 - Browsertime 27.5.0 #4776.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 41.2.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.2.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-05-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Unblock the arm64 Docker release build by bumping the QEMU <code>binfmt</code> emulator to a 9.2 build that handles modern systemd, and pinning APT so only the Firefox package is pulled from Debian unstable #4771.<br>
-- Move the slim Docker image to Debian trixie (the new stable) and drop the APT pin from #4771, which was too strict to let Firefox&#39;s <code>libc6</code> / <code>libnss3</code> dependencies upgrade from unstable #4772.<br>
-- CI: allow Docker Hub&#39;s CloudFront CDN (<code>production.cloudfront.docker.com</code>) through the Linux workflow&#39;s Harden-Runner egress allowlist, so the test job stops flaking when DNS routes the runner to CloudFront instead of Cloudflare #4773.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

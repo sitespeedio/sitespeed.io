@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Sat, 18 Jul 2026 05:52:19 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Jul 2026 10:03:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,24 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 28.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.2.0</guid>
+            <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>videoParams.noiseTolerance</code>: a percentage of a frame&#39;s pixels that is allowed to differ before duplicate-frame elimination still treats the frame as unchanged. Browsers re-rasterize a visually-done page long after it settles, leaving invisible sub-pixel noise on glyph edges that the default handful-of-pixels tolerance counts as real change, inflating Last Visual Change, VisualComplete95/99 and Speed Index. Off by default #2528.<br>
+- New <code>videoParams.filmstripDiff</code> frame diffs: writes <code>diff_&lt;ms&gt;.png</code> next to each filmstrip frame (the frame dimmed with every changed pixel painted red, using the same per-pixel threshold report UIs use at runtime) plus a Frame Diffs metric. Report UIs cannot read frame pixels from <code>file://</code> results, so an exact &quot;what changed in this frame&quot; view was impossible exactly where people debug local results. Off by default #2531.<br>
+- Visual instability heatmap: the same <code>videoParams.filmstripDiff</code> run now also writes one <code>instability.png</code> showing how many times each pixel changed across the video (amber for changed once, deep red for ten or more), plus a Frame Instability summary in the JSON. Answers &quot;which parts of the page keep changing&quot;, so invisible re-rasterization noise can be told apart from a genuinely restless element #2533.<br>
+- <code>cpu.styleInvalidations</code> (Chrome only) now splits every reason, trigger and source at first paint: new <code>afterFirstPaint</code> counts and <code>styleRecalcsAfterFirstPaint</code> / <code>layoutInvalidationsAfterFirstPaint</code> totals separate building the page from churn on a page the user is already looking at. The fields only exist when the trace carried the FCP event, so absent means unknown rather than zero #2530.<br>
+<br>
+<strong>Fixed</strong><br>
+- Visual metrics no longer require OpenCV and pyssim unless the metrics that need them are requested: OpenCV is only used by <code>--contentful</code> and pyssim only by <code>--perceptual</code>, so a default install now runs on just ffmpeg, Numpy and Pillow. The Docker image keeps installing everything so both metrics keep working there #2535.<br>
+- <code>VisualComplete99</code> is now reset when the page repaints backward. Two copy-paste typos reset <code>VisualComplete95</code> twice and never reset <code>VisualComplete99</code>, so on a page that reaches 100%, repaints backward and then recovers, <code>VisualComplete99</code> could report a time earlier than <code>VisualComplete95</code> (99% complete before 95%, which cannot happen) #2537.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 28.1.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.1.0</link>
@@ -154,17 +172,6 @@
             <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Fix so INP only is calculated on interactions with an id #2456.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 27.0.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.2</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.2</guid>
-            <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- SPA scripts no longer drop a HAR page when Chrome&#39;s soft-navigation <code>PerformanceObserver</code> entry doesn&#39;t fire. #2438 gated HAR-page creation on Chrome detecting all three soft-navigation criteria (interaction + URL change + visible paint within a short window), but real SPAs like Grafana sometimes paint too late and Chrome never emits the entry — chrome-har then sees only <code>Network.*</code> events for that measurement and emits zero pages, breaking downstream per-iteration page indexing in sitespeed.io. When the measurement was started without a URL (<code>commands.measure.start(alias)</code> form) and no soft-nav entry was detected, fall back to a synthetic page anchored at the current <code>location.href</code> so each <code>measure.start</code> produces exactly one HAR page.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

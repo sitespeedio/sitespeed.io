@@ -3,8 +3,8 @@ publiccodeYmlVersion: "0.5.0"
 name: sitespeed.io
 url: "https://github.com/sitespeedio/sitespeed.io"
 landingURL: "https://www.sitespeed.io"
-softwareVersion: "42.1.1"
-releaseDate: "2026-07-18"
+softwareVersion: "42.2.0"
+releaseDate: "2026-07-20"
 
 logo: docs/img/sitespeed.io-logo-large.png
 
