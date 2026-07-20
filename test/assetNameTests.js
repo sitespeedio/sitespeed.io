@@ -37,6 +37,14 @@ test('names a single-module styles request', t => {
   t.is(named.moduleCount, 1);
 });
 
+test('drops matrix parameters from an ad server file name', t => {
+  const named = assetName(
+    'https://ad.doubleclick.net/B34824155.441037688;dc_ver=106.314;sz=980x240;ord=32mspy'
+  );
+  t.is(named.name, 'B34824155.441037688');
+  t.is(named.host, 'ad.doubleclick.net');
+});
+
 test('falls back to the hostname for a bare origin', t => {
   const named = assetName('https://www.example.com/');
   t.is(named.name, 'www.example.com');
