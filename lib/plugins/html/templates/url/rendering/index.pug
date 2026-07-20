@@ -254,6 +254,12 @@ if hasVideo || hasFilmstrip
   //- sample at or before its timestamp: stepped, never interpolated.
   - const frames = []
   - const vpSamples = (visualMetrics && visualMetrics.VisualProgress) || []
+  //- Precomputed frame diffs (browsertime --videoParams.filmstripDiff):
+  //- diff_<ms>.png next to each frame plus changed-pixel counts, keyed
+  //- by the frame FILE's ms (not the filmstrip slot time — with
+  //- --filmstrip.showAll the same file repeats across slots).
+  - const frameDiffsByMs = {}
+  - for (const d of ((visualMetrics && visualMetrics.FrameDiffs) || [])) frameDiffsByMs[d.time] = d
   - if (hasFilmstrip && typeof filmstrip !== 'undefined' && filmstrip) {
   -   let vpIndex = -1
   -   let previousFile = ''
@@ -261,7 +267,9 @@ if hasVideo || hasFilmstrip
   -     const t = Math.round(frame.time * 1000)
   -     while (vpIndex + 1 < vpSamples.length && vpSamples[vpIndex + 1].timestamp <= t) vpIndex++
   -     const pct = vpIndex >= 0 ? vpSamples[vpIndex].percent : (vpSamples.length > 0 ? 0 : undefined)
-  -     frames.push({ t, file: frame.file, pct, changed: previousFile !== '' && frame.file !== previousFile, timings: frame.timings })
+  -     const fileStem = frame.file.slice(3, frame.file.lastIndexOf('.'))
+  -     const diff = frameDiffsByMs[Number.parseInt(fileStem, 10)]
+  -     frames.push({ t, file: frame.file, pct, changed: previousFile !== '' && frame.file !== previousFile, timings: frame.timings, diff: diff ? { file: 'diff_' + fileStem + '.png', changedPixels: diff.changedPixels, changedShare: diff.changedShare } : undefined })
   -     previousFile = frame.file
   -   }
   - }
@@ -374,7 +382,7 @@ if hasVideo || hasFilmstrip
             .rendering-strip#rendering-strip
               each frame, index in frames
                 - const frameTitle = frame.timings && frame.timings.length > 0 ? frame.timings.map(timing => String(timing.name || timing.metric).replace(/<[^>]*>/g, '') + ' ' + h.time.ms(timing.duration || timing.value)).join(', ') : undefined
-                .rendering-frame(class=frame.changed ? 'rendering-frame--changed' : null, data-t=frame.t, data-index=index, title=frameTitle)
+                .rendering-frame(class=frame.changed ? 'rendering-frame--changed' : null, data-t=frame.t, data-index=index, title=frameTitle, data-diff=frame.diff ? filmstripPath + frame.diff.file : undefined, data-diff-changed=frame.diff ? frame.diff.changedPixels : undefined, data-diff-share=frame.diff ? frame.diff.changedShare : undefined)
                   img(src=filmstripPath + frame.file, alt='Frame at ' + h.time.ms(frame.t), loading='lazy')
                   button.rendering-frame-zoom(type='button', aria-label='Enlarge frame') ⤢
                   .rendering-frame-time #{h.time.ms(frame.t)}
@@ -386,15 +394,47 @@ if hasVideo || hasFilmstrip
             else
               | No video in this result. Click a frame to preview it, use the frame buttons or arrow keys to step, play replays the strip at its real pace. The dot marks frames where the page changed visually.
 
+    //- Instability heatmap: browsertime's instability.png (written by
+    //- create_frame_diffs under --videoParams.filmstripDiff) is the
+    //- final frame ghosted with every pixel that changed during the
+    //- recording, amber for a few changes up to red for many. The
+    //- FrameInstability summary carries the shares; the image lives next
+    //- to the filmstrip frames, so gate on hasFilmstrip.
+    if hasFilmstrip && visualMetrics && visualMetrics.FrameInstability
+      - const instability = visualMetrics.FrameInstability
+      a#instability
+      .listing-card.rendering-instability-card
+        .listing-card-header
+          h3.listing-card-title Visual instability
+          span.listing-card-meta #{instability.changedShare} % of pixels ever changed · #{instability.repeatedlyChangedShare} % changed 5+ times
+        .rendering-instability
+          img(src=filmstripPath + 'instability.png', alt='Heatmap of how often each pixel changed while the page loaded', loading='lazy')
+          .rendering-instability-notes
+            p.rendering-why-note The whole recording in one image: every pixel is tinted by how often it changed. Amber changed once, deep red changed ten or more times. The scale is fixed, so heatmaps from different runs compare directly.
+            p.rendering-why-note Flat amber is a page that painted once and stayed put. Red speckle in the shape of the text means the same pixels repainted over and over, usually invisible rendering noise that inflates Last Visual Change and Speed Index. A solid red block is a genuinely restless area, like an ad or a carousel.
     if frames.length > 0
       .rendering-lightbox#rendering-lightbox(hidden)
         .rendering-lightbox-backdrop#rendering-lightbox-backdrop
         figure.rendering-lightbox-figure
           img.rendering-lightbox-img#rendering-lightbox-img(alt='Filmstrip frame')
+          //- The diff view: the frame dimmed with every pixel that
+          //- changed since the previous filmstrip frame highlighted.
+          //- Same sizing as the img; only one of the two is visible.
+          canvas.rendering-lightbox-img#rendering-lightbox-canvas(hidden, aria-label='Difference against the previous frame')
+          //- file:// fallback: canvas pixel access is blocked there
+          //- (tainted canvas), so the diff is approximated in pure
+          //- CSS — the current frame blended over the previous in
+          //- difference mode, amplified and inverted so changes read
+          //- as dark marks on white. No changed-pixel counts in this
+          //- mode; the canvas path stays primary on http(s).
+          .rendering-lightbox-img.rendering-lightbox-blend#rendering-lightbox-blend(hidden, aria-label='Approximate difference against the previous frame')
+            img#rendering-lightbox-blend-base(alt='')
+            img#rendering-lightbox-blend-top(alt='')
           figcaption.rendering-lightbox-bar
             button.rendering-button#rendering-lightbox-prev(type='button', aria-label='Previous frame') ⟨
             span.rendering-lightbox-meta#rendering-lightbox-meta
             button.rendering-button#rendering-lightbox-next(type='button', aria-label='Next frame') ⟩
+            button.rendering-button#rendering-lightbox-diff(type='button', aria-pressed='false', title='Highlight what changed since the previous frame') Diff
             a.rendering-lightbox-original#rendering-lightbox-original(href='#', target='_blank', rel='noopener') Open original
             button.rendering-button#rendering-lightbox-close(type='button', aria-label='Close') ✕
 

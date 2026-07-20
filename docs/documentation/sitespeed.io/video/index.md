@@ -62,6 +62,13 @@ full size with <code>--videoParams.filmstripFullSize</code>.
 
 If you want to change the quality (compression level 0-100) of the images, you do that with <code>--videoParams.filmstripQuality</code>.
 
+### Frame diffs and the visual instability heatmap
+With <code>--browsertime.videoParams.filmstripDiff</code> (browsertime 28.2+) every filmstrip frame also gets a precomputed diff image: the frame dimmed with every pixel that changed since the previous frame painted red. The Rendering tab's filmstrip lightbox shows it behind a Diff toggle together with exact changed-pixel counts, which makes it easy to see what a visual change actually was, including changes too small to spot by eye. The diffs are computed during the run, so they work when the report is opened straight from disk (without the flag the lightbox computes the diff in the browser, which needs the report served over http(s) for exact counts).
+
+The same flag produces one visual instability heatmap per run: every pixel tinted by how often it changed during the whole recording, from amber (changed once) to deep red (changed ten or more times). A page that paints once and stays put is flat amber; red speckle in the shape of the text means the same pixels repainted over and over, usually invisible rendering noise that inflates Last Visual Change and Speed Index; a solid red block is a genuinely restless area like an ad or a carousel. The color scale is fixed so heatmaps from different runs are directly comparable. The heatmap and its summary numbers show up on the Rendering tab below the filmstrip.
+
+The flag is off by default since it stores one extra image per filmstrip frame per run.
+
 ### XVFB
 If you run the Docker container we will automatically set up XVFB as a virtual frame buffer. If you run without Docker but still want to use XVFB, add <code>--xvfb</code> and sitespeed.io will start XVFB automatically. You only need to make sure it is installed.
 
