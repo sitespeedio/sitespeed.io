@@ -1,6 +1,20 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.2.0 - 2026-07-20
+
+### Added
+* Browsertime 28.2 [#4862](https://github.com/sitespeedio/sitespeed.io/pull/4862), with the report surfacing its new visual diagnostics [#4863](https://github.com/sitespeedio/sitespeed.io/pull/4863). `--videoParams.filmstripDiff` adds a Diff toggle in the filmstrip lightbox (working on file:// too, where a tainted canvas used to block it) and a heatmap that tells a restless element apart from sub-pixel noise that inflates Last Visual Change and Speed Index. `--videoParams.noiseTolerance` ignores that noise at the source.
+* The Rendering tab's "Why was rendering delayed?" section now opens with a verdict, and the render-blocking requests are one sortable table named by file (ResourceLoader `load.php` batches by their first module) with each download drawn on a clock ending at the paint, so a late-injected resource is visibly not the culprit Chrome's blocking flag makes it look like. Falls back to the pagexray shape without bars when the run has no HAR (Safari, old data) [#4856](https://github.com/sitespeedio/sitespeed.io/pull/4856) [#4859](https://github.com/sitespeedio/sitespeed.io/pull/4859).
+* The Rendering tab's style cards lead with a verdict on whether to act and where, and Chrome's raw invalidation reasons (`Affected by :has()`, `Inline CSS style declaration was mutated`) are translated to plain language with a one-line fix on the four a developer can act on [#4857](https://github.com/sitespeedio/sitespeed.io/pull/4857) [#4861](https://github.com/sitespeedio/sitespeed.io/pull/4861).
+* Web fonts, the classic "document done, text late" cause, appear in the render-blocking table as context rows flagged when they finished after a paint. With browsertime 28.2 the style-invalidation split uses the real first-paint boundary from the trace instead of guessing by reason category [#4858](https://github.com/sitespeedio/sitespeed.io/pull/4858).
+* The playback timeline marks when the main thread was busy: the run's long tasks draw as a thin red band under the axis, so a filmstrip stall shows whether the CPU was the cause without leaving the tab [#4860](https://github.com/sitespeedio/sitespeed.io/pull/4860).
+
+### Fixed
+* The CPU tab's bar lists now line up: each row was its own grid, so bars started at a different x position whenever the value text length changed [#4855](https://github.com/sitespeedio/sitespeed.io/pull/4855).
+* Shared links to the newer Rendering anchors (`#slow-ttfb`, `#recalculate-style`, `#reflows-before-paint`, `#main-thread-animations`) loaded onto the default tab with the target hidden [#4859](https://github.com/sitespeedio/sitespeed.io/pull/4859).
+* The render-blocking document row disappeared on sites that redirect to a trailing slash [#4857](https://github.com/sitespeedio/sitespeed.io/pull/4857).
+
 ## 42.1.1 - 2026-07-18
 
 ### Fixed
