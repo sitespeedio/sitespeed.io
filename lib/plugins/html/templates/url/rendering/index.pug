@@ -344,7 +344,7 @@ if hasVideo || hasFilmstrip
           each t in ticks
             span.rendering-tick(style='left: ' + (t / renderingEnd * 100).toFixed(2) + '%') #{t / 1000}s
         if busyTasks.length > 0
-          p.rendering-why-note The red band on the timeline marks when the main thread was busy with long tasks — moments when the page could not paint or respond, however the video looks.
+          p.rendering-why-note The red band on the timeline marks when the main thread was busy with long tasks: moments when the page could not paint or respond, however the video looks.
 
       if hasVideo
         a.button.button-download.rendering-download(href=videoSrc, download=downloadName + '-video.mp4') Download video
@@ -496,7 +496,7 @@ if whyFcp || ttfbSlow
         b #{h.time.ms(whyTtfb)}
         if whyFcp
           |  (#{Math.round(whyTtfb / whyFcp * 100)} % of the time to First Contentful Paint)
-        | &nbsp;— nothing can render before it arrives, and Google Web Vitals considers a TTFB over 800 ms in need of improvement.
+        | . Nothing can render before it arrives, and Google Web Vitals considers a TTFB over 800 ms in need of improvement.
         if whyHar
           | &nbsp;
           a(href='#waterfall', onclick='const waterfallTab = document.querySelector("#tabs #waterfall"); if (waterfallTab) selectTab(waterfallTab, false)') See the request timing on the Waterfall tab
@@ -513,7 +513,7 @@ if whyFcp || ttfbSlow
         if rbHarAware && rbRows.length === 0
           | , with no render-blocking requests
           if rbResidual !== undefined && rbResidual > 100
-            |  — the ~#{h.time.ms(rbResidual)} after the document is style#{rbResidualFonts.length > 0 ? ', layout and web-font loading' : ' and layout work'}
+            | : the ~#{h.time.ms(rbResidual)} after the document is style#{rbResidualFonts.length > 0 ? ', layout and web-font loading' : ' and layout work'}
             if rbResidualMeasuredMs >= 5 && rbResidualMeasuredMs <= rbResidual
               |  (#{h.time.ms(rbResidualMeasuredMs)} of it measured style recalculation#{rbResidualReflowMs >= 1 ? ' and forced reflows' : ''})
         else if rbBlockingDone
@@ -523,7 +523,7 @@ if whyFcp || ttfbSlow
             if rbResidualMeasuredMs >= 5 && rbResidualMeasuredMs <= rbResidual
               |  (#{h.time.ms(rbResidualMeasuredMs)} of it measured style recalculation#{rbResidualReflowMs >= 1 ? ' and forced reflows' : ''})
         else if rbHarAware && rbBlockingRows.length > 0 && rbBlockingRows.every(r => r.end !== undefined)
-          | ; none of the #{rbBlockingRows.length} render-blocking #{rbBlockingRows.length === 1 ? 'request' : 'requests'} held it up — #{rbBlockingRows.length === 1 ? 'it' : 'they'} loaded after the paint
+          | ; none of the #{rbBlockingRows.length} render-blocking #{rbBlockingRows.length === 1 ? 'request' : 'requests'} held it up: #{rbBlockingRows.length === 1 ? 'it' : 'they'} loaded after the paint
         | .
       if whyFcp && whyLcp && whyLcp - whyFcp > 100
         |  The largest paint followed at&nbsp;
@@ -532,7 +532,7 @@ if whyFcp || ttfbSlow
         if rbLateBlocking.length > 0
           |  Note #{h.assetName(rbLateBlocking[0].url).name} finished at #{h.time.ms(Math.round(rbLateBlocking[0].end))}, between first and largest paint.
         if rbLcpElement && rbLcpElement.url && rbLcpElement.loadTime && whyLcp - rbLcpElement.loadTime > 300
-          |  The LCP image itself was downloaded by #{h.time.ms(Math.round(rbLcpElement.loadTime))} — the wait was render work, not the network.
+          |  The LCP image itself was downloaded by #{h.time.ms(Math.round(rbLcpElement.loadTime))}; the wait was render work, not the network.
 
 if hasRecalculateStyle
   a#recalculate-style
@@ -542,6 +542,41 @@ if hasRecalculateStyle
       span.listing-card-meta measured by Chrome during this run
     p.listing-card-help
       | Style the browser had to recalculate before it could paint: many elements or a lot of time spent here points at expensive CSS on the critical rendering path. The recalculation count and the largest single one tell the two problems apart: one massive style change touching most of the page (few recalculations, the largest close to the total) needs different medicine than thousands of tiny ones (many recalculations, each tiny).
+    //- Verdict up front: does this recalculation actually need attention,
+    //- and if so which of the two shapes is it. Share of the paint it
+    //- precedes is the materiality signal (reused in the note below);
+    //- the largest single recalculation as a fraction of the total tells
+    //- one big restyle apart from many small ones, which need different
+    //- fixes. Numbers rounded to whole ms so the verdict stays readable.
+    - const rcPrimary = recalculateStyle.beforeFCP || recalculateStyle.beforeLCP
+    - const rcPaint = recalculateStyle.beforeFCP ? whyFcp : whyLcp
+    - const rcThrottle = (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.CPUThrottlingRate) || 1
+    - const rcShare = rcPrimary && rcPaint ? Math.round(rcPrimary.durationInMillis / rcPaint * 1000) / 10 : undefined
+    - const rcRealMs = rcPrimary ? rcPrimary.durationInMillis / rcThrottle : 0
+    - const rcMaterial = !!rcPrimary && (rcShare === undefined ? rcRealMs >= 20 : (rcShare >= 5 && rcRealMs >= 10))
+    - const rcBigShare = rcPrimary && rcPrimary.maxDurationInMillis !== undefined && rcPrimary.durationInMillis > 0 ? rcPrimary.maxDurationInMillis / rcPrimary.durationInMillis : 0
+    - const rcShareWords = rcShare !== undefined ? rcShare + ' % of the time to ' + (recalculateStyle.beforeFCP ? 'First' : 'Largest') + ' Contentful Paint' : undefined
+    if rcPrimary
+      .rendering-verdict(class=rcMaterial ? 'rendering-verdict--warning' : 'rendering-verdict--ok')
+        span.rendering-verdict-dot
+        p.rendering-verdict-text
+          if !rcMaterial
+            b Style recalculation is not holding up your paint.
+            |  #{h.time.ms(Math.round(rcPrimary.durationInMillis))} of restyling before the page painted#{rcShareWords ? ', ' + rcShareWords : ''}. Nothing here needs attention.
+          else if rcBigShare >= 0.5
+            b One large recalculation dominates.
+            |  Restyling #{rcPrimary.elements.toLocaleString('sv-SE')} elements cost #{h.time.ms(Math.round(rcPrimary.durationInMillis))} before the page painted#{rcShareWords ? ' (' + rcShareWords + ')' : ''}, and a single recalculation of #{rcPrimary.maxElements.toLocaleString('sv-SE')} elements accounts for #{h.time.ms(Math.round(rcPrimary.maxDurationInMillis))} of it. Look for one class or inline-style change on a large container near the top of the DOM that restyles the whole subtree at once.
+            if styleInvalidations
+              |  The changes driving it are listed under Style invalidations below.
+          else if rcPrimary.count !== undefined && rcPrimary.count >= 12
+            b Style recalculation is spread across #{rcPrimary.count} restyles.
+            |  #{h.time.ms(Math.round(rcPrimary.durationInMillis))} before the page painted#{rcShareWords ? ' (' + rcShareWords + ')' : ''}, in many small recalculations rather than one big one, the signature of JavaScript changing styles in a loop. Batch the DOM writes so the browser restyles once instead of every change.
+            if styleInvalidations
+              |  The changes driving it are listed under Style invalidations below.
+          else
+            b Style recalculation cost #{h.time.ms(Math.round(rcPrimary.durationInMillis))} before the page painted#{rcShareWords ? ' (' + rcShareWords + ')' : ''}.
+            if styleInvalidations
+              |  The changes driving it are listed under Style invalidations below.
     //- count / maxElements / maxDurationInMillis are additive fields
     //- (Browsertime PR #2496) — guard each so older browsertime data
     //- still renders the totals. One tile row per phase with a small
@@ -688,7 +723,7 @@ mixin selectorTables(stats)
   if stats.wastedSelectors && stats.wastedSelectors.length > 0
     .listing-card
       .listing-card-header
-        h3.listing-card-title Wasted selector work — attempts that never match
+        h3.listing-card-title Wasted selector work: attempts that never match
         span.listing-card-meta top #{stats.wastedSelectors.length}
       .responsive
         table
@@ -729,11 +764,11 @@ if selectorStats && selectorStats.selectors && selectorStats.selectors.length > 
         |  All selector matching cost&nbsp;
         b #{h.time.ms(selectorStats.totalElapsed.toFixed(0))}
         if selectorThrottle > 1
-          |  under the #{selectorThrottle}× CPU throttle — roughly #{h.time.ms(Math.round(selectorRealMs))} real time
+          |  under the #{selectorThrottle}× CPU throttle, roughly #{h.time.ms(Math.round(selectorRealMs))} real time
         | , and the worst single selector #{selectorStats.selectors[0].elapsed.toFixed(2)} ms. The tables are kept for reference.
       else
         b Selector matching cost #{h.time.ms(selectorStats.totalElapsed.toFixed(0))}#{selectorThrottle > 1 ? ' (roughly ' + h.time.ms(Math.round(selectorRealMs)) + ' without the ' + selectorThrottle + '× CPU throttle)' : ''}.
-        |  The wasted-work list below — selectors tried thousands of times that never match — is the place to start.
+        |  The wasted-work list below (selectors tried thousands of times that never match) is the place to start.
   .cpu-kpis
     .cpu-kpi
       span.cpu-kpi-label Matching time
@@ -761,7 +796,37 @@ if styleInvalidations
     | Style invalidations
     if styleInvalidationsFromProfileRun
       span.profile-run-badge(title=renderingProfileRunExplanation) Profile run
-  p Why the browser had to recalculate style and layout: every DOM/style change invalidates some set of nodes, and the same class or attribute churning over and over is the pattern to hunt. Counts, not milliseconds — the time is in the style recalculation numbers above.
+  p Why the browser had to recalculate style and layout: every DOM/style change invalidates some set of nodes, and the same class or attribute churning over and over is the pattern to hunt. Counts, not milliseconds: the time is in the style recalculation numbers above.
+  //- Verdict: hand the developer the single biggest lever. When the
+  //- trace carried paint timestamps we can say how much churned AFTER
+  //- first paint (the actionable half, jank on a page the user already
+  //- saw); otherwise we name the top trigger and point at the scripts
+  //- list. Warning tone when there is a clear thing to look at, ok tone
+  //- when it is almost all first-render work.
+  - const siTopTrigger = styleInvalidations.triggers && styleInvalidations.triggers[0]
+  - const siTimed = styleInvalidations.styleRecalcsAfterFirstPaint !== undefined || styleInvalidations.layoutInvalidationsAfterFirstPaint !== undefined
+  - const siAfterRecalc = styleInvalidations.styleRecalcsAfterFirstPaint || 0
+  - const siAfterLayout = styleInvalidations.layoutInvalidationsAfterFirstPaint || 0
+  - const siTotal = styleInvalidations.styleRecalcs + styleInvalidations.layoutInvalidations
+  - const siChurnLow = siTimed && siTotal > 0 && (siAfterRecalc + siAfterLayout) / siTotal < 0.15
+  .rendering-verdict(class=siChurnLow ? 'rendering-verdict--ok' : 'rendering-verdict--warning')
+    span.rendering-verdict-dot
+    p.rendering-verdict-text
+      if siChurnLow
+        b Most of this is the page being built.
+        |  Only #{siAfterRecalc.toLocaleString('sv-SE')} style recalculations and #{siAfterLayout.toLocaleString('sv-SE')} layout invalidations happened after first paint; the rest is the first render. Not much to chase here.
+      else if siTimed
+        b Chase what keeps changing after the page is up.
+        |  #{siAfterRecalc.toLocaleString('sv-SE')} style recalculations and #{siAfterLayout.toLocaleString('sv-SE')} layout invalidations fired after first paint, on a page the user was already looking at.
+        if siTopTrigger
+          |  The biggest driver is #{siTopTrigger.kind}&nbsp;#[code= siTopTrigger.name] (#{siTopTrigger.count.toLocaleString('sv-SE')}×).
+        |  Start with the script under "Scripts causing invalidations" that keeps triggering it.
+      else if siTopTrigger
+        b Start with what changes most.
+        |  The biggest single driver is #{siTopTrigger.kind}&nbsp;#[code= siTopTrigger.name], changing #{siTopTrigger.count.toLocaleString('sv-SE')} times. Find the script that keeps doing it under "Scripts causing invalidations" and change it once, or move it off the load path.
+      else
+        b #{styleInvalidations.styleRecalcs.toLocaleString('sv-SE')} style recalculations and #{styleInvalidations.layoutInvalidations.toLocaleString('sv-SE')} layout invalidations.
+        |  See which changes and scripts drive them below.
   .cpu-kpis
     .cpu-kpi
       span.cpu-kpi-label Style recalculations
@@ -812,23 +877,63 @@ if styleInvalidations
         const lcpUsable = lcpTimed && (styleInvalidations.styleRecalcsAfterLargestContentfulPaint || 0) <= (styleInvalidations.styleRecalcsAfterFirstPaint || 0) && (styleInvalidations.layoutInvalidationsAfterLargestContentfulPaint || 0) <= (styleInvalidations.layoutInvalidationsAfterFirstPaint || 0)
         let between
         if (lcpUsable) {
-          between = { title: 'Between first and largest paint', help: 'Invalidations while the largest paint was still pending — these delayed it.', quiet: false, recalc: winOf(recalcList, r => Math.max(0, afterFcpOf(r) - afterLcpOf(r))), layout: winOf(layoutList, r => Math.max(0, afterFcpOf(r) - afterLcpOf(r))) }
+          between = { title: 'Between first and largest paint', help: 'Invalidations while the largest paint was still pending, so these delayed it.', quiet: false, recalc: winOf(recalcList, r => Math.max(0, afterFcpOf(r) - afterLcpOf(r))), layout: winOf(layoutList, r => Math.max(0, afterFcpOf(r) - afterLcpOf(r))) }
           if (between.recalc.length > 0 || between.layout.length > 0) invalidationGroups.push(between)
           else between = undefined
         }
         invalidationGroups.push(
           between
-            ? { title: 'After the largest paint', help: 'Churn on the fully rendered page — wasted work and possible jank, but no paint delay.', quiet: false, recalc: winOf(recalcList, afterLcpOf), layout: winOf(layoutList, afterLcpOf) }
-            : { title: 'After first paint', help: 'Invalidations on a page the user was already looking at — the actionable half.', quiet: false, recalc: winOf(recalcList, afterFcpOf), layout: winOf(layoutList, afterFcpOf) },
-          { title: 'Before first paint — building the page', help: 'The page being constructed and styled for the first render. Expected work, shown for scale.', quiet: true, recalc: winOf(recalcList, r => r.count - afterFcpOf(r)), layout: winOf(layoutList, r => r.count - afterFcpOf(r)) }
+            ? { title: 'After the largest paint', help: 'Churn on the fully rendered page: wasted work and possible jank, but no paint delay.', quiet: false, recalc: winOf(recalcList, afterLcpOf), layout: winOf(layoutList, afterLcpOf) }
+            : { title: 'After first paint', help: 'Invalidations on a page the user was already looking at, the actionable half.', quiet: false, recalc: winOf(recalcList, afterFcpOf), layout: winOf(layoutList, afterFcpOf) },
+          { title: 'Before first paint: building the page', help: 'The page being constructed and styled for the first render. Expected work, shown for scale.', quiet: true, recalc: winOf(recalcList, r => r.count - afterFcpOf(r)), layout: winOf(layoutList, r => r.count - afterFcpOf(r)) }
         )
       } else {
         const split = (list, construction) => list.filter(r => INVALIDATION_CONSTRUCTION.includes(r.reason) === construction)
         invalidationGroups.push(
-          { title: 'Churn after the page was built', help: 'Invalidations from styles and scripts changing things that already existed — the actionable half.', quiet: false, recalc: split(styleInvalidations.recalcReasons, false), layout: split(styleInvalidations.layoutReasons || [], false) },
-          { title: 'Building the page', help: 'Nodes being added to the document and its layout — expected work for the initial render (scripts inserting content later land here too). Shown for scale, not as a problem.', quiet: true, recalc: split(styleInvalidations.recalcReasons, true), layout: split(styleInvalidations.layoutReasons || [], true) }
+          { title: 'Churn after the page was built', help: 'Invalidations from styles and scripts changing things that already existed, the actionable half.', quiet: false, recalc: split(styleInvalidations.recalcReasons, false), layout: split(styleInvalidations.layoutReasons || [], false) },
+          { title: 'Building the page', help: 'Nodes being added to the document and its layout: expected work for the initial render (scripts inserting content later land here too). Shown for scale, not as a problem.', quiet: true, recalc: split(styleInvalidations.recalcReasons, true), layout: split(styleInvalidations.layoutReasons || [], true) }
         )
       }
+    //- Chrome's raw invalidation reason strings are internal jargon.
+    //- Translate the ones we are sure of to plain language (raw string
+    //- kept on hover), and attach a one-line fix to the few reasons a
+    //- developer can actually act on. Unknown or unverified reasons
+    //- (e.g. "Related style rule", "Attribute", "List value change")
+    //- fall through to the raw string, so nothing is mislabelled and
+    //- new Chrome reasons never vanish.
+    -
+      const INVALIDATION_REASON_LABELS = {
+        'Affected by :has()': 'A :has() selector was re-evaluated',
+        'Inline CSS style declaration was mutated': 'JavaScript changed an inline style',
+        'Animation': 'An animation updated styles',
+        '@keyframes rule change': 'An @keyframes rule changed',
+        'Style rule change': 'A stylesheet rule changed',
+        'PseudoClass': 'A pseudo-class state changed (:hover, :focus, …)',
+        'Zoom': 'Page zoom changed',
+        'Node was inserted into tree': 'A node was inserted into the page',
+        'Fonts changed': 'A web font finished loading',
+        'Added to layout': 'An element entered layout',
+        'Removed from layout': 'An element left layout',
+        'Size changed': "An element's size changed",
+        'Style changed': 'A style change forced layout',
+        'SVG changed': 'An SVG element changed'
+      }
+      const INVALIDATION_REASON_HINTS = {
+        'Affected by :has()': ':has() re-checks a whole subtree on any change inside it. Scope it tightly, or toggle a class in JavaScript instead.',
+        'Inline CSS style declaration was mutated': 'Set a class instead of writing element.style, so the browser can batch the work.',
+        'Animation': 'Animate transform and opacity so the compositor can run it off the main thread.',
+        'Fonts changed': 'Preload the font or use font-display so a late swap does not re-style the page.'
+      }
+      const reasonLabel = raw => INVALIDATION_REASON_LABELS[raw] || raw
+      const reasonHint = raw => INVALIDATION_REASON_HINTS[raw]
+    //- Pass the resolved label/hint as arguments: this partial is
+    //- included into block content, so a mixin body cannot see the maps
+    //- above (pug mixins compile to standalone functions).
+    mixin invalidationReasonCell(label, hint, raw)
+      td
+        span.invalidation-reason(title=label === raw ? undefined : raw)= label
+        if hint
+          span.invalidation-reason-hint= hint
     .listing-card
       .listing-card-header
         h3.listing-card-title Invalidation reasons
@@ -848,12 +953,12 @@ if styleInvalidations
               tbody
                 each reason in group.recalc
                   tr
-                    td= reason.reason
+                    +invalidationReasonCell(reasonLabel(reason.reason), reasonHint(reason.reason), reason.reason)
                     td.number #{reason.count.toLocaleString('sv-SE')}
                     td.number –
                 each reason in group.layout
                   tr
-                    td= reason.reason
+                    +invalidationReasonCell(reasonLabel(reason.reason), reasonHint(reason.reason), reason.reason)
                     td.number –
                     td.number #{reason.count.toLocaleString('sv-SE')}
   if styleInvalidations.sources && styleInvalidations.sources.length > 0
