@@ -572,6 +572,10 @@
 
 .rb-request-name {
   font-weight: $font--weight--semibold;
+  // A request name can be long and unbreakable (a hashed bundle, a
+  // base64 path); unwrapped it stretches the column and scrolls the
+  // whole table. anywhere (not break-word) lets the column shrink.
+  overflow-wrap: anywhere;
 }
 
 .rb-request-more {
