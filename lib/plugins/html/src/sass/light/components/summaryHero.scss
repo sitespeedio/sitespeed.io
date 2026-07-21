@@ -22,7 +22,7 @@
 // score tiles (bg $color--ok-bg + tone text). A SCOPED class on purpose —
 // the bare global `.ok` utility paints a solid dark-green background.
 .summary-lede-hl {
-  padding: 0.05em 0.32em;
+  padding: 0.05em 0.16em;
   border-radius: $radius--sm;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
