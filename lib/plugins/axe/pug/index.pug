@@ -4,6 +4,10 @@
 //- existing status palette so the badges read consistently with the rest
 //- of the report.
 - const impactClass = (impact) => impact === 'critical' || impact === 'serious' ? 'error' : (impact === 'moderate' ? 'warning' : 'info')
+//- Severity order for sorting and scoreboard iteration — worst first.
+- const impacts = ['critical', 'serious', 'moderate', 'minor']
+- const impactRank = (impact) => { const i = impacts.indexOf(impact); return i === -1 ? impacts.length : i; }
+- const plural = (n, one, many) => n + ' ' + (n === 1 ? one : many)
 
 a
 h2 Axe
@@ -12,27 +16,51 @@ p Axe is an accessibility testing engine for websites and other HTML-based user 
   | .
 
 if pageInfo.data.axe.run
-  //- Per-iteration view: list every violation with its impact, helpUrl,
-  //- description, and the offending nodes. Cards group by impact level
-  //- because that's how an accessibility reviewer wants to triage —
-  //- worst first.
-  .listing-card
-    .listing-card-header
-      h3.listing-card-title Violations
-      span.listing-card-meta #{axe.violations.length} #{axe.violations.length === 1 ? 'finding' : 'findings'}
-    if axe.violations.length === 0
-      p.axe-clear ✓ No accessibility violations detected on this page.
-    else
+  //- Per-iteration view. Sort violations worst-first (the raw array is in
+  //- rule order, so critical/serious can sit below minor) and derive the
+  //- per-impact rule / element counts once for the verdict and scoreboard.
+  - const violations = axe.violations.slice().sort((a, b) => impactRank(a.impact) - impactRank(b.impact))
+  - const nodesOf = (v) => v.nodes ? v.nodes.length : 0
+  - const ruleCount = (imp) => violations.filter(v => v.impact === imp).length
+  - const elementCount = (imp) => violations.filter(v => v.impact === imp).reduce((sum, v) => sum + nodesOf(v), 0)
+  - const totalElements = violations.reduce((sum, v) => sum + nodesOf(v), 0)
+
+  if violations.length === 0
+    p.axe-clear ✓ No accessibility violations detected on this page.
+  else
+    //- Verdict tinted by the worst impact present, pointing at where to start.
+    - const worst = impacts.find(imp => ruleCount(imp) > 0)
+    - const worstRules = ruleCount(worst)
+    - const guidance = worst === 'critical' ? 'Fix the ' + plural(worstRules, 'critical issue', 'critical issues') + ' first.' : (worst === 'serious' ? 'Start with the ' + plural(worstRules, 'serious issue', 'serious issues') + '.' : (worst === 'moderate' ? 'Review the ' + plural(worstRules, 'moderate issue', 'moderate issues') + '.' : 'Only minor issues to polish.'))
+    .axe-verdict(class=impactClass(worst))
+      p.axe-verdict-title #{plural(violations.length, 'accessibility rule', 'accessibility rules')} failed, affecting #{plural(totalElements, 'element', 'elements')}.
+      p.axe-verdict-note #{guidance}
+
+    //- Severity scoreboard: rule count leads, affected elements whisper.
+    .axe-medians
+      each imp in impacts
+        - const rc = ruleCount(imp)
+        .axe-median-tile(class=(rc > 0 ? impactClass(imp) : ''))
+          span.axe-median-label #{imp}
+          span.axe-median-count #{rc}
+          span.axe-median-sub #{plural(elementCount(imp), 'element', 'elements')}
+
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Violations
+        span.listing-card-meta #{plural(violations.length, 'finding', 'findings')}
       .axe-violations
         - let oldImpact = null
-        each violation in axe.violations
+        each violation in violations
           if violation.impact !== oldImpact
-            h4.axe-impact-heading #{violation.impact}
+            h4.axe-impact-heading #{violation.impact} · #{plural(ruleCount(violation.impact), 'rule', 'rules')}
             - oldImpact = violation.impact
-          details.axe-violation
+          details.axe-violation(class='tone-' + impactClass(violation.impact))
             summary.axe-violation-summary
               span.label(class=impactClass(violation.impact)) #{violation.impact}
               span.axe-violation-title #{violation.help}
+              if nodesOf(violation) > 0
+                span.axe-violation-count #{plural(nodesOf(violation), 'element', 'elements')}
               code.axe-violation-rule #{violation.id}
             .axe-violation-body
               p.axe-violation-desc #{violation.description}
@@ -53,20 +81,24 @@ if pageInfo.data.axe.run
                       code.axe-node-html= node.html
 else
   //- Aggregate view: median counts per impact bucket across all runs.
-  //- Each bucket is a KPI tile coloured by severity.
-  .listing-card
-    .listing-card-header
-      h3.listing-card-title Violations
-      span.listing-card-meta median across runs
-    p.listing-card-help Click into an individual run to see the actual violations.
-    .axe-medians
-      - const buckets = [['Critical', 'critical'], ['Serious', 'serious'], ['Moderate', 'moderate'], ['Minor', 'minor']]
-      each bucket in buckets
-        - const label = bucket[0]
-        - const key = bucket[1]
-        - const count = axe.violations[key].median
-        - const issues = axe.violationIssues[key].median
-        .axe-median-tile(class=impactClass(key))
-          span.axe-median-label #{label}
-          span.axe-median-count #{count}
-          span.axe-median-sub #{issues} #{issues === 1 ? 'issue' : 'issues'}
+  - const medianOf = (imp) => axe.violations[imp].median
+  - const mWorst = impacts.find(imp => medianOf(imp) > 0)
+  if !mWorst
+    p.axe-clear ✓ No accessibility violations across the runs.
+  else
+    .axe-verdict(class=impactClass(mWorst))
+      p.axe-verdict-title This page has accessibility issues to fix.
+      p.axe-verdict-note Worst impact across the runs: #{mWorst}. Open an individual run to see the actual violations.
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Violations
+        span.listing-card-meta median across runs
+      .axe-medians
+        each imp in impacts
+          - const label = imp.charAt(0).toUpperCase() + imp.slice(1)
+          - const count = medianOf(imp)
+          - const issues = axe.violationIssues[imp].median
+          .axe-median-tile(class=(count > 0 ? impactClass(imp) : ''))
+            span.axe-median-label #{label}
+            span.axe-median-count #{count}
+            span.axe-median-sub #{plural(issues, 'issue', 'issues')}
