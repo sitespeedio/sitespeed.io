@@ -1,0 +1,287 @@
+//- The page-summary hero: a verdict-led, action-first overview that
+//- opens with what the user actually saw (a filmstrip when video was
+//- collected, a chronological Web Vitals scorecard otherwise), the
+//- Coach report card, the visual metrics and the top Coach fixes.
+//- Included from url/summary/index.pug, which has already pulled the
+//- metric locals (ttfb, fcp, lcp, cls, inp, tbt, firstVisualChange,
+//- speedIndex, visualComplete85, lastVisualChange, fullyLoaded,
+//- performanceScore, filmstrip, medianRun, hasScreenShots,
+//- screenShotType). Includes share the caller's scope, so those are
+//- all in scope here.
+
+//- Threshold helpers carry an own psv* prefix on purpose: the metrics
+//- tab (included later on this same compiled page) BARE-assigns the
+//- gwv* names, so declaring them const here would make that later
+//- assignment throw "assignment to constant". Same cutoffs as
+//- url/metrics/index.pug, summaryBox.pug and pages.pug — keep in sync.
+- const psvTtfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
+- const psvFcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+- const psvLcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+- const psvClsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+- const psvInpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+- const psvTbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+- const psvGradeShort = (c) => c === 'ok' ? 'Good' : (c === 'warning' ? 'Improve' : (c === 'error' ? 'Poor' : ''))
+//- Offenders shown in "What to act on" are all imperfect (score < 100),
+//- so none render green: below 50 is an error, the rest a warning.
+- const psvAdviceTone = (s) => s == null ? 'warning' : (s < 50 ? 'error' : 'warning')
+
+//- Does this run carry a filmstrip? Mirror the rendering-tab gate, and
+//- require the frames to actually be on disk.
+- const psvHasFilmstrip = !!(((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots)) && typeof filmstrip !== 'undefined' && filmstrip && filmstrip.length > 0
+- const psvFilmstripPath = medianRun ? 'data/filmstrip/' + medianRun.runIndex + '/' : 'data/filmstrip/1/'
+
+//- Web Vitals in the order they happen during load: network → first
+//- paint → largest paint → main-thread blocking → layout → interaction.
+- const psvVitals = []
+- if (ttfb != null) psvVitals.push({v: ttfb, short: 'TTFB', name: 'Time to First Byte', cls: psvTtfbClass(ttfb), formatted: h.time.ms(ttfb.toFixed ? ttfb.toFixed(0) : ttfb)})
+- if (fcp != null) psvVitals.push({v: fcp, short: 'FCP', name: 'First Contentful Paint', cls: psvFcpClass(fcp), formatted: h.time.ms(fcp)})
+- if (lcp != null) psvVitals.push({v: lcp, short: 'LCP', name: 'Largest Contentful Paint', cls: psvLcpClass(lcp), formatted: h.time.ms(lcp)})
+- if (tbt != null) psvVitals.push({v: tbt, short: 'TBT', name: 'Total Blocking Time', cls: psvTbtClass(tbt), formatted: h.time.ms(tbt)})
+- if (cls != null) psvVitals.push({v: cls, short: 'CLS', name: 'Cumulative Layout Shift', cls: psvClsClass(cls), formatted: Number(cls).toFixed(2)})
+- if (inp != null) psvVitals.push({v: inp, short: 'INP', name: 'Interaction to Next Paint', cls: psvInpClass(inp), formatted: h.time.ms(inp)})
+
+//- Phase-timeline segments + milestone flags (needs at least the three
+//- paint boundaries). Colours live in the scss via seg--<kind>.
+- const psvPhaseEnd = (fullyLoaded && fullyLoaded > lcp) ? fullyLoaded : lcp
+- const psvSegments = []
+- if (ttfb != null && fcp != null && lcp != null) { psvSegments.push({label: 'Network', ms: ttfb, kind: 'net'}); psvSegments.push({label: 'Render-blocking', ms: fcp - ttfb, kind: 'rb'}); psvSegments.push({label: 'Largest paint', ms: lcp - fcp, kind: 'lp'}); if (fullyLoaded && fullyLoaded > lcp) psvSegments.push({label: 'Tail', ms: fullyLoaded - lcp, kind: 'tail'}) }
+- const psvMilestoneEnd = (psvHasFilmstrip && lastVisualChange) ? lastVisualChange : fullyLoaded
+- const psvAxisEnd = Math.max(psvPhaseEnd || 0, psvMilestoneEnd || 0) || psvPhaseEnd
+- const psvFlags = []
+- if (fcp != null) psvFlags.push({t: fcp, tag: 'FCP', hi: true})
+- if (lcp != null) psvFlags.push({t: lcp, tag: 'LCP', hi: true})
+- if (psvHasFilmstrip && lastVisualChange) psvFlags.push({t: lastVisualChange, tag: 'Visually complete', hi: false})
+- else if (fullyLoaded) psvFlags.push({t: fullyLoaded, tag: 'Fully loaded', hi: false})
+
+//- Representative filmstrip frames: up to six evenly spaced, first and
+//- last always kept, with the two closest to FCP / LCP tagged.
+- const psvFrames = []
+- if (psvHasFilmstrip) { const n = filmstrip.length; const want = Math.min(6, n); for (let i = 0; i < want; i++) { psvFrames.push(filmstrip[Math.round(i * (n - 1) / (want - 1 || 1))]) } }
+//- Tag the first frame AT OR AFTER each paint milestone (i >= 1, so the
+//- blank start frame is never a paint milestone). "Nearest" landed the
+//- label on a pre-paint frame when the milestone fell between two sparse
+//- samples — an early LCP (564 ms) sat closer to the 0 ms start than to
+//- the first content frame, so the white start got tagged "Largest paint".
+- let psvFcpIdx = -1, psvLcpIdx = -1
+- if (psvFrames.length) { for (let i = 1; i < psvFrames.length; i++) { const ms = Math.round(psvFrames[i].time * 1000); if (psvFcpIdx === -1 && fcp !== undefined && ms >= fcp) psvFcpIdx = i; if (psvLcpIdx === -1 && lcp !== undefined && ms >= lcp) psvLcpIdx = i } }
+
+//- Coach report card + top performance fixes.
+- const psvCoach = h.get(d, 'coach.pageSummary.advice')
+- const psvCoachTiles = []
+- if (psvCoach) { if (psvCoach.score != null) psvCoachTiles.push({s: psvCoach.score, label: 'Coach overall', overall: true}); if (psvCoach.performance && psvCoach.performance.score != null) psvCoachTiles.push({s: psvCoach.performance.score, label: 'Performance'}); if (psvCoach.bestpractice && psvCoach.bestpractice.score != null) psvCoachTiles.push({s: psvCoach.bestpractice.score, label: 'Best practice'}); if (psvCoach.privacy && psvCoach.privacy.score != null) psvCoachTiles.push({s: psvCoach.privacy.score, label: 'Privacy'}) }
+- const psvAdviceList = h.get(d, 'coach.pageSummary.advice.performance.adviceList')
+//- Same selection as the Coach page's "What to fix first": imperfect
+//- advice (score < 100), worst score first, capped at 3.
+- const psvOffenders = psvAdviceList ? Object.values(psvAdviceList).filter(a => a && a.score != null && a.score < 100).sort((a, b) => a.score - b.score).slice(0, 3) : []
+- const psvAllVitalsOk = psvVitals.length > 0 && psvVitals.every(x => x.cls === 'ok')
+
+//- Accessibility (axe-core): median violation counts per severity. A
+//- level with zero is a good (green) tile; any count is tinted by its
+//- impact (critical/serious = error, moderate/minor = warning).
+- const psvAxe = h.get(d, 'axe.pageSummary')
+- const psvAxeSev = psvAxe ? [{key: 'critical', label: 'Critical', tone: 'error'}, {key: 'serious', label: 'Serious', tone: 'error'}, {key: 'moderate', label: 'Moderate', tone: 'warning'}, {key: 'minor', label: 'Minor', tone: 'warning'}].map(s => ({label: s.label, tone: s.tone, count: Math.round(h.get(psvAxe, 'violations.' + s.key + '.median') || 0)})) : []
+- const psvAxeCrit = psvAxeSev.length ? psvAxeSev[0].count : 0
+- const psvAxeSerious = psvAxeSev.length ? psvAxeSev[1].count : 0
+- const psvAxeHigh = psvAxeCrit + psvAxeSerious
+
+//- Draws the milestone flags over the phase band. A mixin so both hero
+//- branches share it; segments/flags/axis passed as args because
+//- mixins can't see the psv* consts above.
+mixin phaseTimeline(segments, flags, axisEnd)
+  if segments.length
+    .summary-axis
+      .summary-flags
+        each f in flags
+          - const psvLeft = (f.t / axisEnd * 100).toFixed(1)
+          .summary-flag(class=f.hi ? 'is-hi' : '', style='left:' + psvLeft + '%')
+            span.summary-flag-tag #{f.tag}
+            span.summary-flag-ms #{h.time.ms(f.t.toFixed ? f.t.toFixed(0) : f.t)}
+            span.summary-flag-stem
+      .summary-phase-band
+        each s in segments
+          - const psvW = (s.ms / axisEnd * 100).toFixed(1)
+          .summary-seg(class='summary-seg--' + s.kind, style='width:' + psvW + '%', title=s.label + ': ' + s.ms.toFixed(0) + ' ms')
+            if Number(psvW) >= 12
+              span.summary-seg-label #{s.label} #{h.time.ms(s.ms.toFixed(0))}
+
+//- Renders a list of tone-highlighted verdict phrases with no Oxford
+//- comma: "a", "a and b", "a, b and c".
+mixin verdictList(items)
+  each item, i in items
+    span.summary-lede-hl(class=item.tone)= item.txt
+    if i < items.length - 1
+      = i === items.length - 2 ? ' and ' : ', '
+
+//- 1. Verdict lede — judges the page across several dimensions (paint,
+//- interactivity, layout stability, accessibility, and the server / page
+//- weight when notably bad), colour-coding each phrase as a strength
+//- (green) or a weakness (amber/red) and reading them as one sentence:
+//- "This page is fast to paint, visually stable and accessible, but
+//- janky to interact with." Only paint + interactivity are always
+//- judged; the rest join in when their data is present or notable.
+- const psvJudged = []
+- if (lcp !== undefined) psvJudged.push({ok: lcp < 2500, txt: lcp < 2500 ? 'fast to paint' : 'slow to paint', tone: lcp < 2500 ? 'is-ok' : 'is-error'})
+- if (tbt !== undefined) psvJudged.push({ok: tbt < 200, txt: tbt < 200 ? 'snappy to interact with' : (tbt < 600 ? 'a little janky to interact with' : 'janky to interact with'), tone: tbt < 200 ? 'is-ok' : (tbt < 600 ? 'is-warning' : 'is-error')})
+- if (cls !== undefined) psvJudged.push({ok: cls < 0.1, txt: cls < 0.1 ? 'visually stable' : 'prone to layout shifts', tone: cls < 0.1 ? 'is-ok' : (cls < 0.25 ? 'is-warning' : 'is-error')})
+- if (psvAxe) psvJudged.push({ok: psvAxeHigh === 0, txt: psvAxeHigh === 0 ? 'accessible' : 'missing some accessibility basics', tone: psvAxeHigh === 0 ? 'is-ok' : 'is-error'})
+//- Coach best-practice + privacy scores judge dimensions the Web Vitals
+//- don't; Coach performance is skipped because it echoes paint /
+//- interactivity above. Tone comes from h.scoreLabel so the phrase colour
+//- matches the Coach page and the report card (>90 green, >80 amber, else
+//- red) — only a green (>90) reads as a strength.
+- if (psvCoach && psvCoach.bestpractice && psvCoach.bestpractice.score !== undefined) { const t = h.scoreLabel(psvCoach.bestpractice.score); psvJudged.push({ok: t === 'ok', txt: t === 'ok' ? 'follows best practices' : 'loose on best practices', tone: 'is-' + t}) }
+- if (psvCoach && psvCoach.privacy && psvCoach.privacy.score !== undefined) { const t = h.scoreLabel(psvCoach.privacy.score); psvJudged.push({ok: t === 'ok', txt: t === 'ok' ? 'privacy-respecting' : 'weak on user privacy', tone: 'is-' + t}) }
+- if (ttfb !== undefined && ttfb >= 800) psvJudged.push({ok: false, txt: 'slow to respond from the server', tone: ttfb >= 1800 ? 'is-error' : 'is-warning'})
+- if (totalTransferSize && totalTransferSize >= 4000000) psvJudged.push({ok: false, txt: 'heavy to download', tone: 'is-error'})
+- const psvStrengths = psvJudged.filter((x) => x.ok)
+- const psvWeak = psvJudged.filter((x) => !x.ok)
+if psvJudged.length
+  p.summary-lede
+    | This page is #[+verdictList(psvStrengths)]#{psvStrengths.length && psvWeak.length ? ', but ' : ''}#[+verdictList(psvWeak)].
+
+//- 2. Coach report card.
+if psvCoachTiles.length
+  .summary-reportcard
+    each tile in psvCoachTiles
+      //- h.scoreLabel matches the Coach page's tile colours exactly:
+      //- >90 green, >80 amber, else red.
+      .summary-rc(class=h.scoreLabel(tile.s) + (tile.overall ? ' is-overall' : ''))
+        .summary-rc-score #{tile.s}
+          small  / 100
+        .summary-rc-label #{tile.label}
+
+//- 3. Hero — filmstrip when we have frames, otherwise the scorecard.
+if psvHasFilmstrip
+  .summary-stage
+    .summary-stage-head
+      h3.listing-card-title
+        a.summary-stage-link(href='#rendering', onclick='const renderingTab = document.querySelector("#tabs #rendering"); if (renderingTab) selectTab(renderingTab, false)') How it loaded →
+      if lastVisualChange
+        span.listing-card-meta 0 → #{h.time.ms(lastVisualChange.toFixed ? lastVisualChange.toFixed(0) : lastVisualChange)} · median run
+    .summary-film
+      each f, i in psvFrames
+        - const psvMs = Math.round(f.time * 1000)
+        - const psvLabel = (i === psvFrames.length - 1) ? 'Complete' : (i === psvLcpIdx ? 'Largest paint' : (i === psvFcpIdx ? 'First paint' : ''))
+        figure.summary-frame(class=psvLabel ? 'is-milestone' : '')
+          .summary-frame-pic
+            img(src=psvFilmstripPath + f.file, alt='Frame at ' + psvMs + ' ms', loading='lazy')
+          figcaption
+            b #{psvLabel}
+            span #{i === 0 ? 'start' : h.time.ms(psvMs)}
+    +phaseTimeline(psvSegments, psvFlags, psvAxisEnd)
+else
+  .summary-stage
+    .summary-stage-head
+      h3.listing-card-title How it scored
+      span.listing-card-meta median of #{h.plural(options.browsertime.iterations, 'run')}
+    //- The graded Web Vitals (tinted) and the supporting no-video metrics
+    //- (loading, page weight, main-thread cost — neutral tiles) share one
+    //- grid so the whole score reads as a single board.
+    - const psvMore = []
+    - if (fullyLoaded) psvMore.push({v: h.time.ms(fullyLoaded), l: 'Fully loaded'})
+    - if (firstPaint) psvMore.push({v: h.time.ms(firstPaint), l: 'First Paint'})
+    - if (totalTransferSize) psvMore.push({v: h.size.format(totalTransferSize), l: 'Total transfer size'})
+    - if (totalTransferSize && totalContentSize) psvMore.push({v: h.size.format(totalContentSize), l: 'Total content size'})
+    - if (requests) psvMore.push({v: requests, l: 'Requests'})
+    - if (longTasks) psvMore.push({v: longTasks, l: 'Long tasks'})
+    - if (maxLongTask) psvMore.push({v: h.time.ms(maxLongTask), l: 'Longest task'})
+    - if (memory) psvMore.push({v: h.size.format(memory), l: 'Memory'})
+    - if (powerConsumption) psvMore.push({v: (powerConsumption * 1000).toFixed(1) + ' mWh', l: 'Firefox CPU power'})
+    .summary-hero-cols
+      .summary-scorecard
+        each x in psvVitals
+          .summary-sv(class=x.cls)
+            .summary-sv-top
+              span.summary-sv-short #{x.short}
+              span.summary-sv-grade #{psvGradeShort(x.cls)}
+            .summary-sv-val #{x.formatted}
+            .summary-sv-name #{x.name}
+        each m in psvMore
+          .summary-sv
+            .summary-sv-val #{m.v}
+            .summary-sv-name #{m.l}
+      if hasScreenShots
+        - const psvShotNo = medianRun ? medianRun.runIndex : 1
+        - const psvShotName = 'data/screenshots/' + psvShotNo + '/afterPageCompleteCheck.' + screenShotType
+        figure.summary-shot
+          a(href=psvShotName)
+            img(src=psvShotName, alt='Screenshot of run ' + psvShotNo, loading='lazy')
+          figcaption Median run (run #{psvShotNo}) · after page complete
+    +phaseTimeline(psvSegments, psvFlags, psvAxisEnd)
+    p.summary-novideo-note Run with #[code --video] to replay what the user saw frame by frame. The verdict and fixes below don't need it.
+
+//- 4. Visual metrics (only exist when video / visual metrics ran).
+if firstVisualChange || speedIndex || visualComplete85 || lastVisualChange
+  p.summary-section-label Visual metrics
+  .summary-visualmetrics
+    if firstVisualChange
+      .summary-vm
+        .summary-vm-val #{h.time.ms(firstVisualChange)}
+        .summary-vm-label First Visual Change
+    if speedIndex
+      .summary-vm
+        .summary-vm-val #{h.time.ms(speedIndex)}
+        .summary-vm-label Speed Index
+    if visualComplete85
+      .summary-vm
+        .summary-vm-val #{h.time.ms(visualComplete85)}
+        .summary-vm-label Visual Complete 85%
+    if lastVisualChange
+      .summary-vm
+        .summary-vm-val #{h.time.ms(lastVisualChange)}
+        .summary-vm-label Last Visual Change
+
+//- 5. Google Web Vitals chips — only in filmstrip mode; the scorecard
+//- already carries the graded values otherwise.
+if psvHasFilmstrip && psvVitals.length
+  p.summary-section-label Google Web Vitals
+  .summary-chips
+    each x in psvVitals
+      span.summary-chip(class=x.cls)
+        span.summary-chip-mark
+        span.summary-chip-key #{x.short}
+        span.summary-chip-val #{x.formatted}
+
+//- 5c. Accessibility (when axe-core ran) — one tinted tile per severity.
+if psvAxe && psvAxeSev.length
+  p.summary-section-label Accessibility · axe-core
+  .summary-a11y
+    each s in psvAxeSev
+      .summary-sv(class=(s.count > 0 ? s.tone : 'ok'))
+        .summary-sv-val #{s.count}
+        .summary-sv-name #{s.label} #{s.count === 1 ? 'violation' : 'violations'}
+
+//- 6. What to act on — top Coach performance fixes plus high-impact
+//- accessibility violations.
+- const psvHasActs = psvOffenders.length > 0 || psvAxeHigh > 0
+if psvCoach || psvAxe
+  h3.summary-acts-title
+    if psvHasActs
+      | What to act on
+      span.summary-acts-sub  · top recommendations
+    else
+      | Nothing to act on
+  .summary-acts
+    each a in psvOffenders
+      .summary-act(class=psvAdviceTone(a.score))
+        .summary-act-head
+          span.summary-act-dot
+          h4.summary-act-title #{a.title}
+          span.summary-act-score #{a.score} / 100
+        if a.advice
+          p.summary-act-text #{a.advice}
+        else if a.description
+          p.summary-act-text #{a.description}
+    if psvAxeHigh > 0
+      .summary-act.error
+        .summary-act-head
+          span.summary-act-dot
+          h4.summary-act-title Fix accessibility violations
+          span.summary-act-score axe-core
+        p.summary-act-text axe-core flagged #{psvAxeHigh} high-impact accessibility #{psvAxeHigh === 1 ? 'violation' : 'violations'} (#{psvAxeCrit} critical, #{psvAxeSerious} serious). Open the Accessibility tab to see the offending elements.
+    if !psvHasActs
+      .summary-act.ok
+        .summary-act-head
+          span.summary-act-dot
+          h4.summary-act-title You're in good shape
+        p.summary-act-text Coach found no failing performance checks#{psvAxe ? ', axe-core found no critical accessibility violations' : ''}#{psvAllVitalsOk ? ' and every Core Web Vital is in the good range' : ''}. Keep an eye on the trend: regressions show up here first.

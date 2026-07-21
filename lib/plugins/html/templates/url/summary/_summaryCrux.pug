@@ -1,0 +1,82 @@
+//- Chrome UX Report (real-user field data) for the page summary, rendered
+//- as tinted p75 tiles plus good / needs-improvement / poor distribution
+//- bars — the same visual language as the CrUX plugin's own section
+//- (crux.scss: .crux-kpi / .crux-distro*). Uses the ALL form factor, the
+//- same source the plain list this replaced read. Included from
+//- url/summary/index.pug.
+- const cxMetrics = h.get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics')
+if cxMetrics
+  //- Same p75 cutoffs as the CrUX plugin / Metrics tab.
+  - const cxFcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+  - const cxLcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+  - const cxClsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+  - const cxInpClass = (v) => v == null ? '' : (v >= 500 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+  - const cxTtfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
+  - const cxP75 = (m) => m && m.percentiles ? m.percentiles.p75 : undefined
+  - const cxDist = (m) => { if (!m || !m.histogram) return null; const g = (i) => Number((m.histogram[i] && m.histogram[i].density || 0) * 100); return { good: g(0).toFixed(1), ni: g(1).toFixed(1), poor: g(2).toFixed(1) } }
+
+  //- Stacked good/needs-improvement/poor bar for one metric's histogram.
+  mixin cxBar(m)
+    - const dist = cxDist(m)
+    if dist
+      .crux-distro
+        .crux-distro-bar
+          if Number(dist.good) > 0
+            span.crux-distro-segment.crux-good(style='flex: ' + dist.good + ' 0 0', title='Good ' + dist.good + '%')
+          if Number(dist.ni) > 0
+            span.crux-distro-segment.crux-ni(style='flex: ' + dist.ni + ' 0 0', title='Needs improvement ' + dist.ni + '%')
+          if Number(dist.poor) > 0
+            span.crux-distro-segment.crux-poor(style='flex: ' + dist.poor + ' 0 0', title='Poor ' + dist.poor + '%')
+        .crux-distro-legend
+          span.crux-distro-good #{dist.good}%
+          span.crux-distro-ni #{dist.ni}%
+          span.crux-distro-poor #{dist.poor}%
+
+  - const cxFcp = cxP75(cxMetrics.first_contentful_paint)
+  - const cxLcp = cxP75(cxMetrics.largest_contentful_paint)
+  - const cxCls = cxP75(cxMetrics.cumulative_layout_shift)
+  - const cxInp = cxP75(cxMetrics.interaction_to_next_paint)
+  - const cxTtfb = cxP75(cxMetrics.experimental_time_to_first_byte)
+
+  .listing-card.summary-crux
+    .listing-card-header
+      h3.listing-card-title Chrome UX Report
+      span.listing-card-meta real users · p75 · last 30 days
+    .crux-kpis
+      if cxLcp !== undefined
+        .crux-kpi(class=cxLcpClass(cxLcp))
+          span.crux-kpi-label LCP
+          span.crux-kpi-value #{h.time.ms(cxLcp)}
+      if cxInp !== undefined
+        .crux-kpi(class=cxInpClass(cxInp))
+          span.crux-kpi-label INP
+          span.crux-kpi-value #{h.time.ms(cxInp)}
+      if cxCls !== undefined
+        .crux-kpi(class=cxClsClass(Number(cxCls)))
+          span.crux-kpi-label CLS
+          span.crux-kpi-value #{Number(cxCls).toFixed(3)}
+      if cxFcp !== undefined
+        .crux-kpi(class=cxFcpClass(cxFcp))
+          span.crux-kpi-label FCP
+          span.crux-kpi-value #{h.time.ms(cxFcp)}
+      if cxTtfb !== undefined
+        .crux-kpi(class=cxTtfbClass(cxTtfb))
+          span.crux-kpi-label TTFB
+          span.crux-kpi-value #{h.time.ms(cxTtfb)}
+    dl.crux-distros
+      if cxMetrics.largest_contentful_paint
+        dt Largest Contentful Paint
+        dd
+          +cxBar(cxMetrics.largest_contentful_paint)
+      if cxMetrics.interaction_to_next_paint
+        dt Interaction to Next Paint
+        dd
+          +cxBar(cxMetrics.interaction_to_next_paint)
+      if cxMetrics.cumulative_layout_shift
+        dt Cumulative Layout Shift
+        dd
+          +cxBar(cxMetrics.cumulative_layout_shift)
+      if cxMetrics.first_contentful_paint
+        dt First Contentful Paint
+        dd
+          +cxBar(cxMetrics.first_contentful_paint)

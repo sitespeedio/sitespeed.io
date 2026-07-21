@@ -1,0 +1,373 @@
+//
+// PAGE SUMMARY HERO — dark
+// ========================
+// Dark twin of light/components/summaryHero.scss. Everything is
+// variable-driven, so the only per-theme change is the highlight accent
+// ($color--blue instead of $color--blue-dark, which is too dark on the
+// dark surface) and the decorative timeline fills stay literal so the
+// band reads the same in both themes. Keep in sync with the light file.
+//
+
+// 1. Verdict lede
+.summary-lede {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  font-weight: $font--weight--semibold;
+  margin: 0 0 22px 0;
+}
+
+// Highlighted verdict phrases use the same light tone tint as the Coach
+// score tiles (bg $color--ok-bg + tone text). A SCOPED class on purpose —
+// the bare global `.ok` utility paints a solid dark-green background.
+.summary-lede-hl {
+  padding: 0.05em 0.32em;
+  border-radius: $radius--sm;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+
+  &.is-ok { background: $color--ok-bg; color: $color--ok; }
+  &.is-warning { background: $color--warning-bg; color: $color--warning; }
+  &.is-error { background: $color--error-bg; color: $color--error; }
+}
+
+// 2. Coach report card
+.summary-reportcard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 0 24px 0;
+
+  @media (max-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.summary-rc {
+  position: relative;
+  padding: 13px 15px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  // Same tinted good / needs-improvement / poor treatment as the Web
+  // Vitals hero — soft tone tints, not big dark-green grade blocks.
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; }
+}
+
+// The score leads in neutral text, exactly like the hero's value.
+.summary-rc-score {
+  font-size: 1.6rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+
+  small { font-size: 0.78rem; color: $color--text-muted; font-weight: $font--weight--medium; }
+}
+
+.summary-rc-label { font-size: 0.85rem; color: $color--text-secondary; }
+
+// 3. Hero stage (shared by filmstrip + scorecard)
+.summary-stage {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--lg;
+  box-shadow: $shadow--sm;
+  padding: 20px 22px 16px;
+  margin-bottom: 24px;
+}
+
+.summary-stage-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  .listing-card-title { margin: 0; }
+}
+
+// "How it loaded" links to the full playback on the Rendering tab.
+.summary-stage-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover { color: $color--blue; }
+}
+
+// Filmstrip strip — frames grow to fill the row but cap their width, so a
+// fast page with only two or three frames shows sensible thumbnails
+// instead of a couple of huge stills.
+.summary-film {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.summary-frame {
+  flex: 1 1 120px;
+  max-width: 200px;
+  margin: 0;
+
+  .summary-frame-pic {
+    border-radius: $radius--sm;
+    overflow: hidden;
+    border: 1px solid $color--border;
+    background: $color--surface;
+
+    // Show the whole filmstrip frame at its natural aspect rather than
+    // cropping it into a fixed box — frames of one run share an aspect,
+    // so the thumbnails still line up.
+    img { display: block; width: 100%; height: auto; }
+  }
+
+  figcaption {
+    text-align: center;
+    margin-top: 7px;
+    font-size: 0.74rem;
+    color: $color--text-muted;
+    font-variant-numeric: tabular-nums;
+
+    b { display: block; font-size: 0.82rem; color: $color--text-secondary; min-height: 1.1em; }
+  }
+
+  &.is-milestone figcaption b { color: $color--blue; }
+}
+
+// Scorecard (no-video) — two columns with an optional screenshot
+.summary-hero-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @media (min-width: 720px) {
+    &:has(.summary-shot) { grid-template-columns: minmax(0, 1fr) 260px; }
+  }
+}
+
+.summary-scorecard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-content: start;
+
+  @media (max-width: 520px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.summary-sv {
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 12px 13px;
+  background: $color--surface-card;
+
+  // Same tinted good / needs-improvement / poor treatment as the Web
+  // Vitals hero (`.web-vital` in metricsCards.scss) so a passing metric
+  // reads green, not white with a thin accent.
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; }
+}
+
+.summary-sv-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.summary-sv-short { font-weight: $font--weight--heavy; font-size: 0.8rem; color: $color--text-secondary; }
+.summary-sv-grade {
+  font-size: 0.62rem;
+  font-weight: $font--weight--heavy;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+
+  .summary-sv.ok & { color: $color--ok; }
+  .summary-sv.warning & { color: $color--warning; }
+  .summary-sv.error & { color: $color--error; }
+}
+.summary-sv-val { font-size: 1.45rem; font-weight: $font--weight--semibold; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.summary-sv-name { font-size: 0.72rem; color: $color--text-muted; line-height: 1.2; margin-top: 2px; }
+
+.summary-shot {
+  margin: 0;
+
+  a { display: block; }
+  img { display: block; width: 100%; height: auto; border-radius: $radius--sm; border: 1px solid $color--border; }
+  figcaption { margin-top: 7px; font-size: 0.76rem; color: $color--text-muted; }
+}
+
+// Phase timeline (flags over the coloured band)
+.summary-axis { position: relative; margin: 18px 2px 4px; }
+
+.summary-flags { position: relative; height: 30px; }
+
+.summary-flag {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  top: 0;
+
+  &.is-hi .summary-flag-tag { color: $color--blue; }
+}
+.summary-flag-tag { display: block; font-size: 0.68rem; font-weight: $font--weight--heavy; color: $color--text-secondary; white-space: nowrap; }
+.summary-flag-ms { display: block; font-size: 0.64rem; color: $color--text-muted; font-variant-numeric: tabular-nums; }
+.summary-flag-stem { display: block; width: 2px; height: 12px; margin: 2px auto 0; background: $color--border-strong; }
+
+.summary-phase-band { display: flex; height: 24px; border-radius: $radius--sm; overflow: hidden; }
+
+.summary-seg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Timeline fill colours (decorative): network → render-blocking →
+  // largest paint → tail. Kept as literals so the band reads the same
+  // in both themes.
+  &--net { background: #b91c1c; }
+  &--rb { background: #d97706; }
+  &--lp { background: #0095d2; }
+  &--tail { background: #7c3aed; }
+}
+
+.summary-seg-label {
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: $font--weight--heavy;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  padding: 0 4px;
+}
+
+.summary-novideo-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed $color--border;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+
+  code { background: $color--surface; padding: 1px 6px; border-radius: $radius--sm; font-size: 0.85em; }
+}
+
+// 4. Section labels + visual metrics
+.summary-section-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color--text-muted;
+  font-weight: $font--weight--heavy;
+  margin: 0 0 12px;
+}
+
+.summary-visualmetrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 0 26px;
+
+  @media (max-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.summary-vm {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-top: 3px solid $color--blue;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  padding: 13px 15px;
+}
+.summary-vm-val { font-size: 1.4rem; font-weight: $font--weight--semibold; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.summary-vm-label { font-size: 0.78rem; color: $color--text-muted; }
+
+// Accessibility (axe-core) tiles — reuse the tinted .summary-sv tile.
+.summary-a11y {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 0 0 26px;
+
+  @media (max-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+// 5. Web Vitals chips
+.summary-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; }
+
+.summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  padding: 6px 13px 6px 10px;
+  font-size: 0.84rem;
+  box-shadow: $shadow--sm;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; }
+}
+.summary-chip-mark {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: $color--text-muted;
+
+  .summary-chip.ok & { background: $color--ok; }
+  .summary-chip.warning & { background: $color--warning; }
+  .summary-chip.error & { background: $color--error; }
+}
+.summary-chip-key { font-weight: $font--weight--heavy; }
+.summary-chip-val { color: $color--text-secondary; font-variant-numeric: tabular-nums; }
+
+// 6. What to act on
+.summary-acts-title {
+  font-size: 1.375rem;
+  margin: 4px 0 14px;
+
+  .summary-acts-sub { font-weight: $font--weight--regular; color: $color--text-muted; font-size: 1rem; }
+}
+
+.summary-acts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.summary-act {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 15px 17px;
+
+  // Tinted like the Web Vitals hero / Coach tiles — no dark-green rail.
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; }
+}
+
+.summary-act-head { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+.summary-act-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+  background: $color--text-muted;
+
+  .summary-act.ok & { background: $color--ok; }
+  .summary-act.warning & { background: $color--warning; }
+  .summary-act.error & { background: $color--error; }
+}
+.summary-act-title { margin: 0; font-size: 1.02rem; letter-spacing: -0.01em; }
+.summary-act-score {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: $font--weight--heavy;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+// Coach advice text can list long unbreakable URLs (ad SDKs); break them
+// so they stay inside the card instead of spilling past its edge.
+.summary-act-text { margin: 0; color: $color--text-secondary; font-size: 0.9rem; overflow-wrap: anywhere; }
