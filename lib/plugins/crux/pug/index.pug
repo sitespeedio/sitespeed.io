@@ -9,6 +9,25 @@
 - const ttfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
 - const rttClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
 
+//- Core Web Vitals verdict. Assesses LCP / INP / CLS at the 75th
+//- percentile — a metric "passes" when its p75 sits in the good range
+//- (which is the same as ≥75% of real users being good). Used for the
+//- actionable banner on top. Only the three Core Web Vitals gate the
+//- pass; FCP / TTFB / RTT are diagnostic and stay out of the verdict.
+- const cwvAssess = (metrics) => {
+-   if (!metrics) return null;
+-   const p = (k) => metrics[k] && metrics[k].percentiles ? Number(metrics[k].percentiles.p75) : undefined;
+-   const defs = [{ label: 'LCP', name: 'Largest Contentful Paint', v: p('largest_contentful_paint'), good: 2500, poor: 4000, fmt: (x) => h.time.ms(x), fix: 'a faster server response, fewer render-blocking resources and lighter hero images' }, { label: 'INP', name: 'Interaction to Next Paint', v: p('interaction_to_next_paint'), good: 200, poor: 500, fmt: (x) => h.time.ms(x), fix: 'breaking long JavaScript tasks into smaller pieces' }, { label: 'CLS', name: 'Cumulative Layout Shift', v: p('cumulative_layout_shift'), good: 0.1, poor: 0.25, fmt: (x) => x.toFixed(2), fix: 'reserving space for images, ads and late-loading content' }];
+-   const items = defs.filter(m => m.v !== undefined);
+-   items.forEach(m => { m.status = m.v <= m.good ? 'ok' : (m.v <= m.poor ? 'warning' : 'error'); m.display = m.fmt(m.v); });
+-   const failing = items.filter(m => m.status !== 'ok');
+-   const anyPoor = failing.some(m => m.status === 'error');
+-   const tone = anyPoor ? 'error' : (failing.length ? 'warning' : 'ok');
+-   return { items: items, failing: failing, anyPoor: anyPoor, passes: items.length > 0 && failing.length === 0, tone: tone };
+- }
+//- Join a list with "and" before the last item and no Oxford comma.
+- const joinAnd = (arr) => arr.length <= 1 ? (arr[0] || '') : arr.slice(0, -1).join(', ') + ' and ' + arr[arr.length - 1]
+
 //- Distribution pulled out of the histogram array. Returns
 //- { good, ni, poor } as percentages (0–100, 2 decimals) so the
 //- stacked bar can flex its segments by ratio.
@@ -35,6 +54,27 @@ mixin distroBar(metric, lowLabel, midLabel, highLabel)
         span.crux-distro-ni #{dist.ni}%
         span.crux-distro-poor #{dist.poor}%
 
+//- One donut for a share breakdown (form factors, navigation types,
+//- LCP resource type) — a conic-gradient ring plus a legend, sorted
+//- largest-first. Pure CSS, no charting dependency, works on file://.
+//- The slice colours come from the --crux-cat-* custom properties so
+//- the inline gradient and the legend dots stay theme-aware. A bucket
+//- at 100% reads as one solid ring labelled in the legend.
+mixin compositionPie(items)
+  - const shown = (items || []).map(it => ({ label: it.label, pct: Number(it.pct) || 0 })).filter(it => it.pct > 0).sort((a, b) => b.pct - a.pct)
+  if shown.length
+    - const total = shown.reduce((sum, it) => sum + it.pct, 0) || 1
+    - let acc = 0
+    - const stops = shown.map((it, idx) => { const start = acc / total * 100; acc += it.pct; return 'var(--crux-cat-' + ((idx % 7) + 1) + ') ' + start.toFixed(3) + '% ' + (acc / total * 100).toFixed(3) + '%'; })
+    .crux-pie-wrap
+      .crux-donut(style='background: conic-gradient(' + stops.join(', ') + ')')
+      ul.crux-comp-legend
+        each it, idx in shown
+          li.crux-comp-key
+            span.crux-comp-dot(class='crux-cat-' + ((idx % 7) + 1))
+            span.crux-comp-name #{it.label}
+            span.crux-comp-pct #{it.pct < 1 ? it.pct.toFixed(2) : it.pct.toFixed(1)}%
+
 if experiences && (crux.loadingExperience || crux.originLoadingExperience)
   small
     ||
@@ -50,6 +90,34 @@ if experiences && (crux.loadingExperience || crux.originLoadingExperience)
     |
     code --crux.formFactor
     | .
+
+  //- Actionable verdict on top: prefer this page's own field data, fall
+  //- back to the origin when the exact URL has no sample.
+  - const primaryExp = crux.loadingExperience || crux.originLoadingExperience
+  - const primaryScope = crux.loadingExperience ? 'This page' : 'This origin'
+  - const pffKey = primaryExp ? (primaryExp.ALL ? 'ALL' : Object.keys(primaryExp)[0]) : undefined
+  - const pff = pffKey && primaryExp[pffKey] ? primaryExp[pffKey] : undefined
+  - const primaryMetrics = pff && pff.data ? pff.data.record.metrics : undefined
+  - const verdict = cwvAssess(primaryMetrics)
+  if verdict && verdict.items.length
+    .crux-verdict(class=verdict.tone)
+      if verdict.passes
+        p.crux-verdict-title #{primaryScope} passes the Core Web Vitals for real users.
+        p.crux-verdict-note #{joinAnd(verdict.items.map(m => m.label))} #{verdict.items.length > 1 ? 'are' : 'is'} in the good range at the 75th percentile.
+      else if verdict.anyPoor
+        p.crux-verdict-title #{primaryScope} does not pass the Core Web Vitals: #{joinAnd(verdict.failing.map(m => m.label))} #{verdict.failing.length > 1 ? 'need' : 'needs'} work.
+        ul.crux-verdict-actions
+          each m in verdict.failing
+            li
+              strong #{m.name} (#{m.display}):
+              |  #{m.fix}.
+      else
+        p.crux-verdict-title #{primaryScope} is close to passing the Core Web Vitals: improve #{joinAnd(verdict.failing.map(m => m.label))} to reach the good range.
+        ul.crux-verdict-actions
+          each m in verdict.failing
+            li
+              strong #{m.name} (#{m.display}):
+              |  #{m.fix}.
 
   each experience in experiences
     if crux[experience]
@@ -132,63 +200,65 @@ if experiences && (crux.loadingExperience || crux.originLoadingExperience)
                 dd
                   +distroBar(metrics.round_trip_time, 'Low', 'Medium', 'High')
 
-            //- Form factor / navigation type / LCP resource breakdowns
-            //- — only render when CrUx returned them. Each bucket is a
-            //- small horizontal bar with percentage.
-            if ff.FORM_FACTORS_FRACTIONS
-              h5.crux-section-heading Form factors
-              .crux-bars
-                - const fr = ff.FORM_FACTORS_FRACTIONS
-                each pct, name in {desktop: fr.desktop, phone: fr.phone, tablet: fr.tablet}
-                  - const p = Number(pct * 100)
-                  .crux-bar-row
-                    span.crux-bar-label #{name}
-                    .crux-bar-track
-                      span.crux-bar-fill(style='width: ' + p.toFixed(2) + '%')
-                    span.crux-bar-value #{p.toFixed(2)}%
+            //- Audience / navigation / LCP-resource breakdowns as donuts,
+            //- laid side by side where the card is wide enough — only
+            //- render when CrUx returned them.
+            if ff.FORM_FACTORS_FRACTIONS || ff.NAVIGATION_TYPES_FRACTIONS || ff.LCP_RESOURCE_TYPES_FRACTIONS
+              .crux-breakdowns
+                if ff.FORM_FACTORS_FRACTIONS
+                  .crux-breakdown
+                    h5.crux-section-heading Form factors
+                    - const fr = ff.FORM_FACTORS_FRACTIONS
+                    +compositionPie([{label: 'Desktop', pct: fr.desktop * 100}, {label: 'Phone', pct: fr.phone * 100}, {label: 'Tablet', pct: fr.tablet * 100}])
 
-            if ff.NAVIGATION_TYPES_FRACTIONS
-              h5.crux-section-heading Navigation types
-              .crux-bars
-                - const nt = ff.NAVIGATION_TYPES_FRACTIONS
-                - const navItems = [['Navigate', nt.navigate], ['Navigate cache', nt.navigate_cache], ['Reload', nt.reload], ['Restore', nt.restore], ['Back/Forward', nt.back_forward], ['Back/Forward cache', nt.back_forward_cache], ['Prerender', nt.prerender]]
-                each item in navItems
-                  - const p = Number(item[1] * 100)
-                  .crux-bar-row
-                    span.crux-bar-label #{item[0]}
-                    .crux-bar-track
-                      span.crux-bar-fill(style='width: ' + p.toFixed(2) + '%')
-                    span.crux-bar-value #{p.toFixed(2)}%
+                if ff.NAVIGATION_TYPES_FRACTIONS
+                  .crux-breakdown
+                    h5.crux-section-heading Navigation types
+                    - const nt = ff.NAVIGATION_TYPES_FRACTIONS
+                    +compositionPie([{label: 'Navigate', pct: nt.navigate * 100}, {label: 'Navigate cache', pct: nt.navigate_cache * 100}, {label: 'Reload', pct: nt.reload * 100}, {label: 'Restore', pct: nt.restore * 100}, {label: 'Back/Forward', pct: nt.back_forward * 100}, {label: 'Back/Forward cache', pct: nt.back_forward_cache * 100}, {label: 'Prerender', pct: nt.prerender * 100}])
 
+                if ff.LCP_RESOURCE_TYPES_FRACTIONS
+                  .crux-breakdown
+                    h5.crux-section-heading LCP resource type
+                    - const lr = ff.LCP_RESOURCE_TYPES_FRACTIONS
+                    +compositionPie([{label: 'Image', pct: lr.image * 100}, {label: 'Text', pct: lr.text * 100}])
+
+            //- LCP image breakdown: the four phases of an image LCP shown
+            //- left-to-right in timeline order (TTFB, load delay, load
+            //- duration, render delay) as a "where the time went" bar, with
+            //- a pointer at the biggest phase. Each phase is its own p75, so
+            //- they are independent and may not sum to the LCP (the caption
+            //- says so) — the bar therefore flexes on the phase sum, not LCP.
             if ff.LCP_RESOURCE_TYPES_FRACTIONS
-              h5.crux-section-heading LCP resource type
-              .crux-bars
-                - const lr = ff.LCP_RESOURCE_TYPES_FRACTIONS
-                each pct, name in {Text: lr.text, Image: lr.image}
-                  - const p = Number(pct * 100)
-                  .crux-bar-row
-                    span.crux-bar-label #{name}
-                    .crux-bar-track
-                      span.crux-bar-fill(style='width: ' + p.toFixed(2) + '%')
-                    span.crux-bar-value #{p.toFixed(2)}%
-
-              h5.crux-section-heading LCP image breakdown (p75)
-              dl.crux-image-breakdown
-                if ff.LARGEST_CONTENTFUL_PAINT_MS
-                  dt Largest Contentful Paint
-                  dd #{h.time.ms(ff.LARGEST_CONTENTFUL_PAINT_MS.p75)}
-                if ff.LCP_IMAGE_RESOURCE_LOAD_DURATION_MS
-                  dt Image load duration
-                  dd #{h.time.ms(ff.LCP_IMAGE_RESOURCE_LOAD_DURATION_MS.p75)}
-                if ff.LCP_IMAGE_RESOURCE_LOAD_DELAY_MS
-                  dt Image load delay
-                  dd #{h.time.ms(ff.LCP_IMAGE_RESOURCE_LOAD_DELAY_MS.p75)}
-                if ff.LCP_IMAGE_ELEMENT_RENDER_DELAY_MS
-                  dt Image render delay
-                  dd #{h.time.ms(ff.LCP_IMAGE_ELEMENT_RENDER_DELAY_MS.p75)}
-                if ff.LCP_IMAGE_TTFB_MS
-                  dt Image TTFB
-                  dd #{h.time.ms(ff.LCP_IMAGE_TTFB_MS.p75)}
+              - const lcpPhaseDefs = [{ key: 'LCP_IMAGE_TTFB_MS', label: 'Time to first byte', fix: 'speeding up the server response or using a CDN closer to your users' }, { key: 'LCP_IMAGE_RESOURCE_LOAD_DELAY_MS', label: 'Resource load delay', fix: 'discovering the image sooner: preload it and avoid lazy-loading or loading it through CSS or JavaScript' }, { key: 'LCP_IMAGE_RESOURCE_LOAD_DURATION_MS', label: 'Resource load duration', fix: 'shrinking the image: compress it, serve a modern format and size it to the layout' }, { key: 'LCP_IMAGE_ELEMENT_RENDER_DELAY_MS', label: 'Element render delay', fix: 'cutting render-blocking CSS and JavaScript before the paint' }]
+              - const lcpPhases = lcpPhaseDefs.map((d, i) => ff[d.key] ? { label: d.label, fix: d.fix, v: Number(ff[d.key].p75), cat: (i % 7) + 1 } : null).filter(Boolean)
+              if lcpPhases.length
+                h5.crux-section-heading LCP image breakdown (p75)
+                - const lcpPhaseSum = lcpPhases.reduce((sum, p) => sum + p.v, 0) || 1
+                - lcpPhases.forEach(p => { p.pct = p.v / lcpPhaseSum * 100; })
+                - const lcpDominant = lcpPhases.slice().sort((a, b) => b.v - a.v)[0]
+                - const lcpShare = (pct) => pct < 1 ? pct.toFixed(1) : pct.toFixed(0)
+                .crux-lcp
+                  if ff.LARGEST_CONTENTFUL_PAINT_MS
+                    .crux-lcp-headline
+                      span.crux-lcp-headline-label Largest Contentful Paint
+                      span.crux-lcp-headline-value #{h.time.ms(ff.LARGEST_CONTENTFUL_PAINT_MS.p75)}
+                  .crux-lcp-bar
+                    each p in lcpPhases
+                      span.crux-lcp-segment(class='crux-cat-' + p.cat, style='flex: ' + p.pct.toFixed(3) + ' 0 0', title=p.label + ': ' + h.time.ms(p.v))
+                  ul.crux-lcp-legend
+                    each p in lcpPhases
+                      li.crux-lcp-key
+                        span.crux-comp-dot(class='crux-cat-' + p.cat)
+                        span.crux-lcp-name #{p.label}
+                        span.crux-lcp-ms #{h.time.ms(p.v)}
+                        span.crux-lcp-share #{lcpShare(p.pct)}%
+                  p.crux-lcp-verdict
+                    | Biggest phase:
+                    |
+                    strong #{lcpDominant.label} (#{lcpShare(lcpDominant.pct)}%).
+                    |  Improve it by #{lcpDominant.fix}.
+                  p.crux-lcp-note Each phase is its own 75th percentile from real users, so the parts are independent and may not add up to the LCP above.
 
 else
   p No data available in the Chrome User Experience report.
