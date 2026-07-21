@@ -16,6 +16,36 @@
 }
 
 //
+// Actionable verdict, tinted by the worst impact present.
+//
+.axe-verdict {
+  border: 1px solid;
+  border-radius: $radius--md;
+  padding: 14px 16px;
+  margin: 0 0 14px 0;
+
+  &.error { background: $color--error-bg; border-color: $color--error-border; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; }
+  &.info { background: $color--info-bg; border-color: $color--info-border; }
+}
+
+.axe-verdict-title {
+  margin: 0;
+  font-weight: $font--weight--semibold;
+  font-size: 1.05rem;
+
+  .axe-verdict.error & { color: $color--error; }
+  .axe-verdict.warning & { color: $color--warning; }
+  .axe-verdict.info & { color: $color--info; }
+}
+
+.axe-verdict-note {
+  margin: 4px 0 0 0;
+  color: $color--text-secondary;
+  font-size: 0.9rem;
+}
+
+//
 // Median tile grid (page-summary view)
 //
 .axe-medians {
@@ -86,6 +116,23 @@
   overflow: hidden;
   transition: box-shadow $motion--med;
   &[open] { box-shadow: $shadow--sm; }
+
+  // Severity accent stripe down the leading edge.
+  &.tone-error { border-left: 3px solid $color--error; }
+  &.tone-warning { border-left: 3px solid $color--warning; }
+  &.tone-info { border-left: 3px solid $color--info; }
+}
+
+.axe-violation-count {
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: 999px;
+  padding: 1px 9px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .axe-violation-summary {
