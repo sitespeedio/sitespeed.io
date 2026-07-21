@@ -96,7 +96,6 @@ block content
       +quicklinks(summaryLinks)
 
       a#summary
-      h2 Summary
 
       //- Pull all values once up front so the markup below is just rendering.
       - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
@@ -109,7 +108,9 @@ block content
       - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
       - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
       - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median')
-      - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
+      //- LCP renderTime is 0 for cross-origin images without Timing-Allow-Origin,
+      //- so use max(renderTime, loadTime) like the Metrics tab, or it reads as 0.
+      - lcp = Math.max(get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median') || 0, get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.loadTime.median') || 0) || undefined
       - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
       - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
       - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
@@ -127,52 +128,10 @@ block content
       - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75')
       - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75')
 
-      - const overviewIsMedian = true
-      include ../includes/_renderPhase
+      include ./_summaryHero.pug
 
-      .row
-        .one-half.column
-          include ../includes/_metricsKpis
+      include ./_summaryCrux.pug
 
-          if cruxFCP || cruxLCP || cruxFID || (cruxCLS || cruxCLS === 0) || (d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime)
-            details.iter-group(open)
-              summary.iter-group-summary
-                span.iter-group-title Chrome UX Report (real users, p75)
-              dl.iter-group-list
-                if cruxFCP
-                  dt First Contentful Paint
-                  dd #{h.time.ms(cruxFCP)}
-                if cruxLCP
-                  dt Largest Contentful Paint
-                  dd #{h.time.ms(cruxLCP)}
-                if cruxFID
-                  dt First Input Delay
-                  dd #{h.time.ms(cruxFID)}
-                if cruxCLS || cruxCLS === 0
-                  dt Cumulative Layout Shift
-                  dd #{Number(cruxCLS).toFixed(3)}
-                if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime
-                  - cruxMetrics = {first_contentful_paint:'First Contentful Paint', largest_contentful_paint: 'Largest Contentful Paint', first_input_delay:'First Input Delay', cumulative_layout_shift: 'Cumulative Layout Shift'}
-                  each name, key in cruxMetrics
-                    if d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key]
-                      dt Fast #{name}
-                      dd #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
-                      dt Moderate #{name}
-                      dd #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
-                      dt Slow #{name}
-                      dd #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
-
-        .one-half.column
-          if hasScreenShots
-            - const width = options.mobile ? 150 : '100%';
-            - const screenshotNo = medianRun ? medianRun.runIndex : 1
-            - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
-            figure.shot-card
-              a(href=screenshotName)
-                img.iter-screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
-              figcaption
-                b Median run (run #{screenshotNo})
-                |  · after page complete
       include ./summaryBox.pug
 
       #downloads

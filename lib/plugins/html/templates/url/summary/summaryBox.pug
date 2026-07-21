@@ -97,61 +97,74 @@ mixin getRow(name, object, path, runPath, metric, f, toneClass)
             a(href='./' + (index+1) + '.html', title='Go to the run with the max ' + name) #{f(max)}
       +agreeCell(min, median, max)
            
+//- The Timings Summary is split into one card per metric family so each
+//- table stays short and scannable instead of one long table broken up by
+//- full-width header rows. All share the same columns and the getRow /
+//- getUserTimings / agreeCell mixins above; timingsGroup wraps the shared
+//- header + table chrome and takes the rows as block content.
+mixin timingsHead
+  thead
+    tr
+      th Metric
+      th.number Min
+      th.number.median Median
+      th.number Mean
+      th.number Max
+      if options.browsertime.iterations > 1
+        th.number Runs agree?
+
+mixin timingsGroup(title)
+  .listing-card.timings-group
+    .listing-card-header
+      h3.listing-card-title #{title}
+      span.listing-card-meta min · median · mean · max of #{h.plural(options.browsertime.iterations, 'run')}
+    .responsive
+      table.timings-table
+        +timingsHead
+        tbody
+          block
+
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
   a#browsertime-timing-statistics
+  p.summary-section-label Timings summary
   - timingMetrics = ['firstPaint', 'loadEventEnd']
-  - const extraColspan = options.browsertime.iterations > 1 ? 6 : 5
-  .listing-card
-    .listing-card-header
-      h3.listing-card-title Timings Summary
-      span.listing-card-meta min · median · mean · max of #{h.plural(options.browsertime.iterations, 'run')}
-    .responsive
-      table.timings-table
-        thead
-          tr
-            th Metric
-            th.number Min
-            th.number.median Median
-            th.number Mean
-            th.number Max
-            if options.browsertime.iterations > 1
-              th.number Runs agree?
-        if btStatistics.visualMetrics
-          tr
-            td.extraheader(colspan=extraColspan) Visual Metrics
-          each visualMetric, name in btStatistics.visualMetrics
-            if name !== 'videoRecordingStart'
-              +getRow(h.metricName(name), pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
-        if btStatistics.timings && btStatistics.timings.pageTimings
-          tr
-            td.extraheader(colspan=extraColspan) Google Web Vitals
-          +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms, sbTtfbClass)
-          +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms, sbLcpClass)
-          +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms, sbFcpClass)
-          +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop, sbClsClass)
-          tr
-            td.extraheader(colspan=extraColspan) More metrics
-          each timing in timingMetrics
-            +getRow(h.metricName(timing), pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
+  - const hasMoreMetrics = timingMetrics.some((t) => { const v = h.get(pageInfo.data, 'browsertime.pageSummary.statistics.timings.' + t + '.min'); return v || v === 0 })
 
-        if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
-          tr
-            td.extraheader(colspan=extraColspan) User Timing
-          each userTimings, name in btStatistics.timings.userTimings.marks
-            tr
-              td(data-title= 'User Timing') #{name}
-              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
-              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
-              td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
-              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
-              +agreeCell(userTimings.min, userTimings.median, userTimings.max)
-        if btStatistics.cpu && btStatistics.cpu.longTasks
-          tr
-            td.extraheader(colspan=extraColspan) CPU
-          +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.totalBlockingTime', h.time.ms, sbTbtClass)
-          +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.maxPotentialFid', h.time.ms)
-          +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.tasks', h.noop)
-          +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.durations.max', h.time.ms)
-          +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.lastLongTask', h.time.ms)
+  if btStatistics.timings && btStatistics.timings.pageTimings
+    +timingsGroup('Google Web Vitals')
+      +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms, sbTtfbClass)
+      +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms, sbLcpClass)
+      +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms, sbFcpClass)
+      +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop, sbClsClass)
+
+  if btStatistics.visualMetrics
+    +timingsGroup('Visual Metrics')
+      each visualMetric, name in btStatistics.visualMetrics
+        if name !== 'videoRecordingStart'
+          +getRow(h.metricName(name), pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
+
+  if btStatistics.cpu && btStatistics.cpu.longTasks
+    +timingsGroup('CPU')
+      +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.totalBlockingTime', h.time.ms, sbTbtClass)
+      +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.maxPotentialFid', h.time.ms)
+      +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.tasks', h.noop)
+      +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.durations.max', h.time.ms)
+      +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.lastLongTask', h.time.ms)
+
+  if hasMoreMetrics
+    +timingsGroup('More metrics')
+      each timing in timingMetrics
+        +getRow(h.metricName(timing), pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
+
+  if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
+    +timingsGroup('User Timing')
+      each userTimings, name in btStatistics.timings.userTimings.marks
+        tr
+          td(data-title= 'User Timing') #{name}
+          +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
+          +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
+          td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
+          +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
+          +agreeCell(userTimings.min, userTimings.median, userTimings.max)
