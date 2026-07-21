@@ -1,0 +1,16 @@
+name: Test installation script Ubuntu
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install dependencies
+      run: bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/7218332445010ee64e3301f2021bcf18a91f0627/install-sitespeed.io-and-dependencies-ubuntu.sh)
+    - name: Run sitespeed.io
+      run: sitespeed.io --xvfb https://www.sitespeed.io -n 1 --video --visualMetrics
