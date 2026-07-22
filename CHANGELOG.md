@@ -1,6 +1,23 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.3.0 - 2026-07-22
+
+### Added
+* The per-URL summary page leads with an action-first hero (what the user saw, the Coach score and the top fixes) instead of a box of numbers [#4867](https://github.com/sitespeedio/sitespeed.io/pull/4867).
+* The CrUx tab opens with a Core Web Vitals verdict and draws the field-data breakdowns as donuts [#4865](https://github.com/sitespeedio/sitespeed.io/pull/4865).
+* The Axe tab sorts violations worst-first, leads with a verdict and shows a real clean state when nothing failed [#4866](https://github.com/sitespeedio/sitespeed.io/pull/4866).
+* The Coach Page info card groups the facts and explains each value in plain language [#4870](https://github.com/sitespeedio/sitespeed.io/pull/4870).
+* Report composition donuts and cleanups [#4871](https://github.com/sitespeedio/sitespeed.io/pull/4871):
+  * Content type (PageXray), and first-vs-third and category share (Third party), now show as donuts alongside the tables.
+  * The Rendering "Scripts causing invalidations" and "Forced reflows" lists are plain ranked lists, not bars.
+  * The first-vs-third donuts and third-party table no longer show "N/A" when a page has no third party.
+  * The third-party tool-name separator renders as a middle dot again, not a stray box.
+
+### Fixed
+* Score bands are inclusive at 80 and 90, so an exactly-80 score is no longer colored as a failure [#4868](https://github.com/sitespeedio/sitespeed.io/pull/4868).
+* The summary hero's verdict phrases no longer look spaced out before their commas [#4869](https://github.com/sitespeedio/sitespeed.io/pull/4869).
+
 ## 42.2.0 - 2026-07-20
 
 ### Added
