@@ -422,6 +422,144 @@
 }
 
 //
+// Page info — sectioned facts card. Each metric carries a plain-language
+// explainer under the value; the two DOM counts pick up a tone + flag
+// when they cross Chrome's DOM-size thresholds.
+//
+.pi-section {
+  border-top: 1px solid $color--border;
+}
+
+// The card header already draws a divider; the first section sits flush
+// under it without a second line.
+.pi-body > .pi-section:first-child {
+  border-top: 0;
+}
+
+.pi-section-head {
+  padding: 12px 0 2px;
+}
+
+.pi-body > .pi-section:first-child .pi-section-head {
+  padding-top: 2px;
+}
+
+.pi-section-title {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-secondary;
+}
+
+.pi-section-note {
+  margin: 3px 0 0;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+}
+
+.pi-rows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px 20px;
+  padding: 8px 0 12px;
+}
+
+.pi-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 0;
+  min-width: 0;
+}
+
+.pi-label {
+  font-size: 0.72rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+}
+
+.pi-value {
+  font-size: 1.1rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.pi-value-mono {
+  font-family: $font--mono;
+  font-size: 0.95rem;
+  font-weight: $font--weight--medium;
+}
+
+.pi-unit {
+  font-size: 0.8rem;
+  font-weight: $font--weight--medium;
+  color: $color--text-muted;
+}
+
+.pi-hint {
+  margin-top: 3px;
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  max-width: 44ch;
+}
+
+.pi-tone-warning .pi-value {
+  color: $color--warning;
+}
+
+.pi-tone-error .pi-value {
+  color: $color--error;
+}
+
+.pi-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 4px;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  border: 1px solid transparent;
+}
+
+.pi-flag-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.pi-tone-warning .pi-flag {
+  color: $color--warning;
+  background: $color--warning-bg;
+  border-color: $color--warning-border;
+}
+
+.pi-tone-warning .pi-flag-dot {
+  background: $color--warning;
+}
+
+.pi-tone-error .pi-flag {
+  color: $color--error;
+  background: $color--error-bg;
+  border-color: $color--error-border;
+}
+
+.pi-tone-error .pi-flag-dot {
+  background: $color--error;
+}
+
+//
 // "What to fix first" strip — shares the CPU tab's callout shell
 // (.cpu-callout) for visual consistency; these rules only lay out the
 // top-3 advice rows inside it. Severity chips reuse .coach-severity.

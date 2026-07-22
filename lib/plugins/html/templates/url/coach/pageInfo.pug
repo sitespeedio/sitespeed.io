@@ -1,51 +1,81 @@
 a#page-info
 h2 Page info
+p.small A snapshot of what the browser actually built for this page: the document, how big and deep the DOM tree is and what it kept in storage. Big, deep trees are slower to style and lay out, so the counts Chrome warns about carry a flag.
+
+//- Metric tile with a plain-language explainer under the value. `opts`
+//- carries the optional bits (tone class + flag text for the counts that
+//- cross Chrome's DOM-size thresholds, and a mono flag for verbatim
+//- strings like the title). Passed as an object because a mixin can't see
+//- consts declared in the including template's scope.
+mixin piMetric(label, hint, opts)
+  - opts = opts || {}
+  .pi-metric(class=opts.tone ? ('pi-toned pi-tone-' + opts.tone) : null)
+    span.pi-label= label
+    span.pi-value(class=opts.mono ? 'pi-value-mono' : null)
+      block
+    if opts.flag
+      span.pi-flag
+        span.pi-flag-dot(aria-hidden='true')
+        span= opts.flag
+    if hint
+      span.pi-hint= hint
+
+- const info = advice.info
+- const nf = n => typeof n === 'number' ? n.toLocaleString('en-US') : n
+//- Lighthouse DOM-size thresholds: large trees cost more style & layout.
+- const domTone = info.domElements > 1400 ? 'error' : (info.domElements > 800 ? 'warning' : null)
+- const domFlag = info.domElements > 1400 ? 'Very large, slows layout and style' : (info.domElements > 800 ? 'Large, watch layout cost' : null)
+- const depthMax = info.domDepth ? info.domDepth.max : undefined
+- const depthTone = depthMax > 32 ? 'error' : (depthMax > 24 ? 'warning' : null)
+- const depthFlag = depthMax > 32 ? 'Very deep tree' : (depthMax > 24 ? 'Deep tree' : null)
+
 .row
   .one-half.column
-    //- Page-level facts (title, dimensions, DOM counters, storage usage)
-    //- in the same .listing-card shell the rest of the report uses; the
-    //- inner metric tile grid is unchanged.
     .listing-card
       .listing-card-header
         h3.listing-card-title Page info
-      .metric-tiles
-        .metric-tile
-          span.metric-tile-label Title
-          span.metric-tile-value #{advice.info.documentTitle}
-        if advice.info.generator
-          .metric-tile
-            span.metric-tile-label Generator
-            span.metric-tile-value #{advice.info.generator}
-        .metric-tile
-          span.metric-tile-label Width
-          span.metric-tile-value #{advice.info.documentWidth}
-        .metric-tile
-          span.metric-tile-label Height
-          span.metric-tile-value #{advice.info.documentHeight}
-        .metric-tile
-          span.metric-tile-label DOM elements
-          span.metric-tile-value #{advice.info.domElements}
-        .metric-tile
-          span.metric-tile-label Avg DOM depth
-          span.metric-tile-value #{advice.info.domDepth.avg}
-        .metric-tile
-          span.metric-tile-label Max DOM depth
-          span.metric-tile-value #{advice.info.domDepth.max}
-        .metric-tile
-          span.metric-tile-label Iframes
-          span.metric-tile-value #{advice.info.iframes}
-        .metric-tile
-          span.metric-tile-label Script tags
-          span.metric-tile-value #{advice.info.scripts}
-        .metric-tile
-          span.metric-tile-label Local storage
-          span.metric-tile-value #{h.size.format(advice.info.localStorageSize)}
-        .metric-tile
-          span.metric-tile-label Session storage
-          span.metric-tile-value #{h.size.format(advice.info.sessionStorageSize)}
-        .metric-tile
-          span.metric-tile-label Network Information API
-          span.metric-tile-value #{advice.info.networkConnectionType ? advice.info.networkConnectionType:'unknown'}
+      .pi-body
+        .pi-section
+          .pi-section-head
+            p.pi-section-title Document
+            p.pi-section-note What the page says it is and how large it rendered.
+          .pi-rows
+            +piMetric('Title', 'The document title, shown in the browser tab and used by search results.', {mono: true})
+              = info.documentTitle
+            if info.generator
+              +piMetric('Generator', 'The tool or CMS that generated the HTML, from the page generator meta tag.')
+                = info.generator
+            +piMetric('Layout viewport', 'The width the page laid out at, and the full height of the rendered document.')
+              | #{info.documentWidth} × #{info.documentHeight}
+              span.pi-unit  px
+
+        .pi-section
+          .pi-section-head
+            p.pi-section-title DOM structure
+            p.pi-section-note How much markup the browser has to build, style and lay out.
+          .pi-rows
+            +piMetric('DOM elements', 'Total HTML elements. Fewer means less for the browser to style, lay out and paint.', {tone: domTone, flag: domFlag})
+              = nf(info.domElements)
+            +piMetric('Avg DOM depth', 'How deeply elements are nested on average.')
+              = info.domDepth ? info.domDepth.avg : '–'
+            +piMetric('Max DOM depth', 'The deepest nesting on the page. Deep branches cost more style recalculation.', {tone: depthTone, flag: depthFlag})
+              = depthMax === undefined ? '–' : depthMax
+            +piMetric('Iframes', info.iframes > 0 ? 'Embedded documents. Each is a separate page the browser loads and renders.' : 'No embedded documents on this page.')
+              = nf(info.iframes)
+            +piMetric('Script tags', 'Number of script elements. More scripts usually means more main-thread work.')
+              = nf(info.scripts)
+
+        .pi-section
+          .pi-section-head
+            p.pi-section-title Storage and connection
+            p.pi-section-note What the page stored on the client, and the network it was tested on.
+          .pi-rows
+            +piMetric('Local storage', 'Data the page saved in localStorage, kept across visits.')
+              = h.size.format(info.localStorageSize)
+            +piMetric('Session storage', 'Data kept in sessionStorage for this tab session only.')
+              = h.size.format(info.sessionStorageSize)
+            +piMetric('Connection type', 'What the Network Information API reported for the test connection.')
+              = info.networkConnectionType ? info.networkConnectionType.toUpperCase() : 'Unknown'
 
   .one-half.column
     if advice.info && advice.info.resourceHints
