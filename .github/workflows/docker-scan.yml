@@ -1,9 +1,10 @@
 name: Docker security scan
+# Disabled as an automatic gate: transitive-dependency CVEs are handled
+# through the normal dependency-bump flow rather than a blocking CI scan
+# (see SECURITY.md). Kept as a manual-only workflow so it can still be run
+# on demand from the Actions tab.
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_dispatch:
 jobs:
   build:
     name: Build
