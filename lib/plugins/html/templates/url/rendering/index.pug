@@ -712,20 +712,19 @@ if reflowsMaterial
     if reflowShare !== undefined
       p.rendering-why-note That is #{reflowShare} % of the time to #{whyLcp ? 'Largest' : 'First'} Contentful Paint. The number of reflows matters more than the milliseconds: layout thrashing multiplies on slower devices.
     if topReflows.length > 0
-      .cpu-bars
+      //- Ranked list, not bars: the rows are already sorted by duration
+      //- and the bar scaled by ms over-weighted the very milliseconds the
+      //- note above says to discount. Lead with the duration as data.
+      ul.ranked-list
         each reflow in topReflows
-          - const pct = topReflowMax > 0 ? (reflow.duration / topReflowMax * 100) : 0
-          .cpu-bar-row
-            span.cpu-bar-asset
+          li.ranked-item
+            span.ranked-lead #{reflow.duration.toFixed(0)} ms
+            .ranked-body
               if reflow.triggeredByUrl
-                a(href=reflow.triggeredByUrl, title=reflow.triggeredByUrl)= h.shortAsset(reflow.triggeredByUrl, true)
+                a.ranked-name(href=reflow.triggeredByUrl, title=reflow.triggeredByUrl)= h.shortAsset(reflow.triggeredByUrl, true)
               else
-                span.cpu-bar-anon Inline or unnamed script
-            .cpu-bar-track
-              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
-            span.cpu-bar-value
-              | #{reflow.duration.toFixed(0)} ms
-              span.cpu-bar-sub  · at #{h.time.ms(reflow.startTime)}
+                span.ranked-name Inline or unnamed script
+              span.ranked-sub at #{h.time.ms(reflow.startTime)}
     p.listing-card-help
       a(href='#cpu-forced-reflows', onclick='const cpuTab = document.querySelector("#tabs #cpu"); if (cpuTab) selectTab(cpuTab, false)') See every forced reflow for the whole page load on the CPU tab
 
@@ -1002,34 +1001,35 @@ if styleInvalidations
                     td.number –
                     td.number #{reason.count.toLocaleString('sv-SE')}
   if styleInvalidations.sources && styleInvalidations.sources.length > 0
-    - const invalidationMax = styleInvalidations.sources[0].count
     .listing-card
       .listing-card-header
         h3.listing-card-title Scripts causing invalidations
         span.listing-card-meta top #{styleInvalidations.sources.length}
-      .cpu-bars
+      //- Ranked list, not bars: the sources arrive sorted worst-first and
+      //- the count is the signal. A bar scaled to the top source just
+      //- pins the leader full-width and restates the order.
+      ul.ranked-list
         each entry in styleInvalidations.sources
-          - const pct = invalidationMax > 0 ? (entry.count / invalidationMax * 100) : 0
-          .cpu-bar-row
-            //- `module` is the resolved ResourceLoader module owning
-            //- the source position — one giant load.php row split
-            //- into the modules that actually churn the DOM.
-            a.cpu-bar-asset(href=entry.url, title=entry.url)
-              if entry.module
-                code= entry.module
-              else
-                | #{entry.label || h.shortAsset(entry.url, true)}
-            .cpu-bar-track
-              span.cpu-bar-fill(style=`width: ${pct.toFixed(2)}%`)
-            span.cpu-bar-value
-              | #{entry.count.toLocaleString('sv-SE')}
+          li.ranked-item
+            span.ranked-lead #{entry.count.toLocaleString('sv-SE')}
+            .ranked-body
+              //- `module` is the resolved ResourceLoader module owning
+              //- the source position — one giant load.php row split
+              //- into the modules that actually churn the DOM.
+              a.ranked-name(href=entry.url, title=entry.url)
+                if entry.module
+                  code= entry.module
+                else
+                  | #{entry.label || h.shortAsset(entry.url, true)}
               //- "230 · 230 after first paint" reads clumsily — say
               //- all/none when the split is one-sided.
               if entry.afterFirstPaint !== undefined
                 - let afterWords = entry.afterFirstPaint.toLocaleString('sv-SE')
                 - if (entry.afterFirstPaint === entry.count) afterWords = 'all'
                 - if (entry.afterFirstPaint === 0) afterWords = 'none'
-                span.cpu-bar-sub  · #{afterWords} after first paint
+                span.ranked-sub invalidations · #{afterWords} after first paint
+              else
+                span.ranked-sub invalidations
 
 //- Non-composited animations are a jank signal, not a first-paint
 //- delay — one quiet cross-link is enough, the CPU tab owns the detail.

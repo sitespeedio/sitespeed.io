@@ -1,7 +1,32 @@
+include ../includes/_compositionDonuts
+
 - const fpContentTypeCount = Object.values(pagexray.firstParty.contentTypes).filter(d => d.requests > 0).length
 - const tpContentTypeCount = Object.values(pagexray.thirdParty.contentTypes).filter(d => d.requests > 0).length
+//- Third-party sizes are undefined (not 0) when a page loads nothing
+//- third party, so summing them would render N/A / NaN. The tab already
+//- shows a "No third-party requests detected" banner above, so the
+//- first-vs-third donuts and the third-party table only render when
+//- there is actually third-party content to compare against.
+- const hasThirdParty = pagexray.thirdParty && pagexray.thirdParty.requests > 0
 
 a#first-vs-third
+if hasThirdParty
+  //- preserveOrder keeps first party blue and third party amber across
+  //- all three donuts even when third party is the bigger slice. Data is
+  //- already on pagexray, no extra collector. Totals coerce undefined to
+  //- 0 because a Safari HAR can carry requests but no transfer size.
+  - const ftTransfer = [{ label: 'First party', value: pagexray.firstParty.transferSize, sub: h.size.format(pagexray.firstParty.transferSize) }, { label: 'Third party', value: pagexray.thirdParty.transferSize, sub: h.size.format(pagexray.thirdParty.transferSize) }]
+  - const ftContent = [{ label: 'First party', value: pagexray.firstParty.contentSize, sub: h.size.format(pagexray.firstParty.contentSize) }, { label: 'Third party', value: pagexray.thirdParty.contentSize, sub: h.size.format(pagexray.thirdParty.contentSize) }]
+  - const ftRequests = [{ label: 'First party', value: pagexray.firstParty.requests, sub: pagexray.firstParty.requests }, { label: 'Third party', value: pagexray.thirdParty.requests, sub: pagexray.thirdParty.requests }]
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title First party vs third party
+      span.listing-card-meta #{pagexray.firstParty.requests} first · #{pagexray.thirdParty.requests} third party
+    .composition-grid
+      +donutCell('Transfer size', ftTransfer, h.size.format((pagexray.firstParty.transferSize || 0) + (pagexray.thirdParty.transferSize || 0)), true)
+      +donutCell('Content size', ftContent, h.size.format((pagexray.firstParty.contentSize || 0) + (pagexray.thirdParty.contentSize || 0)), true)
+      +donutCell('Requests', ftRequests, (pagexray.firstParty.requests || 0) + (pagexray.thirdParty.requests || 0), true)
+
 .listing-card
   .listing-card-header
     h3.listing-card-title First party requests and sizes per content type
@@ -27,23 +52,24 @@ a#first-vs-third
         +numberCell('requests', pagexray.firstParty.requests)
 
 a#third-party
-.listing-card
-  .listing-card-header
-    h3.listing-card-title Third party requests and sizes per content type
-    span.listing-card-meta #{pagexray.thirdParty.requests} #{pagexray.thirdParty.requests === 1 ? 'request' : 'requests'}
-  .responsive
-    table(data-sortable, id='contentSizeThirdParty')
-      +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
-      each data, type in pagexray.thirdParty.contentTypes
+if hasThirdParty
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Third party requests and sizes per content type
+      span.listing-card-meta #{pagexray.thirdParty.requests} #{pagexray.thirdParty.requests === 1 ? 'request' : 'requests'}
+    .responsive
+      table(data-sortable, id='contentSizeThirdParty')
+        +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+        each data, type in pagexray.thirdParty.contentTypes
+          tr
+            td(data-title='Content Type') #{type}
+            +sizeCell('headerSize', data.headerSize)
+            +sizeCell('transferSize', data.transferSize)
+            +sizeCell('contentSize', data.contentSize)
+            +numberCell('requests', data.requests)
         tr
-          td(data-title='Content Type') #{type}
-          +sizeCell('headerSize', data.headerSize)
-          +sizeCell('transferSize', data.transferSize)
-          +sizeCell('contentSize', data.contentSize)
-          +numberCell('requests', data.requests)
-      tr
-        td(data-title='Total') Total
-        +sizeCell('headerSize', pagexray.thirdParty.headerSize)
-        +sizeCell('transferSize', pagexray.thirdParty.transferSize)
-        +sizeCell('contentSize', pagexray.thirdParty.contentSize)
-        +numberCell('requests', pagexray.thirdParty.requests)
+          td(data-title='Total') Total
+          +sizeCell('headerSize', pagexray.thirdParty.headerSize)
+          +sizeCell('transferSize', pagexray.thirdParty.transferSize)
+          +sizeCell('contentSize', pagexray.thirdParty.contentSize)
+          +numberCell('requests', pagexray.thirdParty.requests)

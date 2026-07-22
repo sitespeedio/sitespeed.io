@@ -1,31 +1,39 @@
+include ../includes/_compositionDonuts
+
 - totalContentSize = 0
 - totalTransferSize = 0
 - totalHeaderSize = 0
 - totalRequests = 0
 - const contentTypeCount = Object.values(pagexray.contentTypes).filter(d => d.requests > 0).length
+//- Donut slices: one per content type that actually loaded, for transfer
+//- size, content size and request count. The centre of each ring carries
+//- the total so the donuts read as a standalone summary above the table.
+- const ctEntries = Object.entries(pagexray.contentTypes).filter(e => e[1].requests > 0)
+- const ctTransfer = ctEntries.map(e => ({ label: e[0], value: e[1].transferSize }))
+- const ctContent = ctEntries.map(e => ({ label: e[0], value: e[1].contentSize }))
+- const ctRequests = ctEntries.map(e => ({ label: e[0], value: e[1].requests }))
+- const ctTransferTotal = ctTransfer.reduce((sum, i) => sum + i.value, 0)
+- const ctContentTotal = ctContent.reduce((sum, i) => sum + i.value, 0)
+- const ctRequestTotal = ctRequests.reduce((sum, i) => sum + i.value, 0)
 
 a#requests-and-sizes-per-content-type
 .listing-card
   .listing-card-header
     h3.listing-card-title Requests and sizes per content type
     span.listing-card-meta #{contentTypeCount} #{contentTypeCount === 1 ? 'type' : 'types'}
+  .composition-grid
+    +donutCell('Transfer size', ctTransfer, h.size.format(ctTransferTotal))
+    +donutCell('Content size', ctContent, h.size.format(ctContentTotal))
+    +donutCell('Requests', ctRequests, ctRequestTotal)
   .responsive
     table(data-sortable, id='contentSize')
       +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
-      - numberOfRequestsLabels = []
-      - numberOfRequests = []
-      - transferSizeOfRequests = []
-      - contentSizeOfRequests = []
       each data, type in pagexray.contentTypes
         - totalContentSize += data.contentSize
         - totalTransferSize += data.transferSize
         - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
         - totalRequests += data.requests
         if data.requests > 0
-          - numberOfRequestsLabels.push(type)
-          - numberOfRequests.push({meta: type, value: data.requests})
-          - transferSizeOfRequests.push({meta: type + ' transfer size (kb)', value: h.size.asKb(data.transferSize)})
-          - contentSizeOfRequests.push({meta: type + ' content size (kb)', value: h.size.asKb(data.contentSize)})
           tr
             td(data-title='Content Type') #{type}
             +sizeCell('headerSize', data.headerSize)
