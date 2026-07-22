@@ -1,5 +1,6 @@
 include ../../_tableMixins
 include ../includes/_quicklinks
+include ../includes/_compositionDonuts
 
 if pageInfo.data.coach
     - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
@@ -78,32 +79,19 @@ if pageInfo.data.coach
                     span.tp-kpi-label Third-party cookies
                     span.tp-kpi-value #{tpCookieCount}
 
-    //- Categories as a horizontal bar list (replaces two tiny side-by-side
-    //- tables). Each row shows requests share + tool count for the category.
-    //- The bar is scaled relative to the leading category for visual
-    //- comparison, but the right-hand label shows the actual share of all
-    //- third-party requests (e.g. "ad … 38%") so a reader can answer
-    //- "how much of this page is ads" directly from the row.
+    //- Categories as a donut: the third-party footprint is a small,
+    //- well-distributed set summing to the whole, so a ring answers
+    //- "how much of my third party is ads" at a glance. The legend keeps
+    //- the per-category request and tool counts the old bar list carried.
     if tpHasCategories
         - const tpCatEntries = Object.entries(thirdparty.category).filter(e => e[0] !== 'unknown').map(e => ({name: e[0], requests: (e[1] && e[1].requests ? e[1].requests.median : e[1])})).sort((a, b) => b.requests - a.requests)
-        - const tpCatMax = tpCatEntries.length > 0 ? tpCatEntries[0].requests : 0
-        - const tpFmtShare = (n) => n >= 10 ? Math.round(n) + '%' : n >= 1 ? n.toFixed(1) + '%' : '<1%'
+        - const tpCatDonut = tpCatEntries.map(e => { const tc = thirdparty.toolsByCategory && thirdparty.toolsByCategory[e.name] ? Object.keys(thirdparty.toolsByCategory[e.name]).length : 0; return {label: e.name, value: e.requests, sub: e.requests + ' req · ' + tc + (tc === 1 ? ' tool' : ' tools')}; })
         .listing-card
             .listing-card-header
                 h3.listing-card-title Categories
                 span.listing-card-meta #{tpCatEntries.length} #{tpCatEntries.length === 1 ? 'category' : 'categories'}
-            .tp-bars
-                each entry in tpCatEntries
-                    - const pct = tpCatMax > 0 ? (entry.requests / tpCatMax * 100) : 0
-                    - const share = tpTotalRequests > 0 ? (entry.requests / tpTotalRequests * 100) : 0
-                    - const toolCount = thirdparty.toolsByCategory && thirdparty.toolsByCategory[entry.name] ? Object.keys(thirdparty.toolsByCategory[entry.name]).length : 0
-                    .tp-bar-row
-                        span.tp-bar-label #{entry.name}
-                        .tp-bar-track
-                            span.tp-bar-fill(style='width: ' + pct.toFixed(2) + '%')
-                        span.tp-bar-value
-                            span.tp-bar-share #{tpFmtShare(share)}
-                            | &nbsp;·&nbsp;#{entry.requests} req · #{toolCount} #{toolCount === 1 ? 'tool' : 'tools'}
+            .composition-grid
+                +donutCell('Requests by category', tpCatDonut, tpTotalRequests)
 
     //- Tools per category as <details> cards. Replaces the old
     //- toggleRow() JS with native disclosure: collapsed by default,

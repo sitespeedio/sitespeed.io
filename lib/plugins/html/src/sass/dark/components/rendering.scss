@@ -857,3 +857,60 @@ td.selector-cell code {
   letter-spacing: 0.04em;
   color: $color--text-muted;
 }
+
+// Ranked list — a lead number, a name and a sub-line. Shared by the
+// "Scripts causing invalidations" and "Forced reflows before paint"
+// cards, replacing relative-width bars: the rows arrive pre-sorted, so a
+// bar scaled to the top row only pins the leader full-width and restates
+// the order — and for reflows the bar shouted the milliseconds the card
+// copy explicitly tells you to discount.
+.ranked-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ranked-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid $color--border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// Fixed width so leads align whether they are counts ("446") or
+// durations ("45 ms") — content-width leads would stagger the names.
+.ranked-lead {
+  flex: 0 0 4.5rem;
+  text-align: right;
+  font-size: 1.05rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+}
+
+.ranked-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ranked-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  code {
+    font-size: 0.82rem;
+  }
+}
+
+.ranked-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+}
