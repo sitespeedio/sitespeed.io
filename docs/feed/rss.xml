@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 20 Jul 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 22 Jul 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,25 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 42.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.3.0</guid>
+            <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- The per-URL summary page leads with an action-first hero (what the user saw, the Coach score and the top fixes) instead of a box of numbers #4867.<br>
+- The CrUx tab opens with a Core Web Vitals verdict and draws the field-data breakdowns as donuts #4865.<br>
+- The Axe tab sorts violations worst-first, leads with a verdict and shows a real clean state when nothing failed #4866.<br>
+- The Coach Page info card groups the facts and explains each value in plain language #4870.<br>
+- Report composition donuts and cleanups #4871:<br>
+<br>
+<strong>Fixed</strong><br>
+- Score bands are inclusive at 80 and 90, so an exactly-80 score is no longer colored as a failure #4868.<br>
+- The summary hero&#39;s verdict phrases no longer look spaced out before their commas #4869.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.2.0</link>
@@ -251,20 +270,6 @@
 - <code>SECURITY.md</code>: a written security policy with a documented channel (GitHub private vulnerability reporting, with email fallback). The file requires reporters to spell out an exploitation chain rather than just citing a finding, and takes an explicit stance on transitive-dependency CVEs that don&#39;t have a reachable code path in sitespeed.io&#39;s actual usage #4778.<br>
 - <code>publiccode.yml</code>: machine-readable metadata so sitespeed.io can be listed in EU public-sector software catalogues. <code>release.sh</code>&#39;s replacement workflow keeps <code>softwareVersion</code> and <code>releaseDate</code> fresh automatically on every release #4779.<br>
 - Slim Docker image build experiment #4777.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 41.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.0</guid>
-            <pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Docker base image bumped browsers to <code>chrome-149.0-firefox-151.0-edge-149.0</code> #4774, #4775.<br>
-<br>
-<strong>Fixed</strong><br>
-- Browsertime 27.5.0 #4776.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
