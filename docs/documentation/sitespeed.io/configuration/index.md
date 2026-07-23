@@ -17,6 +17,33 @@ twitterdescription: Configuration for sitespeed.io.
 
 Sitespeed.io is highly configurable, let's check it out!
 
+## Good options to get started
+
+Sitespeed.io has hundreds of options, but in everyday use only a handful come up again and again. Here are good ones to know when you start out, with the reason you would reach for each. Everything else is in the [full options list](#the-options) further down.
+
+| Option | What it does |
+| --- | --- |
+| `-n`, `--iterations` | How many times to load the page. Metrics are reported as the median, so more runs give a more stable number. The default is 3, bump it to 5 or more when a page is noisy. |
+| `-b`, `--browser` | Which browser to drive: `chrome` (default), `firefox`, `edge` or `safari`. |
+| `-c`, `--connectivity.profile` | Throttle the connection to a realistic network (`4g`, `3g`, `3gfast`, `cable` and more). Always throttle when you compare numbers over time, otherwise your metrics track your test machine's bandwidth instead of your users'. See the [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/). |
+| `--cpu` | Turn on the CPU main-thread timeline and long tasks in Chrome. This is what fills the CPU and Rendering tabs of the HTML report. |
+| `--video`, `--visualMetrics` | Record a video of the load and calculate visual metrics like Speed Index, First Visual Change and Last Visual Change. Both are on by default in the Docker image. |
+| `--enableProfileRun` | Add one extra run dedicated to the trace and profile so the tracing overhead never lands in your measured metrics. Reach for it whenever you turn on `--cpu`, and it is especially useful when you run sitespeed.io as a monitoring tool, where clean, comparable metrics matter most. |
+| `--axe.enable` | Run an [axe]({{site.baseurl}}/documentation/sitespeed.io/axe/) accessibility audit on every page and add the findings to the report. It adds a little time to each test. |
+| `--crux.key` | Add a [CrUX]({{site.baseurl}}/documentation/sitespeed.io/crux/) API key to pull real-user field data from the Chrome User Experience Report alongside your own lab metrics. |
+| `--mobile` | Emulate a phone (Chrome uses a Moto G4 profile). Pair it with `-c 3g` for a slow-phone test. |
+| `-d`, `--depth` | Crawl depth. `1` tests only the URL you give it, `2` also follows the links it finds, and so on. |
+| `--multi` | Walk a user journey: test several URLs in one browser session with the cache kept warm between them. For real interactions like logging in or clicking through a flow, write a [script]({{site.baseurl}}/documentation/sitespeed.io/scripting/) instead. |
+| `--outputFolder` | Where to write the result. Handy when you want each run in its own directory. |
+| `-o`, `--open` | Open the HTML report in your default browser as soon as the run finishes (local runs, not Docker). |
+| `--config` | Read all your options from a [JSON config file](#configuration-as-json) instead of a long command line. The CLI still overrides the file. |
+
+When you are debugging a single slow page and want the fullest report, this combination is a good default:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --cpu --enableProfileRun --video --visualMetrics -c 4g
+~~~
+
 ## The options
 You have the following options when running sitespeed.io within Docker (run <code>docker run sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --help-all</code> to get the full list on your command line):
 

@@ -23,6 +23,14 @@ Make sure you have the browser you want installed (Firefox / Chrome / Edge / Saf
 sitespeed.io https://www.sitespeed.io/ -b chrome
 ~~~
 
+When you're debugging a single slow page and want the fullest report, this is the command I reach for. It enables the CPU main-thread timeline (`--cpu`), records a video with visual metrics (`--video --visualMetrics`), throttles the connection to a 4G profile (`-c 4g`) and adds a dedicated profiling run (`--enableProfileRun`) so the trace overhead stays out of your measured metrics. `-o` opens the HTML report in your browser when the run finishes:
+
+~~~bash
+sitespeed.io https://www.sitespeed.io/ --cpu --enableProfileRun --video --visualMetrics -o -c 4g
+~~~
+
+Not sure which flags matter? See [good options to get started](/documentation/sitespeed.io/configuration/#good-options-to-get-started) for the handful you'll actually use, with an explanation of each.
+
 You can throttle the connection ([connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity)) or run the test on a [real Android phone]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/):
 
 ~~~bash

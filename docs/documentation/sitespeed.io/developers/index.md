@@ -19,23 +19,7 @@ twitterdescription: Hack on sitespeed.io
 ## How it all works
 Almost everything we do is written in Node.js (use the [latest LTS](https://nodejs.org/en/)).
 
-### Built upon Open Source
-Sitespeed.io uses a lot of other Open Source tools so massive love to those projects and maintainers:
-
- * [Selenium](http://www.selenium.dev/)
- * [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics)
- * [PerfCascade](https://github.com/micmro/PerfCascade)
- * [Skeleton](http://getskeleton.com)
- * [Simple crawler](https://github.com/cgiffard/node-simplecrawler)
- * [Pug](https://www.npmjs.com/package/pug)
- * all other projects in the [package.json](https://github.com/sitespeedio/sitespeed.io/blob/main/package.json).
-
-And we also have plugins so that you can use:
-
- * [WebPageTest](https://www.webpagetest.org) through the [WebPageTest API](https://github.com/marcelduran/webpagetest-api)
- * [gpagespeed](https://www.npmjs.com/package/gpagespeed)
-
-And of course we use all the tools in the [sitespeed.io suite]({{site.baseurl}}/documentation/).
+We also use all the tools in the [sitespeed.io suite]({{site.baseurl}}/documentation/).
 
 ### Analyse a page, what happens
 
