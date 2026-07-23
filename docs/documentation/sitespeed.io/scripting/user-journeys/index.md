@@ -191,9 +191,11 @@ try {
 
 `stopAsError` closes the current measurement without recording metrics — the run is still useful (you got the earlier steps, you logged the error) but the broken step doesn't pollute the data. See [Error handling]({{site.baseurl}}/documentation/sitespeed.io/scripting/error-handling/) for the full pattern.
 
-## Setup that runs once vs setup that runs every iteration
+## Setup that runs before every iteration
 
-When you run a journey with `-n 5`, the journey runs five times. Anything inside `export default async function` runs five times. If you have setup that should only happen once across the whole run — log in, drop a consent cookie — put it in a [preScript]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/) instead. The browser session carries the cookies/login state into each iteration of the journey.
+When you run a journey with `-n 5`, the journey runs five times, each in a fresh browser. Anything inside `export default async function` runs five times, and so does anything you put in a preScript. There is no hook that runs only once before all iterations.
+
+That is exactly why a [preScript]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/) is the right home for login or dropping a consent cookie: each iteration starts with a clean browser, so the preScript re-establishes that state at the start of every iteration before your journey is measured. Keep the login out of the journey itself so it isn't counted in the metrics; the preScript does the setup fresh each time.
 
 ```bash
 sitespeed.io --multi --preScript login.mjs -n 5 shop-journey.mjs
@@ -203,4 +205,4 @@ sitespeed.io --multi --preScript login.mjs -n 5 shop-journey.mjs
 
 * **The browser keeps the previous page's layout until First Visual Change of the next page.** That can make multi-step videos look weird (you see step 2 starting from step 1's pixels) and can skew Last Visual Change. The "start with white" workaround is in [Tips and tricks]({{site.baseurl}}/documentation/sitespeed.io/scripting/tips-and-tricks/#getting-correct-visual-metrics).
 * **Measuring the same URL twice in one run breaks** because Browsertime uses the URL as the result file name. If you genuinely need to measure the same URL twice, alias each one or add a `?dummy` querystring. Tips and tricks has the trick.
-* **Resetting state between runs.** Iterations share a browser. If you don't want state from run 1 to leak into run 2, clear cookies and cache between iterations — easiest in a [postScript]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/).
+* **Iterations don't share state.** Each iteration (`-n`) runs in a fresh browser, so cookies, cache and login state from one iteration never leak into the next. If your journey needs to start logged in or with a cookie set, re-establish it in a [preScript]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/), which runs at the start of every iteration.
