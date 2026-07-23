@@ -65,9 +65,13 @@ mixin piMetric(label, hint, opts)
             +piMetric('Script tags', 'Number of script elements. More scripts usually means more main-thread work.')
               = nf(info.scripts)
 
+  .one-half.column
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Storage and connection
+      .pi-body
         .pi-section
           .pi-section-head
-            p.pi-section-title Storage and connection
             p.pi-section-note What the page stored on the client, and the network it was tested on.
           .pi-rows
             +piMetric('Local storage', 'Data the page saved in localStorage, kept across visits.')
@@ -76,7 +80,5 @@ mixin piMetric(label, hint, opts)
               = h.size.format(info.sessionStorageSize)
             +piMetric('Connection type', 'What the Network Information API reported for the test connection.')
               = info.networkConnectionType ? info.networkConnectionType.toUpperCase() : 'Unknown'
-
-  .one-half.column
     if advice.info && advice.info.resourceHints
       include ./resourceHints.pug
