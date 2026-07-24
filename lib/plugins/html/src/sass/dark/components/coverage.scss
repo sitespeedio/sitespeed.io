@@ -241,3 +241,192 @@
 
   li + li { margin-top: 4px; }
 }
+
+// JS/CSS coverage treemap. Tile colours are fixed literals (green ok,
+// amber warning, red bad) so the tint reads the same in both themes —
+// it encodes data, not chrome. Everything else uses theme tokens.
+.cov-treemap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 940 / 480;
+  margin-top: 6px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: $color--surface;
+}
+
+.cov-tm-tile {
+  position: absolute;
+  overflow: hidden;
+  padding: 6px 8px;
+  border: 2px solid $color--surface-card;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: #14210d;
+}
+
+.cov-tm-tile--ok {
+  background: #8fbf3f;
+}
+
+.cov-tm-tile--mid {
+  background: #e0c53a;
+}
+
+.cov-tm-tile--bad {
+  background: #d24b3a;
+  color: #ffffff;
+}
+
+.cov-tm-name {
+  display: block;
+  font-weight: $font--weight--semibold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cov-tm-meta {
+  display: block;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+}
+
+.cov-tm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+}
+
+.cov-tm-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cov-tm-sw {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.cov-tm-sw--ok {
+  background: #8fbf3f;
+}
+
+.cov-tm-sw--mid {
+  background: #e0c53a;
+}
+
+.cov-tm-sw--bad {
+  background: #d24b3a;
+}
+
+.cov-tm-host {
+  display: block;
+  font-size: 0.68rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.72;
+}
+
+// Drillable bundle tile (has a module breakdown) — clickable, with a
+// small corner mark so it reads as more than a flat tile.
+.cov-tm-tile--drill {
+  cursor: pointer;
+}
+
+.cov-tm-tile--drill::after {
+  content: '⤢';
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+  font-size: 0.72rem;
+  opacity: 0.65;
+}
+
+.cov-tm-drill-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cov-tm-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  color: $color--text;
+  background: $color--surface;
+  border: 1px solid $color--border-strong;
+  border-radius: $radius--sm;
+  cursor: pointer;
+
+  &:hover {
+    background: $color--surface-card;
+    border-color: $color--text-secondary;
+  }
+}
+
+.cov-tm-crumb {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+}
+
+.cov-tm-legend-hint {
+  margin-left: auto;
+  color: $color--text-muted;
+  font-size: 0.75rem;
+}
+
+// Actionable lead above the treemap: total shipped vs never-ran plus the
+// single biggest win. Tinted like the report's other verdicts (warning
+// when a lot is unused, ok otherwise). Tokens exist in both themes.
+.cov-verdict {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: $radius--sm;
+  border: 1px solid $color--warning-border;
+  background: $color--warning-bg;
+}
+
+.cov-verdict--ok {
+  border-color: $color--ok-border;
+  background: $color--ok-bg;
+}
+
+.cov-verdict-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $color--warning;
+}
+
+.cov-verdict--ok .cov-verdict-dot {
+  background: $color--ok;
+}
+
+.cov-verdict-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: $color--text;
+}

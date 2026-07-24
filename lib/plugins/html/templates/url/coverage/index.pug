@@ -76,6 +76,77 @@
 
 - const sevClass = (p) => p >= 70 ? 'cov-bar-fill--bad' : (p >= 40 ? 'cov-bar-fill--mid' : 'cov-bar-fill--ok')
 
+//- Squarified treemap layout, computed at build time so the picture is
+//- static (no client-side chart code, works from file://). Returns each
+//- item with x/y/w/h in the same units passed in; the card converts
+//- those to percentages of a fixed-aspect container. Standard squarify:
+//- greedily grow a row along the short side while the worst aspect ratio
+//- keeps improving, then lay the row out and recurse into what's left.
+- function tmSquarify(items, width, height) {
+-   const total = items.reduce((sum, it) => sum + it.size, 0)
+-   if (total <= 0) return []
+-   const scaled = items.map(it => Object.assign({}, it, { area: it.size / total * (width * height) }))
+-   const out = []
+-   let rect = { x: 0, y: 0, w: width, h: height }
+-   let row = []
+-   let i = 0
+-   const rowWorst = (candidate, side) => {
+-     const s = candidate.reduce((a, b) => a + b.area, 0)
+-     const mx = Math.max.apply(null, candidate.map(r => r.area))
+-     const mn = Math.min.apply(null, candidate.map(r => r.area))
+-     const len = s / side
+-     return Math.max(len * len * mx / (s * s), s * s / (len * len * mn))
+-   }
+-   const flush = (rowItems, side, horizontal) => {
+-     const s = rowItems.reduce((a, b) => a + b.area, 0)
+-     const len = s / side
+-     let off = 0
+-     for (const it of rowItems) {
+-       const frac = it.area / s
+-       if (horizontal) out.push(Object.assign({}, it, { x: rect.x, y: rect.y + off * rect.h, w: len, h: frac * rect.h }))
+-       else out.push(Object.assign({}, it, { x: rect.x + off * rect.w, y: rect.y, w: frac * rect.w, h: len }))
+-       off += frac
+-     }
+-   }
+-   while (i < scaled.length) {
+-     const side = Math.min(rect.w, rect.h)
+-     const candidate = row.concat([scaled[i]])
+-     if (row.length === 0 || rowWorst(row, side) >= rowWorst(candidate, side)) { row = candidate; i += 1 }
+-     else {
+-       const horizontal = rect.w >= rect.h
+-       const s = row.reduce((a, b) => a + b.area, 0)
+-       const len = s / side
+-       flush(row, side, horizontal)
+-       if (horizontal) rect = { x: rect.x + len, y: rect.y, w: rect.w - len, h: rect.h }
+-       else rect = { x: rect.x, y: rect.y + len, w: rect.w, h: rect.h - len }
+-       row = []
+-     }
+-   }
+-   if (row.length > 0) flush(row, Math.min(rect.w, rect.h), rect.w >= rect.h)
+-   return out
+- }
+
+//- Render an already-squarified tile set into a .cov-treemap. Tiles
+//- carry x/y/w/h (from tmSquarify) plus name/host/full/size/unused/pct/
+//- kind and, for a bundle that has a module breakdown, drillId — so the
+//- mixin needs nothing from the caller's block consts, only the global
+//- h. A drillable tile gets the click affordance and a data-drill target
+//- the toggle script reads.
+mixin covTreemapTiles(tiles)
+  .cov-treemap
+    each t in tiles
+      - const tmLeft = t.x / 940 * 100
+      - const tmTop = t.y / 480 * 100
+      - const tmWidth = t.w / 940 * 100
+      - const tmHeight = t.h / 480 * 100
+      - const tmTone = t.pct >= 70 ? 'cov-tm-tile--bad' : (t.pct >= 40 ? 'cov-tm-tile--mid' : 'cov-tm-tile--ok')
+      - const tmClass = tmTone + (t.drillId ? ' cov-tm-tile--drill' : '')
+      .cov-tm-tile(class=tmClass, data-drill=t.drillId || false, style='left: ' + tmLeft.toFixed(3) + '%; top: ' + tmTop.toFixed(3) + '%; width: ' + tmWidth.toFixed(3) + '%; height: ' + tmHeight.toFixed(3) + '%', title=(t.full || t.name) + (t.kind ? ' (' + t.kind + ')' : '') + ' — ' + h.size.format(t.size) + ' total, ' + h.size.format(t.unused) + ' unused (' + t.pct.toFixed(0) + '%)' + (t.drillId ? ' · click to see its modules' : ''))
+        span.cov-tm-name #{t.name}
+        if t.host
+          span.cov-tm-host #{t.host}
+        span.cov-tm-meta #{h.size.format(t.size)} · #{t.pct.toFixed(0)}% unused
+
 a#coverage
 h2
   | Coverage
@@ -168,6 +239,95 @@ else
         span.cov-kpi-label CSS unused %
         span.cov-kpi-value #{cssCov.unusedPercent.toFixed(1)}%
 
+  //- Treemap: every JS and CSS file as one tile, sized by total bytes
+  //- and tinted by how much of it never ran. The visual overview the
+  //- sorted tables below cannot give at a glance: which few files own
+  //- the weight, and how large the dead-code blocks are next to each
+  //- other. Capped to the heaviest files with the remainder folded into
+  //- one tile, so a page with hundreds of scripts still lays out; the
+  //- meta line says how many were folded rather than dropping silently.
+  - const TM_MAX = 36
+  //- Tile label is the file NAME (h.assetName), never the full URL: a
+  //- narrow tile ellipsis-clips a long URL down to "https://www.gstati…"
+  //- which says nothing. The host goes on a second line to tell apart
+  //- the many generic names (main.js, index.js) third parties ship, and
+  //- the full URL stays in the hover title for the tiles too small to
+  //- read either.
+  - const tmName = f => f.label || (f.url && f.url !== docUrl ? h.assetName(f.url).name : 'inline')
+  - const tmHost = f => { try { return f.url && f.url !== docUrl ? new URL(f.url).hostname.replace(/^www\./, '') : '' } catch (e) { return '' } }
+  //- tmCap folds the small tail into one tile so it stays clickable.
+  //- A tile below `minShare` of the total bytes renders as an unhittable
+  //- sliver (2-9 px), and past `max` tiles the whole map gets fiddly, so
+  //- both the too-small and the overflow files collapse into one "N more"
+  //- tile named for how many it stands in for. A drillable bundle (has a
+  //- module breakdown) is always kept, even when small, so you can still
+  //- drop into it. The full per-file list stays in the table below.
+  - function tmCap(items, max, label, minShare) { const sorted = items.slice().sort((a, b) => b.size - a.size); const total = sorted.reduce((s, it) => s + it.size, 0); const floor = minShare ? total * minShare : 0; const keep = []; const fold = []; for (const it of sorted) { const drillable = !!(it.modules && it.modules.length > 0); if (keep.length < max && (drillable || it.size >= floor)) keep.push(it); else fold.push(it) } if (fold.length > 0) { const fSize = fold.reduce((s, it) => s + it.size, 0); const fUnused = fold.reduce((s, it) => s + it.unused, 0); keep.push({ name: fold.length + ' more ' + label, host: '', size: fSize, unused: fUnused, pct: fSize > 0 ? fUnused / fSize * 100 : 0, kind: '' }) } return keep }
+  - const tmAll = []
+  - for (const f of jsAgg) tmAll.push({ name: tmName(f), host: tmHost(f), full: f.url, size: f.totalBytes, unused: f.unusedBytes, pct: f.unusedPercent, kind: 'JS', modules: f.modules })
+  - for (const f of cssAgg) tmAll.push({ name: tmName(f), host: tmHost(f), full: f.url, size: f.totalBytes, unused: f.unusedBytes, pct: f.unusedPercent, kind: 'CSS', modules: f.modules })
+  - const tmShown = tmCap(tmAll, TM_MAX, 'files', 0.005)
+  //- A bundle that carries a per-module breakdown (MediaWiki
+  //- ResourceLoader batches) is drillable: give it an id so its modules
+  //- can be pre-rendered as their own treemap and shown by the toggle
+  //- script. Non-MediaWiki files have no module data, so no drill.
+  - let tmDrillCount = 0
+  - for (const t of tmShown) { if (t.modules && t.modules.length > 0) { t.drillId = 'cov-tm-drill-' + tmDrillCount; tmDrillCount++ } }
+  - const tmTiles = tmSquarify(tmShown, 940, 480)
+  //- Actionable lead: total shipped vs never-ran, then the single file
+  //- with the most dead bytes and, when it is a bundle we can see inside,
+  //- the module inside it that carries the most. Reads from the same
+  //- aggregated pools the treemap and table use, so no new collection.
+  - const covTotal = (jsCov ? jsCov.totalBytes : 0) + (cssCov ? cssCov.totalBytes : 0)
+  - const covUnused = (jsCov ? jsCov.unusedBytes : 0) + (cssCov ? cssCov.unusedBytes : 0)
+  - const covWaste = covTotal > 0 ? covUnused / covTotal : 0
+  - const covBiggest = jsAgg.concat(cssAgg).filter(f => f.unusedBytes > 0).sort((a, b) => b.unusedBytes - a.unusedBytes)[0]
+  - const covBiggestName = covBiggest ? (covBiggest.label || (covBiggest.url && covBiggest.url !== docUrl ? h.assetName(covBiggest.url).name : 'the inline code')) : undefined
+  - const covBiggestMod = covBiggest && covBiggest.modules && covBiggest.modules.length > 0 ? covBiggest.modules.slice().sort((a, b) => b.unusedBytes - a.unusedBytes)[0] : undefined
+  if tmTiles.length > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Where the bytes go
+        span.listing-card-meta #{tmAll.length} #{tmAll.length === 1 ? 'file' : 'files'} · tile size is total bytes, tint is unused share
+      if covUnused > 0
+        .cov-verdict(class=covWaste >= 0.4 ? 'cov-verdict--warning' : 'cov-verdict--ok')
+          span.cov-verdict-dot
+          p.cov-verdict-text
+            b #{h.size.format(covTotal)} of script and style shipped, and #{h.size.format(covUnused)} of it never ran on this page.
+            if covBiggest
+              |  The biggest win is #{covBiggestName}: #{h.size.format(covBiggest.totalBytes)} delivered, #{h.size.format(covBiggest.unusedBytes)} unused
+              if covBiggestMod && covBiggestMod.unusedBytes > 0
+                | , and inside it #{covBiggestMod.name} alone ships #{h.size.format(covBiggestMod.unusedBytes)} of dead code.
+              else
+                | .
+      #coverage-treemap-root
+        .cov-tm-main
+          +covTreemapTiles(tmTiles)
+          .cov-tm-legend
+            span.cov-tm-legend-label Unused share
+            span.cov-tm-legend-item
+              i.cov-tm-sw.cov-tm-sw--ok
+              | under 40%
+            span.cov-tm-legend-item
+              i.cov-tm-sw.cov-tm-sw--mid
+              | 40 to 70%
+            span.cov-tm-legend-item
+              i.cov-tm-sw.cov-tm-sw--bad
+              | over 70%
+            if tmDrillCount > 0
+              span.cov-tm-legend-hint Click a bundle marked ⤢ to see its modules.
+        each t in tmShown
+          if t.drillId
+            - const modItems = t.modules.map(m => ({ name: m.name, host: '', full: undefined, size: m.totalBytes, unused: m.unusedBytes, pct: m.totalBytes > 0 ? m.unusedBytes / m.totalBytes * 100 : 0, kind: '' }))
+            - const modTiles = tmSquarify(tmCap(modItems, TM_MAX, 'modules', 0.005), 940, 480)
+            .cov-tm-drill(id=t.drillId, hidden)
+              .cov-tm-drill-head
+                button.cov-tm-back(type='button') ← All files
+                span.cov-tm-crumb #{t.name} · #{t.modules.length} #{t.modules.length === 1 ? 'module' : 'modules'}
+              +covTreemapTiles(modTiles)
+        script(type='text/javascript')
+          include ../includes/coverageTreemap.js
+
   //- First-party vs third-party unused bytes. The actionable split:
   //- first-party bundles are yours to fix; third-party waste needs a
   //- vendor conversation (or removing the script).
@@ -251,11 +411,16 @@ else
               //- back to the modules inside the batch, so the row can
               //- expand into which modules carry the unused bytes.
               if f.modules && f.modules.length > 0
-                - const topModules = f.modules.slice(0, 15)
+                //- Every module in the bundle, worst first. The list lives
+                //- in a collapsed details, so a long bundle (70+ modules)
+                //- only expands when asked. Sort here rather than trust the
+                //- source order: aggregateByUrl concatenates the modules of
+                //- same-URL responses, so a merged bundle is not pre-sorted.
+                - const allModules = f.modules.slice().sort((a, b) => b.unusedBytes - a.unusedBytes)
                 tr.cov-modules-row
                   td(colspan='5')
                     details.cov-modules
-                      summary #{f.modules.length} #{f.modules.length === 1 ? 'module' : 'modules'} in this bundle, top #{topModules.length} by unused bytes
+                      summary #{f.modules.length} #{f.modules.length === 1 ? 'module' : 'modules'} in this bundle, by unused bytes
                       table.cov-table
                         thead
                           tr
@@ -266,7 +431,7 @@ else
                             th.number Unused
                             th.cov-bar Unused %
                         tbody
-                          each m in topModules
+                          each m in allModules
                             tr
                               td.cov-url
                                 code= m.name
