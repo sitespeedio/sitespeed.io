@@ -4,6 +4,21 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
   - const shifts = (browsertime.pageinfo.cumulativeLayoutShiftInfo || []).slice().sort((a, b) => b.score - a.score)
   //- Attribute values can hold huge payloads (e.g. an ad iframe name containing a whole serialized document), so clip what we show.
   - const clip = text => text && text.length > 300 ? text.slice(0, 300) + '…' : text
+  //- Pull the shifting elements out of a shift. tags/domPath are parallel
+  //- per-source arrays (browsertime pushes a tag and a selector for every
+  //- node it could resolve); normalise so older string-shaped data still
+  //- renders, keep just the opening tag, and drop sources with neither so
+  //- a detached-node shift shows the honest "no element" note instead.
+  - function shiftSources(info) { const tagsArr = Array.isArray(info.tags) ? info.tags : (info.tags ? [info.tags] : []); const pathsArr = Array.isArray(info.domPath) ? info.domPath : (info.domPath ? [info.domPath] : []); const out = []; for (let si = 0; si < Math.max(tagsArr.length, pathsArr.length); si++) { const rawTag = tagsArr[si]; const gt = rawTag ? rawTag.indexOf('>') : -1; const openTag = rawTag ? (gt >= 0 ? rawTag.slice(0, gt + 1) : rawTag) : undefined; const path = pathsArr[si] || undefined; if (openTag || path) out.push({ tag: openTag, path: path }) } return out }
+  //- A cause read off the opening tag, only where the markup actually
+  //- tells us something — never a guess. Images and embeds are CHECKED
+  //- for missing width/height attributes (the box the browser could not
+  //- reserve); an ad slot is claimed only on an unambiguous ad-network
+  //- marker, not on loose "ad" substrings (those match load-, download-,
+  //- -admin). Everything else returns nothing and the row just shows the
+  //- element, so we never assert a cause we cannot stand behind.
+  - const adMarkers = ['adsbygoogle', 'googlesyndication', 'doubleclick', 'google_ads', 'data-google-query-id', 'amp-ad', 'taboola', 'outbrain', 'data-ad-', 'advert', 'sponsored', 'ad-slot', 'adslot', 'ad-unit', 'adunit']
+  - function shiftCause(open) { if (!open) return undefined; const s = open.toLowerCase(); const sized = s.includes('width=') && s.includes('height='); if (s.indexOf('<img') === 0) { return sized ? undefined : 'This image carries no width and height attribute, so the browser could not reserve its box before it loaded. Set width and height (or a CSS aspect-ratio) so the space exists up front.' } if (s.indexOf('<iframe') === 0) { return sized ? undefined : 'This embed carries no width and height attribute, so its box was not reserved before it loaded. Give the iframe a fixed size so it does not reflow the page.' } if (adMarkers.some(marker => s.includes(marker))) return 'The markup here is an ad slot. It rendered late and pushed the content around it. Reserve its space with a fixed height or an aspect-ratio box so the ad drops into a hole that already exists.'; return undefined }
   a#cumulativeLayoutShift
   h3 Cumulative Layout Shift
   p How much the page's content shifts as it loads, collected via the&nbsp;
@@ -16,22 +31,65 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
     if clsValue === 0
       p.cls-no-shifts No layout shifts were detected on this page.
     else
+      //- Verdict up front: name the dominant shift, its cut of CLS and when
+      //- it happened, then the one fix that always applies (reserve space).
+      - const top = shifts[0]
+      - const topSources = top ? shiftSources(top) : []
+      - const topShare = top && clsValue > 0 ? Math.round(top.score / clsValue * 100) : undefined
+      //- Name the element with the LAST segment of its selector
+      //- (div#toppanorama, main#content) — the full opening tag of an ad
+      //- slot runs to hundreds of chars and reads badly inline. Fall back
+      //- to the clipped tag when there is no selector.
+      - const topLabel = topSources.length > 0 ? (topSources[0].path ? topSources[0].path.split('>').pop().trim() : clip(topSources[0].tag)) : undefined
+      if top
+        .cls-verdict(class=clsLabel === 'ok' ? 'cls-verdict--ok' : 'cls-verdict--warning')
+          span.cls-verdict-dot
+          p.cls-verdict-text
+            if topShare !== undefined && topShare >= 50
+              b One shift is #{topShare}% of your #{clsValue.toFixed(3)} CLS.
+            else
+              b #{shifts.length} #{shifts.length === 1 ? 'shift' : 'shifts'} add up to a #{clsValue.toFixed(3)} CLS.
+            if topLabel
+              |  #{topLabel} moved#{top.startTime !== undefined ? ' at ' + h.time.ms(Math.round(top.startTime)) : ''}. Reserve space for whatever renders into that spot, a fixed height or an aspect-ratio box, so later content stops pushing the page around.
+            else
+              |  Reserve space for anything that loads in late (banners, images, embeds, web fonts) so it drops into a box that already exists.
       .row
         .one-half.column
           h4.cls-section-heading Elements that shifted
-          p.cls-section-help Sorted by individual shift score (higher = bigger shift). The top entries usually account for most of the page's CLS.
+          p.cls-section-help Worst first. The shifts in the CLS window add up to the score, so each percentage is that shift's exact share.
           if shifts.length > 0
             ul.cls-shifts
               each info, idx in shifts
+                //- Shares are exact: the shifts in the CLS session window
+                //- sum to the metric, so score / CLS is each shift's cut.
+                - const share = clsValue > 0 ? Math.round(info.score / clsValue * 100) : undefined
+                - const sources = shiftSources(info)
+                - const scoreTone = share !== undefined && share >= 50 ? 'cls-shift-score--major' : (share !== undefined && share >= 20 ? 'cls-shift-score--mid' : '')
+                - const cause = sources.length > 0 ? shiftCause(sources[0].tag) : undefined
                 li.cls-shift
-                  .cls-shift-row
-                    span.cls-shift-rank ##{idx + 1}
-                    span.cls-shift-score #{info.score.toFixed(3)}
-                    span.cls-shift-tags
-                      code= clip(info.tags)
-                  if info.domPath
-                    pre.cls-shift-dompath
-                      code= clip(info.domPath)
+                  .cls-shift-head
+                    span.cls-shift-score(class=scoreTone) #{info.score.toFixed(3)}
+                    .cls-shift-headmeta
+                      if share !== undefined
+                        span.cls-shift-share #{share}% of CLS
+                      if info.startTime !== undefined
+                        span.cls-shift-when shifted at #{h.time.ms(Math.round(info.startTime))}
+                  if share !== undefined
+                    .cls-shift-bar
+                      span.cls-shift-bar-fill(class=scoreTone, style='width: ' + Math.max(share, 2) + '%')
+                  if sources.length > 0
+                    each src in sources
+                      .cls-shift-el
+                        if src.tag
+                          span.cls-shift-tags
+                            code= clip(src.tag)
+                        if src.path
+                          pre.cls-shift-dompath
+                            code= clip(src.path)
+                    if cause
+                      p.cls-shift-cause= cause
+                  else
+                    p.cls-shift-unattributed Chrome could not tie this shift to an element. The node left the page before the shift was recorded, so only its position and score are known. Check the screenshot or filmstrip to see what moved.
         .one-half.column
           - const screenshotNo = medianRun ? medianRun.runIndex : (Number(runIndex) + 1)
           - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType

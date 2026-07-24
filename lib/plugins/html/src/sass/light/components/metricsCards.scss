@@ -1013,3 +1013,135 @@ $lcp--render-delay: #7c3aed;
   font-weight: $font--weight--medium;
   line-height: 1.4;
 }
+
+// Per-shift meta (share of CLS and when it fired) next to the score.
+.cls-shift-meta {
+  flex: 0 0 auto;
+  color: $color--text-muted;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+// One block per shifting element (a single shift can move several).
+.cls-shift-el + .cls-shift-el {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed $color--border;
+}
+
+// Honest note when Chrome could not attribute the shift to a live node.
+.cls-shift-unattributed {
+  margin: 6px 0 0;
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+// CLS verdict banner — names the dominant shift and the one fix that
+// always applies, tinted like the report's other verdicts.
+.cls-verdict {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: $radius--sm;
+  border: 1px solid $color--warning-border;
+  background: $color--warning-bg;
+}
+
+.cls-verdict--ok {
+  border-color: $color--ok-border;
+  background: $color--ok-bg;
+}
+
+.cls-verdict-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $color--warning;
+}
+
+.cls-verdict--ok .cls-verdict-dot {
+  background: $color--ok;
+}
+
+.cls-verdict-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: $color--text;
+}
+
+// Per-shift header: a big score coloured by how dominant the shift is,
+// with its share of CLS and when it fired alongside.
+.cls-shift-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cls-shift-score {
+  font-size: 1.4rem;
+}
+
+.cls-shift-score--major {
+  color: $color--error;
+}
+
+.cls-shift-score--mid {
+  color: $color--warning;
+}
+
+.cls-shift-headmeta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cls-shift-share {
+  font-size: 0.8rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+}
+
+.cls-shift-when {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+// Share bar — the shift's cut of CLS, coloured to match its score.
+.cls-shift-bar {
+  height: 6px;
+  margin: 9px 0 10px;
+  border-radius: 3px;
+  background: $color--surface-card;
+  overflow: hidden;
+}
+
+.cls-shift-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: $color--text-muted;
+}
+
+.cls-shift-bar-fill.cls-shift-score--major {
+  background: $color--error;
+}
+
+.cls-shift-bar-fill.cls-shift-score--mid {
+  background: $color--warning;
+}
+
+// Light cause read off the element (ad slot, unsized image, embed).
+.cls-shift-cause {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+}
