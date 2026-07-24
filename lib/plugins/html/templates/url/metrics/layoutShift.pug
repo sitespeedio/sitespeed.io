@@ -53,13 +53,19 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
               |  #{topLabel} moved#{top.startTime !== undefined ? ' at ' + h.time.ms(Math.round(top.startTime)) : ''}. Reserve space for whatever renders into that spot, a fixed height or an aspect-ratio box, so later content stops pushing the page around.
             else
               |  Reserve space for anything that loads in late (banners, images, embeds, web fonts) so it drops into a box that already exists.
+      //- Only list shifts of 0.01 and up: that is the threshold the
+      //- screenshot uses to highlight a moved element (the note below the
+      //- image), so the list and the highlighted screenshot show the same
+      //- set. Smaller shifts stay counted in the CLS total but are too
+      //- small to single out or act on.
+      - const visibleShifts = shifts.filter(s => s.score >= 0.01)
       .row
         .one-half.column
           h4.cls-section-heading Elements that shifted
-          p.cls-section-help Worst first. The shifts in the CLS window add up to the score, so each percentage is that shift's exact share.
-          if shifts.length > 0
+          p.cls-section-help Worst first, showing shifts of 0.01 and up. Each percentage is that shift's exact share of the score.
+          if visibleShifts.length > 0
             ul.cls-shifts
-              each info, idx in shifts
+              each info, idx in visibleShifts
                 //- Shares are exact: the shifts in the CLS session window
                 //- sum to the metric, so score / CLS is each shift's cut.
                 - const share = clsValue > 0 ? Math.round(info.score / clsValue * 100) : undefined
@@ -90,6 +96,8 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefi
                       p.cls-shift-cause= cause
                   else
                     p.cls-shift-unattributed Chrome could not tie this shift to an element. The node left the page before the shift was recorded, so only its position and score are known. Check the screenshot or filmstrip to see what moved.
+          else
+            p.cls-no-shifts The shift is spread across many movements below 0.01, none large enough to single out. Check the video or filmstrip to see what moved.
         .one-half.column
           - const screenshotNo = medianRun ? medianRun.runIndex : (Number(runIndex) + 1)
           - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
