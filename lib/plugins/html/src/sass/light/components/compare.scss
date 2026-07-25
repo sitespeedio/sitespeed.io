@@ -355,6 +355,21 @@ $cmp--current: #2a78d6;
 
   &--baseline { background: $cmp--baseline; }
   &--current { background: $cmp--current; }
+
+  // The band / overlap swatches are little bars, not dots — they stand
+  // for a range, so a round swatch would misrepresent them.
+  &--band {
+    width: 18px;
+    border-radius: 3px;
+    background: rgba($cmp--baseline, 0.18);
+    border: 1px solid rgba($cmp--baseline, 0.45);
+  }
+
+  &--overlap {
+    width: 18px;
+    border-radius: 3px;
+    background: rgba($color--text-muted, 0.22);
+  }
 }
 
 //
@@ -473,6 +488,14 @@ $cmp--current: #2a78d6;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
+
+  // On a non-significant row the two medians are a reference, not a
+  // verdict — dim them so the effect-size chip carries the eye and a
+  // couple of noise-milliseconds don't read as a real regression.
+  &--quiet b {
+    font-weight: $font--weight--regular;
+    color: $color--text-secondary;
+  }
 }
 
 .cmp-arrow {
@@ -488,8 +511,26 @@ $cmp--current: #2a78d6;
 // Distribution strip — two rails (baseline over current) on a shared
 // value axis. Dots get a small deterministic vertical jitter from the
 // template so identical values stay visible as a cluster instead of a
-// single dot.
+// single dot. Behind the dots each series draws a middle-80% band, and
+// a grey overlap stripe spans both rails where the two bands coincide —
+// the drawn answer to "is this shift real or run-to-run noise?".
 //
+.cmp-strip-rails {
+  position: relative;
+}
+
+// The overlap sits behind both rails (rendered first in the DOM) so the
+// hairline, bands and dots all read on top of it. Its width is the value
+// window the two normal ranges share.
+.cmp-strip-overlap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba($color--text-muted, 0.16);
+  border-radius: 3px;
+  z-index: 0;
+}
+
 .cmp-strip-rail {
   position: relative;
   height: 22px;
@@ -505,6 +546,41 @@ $cmp--current: #2a78d6;
   }
 }
 
+// Middle-80% range (p10–p90) — the "normal range" for that series, so
+// the eye compares ranges, not just the two median ticks.
+.cmp-strip-band {
+  position: absolute;
+  top: 11px;
+  height: 10px;
+  translate: 0 -50%;
+  border-radius: 5px;
+  z-index: 0;
+
+  &--baseline { background: rgba($cmp--baseline, 0.15); }
+  &--current { background: rgba($cmp--current, 0.15); }
+}
+
+// Inline series label so identity doesn't ride on a trip back to the
+// legend. Tiny, card-backed, tucked at the axis start; the median tick
+// and any left-most dot still paint over it.
+.cmp-strip-tag {
+  position: absolute;
+  left: 0;
+  top: 11px;
+  translate: 0 -50%;
+  z-index: 1;
+  padding: 0 3px;
+  border-radius: 3px;
+  background: $color--surface-card;
+  font-size: 0.56rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+
+  &--baseline { color: $cmp--baseline; }
+  &--current { color: $cmp--current; }
+}
+
 .cmp-strip-dot {
   position: absolute;
   top: 11px;
@@ -514,6 +590,7 @@ $cmp--current: #2a78d6;
   translate: -50% -50%;
   border: 1.5px solid $color--surface-card;
   opacity: 0.9;
+  z-index: 2;
 
   &--baseline { background: $cmp--baseline; }
   &--current { background: $cmp--current; }
@@ -532,7 +609,7 @@ $cmp--current: #2a78d6;
   height: 18px;
   translate: -50% -50%;
   border-radius: 1px;
-  z-index: 2;
+  z-index: 3;
 
   &--baseline { background: $cmp--baseline; }
   &--current { background: $cmp--current; }
