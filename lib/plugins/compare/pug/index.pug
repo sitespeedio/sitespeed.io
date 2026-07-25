@@ -13,9 +13,21 @@
 - }
 - var cliffDeltaHelper = function(delta) {
 -   const size = Math.abs(delta)
+-   if (size < 0.147) return 'negligible effect (' + h.decimals(delta) + ')'
 -   if (size < 0.3) return 'small effect (' + h.decimals(delta) + ')'
 -   if (size < 0.5) return 'medium effect (' + h.decimals(delta) + ')'
 -   return 'large effect (' + h.decimals(delta) + ')'
+- }
+//- The middle-80% band (p10–p90) drawn behind the dots needs quantiles;
+//- linear interpolation between the two straddling runs, same method the
+//- reconstruction uses. Returns lo-safe 0 for an empty series.
+- var quantile = function(arr, q) {
+-   const s = arr.filter(x => typeof x === 'number').slice().sort((a, b) => a - b)
+-   if (s.length === 0) return 0
+-   const pos = (s.length - 1) * q
+-   const base = Math.floor(pos)
+-   const rest = pos - base
+-   return s[base + 1] !== undefined ? s[base] + rest * (s[base + 1] - s[base]) : s[base]
 - }
 - var isInformational = function(s) {
 -   return s === 'N/A' || s === 'Datasets are identical' || s === 'No variability' || s === 'Datasets have different lengths'
@@ -215,6 +227,12 @@ details.cmp-run-details
     span
       span.cmp-swatch.cmp-swatch--current
       | Current
+    span
+      span.cmp-swatch.cmp-swatch--band
+      | Shaded bar: middle 80% of runs
+    span
+      span.cmp-swatch.cmp-swatch--overlap
+      | Grey: the two ranges overlap — that much of the shift is run-to-run noise
 
 //- ---------------------------------------------------------------------
 //- One row per metric: name + p-value, the distribution strip (both
@@ -257,6 +275,14 @@ each metricGroup, groupName in compare.metrics
         //- parser trips on division after a bracket.
         - const pad = 4
         - const xPos = function(v) { return (pad + (v - lo) / span * (100 - 2 * pad)).toFixed(2) }
+        - const xPosN = function(v) { return pad + (v - lo) / span * (100 - 2 * pad) }
+        //- Middle-80% range per series, and the value window where the two
+        //- ranges overlap — a wide overlap says the change sits inside the
+        //- run-to-run noise, a clean gap says it's real.
+        - const p10B = quantile(baseline, 0.1), p90B = quantile(baseline, 0.9)
+        - const p10C = quantile(current, 0.1), p90C = quantile(current, 0.9)
+        - const ovLo = Math.max(p10B, p10C), ovHi = Math.min(p90B, p90C)
+        - const hasOverlap = ovHi > ovLo
         .cmp-metric(id=chartId(groupName, metricName), class=significant ? 'cmp-metric--significant cmp-metric--' + tone : null)
           .cmp-metric-name
             b #{metricName}
@@ -264,20 +290,27 @@ each metricGroup, groupName in compare.metrics
           .cmp-metric-strip
             if span > 0
               .cmp-strip
-                .cmp-strip-rail
-                  span.cmp-strip-median.cmp-strip-median--baseline(style='left:' + xPos(medB) + '%', title='Baseline median ' + fmtVal(medB) + unit)
-                  each v, i in baseline
-                    if typeof v === 'number'
-                      - const left = xPos(v)
-                      - const jitter = (i % 3 - 1) * 3
-                      span.cmp-strip-dot.cmp-strip-dot--baseline(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Baseline run ' + (i + 1) + ': ' + fmtVal(v) + unit)
-                .cmp-strip-rail
-                  span.cmp-strip-median.cmp-strip-median--current(style='left:' + xPos(medC) + '%', title='Current median ' + fmtVal(medC) + unit)
-                  each v, i in current
-                    if typeof v === 'number'
-                      - const left = xPos(v)
-                      - const jitter = (i % 3 - 1) * 3
-                      span.cmp-strip-dot.cmp-strip-dot--current(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Current run ' + (i + 1) + ': ' + fmtVal(v) + unit)
+                .cmp-strip-rails
+                  if hasOverlap
+                    span.cmp-strip-overlap(style='left:' + xPosN(ovLo).toFixed(2) + '%;width:' + Math.max(0.5, xPosN(ovHi) - xPosN(ovLo)).toFixed(2) + '%', title='The two normal ranges overlap here — this much of the shift is inside run-to-run noise')
+                  .cmp-strip-rail
+                    span.cmp-strip-tag.cmp-strip-tag--baseline Baseline
+                    span.cmp-strip-band.cmp-strip-band--baseline(style='left:' + xPosN(p10B).toFixed(2) + '%;width:' + Math.max(0.5, xPosN(p90B) - xPosN(p10B)).toFixed(2) + '%', title='Baseline: middle 80% of runs ' + fmtVal(p10B) + '–' + fmtVal(p90B) + unit)
+                    span.cmp-strip-median.cmp-strip-median--baseline(style='left:' + xPos(medB) + '%', title='Baseline median ' + fmtVal(medB) + unit)
+                    each v, i in baseline
+                      if typeof v === 'number'
+                        - const left = xPos(v)
+                        - const jitter = (i % 3 - 1) * 3
+                        span.cmp-strip-dot.cmp-strip-dot--baseline(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Baseline run ' + (i + 1) + ': ' + fmtVal(v) + unit)
+                  .cmp-strip-rail
+                    span.cmp-strip-tag.cmp-strip-tag--current Current
+                    span.cmp-strip-band.cmp-strip-band--current(style='left:' + xPosN(p10C).toFixed(2) + '%;width:' + Math.max(0.5, xPosN(p90C) - xPosN(p10C)).toFixed(2) + '%', title='Current: middle 80% of runs ' + fmtVal(p10C) + '–' + fmtVal(p90C) + unit)
+                    span.cmp-strip-median.cmp-strip-median--current(style='left:' + xPos(medC) + '%', title='Current median ' + fmtVal(medC) + unit)
+                    each v, i in current
+                      if typeof v === 'number'
+                        - const left = xPos(v)
+                        - const jitter = (i % 3 - 1) * 3
+                        span.cmp-strip-dot.cmp-strip-dot--current(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Current run ' + (i + 1) + ': ' + fmtVal(v) + unit)
                 .cmp-strip-axis
                   span #{fmtVal(lo)}#{unit}
                   span #{fmtVal(hi)}#{unit}
@@ -286,24 +319,31 @@ each metricGroup, groupName in compare.metrics
                 | all #{baseline.length}+#{current.length} runs measured&nbsp;
                 b #{fmtVal(lo)}#{unit}
                 | , so nothing to compare
-          .cmp-metric-delta
+          //- Median → median stays for reference, but the percentage delta
+          //- is only shown when the change is significant: a "+3 %" on a
+          //- noise row reads as a real regression the overlap band denies.
+          //- Non-significant rows are muted so the effect-size chip leads.
+          .cmp-metric-delta(class=significant ? null : 'cmp-metric-delta--quiet')
             if span > 0
               b
                 | #{fmtVal(medB)}&nbsp;
                 span.cmp-arrow →
                 | &nbsp;#{fmtVal(medC)}#{unit}
-              if medB !== 0
+              if significant && medB !== 0
                 small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit} (#{deltaPct > 0 ? '+' : ''}#{deltaPct} %)
-              else if delta !== 0
-                small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
-              else
+              else if medB === 0 && delta === 0
                 //- Both medians are zero but the runs differ — the
                 //- means carry the story (flaky CPU long tasks do this).
                 small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
+              else
+                small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
+          //- The effect size (Cliff's delta) rides on the chip for every
+          //- row, significant or not — it's the overlap-aware "how big",
+          //- the honest counterweight to the raw median difference.
           .cmp-metric-chip
             if informational
               span.cmp-chip.cmp-chip--neutral #{score === 'Datasets are identical' ? 'identical runs' : String(score).toLowerCase()}
             else if significant
               span.cmp-chip(class='cmp-chip--' + tone) #{direction} · #{cliffDeltaHelper(values.cliffsDelta)}
             else
-              span.cmp-chip.cmp-chip--neutral no change
+              span.cmp-chip.cmp-chip--neutral no change · #{cliffDeltaHelper(values.cliffsDelta)}
