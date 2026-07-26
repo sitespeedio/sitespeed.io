@@ -1,6 +1,19 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.4.0 - 2026-07-26
+
+### Added
+* Where the JavaScript and CSS bytes go: the Coverage tab opens with a plain-language lead and a treemap sized by bytes and tinted by unused share, so you can see at a glance which few files own most of the weight and how much never ran. Bundles with a module breakdown drill into a per-module treemap and back, the smallest files fold into one tile so nothing becomes an unclickable sliver[#4875](https://github.com/sitespeedio/sitespeed.io/pull/4875).
+* Cumulative Layout Shift is now actionable: the card leads with a verdict naming the element that took the biggest share of the shift, when it fired and the fix that always applies (reserve space). Each shift shows its exact share of CLS, a score coloured by how dominant it is, its timing and its selector, and a cause line appears only where the markup proves one (an image or embed with no width and height, unmistakable ad markup), never a guess from a loose substring [#4874](https://github.com/sitespeedio/sitespeed.io/pull/4874).
+* The Compare graphic shows run-to-run spread, not just the median: each series draws its middle-80% band (p10 to p90) behind the dots with a grey stripe marking where the two bands overlap, so a wide grey band means the shift sits inside run-to-run noise and a clean gap means it is real. Cliff's delta rides on every chip whether the change is significant or not, and the median percentage is shown only when the test calls the change real [#4879](https://github.com/sitespeedio/sitespeed.io/pull/4879).
+* Firefox 153 and Edge 150 in the Docker container [#4876](https://github.com/sitespeedio/sitespeed.io/pull/4876).
+
+### Fixed
+* A shared or bookmarked link to any Metrics-tab card opened on the default tab with the target hidden, so the card looked empty. Every Metrics-tab anchor now resolves to its tab so deep links land on the card they name [#4874](https://github.com/sitespeedio/sitespeed.io/pull/4874).
+* The Cumulative Layout Shift list showed sub-0.01 shifts that printed as "0.000" and "0% of CLS", a row that reads like a bug, and disagreed with the screenshot beside it, which only highlights shifts above 0.01. The list now shows shifts of 0.01 and up while smaller ones stay counted in the score and the verdict, and a page whose whole CLS is tiny movements gets an honest empty state pointing at the video [#4878](https://github.com/sitespeedio/sitespeed.io/pull/4878).
+* The Coach Page info card was lopsided, stacking Document, DOM structure and Storage and connection in the left column while the right showed only a short Resource hints card. Storage and connection moved to the right column so the two end at roughly the same height, and the right column is no longer empty on pages that ship no resource hints [#4872](https://github.com/sitespeedio/sitespeed.io/pull/4872).
+
 ## 42.3.0 - 2026-07-22
 
 ### Added
