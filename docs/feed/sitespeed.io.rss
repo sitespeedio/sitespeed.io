@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 22 Jul 2026 18:04:29 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 26 Jul 2026 04:47:32 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,25 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 42.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.4.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.4.0</guid>
+            <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Where the JavaScript and CSS bytes go: the Coverage tab opens with a plain-language lead and a treemap sized by bytes and tinted by unused share, so you can see at a glance which few files own most of the weight and how much never ran. Bundles with a module breakdown drill into a per-module treemap and back, the smallest files fold into one tile so nothing becomes an unclickable sliver#4875.<br>
+- Cumulative Layout Shift is now actionable: the card leads with a verdict naming the element that took the biggest share of the shift, when it fired and the fix that always applies (reserve space). Each shift shows its exact share of CLS, a score coloured by how dominant it is, its timing and its selector, and a cause line appears only where the markup proves one (an image or embed with no width and height, unmistakable ad markup), never a guess from a loose substring #4874.<br>
+- The Compare graphic shows run-to-run spread, not just the median: each series draws its middle-80% band (p10 to p90) behind the dots with a grey stripe marking where the two bands overlap, so a wide grey band means the shift sits inside run-to-run noise and a clean gap means it is real. Cliff&#39;s delta rides on every chip whether the change is significant or not, and the median percentage is shown only when the test calls the change real #4879.<br>
+- Firefox 153 and Edge 150 in the Docker container #4876.<br>
+<br>
+<strong>Fixed</strong><br>
+- A shared or bookmarked link to any Metrics-tab card opened on the default tab with the target hidden, so the card looked empty. Every Metrics-tab anchor now resolves to its tab so deep links land on the card they name #4874.<br>
+- The Cumulative Layout Shift list showed sub-0.01 shifts that printed as &quot;0.000&quot; and &quot;0% of CLS&quot;, a row that reads like a bug, and disagreed with the screenshot beside it, which only highlights shifts above 0.01. The list now shows shifts of 0.01 and up while smaller ones stay counted in the score and the verdict, and a page whose whole CLS is tiny movements gets an honest empty state pointing at the video #4878.<br>
+- The Coach Page info card was lopsided, stacking Document, DOM structure and Storage and connection in the left column while the right showed only a short Resource hints card. Storage and connection moved to the right column so the two end at roughly the same height, and the right column is no longer empty on pages that ship no resource hints #4872.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.3.0</link>
@@ -179,20 +198,6 @@
 - Release chain: dispatch <code>building-docker-release.yml</code>, <code>building-docker-autobuild.yml</code> and <code>netlify.yml</code> explicitly from <code>release.yml</code> instead of relying on the tag and main-branch pushes to fire them #4786.<br>
 - Docker release images are now signed with cosign and ship with a SLSA provenance attestation and an SPDX SBOM attached as separate OCI artefacts in the same Docker Hub repository. Users can verify an image was built and pushed by this repository&#39;s release workflow with <code>cosign verify --certificate-identity-regexp &#39;https://github\.com/sitespeedio/sitespeed\.io/\.github/workflows/building-docker-release\.yml@refs/tags/v .*&#39; --certificate-oidc-issuer https://token.actions.githubusercontent.com sitespeedio/sitespeed.io:&lt;version&gt;</code>, and inspect the SBOM or provenance with <code>docker buildx imagetools inspect sitespeedio/sitespeed.io:&lt;version&gt; --format &#39;{{ json .SBOM }}&#39;</code>. The <code>-slim</code> and <code>-plus1</code> variants are signed the same way. Signing is keyless via Sigstore OIDC so there&#39;s no long-lived signing key to manage #4783.<br>
 - Bump <code>step-security/harden-runner</code> from v2.14.2 to v2.19.4 across every workflow #4782.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 41.3.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.1</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.1</guid>
-            <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- npm releases now ship a Sigstore provenance attestation and SPDX + CycloneDX SBOMs as GitHub Release assets. Releases run from a new <code>.github/workflows/release.yml</code> (triggered with <code>./release.sh patch|minor|major</code>), publish to npm via OIDC Trusted Publishing, and only push the version commit and tag after the publish succeeds — so a failed publish can&#39;t leave an orphan tag firing the Docker release for a never-published version. Users can verify what they install with <code>npm audit signatures</code> a#4780.<br>
-- <code>SECURITY.md</code>: a written security policy with a documented channel (GitHub private vulnerability reporting, with email fallback). The file requires reporters to spell out an exploitation chain rather than just citing a finding, and takes an explicit stance on transitive-dependency CVEs that don&#39;t have a reachable code path in sitespeed.io&#39;s actual usage #4778.<br>
-- <code>publiccode.yml</code>: machine-readable metadata so sitespeed.io can be listed in EU public-sector software catalogues. <code>release.sh</code>&#39;s replacement workflow keeps <code>softwareVersion</code> and <code>releaseDate</code> fresh automatically on every release #4779.<br>
-- Slim Docker image build experiment #4777.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
