@@ -286,6 +286,14 @@ $cmp--current: #4a90e0;
   }
 }
 
+// The "significant but too small to matter" rows get their own quiet
+// sentence under the headline instead of inflating the slower-count.
+.cmp-verdict-sub {
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  margin-top: 4px;
+}
+
 .cmp-verdict-chips {
   display: flex;
   flex-wrap: wrap;
@@ -325,6 +333,14 @@ $cmp--current: #4a90e0;
     border: 1px solid $color--border;
 
     &:hover { border-color: $color--border-strong; }
+  }
+
+  &--warning {
+    background: $color--warning-bg;
+    color: $color--warning;
+    border: 1px solid $color--warning-border;
+
+    &:hover { border-color: $color--warning; }
   }
 }
 
@@ -413,10 +429,12 @@ $cmp--current: #4a90e0;
 }
 
 // Significant rows are tinted by the direction of the change —
-// regressions in the error tone, improvements in the good tone, and
-// a two-sided hit with no rank direction stays neutral. The chip gets
-// the card surface as backing there — its own tint would melt into
-// the identically-tinted row.
+// regressions in the error tone, improvements in the good tone, a
+// two-sided hit with no rank direction stays neutral, and a hit whose
+// medians display the same value gets the warning tone (statistically
+// detectable, too small to matter). The chip gets the card surface as
+// backing there — its own tint would melt into the identically-tinted
+// row.
 .cmp-metric--significant {
   .cmp-chip {
     background: $color--surface-card;
@@ -436,6 +454,19 @@ $cmp--current: #4a90e0;
     background: $color--surface;
     box-shadow: inset 3px 0 0 $color--border-strong;
   }
+
+  &.cmp-metric--warning {
+    background: $color--warning-bg;
+    box-shadow: inset 3px 0 0 $color--warning;
+  }
+}
+
+// Extra anchors on a merged row so every old #chart- deep link keeps
+// landing with the row in view. Absolute so they take no cell in the
+// row grid.
+.cmp-metric-anchor {
+  position: absolute;
+  scroll-margin-top: 16px;
 }
 
 .cmp-metric-name {
@@ -451,6 +482,17 @@ $cmp--current: #4a90e0;
     color: $color--text-muted;
     font-variant-numeric: tabular-nums;
   }
+}
+
+// Tag on a merged row — several metric names, one set of run values.
+.cmp-same {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 0.66rem;
+  color: $color--text-muted;
+  background: $color--surface;
+  border-radius: 4px;
+  padding: 1px 6px;
 }
 
 .cmp-metric-strip {
@@ -510,11 +552,39 @@ $cmp--current: #4a90e0;
 //
 // Distribution strip — two rails (baseline over current) on a shared
 // value axis. Dots get a small deterministic vertical jitter from the
-// template so identical values stay visible as a cluster instead of a
-// single dot. Behind the dots each series draws a middle-80% band, and
+// template so near-identical values stay visible as a cluster; runs
+// piling up on a handful of distinct values render as a counted pill
+// instead. Behind the dots each series draws a middle-80% band, and
 // a grey overlap stripe spans both rails where the two bands coincide —
 // the drawn answer to "is this shift real or run-to-run noise?".
+// Series labels live in a gutter left of the rails so marks never
+// paint over them.
 //
+.cmp-strip-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 8px;
+}
+
+.cmp-strip-gutter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cmp-strip-gutter-label {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.56rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.02em;
+
+  &--baseline { color: $cmp--baseline; }
+  &--current { color: $cmp--current; }
+}
+
 .cmp-strip-rails {
   position: relative;
 }
@@ -560,27 +630,6 @@ $cmp--current: #4a90e0;
   &--current { background: rgba($cmp--current, 0.2); }
 }
 
-// Inline series label so identity doesn't ride on a trip back to the
-// legend. Tiny, card-backed, tucked at the axis start; the median tick
-// and any left-most dot still paint over it.
-.cmp-strip-tag {
-  position: absolute;
-  left: 0;
-  top: 11px;
-  translate: 0 -50%;
-  z-index: 1;
-  padding: 0 3px;
-  border-radius: 3px;
-  background: $color--surface-card;
-  font-size: 0.56rem;
-  font-weight: $font--weight--semibold;
-  letter-spacing: 0.02em;
-  pointer-events: none;
-
-  &--baseline { color: $cmp--baseline; }
-  &--current { color: $cmp--current; }
-}
-
 .cmp-strip-dot {
   position: absolute;
   top: 11px;
@@ -600,6 +649,30 @@ $cmp--current: #4a90e0;
     opacity: 1;
     z-index: 4;
   }
+}
+
+// Counted pill for runs piling up on one value — twenty runs at 303 ms
+// must not read as one dot. Same layer as the median tick and rendered
+// after it, so the count stays legible when the median sits on the
+// pile (the tick's taller ends still peek out above and below).
+.cmp-strip-pile {
+  position: absolute;
+  top: 11px;
+  translate: -50% -50%;
+  z-index: 3;
+  min-width: 16px;
+  text-align: center;
+  padding: 1px 5px;
+  border-radius: $radius--pill;
+  border: 1.5px solid $color--surface-card;
+  color: $color--white;
+  font-size: 0.58rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
 }
 
 .cmp-strip-median {
@@ -622,13 +695,17 @@ $cmp--current: #4a90e0;
   color: $color--text-muted;
   font-variant-numeric: tabular-nums;
   margin-top: 1px;
+  // Line up with the rails: gutter column + grid gap.
+  margin-left: 60px;
 }
 
 //
 // Status chips — the verdict column. Borderless tinted badges (same
 // treatment as the Timings Summary agree pills): in this report a
 // border on a pill signals "clickable", and these are labels. Only
-// the verdict-card jump chips keep a border — they are links.
+// the verdict-card jump chips keep a border — they are links. The pill
+// carries only the short verdict; the effect size renders below it as
+// .cmp-effect so a number never wraps onto its own line inside the pill.
 //
 .cmp-chip {
   display: inline-block;
@@ -652,4 +729,17 @@ $cmp--current: #4a90e0;
     color: $color--text-muted;
     background: $color--surface;
   }
+
+  &--warning {
+    color: $color--warning;
+    background: $color--warning-bg;
+  }
+}
+
+.cmp-effect {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.68rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
 }
