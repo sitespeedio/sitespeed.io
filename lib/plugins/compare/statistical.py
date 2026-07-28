@@ -2,17 +2,17 @@ import sys
 import json
 from scipy.stats import wilcoxon, mannwhitneyu
 
-def has_variability(sample):
-    """Check if the sample has more than one unique value."""
-    return len(set(sample)) > 1
-
 def perform_test(test_type, baseline, current, **kwargs):
     """Perform the statistical test based on the test type."""
-    if not has_variability(baseline) or not has_variability(current):
-        if baseline == current:
-            return None, "Datasets are identical"
-        else:
-            return None, "No variability"
+    # Identical samples cannot differ, and they make Wilcoxon degenerate
+    # (every paired difference is zero), so short-circuit them. Constant
+    # but DIFFERENT samples must reach the test: in a replay/lab setup the
+    # most deterministic metrics have zero variance within a session, and
+    # a clean shift (all runs 303 ms -> all runs 310 ms) is the strongest
+    # possible signal. The old has_variability guard skipped the test
+    # whenever either sample was constant, which suppressed exactly those.
+    if baseline == current:
+        return None, "Datasets are identical"
     if (len(baseline) != len(current)) and test_type == 'wilcoxon':
         return None, "Datasets have different lengths"
 
@@ -33,7 +33,7 @@ for group_name, metrics in input_data['metrics'].items():
     group_results = {}
     for metric_name, metric_data in metrics.items():
         stat, p = perform_test(test_type, metric_data['baseline'], metric_data['current'], **options)
-        if p == "No variability" or p == "Datasets are identical" or p == "Datasets have different lengths":
+        if p == "Datasets are identical" or p == "Datasets have different lengths":
             group_results[metric_name] = {'statistic': "N/A", 'p-value': p}
         else:
             group_results[metric_name] = {'statistic': stat, 'p-value': p}
