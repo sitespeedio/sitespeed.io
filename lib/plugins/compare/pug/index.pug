@@ -32,6 +32,24 @@
 - var isInformational = function(s) {
 -   return s === 'N/A' || s === 'Datasets are identical' || s === 'No variability' || s === 'Datasets have different lengths'
 - }
+//- When the runs concentrate on a handful of distinct values (WebPageReplay
+//- ttfb: twenty runs at 303 ms against one at 304 ms) individual dots pile
+//- up invisibly and the strip reads as one run against one outlier — those
+//- values render as a counted pill instead. Dense continuous data keeps
+//- plain dots with the deterministic jitter.
+- var railMarks = function(vals) {
+-   const counts = new Map()
+-   for (const v of vals) if (typeof v === 'number') counts.set(v, (counts.get(v) || 0) + 1)
+-   const groups = [...counts.entries()].sort((a, b) => a[0] - b[0]).map(e => ({ value: e[0], count: e[1] }))
+-   const usePiles = groups.length <= 5
+-   const piles = []
+-   const dots = []
+-   for (const g of groups) {
+-     if (usePiles && g.count > 2) piles.push(g)
+-     else for (let i = 0; i < g.count; i++) dots.push({ value: g.value, count: g.count, jitter: (i % 3 - 1) * 3 })
+-   }
+-   return { piles, dots }
+- }
 - var fmtCount = function(stats) {
 -   if (!stats) return '–'
 -   const count = stats.requests ? stats.requests.median : (stats.median !== undefined ? stats.median : '')
@@ -43,14 +61,17 @@
 -   return count + extra
 - }
 //- Adaptive precision: whole numbers from three digits up, one decimal
-//- in the tens, two below — keeps 5.593 from meeting 288 in the same
-//- column with different noise levels.
+//- in the tens, two below, and two significant digits under 0.1 —
+//- keeps 5.593 from meeting 288 in the same column with different
+//- noise levels, while a CLS of 0.0005 stays 0.0005 instead of
+//- collapsing to 0 (which made flagged CLS rows read "0 → 0, Δ 0").
 - var fmtVal = function(v) {
 -   if (v === null || v === undefined || Number.isNaN(v)) return '–'
 -   const size = Math.abs(v)
 -   if (size >= 100 || v === Math.round(v)) return String(Math.round(v))
 -   if (size >= 10) return v.toFixed(1)
--   return String(Math.round(v * 100) / 100)
+-   if (size >= 0.095) return String(Math.round(v * 100) / 100)
+-   return String(Number(v.toPrecision(2)))
 - }
 //- The compare helper only ships a fixed set of groups (helper.js), so
 //- units can be derived from group + metric name. Unknown groups (user
@@ -82,19 +103,43 @@
 -   return direction === 'faster' ? 'ok' : (direction === 'slower' ? 'error' : 'neutral')
 - }
 
-//- Count the metrics once so the verdict can say "5 of 24". Guard on
+//- Metrics whose baseline AND current run arrays are identical to an
+//- earlier metric in the same group merge into one row (before-FCP and
+//- before-LCP pairs whenever FCP and LCP are the same paint) so the
+//- same finding isn't rendered and counted twice. Guard on
 //- baseline/current existing — extras metrics can arrive half-shaped
 //- when a metric is missing on one side.
+- const mergedGroups = {}
+- for (const mGroupName in compare.metrics) {
+-   const mRows = []
+-   for (const mMetricName in compare.metrics[mGroupName]) {
+-     const v = compare.metrics[mGroupName][mMetricName]
+-     if (!v || !v.baseline || !v.current || !Array.isArray(v.baseline.values) || !Array.isArray(v.current.values)) continue
+-     const runsKey = JSON.stringify(v.baseline.values) + '|' + JSON.stringify(v.current.values)
+-     const twin = mRows.find(r => r.runsKey === runsKey)
+-     if (twin) twin.metricNames.push(mMetricName)
+-     else mRows.push({ metricNames: [mMetricName], values: v, runsKey })
+-   }
+-   if (mRows.length > 0) mergedGroups[mGroupName] = mRows
+- }
+
+//- Count the merged rows once so the verdict can say "5 of 24". A row
+//- that tests significant while both medians DISPLAY the same value is
+//- statistically detectable but too small to matter (the Wikimedia CLS
+//- case: 0.0005 → 0.0005 with p = 0.029 because a tiny shift happens
+//- in more runs) — those go in their own bucket so they don't read as
+//- regressions.
 - const significantMetrics = []
+- const tinyMetrics = []
 - let totalMetrics = 0
-- for (const vGroupName in compare.metrics) {
--   const vMetricGroup = compare.metrics[vGroupName]
--   for (const vMetricName in vMetricGroup) {
--     const v = vMetricGroup[vMetricName]
--     if (!v || !v.baseline || !v.current || !Array.isArray(v.baseline.values)) continue
+- for (const vGroupName in mergedGroups) {
+-   for (const vRow of mergedGroups[vGroupName]) {
 -     totalMetrics++
--     const vScore = v.statisticalTestU
--     if (!isInformational(vScore) && vScore < 0.05) significantMetrics.push({ name: vGroupName + '.' + vMetricName, tone: toneFor(directionFor(v.cliffsDelta)) })
+-     const vScore = vRow.values.statisticalTestU
+-     if (isInformational(vScore) || vScore >= 0.05) continue
+-     const entry = { name: vGroupName + '.' + vRow.metricNames.join(' + '), href: chartId(vGroupName, vRow.metricNames[0]), tone: toneFor(directionFor(vRow.values.cliffsDelta)) }
+-     if (fmtVal(vRow.values.baseline.median) === fmtVal(vRow.values.current.median)) tinyMetrics.push(entry)
+-     else significantMetrics.push(entry)
 -   }
 - }
 
@@ -216,14 +261,18 @@ details.cmp-run-details
     else
       b None
       |  of the #{totalMetrics} compared metrics show a significant change against the baseline (p &lt; 0.05).
-  if significantMetrics.length > 0
+  if tinyMetrics.length > 0
+    .cmp-verdict-sub #{tinyMetrics.map(t => t.name).join(', ')} also #{tinyMetrics.length === 1 ? 'tests' : 'test'} significant but the medians display the same value, too small to matter.
+  if significantMetrics.length > 0 || tinyMetrics.length > 0
     .cmp-verdict-chips
       each sig in significantMetrics
-        a.cmp-verdict-chip(class='cmp-verdict-chip--' + sig.tone, href='#' + chartId(sig.name.split('.')[0], sig.name.split('.').slice(1).join('.'))) #{sig.name}
+        a.cmp-verdict-chip(class='cmp-verdict-chip--' + sig.tone, href='#' + sig.href) #{sig.name}
+      each tiny in tinyMetrics
+        a.cmp-verdict-chip.cmp-verdict-chip--warning(href='#' + tiny.href) #{tiny.name}
   .cmp-legend
     span
       span.cmp-swatch.cmp-swatch--baseline
-      | Baseline: each dot is one run, the tall tick is the median
+      | Baseline: each dot is one run, a numbered dot is that many runs on one value, the tall tick is the median
     span
       span.cmp-swatch.cmp-swatch--current
       | Current
@@ -239,111 +288,144 @@ details.cmp-run-details
 //- runs on a shared value axis — run order carries no meaning for
 //- independent samples, distributions do), median → median with the
 //- delta, and the verdict chip. Replaces the old wide stats table and
-//- the per-metric run-index scatter cards.
+//- the per-metric run-index scatter cards. Rows come pre-merged from
+//- mergedGroups: a merged row lists every metric name in the group that
+//- carries the exact same run values, and keeps every #chart- anchor.
 //- ---------------------------------------------------------------------
-each metricGroup, groupName in compare.metrics
-  - const groupRows = []
-  - for (const rowMetricName in metricGroup) {
-  -   const v = metricGroup[rowMetricName]
-  -   if (v && v.baseline && v.current && Array.isArray(v.baseline.values) && Array.isArray(v.current.values)) groupRows.push({ metricName: rowMetricName, values: v })
-  - }
-  if groupRows.length > 0
-    .cmp-group
-      .cmp-group-head
-        h2.cmp-group-title #{groupTitles[groupName] || groupName}
-      each row in groupRows
-        - const metricName = row.metricName
-        - const values = row.values
-        - const unit = metricUnit(groupName, metricName)
-        - const score = values.statisticalTestU
-        - const informational = isInformational(score)
-        - const significant = !informational && score < 0.05
-        - const direction = directionFor(values.cliffsDelta)
-        - const tone = toneFor(direction)
-        - const baseline = values.baseline.values
-        - const current = values.current.values
-        - const allValues = baseline.concat(current).filter(v => typeof v === 'number')
-        - const lo = allValues.length > 0 ? Math.min.apply(null, allValues) : 0
-        - const hi = allValues.length > 0 ? Math.max.apply(null, allValues) : 0
-        - const span = hi - lo
-        - const medB = values.baseline.median
-        - const medC = values.current.median
-        - const delta = medC - medB
-        - const deltaPct = medB !== 0 ? Math.round(delta / medB * 1000) / 10 : undefined
-        //- Positions are percentages with a small inset so edge dots
-        //- don't clip; computed in code lines because pug's attribute
-        //- parser trips on division after a bracket.
-        - const pad = 4
-        - const xPos = function(v) { return (pad + (v - lo) / span * (100 - 2 * pad)).toFixed(2) }
-        - const xPosN = function(v) { return pad + (v - lo) / span * (100 - 2 * pad) }
-        //- Middle-80% range per series, and the value window where the two
-        //- ranges overlap — a wide overlap says the change sits inside the
-        //- run-to-run noise, a clean gap says it's real.
-        - const p10B = quantile(baseline, 0.1), p90B = quantile(baseline, 0.9)
-        - const p10C = quantile(current, 0.1), p90C = quantile(current, 0.9)
-        - const ovLo = Math.max(p10B, p10C), ovHi = Math.min(p90B, p90C)
-        - const hasOverlap = ovHi > ovLo
-        .cmp-metric(id=chartId(groupName, metricName), class=significant ? 'cmp-metric--significant cmp-metric--' + tone : null)
-          .cmp-metric-name
-            b #{metricName}
-            small #{informational ? 'no test' : 'p = ' + h.decimals(score)}
-          .cmp-metric-strip
-            if span > 0
-              .cmp-strip
+each groupRows, groupName in mergedGroups
+  .cmp-group
+    .cmp-group-head
+      h2.cmp-group-title #{groupTitles[groupName] || groupName}
+    each row in groupRows
+      - const metricNames = row.metricNames
+      - const values = row.values
+      - const unit = metricUnit(groupName, metricNames[0])
+      - const score = values.statisticalTestU
+      - const informational = isInformational(score)
+      - const significant = !informational && score < 0.05
+      - const direction = directionFor(values.cliffsDelta)
+      - const tone = toneFor(direction)
+      - const baseline = values.baseline.values
+      - const current = values.current.values
+      - const allValues = baseline.concat(current).filter(v => typeof v === 'number')
+      - const lo = allValues.length > 0 ? Math.min.apply(null, allValues) : 0
+      - const hi = allValues.length > 0 ? Math.max.apply(null, allValues) : 0
+      - const span = hi - lo
+      - const medB = values.baseline.median
+      - const medC = values.current.median
+      - const delta = medC - medB
+      - const deltaPct = medB !== 0 ? Math.round(delta / medB * 1000) / 10 : undefined
+      //- Statistically detectable while both medians DISPLAY the same
+      //- value — real (the distribution moved) but too small to matter,
+      //- so it gets the warning tone instead of reading as a regression.
+      - const tinyChange = significant && fmtVal(medB) === fmtVal(medC)
+      //- With a one-sided test an improvement can never be significant:
+      //- p = 1 with a large opposite-direction effect used to render
+      //- "no change". Call the large opposite effect out honestly.
+      - const oppositeDirection = alternative === 'greater' ? 'faster' : (alternative === 'less' ? 'slower' : undefined)
+      - const likelyOpposite = !significant && !informational && oppositeDirection !== undefined && typeof values.cliffsDelta === 'number' && Math.abs(values.cliffsDelta) >= 0.474 && (alternative === 'greater' ? values.cliffsDelta < 0 : values.cliffsDelta > 0)
+      //- Positions are percentages with a small inset so edge dots
+      //- don't clip; computed in code lines because pug's attribute
+      //- parser trips on division after a bracket.
+      - const pad = 4
+      - const xPos = function(v) { return (pad + (v - lo) / span * (100 - 2 * pad)).toFixed(2) }
+      - const xPosN = function(v) { return pad + (v - lo) / span * (100 - 2 * pad) }
+      //- Middle-80% range per series, and the value window where the two
+      //- ranges overlap — a wide overlap says the change sits inside the
+      //- run-to-run noise, a clean gap says it's real.
+      - const p10B = quantile(baseline, 0.1), p90B = quantile(baseline, 0.9)
+      - const p10C = quantile(current, 0.1), p90C = quantile(current, 0.9)
+      - const ovLo = Math.max(p10B, p10C), ovHi = Math.min(p90B, p90C)
+      - const hasOverlap = ovHi > ovLo
+      - const marksB = railMarks(baseline)
+      - const marksC = railMarks(current)
+      .cmp-metric(id=chartId(groupName, metricNames[0]), class=significant ? 'cmp-metric--significant cmp-metric--' + (tinyChange ? 'warning' : tone) : null)
+        each mn, mi in metricNames
+          if mi > 0
+            a.cmp-metric-anchor(id=chartId(groupName, mn))
+        .cmp-metric-name
+          each mn in metricNames
+            b #{mn}
+          small #{informational ? 'no test' : 'p = ' + h.decimals(score)}
+          if metricNames.length > 1
+            span.cmp-same identical values
+        .cmp-metric-strip
+          if span > 0
+            .cmp-strip
+              .cmp-strip-row
+                .cmp-strip-gutter
+                  span.cmp-strip-gutter-label.cmp-strip-gutter-label--baseline Baseline
+                  span.cmp-strip-gutter-label.cmp-strip-gutter-label--current Current
                 .cmp-strip-rails
                   if hasOverlap
                     span.cmp-strip-overlap(style='left:' + xPosN(ovLo).toFixed(2) + '%;width:' + Math.max(0.5, xPosN(ovHi) - xPosN(ovLo)).toFixed(2) + '%', title='The two normal ranges overlap here — this much of the shift is inside run-to-run noise')
                   .cmp-strip-rail
-                    span.cmp-strip-tag.cmp-strip-tag--baseline Baseline
                     span.cmp-strip-band.cmp-strip-band--baseline(style='left:' + xPosN(p10B).toFixed(2) + '%;width:' + Math.max(0.5, xPosN(p90B) - xPosN(p10B)).toFixed(2) + '%', title='Baseline: middle 80% of runs ' + fmtVal(p10B) + '–' + fmtVal(p90B) + unit)
                     span.cmp-strip-median.cmp-strip-median--baseline(style='left:' + xPos(medB) + '%', title='Baseline median ' + fmtVal(medB) + unit)
-                    each v, i in baseline
-                      if typeof v === 'number'
-                        - const left = xPos(v)
-                        - const jitter = (i % 3 - 1) * 3
-                        span.cmp-strip-dot.cmp-strip-dot--baseline(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Baseline run ' + (i + 1) + ': ' + fmtVal(v) + unit)
+                    each g in marksB.piles
+                      span.cmp-strip-pile.cmp-strip-pile--baseline(style='left:' + xPos(g.value) + '%', title='Baseline: ' + g.count + ' runs at ' + fmtVal(g.value) + unit) #{g.count}
+                    each d in marksB.dots
+                      span.cmp-strip-dot.cmp-strip-dot--baseline(style='left:' + xPos(d.value) + '%;margin-top:' + d.jitter + 'px', title='Baseline: ' + (d.count > 1 ? d.count + ' runs' : '1 run') + ' at ' + fmtVal(d.value) + unit)
                   .cmp-strip-rail
-                    span.cmp-strip-tag.cmp-strip-tag--current Current
                     span.cmp-strip-band.cmp-strip-band--current(style='left:' + xPosN(p10C).toFixed(2) + '%;width:' + Math.max(0.5, xPosN(p90C) - xPosN(p10C)).toFixed(2) + '%', title='Current: middle 80% of runs ' + fmtVal(p10C) + '–' + fmtVal(p90C) + unit)
                     span.cmp-strip-median.cmp-strip-median--current(style='left:' + xPos(medC) + '%', title='Current median ' + fmtVal(medC) + unit)
-                    each v, i in current
-                      if typeof v === 'number'
-                        - const left = xPos(v)
-                        - const jitter = (i % 3 - 1) * 3
-                        span.cmp-strip-dot.cmp-strip-dot--current(style='left:' + left + '%;margin-top:' + jitter + 'px', title='Current run ' + (i + 1) + ': ' + fmtVal(v) + unit)
-                .cmp-strip-axis
-                  span #{fmtVal(lo)}#{unit}
-                  span #{fmtVal(hi)}#{unit}
+                    each g in marksC.piles
+                      span.cmp-strip-pile.cmp-strip-pile--current(style='left:' + xPos(g.value) + '%', title='Current: ' + g.count + ' runs at ' + fmtVal(g.value) + unit) #{g.count}
+                    each d in marksC.dots
+                      span.cmp-strip-dot.cmp-strip-dot--current(style='left:' + xPos(d.value) + '%;margin-top:' + d.jitter + 'px', title='Current: ' + (d.count > 1 ? d.count + ' runs' : '1 run') + ' at ' + fmtVal(d.value) + unit)
+              .cmp-strip-axis
+                span #{fmtVal(lo)}#{unit}
+                span #{fmtVal(hi)}#{unit}
+          else
+            p.cmp-metric-flat
+              | all #{baseline.length}+#{current.length} runs measured&nbsp;
+              b #{fmtVal(lo)}#{unit}
+              | , so nothing to compare
+        //- Median → median stays for reference, but the percentage delta
+        //- is only shown when the change is significant: a "+3 %" on a
+        //- noise row reads as a real regression the overlap band denies.
+        //- Non-significant rows are muted so the effect-size chip leads.
+        .cmp-metric-delta(class=significant ? null : 'cmp-metric-delta--quiet')
+          if span > 0
+            b
+              | #{fmtVal(medB)}&nbsp;
+              span.cmp-arrow →
+              | &nbsp;#{fmtVal(medC)}#{unit}
+            if tinyChange
+              //- The medians display the same value — the means carry
+              //- what actually moved.
+              small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
+            else if significant && medB !== 0
+              small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit} (#{deltaPct > 0 ? '+' : ''}#{deltaPct} %)
+            else if medB === 0 && delta === 0
+              //- Both medians are zero but the runs differ — the
+              //- means carry the story (flaky CPU long tasks do this).
+              small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
             else
-              p.cmp-metric-flat
-                | all #{baseline.length}+#{current.length} runs measured&nbsp;
-                b #{fmtVal(lo)}#{unit}
-                | , so nothing to compare
-          //- Median → median stays for reference, but the percentage delta
-          //- is only shown when the change is significant: a "+3 %" on a
-          //- noise row reads as a real regression the overlap band denies.
-          //- Non-significant rows are muted so the effect-size chip leads.
-          .cmp-metric-delta(class=significant ? null : 'cmp-metric-delta--quiet')
-            if span > 0
-              b
-                | #{fmtVal(medB)}&nbsp;
-                span.cmp-arrow →
-                | &nbsp;#{fmtVal(medC)}#{unit}
-              if significant && medB !== 0
-                small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit} (#{deltaPct > 0 ? '+' : ''}#{deltaPct} %)
-              else if medB === 0 && delta === 0
-                //- Both medians are zero but the runs differ — the
-                //- means carry the story (flaky CPU long tasks do this).
-                small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
-              else
-                small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
-          //- The effect size (Cliff's delta) rides on the chip for every
-          //- row, significant or not — it's the overlap-aware "how big",
-          //- the honest counterweight to the raw median difference.
-          .cmp-metric-chip
-            if informational
-              span.cmp-chip.cmp-chip--neutral #{score === 'Datasets are identical' ? 'identical runs' : String(score).toLowerCase()}
-            else if significant
-              span.cmp-chip(class='cmp-chip--' + tone) #{direction} · #{cliffDeltaHelper(values.cliffsDelta)}
+              small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
+        //- The effect size (Cliff's delta) rides under the chip for every
+        //- row, significant or not — it's the overlap-aware "how big",
+        //- the honest counterweight to the raw median difference. The
+        //- pill itself stays a short verdict so it never wraps mid-number.
+        .cmp-metric-chip
+          if informational
+            span.cmp-chip.cmp-chip--neutral #{score === 'Datasets are identical' ? 'identical runs' : String(score).toLowerCase()}
+          else if tinyChange
+            - const zeroB = baseline.filter(v => v === 0).length
+            - const zeroC = current.filter(v => v === 0).length
+            span.cmp-chip.cmp-chip--warning detectable, tiny
+            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+            if zeroB !== zeroC && (zeroB > 0 || zeroC > 0)
+              small.cmp-effect nonzero in #{current.length - zeroC} of #{current.length} runs, was #{baseline.length - zeroB} of #{baseline.length}
             else
-              span.cmp-chip.cmp-chip--neutral no change · #{cliffDeltaHelper(values.cliffsDelta)}
+              small.cmp-effect medians are the same
+          else if significant
+            span.cmp-chip(class='cmp-chip--' + tone) #{direction}
+            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+          else if likelyOpposite
+            span.cmp-chip(class='cmp-chip--' + toneFor(oppositeDirection)) likely #{oppositeDirection}
+            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+            small.cmp-effect one-sided test only checks #{sigWord}
+          else
+            span.cmp-chip.cmp-chip--neutral no change
+            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
