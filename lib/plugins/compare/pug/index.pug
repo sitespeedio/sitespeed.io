@@ -18,6 +18,11 @@
 -   if (size < 0.5) return 'medium effect (' + h.decimals(delta) + ')'
 -   return 'large effect (' + h.decimals(delta) + ')'
 - }
+//- Shared hover explanations so the statistics read for engineers who are
+//- not statisticians. Kept as consts because the same text rides on
+//- several chip branches.
+- const P_EXPLAINER = 'The chance of seeing a difference this consistent if nothing actually changed. Below 0.05 we treat the change as real. It says nothing about how big the change is.'
+- const EFFECT_EXPLAINER = "Cliff's delta: how cleanly the two sets of runs separate, from -1 (every current run faster) to 1 (every current run slower). 0 means fully mixed."
 //- The middle-80% band (p10–p90) drawn behind the dots needs quantiles;
 //- linear interpolation between the two straddling runs, same method the
 //- reconstruction uses. Returns lo-safe 0 for an empty series.
@@ -192,14 +197,47 @@ if meta.iterations < 21
   span
     span.cmp-setup-key Current
     | #{meta.current.timestamp}
-  if meta.testOptions.testType === 'mannwhitneyu'
-    span.cmp-setup-extra
-      | method #{meta.testOptions.mannwhitneyu.method} · continuity #{meta.testOptions.mannwhitneyu.useContinuity ? 'enabled' : 'disabled'} ·&nbsp;
-      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') about the test
-  else if meta.testOptions.testType === 'wilcoxon'
-    span.cmp-setup-extra
-      | correction #{meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'} ·&nbsp;
-      a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') about the test
+  //- The algorithm story lives in a fold instead of a bare scipy link
+  //- and a jargon echo ("method auto · continuity disabled") — the
+  //- internals still appear, but inside sentences that say what they
+  //- are. Full-width flex child so it wraps to its own row in the card.
+  details.cmp-about
+    summary about the statistics
+    ul
+      li Every metric is compared as two full samples: all #{meta.iterations} baseline runs against all #{meta.iterations} current runs. No single number decides on its own.
+      if meta.testOptions.testType === 'mannwhitneyu'
+        li
+          b Mann-Whitney U
+          | : gives the p-value on every row by checking how consistently the runs of one test rank above the other.
+          if alternative === 'greater'
+            |  This test was set up one-sided (greater), so it only looks for current being slower.
+          else if alternative === 'less'
+            |  This test was set up one-sided (less), so it only looks for current being faster.
+          else
+            |  This test was set up two-sided, so it looks for change in either direction.
+          |  Computed with method #{meta.testOptions.mannwhitneyu.method} (how the p-value is calculated: exact uses the exact test distribution, asymptotic a normal approximation and auto picks for you) and continuity correction #{meta.testOptions.mannwhitneyu.useContinuity ? 'enabled' : 'disabled'} (a small adjustment to the approximation; with 20 or more runs it barely matters).&nbsp;
+          a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') Implementation details
+      else if meta.testOptions.testType === 'wilcoxon'
+        li
+          b Wilcoxon signed-rank
+          | : gives the p-value on every row by pairing baseline run 1 with current run 1 and so on, then checking whether the paired differences lean one way.
+          if alternative === 'greater'
+            |  This test was set up one-sided (greater), so it only looks for current being slower.
+          else if alternative === 'less'
+            |  This test was set up one-sided (less), so it only looks for current being faster.
+          else
+            |  This test was set up two-sided, so it looks for change in either direction.
+          |  Computed with continuity correction #{meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'} (a small adjustment to the approximation; with 20 or more runs it barely matters).&nbsp;
+          a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') Implementation details
+      li
+        b Hodges-Lehmann shift
+        | : the shift line. Every current run is compared with every baseline run and the middle of all those differences is the estimate, with a 95% confidence range from the same comparisons.
+      li
+        b Cliff's delta
+        | : the effect size on every chip. How cleanly the two sets of runs separate, from -1 (every current run faster) to 1 (every current run slower).
+      li
+        b Kolmogorov-Smirnov
+        | : a second check that compares the whole distributions and flags rows where the runs land differently even when the ranks barely moved.
 
 //- Cards use <div> rather than <section> because the page-level tab JS
 //- hides every `#tabSections section` and only un-hides the active
@@ -278,7 +316,7 @@ details.cmp-run-details
   if tinyMetrics.length > 0
     .cmp-verdict-sub #{tinyMetrics.map(t => t.name).join(', ')} also #{tinyMetrics.length === 1 ? 'tests' : 'test'} significant but the medians display the same value, too small to matter.
   if shapeMetrics.length > 0
-    .cmp-verdict-sub #{shapeMetrics.map(t => t.name).join(', ')} changed run-to-run behaviour while the median held, which can mean an intermittent slow path.
+    .cmp-verdict-sub #{shapeMetrics.map(t => t.name).join(', ')} changed run-to-run behaviour: the runs spread or group differently than in the baseline, which can mean an intermittent slow path. Check the dots.
   if significantMetrics.length > 0 || tinyMetrics.length > 0 || shapeMetrics.length > 0
     .cmp-verdict-chips
       each sig in significantMetrics
@@ -300,6 +338,26 @@ details.cmp-run-details
     span
       span.cmp-swatch.cmp-swatch--overlap
       | Grey: the two ranges overlap — that much of the shift is run-to-run noise
+  //- Plain-language primer for readers who are not statisticians —
+  //- collapsed so it costs nothing for people who already know.
+  details.cmp-help
+    summary How to read the numbers
+    ul
+      li
+        b p = 0.03
+        | : the chance of seeing a difference this consistent if nothing actually changed. Below 0.05 we treat the change as real. It says nothing about how big the change is.
+      li
+        b shift +7 (+4 to +9 ms)
+        | : the best estimate of how big the change is, with the range we are 95% sure covers it. If the range includes 0 the change may not be real. It weighs every run, not just the middle one, so it can differ slightly from Δ (the difference between the two medians).
+      li
+        b large effect (0.73)
+        | : how cleanly the two sets of runs separate, on a scale from -1 to 1. At 1 every current run was slower than every baseline run, at 0 the runs are fully mixed. A big effect with a tiny shift means the change is consistent but unimportant.
+      li
+        b spread changed, less steady, runs changed
+        | : the runs land differently than in the baseline even when the median barely moved, for example when only some runs hit a slow path. The dots show the pattern.
+      li
+        b Rule of thumb
+        | : act on a row when it is tinted, the shift range stays away from 0 and the size would matter to a user.
 
 //- ---------------------------------------------------------------------
 //- One row per metric: name + p-value, the distribution strip (both
@@ -377,9 +435,9 @@ each groupRows, groupName in mergedGroups
         .cmp-metric-name
           each mn in metricNames
             b #{mn}
-          small #{informational ? 'no test' : 'p = ' + h.decimals(score)}
+          small(title=informational ? null : P_EXPLAINER) #{informational ? 'no test' : 'p = ' + h.decimals(score)}
           if metricNames.length > 1
-            span.cmp-same identical values
+            span.cmp-same(title='These metrics measured exactly the same values in every run, so they are shown as one row') identical values
         .cmp-metric-strip
           if span > 0
             .cmp-strip
@@ -420,6 +478,14 @@ each groupRows, groupName in mergedGroups
         //- the shift with a confidence interval, where the p-value only
         //- says how consistent the shift is.
         - const shift = values.shift
+        - const hasShiftLine = !informational && shift !== undefined && shift !== null && shift.lower !== undefined
+        //- Δ and shift are two different answers to "how much": Δ
+        //- subtracts the two medians, shift compares every current run
+        //- with every baseline run. On noisy data they disagree slightly
+        //- ("Δ -1" over "shift -2") and two disagreeing size numbers
+        //- confuse more than they inform — so on quiet rows the bare Δ
+        //- (derivable from the medians right above it) makes way for the
+        //- shift line, and only significant rows keep Δ for its percent.
         .cmp-metric-delta(class=significant ? null : 'cmp-metric-delta--quiet')
           if span > 0
             b
@@ -431,15 +497,15 @@ each groupRows, groupName in mergedGroups
               //- what actually moved.
               small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
             else if significant && medB !== 0
-              small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit} (#{deltaPct > 0 ? '+' : ''}#{deltaPct} %)
+              small(title='The difference between the two medians, and how large it is relative to the baseline. Can differ slightly from the shift estimate below, which weighs every run instead of just the middle one.') Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit} (#{deltaPct > 0 ? '+' : ''}#{deltaPct} %)
             else if medB === 0 && delta === 0
               //- Both medians are zero but the runs differ — the
               //- means carry the story (flaky CPU long tasks do this).
               small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
-            else
+            else if !hasShiftLine
               small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
-            if !informational && shift && shift.lower !== undefined
-              small(title='Hodges-Lehmann estimate: the median of all pairwise current vs baseline differences, with a ' + Math.round(shift.confidence * 100) + '% confidence interval from the same pairwise differences') shift #{shift.estimate > 0 ? '+' : ''}#{fmtVal(shift.estimate)} (#{shift.lower > 0 ? '+' : ''}#{fmtVal(shift.lower)} to #{shift.upper > 0 ? '+' : ''}#{fmtVal(shift.upper)}#{unit})
+            if hasShiftLine
+              small(title='Best estimate of the change: every current run is compared with every baseline run and this is the middle of all those differences, with a ' + Math.round(shift.confidence * 100) + '% confidence interval. If the range includes 0 the change may not be real.') shift #{shift.estimate > 0 ? '+' : ''}#{fmtVal(shift.estimate)} (#{shift.lower > 0 ? '+' : ''}#{fmtVal(shift.lower)} to #{shift.upper > 0 ? '+' : ''}#{fmtVal(shift.upper)}#{unit})
         //- The effect size (Cliff's delta) rides under the chip for every
         //- row, significant or not — it's the overlap-aware "how big",
         //- the honest counterweight to the raw median difference. The
@@ -451,22 +517,38 @@ each groupRows, groupName in mergedGroups
             - const zeroB = baseline.filter(v => v === 0).length
             - const zeroC = current.filter(v => v === 0).length
             span.cmp-chip.cmp-chip--warning detectable, tiny
-            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+            small.cmp-effect(title=EFFECT_EXPLAINER) #{cliffDeltaHelper(values.cliffsDelta)}
             if zeroB !== zeroC && (zeroB > 0 || zeroC > 0)
               small.cmp-effect nonzero in #{current.length - zeroC} of #{current.length} runs, was #{baseline.length - zeroB} of #{baseline.length}
             else
               small.cmp-effect medians are the same
           else if significant
             span.cmp-chip(class='cmp-chip--' + tone) #{direction}
-            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+            small.cmp-effect(title=EFFECT_EXPLAINER) #{cliffDeltaHelper(values.cliffsDelta)}
           else if likelyOpposite
             span.cmp-chip(class='cmp-chip--' + toneFor(oppositeDirection)) likely #{oppositeDirection}
-            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+            small.cmp-effect(title=EFFECT_EXPLAINER) #{cliffDeltaHelper(values.cliffsDelta)}
             small.cmp-effect one-sided test only checks #{sigWord}
           else if shapeChange
-            span.cmp-chip.cmp-chip--warning spread changed
-            small.cmp-effect median held, distribution changed (KS p = #{h.decimals(ksScore)})
-            small.cmp-effect middle 80% of runs span #{fmtVal(p90B - p10B)} → #{fmtVal(p90C - p10C)}#{unit}
+            //- Say what the data shows, not what the gate assumed: K-S
+            //- can fire while the medians visibly moved (a shift the
+            //- one-sided test cannot call), and claiming "same median"
+            //- next to 14.7 → 12.0 ms reads as a bug. The chip and the
+            //- sentence are derived from the medians and the spread.
+            - const ksTitle = 'Two-sample Kolmogorov-Smirnov test: compares the whole distributions instead of just the medians. ' + P_EXPLAINER
+            - const sameMedianShape = fmtVal(medB) === fmtVal(medC)
+            - const shapeDirection = medC < medB ? 'faster' : 'slower'
+            - const spreadGrew = p90C - p10C > p90B - p10B
+            if sameMedianShape
+              span.cmp-chip.cmp-chip--warning spread changed
+              small.cmp-effect(title=ksTitle) same median but the runs spread differently (p = #{h.decimals(ksScore)})
+            else if spreadGrew
+              span.cmp-chip.cmp-chip--warning less steady
+              small.cmp-effect(title=ksTitle) looks #{shapeDirection} but runs vary more (p = #{h.decimals(ksScore)})
+            else
+              span.cmp-chip.cmp-chip--warning runs changed
+              small.cmp-effect(title=ksTitle) looks #{shapeDirection} and the runs land differently (p = #{h.decimals(ksScore)})
+            small.cmp-effect(title='The width of the middle 80% of runs, 10th to 90th percentile.') run-to-run spread #{fmtVal(p90B - p10B)} → #{fmtVal(p90C - p10C)}#{unit}
           else
             span.cmp-chip.cmp-chip--neutral no change
-            small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
+            small.cmp-effect(title=EFFECT_EXPLAINER) #{cliffDeltaHelper(values.cliffsDelta)}

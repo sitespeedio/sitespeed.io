@@ -107,6 +107,61 @@ $cmp--current: #2a78d6;
   color: $color--text-muted;
 }
 
+// Collapsed algorithm explainer in the setup strip — full-width flex
+// child so it wraps to its own row under the settings.
+.cmp-about {
+  flex-basis: 100%;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    list-style: none;
+
+    // The foundation strips the native disclosure triangle, so draw
+    // our own — without it the summary reads as inert text.
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 6px;
+      transition: rotate 0.12s;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  &[open] > summary {
+    margin-bottom: 6px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: $color--text-secondary;
+  }
+
+  li {
+    margin: 3px 0;
+  }
+
+  b {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+  }
+}
+
 //
 // Run setup lives in a collapsed details block — the screenshots and
 // videos are useful for eyeballing an A/B but too heavy to lead with.
@@ -385,6 +440,64 @@ $cmp--current: #2a78d6;
     width: 18px;
     border-radius: 3px;
     background: rgba($color--text-muted, 0.22);
+  }
+}
+
+// Collapsed plain-language primer under the legend — how to read p,
+// shift, effect and the spread verdict without being a statistician.
+.cmp-help {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid $color--border;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    list-style: none;
+
+    // The foundation strips the native disclosure triangle, so draw
+    // our own — without it the summary reads as inert text.
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 6px;
+      transition: rotate 0.12s;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  &[open] > summary {
+    margin-bottom: 6px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: $color--text-secondary;
+  }
+
+  li {
+    margin: 3px 0;
+  }
+
+  b {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+    font-variant-numeric: tabular-nums;
   }
 }
 
