@@ -524,7 +524,9 @@ $cmp--current: #4a90e0;
     white-space: nowrap;
   }
 
+  // Block so the delta line and the Hodges-Lehmann shift line stack.
   small {
+    display: block;
     font-size: 0.72rem;
     color: $color--text-muted;
     font-variant-numeric: tabular-nums;
