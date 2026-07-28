@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 26 Jul 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 28 Jul 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,23 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 42.5.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.0</guid>
+            <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Every tested Compare row now shows how big the change is, not just how certain: the Hodges-Lehmann shift estimate with a 95% confidence interval (&quot;shift +7 (+4 to +9 ms)&quot;). A p-value kept being read as a size, but 21 fully separated runs give p = 1e-10 whether the shift is 1 ms or 100 ms. An interval away from zero is a real change of about that size, an interval straddling zero is noise no matter what the bare delta suggests. Added as a new additive field on the compare.pageSummary message, the graphite export is untouched #4882.<br>
+- Compare catches regressions that change run-to-run behaviour without moving the median. The rank test is blind to a metric whose median holds while the runs split into a fast and a slow group, for example a race sending a third of the iterations down a slow path. Every compared metric now also runs a two-sample Kolmogorov-Smirnov test over the whole distributions; it only surfaces when the rank test saw nothing, marking the row amber with &quot;spread changed&quot; and the change in the middle-80% span, and the verdict card lists it as possible intermittent behaviour rather than a regression. The new statisticalTestKS field is additive #4883.<br>
+- The Compare statistics explain themselves to engineers who are not statisticians: the setup strip carries a collapsed &quot;about the statistics&quot; fold naming every algorithm and what it contributes, the verdict card ends with a &quot;How to read the numbers&quot; primer, every p-value and effect line explains itself on hover and the spread verdict is worded from the data (&quot;spread changed&quot; when the median held, &quot;less steady&quot; when it moved but runs vary more) instead of citing test initials #4884.<br>
+<br>
+<strong>Fixed</strong><br>
+- The compare plugin skipped the statistical test whenever either sample had zero variance, reporting &quot;No variability&quot;. In a WebPageReplay lab the most deterministic metrics are constant within a session, so the guard suppressed exactly the clearest regressions: every run shifting cleanly from 303 ms to 310 ms was never tested while noisy metrics always were. Constant samples now reach Mann-Whitney (which handles them fine), only truly identical datasets are short-circuited. Also fixes the compare CLI option definitions: the only non-default Mann-Whitney method choice was misspelled so picking it crashed scipy, three choices carried leading spaces and one misspelled describe key kept its help text from rendering #4881.<br>
+- The Compare tab is honest about tiny, duplicate and hidden changes. A 0.0005 CLS shift rendered as &quot;0 → 0, Δ 0 (0 %)&quot; yet was flagged red as significantly slower; small values now keep two significant digits and a significant change whose medians display the same value gets an amber &quot;detectable, tiny&quot; tier so it cannot read as a regression. Before-FCP/before-LCP pairs with identical values merge into one row instead of rendering and counting twice (old #chart- anchors kept), runs piling on the same value render as counted pills instead of a single dot, the effect size gets its own line under a short verdict pill and a clear improvement under a one-sided test is called out as &quot;likely faster&quot; instead of &quot;no change&quot; #4880.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.4.0</link>
@@ -262,19 +279,6 @@
             <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
 - Update Chrome to 150 and Firefox to 152 in the Docker container #4798.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 41.3.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.3.3</guid>
-            <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Release chain: dispatch <code>building-docker-release.yml</code>, <code>building-docker-autobuild.yml</code> and <code>netlify.yml</code> explicitly from <code>release.yml</code> instead of relying on the tag and main-branch pushes to fire them #4786.<br>
-- Docker release images are now signed with cosign and ship with a SLSA provenance attestation and an SPDX SBOM attached as separate OCI artefacts in the same Docker Hub repository. Users can verify an image was built and pushed by this repository&#39;s release workflow with <code>cosign verify --certificate-identity-regexp &#39;https://github\.com/sitespeedio/sitespeed\.io/\.github/workflows/building-docker-release\.yml@refs/tags/v .*&#39; --certificate-oidc-issuer https://token.actions.githubusercontent.com sitespeedio/sitespeed.io:&lt;version&gt;</code>, and inspect the SBOM or provenance with <code>docker buildx imagetools inspect sitespeedio/sitespeed.io:&lt;version&gt; --format &#39;{{ json .SBOM }}&#39;</code>. The <code>-slim</code> and <code>-plus1</code> variants are signed the same way. Signing is keyless via Sigstore OIDC so there&#39;s no long-lived signing key to manage #4783.<br>
-- Bump <code>step-security/harden-runner</code> from v2.14.2 to v2.19.4 across every workflow #4782.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
