@@ -128,16 +128,30 @@
 //- statistically detectable but too small to matter (the Wikimedia CLS
 //- case: 0.0005 → 0.0005 with p = 0.029 because a tiny shift happens
 //- in more runs) — those go in their own bucket so they don't read as
-//- regressions.
+//- regressions. A row the rank test passes but Kolmogorov-Smirnov flags
+//- changed distribution SHAPE while the median held (spread grew, runs
+//- split into two groups — an intermittent slow path) and gets its own
+//- bucket too.
 - const significantMetrics = []
 - const tinyMetrics = []
+- const shapeMetrics = []
 - let totalMetrics = 0
 - for (const vGroupName in mergedGroups) {
 -   for (const vRow of mergedGroups[vGroupName]) {
 -     totalMetrics++
 -     const vScore = vRow.values.statisticalTestU
--     if (isInformational(vScore) || vScore >= 0.05) continue
+-     if (isInformational(vScore)) continue
 -     const entry = { name: vGroupName + '.' + vRow.metricNames.join(' + '), href: chartId(vGroupName, vRow.metricNames[0]), tone: toneFor(directionFor(vRow.values.cliffsDelta)) }
+-     const vKS = vRow.values.statisticalTestKS
+-     if (vScore >= 0.05) {
+-       //- Mirrors the per-row shapeChange condition: a large effect in
+-       //- the direction the one-sided test ignores is the likely-opposite
+-       //- story, not a shape story, even when K-S fires on it.
+-       const vCliffs = vRow.values.cliffsDelta
+-       const vLikelyOpposite = alternative !== 'two-sided' && typeof vCliffs === 'number' && Math.abs(vCliffs) >= 0.474 && (alternative === 'greater' ? vCliffs < 0 : vCliffs > 0)
+-       if (!vLikelyOpposite && typeof vKS === 'number' && vKS < 0.05) shapeMetrics.push(entry)
+-       continue
+-     }
 -     if (fmtVal(vRow.values.baseline.median) === fmtVal(vRow.values.current.median)) tinyMetrics.push(entry)
 -     else significantMetrics.push(entry)
 -   }
@@ -263,12 +277,16 @@ details.cmp-run-details
       |  of the #{totalMetrics} compared metrics show a significant change against the baseline (p &lt; 0.05).
   if tinyMetrics.length > 0
     .cmp-verdict-sub #{tinyMetrics.map(t => t.name).join(', ')} also #{tinyMetrics.length === 1 ? 'tests' : 'test'} significant but the medians display the same value, too small to matter.
-  if significantMetrics.length > 0 || tinyMetrics.length > 0
+  if shapeMetrics.length > 0
+    .cmp-verdict-sub #{shapeMetrics.map(t => t.name).join(', ')} changed run-to-run behaviour while the median held, which can mean an intermittent slow path.
+  if significantMetrics.length > 0 || tinyMetrics.length > 0 || shapeMetrics.length > 0
     .cmp-verdict-chips
       each sig in significantMetrics
         a.cmp-verdict-chip(class='cmp-verdict-chip--' + sig.tone, href='#' + sig.href) #{sig.name}
       each tiny in tinyMetrics
         a.cmp-verdict-chip.cmp-verdict-chip--warning(href='#' + tiny.href) #{tiny.name}
+      each shape in shapeMetrics
+        a.cmp-verdict-chip.cmp-verdict-chip--warning(href='#' + shape.href) #{shape.name}
   .cmp-legend
     span
       span.cmp-swatch.cmp-swatch--baseline
@@ -324,6 +342,15 @@ each groupRows, groupName in mergedGroups
       //- "no change". Call the large opposite effect out honestly.
       - const oppositeDirection = alternative === 'greater' ? 'faster' : (alternative === 'less' ? 'slower' : undefined)
       - const likelyOpposite = !significant && !informational && oppositeDirection !== undefined && typeof values.cliffsDelta === 'number' && Math.abs(values.cliffsDelta) >= 0.474 && (alternative === 'greater' ? values.cliffsDelta < 0 : values.cliffsDelta > 0)
+      //- Kolmogorov-Smirnov compares whole distributions, so it catches
+      //- what the rank test misses: the median holding while the spread
+      //- grows or the runs split into two groups (an intermittent slow
+      //- path). Only surfaced when neither the rank test nor the
+      //- likely-opposite call flagged the row — K-S also fires on plain
+      //- location shifts, and double-flagging the same finding helps
+      //- nobody. Keep the condition in sync with the verdict count above.
+      - const ksScore = values.statisticalTestKS
+      - const shapeChange = !significant && !informational && !likelyOpposite && typeof ksScore === 'number' && ksScore < 0.05
       //- Positions are percentages with a small inset so edge dots
       //- don't clip; computed in code lines because pug's attribute
       //- parser trips on division after a bracket.
@@ -339,7 +366,11 @@ each groupRows, groupName in mergedGroups
       - const hasOverlap = ovHi > ovLo
       - const marksB = railMarks(baseline)
       - const marksC = railMarks(current)
-      .cmp-metric(id=chartId(groupName, metricNames[0]), class=significant ? 'cmp-metric--significant cmp-metric--' + (tinyChange ? 'warning' : tone) : null)
+      //- Shape-changed rows share the warning styling classes — the
+      //- "significant" class here is a styling scope, not a claim about
+      //- the rank test.
+      - const rowClass = significant ? 'cmp-metric--significant cmp-metric--' + (tinyChange ? 'warning' : tone) : (shapeChange ? 'cmp-metric--significant cmp-metric--warning' : null)
+      .cmp-metric(id=chartId(groupName, metricNames[0]), class=rowClass)
         each mn, mi in metricNames
           if mi > 0
             a.cmp-metric-anchor(id=chartId(groupName, mn))
@@ -432,6 +463,10 @@ each groupRows, groupName in mergedGroups
             span.cmp-chip(class='cmp-chip--' + toneFor(oppositeDirection)) likely #{oppositeDirection}
             small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}
             small.cmp-effect one-sided test only checks #{sigWord}
+          else if shapeChange
+            span.cmp-chip.cmp-chip--warning spread changed
+            small.cmp-effect median held, distribution changed (KS p = #{h.decimals(ksScore)})
+            small.cmp-effect middle 80% of runs span #{fmtVal(p90B - p10B)} → #{fmtVal(p90C - p10C)}#{unit}
           else
             span.cmp-chip.cmp-chip--neutral no change
             small.cmp-effect #{cliffDeltaHelper(values.cliffsDelta)}

@@ -1,6 +1,6 @@
 import sys
 import json
-from scipy.stats import wilcoxon, mannwhitneyu
+from scipy.stats import wilcoxon, mannwhitneyu, ks_2samp
 
 def perform_test(test_type, baseline, current, **kwargs):
     """Perform the statistical test based on the test type."""
@@ -36,7 +36,13 @@ for group_name, metrics in input_data['metrics'].items():
         if p == "Datasets are identical" or p == "Datasets have different lengths":
             group_results[metric_name] = {'statistic': "N/A", 'p-value': p}
         else:
-            group_results[metric_name] = {'statistic': stat, 'p-value': p}
+            # Kolmogorov-Smirnov compares the whole distributions, so it
+            # catches what a rank test misses: the median holding while the
+            # spread grows or the runs split into two groups (an
+            # intermittent slow path). Unpaired, so it runs for both test
+            # types and for unequal sample sizes.
+            ks_stat, ks_p = ks_2samp(metric_data['current'], metric_data['baseline'])
+            group_results[metric_name] = {'statistic': stat, 'p-value': p, 'ks-p-value': ks_p}
     final_results[group_name] = group_results
 
 print(json.dumps(final_results))
