@@ -385,6 +385,10 @@ each groupRows, groupName in mergedGroups
         //- is only shown when the change is significant: a "+3 %" on a
         //- noise row reads as a real regression the overlap band denies.
         //- Non-significant rows are muted so the effect-size chip leads.
+        //- The Hodges-Lehmann line under it is the honest size estimate:
+        //- the shift with a confidence interval, where the p-value only
+        //- says how consistent the shift is.
+        - const shift = values.shift
         .cmp-metric-delta(class=significant ? null : 'cmp-metric-delta--quiet')
           if span > 0
             b
@@ -403,6 +407,8 @@ each groupRows, groupName in mergedGroups
               small mean #{fmtVal(values.baseline.mean)} → #{fmtVal(values.current.mean)}#{unit}
             else
               small Δ #{delta > 0 ? '+' : ''}#{fmtVal(delta)}#{unit}
+            if !informational && shift && shift.lower !== undefined
+              small(title='Hodges-Lehmann estimate: the median of all pairwise current vs baseline differences, with a ' + Math.round(shift.confidence * 100) + '% confidence interval from the same pairwise differences') shift #{shift.estimate > 0 ? '+' : ''}#{fmtVal(shift.estimate)} (#{shift.lower > 0 ? '+' : ''}#{fmtVal(shift.lower)} to #{shift.upper > 0 ? '+' : ''}#{fmtVal(shift.upper)}#{unit})
         //- The effect size (Cliff's delta) rides under the chip for every
         //- row, significant or not — it's the overlap-aware "how big",
         //- the honest counterweight to the raw median difference. The
