@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.5.1 - 2026-07-29
+
+### Fixed
+* The Compare tab merged metrics with identical run values into one stacked row, which read as if before-FCP and before-LCP element counts were one metric when they are different measurements that happen to agree whenever FCP and LCP are the same paint, and the stacked names broke the name column mid-word. Every metric is its own row again and counts separately in the verdict; a row whose values match an earlier one carries a quiet "same values as X" tag instead, so identical numbers don't read as a rendering mistake. Direction words now follow the unit (higher/lower for counts and unitless metrics like CLS, slower/faster for times), since a "slower" chip on an element count read as a bug, and the about-the-statistics fold spells out what negligible, small, medium and large effect mean in plain text [#4885](https://github.com/sitespeedio/sitespeed.io/pull/4885).
+
 ## 42.5.0 - 2026-07-28
 
 ### Added
