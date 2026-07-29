@@ -525,7 +525,9 @@ $cmp--current: #4a90e0;
 
 .cmp-metric {
   display: grid;
-  grid-template-columns: 200px 1fr 170px 150px;
+  // 220px fits beforeLargestContentfulPaint — at 200px the last letter
+  // wrapped onto its own line.
+  grid-template-columns: 220px 1fr 170px 150px;
   gap: 16px;
   align-items: center;
   padding: 10px 18px;
@@ -572,14 +574,6 @@ $cmp--current: #4a90e0;
     background: $color--warning-bg;
     box-shadow: inset 3px 0 0 $color--warning;
   }
-}
-
-// Extra anchors on a merged row so every old #chart- deep link keeps
-// landing with the row in view. Absolute so they take no cell in the
-// row grid.
-.cmp-metric-anchor {
-  position: absolute;
-  scroll-margin-top: 16px;
 }
 
 .cmp-metric-name {
