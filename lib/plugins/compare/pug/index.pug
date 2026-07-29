@@ -107,14 +107,26 @@
 - var toneFor = function(direction) {
 -   return direction === 'faster' ? 'ok' : (direction === 'slower' ? 'error' : 'neutral')
 - }
+//- "slower" is the wrong word for metrics that count things (render
+//- blocking elements, long tasks, layout shift) — the direction word
+//- follows the unit. Tones don't change: higher counts are still bad
+//- news for every compared metric.
+- var dirWord = function(word, unit) {
+-   if (unit === ' ms') return word
+-   if (word === 'slower') return 'higher'
+-   if (word === 'faster') return 'lower'
+-   return word
+- }
 
-//- Metrics whose baseline AND current run arrays are identical to an
-//- earlier metric in the same group merge into one row (before-FCP and
-//- before-LCP pairs whenever FCP and LCP are the same paint) so the
-//- same finding isn't rendered and counted twice. Guard on
+//- Every metric renders as its own row — beforeFCPelements and
+//- beforeLCPelements are different measurements even when FCP and LCP
+//- are the same paint and the run arrays come out identical (an earlier
+//- iteration merged such twins into one stacked row, which read as if
+//- they were one metric and broke the name column). The twin detection
+//- stays only to tag the later row with "same values as X". Guard on
 //- baseline/current existing — extras metrics can arrive half-shaped
 //- when a metric is missing on one side.
-- const mergedGroups = {}
+- const metricGroupRows = {}
 - for (const mGroupName in compare.metrics) {
 -   const mRows = []
 -   for (const mMetricName in compare.metrics[mGroupName]) {
@@ -122,13 +134,12 @@
 -     if (!v || !v.baseline || !v.current || !Array.isArray(v.baseline.values) || !Array.isArray(v.current.values)) continue
 -     const runsKey = JSON.stringify(v.baseline.values) + '|' + JSON.stringify(v.current.values)
 -     const twin = mRows.find(r => r.runsKey === runsKey)
--     if (twin) twin.metricNames.push(mMetricName)
--     else mRows.push({ metricNames: [mMetricName], values: v, runsKey })
+-     mRows.push({ metricName: mMetricName, values: v, runsKey, sameAs: twin ? twin.metricName : undefined })
 -   }
--   if (mRows.length > 0) mergedGroups[mGroupName] = mRows
+-   if (mRows.length > 0) metricGroupRows[mGroupName] = mRows
 - }
 
-//- Count the merged rows once so the verdict can say "5 of 24". A row
+//- Count the rows once so the verdict can say "5 of 24". A row
 //- that tests significant while both medians DISPLAY the same value is
 //- statistically detectable but too small to matter (the Wikimedia CLS
 //- case: 0.0005 → 0.0005 with p = 0.029 because a tiny shift happens
@@ -141,12 +152,12 @@
 - const tinyMetrics = []
 - const shapeMetrics = []
 - let totalMetrics = 0
-- for (const vGroupName in mergedGroups) {
--   for (const vRow of mergedGroups[vGroupName]) {
+- for (const vGroupName in metricGroupRows) {
+-   for (const vRow of metricGroupRows[vGroupName]) {
 -     totalMetrics++
 -     const vScore = vRow.values.statisticalTestU
 -     if (isInformational(vScore)) continue
--     const entry = { name: vGroupName + '.' + vRow.metricNames.join(' + '), href: chartId(vGroupName, vRow.metricNames[0]), tone: toneFor(directionFor(vRow.values.cliffsDelta)) }
+-     const entry = { name: vGroupName + '.' + vRow.metricName, href: chartId(vGroupName, vRow.metricName), tone: toneFor(directionFor(vRow.values.cliffsDelta)) }
 -     const vKS = vRow.values.statisticalTestKS
 -     if (vScore >= 0.05) {
 -       //- Mirrors the per-row shapeChange condition: a large effect in
@@ -234,7 +245,7 @@ if meta.iterations < 21
         | : the shift line. Every current run is compared with every baseline run and the middle of all those differences is the estimate, with a 95% confidence range from the same comparisons.
       li
         b Cliff's delta
-        | : the effect size on every chip. How cleanly the two sets of runs separate, from -1 (every current run faster) to 1 (every current run slower).
+        | : the effect size on every chip. How cleanly the two sets of runs separate, from -1 (every current run faster) to 1 (every current run slower). The wording translates the size, ignoring the sign: negligible effect below 0.147 (the runs overlap almost completely), small effect below 0.3, medium effect below 0.5 and large effect above that. A large effect with a tiny shift means a consistent but unimportant change.
       li
         b Kolmogorov-Smirnov
         | : a second check that compares the whole distributions and flags rows where the runs land differently even when the ranks barely moved.
@@ -364,18 +375,19 @@ details.cmp-run-details
 //- runs on a shared value axis — run order carries no meaning for
 //- independent samples, distributions do), median → median with the
 //- delta, and the verdict chip. Replaces the old wide stats table and
-//- the per-metric run-index scatter cards. Rows come pre-merged from
-//- mergedGroups: a merged row lists every metric name in the group that
-//- carries the exact same run values, and keeps every #chart- anchor.
+//- the per-metric run-index scatter cards. Every metric keeps its own
+//- row — a twin that measured exactly the same values as an earlier
+//- metric in the group carries a "same values as X" tag instead of
+//- being folded into it.
 //- ---------------------------------------------------------------------
-each groupRows, groupName in mergedGroups
+each groupRows, groupName in metricGroupRows
   .cmp-group
     .cmp-group-head
       h2.cmp-group-title #{groupTitles[groupName] || groupName}
     each row in groupRows
-      - const metricNames = row.metricNames
+      - const metricName = row.metricName
       - const values = row.values
-      - const unit = metricUnit(groupName, metricNames[0])
+      - const unit = metricUnit(groupName, metricName)
       - const score = values.statisticalTestU
       - const informational = isInformational(score)
       - const significant = !informational && score < 0.05
@@ -428,16 +440,12 @@ each groupRows, groupName in mergedGroups
       //- "significant" class here is a styling scope, not a claim about
       //- the rank test.
       - const rowClass = significant ? 'cmp-metric--significant cmp-metric--' + (tinyChange ? 'warning' : tone) : (shapeChange ? 'cmp-metric--significant cmp-metric--warning' : null)
-      .cmp-metric(id=chartId(groupName, metricNames[0]), class=rowClass)
-        each mn, mi in metricNames
-          if mi > 0
-            a.cmp-metric-anchor(id=chartId(groupName, mn))
+      .cmp-metric(id=chartId(groupName, metricName), class=rowClass)
         .cmp-metric-name
-          each mn in metricNames
-            b #{mn}
+          b #{metricName}
           small(title=informational ? null : P_EXPLAINER) #{informational ? 'no test' : 'p = ' + h.decimals(score)}
-          if metricNames.length > 1
-            span.cmp-same(title='These metrics measured exactly the same values in every run, so they are shown as one row') identical values
+          if row.sameAs
+            span.cmp-same(title='This metric measured exactly the same values as ' + row.sameAs + ' in every run of both tests') same values as #{row.sameAs}
         .cmp-metric-strip
           if span > 0
             .cmp-strip
@@ -523,12 +531,12 @@ each groupRows, groupName in mergedGroups
             else
               small.cmp-effect medians are the same
           else if significant
-            span.cmp-chip(class='cmp-chip--' + tone) #{direction}
+            span.cmp-chip(class='cmp-chip--' + tone) #{dirWord(direction, unit)}
             small.cmp-effect(title=EFFECT_EXPLAINER) #{cliffDeltaHelper(values.cliffsDelta)}
           else if likelyOpposite
-            span.cmp-chip(class='cmp-chip--' + toneFor(oppositeDirection)) likely #{oppositeDirection}
+            span.cmp-chip(class='cmp-chip--' + toneFor(oppositeDirection)) likely #{dirWord(oppositeDirection, unit)}
             small.cmp-effect(title=EFFECT_EXPLAINER) #{cliffDeltaHelper(values.cliffsDelta)}
-            small.cmp-effect one-sided test only checks #{sigWord}
+            small.cmp-effect one-sided test only checks #{dirWord(sigWord, unit)}
           else if shapeChange
             //- Say what the data shows, not what the gate assumed: K-S
             //- can fire while the medians visibly moved (a shift the
@@ -537,7 +545,7 @@ each groupRows, groupName in mergedGroups
             //- sentence are derived from the medians and the spread.
             - const ksTitle = 'Two-sample Kolmogorov-Smirnov test: compares the whole distributions instead of just the medians. ' + P_EXPLAINER
             - const sameMedianShape = fmtVal(medB) === fmtVal(medC)
-            - const shapeDirection = medC < medB ? 'faster' : 'slower'
+            - const shapeDirection = dirWord(medC < medB ? 'faster' : 'slower', unit)
             - const spreadGrew = p90C - p10C > p90B - p10B
             if sameMedianShape
               span.cmp-chip.cmp-chip--warning spread changed
