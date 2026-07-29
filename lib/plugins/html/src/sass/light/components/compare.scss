@@ -531,7 +531,7 @@ $cmp--current: #2a78d6;
   gap: 16px;
   align-items: center;
   padding: 10px 18px;
-  scroll-margin-top: 16px;
+  scroll-margin-top: 66px; // clear the 50px fixed nav, plus breathing room
 
   & + & {
     border-top: 1px solid $color--border;

@@ -425,7 +425,7 @@ $verdict--bullet-poor: $color--error-border;
   padding: 8px 20px 6px;
   margin: 0 0 20px;
   box-shadow: $shadow--sm;
-  scroll-margin-top: 16px;
+  scroll-margin-top: 66px; // clear the 50px fixed nav, plus breathing room
 
   h3 {
     font-size: 1.05rem;
