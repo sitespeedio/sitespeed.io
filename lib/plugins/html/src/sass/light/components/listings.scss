@@ -15,7 +15,7 @@
   padding: 16px 18px 18px 18px;
   margin: 0 0 18px 0;
   box-shadow: $shadow--sm;
-  scroll-margin-top: 16px;
+  scroll-margin-top: 66px; // clear the 50px fixed nav, plus breathing room
 }
 
 .listing-card-header {
