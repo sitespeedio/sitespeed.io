@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-07-28T00:00:00.000Z</updated>
+    <updated>2026-07-29T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,20 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.5.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- The Compare tab merged metrics with identical run values into one stacked row, which read as if before-FCP and before-LCP element counts were one metric when they are different measurements that happen to agree whenever FCP and LCP are the same paint, and the stacked names broke the name column mid-word. Every metric is its own row again and counts separately in the verdict; a row whose values match an earlier one carries a quiet &quot;same values as X&quot; tag instead, so identical numbers don&#39;t read as a rendering mistake. Direction words now follow the unit (higher/lower for counts and unitless metrics like CLS, slower/faster for times), since a &quot;slower&quot; chip on an element count read as a bug, and the about-the-statistics fold spells out what negligible, small, medium and large effect mean in plain text #4885.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.5.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.0</id>
@@ -305,20 +319,6 @@
         <updated>2026-07-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Update base Ubuntu and NodeJS #4799<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 41.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-07-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Update Chrome to 150 and Firefox to 152 in the Docker container #4798.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
