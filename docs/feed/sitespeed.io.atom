@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-07-29T05:06:23.828Z</updated>
+    <updated>2026-08-06T05:23:17.684Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.6.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-08-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Browsertime 28.3.0 #4887. Single page app journeys measure better: a route change that makes no network requests used to wait out the whole page-complete timeout and lose its HAR page, now it finishes on quiet time and keeps the page. INP is reported as the slowest (p98) interaction like the web-vitals library does, where a journey with a 500 ms and a 150 ms click used to report 150. Chrome&#39;s built-in list of disabled phone-home features (Translate and friends) is back in default runs after a duplicated switch had silently replaced it, soft-navigation LCP works again on Chromium 151+ and multi-page scripts no longer get render-blocking and LCP annotations on the wrong HAR page. New <code>cpuPerformance</code> field (Chrome 152+) with the browser&#39;s own coarse device rating, which helps explain why the same page measures differently on different machines. See the Browsertime changelog for the full list of fixes.<br>
+- Chrome 151 in the Docker container, and Chrome now runs natively in the arm64 image #4888.<br>
+<br>
+<strong>Fixed</strong><br>
+- Following a deep link to a Compare metric row (from the verdict card&#39;s jump chips or a shared <code>#chart-</code> URL) mangled the targeted row: the distribution strip collapsed into the delta column and the chip wrapped under the metric name. The old fixed-header anchor offset inserted an invisible spacer box that a CSS grid container counts as an extra first item, pushing every cell one column over. The offset now uses scroll-margin, which moves the scroll position without creating a box, so any targeted card that is a grid or flex container keeps its layout #4886.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.5.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.1</id>
@@ -216,20 +234,6 @@
 - The Pages tab&#39;s default columns are now timing-first — LCP, CLS, TBT, Speed Index, total transfer, total requests and the Coach score — and the auto-appended visual metrics columns are gone. Any old column can be restored with <code>--html.pageSummaryMetrics</code> #4813.<br>
 - The Assets page selects the heaviest assets instead of the most requested ones (a huge asset requested once could be missing entirely) and <code>--maxAssets</code> defaults to 100 instead of 20 #4811.<br>
 - The green/yellow/red KPI tiles are gone from the Detailed and page summaries. They duplicated verdicts that already live elsewhere — the &quot;What stands out&quot; strip, the &quot;Runs agree?&quot; column and the Web Vitals verdicts — so every summary led with a second color-coded scoreboard that added noise without adding information #4831.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 41.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-07-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Update base Ubuntu and NodeJS #4799<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

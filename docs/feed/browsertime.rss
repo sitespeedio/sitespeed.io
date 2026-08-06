@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Wed, 29 Jul 2026 05:05:47 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 06 Aug 2026 05:22:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,38 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 28.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0</guid>
+            <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>cpuPerformance</code> field in <code>browserScripts.browser</code> (Chrome 152+): the browser&#39;s own coarse device rating (1 to 4) from <code>navigator.cpuPerformance</code>. Helps explain why the same page measures differently on different machines #2540.<br>
+- SPA route changes that make no requests are now measured: the page-complete check finishes on quiet time instead of waiting out the whole timeout, and the HAR page is no longer lost. Closes #2001 #2550.<br>
+<br>
+<strong>Fixed</strong><br>
+- INP is now the slowest (p98) interaction, like web-vitals reports it. With more than one interaction the fastest was picked, so a journey with 500 ms and 150 ms clicks reported 150 #2556.<br>
+- Chrome&#39;s built-in list of disabled features was accidentally replaced by a later duplicated switch, so default runs kept Translate and other phone-home features enabled. User-supplied feature flags are now merged with the built-in list #2557.<br>
+- Firefox <code>--block</code> and <code>--appendToUserAgent</code> were silently ignored unless <code>--requestheader</code> was also set #2542.<br>
+- Soft-navigation LCP works again on Chromium 151+, where the API changed; older versions keep working #2538.<br>
+- Edge runs using <code>--proxy.*</code> crashed on a broken import #2543.<br>
+- A timeout in the page complete check escalated to a failed URL instead of logging and continuing to measure as documented #2544.<br>
+- One video failing visual-metrics analysis gave all later pages in the iteration metrics from the wrong video and failed the whole iteration #2545.<br>
+- Request header values containing a colon (like Referer URLs) were truncated at the first colon #2546.<br>
+- Installs without the optional jimp dependency saved every screenshot twice #2547.<br>
+- Recorded videos are now actually removed from Android devices; a doubled file path made cleanup silently fail on every run #2548.<br>
+- The documented <code>commands.wait</code> byId, byXpath and bySelector commands are visible to TypeScript users again. Closes #2495 #2549.<br>
+- Navigations with no network activity (cached pages, SPA routes) waited out the full timeout in the network idle check instead of finishing on idle time. Leftover CDP listeners are also cleaned up #2552.<br>
+- Firefox log and gecko profile post-processing was not awaited, so results could be handed over mid-write and a failure crashed the process #2553.<br>
+- When no viewport could be detected, the video was cropped to a sliver and produced garbage visual metrics; it is now analysed uncropped instead #2554.<br>
+- Scripts measuring more than one page per iteration got <code>_renderBlocking</code> and <code>_isLCP</code> annotations on the wrong HAR page #2551.<br>
+- <code>--android</code> swallowed the argument after it, so <code>browsertime --android url</code> dropped the URL and <code>--android false</code> still enabled Android #2560.<br>
+- With <code>--chrome.timeline</code>, one page load failing mid-trace made every remaining iteration fail #2558.<br>
+- The scripting stopWatch only worked as a single-use timer: <code>watch.start()</code> always threw, and so did stopping the same watch twice. Both work now #2559.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 28.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.2.0</link>
@@ -161,17 +193,6 @@
             <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Fixed</strong><br>
 - Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 27.0.3]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.3</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.3</guid>
-            <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Fix so INP only is calculated on interactions with an id #2456.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-07-29T00:00:00.000Z</updated>
+    <updated>2026-08-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,59 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.6.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-08-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Browsertime 28.3.0 #4887. Single page app journeys measure better: a route change that makes no network requests used to wait out the whole page-complete timeout and lose its HAR page, now it finishes on quiet time and keeps the page. INP is reported as the slowest (p98) interaction like the web-vitals library does, where a journey with a 500 ms and a 150 ms click used to report 150. Chrome&#39;s built-in list of disabled phone-home features (Translate and friends) is back in default runs after a duplicated switch had silently replaced it, soft-navigation LCP works again on Chromium 151+ and multi-page scripts no longer get render-blocking and LCP annotations on the wrong HAR page. New <code>cpuPerformance</code> field (Chrome 152+) with the browser&#39;s own coarse device rating, which helps explain why the same page measures differently on different machines. See the Browsertime changelog for the full list of fixes.<br>
+- Chrome 151 in the Docker container, and Chrome now runs natively in the arm64 image #4888.<br>
+<br>
+<strong>Fixed</strong><br>
+- Following a deep link to a Compare metric row (from the verdict card&#39;s jump chips or a shared <code>#chart-</code> URL) mangled the targeted row: the distribution strip collapsed into the delta column and the chip wrapped under the metric name. The old fixed-header anchor offset inserted an invisible spacer box that a CSS grid container counts as an extra first item, pushing every cell one column over. The offset now uses scroll-margin, which moves the scroll position without creating a box, so any targeted card that is a grid or flex container keeps its layout #4886.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 28.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
+        <updated>2026-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- New <code>cpuPerformance</code> field in <code>browserScripts.browser</code> (Chrome 152+): the browser&#39;s own coarse device rating (1 to 4) from <code>navigator.cpuPerformance</code>. Helps explain why the same page measures differently on different machines #2540.<br>
+- SPA route changes that make no requests are now measured: the page-complete check finishes on quiet time instead of waiting out the whole timeout, and the HAR page is no longer lost. Closes #2001 #2550.<br>
+<br>
+<strong>Fixed</strong><br>
+- INP is now the slowest (p98) interaction, like web-vitals reports it. With more than one interaction the fastest was picked, so a journey with 500 ms and 150 ms clicks reported 150 #2556.<br>
+- Chrome&#39;s built-in list of disabled features was accidentally replaced by a later duplicated switch, so default runs kept Translate and other phone-home features enabled. User-supplied feature flags are now merged with the built-in list #2557.<br>
+- Firefox <code>--block</code> and <code>--appendToUserAgent</code> were silently ignored unless <code>--requestheader</code> was also set #2542.<br>
+- Soft-navigation LCP works again on Chromium 151+, where the API changed; older versions keep working #2538.<br>
+- Edge runs using <code>--proxy.*</code> crashed on a broken import #2543.<br>
+- A timeout in the page complete check escalated to a failed URL instead of logging and continuing to measure as documented #2544.<br>
+- One video failing visual-metrics analysis gave all later pages in the iteration metrics from the wrong video and failed the whole iteration #2545.<br>
+- Request header values containing a colon (like Referer URLs) were truncated at the first colon #2546.<br>
+- Installs without the optional jimp dependency saved every screenshot twice #2547.<br>
+- Recorded videos are now actually removed from Android devices; a doubled file path made cleanup silently fail on every run #2548.<br>
+- The documented <code>commands.wait</code> byId, byXpath and bySelector commands are visible to TypeScript users again. Closes #2495 #2549.<br>
+- Navigations with no network activity (cached pages, SPA routes) waited out the full timeout in the network idle check instead of finishing on idle time. Leftover CDP listeners are also cleaned up #2552.<br>
+- Firefox log and gecko profile post-processing was not awaited, so results could be handed over mid-write and a failure crashed the process #2553.<br>
+- When no viewport could be detected, the video was cropped to a sliver and produced garbage visual metrics; it is now analysed uncropped instead #2554.<br>
+- Scripts measuring more than one page per iteration got <code>_renderBlocking</code> and <code>_isLCP</code> annotations on the wrong HAR page #2551.<br>
+- <code>--android</code> swallowed the argument after it, so <code>browsertime --android url</code> dropped the URL and <code>--android false</code> still enabled Android #2560.<br>
+- With <code>--chrome.timeline</code>, one page load failing mid-trace made every remaining iteration fail #2558.<br>
+- The scripting stopWatch only worked as a single-use timer: <code>watch.start()</code> always threw, and so did stopping the same watch twice. Both work now #2559.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.5.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.1</id>
@@ -305,20 +358,6 @@
 - The Pages tab&#39;s default columns are now timing-first — LCP, CLS, TBT, Speed Index, total transfer, total requests and the Coach score — and the auto-appended visual metrics columns are gone. Any old column can be restored with <code>--html.pageSummaryMetrics</code> #4813.<br>
 - The Assets page selects the heaviest assets instead of the most requested ones (a huge asset requested once could be missing entirely) and <code>--maxAssets</code> defaults to 100 instead of 20 #4811.<br>
 - The green/yellow/red KPI tiles are gone from the Detailed and page summaries. They duplicated verdicts that already live elsewhere — the &quot;What stands out&quot; strip, the &quot;Runs agree?&quot; column and the Web Vitals verdicts — so every summary led with a second color-coded scoreboard that added noise without adding information #4831.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 41.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#41.4.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-07-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Update base Ubuntu and NodeJS #4799<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -700,20 +739,6 @@
         <updated>2026-05-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 27.0.3]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.3</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.3"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-05-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Fix so INP only is calculated on interactions with an id #2456.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
