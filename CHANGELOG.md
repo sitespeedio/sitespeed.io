@@ -1,6 +1,15 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.6.0 - 2026-08-06
+
+### Added
+* Browsertime 28.3.0 [#4887](https://github.com/sitespeedio/sitespeed.io/pull/4887). Single page app journeys measure better: a route change that makes no network requests used to wait out the whole page-complete timeout and lose its HAR page, now it finishes on quiet time and keeps the page. INP is reported as the slowest (p98) interaction like the web-vitals library does, where a journey with a 500 ms and a 150 ms click used to report 150. Chrome's built-in list of disabled phone-home features (Translate and friends) is back in default runs after a duplicated switch had silently replaced it, soft-navigation LCP works again on Chromium 151+ and multi-page scripts no longer get render-blocking and LCP annotations on the wrong HAR page. New `cpuPerformance` field (Chrome 152+) with the browser's own coarse device rating, which helps explain why the same page measures differently on different machines. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) for the full list of fixes.
+* Chrome 151 in the Docker container, and Chrome now runs natively in the arm64 image [#4888](https://github.com/sitespeedio/sitespeed.io/pull/4888).
+
+### Fixed
+* Following a deep link to a Compare metric row (from the verdict card's jump chips or a shared `#chart-` URL) mangled the targeted row: the distribution strip collapsed into the delta column and the chip wrapped under the metric name. The old fixed-header anchor offset inserted an invisible spacer box that a CSS grid container counts as an extra first item, pushing every cell one column over. The offset now uses scroll-margin, which moves the scroll position without creating a box, so any targeted card that is a grid or flex container keeps its layout [#4886](https://github.com/sitespeedio/sitespeed.io/pull/4886).
+
 ## 42.5.1 - 2026-07-29
 
 ### Fixed
