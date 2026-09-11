@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.7.0 - 2026-09-11
+
+### Added
+* Chrome 152, Firefox 154 and Edge 151 in the Docker container [#4891](https://github.com/sitespeedio/sitespeed.io/pull/4891).
+
 ## 42.6.0 - 2026-08-06
 
 ### Added
