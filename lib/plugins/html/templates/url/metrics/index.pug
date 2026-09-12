@@ -26,7 +26,7 @@ if browsertime
     - metricsLinks.push({href: '#google-web-vitals', label: 'Google Web Vitals'})
   if timings.largestContentfulPaint
     - metricsLinks.push({href: '#largestContentfulPaint', label: 'Largest Contentful Paint'})
-  if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
+  if browsertime.pageinfo
     - metricsLinks.push({href: '#cumulativeLayoutShift', label: 'Cumulative Layout Shift'})
   if timings.interactionToNextPaint
     - metricsLinks.push({href: '#interactionToNextPaint', label: 'Interaction To Next Paint'})
