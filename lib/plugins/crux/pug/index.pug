@@ -171,6 +171,22 @@ if experiences && (crux.loadingExperience || crux.originLoadingExperience)
                   span.crux-kpi-label RTT
                   span.crux-kpi-value #{h.time.ms(rtt75)}
 
+            //- Ad metrics (experimental_ad_*, p75 only). Google publishes
+            //- no good / needs-improvement / poor thresholds for them, so
+            //- the tiles stay neutral: no tone class and no verdict. The
+            //- API returns some of these as strings ("3.00"), hence Number().
+            - const adNumber = (v) => { const n = Number(v); return Number.isInteger(n) ? String(n) : n.toFixed(1); }
+            - const adDefs = [{ key: 'experimental_ad_count', label: 'Ad count', title: 'Average number of ad frames visible in the viewport during the session', fmt: (v) => adNumber(v) }, { key: 'experimental_ad_density', label: 'Ad density', title: 'Average share of the viewport area covered by ads during the session', fmt: (v) => adNumber(v) + '%' }, { key: 'experimental_ad_cpu', label: 'Ad CPU', title: 'Cumulative CPU time spent by ad frames and workers', fmt: (v) => h.time.ms(Number(v)) }, { key: 'experimental_ad_kilobytes', label: 'Ad network', title: 'Cumulative bytes transferred by ad frames and resources', fmt: (v) => h.size.format(Number(v) * 1024) }]
+            - const adTiles = adDefs.map(d => metrics[d.key] && metrics[d.key].percentiles && metrics[d.key].percentiles.p75 != null ? { label: d.label, title: d.title, value: d.fmt(metrics[d.key].percentiles.p75) } : null).filter(Boolean)
+            if adTiles.length
+              h5.crux-section-heading Ads
+              .crux-kpis
+                each ad in adTiles
+                  .crux-kpi(title=ad.title)
+                    span.crux-kpi-label #{ad.label}
+                    span.crux-kpi-value #{ad.value}
+              p.crux-section-note Real users, 75th percentile. Google publishes no good or poor thresholds for ad metrics, so these tiles are not graded.
+
             //- Distribution stacked bars (replaces the 3×2 pie grid).
             //- Reads as: good (green) | needs improvement (amber) | poor (red).
             h5.crux-section-heading Distribution
