@@ -192,7 +192,7 @@ await commands.wait('id:content', { timeout: 5000, visible: true });
 You can also wait for time, page load, or a JavaScript condition:
 
 ```javascript
-// Wait for a fixed time
+// Wait for a fixed time (last resort, see the Waiting tutorial)
 await commands.wait.byTime(2000);
 
 // Wait for the page to finish loading

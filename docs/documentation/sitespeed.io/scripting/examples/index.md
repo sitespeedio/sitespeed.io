@@ -222,8 +222,8 @@ export default async function (context, commands) {
   try {
     // Find the sign in button and click it
     await commands.click('id:sign_in_button');
-    // Wait some time for the page to open a new login frame
-    await commands.wait.byTime(2000);
+    // Wait for the login frame to be added to the page
+    await commands.wait('id:loginFrame');
     // Switch to the login frame
     await commands.switch.toFrame('loginFrame');
     // Find the username fields by xpath (just as an example)
@@ -233,16 +233,12 @@ export default async function (context, commands) {
     );
     // Click on the next button
     await commands.click('id:verifyUserButton');
-    // Wait for the GUI to display the password field so we can select it
-    await commands.wait.byTime(2000);
-    // Wait for the actual password field
-    await commands.wait('id:password');
+    // Wait for the GUI to display the password field
+    await commands.wait('id:password', { visible: true });
     // Fill in the password
     await commands.type('id:password', 'dejh8Ghgs6ga(1217)');
-    // Click the submit button
-    await commands.click('id:btnSubmit');
-    // In your implementation it is probably better to wait for an id
-    await commands.wait.byTime(5000);
+    // Click the submit button and wait for the next page to load
+    await commands.click('id:btnSubmit', { waitForNavigation: true });
     // Measure the next page as a logged in user
     return  commands.measure.start(
       'https://example.org/logged/in/page'
@@ -384,7 +380,7 @@ If you want to test multiple URLs and need to do some specific things before eac
  * @param {import('browsertime').BrowsertimeContext} context
  * @param {import('browsertime').BrowsertimeCommands} commands
  */
-module.exports = async function (context, commands) {
+export default async function (context, commands) {
   const urls = context.options.urls;
   for (let url of urls) {
    // Do the stuff for each url that you need to do
