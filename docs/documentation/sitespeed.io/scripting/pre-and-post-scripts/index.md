@@ -114,4 +114,4 @@ sitespeed.io \
 
 ## When to use setUp/tearDown inside one script instead
 
-A single test script can also declare `setUp` and `tearDown` functions in `module.exports` (CommonJS only). That's a different style — everything in one file, useful for very small tests. The Tips and tricks tutorial covers it briefly, but for anything non-trivial the `--preScript` / `--postScript` separation is cleaner: each script is its own concern, you can compose them, and you can mix and match across runs.
+A single test script can also export `setUp` and `tearDown` functions next to its `test` function. That's a different style — everything in one file, useful for very small tests. The Tips and tricks tutorial covers it briefly, but for anything non-trivial the `--preScript` / `--postScript` separation is cleaner: each script is its own concern, you can compose them, and you can mix and match across runs.
