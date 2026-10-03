@@ -56,9 +56,16 @@ jobs:
           curl -X POST -H "Content-Type: application/json" \
             -d '{"name": "sitespeed"}' \
             http://127.0.0.1:8081/storage/v1/b?project=sitespeed
-    - name: Setup minio/S3 container
+    - name: Setup S3 container
+      # MinIO archived the open source project in 2026 and removed the
+      # minio/minio and minio/mc images from Docker Hub, so the old
+      # docker-compose setup can't pull anymore. s3mock is a small
+      # Apache-2 S3 mock that accepts any credentials and region, which
+      # is all this upload smoke test needs.
       run: |
-            docker compose -f test/docker/docker-compose.minio.yml up -d
+          docker run -d -p 9090:9090 \
+            -e COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS=sitespeedio \
+            adobe/s3mock:5.2.2
     - name: Install local HTTP server
       run: npm install serve -g
     - name: Start local HTTP server
@@ -72,4 +79,4 @@ jobs:
     - name: Run Chrome test sending data to GCS
       run: STORAGE_EMULATOR_HOST="http://localhost:8081" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.projectId sitespeed
     - name: Run Chrome test sending data to S3
-      run: node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --s3.endpoint http://127.0.0.1:9000 --s3.bucketname sitespeedio --s3.key user --s3.secret password --s3.region motown
+      run: node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --s3.endpoint http://127.0.0.1:9090 --s3.bucketname sitespeedio --s3.key user --s3.secret password --s3.region motown
