@@ -20,6 +20,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
  * [Web performance testing in practice](web-performance-testing-in-practice/) - start here if you are new to synthetic testing.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
+ * [Using AI coding agents](ai-coding-agents/) - get your coding agent to write current scripts and command lines.
 
 ## Run your tests
  * [Configuration](configuration/) - there's a lot you can do with sitespeed.io, let's check out how!
