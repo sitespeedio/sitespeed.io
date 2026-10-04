@@ -208,6 +208,7 @@ export default function (eleventyConfig) {
     '_redirects',
     'favicon.ico',
     'robots.txt',
+    'llms.txt',
     'google0c83e3facf54325f.html',
     'blank.html'
   ]) {
