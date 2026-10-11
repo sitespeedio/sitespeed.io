@@ -149,3 +149,16 @@ test(`Test relativeSummaryPageUrl should create url with relative output folder`
     'should create url with relative output folder'
   );
 });
+
+test(`Test absoluteSummaryPageUrl should percent-encode a Unicode alias`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '/root/leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz', '日本'),
+    `http://results.com/leaf/pages/www_foo_bar/%E6%97%A5%E6%9C%AC/`,
+    'should percent-encode a Unicode alias'
+  );
+});
