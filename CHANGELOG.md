@@ -1,6 +1,16 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.8.0 - 2026-10-13
+
+### Added
+* Chrome 154, Firefox 156 and Edge 153 in the Docker container [#4893](https://github.com/sitespeedio/sitespeed.io/pull/4893) [#4903](https://github.com/sitespeedio/sitespeed.io/pull/4903).
+* New [llms.txt](https://www.sitespeed.io/llms.txt) and a guide for AI coding agents. Agents often use old flags and APIs. The guide shows the current way to do it [#4901](https://github.com/sitespeedio/sitespeed.io/pull/4901). The scripting docs do not show fixed sleeps or CommonJS anymore [#4900](https://github.com/sitespeedio/sitespeed.io/pull/4900).
+
+### Fixed
+* Browsertime 28.3.1 [#4905](https://github.com/sitespeedio/sitespeed.io/pull/4905). With WebPageReplay, Chrome sent HTTP requests on port 80 to the internet. Now the replay server gets them. Pages with `http://` resources can show different metrics. Chrome does not connect to `mtalk.google.com` and `clients2.google.com` during tests anymore. Chrome 153 does not know `iPhone 6` for `--chrome.mobileEmulation.deviceName`. Use a newer device, for example `iPhone 12 Pro`. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md).
+* Result page URLs use the `URL` API. Node deprecated `url.parse` [#4904](https://github.com/sitespeedio/sitespeed.io/pull/4904).
+
 ## 42.7.0 - 2026-09-11
 
 ### Added
