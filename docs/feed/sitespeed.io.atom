@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-09-11T17:55:44.074Z</updated>
+    <updated>2026-10-13T04:29:30.890Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,25 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.8.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.8.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.8.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-10-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Chrome 154, Firefox 156 and Edge 153 in the Docker container #4893 #4903.<br>
+- New llms.txt and a guide for AI coding agents. Agents often use old flags and APIs. The guide shows the current way to do it #4901. The scripting docs do not show fixed sleeps or CommonJS anymore #4900.<br>
+<br>
+<strong>Fixed</strong><br>
+- Browsertime 28.3.1 #4905. With WebPageReplay, Chrome sent HTTP requests on port 80 to the internet. Now the replay server gets them. Pages with <code>http://</code> resources can show different metrics. Chrome does not connect to <code>mtalk.google.com</code> and <code>clients2.google.com</code> during tests anymore. Chrome 153 does not know <code>iPhone 6</code> for <code>--chrome.mobileEmulation.deviceName</code>. Use a newer device, for example <code>iPhone 12 Pro</code>. See the Browsertime changelog.<br>
+- Result page URLs use the <code>URL</code> API. Node deprecated <code>url.parse</code> #4904.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.7.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.7.0</id>
@@ -187,21 +206,6 @@
 - The timers table underlined its whole install-site cell, running a blue line under the code pills — the links are quiet now and tint on hover #4847.<br>
 - The Pages table forced a horizontal scroll even for a single tested page: the full metric names made the header row the widest thing in it. Headers now use the short Web Vitals vocabulary (LCP, CLS, TBT, …) with the full name in the tooltip #4848.<br>
 - GitHub Actions use Node.js 24 by default, with Node.js 26 added to the test matrix #4840.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 42.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-07-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- The Timings Summary&#39;s &quot;Runs agree?&quot; column grades agreement in three bands instead of two. A single stable/disagree cutoff had to choose between two audiences: on a controlled test rig ±10% is too forgiving to call &quot;stable&quot;, while on shared cloud runners ±5% flags ordinary noise as disagreement on most rows — and a column that always warns stops meaning anything. Stable now means within ±5%, a neutral uncolored &quot;varies&quot; band covers the ±5–10% range that is normal run-to-run noise, and &quot;runs disagree&quot; is reserved for spreads past ±10% where the median genuinely hides something #4837.<br>
-- Removed em dashes from user-facing text in the HTML report #4838.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

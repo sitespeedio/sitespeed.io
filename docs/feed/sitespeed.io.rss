@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 11 Sep 2026 17:55:44 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 13 Oct 2026 04:29:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,22 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 42.8.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.8.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.8.0</guid>
+            <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Chrome 154, Firefox 156 and Edge 153 in the Docker container #4893 #4903.<br>
+- New llms.txt and a guide for AI coding agents. Agents often use old flags and APIs. The guide shows the current way to do it #4901. The scripting docs do not show fixed sleeps or CommonJS anymore #4900.<br>
+<br>
+<strong>Fixed</strong><br>
+- Browsertime 28.3.1 #4905. With WebPageReplay, Chrome sent HTTP requests on port 80 to the internet. Now the replay server gets them. Pages with <code>http://</code> resources can show different metrics. Chrome does not connect to <code>mtalk.google.com</code> and <code>clients2.google.com</code> during tests anymore. Chrome 153 does not know <code>iPhone 6</code> for <code>--chrome.mobileEmulation.deviceName</code>. Use a newer device, for example <code>iPhone 12 Pro</code>. See the Browsertime changelog.<br>
+- Result page URLs use the <code>URL</code> API. Node deprecated <code>url.parse</code> #4904.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.7.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.7.0</link>
@@ -162,18 +178,6 @@
 - The timers table underlined its whole install-site cell, running a blue line under the code pills — the links are quiet now and tint on hover #4847.<br>
 - The Pages table forced a horizontal scroll even for a single tested page: the full metric names made the header row the widest thing in it. Headers now use the short Web Vitals vocabulary (LCP, CLS, TBT, …) with the full name in the tooltip #4848.<br>
 - GitHub Actions use Node.js 24 by default, with Node.js 26 added to the test matrix #4840.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 42.0.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.0.1</guid>
-            <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- The Timings Summary&#39;s &quot;Runs agree?&quot; column grades agreement in three bands instead of two. A single stable/disagree cutoff had to choose between two audiences: on a controlled test rig ±10% is too forgiving to call &quot;stable&quot;, while on shared cloud runners ±5% flags ordinary noise as disagreement on most rows — and a column that always warns stops meaning anything. Stable now means within ±5%, a neutral uncolored &quot;varies&quot; band covers the ±5–10% range that is normal run-to-run noise, and &quot;runs disagree&quot; is reserved for spreads past ±10% where the median genuinely hides something #4837.<br>
-- Removed em dashes from user-facing text in the HTML report #4838.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

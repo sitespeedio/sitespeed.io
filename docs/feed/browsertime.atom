@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2026-09-11T17:55:15.896Z</updated>
+    <updated>2026-10-13T04:29:01.451Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,26 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 28.3.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
+        <updated>2026-10-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- WebPageReplay runs sent plain HTTP requests to the real internet instead of the replay server. The <code>--host-resolver-rules</code> value carried literal quotes, and Chrome drops any rule it cannot parse, so the port 80 mapping was silently lost. Pages with <code>http://</code> resources measured with WebPageReplay can change now that those requests are replayed. The same quotes made Chrome skip the first and last host of the built-in phone-home block list on runs without WebPageReplay #2572.<br>
+- The built-in phone-home hosts are blocked without opening a connection. They were mapped to 127.0.0.1, so Chrome still connected locally: a local server on that port received Chrome&#39;s background requests, and under WebPageReplay the recorder forwarded them to the real host. Now the name lookup fails inside Chrome (<code>^NOTFOUND</code>) #2573.<br>
+- Chrome no longer keeps a push messaging connection to <code>mtalk.google.com</code> open during tests. It opened on every browser start, even with <code>--disable-background-networking</code>, and with WebPageReplay it went to the real internet on port 5228 while the page was measured #2574.<br>
+- Chrome&#39;s network time check (<code>http://clients2.google.com/time/1/current</code>) is disabled. It ran on every browser start, outside the page under test #2575.<br>
+- Updated the Docker image to Chrome 153 / Firefox 155 / Edge 153 #2569.<br>
+- Bumped <code>chromedriver</code> and <code>edgedriver</code> to 153 and <code>geckodriver</code> to 0.37.1 #2567 #2568. Chrome 153 removed the old iPhone 4 to iPhone X entries from its device list, so <code>--chrome.mobileEmulation.deviceName &#39;iPhone 6&#39;</code> now fails with &quot;must be a valid device&quot;. The help text now suggests <code>iPhone 12 Pro</code>.<br>
+- Dropped the <code>serve</code> dev dependency. The test suite already had a static file server, and <code>serve</code> added about 90 packages to every contributor and CI install #2564.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 28.3.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0</id>
@@ -207,20 +227,6 @@
 - Replace the unmaintained <code>@sitespeed.io/tracium</code> dependency (extracted from Lighthouse circa 2017, last release 0.3.3) with an in-tree ESM port at <code>lib/chrome/trace/</code>. The algorithm is a 1:1 port; output of <code>computeMainThreadTasks</code> is byte-equivalent for any trace, so existing <code>result.cpu.{categories,events,urls}</code> consumers see no change. Pulling the parser inline lets new analyses ship at Browsertime&#39;s release cadence without a second <code>npm publish</code> step in between #PR1.<br>
 - Modernise the trace-event classifier. The original list only knew about ~30 event names, so on busy 2026-era pages roughly half the trace fell through to &quot;other&quot; — on a sample cnet run that meant 1.3 s of &quot;other&quot; hiding <code>RunTask</code>, <code>v8.run</code>, <code>IntersectionObserverController::computeIntersections</code>, <code>PrePaint</code>, <code>Commit</code>, <code>Layerize</code>, <code>v8.callFunction</code>, <code>V8.DeserializeContext</code> and friends. The expanded list draws from modern Lighthouse + the WebPageTest-derived map in waterfall-tools + direct sampling of real traces, and a new <code>groupForEvent()</code> lookup adds <code>V8.GC*</code> prefix matching so future V8 GC phases auto-classify #PR1.<br>
 - Bump <code>chrome-har</code> to 1.3.0 to pick up the new <code>_renderBlocking</code> field on each entry, lifting Chrome&#39;s CDP <code>renderBlockingStatus</code> (Chrome 108+) so downstream HAR consumers can see which resources blocked first paint without inferring it from the trace.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 27.0.4]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.0.4"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-05-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Fix Safari iOS video time scale #2457. This make the video and Safari metric match.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
