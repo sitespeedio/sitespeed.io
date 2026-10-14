@@ -58,5 +58,10 @@ Let's collect only origin data:
 sitespeed.io --crux.key $CRUX_API_KEY --crux.collect ORIGIN https://www.sitespeed.io
 ~~~
 
+## Ad metrics
+The CrUx API also reports [ad metrics](https://developer.chrome.com/docs/ads/metrics) for pages that show ads: ad count, ad density, ad CPU time and ad network weight. sitespeed.io collects them together with the Web Vitals, so you don't need any extra configuration. When CrUx has ad data for the URL or origin, the CrUx tab shows an **Ads** row with the 75th percentile of each metric. Google publishes no good or poor thresholds for ad metrics, so the tiles are not colour graded.
+
+The metrics are also sent to Graphite and InfluxDB with the other CrUx metrics, as `AD_COUNT`, `AD_DENSITY_PERCENT`, `AD_CPU_MS` and `AD_KILOBYTES` under the same form factor as the Web Vitals.
+
 ## Limitations
 You can not get CrUx data if you use [scripting](/documentation/sitespeed.io/scripting/).
