@@ -4,13 +4,36 @@
         <title>throttle release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of throttle</description>
-        <lastBuildDate>Tue, 13 Oct 2026 04:29:01 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 15 Oct 2026 05:32:07 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/throttle.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 6.2.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.2.0</guid>
+            <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- On Linux, you can set a download limit on localhost: <code>throttle --rtt 200 --down 5000 --localhost</code>. The limit is for all traffic on loopback. Upload limits are not supported on localhost #116.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>--profile</code> together with <code>--localhost</code> throttled the network interface, not localhost. Now it uses the download and RTT of the profile on localhost #116.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+        </item>
+        <item>
+            <title><![CDATA[throttle 6.1.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.1.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.1.0</guid>
+            <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- On Linux, <code>--localhost</code> now sets the loopback MTU to 1500, like a real network. With the default MTU (65536), WebPageReplay runs were a full round trip apart from run to run. <code>--stop --localhost</code> sets the MTU back to 65536. Localhost metrics can change after you upgrade #115.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+        </item>
         <item>
             <title><![CDATA[throttle 6.0.1]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.1</link>
@@ -96,26 +119,6 @@
 <br>
 <strong>Changed</strong><br>
 - Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 #67. You can read Sindre Sorhus ESM package guide.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-        </item>
-        <item>
-            <title><![CDATA[throttle 3.1.1]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</guid>
-            <pubDate>Tue, 19 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Fixed</strong><br>
-- Updated minimist dependency.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-        </item>
-        <item>
-            <title><![CDATA[throttle 3.1.0]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
-            <pubDate>Sun, 26 Dec 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.<br>
 ]]></description>
             <author>Sitespeed.io</author>
         </item>
