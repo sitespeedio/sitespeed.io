@@ -144,6 +144,24 @@ cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance -c 0
 cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance -c 1
 ```
 
+The settings are reset when the server reboots. Put the commands in a script and run it as root from the crontab with `@reboot /root/cpu.sh`. Then check that the frequency holds while your tests run (`grep MHz /proc/cpuinfo`) and that the CPU is not throttled because of heat (`grep . /sys/devices/system/cpu/cpu*/thermal_throttle/*_count` shows counters that do not increase).
+
+##### Turn off deep CPU idle states
+When a core has nothing to do, the CPU puts it in an idle state (a C-state). Deep idle states save power, but the core needs time to wake up again. During a test the browser (and the replay server if you use one) often waits for the network, so the cores go to sleep and wake up many times during one page load. At Wikimedia we tested this on a bare metal Intel server with WebPageReplay and 21 runs. With the deep idle states on, the time to download the HTML moved in steps of 40 and 100 ms between runs, First Contentful Paint was 84 ms slower and the standard deviation was twice as high.
+
+Keep only the idle states that wake up fast. Each state shows its exit latency in microseconds. This command, run as root, turns off all states with a latency higher than 2 µs (on Intel that keeps POLL and C1):
+
+```bash
+for s in /sys/devices/system/cpu/cpu*/cpuidle/state*; do if [ "$(cat $s/latency)" -gt 2 ]; then echo 1 > $s/disable; fi; done
+```
+
+Use the latency and not the state number, since the numbers and names are different between CPUs. Add the command to the same `@reboot` script as the CPU frequency, because it is also reset at boot. Check the result with `grep . /sys/devices/system/cpu/cpu0/cpuidle/state*/name /sys/devices/system/cpu/cpu0/cpuidle/state*/disable`.
+
+The server will use more power. Only do this on bare metal (`systemd-detect-virt` prints `none`); on a cloud instance the hypervisor controls the idle states.
+
+##### Things that did not help
+We also tried to pin the test container to some of the cores (`docker run --cpuset-cpus`) and to put `/tmp` on a tmpfs. Pinning to cores made the metrics less stable, and tmpfs made no difference. Test it on your own server before you add more tuning, and compare the standard deviation, not only the median.
+
 ##### Choose DNS server
 Which DNS server is used can make a big difference. Keep an eye on your DNS times and make sure they are stable. If not, read the [manpage](https://ubuntu.com/server/docs/service-domain-name-service-dns) on how to change it.
 
@@ -235,6 +253,8 @@ Getting stable metrics is hard. If you have any doubts, look at ["Performance Ma
 If you have throttled the internet connection and deployed on a stable server, there are still some things you can do.
 
 You can also use a replay server to try to minimize the noise. The sitespeed.io Docker container includes [WebPageReplay](https://www.sitespeed.io/documentation/sitespeed.io/webpagereplay/) that the Chrome team uses. Mozilla uses [mitmproxy](https://mitmproxy.org). You can choose whichever works best for you.
+
+If the replay server runs on the same machine as the browser, use sitespeed.io 42.9.0 or later. Older versions kept the loopback interface at an MTU of 65536. With that MTU the time to download the HTML moved a full round trip between runs, and First Contentful Paint could vary 300 ms on the same page. Now the throttle engine sets the MTU to 1500, like a real network.
 
 Another way is to look at metric trends and compare metrics with one week back in time to find regressions. This is a technique that [Timo Tijhof](https://twitter.com/TimoTijhof) has been using for a long time, and we adopted it in sitespeed.io years ago.
 
