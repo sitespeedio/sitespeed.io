@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2026-10-15T05:32:49.318Z</updated>
+    <updated>2026-10-23T11:31:33.257Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,26 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 42.10.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.10.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.10.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-10-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Chrome 156, Firefox 158 and Edge 156 in the Docker container, and Browsertime 28.5.0 with Chromedriver and Edgedriver 156 #4913. In Browsertime, the URL under test is now escaped in the navigation script, so a URL with a quote, a backslash or a line break works. Loading a <code>.js</code> script does not overwrite an existing <code>package.json</code> in the folder of the script anymore. See the Browsertime changelog.<br>
+<br>
+<strong>Fixed</strong><br>
+- First Contentful Paint was missing from the Pages table, the summary box and the run page, and the run page lost its render-phase breakdown. Metric paths with bracket notation, like <code>paintTiming[&#39;first-contentful-paint&#39;]</code>, did not match anything after lodash.get was replaced. Configuration paths in the lodash style broke the same way #4910.<br>
+- When the coach was on (the default), the scripts that other plugins add with <code>browsertime.scripts</code> were lost, so third-party plugins did not get their data #4908.<br>
+- <code>--open</code> failed when the result path had spaces, and the shell interpreted special characters in the path #4912.<br>
+- The pre-warm run on iOS now uses the device set with <code>--safari.deviceUDID</code>. Before, with several devices or simulators, it could run on a different device than the test #4909.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 42.9.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.9.0</id>
@@ -179,22 +199,6 @@
 - The CPU tab&#39;s bar lists now line up: each row was its own grid, so bars started at a different x position whenever the value text length changed #4855.<br>
 - Shared links to the newer Rendering anchors (<code>#slow-ttfb</code>, <code>#recalculate-style</code>, <code>#reflows-before-paint</code>, <code>#main-thread-animations</code>) loaded onto the default tab with the target hidden #4859.<br>
 - The render-blocking document row disappeared on sites that redirect to a trailing slash #4857.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 42.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.1.1"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
-        <updated>2026-07-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- The HTML report no longer speaks Chrome internals: raw data keys shown as metric labels (backEndTime, RecalcStyleCount, FirstVisualChange), LoAF/Long Task spec tokens, HAR phase keys (blocked, ssl, wait), trace event names used as headings and profiler jargon (self time, invoker) are replaced with plain language across every page. The raw keys stay in tooltips and explainer folds since the exported JSON and metrics still use them, and the help page&#39;s Firefox metric entries now lead with what each metric means instead of which browser preference enables it #4854.<br>
-- The CPU tab tells you what to do, not just what happened: the blocking-time card leads with a verdict and links each dominant kind to the section that names the culprits, the Timers section calls out the page&#39;s own polling and timeout-0 offenders with their cost and a suggested fix, and headings, KPI labels and quicklinks were renamed so the chip row scans as a table of contents #4853.<br>
-- On the Pages listing the Web Vitals verdict pill and the metric dots were centered against each other, so whichever was wider pushed the other sideways and the column looked randomly misaligned from row to row. Both are left-aligned now and line up across every row #4852.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

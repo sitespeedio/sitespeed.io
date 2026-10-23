@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2026-10-15T05:32:07.026Z</updated>
+    <updated>2026-10-23T11:31:02.130Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 28.5.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.5.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.5.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
+        <updated>2026-10-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Updated the Docker image to Chrome 156 / Firefox 158 / Edge 156 and bumped <code>chromedriver</code> and <code>edgedriver</code> to 156 #2583 #2585.<br>
+<br>
+<strong>Fixed</strong><br>
+- Updated WebPageReplay in the Docker image to the latest version from its new repository, together with its new inject script. The replay server prepares the injected HTML once when the archive loads, not on every request. The inject script also gives every page the same <code>navigator.connection</code> and <code>navigator.onLine</code> values, so pages that adapt to the connection behave the same in every run. Replayed metrics can change after you upgrade #2578.<br>
+- The URL under test is now escaped in the navigation script. A URL with a quote, a backslash or a line break broke navigation, and a crafted URL could run its own script in the page #2582.<br>
+- Loading a <code>.js</code> script as CommonJS overwrote and then deleted an existing <code>package.json</code> in the folder of the script. Browsertime now only creates and removes its own temporary file #2579.<br>
+- The browser was not stopped after a failed iteration when Browsertime ran without connectivity settings, for example when used as a library #2580.<br>
+- The pre-warm run on iOS now uses the device set with <code>--safari.deviceUDID</code>. Before, with several devices or simulators, it could run on a different device than the test #2581.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 28.4.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.4.0</id>
@@ -211,20 +232,6 @@
 - How Browsertime publishes its TypeScript types is now safer. <code>scripting.d.ts</code> moved to the repo root next to <code>package.json</code> so it can&#39;t be clobbered by a future <code>tsc</code> outDir change, the <code>types</code> condition comes first under <code>exports</code> to match TypeScript&#39;s documented resolution rules, and <code>publint</code> runs as part of <code>prepublishOnly</code> so common package.json mistakes fail before a release goes out #2477.<br>
 - Replaced the direct <code>lodash.merge</code> dependency with a small in-tree <code>merge()</code> helper in <code>lib/support/util.js</code>. The helper matches lodash&#39;s actual semantics for the cases Browsertime relies on — arrays merged by index, <code>undefined</code> source values skipped unless the key is missing on the target, <code>Date</code>/<code>RegExp</code>/class instances passed by reference, prototype-pollution keys rejected — which finishes the lodash unbundling the same way sitespeed.io did #2468.<br>
 - Bumped dependencies: <code>chrome-har</code> 1.3.1 #2469, <code>chrome-remote-interface</code> and <code>selenium-webdriver</code> #2475, <code>@sitespeed.io/log</code> 2.0 #2471, <code>chromedriver</code> / <code>edgedriver</code> / <code>geckodriver</code> #2472.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 27.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#27.2.0"/>
-        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/browsertime.png" type="image/png"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Surface the page-level <code>recalculateStyle</code> summary (beforeFCP / beforeLCP element counts + durations) on the first HAR page as <code>_renderBlocking.recalculateStyle</code>. The per-request <code>_renderBlocking</code> map already projected onto each entry stays where it is — the page-level summary is what powers the &quot;Elements that needed recalculate style before FCP&quot; view and was previously only reachable via <code>browsertime.json</code> #2466.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>onlinetest-release-feed</id>
     <title>onlinetest release feed</title>
-    <updated>2026-10-15T05:32:07.027Z</updated>
+    <updated>2026-10-23T11:31:02.130Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,12 +16,88 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[onlinetest 6.1.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.1.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.1.0"/>
+        <updated>2026-10-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- The compare page no longer allows inline scripts. It now uses the same Content Security Policy as the rest of the web GUI, which closes the exception from #284 #294.<br>
+- In compare, every run after the first lost its connect and SSL bars in the waterfall, and some filmstrip frames showed as broken images #294.<br>
+- Opening compare with one test now compares its runs, instead of showing the start page with the URL filled in #294.<br>
+- Browsers got new JavaScript and CSS only when the server version changed. A build with changed files and the same version, like a branch under test or a patched install, kept serving cached old files, and the new pages ran against old JavaScript. The cache buster is now a hash of the JavaScript and CSS content #292.<br>
+<br>
+<strong>Changed</strong><br>
+- Updated the vendored compare app. When both tests have several runs of the same URL, compare uses all runs and marks a change only when a Mann-Whitney U test says it is significant and it is 2% or more. Video, filmstrip, visual progress and waterfall follow one timeline, unchanged metrics are folded, and you can draw on the waterfall and save it as an image #294.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 6.0.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.0.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.0.0"/>
+        <updated>2026-10-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- The server removes old test data from PostgreSQL once a day. Every test stored its HAR and browsertime result in the database forever, so the database grew without limit, while the result files in SeaweedFS already expire after 30 days. <code>retention.days</code> sets how many days to keep (0 keeps everything) and <code>retention.remove</code> is <code>test</code> (the default) to remove the whole test or <code>data</code> to keep the test in search and clear only the HAR and the browsertime result. The server removes data in small batches and never removes a test that waits or runs #289.<br>
+- <code>disableScripting</code> has a new value <code>gui</code>, which is the default: scripting tests are off in the web GUI and on through the API. <code>true</code> turns them off everywhere and <code>false</code> turns them on everywhere. The server checks the setting for every test that it gets, so a request sent outside the web form cannot get around it. A value of <code>false</code> in <code>.env</code> now overrides the default in <code>server.yaml</code> #286.<br>
+- The production docs show how to back up and restore PostgreSQL, and how to upgrade to a new major version, with the steps for 6.0.<br>
+<br>
+<strong>Fixed</strong><br>
+- New installs got version 3.8.0 of the server and testrunner, from May 2026, without the security fixes in 4.x and 5.0, because <code>.env.example</code> and the README still pointed at version 3. They now point at the current major version, and the release script keeps them up to date #290.<br>
+- <code>deploy/update.sh</code> did not give <code>.env</code> to Docker Compose. Newer Docker Compose versions only read <code>.env</code> next to the compose file, so the image tags were empty and the update stopped with <code>invalid reference format</code>.<br>
+- Pages that do not exist are answered with 404 instead of 400 #287.<br>
+- The server closes its Redis connection after it publishes a message, instead of keeping a new connection open for each message #288.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 5.0.0]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#5.0.0</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#5.0.0"/>
+        <updated>2026-10-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- New <code>disableScripting</code> setting (or <code>DISABLESCRIPTING=true</code> in <code>.env</code>) that turns off scripting tests. A scripting test runs Node.js code where sitespeed.io runs, so on a public instance anyone who can add a test can run code there. With the setting on, the server rejects scripting tests from the web form, the API and reruns, and the form does not show the scripting tab. It is off by default #282.<br>
+<br>
+<strong>Fixed</strong><br>
+- Result storage uses SeaweedFS instead of MinIO. The MinIO community edition is archived, gets no security patches and its images are not on Docker Hub or quay.io anymore, so a new install could not start #215. SeaweedFS is Apache-2 licensed and does what MinIO did for us: S3 uploads from the testrunner, public read access to results and a 30 day expiry. The S3 API is still on port 9000, the <code>MINIO_USER</code>/<code>MINIO_PASSWORD</code> variables are the same and result URLs do not change. MinIO compressed html/css/js on disk; SeaweedFS does not, so results use more disk #270.<br>
+- The storage container restarts automatically (<code>restart: always</code>) like Redis and PostgreSQL, so result links work again after a host reboot #270.<br>
+- The API did not need a key by default, so anyone who could reach the server could add tests and choose the Docker image and the sitespeed.io configuration, including options that the web GUI blocks. The API now only accepts tests when a key is set #278.<br>
+- The scripting test name was used as-is in the file path on the testrunner. A name with <code>../</code> or an absolute path could write the script outside the job folder, and the public form could do this without a key. Only the base name is used now #276.<br>
+- The page shown while a test waits or runs added the test name and the job logs as HTML. A scripting test could use them to run JavaScript for everyone who opened its link. They are now added as text #279.<br>
+- The server sent the browser to the result URL from the test&#39;s result file without a check. A test can change that file, so it could make the running page open a <code>javascript:</code> URL. Only http and https result URLs are followed now #280.<br>
+- All JavaScript in the web GUI loads from <code>/js</code>, so the Content Security Policy no longer allows inline scripts or inline event handlers, and HTML injection cannot run JavaScript. The vendored compare app keeps the old policy on <code>/compare/</code> until the compare project removes its inline code #284.<br>
+- Results are served from the same origin as onlinetest, and a scripting test can put its own HTML and JavaScript in its result. Caddy now sends a <code>Content-Security-Policy: sandbox</code> header with all results, so each result page gets its own origin and cannot act on the onlinetest site. The sitespeed.io report works the same in the sandbox #283.<br>
+- Updated Express to 5.3.0 and the other server and testrunner dependencies to their latest minor and patch versions. This fixes the known advisories in <code>proxy-addr</code>, <code>path-to-regexp</code>, <code>body-parser</code> and <code>qs</code> #277, #281.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[onlinetest 4.0.2]]></title>
         <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.2</id>
         <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.2"/>
         <updated>2026-09-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Pull the MinIO images from <code>quay.io</code> instead of Docker Hub. MinIO removed its images from Docker Hub after archiving the community edition, so a fresh <code>docker compose up</code> could no longer start result storage. The quay.io mirror still serves the same pinned releases, and no <code>.env</code> changes are needed. This keeps 4.x deployable until result storage moves to SeaweedFS #270.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[onlinetest 4.0.1]]></title>
+        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1</id>
+        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1"/>
+        <updated>2026-05-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Compare page now renders screenshots, the filmstrip and the run video when the HAR points at a different sitespeed.io result server (e.g. wikiperformance comparing HARs that live on wikimedia.sitespeed.io). The helmet CSP only allowed <code>&#39;self&#39;</code> for images and — via the inherited <code>default-src</code> — for video, so the cross-origin URLs the HAR carries in <code>_meta.screenshot</code> / <code>_meta.filmstrip[].file</code> / <code>_meta.video</code> were blocked and the slots came up empty. <code>img-src</code> now also allows any <code>https:</code> origin and a new <code>media-src</code> does the same for video #269.<br>
 ]]></summary>
         <author>
@@ -113,80 +189,6 @@
 - <code>/admin</code> auto-refreshes every 15 seconds. Pauses in background tabs #249.<br>
 - Opt-in auto-refresh toggle on <code>/search/</code>, 60 seconds. Off by default. Pauses while any test is ticked, so Compare selections aren&#39;t lost. State remembered in <code>localStorage</code> #250.<br>
 - <code>/admin</code> mobile layout reworked for the new tables — rows stack into name → counts → action on narrow screens #246 #247 #248.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.4.0]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.4.0"/>
-        <updated>2026-05-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- <strong>Connected testrunners</strong> table on <code>/admin</code> showing hostname, location, the setup each machine serves, and a fresh / stale &quot;last seen&quot; badge. Each testrunner publishes a heartbeat on the existing <code>testrunners</code> Bull queue every 30 s; the server tracks <code>lastSeenAt</code> per runner and prunes anything quiet for &gt;120 s, so crashed runners (OOM, host reboot, <code>docker kill</code>) drop off the admin page within ~2 minutes instead of haunting the metrics gauge forever. When two runners pick the same <code>LOCATION_NAME</code> + <code>deviceId</code>, the server logs a clear <code>Testrunner queue collision: hostA and hostB both claim queue X. Change LOCATION_NAME (or deviceId) on one of them.</code> — the registration still goes through so existing deployments don&#39;t break, but the collision is no longer silent #244.<br>
-- <code>deploy/PRODUCTION.md</code> gets an &quot;Adding a third (or Nth) testrunner&quot; section with three concrete troubleshooting cases: not registering, stale row, queue collision #244.<br>
-- <strong>Compare workflow on <code>/search/</code></strong>: the column over the per-row checkbox is now its own <code>Compare</code> header (split out from the generic &quot;Actions&quot;), a one-line helper below the table explains the affordance, and each checkbox carries an <code>aria-label</code> / <code>title</code> of &quot;Select this run to compare with another&quot;. The Compare button itself starts disabled, gates submission until exactly two completed runs are ticked (a third tick is refused — the unchecked boxes go disabled when the limit is hit), and shows a transient inline message on a premature click (&quot;Select 1 more test to enable Compare.&quot; / &quot;Select 2 completed tests above first.&quot;) via <code>aria-disabled</code> + a polite <code>aria-live</code> region #240.<br>
-- <code>deploy/update.sh</code> — a single operator command that pulls the latest images, restarts services with <code>up -d --remove-orphans</code>, prints <code>docker compose ps</code>, and tails logs for 10 seconds so first-boot errors land in the same terminal. <code>--mode {all-in-one|server|testrunner}</code> picks the right production compose file; <code>--version X.Y.Z</code> rewrites <code>SITESPEED_IO_SERVER_VERSION</code> / <code>SITESPEED_IO_TESTRUNNER_VERSION</code> in <code>.env</code> atomically before pulling. <code>PRODUCTION.md</code> is updated to call the helper in every place it used to spell out the compose invocation by hand.<br>
-- <code>.env.example</code> is now the single source of truth for every variable any compose file reads (dev or production). New header walks through the three deployment shapes, and the previously-undocumented <code>DOMAIN</code> variable (used by the Caddy single-server compose for automatic HTTPS) is included. <code>PRODUCTION.md</code> drops its inline env-var snippets and points at <code>.env.example</code> so the two can&#39;t drift.<br>
-<br>
-<strong>Fixed</strong><br>
-- <code>SIGTERM</code> / <code>SIGINT</code> now actually drain in-flight HTTP requests before the process exits. The previous shutdown chain ended at <code>this.app.close()</code> on the Express app object (no such method exists), so the HTTP server was never told to stop — it just disappeared when <code>process.exit(0)</code> fired a few lines later, killing in-flight requests mid-response. The web server now keeps the real <code>http.Server</code> reference and calls <code>close()</code> on it; a configurable <code>server.shutdown.timeoutMs</code> (default 30 s) caps the drain and falls back to <code>closeAllConnections()</code> after the deadline. A second signal during shutdown short-circuits to immediate exit for operators who&#39;d rather not wait #243.<br>
-- Custom hero / navbar logo overrides now use whatever dimensions the operator sets in <code>html.logo.*</code>. Two hardcoded <code>aspect-ratio: 90.488 / 19.543</code> / <code>aspect-ratio: 123 / 25.375</code> CSS rules were forcing every logo back to the bundled SVG&#39;s proportions #239.<br>
-- The analyze button on the Extras tab no longer sits a few pixels lower than on the other tabs. <code>#extras .control</code> was applying <code>padding: 4px 0</code> to the submit button&#39;s wrapper as well as to the intended checkbox rows; scoped to <code>.extras-fieldset .control</code> so only the diagnostics checkboxes get the extra spacing #239.<br>
-- Footer spacing: removed the duplicate <code>&amp;nbsp;</code> before &quot;version&quot; and added one between the trailing dash and &quot;AGPLv3&quot;, so the footer now reads &quot;©sitespeed.io  2026 - version X.Y.Z - AGPLv3&quot; with consistent spacing #239.<br>
-- Search help panel: tighter copy. &quot;You can combine your search commands. To find a test for a URL, date and browser you can search like this&quot; is now &quot;Combine commands to narrow your search. Example&quot;. The &quot;Find tests by …&quot; preamble that repeated on every line is gone — each command now leads with its field name and (where applicable) the allowed values #239.<br>
-<br>
-<strong>Security</strong><br>
-- Stop logging and echoing back invalid API keys. <code>validateKey</code> used to write the rejected value to the server log and return it in the 403 response body, so typos and stale secrets piled up in log aggregation. The log line is now <code>Invalid API key supplied</code> (no value, no length) and the response carries a single &quot;Invalid API key.&quot; message in every locale #242.<br>
-- Close two XSS vectors that the recent UI work uncovered:<br>
-- Enforce a defense-in-depth CSP (<code>default-src &#39;self&#39;</code>; <code>script-src</code> / <code>style-src</code> allow <code>&#39;unsafe-inline&#39;</code> transitionally because pug templates still ship inline blocks; <code>frame-ancestors &#39;none&#39;</code>, <code>object-src &#39;none&#39;</code>, <code>base-uri &#39;self&#39;</code>, <code>form-action &#39;self&#39;</code>) and re-enable HSTS. Both were disabled previously #242.<br>
-- Block sensitive sitespeed.io flags from the GUI&#39;s &quot;Command line args&quot; tab. The user-supplied extras textarea used to forward arbitrary flags to the testrunner with only <code>--verbose</code> filtered. A GUI submission could load plugin / JS code (<code>--plugins.add</code>, <code>--browsertime.preScript</code>), run any binary as the browser (<code>--browsertime.chrome.binaryPath</code>), redirect HARs and metrics to an attacker-controlled destination (whole <code>--graphite.*</code> / <code>--s3.*</code> / <code>--gcs.*</code> / <code>--scp.*</code> / <code>--slack.*</code> / <code>--matrix.*</code> / <code>--datadog.*</code> / <code>--influxdb.*</code> namespaces), or read arbitrary files via <code>--config</code>. A denylist now drops these tokens (and their value arguments) before they reach sitespeed.io, and <code>/sitespeed-help.json</code> filters the same set so the CLI picker stops suggesting them (277 → 187 entries). API submissions (which pass a <code>userConfig</code> object, not extras) are deliberately untouched #241.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.3.1]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.1"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Filmstrip 404s in the compare view, again — the 3.3.0 pass still constructed frame URLs on a fixed 100 ms cadence inside <code>(FirstVisualChange, LastVisualChange)</code>, which broke whenever visual progress sat flat between two boundaries (the expected JPGs were never written to disk). The vendored compare bundle now reads frame timestamps straight from <code>_visualMetrics.VisualProgress</code> — one JPG per VP sample, named after that exact ms — and lets the existing 100 ms padding step forward-fill the uniform grid, so the rendered strip still reads &quot;nothing happened for 2 s&quot; differently from &quot;everything changed in 50 ms&quot; #238.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.3.0]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.3.0"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Refreshed the vendored compare bundle with a sharing pass, accurate transfer-size diffs and style recalculation visibility:<br>
-<br>
-<strong>Fixed</strong><br>
-- Filmstrip and Visual Progress thumbnails no longer 404 — frame timestamps are now derived from the same <code>_visualMetrics.VisualProgress</code> change points sitespeed.io&#39;s own report uses, matching the cadence sitespeed.io actually wrote to disk.<br>
-- Millisecond timings in the page-x-ray diff are rounded to whole ms — the new recalc duration field reports sub-ms precision (&quot;17.099 ms&quot;) that&#39;s noise at this scale.<br>
-- &quot;Switch HAR&quot; and run-dropdown changes preserve the previous source URLs / config / stripVersion choice, so the Share UI doesn&#39;t downgrade from &quot;Copy share link&quot; to &quot;Download bundle&quot; on every toggle.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[onlinetest 3.2.0]]></title>
-        <id>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0</id>
-        <link href="https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.2.0"/>
-        <updated>2026-05-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Refreshed the vendored compare bundle to pick up the upstream regression-spotting pass:<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
