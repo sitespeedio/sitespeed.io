@@ -1,6 +1,17 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 42.10.0 - 2026-10-23
+
+### Added
+* Chrome 156, Firefox 158 and Edge 156 in the Docker container, and Browsertime 28.5.0 with Chromedriver and Edgedriver 156 [#4913](https://github.com/sitespeedio/sitespeed.io/pull/4913). In Browsertime, the URL under test is now escaped in the navigation script, so a URL with a quote, a backslash or a line break works. Loading a `.js` script does not overwrite an existing `package.json` in the folder of the script anymore. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md).
+
+### Fixed
+* First Contentful Paint was missing from the Pages table, the summary box and the run page, and the run page lost its render-phase breakdown. Metric paths with bracket notation, like `paintTiming['first-contentful-paint']`, did not match anything after lodash.get was replaced. Configuration paths in the lodash style broke the same way [#4910](https://github.com/sitespeedio/sitespeed.io/pull/4910).
+* When the coach was on (the default), the scripts that other plugins add with `browsertime.scripts` were lost, so third-party plugins did not get their data [#4908](https://github.com/sitespeedio/sitespeed.io/pull/4908).
+* `--open` failed when the result path had spaces, and the shell interpreted special characters in the path [#4912](https://github.com/sitespeedio/sitespeed.io/pull/4912).
+* The pre-warm run on iOS now uses the device set with `--safari.deviceUDID`. Before, with several devices or simulators, it could run on a different device than the test [#4909](https://github.com/sitespeedio/sitespeed.io/pull/4909).
+
 ## 42.9.0 - 2026-10-15
 
 ### Added
