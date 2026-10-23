@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.19.0",
         "axe-core": "4.11.4",
-        "browsertime": "28.4.0",
+        "browsertime": "28.5.0",
         "coach-core": "9.2.1",
         "fast-stats": "0.0.7",
         "import-global": "1.1.1",
@@ -3268,9 +3268,9 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "153.0.8010",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-153.0.8010.tgz",
-      "integrity": "sha512-YAlIdabZR40suwfhcvwDBWCJ1Ul74YDymkr1u2lhJEmxCtS6Q4uJep3/QVM/wyV5DCtwu2QKZFrU0sbvUb4Qug==",
+      "version": "156.0.8078",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-156.0.8078.tgz",
+      "integrity": "sha512-71zRLVrsk1T0OMEHPzIuAUWE09yoCyk5jdQt18jM7S91MLtObXM9CqH2dpF7jX87azkPjJu1ToS18MYyTY2fJw==",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -3281,9 +3281,9 @@
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
-      "version": "153.0.4234",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-153.0.4234.tgz",
-      "integrity": "sha512-+1AkcUj26APDII9r4JMaDo3nhr8xod6HLr6Lsi5ROQKP9BnDM8ladvf2Vi2ADCs6aYtPVKmBqj2cldDPaPCgjQ==",
+      "version": "156.0.4314",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-156.0.4314.tgz",
+      "integrity": "sha512-2d5hV4AMnnuaz8kRRQnjFcycjmQA6sb37HDIfN7v/aWt67GNHca4lYmKxChDdbusf9hlWbCSGZhPC7EmY3tQVA==",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -5048,14 +5048,14 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "28.4.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-28.4.0.tgz",
-      "integrity": "sha512-Dqhgk1leFAR3nG2KM8CLiqQxGGWIlE+uKxuBd8Yh0gP6qPLsMfk6SUg0H8KBv/pRZX2GywyBhDUp8BMkRQGJqA==",
+      "version": "28.5.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-28.5.0.tgz",
+      "integrity": "sha512-TbFzXAdKgdEr7hex/TjrBu8w5TidPHobRaQ+gT2TiCZKcSZp8/TB7aZr5k5h6+FMCYtOApVlgHcSleon40Gr4A==",
       "license": "Apache-2.0",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
-        "@sitespeed.io/chromedriver": "153.0.8010",
-        "@sitespeed.io/edgedriver": "153.0.4234",
+        "@sitespeed.io/chromedriver": "156.0.8078",
+        "@sitespeed.io/edgedriver": "156.0.4314",
         "@sitespeed.io/geckodriver": "0.37.1",
         "@sitespeed.io/log": "2.0.0",
         "@sitespeed.io/throttle": "6.2.0",
