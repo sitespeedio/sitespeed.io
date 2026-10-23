@@ -3,7 +3,7 @@
 /*eslint no-console: 0*/
 
 import { writeFileSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { platform } from 'node:os';
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
@@ -163,9 +163,9 @@ async function start() {
       }
 
       if ((options.open || options.o) && platform() === 'darwin') {
-        execSync('open ' + result.localPath + '/index.html');
+        execFileSync('open', [path.join(result.localPath, 'index.html')]);
       } else if ((options.open || options.o) && platform() === 'linux') {
-        execSync('xdg-open ' + result.localPath + '/index.html');
+        execFileSync('xdg-open', [path.join(result.localPath, 'index.html')]);
       }
 
       // If one of the URLs is marked as a failure in Browsertime
