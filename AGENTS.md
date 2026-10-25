@@ -122,6 +122,7 @@ The Docker image is the primary deployment for the majority of sitespeed.io user
 - **Logging via `@sitespeed.io/log`.** `getLogger('sitespeedio.<plugin>')` everywhere. Don't `console.log`.
 - **No comments unless the WHY is non-obvious.** Self-documenting code preferred. Existing inline comments often record a platform quirk or historical bug — don't remove them.
 - **`lib/support/objectPath.js` replaces `lodash.get/set`.** Use it; don't reintroduce lodash.
+- **yargs `choices` and `coerce` don't reach dotted options.** Both only walk top-level argv keys: `choices` on `browsertime.browser`, `browsertime.connectivity.engine` and the rest only shows up in `--help`, and a `coerce` changes the `-b`/`--browser` aliases but leaves the nested `browsertime.browser` that browsertime reads. Normalise nested values in a before-validation `.middleware` in `lib/cli/cli.js` and check them in `lib/cli/validate.js` — the browser name gets both since [#3819](https://github.com/sitespeedio/sitespeed.io/issues/3819) (`-b Chrome` now works, a typo gets a clear error).
 
 ## Commits & changelog
 
