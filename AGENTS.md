@@ -42,6 +42,7 @@ Responsibility for code produced by an LLM rests with the company that built and
 - **`waterfall-tools` for HAR rendering.** The HTML report's waterfall is the in-tree waterfall-tools bundle, rebuilt by `tools/buildWaterfallTools.js` and stored under `lib/plugins/html/assets/`. Driven by `npm run build:waterfall-tools` when the dependency bumps.
 - **`@tgwf/co2` for sustainability.** The `sustainable` plugin uses it to estimate carbon emissions per page.
 - **CLI is yargs-based, modular.** `lib/cli/cli.js` aggregates per-area option modules from `lib/cli/options/` (one file per browser, one per output destination, one per concern). Adding a new option goes in the matching file there.
+- **A boolean alias can swallow repeated values of another option.** yargs-parser decides "boolean or collect duplicates" from the LAST key segment, so `--scriptInput.visualElements` repeated kept only the final value because the boolean `--visualElements` alias shares the segment `visualElements`. Options meant to repeat get `type: 'array'` plus `nargs: 1` (plain `type: 'array'` is greedy and eats the URL that follows) — [#4458](https://github.com/sitespeedio/sitespeed.io/issues/4458).
 - **Help has topics.** `lib/cli/helpTopics.js` partitions `--help` output by topic — match the browsertime pattern when adding new option groups.
 
 ## File layout
