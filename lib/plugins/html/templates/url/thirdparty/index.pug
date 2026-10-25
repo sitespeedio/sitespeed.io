@@ -2,7 +2,7 @@ include ../../_tableMixins
 include ../includes/_quicklinks
 include ../includes/_compositionDonuts
 
-if pageInfo.data.coach
+if pageInfo.data.pagexray
     - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
     - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run;
     - const tpHasCategories = thirdparty.category && Object.keys(thirdparty.category).length > 0
@@ -23,10 +23,15 @@ if pageInfo.data.coach
     a#third-party-categories
     h2 Third party
 
-    - const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion;
+    //- The version comes from the coach plugin, which can be removed
+    - const coachData = pageInfo.data.coach ? pageInfo.data.coach.run || pageInfo.data.coach.pageSummary : undefined;
+    - const thirdPartyWebVersion = coachData ? coachData.thirdPartyWebVersion : undefined;
     p Third party requests categorised by&nbsp;
         a(href='https://github.com/patrickhulce/third-party-web') Third party web
-        | &nbsp;version #{thirdPartyWebVersion}.
+        if thirdPartyWebVersion
+            | &nbsp;version #{thirdPartyWebVersion}.
+        else
+            | .
 
     //- Headline KPIs: total third-party requests, categories, tools and
     //- third-party cookies, so users can scan the size of the third-party
