@@ -57,3 +57,20 @@ test(`CLI should silently ignore the removed summary boxes options`, async t => 
     'Should not validate the removed summary boxes options'
   );
 });
+
+test(`CLI should reject an unknown connectivity engine`, async t => {
+  let stderr = '';
+  let exitCode = 0;
+  try {
+    await runSitespeed([
+      '--browsertime.connectivity.engine',
+      'tc',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+    exitCode = error.code;
+  }
+  t.not(exitCode, 0, 'Should exit with error code');
+  t.true(stderr.includes('Unknown connectivity engine "tc"'));
+});
