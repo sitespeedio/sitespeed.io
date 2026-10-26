@@ -37,7 +37,7 @@ Looking for a significant change helps. This is the graph for the same metric wh
 {: .img-thumbnail}
 
 ## Prerequisites
-To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python -m pip install scipy`.  If you use our Docker containers this is already installed.
+To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python3 -m pip install scipy`.  If you use our Docker containers this is already installed. sitespeed.io runs `python3` (`python` on Windows). If your Python has another name or path, set it with the `PYTHON` environment variable, for example `PYTHON=/usr/local/bin/python3.12 sitespeed.io ...`.
 
 ## Save the baseline (save the world)
 By default, tests run against a baseline test and look for regressions in the new test. That means that for your test to work you need to collect a baseline. You do that by adding `--compare.saveBaseline` to your test. You also need to give your test a unique id, which you do by adding `--compare.id myId`. Adding those to your test will store the baseline on disk. By default that file is stored in your current directory. You can change that by adding `--compare.baselinePath` to set the path. That is useful in Docker if you want the file to be stored outside the container.
