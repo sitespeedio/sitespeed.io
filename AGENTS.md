@@ -150,6 +150,7 @@ Concerns that have historically diverged across plugins and should be checked to
 - **Notification backends** (`slack`, `matrix`) — both read the budget-result message. When adding a new notification destination, check both for what shape they read.
 - **Time-series backends** (`graphite`, the standalone InfluxDB plugin since [#4451](https://github.com/sitespeedio/sitespeed.io/pull/4451)) — share the metric-name flattening logic. Renaming a metric in one without the other diverges historical dashboards.
 - **Test data destinations** — the `axe`, `coach`, `sustainable`, `crux` plugins all attach blocks to the `pages[]` JSON. Keep nesting depth and key naming consistent with existing blocks; the HTML report assumes that shape.
+- **Latest metadata waits for Compare.** `lateststorer` collects first-iteration metadata on `browsertime.run` but writes the JSON on `sitespeedio.prepareToRender`: Compare emits its per-URL baseline timestamp during `sitespeedio.summarize`. Upload plugins read the latest files on `html.finished`, after that write. Read the timestamp from `compare.pageSummary`, since `--compare.saveBaseline` may already have replaced the baseline file.
 
 ## High-risk areas (request verification before modifying unless explicitly instructed)
 
