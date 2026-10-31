@@ -17,34 +17,17 @@ permissions:
   id-token: write
 
 jobs:
-  docker:
+  prepare:
     runs-on: ubuntu-24.04
+    outputs:
+      SITESPEED_VERSION: ${{ steps.extract_version.outputs.SITESPEED_VERSION }}
+      SITESPEED_MAJOR_VERSION: ${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}
     steps:
       -
         name: Harden Runner
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-      -
-          name: Checkout
-          uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # v4
-        with:
-          image: tonistiigi/binfmt:qemu-v9.2.2
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
-      -
-        name: Install cosign
-        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Extract version
         id: extract_version
         run: |
@@ -59,14 +42,44 @@ jobs:
 
             echo "SITESPEED_VERSION=$VERSION" >> $GITHUB_OUTPUT
             echo "SITESPEED_MAJOR_VERSION=$MAJOR_VERSION" >> $GITHUB_OUTPUT
+
+  # Each platform builds on a native runner and pushes by digest. The publish job adds the tags.
+  docker:
+    name: Build ${{ matrix.arch.platform }}
+    needs: prepare
+    runs-on: ${{ matrix.arch.runner }}
+    strategy:
+      matrix:
+        arch:
+          - { platform: amd64, runner: ubuntu-24.04 }
+          - { platform: arm64, runner: ubuntu-24.04-arm }
+    env:
+      SITESPEED_VERSION: ${{ needs.prepare.outputs.SITESPEED_VERSION }}
+    steps:
+      -
+        name: Harden Runner
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      -
+          name: Checkout
+          uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push sitespeed.io
         id: build_full
         uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
+          platforms: linux/${{ matrix.arch.platform }}
           # mode=max embeds the full build graph (every step, every input
           # digest) in the SLSA provenance attestation. sbom: true attaches a
           # SPDX SBOM as a separate attestation. Both ship to Docker Hub as
@@ -74,57 +87,102 @@ jobs:
           # `docker buildx imagetools inspect --format '{{ json . }}'`.
           provenance: mode=max
           sbom: true
-          tags: |
-            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}
-            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}
-            sitespeedio/sitespeed.io:latest
-      -
-        name: Sign sitespeed.io with cosign
-        # cosign signs the digest; every tag that points at the digest
-        # (the version, the major, and :latest) is implicitly covered.
-        # Keyless: the workflow's OIDC token is exchanged for a short-lived
-        # Sigstore cert tied to this repo+workflow+ref. Users verify with
-        # `cosign verify --certificate-identity-regexp '...' --certificate-oidc-issuer https://token.actions.githubusercontent.com`.
-        env:
-          DIGEST: ${{ steps.build_full.outputs.digest }}
-        run: cosign sign --yes "sitespeedio/sitespeed.io@${DIGEST}"
+          outputs: type=image,name=sitespeedio/sitespeed.io,push-by-digest=true,name-canonical=true,push=true
       -
         name: Build and push sitespeed.io+1
         id: build_plus1
         uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/${{ matrix.arch.platform }}
           file: ./docker/Dockerfile-plus1
-          build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
-          push: true
+          build-args: version=${{ env.SITESPEED_VERSION }}
+          # The version tag does not exist yet, so use the image from the step before
+          build-contexts: sitespeedio/sitespeed.io:${{ env.SITESPEED_VERSION }}=docker-image://sitespeedio/sitespeed.io@${{ steps.build_full.outputs.digest }}
           provenance: mode=max
           sbom: true
-          tags: |
-            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-plus1
-            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-plus1
-      -
-        name: Sign sitespeed.io+1 with cosign
-        env:
-          DIGEST: ${{ steps.build_plus1.outputs.digest }}
-        run: cosign sign --yes "sitespeedio/sitespeed.io@${DIGEST}"
+          outputs: type=image,name=sitespeedio/sitespeed.io,push-by-digest=true,name-canonical=true,push=true
       -
         name: Build and push sitespeed.io-slim
         id: build_slim
         uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/${{ matrix.arch.platform }}
           file: ./Dockerfile-slim
-          build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
-          push: true
+          build-args: version=${{ env.SITESPEED_VERSION }}
           provenance: mode=max
           sbom: true
-          tags: |
-            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-slim
-            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-slim
+          outputs: type=image,name=sitespeedio/sitespeed.io,push-by-digest=true,name-canonical=true,push=true
       -
-        name: Sign sitespeed.io-slim with cosign
+        name: Save the digests
         env:
-          DIGEST: ${{ steps.build_slim.outputs.digest }}
-        run: cosign sign --yes "sitespeedio/sitespeed.io@${DIGEST}"
+          FULL_DIGEST: ${{ steps.build_full.outputs.digest }}
+          PLUS1_DIGEST: ${{ steps.build_plus1.outputs.digest }}
+          SLIM_DIGEST: ${{ steps.build_slim.outputs.digest }}
+        run: |
+          mkdir digests
+          echo "$FULL_DIGEST" > digests/full
+          echo "$PLUS1_DIGEST" > digests/plus1
+          echo "$SLIM_DIGEST" > digests/slim
+      -
+        name: Upload the digests
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: digests-${{ matrix.arch.platform }}
+          path: digests
+
+  publish:
+    needs: [prepare, docker]
+    runs-on: ubuntu-24.04
+    env:
+      SITESPEED_VERSION: ${{ needs.prepare.outputs.SITESPEED_VERSION }}
+      SITESPEED_MAJOR_VERSION: ${{ needs.prepare.outputs.SITESPEED_MAJOR_VERSION }}
+    steps:
+      -
+        name: Harden Runner
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
+      -
+        name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Download the digests
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          pattern: digests-*
+          path: digests
+      -
+        name: Tag and sign the multi-platform images
+        # cosign signs the digest; every tag that points at the digest
+        # (the version, the major, and :latest) is implicitly covered.
+        # Keyless: the workflow's OIDC token is exchanged for a short-lived
+        # Sigstore cert tied to this repo+workflow+ref. Users verify with
+        # `cosign verify --certificate-identity-regexp '...' --certificate-oidc-issuer https://token.actions.githubusercontent.com`.
+        run: |
+          publish() {
+            local image=$1
+            shift
+            local sources tags=()
+            mapfile -t sources < <(sed 's|^|sitespeedio/sitespeed.io@|' digests/*/"$image")
+            for tag in "$@"; do
+              tags+=(-t "sitespeedio/sitespeed.io:$tag")
+            done
+            docker buildx imagetools create "${tags[@]}" "${sources[@]}"
+            local digest
+            digest=$(docker buildx imagetools inspect "sitespeedio/sitespeed.io:$1" --format '{{.Manifest.Digest}}')
+            cosign sign --yes "sitespeedio/sitespeed.io@${digest}"
+          }
+          publish full "$SITESPEED_VERSION" "$SITESPEED_MAJOR_VERSION" latest
+          publish plus1 "$SITESPEED_VERSION-plus1" "$SITESPEED_MAJOR_VERSION-plus1"
+          publish slim "$SITESPEED_VERSION-slim" "$SITESPEED_MAJOR_VERSION-slim"
