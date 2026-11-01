@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-156.0-firefox-159.0-edge-156.0
+FROM sitespeedio/webbrowsers:chrome-156.0-firefox-159.0-edge-156.0-20261031
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -16,7 +16,6 @@ RUN sudo apt-get update && \
     sudo apt-get install -y --no-install-recommends \
         libnss3-tools \
         net-tools \
-        build-essential \
         iproute2 && \
     sudo rm -rf /var/lib/apt/lists/* && \
     mkdir -p $HOME/.pki/nssdb && \
