@@ -112,6 +112,7 @@ The Docker image is the primary deployment for the majority of sitespeed.io user
   - Always `--no-install-recommends` on `apt-get install` and `rm -rf /var/lib/apt/lists/*` afterwards in the SAME `RUN`. Cleanup in a later `RUN` leaves the deleted bytes in the earlier layer.
   - Fold post-install removals (e.g. `selenium-webdriver/bin`) into the `npm ci` `RUN` for the same reason.
 - **Base-image bumps come from upstream.** Browser version bumps land in `sitespeedio/docker-webbrowsers` first, then a PR here references the new tag. Don't try to install browsers inline.
+- **The throttle sudoers rule lists subcommands, not binaries.** `start.sh` runs sitespeed.io as the owner of the mounted folder, and `/etc/sudoers.d/tc` lets that user run only `tc qdisc|filter`, `ip link` and a bare `ip route` as root. Allowing all of `ip` or `tc` gave root to any process in the container (`ip -batch /etc/shadow` reads files, `ip netns exec` gives a shell with `--privileged`). If throttle starts to use a new `tc`/`ip` subcommand, add exactly that one to both Dockerfiles.
 
 ## Coding conventions
 
