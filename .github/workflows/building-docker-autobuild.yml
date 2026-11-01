@@ -8,8 +8,15 @@ on:
   # push-based workflows on its own.
   workflow_dispatch:
 jobs:
+  # Each platform builds on a native runner and pushes by digest. The publish job adds the tag.
   docker:
-    runs-on: ubuntu-24.04
+    name: Build ${{ matrix.arch.platform }}
+    runs-on: ${{ matrix.arch.runner }}
+    strategy:
+      matrix:
+        arch:
+          - { platform: amd64, runner: ubuntu-24.04 }
+          - { platform: arm64, runner: ubuntu-24.04-arm }
     # On workflow_dispatch the head_commit object is null, so the docs: skip
     # heuristic only applies to real pushes.
     if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'docs:') }}
@@ -19,9 +26,6 @@ jobs:
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # v4
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
@@ -33,9 +37,52 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push sitespeed.io
+        id: build
         uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
         with:
-          platforms: linux/amd64
-          push: true
+          platforms: linux/${{ matrix.arch.platform }}
           provenance: false
-          tags: sitespeedio/sitespeed.io-autobuild:main
+          outputs: type=image,name=sitespeedio/sitespeed.io-autobuild,push-by-digest=true,name-canonical=true,push=true
+      -
+        name: Save the digest
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          mkdir digests
+          echo "$DIGEST" > digests/autobuild
+      -
+        name: Upload the digest
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: digests-${{ matrix.arch.platform }}
+          path: digests
+
+  publish:
+    needs: docker
+    runs-on: ubuntu-24.04
+    steps:
+      -
+        name: Harden Runner
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Download the digests
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          pattern: digests-*
+          path: digests
+      -
+        name: Tag the multi-platform image
+        run: |
+          mapfile -t sources < <(sed 's|^|sitespeedio/sitespeed.io-autobuild@|' digests/*/autobuild)
+          docker buildx imagetools create -t sitespeedio/sitespeed.io-autobuild:main "${sources[@]}"
