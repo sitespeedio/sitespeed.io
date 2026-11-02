@@ -47,7 +47,10 @@ ADD docker/adb/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
 # Allow all users to run commands needed by sitespeedio/throttle via sudo
 # See https://github.com/sitespeedio/throttle/blob/main/lib/tc.js
-RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/sudoers.d/tc
+# Allow only the subcommands that throttle uses. With all of tc or ip, a user
+# can read all files as root ("ip -batch FILE") or start a root shell
+# ("ip netns exec").
+RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc qdisc *, /usr/sbin/tc filter *, /usr/sbin/ip link *, /usr/sbin/ip route, /usr/sbin/route' > /etc/sudoers.d/tc
 
 ENTRYPOINT ["/start.sh"]
 VOLUME /sitespeed.io
