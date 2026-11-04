@@ -128,6 +128,14 @@ jobs:
           npm sbom --sbom-format=spdx > sbom.spdx.json
           npm sbom --sbom-format=cyclonedx > sbom.cdx.json
 
+      # npm never publishes package-lock.json. npm 11 and older install the
+      # exact dependency tree from a published npm-shrinkwrap.json (npm 12
+      # ignores it). Copy the lockfile after the commit steps, so that the
+      # copy is published but not committed. npm 12 does not pack the copy,
+      # so this step only works while the release runs npm 11.
+      - name: Publish the lockfile as npm-shrinkwrap.json
+        run: cp package-lock.json npm-shrinkwrap.json
+
       - name: Publish to npm with provenance
         run: npm publish --provenance --access public
 
