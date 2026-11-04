@@ -65,7 +65,6 @@
   "allowScripts": {
     "@parcel/watcher": false,
     "@serialport/bindings-cpp": false,
-    "core-js": false,
     "cpu-features": false,
     "esbuild": false,
     "fsevents": false,
@@ -112,6 +111,9 @@
   },
   "overrides": {
     "whatwg-url": "^14.0.0",
-    "form-data@2.5.2": "2.5.5"
+    "form-data@2.5.2": "2.5.5",
+    "pug-lint": {
+      "pug-attrs": "3.0.0"
+    }
   }
 }
