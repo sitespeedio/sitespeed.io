@@ -24,8 +24,9 @@ RUN apt-get update && \
 # Install sitespeed.io
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN CHROMEDRIVER_SKIP_DOWNLOAD=true EDGEDRIVER_SKIP_DOWNLOAD=true \
-    npm ci --omit=dev --omit=optional && \
+# The driver packages have no install script. The slim image only has Firefox, so install only Geckodriver.
+RUN npm ci --omit=dev --omit=optional && \
+    node node_modules/@sitespeed.io/geckodriver/install.js && \
     npm cache clean --force && \
     rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
