@@ -40,6 +40,21 @@ That will output the data from the run in the current directory. You can read mo
 
 Requires additional software like FFmpeg and Python dependencies.
 
+### Pin the versions of all dependencies
+sitespeed.io pins its own dependencies to exact versions, but the dependencies of those dependencies can resolve to newer versions within their ranges. With npm 11 and older, `npm install sitespeed.io` installs the exact dependency tree that we tested, from the `npm-shrinkwrap.json` in the package. npm 12 ignores that file, so with npm 12 you get the newest matching versions.
+
+If you need the same versions on every run, use our Docker containers. They are built from our lockfile. If you install with npm, install sitespeed.io in its own project:
+
+~~~bash
+mkdir sitespeed && cd sitespeed
+npm init -y
+npm install --save-exact sitespeed.io
+~~~
+
+Commit `package.json` and `package-lock.json`, install with `npm ci` and run with `npx sitespeed.io https://www.sitespeed.io`. Your lockfile then pins the versions that were the newest when you installed, not the versions that we tested.
+
+To not install dependency versions that were published in the last days, set `min-release-age` in your `.npmrc` (npm 11.10 or later). For example `min-release-age=7` skips versions that are newer than seven days.
+
 ### Installation steps for Apple Mac M1
 
 Install on a fresh Apple Mac M1:
