@@ -303,13 +303,11 @@ Packets will be written when the buffer is flushed. If you want to force packets
 ## WebDriver
 We use the WebDriver to drive the browser. We use [Chromedriver](https://developer.chrome.com/docs/chromedriver) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
 
-When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safaridriver. For Chrome, the ChromeDriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, upcoming developer versions, or on Android where that version hasn't been released yet.
+Browsertime downloads the latest released driver for Chrome, Edge and Firefox the first time a test needs it. Our Docker images already have the drivers installed. Safari comes bundled with Safaridriver. For Chrome, the ChromeDriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, upcoming developer versions, or on Android where that version hasn't been released yet.
 
-You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable: ```CHROMEDRIVER_VERSION=148.0.7355.0 npm install```
+You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install with an environment variable when you run the install script: ```CHROMEDRIVER_VERSION=148.0.7355.0 node node_modules/@sitespeed.io/chromedriver/install.js```
 
-You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
-
-If you don't want to install the drivers you can skip them with `CHROMEDRIVER_SKIP_DOWNLOAD=true`, `GECKODRIVER_SKIP_DOWNLOAD=true` and `EDGEDRIVER_SKIP_DOWNLOAD=true`.
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`. See [installation](/documentation/sitespeed.io/installation/) for how to install the drivers in advance.
 
 ## Navigation and how we run the test
 

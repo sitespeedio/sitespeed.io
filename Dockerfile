@@ -31,7 +31,14 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
+# The driver packages have no install script. Install the drivers now, so that a test does not download them.
+# On ARM64, Chromedriver is in the base image and Edge is not available.
 RUN npm ci --omit=dev && \
+    node node_modules/@sitespeed.io/geckodriver/install.js && \
+    if [ "$(uname -m)" = "x86_64" ]; then \
+      node node_modules/@sitespeed.io/chromedriver/install.js && \
+      node node_modules/@sitespeed.io/edgedriver/install.js; \
+    fi && \
     npm cache clean --force && \
     rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 

@@ -234,32 +234,24 @@ On your Mac, use "VNC Viewer" and use *raspberrypi.local* as the hostname. You w
 sitespeed.io https://www.sitespeed.io --android -n 1 --video --visualMetrics
 ~~~
 
-### Skip installing ChromeDriver/GeckoDriver/EdgeDriver
-If you don't want to install ChromeDriver, EdgeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
+### ChromeDriver/GeckoDriver/EdgeDriver
+Installing sitespeed.io does not download ChromeDriver, EdgeDriver or GeckoDriver. Browsertime downloads the driver the first time a test needs it, into the `vendor` folder of the driver package in `node_modules`. The machine that runs the test must then be able to reach the download host and write to `node_modules`.
 
-Skip installing ChromeDriver:
-
-~~~bash
-CHROMEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
-~~~
-
-Skip installing GeckoDriver:
+If you build your own Docker or CI image, or the test machine has no internet access, install the drivers after `npm install`:
 
 ~~~bash
-GECKODRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
+node node_modules/@sitespeed.io/chromedriver/install.js
+node node_modules/@sitespeed.io/geckodriver/install.js
+node node_modules/@sitespeed.io/edgedriver/install.js
 ~~~
 
-Skip installing EdgeDriver:
-
-~~~bash
-EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
-~~~
+For a global install, run the scripts from the `node_modules` folder of the global install (`npm root -g`).
 
 ### Updating ChromeDriver/GeckoDriver/EdgeDriver
 
 When using Docker, the browser and driver are bundled with the correct versions. If you install everything yourself, you may need to update driver versions.
 
-You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable:
-```CHROMEDRIVER_VERSION=131.0.6778.85 npm install ```
+You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install with an environment variable when you run the install script:
+```CHROMEDRIVER_VERSION=131.0.6778.85 node node_modules/@sitespeed.io/chromedriver/install.js```
 
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.

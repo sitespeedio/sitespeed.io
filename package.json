@@ -62,6 +62,17 @@
   "engines": {
     "node": ">=22.0.0"
   },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "@serialport/bindings-cpp": false,
+    "core-js": false,
+    "cpu-features": false,
+    "esbuild": false,
+    "fsevents": false,
+    "node-hid": false,
+    "ssh2": false,
+    "usb": false
+  },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "ava": "6.4.1",
@@ -90,7 +101,7 @@
     "@slack/webhook": "7.0.6",
     "@tgwf/co2": "0.19.0",
     "axe-core": "4.11.4",
-    "browsertime": "28.5.0",
+    "browsertime": "29.0.0",
     "coach-core": "9.2.1",
     "fast-stats": "0.0.7",
     "import-global": "1.1.1",
