@@ -44,6 +44,7 @@ Responsibility for code produced by an LLM rests with the company that built and
 - **`@tgwf/co2` for sustainability.** The `sustainable` plugin uses it to estimate carbon emissions per page.
 - **CLI is yargs-based, modular.** `lib/cli/cli.js` aggregates per-area option modules from `lib/cli/options/` (one file per browser, one per output destination, one per concern). Adding a new option goes in the matching file there.
 - **A boolean alias can swallow repeated values of another option.** yargs-parser decides "boolean or collect duplicates" from the LAST key segment, so `--scriptInput.visualElements` repeated kept only the final value because the boolean `--visualElements` alias shares the segment `visualElements`. Options meant to repeat get `type: 'array'` plus `nargs: 1` (plain `type: 'array'` is greedy and eats the URL that follows) — [#4458](https://github.com/sitespeedio/sitespeed.io/issues/4458).
+- **`argv.android` is always truthy.** The `android.enabled` alias makes yargs always create `argv.android = { enabled: false }`, so `if (argv.android)` is true on every desktop run. Check `argv.browsertime.android.enabled` instead. The old check in `validate.js` rejected every `--debug` run as "Debug mode do not work on Android". `cli.js` (Firefox nightly/beta package) and `lateststorer` still use the bare check.
 - **Help has topics.** `lib/cli/helpTopics.js` partitions `--help` output by topic — match the browsertime pattern when adding new option groups.
 
 ## File layout
