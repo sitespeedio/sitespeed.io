@@ -74,3 +74,35 @@ test(`CLI should reject an unknown connectivity engine`, async t => {
   t.not(exitCode, 0, 'Should exit with error code');
   t.true(stderr.includes('Unknown connectivity engine "tc"'));
 });
+
+test(`CLI should reject debug mode on Android`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed(['--debug', '--android', 'https://www.sitespeed.io']);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('Debug mode do not work on Android'));
+});
+
+test.serial(
+  `CLI should accept debug mode on desktop and raise the timeouts`,
+  async t => {
+    const argv = process.argv;
+    process.argv = [
+      'node',
+      'sitespeed.js',
+      '--debug',
+      'https://www.sitespeed.io'
+    ];
+    try {
+      const { parseCommandLine } = await import('../lib/cli/cli.js');
+      const { options } = await parseCommandLine();
+      t.is(options.browsertime.timeouts.pageLoad, 2_147_483_647);
+      t.is(options.browsertime.timeouts.script, 2_147_483_647);
+      t.is(options.browsertime.timeouts.pageCompleteCheck, 2_147_483_647);
+    } finally {
+      process.argv = argv;
+    }
+  }
+);
