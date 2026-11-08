@@ -82,6 +82,7 @@ script(type='text/javascript').
     };
     const filterEl = document.getElementById('wt-req-filter');
     const filterCountEl = document.getElementById('wt-req-filter-count');
+    const regexEl = document.getElementById('wt-req-regex');
     let currentPageId = initialPageId;
     // waterfall-tools `reqFilter` accepts a comma-separated list of 1-based
     // request indices (within the active page), not a URL substring. To make
@@ -91,21 +92,40 @@ script(type='text/javascript').
     // Substring with zero matches → '0' → renderer filters everything out
     // (1-based indices never include 0), which is what the user asked for.
     const resolveReqFilter = query => {
-      const q = (query || '').trim().toLowerCase();
+      const q = (query || '').trim();
       if (!q) return { value: '', count: null, total: null };
+
       const pageEntries = ((har.log && har.log.entries) || [])
         .filter(e => e.pageref === currentPageId);
+
+      let regex = null;
+      if (regexEl && regexEl.checked) {
+        try {
+          regex = new RegExp(q, 'i');
+        } catch (e) {
+          // Invalid or incomplete regex: fall back to literal matching.
+        }
+      }
+
+      const literalQuery = q.toLowerCase();
       const matched = [];
+
       pageEntries.forEach((e, i) => {
-        const url = ((e.request && e.request.url) || e._URL || '').toLowerCase();
-        if (url.includes(q)) matched.push(i + 1);
+        const url = (e.request && e.request.url) || e._URL || '';
+        const matches = regex
+          ? regex.test(url)
+          : url.toLowerCase().includes(literalQuery);
+
+        if (matches) matched.push(i + 1);
       });
+
       return {
         value: matched.length === 0 ? '0' : matched.join(','),
         count: matched.length,
         total: pageEntries.length
       };
     };
+
     const updateFilterCount = info => {
       if (!filterCountEl) return;
       if (info.count === null) {
@@ -753,6 +773,14 @@ script(type='text/javascript').
           renderer.updateOptions({ reqFilter: info.value });
           updateFilterCount(info);
         }, 120);
+      });
+    }
+
+    if (regexEl) {
+      regexEl.addEventListener('change', () => {
+        const info = resolveReqFilter(filterEl ? filterEl.value : '');
+        renderer.updateOptions({ reqFilter: info.value });
+        updateFilterCount(info);
       });
     }
 
