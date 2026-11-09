@@ -37,6 +37,9 @@ if (options.html.showAllWaterfallSummary === true)
 
     .waterfall-filter
       input.pages-filter(type='search', id='wt-req-filter', placeholder='Filter requests by URL…', aria-label='Filter requests by URL')
+      label(title='Interpret the filter as a regular expression')
+        input(type='checkbox', id='wt-req-regex')
+        span Regex filter
       span.pages-filter-count#wt-req-filter-count(hidden)
 
     //- Shown by the onZoom callback in _waterfallRender.pug once a
