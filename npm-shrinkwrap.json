@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.6",
         "@tgwf/co2": "0.19.0",
         "axe-core": "4.11.4",
-        "browsertime": "29.0.0",
+        "browsertime": "29.1.0",
         "coach-core": "9.2.1",
         "fast-stats": "0.0.7",
         "import-global": "1.1.1",
@@ -947,50 +947,6 @@
       "funding": {
         "type": "github",
         "url": "https://github.com/sponsors/Borewit"
-      }
-    },
-    "node_modules/@devicefarmer/adbkit": {
-      "version": "3.3.8",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-3.3.8.tgz",
-      "integrity": "sha512-7rBLLzWQnBwutH2WZ0EWUkQdihqrnLYCUMaB44hSol9e0/cdIhuNFcqZO0xNheAU6qqHVA8sMiLofkYTgb+lmw==",
-      "dependencies": {
-        "@devicefarmer/adbkit-logcat": "^2.1.2",
-        "@devicefarmer/adbkit-monkey": "~1.2.1",
-        "bluebird": "~3.7",
-        "commander": "^9.1.0",
-        "debug": "~4.3.1",
-        "node-forge": "^1.3.1",
-        "split": "~1.0.1"
-      },
-      "bin": {
-        "adbkit": "bin/adbkit"
-      },
-      "engines": {
-        "node": ">= 0.10.4"
-      }
-    },
-    "node_modules/@devicefarmer/adbkit-logcat": {
-      "version": "2.1.3",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-logcat/-/adbkit-logcat-2.1.3.tgz",
-      "integrity": "sha512-yeaGFjNBc/6+svbDeul1tNHtNChw6h8pSHAt5D+JsedUrMTN7tla7B15WLDyekxsuS2XlZHRxpuC6m92wiwCNw==",
-      "engines": {
-        "node": ">= 4"
-      }
-    },
-    "node_modules/@devicefarmer/adbkit-monkey": {
-      "version": "1.2.1",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-monkey/-/adbkit-monkey-1.2.1.tgz",
-      "integrity": "sha512-ZzZY/b66W2Jd6NHbAhLyDWOEIBWC11VizGFk7Wx7M61JZRz7HR9Cq5P+65RKWUU7u6wgsE8Lmh9nE4Mz+U2eTg==",
-      "engines": {
-        "node": ">= 0.10.4"
-      }
-    },
-    "node_modules/@devicefarmer/adbkit/node_modules/commander": {
-      "version": "9.5.0",
-      "resolved": "https://registry.npmjs.org/commander/-/commander-9.5.0.tgz",
-      "integrity": "sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==",
-      "engines": {
-        "node": "^12.20.0 || >=14"
       }
     },
     "node_modules/@esbuild/aix-ppc64": {
@@ -4909,11 +4865,6 @@
         "file-uri-to-path": "1.0.0"
       }
     },
-    "node_modules/bluebird": {
-      "version": "3.7.2",
-      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz",
-      "integrity": "sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg=="
-    },
     "node_modules/blueimp-md5": {
       "version": "2.19.0",
       "resolved": "https://registry.npmjs.org/blueimp-md5/-/blueimp-md5-2.19.0.tgz",
@@ -4999,12 +4950,11 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "29.0.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-29.0.0.tgz",
-      "integrity": "sha512-tHuyCZEy1Xgouf5oUswJwNXdEXnH/rZibgndaCJIqFIZxKC1BiFiJ1hn13FTFbB9MtacHTjn2ytCfm7KW7SkVA==",
+      "version": "29.1.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-29.1.0.tgz",
+      "integrity": "sha512-vn6+846rWDLyNygwgXmDJ3V+wJyJLGPL60Bjdb3c5HehqwrqBEV71fAplehou1TBtbrt/XlnfpHOy1XRZ8XTpQ==",
       "license": "Apache-2.0",
       "dependencies": {
-        "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "156.0.8079",
         "@sitespeed.io/edgedriver": "156.0.4315",
         "@sitespeed.io/geckodriver": "0.37.2",
@@ -8057,14 +8007,6 @@
         }
       }
     },
-    "node_modules/node-forge": {
-      "version": "1.3.1",
-      "resolved": "https://registry.npmjs.org/node-forge/-/node-forge-1.3.1.tgz",
-      "integrity": "sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==",
-      "engines": {
-        "node": ">= 6.13.0"
-      }
-    },
     "node_modules/node-gyp-build": {
       "version": "4.8.0",
       "resolved": "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.0.tgz",
@@ -9580,17 +9522,6 @@
         "spdx-ranges": "^2.0.0"
       }
     },
-    "node_modules/split": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/split/-/split-1.0.1.tgz",
-      "integrity": "sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==",
-      "dependencies": {
-        "through": "2"
-      },
-      "engines": {
-        "node": "*"
-      }
-    },
     "node_modules/sprintf-js": {
       "version": "1.0.3",
       "resolved": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz",
@@ -9956,11 +9887,6 @@
       "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.29.2.tgz",
       "integrity": "sha512-fegtha91tq2DHphyoiBXVHjVi2YG9zFaRnboT9C28tO1en9Y3wJsfspuy40F+u5wl3hHVbw7cnd1b67kEGHb8g==",
       "license": "MIT"
-    },
-    "node_modules/through": {
-      "version": "2.3.8",
-      "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz",
-      "integrity": "sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg=="
     },
     "node_modules/time-zone": {
       "version": "1.0.0",
