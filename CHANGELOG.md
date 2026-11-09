@@ -1,6 +1,22 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Added
+* You can send Grafana and Graphite annotations without `--resultBaseURL`. Set `--graphite.annotationTitle` or `--graphite.annotationMessage` (or the `--grafana.*` versions) and the annotation is sent without links to the result. Use it when you keep the HTML report somewhere else, for example as a CI artifact [#4922](https://github.com/sitespeedio/sitespeed.io/pull/4922).
+
+### Fixed
+* The compare plugin crashed with "currentMetric.getValues is not a function" when a plugin or script added extra metrics. Extra metrics are now compared in their own group, and extras that are not numbers (like the axe result) are skipped [#4914](https://github.com/sitespeedio/sitespeed.io/pull/4914).
+* The compare plugin started `python`, which does not exist on most macOS and Linux installs. The statistics failed, and the run finished with an empty Compare tab. It now starts `python3` (`python` on Windows). You can still choose with the `PYTHON` environment variable. The Docker containers were not affected [#4915](https://github.com/sitespeedio/sitespeed.io/pull/4915).
+* `--plugins.add` with comma-separated plugins did not register the options of the plugins, so a plugin like InfluxDB failed with a missing required option. Repeating `--plugins.add` already worked [#4916](https://github.com/sitespeedio/sitespeed.io/pull/4916).
+* With `--s3.path` or `--gcs.path`, the links in annotations, Slack and Matrix pointed to the default folder instead of the folder you uploaded to [#4917](https://github.com/sitespeedio/sitespeed.io/pull/4917).
+* The Third party tab was empty when you removed the coach plugin. The tab only needs the coach for the Third party web version [#4918](https://github.com/sitespeedio/sitespeed.io/pull/4918).
+* When you repeated `--scriptInput.visualElements` to measure several elements, only the last element was used [#4919](https://github.com/sitespeedio/sitespeed.io/pull/4919).
+* A network error or a response that was not JSON from the CrUx API stopped the run. Now it is logged as a CrUx error and the test continues [#4920](https://github.com/sitespeedio/sitespeed.io/pull/4920).
+* Browser names are not case sensitive anymore, so `-b Chrome` works. A name that is not a supported browser now gives a clear error. Before, the name went to Browsertime and failed later [#4921](https://github.com/sitespeedio/sitespeed.io/pull/4921).
+* An unknown `--browsertime.connectivity.engine` value (for example `tc`) was accepted, and the test ran without throttling. Now you get an error that lists the valid engines. Thanks [Wen Castillo](https://github.com/jwcastillo) for the PR [#4924](https://github.com/sitespeedio/sitespeed.io/pull/4924).
+
 ## 42.10.0 - 2026-10-23
 
 ### Added
