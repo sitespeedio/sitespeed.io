@@ -26,6 +26,7 @@ jobs:
           content-signature-2.cdn.mozilla.net:443
           dl-ssl.google.com:443
           dl.google.com:80
+          dl.google.com:443
           download-installer.cdn.mozilla.net:443
           download.mozilla.org:443
           esm.ubuntu.com:443
