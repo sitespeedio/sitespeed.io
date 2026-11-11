@@ -68,7 +68,7 @@
 //- Coach report card + top performance fixes.
 - const psvCoach = h.get(d, 'coach.pageSummary.advice')
 - const psvCoachTiles = []
-- if (psvCoach) { if (psvCoach.score != null) psvCoachTiles.push({s: psvCoach.score, label: 'Coach overall', overall: true}); if (psvCoach.performance && psvCoach.performance.score != null) psvCoachTiles.push({s: psvCoach.performance.score, label: 'Performance'}); if (psvCoach.bestpractice && psvCoach.bestpractice.score != null) psvCoachTiles.push({s: psvCoach.bestpractice.score, label: 'Best practice'}); if (psvCoach.privacy && psvCoach.privacy.score != null) psvCoachTiles.push({s: psvCoach.privacy.score, label: 'Privacy'}) }
+- if (psvCoach) { if (psvCoach.score != null) psvCoachTiles.push({s: psvCoach.score, label: 'Coach overall', overall: true, href: '#coach'}); if (psvCoach.performance && psvCoach.performance.score != null) psvCoachTiles.push({s: psvCoach.performance.score, label: 'Performance', href: '#coach-perf'}); if (psvCoach.bestpractice && psvCoach.bestpractice.score != null) psvCoachTiles.push({s: psvCoach.bestpractice.score, label: 'Best practice', href: '#coach-bestpractice'}); if (psvCoach.privacy && psvCoach.privacy.score != null) psvCoachTiles.push({s: psvCoach.privacy.score, label: 'Privacy', href: '#coach-privacy'}) }
 - const psvAdviceList = h.get(d, 'coach.pageSummary.advice.performance.adviceList')
 //- Same selection as the Coach page's "What to fix first": imperfect
 //- advice (score < 100), worst score first, capped at 3.
@@ -145,7 +145,7 @@ if psvCoachTiles.length
     each tile in psvCoachTiles
       //- h.scoreLabel matches the Coach page's tile colours exactly:
       //- >90 green, >80 amber, else red.
-      .summary-rc(class=h.scoreLabel(tile.s) + (tile.overall ? ' is-overall' : ''))
+      a.summary-rc(class=h.scoreLabel(tile.s) + (tile.overall ? ' is-overall' : ''), href=tile.href, onclick='const coachTab = document.querySelector("#tabs #coach"); if (coachTab) selectTab(coachTab, false)')
         .summary-rc-score #{tile.s}
           small  / 100
         .summary-rc-label #{tile.label}
