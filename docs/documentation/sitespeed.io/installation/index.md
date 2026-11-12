@@ -269,4 +269,4 @@ When using Docker, the browser and driver are bundled with the correct versions.
 You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install with an environment variable when you run the install script:
 ```CHROMEDRIVER_VERSION=131.0.6778.85 node node_modules/@sitespeed.io/chromedriver/install.js```
 
-You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`. To use an Edgedriver or Geckodriver that you already have, use `--edge.edgedriverPath` or `--firefox.geckodriverPath`.

@@ -85,6 +85,42 @@ test(`CLI should reject debug mode on Android`, async t => {
   t.true(stderr.includes('Debug mode do not work on Android'));
 });
 
+test(`CLI should reject Samsung Internet without Android`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed(['-b', 'samsung', 'https://www.sitespeed.io']);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('Samsung Internet only works on Android'));
+});
+
+test.serial(
+  `CLI should run Samsung Internet on Android with the Chrome code`,
+  async t => {
+    const argv = process.argv;
+    process.argv = [
+      'node',
+      'sitespeed.js',
+      '--android',
+      '-b',
+      'samsung',
+      'https://www.sitespeed.io'
+    ];
+    try {
+      const { parseCommandLine } = await import('../lib/cli/cli.js');
+      const { options } = await parseCommandLine();
+      t.is(options.browsertime.browser, 'chrome');
+      t.is(
+        options.browsertime.chrome.android.package,
+        'com.sec.android.app.sbrowser'
+      );
+    } finally {
+      process.argv = argv;
+    }
+  }
+);
+
 test.serial(
   `CLI should accept debug mode on desktop and raise the timeouts`,
   async t => {
