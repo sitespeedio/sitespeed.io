@@ -29,7 +29,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
-COPY npm-shrinkwrap.json /usr/src/app/
+COPY package-lock.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
 # The driver packages have no install script. Install the drivers now, so that a test does not download them.
 # On ARM64, Chromedriver is in the base image and Edge is not available.
