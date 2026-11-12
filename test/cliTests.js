@@ -142,3 +142,27 @@ test.serial(
     }
   }
 );
+
+test.serial(`CLI should run Edge on Android with the Edge package`, async t => {
+  const argv = process.argv;
+  process.argv = [
+    'node',
+    'sitespeed.js',
+    '--android',
+    '-b',
+    'edge',
+    'https://www.sitespeed.io'
+  ];
+  try {
+    const { parseCommandLine } = await import('../lib/cli/cli.js');
+    const { options } = await parseCommandLine();
+    t.is(options.browsertime.browser, 'edge');
+    t.is(options.browsertime.chrome.android.package, 'com.microsoft.emmx');
+    t.is(
+      options.browsertime.chrome.android.activity,
+      'com.microsoft.ruby.Main'
+    );
+  } finally {
+    process.argv = argv;
+  }
+});
