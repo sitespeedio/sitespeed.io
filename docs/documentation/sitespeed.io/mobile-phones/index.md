@@ -173,6 +173,15 @@ sitespeed.io --android -b firefox https://www.sitespeed.io
 
 Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
 
+### Running Samsung Internet
+Samsung Internet is the second most used browser on Android. To test with it, run:
+
+```bash
+sitespeed.io --android -b samsung https://www.sitespeed.io
+```
+
+Samsung Internet is built on Chromium, so it uses ChromeDriver and the same options as Chrome. Samsung Internet starts with no data for each test, the same as Chrome. If the phone uses a dark theme, Samsung Internet shows web pages in dark mode, so turn off the dark theme on the phone first, for example with `adb shell cmd uimode night no`.
+
 
 ### Only run tests when battery temperature is below X
 You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Overheated mobile phones throttle the CPU, so it's good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
