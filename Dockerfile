@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-157.0-firefox-160.0-edge-157.0-20261111
+FROM sitespeedio/webbrowsers:chrome-157.0-firefox-160.0-edge-157.0-20261112
 
 ARG TARGETPLATFORM
 
