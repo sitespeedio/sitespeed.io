@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 23 Oct 2026 11:31:33 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 12 Nov 2026 14:47:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,41 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 43.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#43.0.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#43.0.0</guid>
+            <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- You can send Grafana and Graphite annotations without <code>--resultBaseURL</code>. Set <code>--graphite.annotationTitle</code> or <code>--graphite.annotationMessage</code> (or the <code>--grafana.*</code> versions) and the annotation is sent without links to the result. Use it when you keep the HTML report somewhere else, for example as a CI artifact #4922.<br>
+- Chrome 157, Firefox 160 and Edge 157 in the Docker container, and Node.js 26 in the full container #4927 #4945 #4947 #4951.<br>
+- Browsertime 29.1.0 #4942. Safari on iOS gets correct FCP, LCP, DOMContentLoaded and load for pages that send <code>Cross-Origin-Opener-Policy</code>. Before, these metrics were too low, so they will be higher after you upgrade. The iOS HAR now has the main document, and TTFB is no longer 0. Visual Metrics works with ffmpeg 9 and uses <code>python3</code> by default. With a small <code>--viewPort</code>, the video is no longer cut off on the right side. See the Browsertime changelog for all changes.<br>
+- Samsung Internet on Android. It is the second most used browser on Android. Choose it with <code>--android -b samsung</code>. Without <code>--android</code> you get an error that tells you to add it. See Running Samsung Internet #4953.<br>
+- Edge on Android now works with <code>--android -b edge</code>. Before, sitespeed.io started Edge without its Android package, so Browsertime could not find Edge on the phone. Each Edge test takes about 20 seconds longer, because Browsertime opens Edge once before the test so that Edge does not show its new tab page on top of the page. See Running Edge #4954.<br>
+- The Coach scores on the page summary now link to the matching section on the Coach tab, so you can see what lowered a score #4949.<br>
+- The release Docker images are built on native ARM64 runners instead of QEMU emulation, and the autobuild image is now also published for ARM64 #4929 #4932.<br>
+<br>
+<strong>Fixed</strong><br>
+- The compare plugin crashed with &quot;currentMetric.getValues is not a function&quot; when a plugin or script added extra metrics. Extra metrics are now compared in their own group, and extras that are not numbers (like the axe result) are skipped #4914.<br>
+- The compare plugin started <code>python</code>, which does not exist on most macOS and Linux installs. The statistics failed, and the run finished with an empty Compare tab. It now starts <code>python3</code> (<code>python</code> on Windows). You can still choose with the <code>PYTHON</code> environment variable. The Docker containers were not affected #4915.<br>
+- <code>--plugins.add</code> with comma-separated plugins did not register the options of the plugins, so a plugin like InfluxDB failed with a missing required option. Repeating <code>--plugins.add</code> already worked #4916.<br>
+- With <code>--s3.path</code> or <code>--gcs.path</code>, the links in annotations, Slack and Matrix pointed to the default folder instead of the folder you uploaded to #4917.<br>
+- The Third party tab was empty when you removed the coach plugin. The tab only needs the coach for the Third party web version #4918.<br>
+- When you repeated <code>--scriptInput.visualElements</code> to measure several elements, only the last element was used #4919.<br>
+- A network error or a response that was not JSON from the CrUx API stopped the run. Now it is logged as a CrUx error and the test continues #4920.<br>
+- Browser names are not case sensitive anymore, so <code>-b Chrome</code> works. A name that is not a supported browser now gives a clear error. Before, the name went to Browsertime and failed later #4921.<br>
+- An unknown <code>--browsertime.connectivity.engine</code> value (for example <code>tc</code>) was accepted, and the test ran without throttling. Now you get an error that lists the valid engines. Thanks Wen Castillo for the PR #4924.<br>
+- With npm 12, <code>npm ci</code> failed in a clone of sitespeed.io, because npm 12 does not read <code>npm-shrinkwrap.json</code>. The lockfile is now <code>package-lock.json</code>. The npm package still has an <code>npm-shrinkwrap.json</code>, so <code>npm install sitespeed.io</code> with npm 11 and older installs the dependency versions that we tested. npm 12 ignores that file and installs the newest matching versions. If you need the same versions on every run, use the Docker containers, see the installation documentation #4938.<br>
+- In the Docker container, the sudo rule for throttling allowed all of <code>tc</code> and <code>ip</code>, so any process in the container could become root. The rule now allows only the <code>tc</code> and <code>ip</code> commands that throttle uses. Throttling works as before #4934.<br>
+- The ARM64 Docker images had the AMD64 WebPageReplay binary, which only ran with emulation. They now get the ARM64 binary #4933.<br>
+- Every <code>--debug</code> run stopped with &quot;Debug mode do not work on Android&quot;, also on desktop. The debug page load timeout was also never used #4939.<br>
+- When a script failed after <code>measure.start()</code> but before the page had a URL, for example when a click did not find its element, the report lost all pages with &quot;TypeError: Invalid URL&quot;, also the steps that were measured. That measurement is now skipped, and its errors are reported on the page that was measured before it. Fixes #4078 #4925.<br>
+- When the browser could not start (for example a sandbox problem, a crashed Chrome or a driver that does not match), the log showed a TypeError from sitespeed.io after the real browser error. It looked like a sitespeed.io bug and hid the real cause. The report and error notifications got the same TypeError as a second error. Now you only get the browser error #4944.<br>
+- The Docker image no longer has build-essential. Nothing is compiled during the install anymore, so the image is smaller #4930.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 42.10.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.10.0</link>
@@ -151,26 +186,6 @@
 <strong>Fixed</strong><br>
 - Score bands are inclusive at 80 and 90, so an exactly-80 score is no longer colored as a failure #4868.<br>
 - The summary hero&#39;s verdict phrases no longer look spaced out before their commas #4869.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 42.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.2.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.2.0</guid>
-            <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Browsertime 28.2 #4862, with the report surfacing its new visual diagnostics #4863. <code>--videoParams.filmstripDiff</code> adds a Diff toggle in the filmstrip lightbox (working on file:// too, where a tainted canvas used to block it) and a heatmap that tells a restless element apart from sub-pixel noise that inflates Last Visual Change and Speed Index. <code>--videoParams.noiseTolerance</code> ignores that noise at the source.<br>
-- The Rendering tab&#39;s &quot;Why was rendering delayed?&quot; section now opens with a verdict, and the render-blocking requests are one sortable table named by file (ResourceLoader <code>load.php</code> batches by their first module) with each download drawn on a clock ending at the paint, so a late-injected resource is visibly not the culprit Chrome&#39;s blocking flag makes it look like. Falls back to the pagexray shape without bars when the run has no HAR (Safari, old data) #4856 #4859.<br>
-- The Rendering tab&#39;s style cards lead with a verdict on whether to act and where, and Chrome&#39;s raw invalidation reasons (<code>Affected by :has()</code>, <code>Inline CSS style declaration was mutated</code>) are translated to plain language with a one-line fix on the four a developer can act on #4857 #4861.<br>
-- Web fonts, the classic &quot;document done, text late&quot; cause, appear in the render-blocking table as context rows flagged when they finished after a paint. With browsertime 28.2 the style-invalidation split uses the real first-paint boundary from the trace instead of guessing by reason category #4858.<br>
-- The playback timeline marks when the main thread was busy: the run&#39;s long tasks draw as a thin red band under the axis, so a filmstrip stall shows whether the CPU was the cause without leaving the tab #4860.<br>
-<br>
-<strong>Fixed</strong><br>
-- The CPU tab&#39;s bar lists now line up: each row was its own grid, so bars started at a different x position whenever the value text length changed #4855.<br>
-- Shared links to the newer Rendering anchors (<code>#slow-ttfb</code>, <code>#recalculate-style</code>, <code>#reflows-before-paint</code>, <code>#main-thread-animations</code>) loaded onto the default tab with the target hidden #4859.<br>
-- The render-blocking document row disappeared on sites that redirect to a trailing slash #4857.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

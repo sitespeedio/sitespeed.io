@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>chrome-har-release-feed</id>
     <title>chrome-har release feed</title>
-    <updated>2026-10-23T11:31:02.130Z</updated>
+    <updated>2026-11-12T14:46:41.025Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 2.0.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#2.0.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#2.0.0"/>
+        <updated>2026-11-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Add <code>harFromMessagesAsync</code> that takes an async iterable of messages, so you do not need to keep all messages in memory. Thank you Modeeeeeee for the idea and first implementation in #133 #165.<br>
+<br>
+<strong>Fixed</strong><br>
+- Removed the tough-cookie and har-validator dependencies #159.<br>
+- Use the right expiry date for cookies from Chrome. Chrome gives the expiry date in seconds, so cookies were shown to expire in 1970 and session cookies got an expiry date. An expiry date that was not valid also stopped the HAR from being created #162.<br>
+- After a redirect, the final response no longer gets the headers of the redirect response. Requests sent before the first page are no longer added twice, and responses without timing data no longer get a null receive time #164.<br>
+- Use the extra info from Chrome for request and response headers and cookies, also when it comes before the first page (as with Puppeteer). Headers are no longer duplicated with different case, response cookies are parsed from <code>Set-Cookie</code> in the extra info, and a 304 from the server no longer removes the headers of the cached response. Thank you jtung23 for the first implementation and the test case in #111 #166.<br>
+- Stop using the deprecated <code>url.parse()</code>, so Node.js 24 and later no longer print a deprecation warning. The URL in the HAR is now exactly the URL that Chrome sent, before some characters like <code>|</code> and <code>{</code> were escaped #114 #168.<br>
+- An iframe that Chrome did not report as attached could create an extra page in the HAR, and the requests after it ended up on that page. A frame that we do not know now gets a page only when it loads a document. See sitespeed.io #4124 #173.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[chrome-har 1.3.1]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.3.1</id>
@@ -129,19 +150,6 @@
         <updated>2024-07-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
 - Always take care of Network.responseReceivedExtraInfo even if its fired early, thank you ifduyue for PR #120.<br>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.13.3]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3"/>
-        <updated>2024-07-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Include early hints requests, thank you Ben Schwarz for PR #118.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

@@ -4,13 +4,23 @@
         <title>onlinetest release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of onlinetest</description>
-        <lastBuildDate>Fri, 23 Oct 2026 11:31:02 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 12 Nov 2026 14:46:41 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/onlinetest.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[onlinetest 6.2.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.2.0</guid>
+            <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Changed</strong><br>
+- The server and testrunner Docker images now use Node.js 26 #295.<br>
+]]></description>
+            <author>Sitespeed.io</author>
+        </item>
         <item>
             <title><![CDATA[onlinetest 6.1.0]]></title>
             <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.1.0</link>
@@ -142,22 +152,6 @@
 - Hide the Failed count for the internal <code>testrunners</code> and <code>result</code> queues — the number was unactionable because the queues don&#39;t appear in Recent failures #251.<br>
 - Age labels in Recent failures now graduate to <code>d</code>/<code>mo</code> past 48 h instead of shouting <code>12608h ago</code> #251.<br>
 - Long URLs no longer push the <code>/search/</code> results table past its container and shove the page off-centre. URL cells now wrap at any character; the form has <code>overflow-x: auto</code> as a safety net #253.<br>
-]]></description>
-            <author>Sitespeed.io</author>
-        </item>
-        <item>
-            <title><![CDATA[onlinetest 3.5.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0</link>
-            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.5.0</guid>
-            <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<strong>Added</strong><br>
-- Health banner on <code>/admin</code>: Redis up/down, Postgres up/down, connected testrunners, totals for pending/running/failed jobs #247.<br>
-- &quot;Currently running&quot; table on <code>/admin</code> — every active job with URL/script, queue, runner, and elapsed time. Runs over 10 minutes are highlighted #247.<br>
-- &quot;Recent failures&quot; table on <code>/admin</code> with the error message and a one-click Retry button #248.<br>
-- Active and Failed counts on the queue table, plus a red &quot;no worker&quot; badge when a queue has pending jobs but no testrunner serving it #246.<br>
-- <code>/admin</code> auto-refreshes every 15 seconds. Pauses in background tabs #249.<br>
-- Opt-in auto-refresh toggle on <code>/search/</code>, 60 seconds. Off by default. Pauses while any test is ticked, so Compare selections aren&#39;t lost. State remembered in <code>localStorage</code> #250.<br>
-- <code>/admin</code> mobile layout reworked for the new tables — rows stack into name → counts → action on narrow screens #246 #247 #248.<br>
 ]]></description>
             <author>Sitespeed.io</author>
         </item>
