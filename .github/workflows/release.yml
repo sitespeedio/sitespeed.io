@@ -132,9 +132,15 @@ jobs:
       # exact dependency tree from a published npm-shrinkwrap.json (npm 12
       # ignores it). Copy the lockfile after the commit steps, so that the
       # copy is published but not committed. npm 12 does not pack the copy,
-      # so this step only works while the release runs npm 11.
+      # so this step only works while the release runs npm 11. Fail the
+      # release if the copy is not in the package, so the change is not silent.
       - name: Publish the lockfile as npm-shrinkwrap.json
-        run: cp package-lock.json npm-shrinkwrap.json
+        run: |
+          cp package-lock.json npm-shrinkwrap.json
+          if ! npm pack --dry-run 2>&1 | grep -q npm-shrinkwrap.json; then
+            echo "npm $(npm --version) does not pack npm-shrinkwrap.json. Release with npm 11 or remove this step."
+            exit 1
+          fi
 
       - name: Publish to npm with provenance
         run: npm publish --provenance --access public
