@@ -156,6 +156,15 @@ If you installed Chrome Canary on your phone and want to use it, then add `--chr
 
 Driving different versions requires different versions of ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of ChromeDriver. If you want to run other versions, you need to [download from the Chrome for Testing page](https://googlechromelabs.github.io/chrome-for-testing/). Then you specify the version using `--chrome.chromedriverPath`.
 
+### Running Edge
+To test with Edge on your phone, run:
+
+```bash
+sitespeed.io --android -b edge https://www.sitespeed.io
+```
+
+Edge starts with no data for each test, the same as Chrome. With no data Edge shows its new tab page on top of the page, so before each test Browsertime opens Edge once with an error page that does not use the network. That makes each Edge test about 20 seconds longer.
+
 ### Collect trace log
 
 One important thing when testing on mobile is to analyse the Chrome trace log. You can get that with `--cpu`:
