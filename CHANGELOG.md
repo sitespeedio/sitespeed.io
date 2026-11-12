@@ -1,10 +1,17 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 43.0.0 - UNRELEASED
+
+### Breaking
+* Browsertime 29: installing sitespeed.io no longer downloads Chromedriver, Edgedriver and Geckodriver. Browsertime downloads the driver the first time a test needs it, into the folder of the driver package in `node_modules`. The install then does not run code from a dependency. But a test now fails if the machine that runs it cannot reach the driver download hosts, or cannot write to `node_modules`. For example, CI without internet access, or `sudo npm install -g sitespeed.io` followed by a test as another user. The Docker containers install the drivers when the image is built, so if you use them, nothing changes for you. If you install with npm, install the drivers in advance, see [ChromeDriver/GeckoDriver/EdgeDriver](https://www.sitespeed.io/documentation/sitespeed.io/installation/#chromedriver-geckodriver-edgedriver), or use a driver that you already have with `--chrome.chromedriverPath` or `--edge.edgedriverPath` [#4936](https://github.com/sitespeedio/sitespeed.io/pull/4936).
 
 ### Added
 * You can send Grafana and Graphite annotations without `--resultBaseURL`. Set `--graphite.annotationTitle` or `--graphite.annotationMessage` (or the `--grafana.*` versions) and the annotation is sent without links to the result. Use it when you keep the HTML report somewhere else, for example as a CI artifact [#4922](https://github.com/sitespeedio/sitespeed.io/pull/4922).
+* Chrome 157, Firefox 160 and Edge 157 in the Docker container, and Node.js 26 in the full container [#4927](https://github.com/sitespeedio/sitespeed.io/pull/4927) [#4945](https://github.com/sitespeedio/sitespeed.io/pull/4945) [#4947](https://github.com/sitespeedio/sitespeed.io/pull/4947).
+* Browsertime 29.1.0 [#4942](https://github.com/sitespeedio/sitespeed.io/pull/4942). Safari on iOS gets correct FCP, LCP, DOMContentLoaded and load for pages that send `Cross-Origin-Opener-Policy`. Before, these metrics were too low, so they will be higher after you upgrade. The iOS HAR now has the main document, and TTFB is no longer 0. Visual Metrics works with ffmpeg 9 and uses `python3` by default. With a small `--viewPort`, the video is no longer cut off on the right side. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) for all changes.
+* The Coach scores on the page summary now link to the matching section on the Coach tab, so you can see what lowered a score [#4949](https://github.com/sitespeedio/sitespeed.io/pull/4949).
+* The release Docker images are built on native ARM64 runners instead of QEMU emulation, and the autobuild image is now also published for ARM64 [#4929](https://github.com/sitespeedio/sitespeed.io/pull/4929) [#4932](https://github.com/sitespeedio/sitespeed.io/pull/4932).
 
 ### Fixed
 * The compare plugin crashed with "currentMetric.getValues is not a function" when a plugin or script added extra metrics. Extra metrics are now compared in their own group, and extras that are not numbers (like the axe result) are skipped [#4914](https://github.com/sitespeedio/sitespeed.io/pull/4914).
@@ -16,6 +23,13 @@
 * A network error or a response that was not JSON from the CrUx API stopped the run. Now it is logged as a CrUx error and the test continues [#4920](https://github.com/sitespeedio/sitespeed.io/pull/4920).
 * Browser names are not case sensitive anymore, so `-b Chrome` works. A name that is not a supported browser now gives a clear error. Before, the name went to Browsertime and failed later [#4921](https://github.com/sitespeedio/sitespeed.io/pull/4921).
 * An unknown `--browsertime.connectivity.engine` value (for example `tc`) was accepted, and the test ran without throttling. Now you get an error that lists the valid engines. Thanks [Wen Castillo](https://github.com/jwcastillo) for the PR [#4924](https://github.com/sitespeedio/sitespeed.io/pull/4924).
+* With npm 12, `npm ci` failed in a clone of sitespeed.io, because npm 12 does not read `npm-shrinkwrap.json`. The lockfile is now `package-lock.json`. The npm package still has an `npm-shrinkwrap.json`, so `npm install sitespeed.io` with npm 11 and older installs the dependency versions that we tested. npm 12 ignores that file and installs the newest matching versions. If you need the same versions on every run, use the Docker containers, see the [installation documentation](https://www.sitespeed.io/documentation/sitespeed.io/installation/#pin-the-versions-of-all-dependencies) [#4938](https://github.com/sitespeedio/sitespeed.io/pull/4938).
+* In the Docker container, the sudo rule for throttling allowed all of `tc` and `ip`, so any process in the container could become root. The rule now allows only the `tc` and `ip` commands that throttle uses. Throttling works as before [#4934](https://github.com/sitespeedio/sitespeed.io/pull/4934).
+* The ARM64 Docker images had the AMD64 WebPageReplay binary, which only ran with emulation. They now get the ARM64 binary [#4933](https://github.com/sitespeedio/sitespeed.io/pull/4933).
+* Every `--debug` run stopped with "Debug mode do not work on Android", also on desktop. The debug page load timeout was also never used [#4939](https://github.com/sitespeedio/sitespeed.io/pull/4939).
+* When a script failed after `measure.start()` but before the page had a URL, for example when a click did not find its element, the report lost all pages with "TypeError: Invalid URL", also the steps that were measured. That measurement is now skipped, and its errors are reported on the page that was measured before it. Fixes [#4078](https://github.com/sitespeedio/sitespeed.io/issues/4078) [#4925](https://github.com/sitespeedio/sitespeed.io/pull/4925).
+* When the browser could not start (for example a sandbox problem, a crashed Chrome or a driver that does not match), the log showed a TypeError from sitespeed.io after the real browser error. It looked like a sitespeed.io bug and hid the real cause. The report and error notifications got the same TypeError as a second error. Now you only get the browser error [#4944](https://github.com/sitespeedio/sitespeed.io/pull/4944).
+* The Docker image no longer has build-essential. Nothing is compiled during the install anymore, so the image is smaller [#4930](https://github.com/sitespeedio/sitespeed.io/pull/4930).
 
 ## 42.10.0 - 2026-10-23
 
