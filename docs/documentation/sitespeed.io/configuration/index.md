@@ -151,6 +151,22 @@ When collecting timing metrics, it's good to test the URL more than once (defaul
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 5
 ~~~
 
+### Stop a test early
+You can stop a test before all runs are done and still get the result. Send the signal SIGTERM or SIGINT to sitespeed.io. sitespeed.io then finishes the run that is going on, skips the runs and URLs that are left, and writes the report from the runs that finished. The first run always finishes. The exit code follows the normal rules, for example a failing budget gives exit code 1. If you send the signal again, sitespeed.io stops at once and does not write a report.
+
+* **Docker**: press Ctrl+C, or run `docker stop --time 300 <container>`. Give Docker more time than one run takes. With the default 10 seconds, Docker stops the container before the run is finished.
+* **Without Docker**: send SIGTERM to the sitespeed.io process, for example with `kill <pid>`. If you press Ctrl+C in a terminal, the signal also goes to the browser and the driver. The run that is going on then fails, and you get the report from the runs before it.
+
+If you use `--enableProfileRun` or `--enableVideoRun`, sitespeed.io still makes the extra run after you stop the test.
+
+This is useful when you test while something else runs and you do not know how long it takes, for example a load test:
+
+~~~bash
+docker run --name sitespeedio --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 1000 &
+./my-load-test.sh
+docker stop --time 300 sitespeedio
+~~~
+
 ### Choose browser
 Choose which browser to use (default is Chrome):
 
