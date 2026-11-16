@@ -45,6 +45,7 @@ This file lists the current documentation. Older blog posts, forum answers and t
 - [Compare](https://www.sitespeed.io/documentation/sitespeed.io/compare/): Use statistics to decide if a change is a regression
 - [Performance budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/): Fail a test when a metric is over its limit
 - [Continuous integration](https://www.sitespeed.io/documentation/sitespeed.io/continuous-integration/): Run tests in CI
+- [Webhook](https://www.sitespeed.io/documentation/sitespeed.io/webhook/): POST a JSON summary of each run to a URL (`--webhook.url`)
 - [Browsertime details](https://www.sitespeed.io/documentation/browsertime/details/): Browsertime output (`browsertime.json` and the HAR file)
 
 ## Optional
