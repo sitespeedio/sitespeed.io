@@ -278,6 +278,8 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 And, if the budget fails, the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
 
+If a page could not be tested (for example the browser did not start or no Android phone was connected), there is no data to check the budget against. The page is then reported as an error: an `<error>` test case in JUnit XML, a `not ok` line in TAP and an error row in the HTML budget page. The exit status is > 0, so your CI job fails instead of passing with zero checks.
+
 ### JUnit XML
 You can output a JUnit XML file from the budget result like this:
 
