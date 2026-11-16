@@ -1,11 +1,13 @@
 
 ## Docker
 
-The easiest way to run sitespeed.io is in our [Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io/) — it ships with Firefox, Chrome, Edge and XVFB pre-installed. Test a single URL:
+The easiest way to run sitespeed.io is in our [Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io/) — it ships with Firefox, Chrome, Edge and XVFB pre-installed. You need [Docker](https://www.docker.com/get-started/) installed. Test a single URL:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt  %} https://www.sitespeed.io/
 ~~~
+
+When the test is finished, open `index.html` in `sitespeed-result/www.sitespeed.io/<date-and-time>/` in the folder where you ran the command. That is the HTML report. The npm version below writes the report to the same place.
 
 Want to test a user journey instead? Read [how to write a script](/documentation/sitespeed.io/scripting/). And if you're new to the project, watch ["Getting started with Sitespeed.io using Docker"](https://www.youtube.com/watch?v=0xAdxCUX2Po) — it walks through the basics in a few minutes.
 
