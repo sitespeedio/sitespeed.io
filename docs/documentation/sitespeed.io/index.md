@@ -62,6 +62,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
 ## Reporting & alerts
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [Matrix](matrix/) - send messages to your Matrix client.
+ * [Webhook](webhook/) - send a JSON summary of each run to any URL.
  * [Configure HTML output](configure-html/) - change the default HTML output.
 
 ## For contributors
