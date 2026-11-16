@@ -135,12 +135,8 @@ Collect Chrome's net log with ```--chrome.collectNetLog```. This is useful if yo
 ### Render blocking information
 If you use Chrome/Chromium you can get render-blocking information (which requests block rendering). To get that from sitespeed.io you need the Chrome timeline (and we collect that by default). If you want to make sure it's enabled, turn it on with the flag ```--chrome.timeline``` or ```--cpu```.
 
-You can see the blocking information in the waterfall. Requests that block have different coloring.
-![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-You can also click on the request and see the exact blocking info from Chrome.
-![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg){:loading="lazy"}
+You can see the blocking information in the [waterfall](/documentation/sitespeed.io/waterfall/). An orange circle with a cross marks each request that blocks rendering.
+![Render-blocking requests in the waterfall]({{site.baseurl}}/img/waterfall-render-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also see a summary on the Rendering tab (together with the video/filmstrip and the recalculate-style metrics). The tab opens with a verdict that says whether rendering was actually delayed and by what — the first byte, the render-blocking requests, or style and layout work — and the render-blocking requests card names each request (MediaWiki ResourceLoader load.php batches are named by their first module) and draws its download window on a timeline that ends at the last paint, so you can see what the paint waited for and what loaded after it. The document, the LCP resource and the latest web fonts join as quiet context rows — a font finishing after a paint is the classic reason text changed late. The timeline needs the run's HAR; without one (for example Safari) the card falls back to a plain table.

@@ -42,6 +42,7 @@ This file lists the current documentation. Older blog posts, forum answers and t
 
 - [Metrics](https://www.sitespeed.io/documentation/sitespeed.io/metrics/): Definitions of the collected metrics
 - [Google Web Vitals](https://www.sitespeed.io/documentation/sitespeed.io/google-web-vitals/): Web Vitals in lab tests
+- [Waterfall](https://www.sitespeed.io/documentation/sitespeed.io/waterfall/): Read the request waterfall in the HTML report
 - [Compare](https://www.sitespeed.io/documentation/sitespeed.io/compare/): Use statistics to decide if a change is a regression
 - [Performance budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/): Fail a test when a metric is over its limit
 - [Continuous integration](https://www.sitespeed.io/documentation/sitespeed.io/continuous-integration/): Run tests in CI
