@@ -24,20 +24,29 @@ block content
   //- The budget data is grouped per URL (or per alias), so the page is
   //- too: one group per page, failing rows on top inside each group,
   //- and the URLs with failures sort before the ones that pass.
-  - const urls = [...new Set([...Object.keys(budget.failing), ...Object.keys(budget.working)])]
+  //- A URL in budget.error could not be tested, so it has no checks to
+  //- pass: it sorts first and never reads as passing.
+  - const totalErrors = Object.keys(budget.error).length
+  - const urls = [...new Set([...Object.keys(budget.failing), ...Object.keys(budget.working), ...Object.keys(budget.error)])]
   - const failCount = (url) => budget.failing[url] ? budget.failing[url].length : 0
-  - urls.sort((a, b) => failCount(b) - failCount(a))
+  - const hasError = (url) => budget.error[url] ? 1 : 0
+  - urls.sort((a, b) => hasError(b) - hasError(a) || failCount(b) - failCount(a))
   .listing-card
     .listing-card-header
       h3.listing-card-title Budget checks
       span.listing-card-meta
+        if totalErrors > 0
+          span.errors-chip #{h.plural(totalErrors, 'error')}
+          span.listing-card-meta-sep ·
         if totalFailing > 0
           span.errors-chip #{totalFailing} failing
           span.listing-card-meta-sep ·
         | #{totalWorking} passing
+    if totalErrors > 0
+      p.listing-card-help #{h.plural(totalErrors, 'page')} could not be tested, so the budget could not check #{totalErrors === 1 ? 'it' : 'them'}. Those are the rows marked error below.
     if totalFailing > 0
       p.listing-card-help #{h.plural(totalFailing, 'check')} #{totalFailing === 1 ? 'is' : 'are'} over budget. Those are the rows marked fail below.
-    else
+    else if totalErrors === 0
       p.listing-card-help Every configured budget check passes.
     each urlOrAlias in urls
       .budget-group
@@ -47,7 +56,9 @@ block content
           else
             a.budget-group-url(href=aliasToUrl[urlOrAlias])= urlOrAlias
             span.budget-group-alias #{aliasToUrl[urlOrAlias]}
-          if failCount(urlOrAlias) > 0
+          if budget.error[urlOrAlias]
+            span.budget-pill.budget-pill--fail error
+          else if failCount(urlOrAlias) > 0
             span.budget-pill.budget-pill--fail #{failCount(urlOrAlias)} failing
           else
             span.budget-pill.budget-pill--pass all passing
@@ -55,6 +66,11 @@ block content
           table.budget-table
             +rowHeading(['Metric', 'Value', 'Limit', 'Verdict'])
             tbody
+              if budget.error[urlOrAlias]
+                tr.budget-row--failing
+                  td(data-title='Error', colspan=3) #{budget.error[urlOrAlias]}
+                  td(data-title='Verdict')
+                    span.budget-pill.budget-pill--fail error
               each result in budget.failing[urlOrAlias] || []
                 +budgetRow(result, true)
               each result in budget.working[urlOrAlias] || []
