@@ -1,0 +1,780 @@
+//- Shared waterfall rendering. Expects window.__waterfallBufferPromise to
+//- resolve to an ArrayBuffer/Uint8Array containing HAR bytes.
+script(src= assetsPath + 'js/waterfall-tools.min.js')
+script(type='text/javascript').
+  (async function () {
+    const rawBuffer = await window.__waterfallBufferPromise;
+    // Visual-complete 95% / 99% percentiles sit too close to the
+    // neighbouring 85% and 100% markers to add waterfall value — strip
+    // them before handing the HAR over so the timeline stays readable.
+    // FCP / LCP / paint / DOM events are lifted from pageTimings onto
+    // the page root by waterfall-tools' HAR loader and rendered from a
+    // fixed event-name list (see waterfall-tools renderer/layout.js).
+    // Browsertime's visual metrics (_firstVisualChange, _lastVisualChange,
+    // _visualComplete85) reach the page root via the same lift but aren't
+    // in that fixed list, so they'd silently disappear from the canvas.
+    // Hoist them into pageTimings._userTimings before handing the HAR
+    // over — the user-timing-marks renderer draws them as vertical lines
+    // and our onHover picks up the labels.
+    const DROP_PAGE_TIMING_FIELDS = new Set([
+      '_visualComplete95',
+      '_visualComplete99'
+    ]);
+    const VISUAL_METRIC_LABELS = {
+      _firstVisualChange: 'First Visual Change',
+      _lastVisualChange: 'Last Visual Change',
+      _visualComplete85: 'Visual Complete 85%'
+    };
+    let renderBuffer = rawBuffer;
+    try {
+      // The fetched HAR may be gzipped (`browsertime.har.gz`). Sniff the
+      // gzip magic bytes and inflate via DecompressionStream before parsing —
+      // a raw TextDecoder over gzip bytes produces garbage that throws in
+      // JSON.parse, the catch below swallows it, and the visual-metric
+      // injection silently never runs (so the visual-change lines disappear).
+      const u8 = ArrayBuffer.isView(rawBuffer) ? rawBuffer : new Uint8Array(rawBuffer);
+      let jsonText;
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        const inflated = await new Response(
+          new Blob([u8]).stream().pipeThrough(new DecompressionStream('gzip'))
+        ).arrayBuffer();
+        jsonText = new TextDecoder().decode(inflated);
+      } else {
+        jsonText = new TextDecoder().decode(u8);
+      }
+      const har = JSON.parse(jsonText);
+      let mutated = false;
+      for (const page of (har.log && har.log.pages) || []) {
+        const t = page.pageTimings;
+        if (!t) continue;
+        for (const k of DROP_PAGE_TIMING_FIELDS) {
+          if (k in t) { delete t[k]; mutated = true; }
+        }
+        const userTimings = t._userTimings ? { ...t._userTimings } : {};
+        let injectedAny = false;
+        for (const [key, label] of Object.entries(VISUAL_METRIC_LABELS)) {
+          const v = t[key];
+          if (typeof v === 'number' && v > 0 && !(label in userTimings)) {
+            userTimings[label] = v;
+            injectedAny = true;
+          }
+        }
+        if (injectedAny) { t._userTimings = userTimings; mutated = true; }
+      }
+      if (mutated) renderBuffer = new TextEncoder().encode(JSON.stringify(har));
+    } catch (e) {
+      // not JSON, pass the original bytes through
+    }
+    const wt = new WaterfallTools();
+    await wt.loadBuffer(renderBuffer);
+    const har = wt.getHar();
+    const pages = (har.log && har.log.pages) || [];
+    const initialPageId = (pages[#{harIndex}] || pages[0] || {}).id;
+    const container = document.getElementById('output');
+    container.classList.remove('loader');
+
+    const tooltip = document.getElementById('wt-tooltip');
+    const controls = {
+      showPageMetrics: document.getElementById('wt-show-page-metrics'),
+      showMarks: document.getElementById('wt-show-marks'),
+      showLongtasks: document.getElementById('wt-show-longtasks'),
+      connectionView: document.getElementById('wt-connection-view')
+    };
+    const filterEl = document.getElementById('wt-req-filter');
+    const filterCountEl = document.getElementById('wt-req-filter-count');
+    let currentPageId = initialPageId;
+    // waterfall-tools `reqFilter` accepts a comma-separated list of 1-based
+    // request indices (within the active page), not a URL substring. To make
+    // the search box behave the obvious way, we resolve the user's substring
+    // against the page's entries here and hand the renderer the matching
+    // indices. Empty input → renderer sees '' → all requests visible.
+    // Substring with zero matches → '0' → renderer filters everything out
+    // (1-based indices never include 0), which is what the user asked for.
+    const resolveReqFilter = query => {
+      const q = (query || '').trim().toLowerCase();
+      if (!q) return { value: '', count: null, total: null };
+      const pageEntries = ((har.log && har.log.entries) || [])
+        .filter(e => e.pageref === currentPageId);
+      const matched = [];
+      pageEntries.forEach((e, i) => {
+        const url = ((e.request && e.request.url) || e._URL || '').toLowerCase();
+        if (url.includes(q)) matched.push(i + 1);
+      });
+      return {
+        value: matched.length === 0 ? '0' : matched.join(','),
+        count: matched.length,
+        total: pageEntries.length
+      };
+    };
+    const updateFilterCount = info => {
+      if (!filterCountEl) return;
+      if (info.count === null) {
+        filterCountEl.hidden = true;
+        filterCountEl.textContent = '';
+      } else {
+        filterCountEl.hidden = false;
+        filterCountEl.textContent = info.count + ' of ' + info.total;
+      }
+    };
+    const readOptions = () => {
+      const o = {};
+      for (const k of Object.keys(controls)) {
+        if (controls[k]) o[k] = controls[k].checked;
+      }
+      if (filterEl) {
+        const info = resolveReqFilter(filterEl.value);
+        o.reqFilter = info.value;
+        updateFilterCount(info);
+      }
+      return o;
+    };
+    // waterfall-tools calls onHover with two payloads: the request under
+    // the cursor (if any) and — when the cursor is near a vertical metric
+    // line — a `metrics` payload carrying visible page-metric / user-timing
+    // entries. Render whichever the cursor is over (or both, when stacked).
+    const fmtTooltipMs = ms => (ms == null || !isFinite(ms)) ? ''
+      : (ms < 1000 ? Math.round(ms) + 'ms' : (ms / 1000).toFixed(3) + 's');
+    const onHover = (payload, metrics) => {
+      if (!tooltip) return;
+      const lines = [];
+      if (payload && payload.request) {
+        let url = payload.request.url || payload.request._URL || '';
+        if (url.length > 120) {
+          url = url.slice(0, 60) + ' … ' + url.slice(-55);
+        }
+        lines.push(url);
+      }
+      const pushMetric = m => {
+        const label = m.label || m.name || '';
+        const time = (m.time != null) ? m.time : m.value;
+        const formatted = fmtTooltipMs(time);
+        lines.push(formatted ? label + ': ' + formatted : label);
+      };
+      if (metrics) {
+        for (const m of metrics.pageMetrics || []) pushMetric(m);
+        for (const m of metrics.userTiming || []) pushMetric(m);
+      }
+      if (lines.length === 0) {
+        tooltip.style.display = 'none';
+        return;
+      }
+      tooltip.textContent = '';
+      for (let i = 0; i < lines.length; i++) {
+        if (i > 0) tooltip.appendChild(document.createElement('br'));
+        tooltip.appendChild(document.createTextNode(lines[i]));
+      }
+      tooltip.style.display = 'block';
+      const ev = (payload && payload.event) || (metrics && metrics.event);
+      if (ev) {
+        let x = ev.clientX + 14;
+        let y = ev.clientY + 14;
+        if (x + tooltip.offsetWidth > window.innerWidth) x = window.innerWidth - tooltip.offsetWidth - 8;
+        if (y + tooltip.offsetHeight > window.innerHeight) y = window.innerHeight - tooltip.offsetHeight - 8;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+      }
+    };
+
+    // Per-request detail panel — opens when a request is clicked on
+    // the canvas. Populated lazily so the markup work only happens
+    // when the user actually opens a request.
+    const detailPanel = document.getElementById('wt-detail-panel');
+    const detailBackdrop = document.getElementById('wt-detail-backdrop');
+    const detailUrl = document.getElementById('wt-detail-url');
+    const detailStatus = document.getElementById('wt-detail-status');
+    const detailMethod = document.getElementById('wt-detail-method');
+    const detailClose = document.getElementById('wt-detail-close');
+    const detailCopyUrl = document.getElementById('wt-detail-copy-url');
+    const detailTabs = detailPanel ? detailPanel.querySelectorAll('.wt-detail-tab') : [];
+    const detailBodies = detailPanel ? detailPanel.querySelectorAll('.wt-detail-body') : [];
+
+    // Copy-button helper — writes text to the clipboard and gives a
+    // brief "Copied!" affordance back on the button. Falls back to
+    // execCommand on older browsers / non-secure contexts.
+    const copyToClipboard = async (text, btn) => {
+      const original = btn ? btn.textContent : null;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        if (btn) {
+          btn.textContent = 'Copied!';
+          btn.dataset.state = 'copied';
+          setTimeout(() => {
+            if (btn.dataset.state === 'copied') {
+              btn.textContent = original;
+              delete btn.dataset.state;
+            }
+          }, 1200);
+        }
+      } catch (e) {
+        if (btn) { btn.textContent = 'Copy failed'; setTimeout(() => { btn.textContent = original; }, 1200); }
+      }
+    };
+
+    const escAttr = s => String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    const fmtBytes = n => {
+      if (n == null || !isFinite(n)) return '–';
+      if (n < 1024) return n + ' B';
+      if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+      return (n / 1024 / 1024).toFixed(2) + ' MB';
+    };
+    const fmtMs = n => (n == null || n < 0) ? '–'
+      : (n < 1000 ? Math.round(n) + ' ms' : (n / 1000).toFixed(2) + ' s');
+
+    // Decode the request body. waterfall-tools' loader hoists the HAR
+    // `response.content.text` field onto the top-level `req.body`, with
+    // the encoding on `req.bodyEncoding` — so we look there first and
+    // fall back to the original HAR entry's `response.content.text` when
+    // it isn't lifted.
+    const decodeBody = (req, harEntry) => {
+      const content = (harEntry && harEntry.response && harEntry.response.content) || {};
+      const mimeType = (req.bodyMime || req.mimeType || content.mimeType || req._content_type || '').toLowerCase();
+      let raw = (typeof req.body === 'string') ? req.body : null;
+      let encoding = req.bodyEncoding || null;
+      if (raw == null && typeof content.text === 'string') {
+        raw = content.text;
+        encoding = content.encoding || null;
+      }
+      if (raw == null || raw === '') return null;
+      if (encoding === 'base64') {
+        if (mimeType.startsWith('image/')) {
+          return { kind: 'image', dataUrl: 'data:' + mimeType + ';base64,' + raw, mimeType };
+        }
+        try {
+          const bin = atob(raw);
+          // base64-encoded text bodies (Browsertime + Chrome encode as
+          // base64 unconditionally for binary safety) — decode as UTF-8.
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          const text = new TextDecoder('utf-8').decode(bytes);
+          return { kind: 'text', text, mimeType };
+        } catch (e) {
+          return { kind: 'binary', size: raw.length, mimeType };
+        }
+      }
+      return { kind: 'text', text: raw, mimeType };
+    };
+
+    // The click payload from waterfall-tools is its own internal Request
+    // shape (flat `status`/`mimeType`/`bytes_in`/`responseHeaders`, plus
+    // `body`/`bodyEncoding` and any `_`-prefixed HAR fields), not a raw
+    // HAR entry. The original HAR entry carries richer data (structured
+    // timings + cookies, `response.content.size` vs `bodySize`, full
+    // headers, `_transferSize`) — read from it as the primary source and
+    // only fall back to the waterfall-tools shape when it's missing.
+    const populateDetail = (req, harEntry) => {
+      if (!detailPanel || !req) return;
+      const entry = harEntry || {};
+      const entryReq = entry.request || {};
+      const response = entry.response || {};
+      const content = response.content || {};
+      const url = entryReq.url || req.url || req._URL || req._full_url || '';
+      const method = (entryReq.method || req.method || 'GET').toUpperCase();
+      const status = response.status || req.status || req._status || 0;
+      const statusText = response.statusText || req.statusText || '';
+      detailUrl.textContent = url;
+      detailStatus.textContent = status || '–';
+      detailStatus.dataset.status = String(status || '');
+      detailMethod.textContent = method;
+
+      // General tab — top-line attributes the developer scans for first.
+      const general = document.getElementById('wt-detail-body-general');
+      const responseSize = content.size || response.bodySize || req.bytes_in || 0;
+      const transferSize = response._transferSize || response.bodySize || 0;
+      const protocol = response.httpVersion || req.httpVersion || req._protocol || '–';
+      const mimeType = content.mimeType || req.mimeType || '–';
+      const priority = req._priority || entry._priority || '–';
+      const initiator = req._initiator || entry._initiator || req._initiator_detail || '–';
+      general.innerHTML = '<table>'
+        + '<tr><th>Status</th><td>' + escAttr(status) + ' ' + escAttr(statusText) + '</td></tr>'
+        + '<tr><th>Method</th><td>' + escAttr(method) + '</td></tr>'
+        + '<tr><th>URL</th><td class="url">' + escAttr(url) + '</td></tr>'
+        + '<tr><th>MIME type</th><td>' + escAttr(mimeType) + '</td></tr>'
+        + '<tr><th>Response body</th><td>' + escAttr(fmtBytes(responseSize)) + '</td></tr>'
+        + (transferSize && transferSize !== responseSize ? '<tr><th>Transferred</th><td>' + escAttr(fmtBytes(transferSize)) + '</td></tr>' : '')
+        + '<tr><th>Protocol</th><td>' + escAttr(protocol) + '</td></tr>'
+        + '<tr><th>Fetch priority</th><td>' + escAttr(priority) + '</td></tr>'
+        + (initiator !== '–' ? '<tr><th>Initiated by</th><td>' + escAttr(initiator) + '</td></tr>' : '')
+        + '</table>';
+
+      // Headers tab — request + response sections.
+      const headersEl = document.getElementById('wt-detail-body-headers');
+      const reqHeaders = entryReq.headers || req.headers || [];
+      const resHeaders = response.headers || req.responseHeaders || [];
+      const renderHeaders = arr => {
+        if (!arr || !arr.length) return '<p class="wt-detail-empty">No headers</p>';
+        return '<table>' + arr.map(h => {
+          const name = (h.name || h.key || '');
+          const value = (h.value != null ? h.value : '');
+          return '<tr><th>' + escAttr(name) + '</th><td>' + escAttr(value) + '</td></tr>';
+        }).join('') + '</table>';
+      };
+      headersEl.innerHTML = ''
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Request</div>' + renderHeaders(reqHeaders) + '</div>'
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Response</div>' + renderHeaders(resHeaders) + '</div>';
+
+      // Cookies tab — HAR has structured `cookies` arrays per direction;
+      // fall back to splitting raw `Cookie` / `Set-Cookie` headers when
+      // a producer didn't fill them in.
+      const cookiesEl = document.getElementById('wt-detail-body-cookies');
+      const headerValue = (arr, name) => {
+        if (!arr) return null;
+        const target = name.toLowerCase();
+        for (const h of arr) if ((h.name || h.key || '').toLowerCase() === target) return h.value;
+        return null;
+      };
+      const headerValues = (arr, name) => {
+        if (!arr) return [];
+        const target = name.toLowerCase();
+        const values = [];
+        for (const h of arr) if ((h.name || h.key || '').toLowerCase() === target) values.push(h.value);
+        return values;
+      };
+      // Parse a raw `Cookie:` request header into [{name,value}].
+      const parseCookieHeader = raw => {
+        if (!raw) return [];
+        return raw.split(/;\s*/).map(p => {
+          const eq = p.indexOf('=');
+          if (eq < 0) return null;
+          return { name: p.slice(0, eq).trim(), value: p.slice(eq + 1).trim() };
+        }).filter(Boolean);
+      };
+      // Parse a raw `Set-Cookie:` response header into a structured cookie.
+      // Note: HAR only carries individual Set-Cookie values (each as its
+      // own header entry), so this never has to handle the multi-cookie
+      // comma split that's tricky in a raw stream.
+      const parseSetCookie = raw => {
+        if (!raw) return null;
+        const parts = raw.split(/;\s*/);
+        const first = parts.shift();
+        if (!first) return null;
+        const eq = first.indexOf('=');
+        if (eq < 0) return null;
+        const cookie = { name: first.slice(0, eq).trim(), value: first.slice(eq + 1).trim() };
+        for (const p of parts) {
+          const [k, v = ''] = p.split('=');
+          const key = k.trim().toLowerCase();
+          if (key === 'domain') cookie.domain = v.trim();
+          else if (key === 'path') cookie.path = v.trim();
+          else if (key === 'expires') cookie.expires = v.trim();
+          else if (key === 'max-age') cookie.maxAge = v.trim();
+          else if (key === 'samesite') cookie.sameSite = v.trim();
+          else if (key === 'secure') cookie.secure = true;
+          else if (key === 'httponly') cookie.httpOnly = true;
+        }
+        return cookie;
+      };
+      let reqCookies = entryReq.cookies || req.cookies || [];
+      let resCookies = response.cookies || [];
+      // Fall back to header parsing when the structured arrays are
+      // absent (some HAR generators skip them).
+      if (!reqCookies.length) {
+        reqCookies = parseCookieHeader(headerValue(reqHeaders, 'cookie'));
+      }
+      if (!resCookies.length) {
+        resCookies = headerValues(resHeaders, 'set-cookie').map(parseSetCookie).filter(Boolean);
+      }
+
+      const renderRequestCookies = arr => {
+        if (!arr || !arr.length) return '<p class="wt-detail-empty">No cookies sent</p>';
+        return '<table>' + arr.map(c =>
+          '<tr><th>' + escAttr(c.name || '') + '</th><td><span class="wt-cookie-value">' + escAttr(c.value || '') + '</span></td></tr>'
+        ).join('') + '</table>';
+      };
+      const renderResponseCookies = arr => {
+        if (!arr || !arr.length) return '<p class="wt-detail-empty">No Set-Cookie headers</p>';
+        return arr.map(c => {
+          const chips = [];
+          if (c.domain) chips.push('<span class="chip">Domain: ' + escAttr(c.domain) + '</span>');
+          if (c.path) chips.push('<span class="chip">Path: ' + escAttr(c.path) + '</span>');
+          if (c.expires) chips.push('<span class="chip">Expires: ' + escAttr(c.expires) + '</span>');
+          if (c.maxAge) chips.push('<span class="chip">Max-Age: ' + escAttr(c.maxAge) + '</span>');
+          // Secure / HttpOnly / SameSite — flag absence as a warning.
+          chips.push('<span class="chip ' + (c.secure ? 'ok' : 'warn') + '">' + (c.secure ? 'Secure' : 'No Secure') + '</span>');
+          chips.push('<span class="chip ' + (c.httpOnly ? 'ok' : 'warn') + '">' + (c.httpOnly ? 'HttpOnly' : 'No HttpOnly') + '</span>');
+          if (c.sameSite) {
+            chips.push('<span class="chip ok">SameSite: ' + escAttr(c.sameSite) + '</span>');
+          } else {
+            chips.push('<span class="chip warn">No SameSite</span>');
+          }
+          return '<div class="wt-detail-section">'
+            + '<div class="wt-detail-section-title" style="margin-bottom:2px;">' + escAttr(c.name || '') + '</div>'
+            + '<span class="wt-cookie-value">' + escAttr(c.value || '') + '</span>'
+            + '<div class="wt-cookie-attrs">' + chips.join('') + '</div>'
+            + '</div>';
+        }).join('');
+      };
+      cookiesEl.innerHTML = ''
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Sent (Cookie header)</div>' + renderRequestCookies(reqCookies) + '</div>'
+        + '<div class="wt-detail-section"><div class="wt-detail-section-title">Received (Set-Cookie)</div>' + renderResponseCookies(resCookies) + '</div>';
+
+      // Timing tab — Browsertime HAR timings: blocked, dns, connect,
+      // ssl, send, wait, receive in ms. Render as a label / bar / ms
+      // grid so each phase shows its share of the total visually.
+      const timingEl = document.getElementById('wt-detail-body-timing');
+      const t = entry.timings || req.timings || {};
+      const PHASE_COLORS = {
+        blocked: '#94a3b8', dns: '#a78bfa', connect: '#fb923c',
+        ssl: '#facc15', send: '#22c55e', wait: '#0ea5e9', receive: '#0073b0'
+      };
+      const phaseRows = ['blocked','dns','connect','ssl','send','wait','receive'];
+      // The HAR's raw phase keys mean little outside waterfall tools -
+      // show readable labels in the detail panel.
+      const PHASE_LABELS = { blocked: 'Queued (blocked)', dns: 'DNS lookup', connect: 'Connecting', ssl: 'TLS setup', send: 'Sending request', wait: 'Waiting (TTFB)', receive: 'Downloading' };
+      let totalKnown = 0;
+      for (const p of phaseRows) if (typeof t[p] === 'number' && t[p] > 0) totalKnown += t[p];
+      const max = Math.max(totalKnown, 1);
+      const rows = phaseRows.map(p => {
+        const v = (typeof t[p] === 'number') ? t[p] : -1;
+        const w = v > 0 ? (v / max * 100).toFixed(1) : 0;
+        const color = PHASE_COLORS[p] || '#cbd5e1';
+        return '<div class="wt-detail-timing-bar">'
+          + '<span class="label">' + (PHASE_LABELS[p] || p) + '</span>'
+          + '<span class="track">' + (v > 0 ? '<span style="width: ' + w + '%; background: ' + color + ';"></span>' : '') + '</span>'
+          + '<span class="ms">' + escAttr(v < 0 ? '–' : fmtMs(v)) + '</span>'
+          + '</div>';
+      }).join('');
+      const totalRow = '<div class="wt-detail-timing-bar wt-detail-timing-total">'
+        + '<span class="label">Total</span>'
+        + '<span class="track"></span>'
+        + '<span class="ms">' + escAttr(fmtMs(totalKnown)) + '</span>'
+        + '</div>';
+      timingEl.innerHTML = rows + totalRow;
+
+      // Body tab — only meaningful when the HAR was generated with
+      // `--browsertime.<browser>.includeResponseBodies all|html`. If
+      // there's no body in the HAR, show a hint pointing at the flag.
+      const bodyEl = document.getElementById('wt-detail-body-body');
+      const decoded = decodeBody(req, entry);
+      if (!decoded) {
+        bodyEl.innerHTML = '<p class="wt-detail-empty">No response body in the HAR. Run with one of these flags to include them, depending on the browser you tested with: <code>--browsertime.chrome.includeResponseBodies all</code> or <code>--browsertime.firefox.includeResponseBodies all</code>.</p>';
+      } else if (decoded.kind === 'image') {
+        bodyEl.innerHTML = '<img class="body-preview" alt="Response body preview" src="' + escAttr(decoded.dataUrl) + '">';
+      } else if (decoded.kind === 'binary') {
+        bodyEl.innerHTML = '<p class="wt-detail-empty">Binary content (' + fmtBytes(decoded.size) + ').</p>';
+      } else {
+        // Pick a Prism language from MIME type so the existing prism.js
+        // already on the page highlights the body the same way it
+        // highlights other code blocks.
+        const mt = decoded.mimeType || '';
+        let lang = 'markup';
+        let displayText = decoded.text;
+        if (mt.includes('json')) {
+          lang = 'javascript';
+          // Pretty-print JSON when possible — minified payloads are
+          // unreadable otherwise. Falls through to raw text on parse
+          // errors (truncated or invalid JSON).
+          try {
+            displayText = JSON.stringify(JSON.parse(decoded.text), null, 2);
+          } catch (e) { /* leave as-is */ }
+        } else if (mt.includes('javascript')) {
+          lang = 'javascript';
+        } else if (mt.includes('css')) {
+          lang = 'css';
+        } else if (mt.includes('html')) {
+          lang = 'markup';
+        }
+
+        // Size guards. Real-world HTML / JS bodies are easily hundreds
+        // of KB and Prism's tokenizer is recursive — running it on
+        // ~500 KB of HTML hangs the tab for several seconds. Truncate
+        // for display past 200 KB (full body still goes to the
+        // clipboard via copyText) and skip Prism past 50 KB.
+        const RENDER_CAP = 200 * 1024;
+        const HIGHLIGHT_CAP = 50 * 1024;
+        const fullText = displayText;
+        const truncated = displayText.length > RENDER_CAP;
+        if (truncated) {
+          displayText = displayText.slice(0, RENDER_CAP)
+            + '\n\n…[truncated: body is ' + fmtBytes(fullText.length)
+            + ', showing first ' + fmtBytes(RENDER_CAP)
+            + '. Copy body grabs the full content.]';
+        }
+
+        const note = truncated
+          ? '<p class="wt-detail-empty" style="margin:0 0 8px;">Body is ' + fmtBytes(fullText.length) + '; preview truncated for performance. Use Copy body for the full content.</p>'
+          : '';
+
+        bodyEl.innerHTML = '<div class="wt-detail-body-toolbar"><button type="button" class="wt-copy-btn" id="wt-detail-copy-body">Copy body</button></div>'
+          + note
+          + '<pre><code class="language-' + lang + '">' + escAttr(displayText) + '</code></pre>';
+
+        if (
+          typeof Prism !== 'undefined' && Prism.highlightAllUnder &&
+          displayText.length <= HIGHLIGHT_CAP
+        ) {
+          Prism.highlightAllUnder(bodyEl);
+        }
+        const copyBtn = document.getElementById('wt-detail-copy-body');
+        if (copyBtn) {
+          // Copy the *full* body text, not the truncated preview.
+          copyBtn.addEventListener('click', () => copyToClipboard(fullText, copyBtn));
+        }
+      }
+    };
+
+    const openDetail = () => {
+      if (!detailPanel) return;
+      detailPanel.dataset.open = '';
+      if (detailBackdrop) detailBackdrop.dataset.open = '';
+      // Reset to the first tab on every open.
+      for (const t of detailTabs) {
+        if (t.dataset.tab === 'general') t.dataset.active = '';
+        else delete t.dataset.active;
+      }
+      for (const b of detailBodies) {
+        b.hidden = b.dataset.tab !== 'general';
+      }
+    };
+    const closeDetail = () => {
+      if (!detailPanel) return;
+      delete detailPanel.dataset.open;
+      if (detailBackdrop) delete detailBackdrop.dataset.open;
+    };
+    if (detailCopyUrl) detailCopyUrl.addEventListener('click', () => {
+      copyToClipboard(detailUrl.textContent, detailCopyUrl);
+    });
+    if (detailClose) detailClose.addEventListener('click', closeDetail);
+    if (detailBackdrop) detailBackdrop.addEventListener('click', closeDetail);
+    document.addEventListener('keydown', ev => {
+      if (ev.key === 'Escape' && detailPanel && 'open' in detailPanel.dataset) closeDetail();
+    });
+    for (const tab of detailTabs) {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        for (const t of detailTabs) {
+          if (t.dataset.tab === target) t.dataset.active = '';
+          else delete t.dataset.active;
+        }
+        for (const b of detailBodies) b.hidden = b.dataset.tab !== target;
+      });
+    }
+
+    const onClick = payload => {
+      if (!payload || !payload.request) return;
+      // waterfall-tools' click payload exposes its own internal Request
+      // shape, which is missing fields the detail panel wants (HAR-shape
+      // timings / cookies / sizes / headers). The same per-page index it
+      // gives us lines up with the original HAR entries, so look those up
+      // and hand both to the panel.
+      const pageEntries = ((har.log && har.log.entries) || [])
+        .filter(e => e.pageref === currentPageId);
+      const harEntry = pageEntries[payload.index] || null;
+      populateDetail(payload.request, harEntry);
+      openDetail();
+    };
+
+    // Theme the canvas to match the surrounding sitespeed.io card. The
+    // renderer's defaults are tuned for the standalone WPT-style viewer
+    // (pure black border, neutral grey stripes); inside our card those
+    // read as visually heavy. Slate text + softened border + slightly
+    // cooler stripe align the canvas with the card chrome. Functional
+    // colours (`longTask`, `userTimingMark`, MIME-type bars, page-event
+    // markers) are intentionally left at their defaults — those carry
+    // semantic meaning we don't want to override.
+    const palette = {
+      text: '#0f172a',
+      titleText: '#3a4250',
+      rowStripe: '#f4f6fa',
+      border: '#e3e7ed',
+      grid: 'rgb(214, 219, 224)'
+    };
+
+    // Drag-to-zoom (mouse) and pinch/pan (touch) are built into the
+    // renderer since waterfall-tools 0.4. The gesture leaves no visible
+    // affordance to undo it, so surface a Reset zoom button whenever the
+    // onZoom notification tells us the visible time window changed.
+    const resetZoomBtn = document.getElementById('wt-reset-zoom');
+    const onZoom = () => {
+      if (resetZoomBtn) resetZoomBtn.hidden = false;
+    };
+
+    const renderer = await wt.renderTo(container, {
+      ...WaterfallTools.getDefaultOptions(),
+      ...readOptions(),
+      pageId: initialPageId,
+      palette,
+      onHover,
+      onClick,
+      onZoom
+    });
+
+    if (resetZoomBtn) {
+      resetZoomBtn.addEventListener('click', () => {
+        renderer.updateOptions({ startTime: null, endTime: null });
+        resetZoomBtn.hidden = true;
+      });
+    }
+
+    // User-timing marks key — the canvas draws unlabelled vertical lines for
+    // each entry in `pageTimings._userTimings`; pair them with a small
+    // chronological list so users can match line position → mark name.
+    // Visibility is tied to the same `Marks & visual metrics` toggle that gates
+    // the canvas lines, so list and lines appear/hide together.
+    const userTimingsEl = document.getElementById('wt-user-timings');
+    const userTimingsList = document.getElementById('wt-user-timings-list');
+    const fmt = ms => ms < 1000 ? Math.round(ms) + 'ms' : (ms / 1000).toFixed(2) + 's';
+    const updateUserTimingsVisibility = () => {
+      if (!userTimingsEl || !userTimingsList) return;
+      const hasItems = userTimingsList.children.length > 0;
+      const showMarks = controls.showMarks ? controls.showMarks.checked : true;
+      userTimingsEl.hidden = !hasItems || !showMarks;
+    };
+    const populateUserTimings = pageId => {
+      if (!userTimingsEl || !userTimingsList) return;
+      const page = pages.find(p => p.id === pageId) || pages[0];
+      const ut = (page && page.pageTimings && page.pageTimings._userTimings) || {};
+      userTimingsList.replaceChildren();
+      const entries = Object.entries(ut).sort((a, b) => a[1] - b[1]);
+      for (const [name, time] of entries) {
+        const item = document.createElement('span');
+        const n = document.createElement('span');
+        n.className = 'name';
+        n.textContent = name;
+        const t = document.createElement('span');
+        t.className = 'time';
+        t.textContent = fmt(time);
+        item.appendChild(n);
+        item.appendChild(t);
+        userTimingsList.appendChild(item);
+      }
+      updateUserTimingsVisibility();
+    };
+    populateUserTimings(initialPageId);
+
+    // Extension-metric legend — any `_`-prefixed numeric pageTimings field
+    // not in the named-event map gets rendered by the canvas as an
+    // `ext_<name>` vertical line with a deterministic auto-colour. Mirror
+    // the canvas's hash → palette here so the legend swatch matches the
+    // line on screen pixel-for-pixel. KNOWN_EXTENSIONS lists the field
+    // names that are already represented by the static legend chips
+    // (First paint / FCP / LCP / DOMContentLoaded / DOM interactive /
+    // Load) so they don't get a duplicate auto-coloured chip.
+    const EXT_PALETTE = [
+      [102, 110, 175], [33, 158, 188], [231, 111, 81], [255, 159, 28],
+      [180, 90, 178], [80, 130, 80], [200, 80, 130], [110, 76, 191],
+      [70, 165, 200], [220, 130, 60], [120, 165, 110], [160, 100, 100]
+    ];
+    const KNOWN_EXTENSIONS = new Set([
+      '_firstPaint', '_firstContentfulPaint',
+      '_largestContentfulPaint', '_LargestContentfulPaint',
+      '_domInteractiveTime', '_domInteractive', '_domContentLoadedTime'
+    ]);
+    const extColorFor = name => {
+      let h = 0;
+      for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+      return EXT_PALETTE[Math.abs(h) % EXT_PALETTE.length];
+    };
+    const humanize = field => field
+      .replace(/^_+/, '')
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/(\d+)/g, ' $1')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/^./, c => c.toUpperCase());
+    const legendEl = document.querySelector('.waterfall-legend');
+    const populateExtLegend = pageId => {
+      if (!legendEl) return;
+      // Remove any previously-added extension chips so page-selector changes
+      // refresh cleanly without leaving stale entries from the prior page.
+      for (const n of legendEl.querySelectorAll('[data-ext]')) n.remove();
+      const page = pages.find(p => p.id === pageId) || pages[0];
+      const pt = (page && page.pageTimings) || {};
+      for (const field in pt) {
+        if (!field.startsWith('_') || KNOWN_EXTENSIONS.has(field)) continue;
+        const value = pt[field];
+        if (typeof value !== 'number' || value <= 0) continue;
+        const color = extColorFor('ext_' + field.slice(1));
+        const item = document.createElement('span');
+        item.dataset.ext = '1';
+        item.title = field;
+        const swatch = document.createElement('span');
+        swatch.className = 'swatch';
+        swatch.style.background = 'rgb(' + color.join(',') + ')';
+        item.appendChild(swatch);
+        item.appendChild(document.createTextNode(humanize(field)));
+        legendEl.appendChild(item);
+      }
+    };
+    populateExtLegend(initialPageId);
+
+    // Save-as-image — `<canvas>.toBlob` captures the full canvas pixel
+    // buffer (DPR-aware, so retina displays produce 2× sharp images),
+    // not just what's visible after horizontal scroll.
+    const saveBtn = document.getElementById('wt-save-image');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', ev => {
+        ev.preventDefault();
+        const canvas = container.querySelector('canvas');
+        if (!canvas) return;
+        canvas.toBlob(blob => {
+          if (!blob) return;
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = saveBtn.dataset.filename || 'waterfall.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        }, 'image/png');
+      });
+    }
+
+    for (const k of Object.keys(controls)) {
+      if (controls[k]) {
+        controls[k].addEventListener('change', () => {
+          renderer.updateOptions(readOptions());
+          if (k === 'showMarks') updateUserTimingsVisibility();
+        });
+      }
+    }
+
+    // Debounce the URL filter — the renderer rebuilds layout on every
+    // updateOptions, so firing per-keystroke on a thousand-request HAR
+    // jitters the UI badly.
+    if (filterEl) {
+      let filterTimer = null;
+      filterEl.addEventListener('input', () => {
+        if (filterTimer) clearTimeout(filterTimer);
+        filterTimer = setTimeout(() => {
+          const info = resolveReqFilter(filterEl.value);
+          renderer.updateOptions({ reqFilter: info.value });
+          updateFilterCount(info);
+        }, 120);
+      });
+    }
+
+    const selector = document.getElementById('page-selector');
+    if (selector && pages.length > 1) {
+      for (const page of pages) {
+        const opt = document.createElement('option');
+        opt.value = page.id;
+        opt.textContent = page.title || page.id;
+        if (page.id === initialPageId) opt.selected = true;
+        selector.appendChild(opt);
+      }
+      selector.addEventListener('change', () => {
+        currentPageId = selector.value;
+        const info = filterEl ? resolveReqFilter(filterEl.value) : { value: '', count: null, total: null };
+        // A zoom window from the previous page is meaningless on the new
+        // one — clear it so every page starts fully zoomed out.
+        renderer.updateOptions({ pageId: currentPageId, reqFilter: info.value, startTime: null, endTime: null });
+        if (resetZoomBtn) resetZoomBtn.hidden = true;
+        populateUserTimings(currentPageId);
+        populateExtLegend(currentPageId);
+        updateFilterCount(info);
+      });
+    }
+  })();

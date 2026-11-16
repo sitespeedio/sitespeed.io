@@ -1,0 +1,58 @@
+# sitespeed.io and Browsertime
+
+> sitespeed.io is an open source tool that measures the web performance of pages and user journeys in real browsers (Chrome, Firefox, Edge, Safari, and Chrome and Safari on mobile phones). Browsertime is the engine inside sitespeed.io that drives the browser and collects the metrics, and it can also run on its own. Both are Node.js command line tools (Node.js 22 or later) and are also shipped as Docker containers. Test scripts are ES modules that get a `context` and a `commands` object, and they run the same way in both tools.
+
+This file lists the current documentation. Older blog posts, forum answers and tutorials often describe APIs and flags that have been removed or replaced. If a command, option or pattern is not in the pages below or in the configuration reference, treat it as not existing, even when it looks familiar. Run `sitespeed.io --help` or `browsertime --help` to see the options for the installed version.
+
+## Start here
+
+- [Using AI coding agents](https://www.sitespeed.io/documentation/sitespeed.io/ai-coding-agents/): Outdated patterns agents often write, and what to use instead
+- [Introduction](https://www.sitespeed.io/documentation/sitespeed.io/introduction/): What sitespeed.io is and how it works
+- [Installation](https://www.sitespeed.io/documentation/sitespeed.io/installation/): Install with npm or use Docker
+- [Docker](https://www.sitespeed.io/documentation/sitespeed.io/docker/): Run sitespeed.io in the Docker container
+- [Web performance testing in practice](https://www.sitespeed.io/documentation/sitespeed.io/web-performance-testing-in-practice/): How to get stable and useful synthetic test results
+
+## Configuration
+
+- [sitespeed.io configuration](https://www.sitespeed.io/documentation/sitespeed.io/configuration/): All command line options, generated from `--help`
+- [Browsertime configuration](https://www.sitespeed.io/documentation/browsertime/configuration/): All Browsertime command line options
+- [Browsers](https://www.sitespeed.io/documentation/sitespeed.io/browsers/): Browser specific setup and when a test ends (page complete check)
+- [Connectivity](https://www.sitespeed.io/documentation/sitespeed.io/connectivity/): Throttle the network
+- [Mobile phones](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/): Test on Android and iOS devices
+
+## Scripting
+
+- [Scripting overview](https://www.sitespeed.io/documentation/sitespeed.io/scripting/): Tutorials and API reference
+- [Introduction](https://www.sitespeed.io/documentation/sitespeed.io/scripting/introduction/): The shape of a script
+- [Measure](https://www.sitespeed.io/documentation/sitespeed.io/scripting/measurement-commands/): What is measured and what is not (`measure.start` and `measure.stop`)
+- [Interact with the page](https://www.sitespeed.io/documentation/sitespeed.io/scripting/interact-with-the-page/): Click, type and the selector syntax
+- [Waiting recipes](https://www.sitespeed.io/documentation/sitespeed.io/scripting/waiting/): Wait for a condition, not for a fixed time
+- [User journeys](https://www.sitespeed.io/documentation/sitespeed.io/scripting/user-journeys/): Measure multi-step flows
+- [Pre and post scripts](https://www.sitespeed.io/documentation/sitespeed.io/scripting/pre-and-post-scripts/): Log in once, measure many pages
+- [Running and managing scripts](https://www.sitespeed.io/documentation/sitespeed.io/scripting/running-scripts/): Run one or more scripts, TypeScript scripts
+- [Cookies and consent](https://www.sitespeed.io/documentation/sitespeed.io/scripting/cookies-and-consent/): Cookies and consent banners
+- [Iframes and popups](https://www.sitespeed.io/documentation/sitespeed.io/scripting/iframes-and-popups/): Frames, windows, tabs and alerts
+- [Error handling](https://www.sitespeed.io/documentation/sitespeed.io/scripting/error-handling/): Fail a script in a way that shows up in the report
+- [Debugging scripts](https://www.sitespeed.io/documentation/sitespeed.io/scripting/debugging-scripts/): Logging and breakpoints
+- [Examples](https://www.sitespeed.io/documentation/sitespeed.io/scripting/examples/): Complete example scripts
+- [Commands API reference](https://www.sitespeed.io/documentation/sitespeed.io/scripting/Commands.html): Every command with its parameters
+- [Code completion](https://www.sitespeed.io/documentation/sitespeed.io/scripting/setting-up-intellisense/): Type definitions for scripts
+
+## Results and analysis
+
+- [Metrics](https://www.sitespeed.io/documentation/sitespeed.io/metrics/): Definitions of the collected metrics
+- [Google Web Vitals](https://www.sitespeed.io/documentation/sitespeed.io/google-web-vitals/): Web Vitals in lab tests
+- [Compare](https://www.sitespeed.io/documentation/sitespeed.io/compare/): Use statistics to decide if a change is a regression
+- [Performance budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/): Fail a test when a metric is over its limit
+- [Continuous integration](https://www.sitespeed.io/documentation/sitespeed.io/continuous-integration/): Run tests in CI
+- [Browsertime details](https://www.sitespeed.io/documentation/browsertime/details/): Browsertime output (`browsertime.json` and the HAR file)
+
+## Optional
+
+- [Upgrade guide](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/): Breaking changes between major versions, and how old APIs map to new ones
+- [Running Selenium code](https://www.sitespeed.io/documentation/sitespeed.io/scripting/selenium/): Use the Selenium driver directly when no command covers what you need
+- [Chrome DevTools Protocol](https://www.sitespeed.io/documentation/sitespeed.io/scripting/chrome-devtools-protocol/): Chrome only
+- [CDP recipes](https://www.sitespeed.io/documentation/sitespeed.io/scripting/cdp-recipes/): Block domains, change headers and more, Chrome only
+- [WebDriver BiDi](https://www.sitespeed.io/documentation/sitespeed.io/scripting/bidi/): Cross-browser protocol access
+- [Plugins](https://www.sitespeed.io/documentation/sitespeed.io/plugins/): Write a sitespeed.io plugin
+- [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md): What changed in each release

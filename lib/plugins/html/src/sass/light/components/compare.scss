@@ -1,0 +1,854 @@
+//
+// COMPARE — light
+// ===============
+// Layout for the compare plugin's A/B view: a one-line setup strip, a
+// collapsed run-setup details block, the content-breakdown table, a
+// verdict card, and one row per compared metric — name + p-value, a
+// distribution strip (baseline and current runs as dots on a shared
+// value axis), median → median with the delta, and a verdict chip.
+//
+// The strips are absolutely-positioned DOM dots inside a relative rail
+// rather than SVG: inline SVG with `preserveAspectRatio='none'`
+// stretched into a wide rectangle distorted circles into ellipses;
+// HTML dots stay round at any width. Baseline and current are two
+// separate rails on the SAME value scale — run order carries no
+// meaning for independent samples, so there is no run-index axis.
+//
+
+// Per-series colours — baseline is the warm reference, current the
+// cool subject. Validated as a pair for CVD separation and >= 3:1
+// contrast against the card surface; every use is paired with a text
+// label so identity never rides on hue alone. Keep in sync with the
+// dark theme's pair (its steps are brightened for the dark surface).
+$cmp--baseline: #b25e12;
+$cmp--current: #2a78d6;
+
+.cmp-title {
+  margin: 0 0 12px 0;
+}
+
+.cmp-alert {
+  padding: 10px 14px;
+  border-radius: $radius--sm;
+  margin: 0 0 16px 0;
+  font-size: 0.95rem;
+  border: 1px solid $color--border;
+
+  &--warning {
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+    color: $color--warning;
+  }
+}
+
+//
+// Card shell — matches the .inp-card / .lcp-card / .loaf-card pattern
+// already used on the Metrics tab so the whole report feels consistent.
+//
+.cmp-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin: 0 0 18px 0;
+  box-shadow: $shadow--sm;
+}
+
+.cmp-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cmp-card-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: $font--weight--semibold;
+}
+
+//
+// Setup strip — the test parameters on one line, replacing the old
+// Settings and Run setup cards.
+//
+.cmp-setupline {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  padding: 12px 18px;
+  margin: 0 0 14px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  align-items: baseline;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+
+  b {
+    font-weight: $font--weight--semibold;
+    color: $color--text;
+  }
+}
+
+.cmp-setup-key {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  font-weight: $font--weight--semibold;
+  margin-right: 5px;
+}
+
+.cmp-setup-extra {
+  color: $color--text-muted;
+}
+
+// Collapsed algorithm explainer in the setup strip — full-width flex
+// child so it wraps to its own row under the settings.
+.cmp-about {
+  flex-basis: 100%;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    list-style: none;
+
+    // The foundation strips the native disclosure triangle, so draw
+    // our own — without it the summary reads as inert text.
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 6px;
+      transition: rotate 0.12s;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  &[open] > summary {
+    margin-bottom: 6px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: $color--text-secondary;
+  }
+
+  li {
+    margin: 3px 0;
+  }
+
+  b {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+  }
+}
+
+//
+// Run setup lives in a collapsed details block — the screenshots and
+// videos are useful for eyeballing an A/B but too heavy to lead with.
+//
+.cmp-run-details {
+  margin: 0 0 14px 0;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    padding: 4px 0;
+    list-style: none;
+
+    // The foundation strips the native disclosure triangle, so draw
+    // our own — without it the summary reads as inert text.
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 6px;
+      transition: rotate 0.12s;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  &[open] > summary {
+    margin-bottom: 10px;
+  }
+}
+
+.cmp-runs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cmp-run {
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cmp-run-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cmp-run-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color--white;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
+
+.cmp-run-timestamp {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cmp-run-url {
+  word-break: break-word;
+  font-weight: $font--weight--medium;
+}
+
+.cmp-run-thumb {
+  display: block;
+  line-height: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: $radius--sm;
+    border: 1px solid $color--border;
+    background: $color--surface-card;
+  }
+}
+
+.cmp-run-video video {
+  width: 100%;
+  max-width: 280px;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  background: $color--black;
+}
+
+.cmp-run-result {
+  align-self: flex-start;
+  font-size: 0.9rem;
+  font-weight: $font--weight--medium;
+}
+
+//
+// Content breakdown — straightforward 3-column table, right-aligned
+// numbers so the eye can compare baseline vs current at a glance.
+//
+.cmp-types {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th, td {
+    padding: 8px 12px;
+    border-bottom: 1px solid $color--border;
+    text-align: left;
+  }
+
+  thead th {
+    color: $color--text-muted;
+    font-weight: $font--weight--semibold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid $color--border-strong;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.cmp-types-num {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+//
+// Verdict card — the headline answer plus jump chips to the flagged
+// metrics, and the one shared legend for all the strips below.
+//
+.cmp-verdict {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  padding: 14px 18px;
+  margin: 0 0 18px 0;
+}
+
+.cmp-verdict-line {
+  font-size: 1rem;
+
+  b {
+    font-size: 1.15rem;
+  }
+}
+
+// The "significant but too small to matter" rows get their own quiet
+// sentence under the headline instead of inflating the slower-count.
+.cmp-verdict-sub {
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  margin-top: 4px;
+}
+
+.cmp-verdict-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+// Chip tone follows the direction of the change: an improvement is
+// good news even when it is statistically significant.
+.cmp-verdict-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  text-decoration: none;
+
+  &--error {
+    background: $color--error-bg;
+    color: $color--error;
+    border: 1px solid $color--error-border;
+
+    &:hover { border-color: $color--error; }
+  }
+
+  &--ok {
+    background: $color--ok-bg;
+    color: $color--ok;
+    border: 1px solid $color--ok-border;
+
+    &:hover { border-color: $color--ok; }
+  }
+
+  &--neutral {
+    background: $color--surface;
+    color: $color--text-secondary;
+    border: 1px solid $color--border;
+
+    &:hover { border-color: $color--border-strong; }
+  }
+
+  &--warning {
+    background: $color--warning-bg;
+    color: $color--warning;
+    border: 1px solid $color--warning-border;
+
+    &:hover { border-color: $color--warning; }
+  }
+}
+
+.cmp-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid $color--border;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.cmp-swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+
+  // The band / overlap swatches are little bars, not dots — they stand
+  // for a range, so a round swatch would misrepresent them.
+  &--band {
+    width: 18px;
+    border-radius: 3px;
+    background: rgba($cmp--baseline, 0.18);
+    border: 1px solid rgba($cmp--baseline, 0.45);
+  }
+
+  &--overlap {
+    width: 18px;
+    border-radius: 3px;
+    background: rgba($color--text-muted, 0.22);
+  }
+}
+
+// Collapsed plain-language primer under the legend — how to read p,
+// shift, effect and the spread verdict without being a statistician.
+.cmp-help {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid $color--border;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    list-style: none;
+
+    // The foundation strips the native disclosure triangle, so draw
+    // our own — without it the summary reads as inert text.
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 6px;
+      transition: rotate 0.12s;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  &[open] > summary {
+    margin-bottom: 6px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: $color--text-secondary;
+  }
+
+  li {
+    margin: 3px 0;
+  }
+
+  b {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+//
+// Metric groups — one card per group, one row per metric.
+//
+.cmp-group {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+  margin: 0 0 14px 0;
+}
+
+.cmp-group-head {
+  padding: 12px 18px 8px 18px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cmp-group-title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: $font--weight--semibold;
+}
+
+.cmp-metric {
+  display: grid;
+  // 220px fits beforeLargestContentfulPaint — at 200px the last letter
+  // wrapped onto its own line.
+  grid-template-columns: 220px 1fr 170px 150px;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 18px;
+  scroll-margin-top: 66px; // clear the 50px fixed nav, plus breathing room
+
+  & + & {
+    border-top: 1px solid $color--border;
+  }
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr 140px;
+    grid-template-rows: auto auto;
+  }
+}
+
+// Significant rows are tinted by the direction of the change —
+// regressions in the error tone, improvements in the good tone, a
+// two-sided hit with no rank direction stays neutral, and a hit whose
+// medians display the same value gets the warning tone (statistically
+// detectable, too small to matter). The chip gets the card surface as
+// backing there — its own tint would melt into the identically-tinted
+// row.
+.cmp-metric--significant {
+  .cmp-chip {
+    background: $color--surface-card;
+  }
+
+  &.cmp-metric--error {
+    background: $color--error-bg;
+    box-shadow: inset 3px 0 0 $color--error;
+  }
+
+  &.cmp-metric--ok {
+    background: $color--ok-bg;
+    box-shadow: inset 3px 0 0 $color--ok;
+  }
+
+  &.cmp-metric--neutral {
+    background: $color--surface;
+    box-shadow: inset 3px 0 0 $color--border-strong;
+  }
+
+  &.cmp-metric--warning {
+    background: $color--warning-bg;
+    box-shadow: inset 3px 0 0 $color--warning;
+  }
+}
+
+.cmp-metric-name {
+  b {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: $font--weight--semibold;
+    word-break: break-word;
+  }
+
+  small {
+    font-size: 0.7rem;
+    color: $color--text-muted;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Tag on a merged row — several metric names, one set of run values.
+.cmp-same {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 0.66rem;
+  color: $color--text-muted;
+  background: $color--surface;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.cmp-metric-strip {
+  min-width: 0;
+
+  @media (max-width: 860px) {
+    grid-column: 1 / -1;
+  }
+}
+
+.cmp-metric-flat {
+  margin: 0;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+
+  b {
+    color: $color--text-secondary;
+  }
+}
+
+.cmp-metric-delta {
+  text-align: right;
+
+  b {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: $font--weight--semibold;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  // Block so the delta line and the Hodges-Lehmann shift line stack.
+  small {
+    display: block;
+    font-size: 0.72rem;
+    color: $color--text-muted;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  // On a non-significant row the two medians are a reference, not a
+  // verdict — dim them so the effect-size chip carries the eye and a
+  // couple of noise-milliseconds don't read as a real regression.
+  &--quiet b {
+    font-weight: $font--weight--regular;
+    color: $color--text-secondary;
+  }
+}
+
+.cmp-arrow {
+  color: $color--text-muted;
+  font-weight: $font--weight--regular;
+}
+
+.cmp-metric-chip {
+  text-align: right;
+}
+
+//
+// Distribution strip — two rails (baseline over current) on a shared
+// value axis. Dots get a small deterministic vertical jitter from the
+// template so near-identical values stay visible as a cluster; runs
+// piling up on a handful of distinct values render as a counted pill
+// instead. Behind the dots each series draws a middle-80% band, and
+// a grey overlap stripe spans both rails where the two bands coincide —
+// the drawn answer to "is this shift real or run-to-run noise?".
+// Series labels live in a gutter left of the rails so marks never
+// paint over them.
+//
+.cmp-strip-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 8px;
+}
+
+.cmp-strip-gutter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cmp-strip-gutter-label {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.56rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.02em;
+
+  &--baseline { color: $cmp--baseline; }
+  &--current { color: $cmp--current; }
+}
+
+.cmp-strip-rails {
+  position: relative;
+}
+
+// The overlap sits behind both rails (rendered first in the DOM) so the
+// hairline, bands and dots all read on top of it. Its width is the value
+// window the two normal ranges share.
+.cmp-strip-overlap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba($color--text-muted, 0.16);
+  border-radius: 3px;
+  z-index: 0;
+}
+
+.cmp-strip-rail {
+  position: relative;
+  height: 22px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 11px;
+    height: 1px;
+    background: $color--border;
+  }
+}
+
+// Middle-80% range (p10–p90) — the "normal range" for that series, so
+// the eye compares ranges, not just the two median ticks.
+.cmp-strip-band {
+  position: absolute;
+  top: 11px;
+  height: 10px;
+  translate: 0 -50%;
+  border-radius: 5px;
+  z-index: 0;
+
+  &--baseline { background: rgba($cmp--baseline, 0.15); }
+  &--current { background: rgba($cmp--current, 0.15); }
+}
+
+.cmp-strip-dot {
+  position: absolute;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  translate: -50% -50%;
+  border: 1.5px solid $color--surface-card;
+  opacity: 0.9;
+  z-index: 2;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+
+  &:hover {
+    transform: scale(1.7);
+    opacity: 1;
+    z-index: 4;
+  }
+}
+
+// Counted pill for runs piling up on one value — twenty runs at 303 ms
+// must not read as one dot. Same layer as the median tick and rendered
+// after it, so the count stays legible when the median sits on the
+// pile (the tick's taller ends still peek out above and below).
+.cmp-strip-pile {
+  position: absolute;
+  top: 11px;
+  translate: -50% -50%;
+  z-index: 3;
+  min-width: 16px;
+  text-align: center;
+  padding: 1px 5px;
+  border-radius: $radius--pill;
+  border: 1.5px solid $color--surface-card;
+  color: $color--white;
+  font-size: 0.58rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
+
+.cmp-strip-median {
+  position: absolute;
+  top: 11px;
+  width: 2.5px;
+  height: 18px;
+  translate: -50% -50%;
+  border-radius: 1px;
+  z-index: 3;
+
+  &--baseline { background: $cmp--baseline; }
+  &--current { background: $cmp--current; }
+}
+
+.cmp-strip-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+  // Line up with the rails: gutter column + grid gap.
+  margin-left: 60px;
+}
+
+//
+// Status chips — the verdict column. Borderless tinted badges (same
+// treatment as the Timings Summary agree pills): in this report a
+// border on a pill signals "clickable", and these are labels. Only
+// the verdict-card jump chips keep a border — they are links. The pill
+// carries only the short verdict; the effect size renders below it as
+// .cmp-effect so a number never wraps onto its own line inside the pill.
+//
+.cmp-chip {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: $radius--pill;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  white-space: normal;
+
+  &--ok {
+    color: $color--ok;
+    background: $color--ok-bg;
+  }
+
+  &--error {
+    color: $color--error;
+    background: $color--error-bg;
+  }
+
+  &--neutral {
+    color: $color--text-muted;
+    background: $color--surface;
+  }
+
+  &--warning {
+    color: $color--warning;
+    background: $color--warning-bg;
+  }
+}
+
+.cmp-effect {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.68rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}

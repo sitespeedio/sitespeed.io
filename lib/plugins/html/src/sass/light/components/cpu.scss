@@ -1,0 +1,458 @@
+//
+// CPU — light
+// ===========
+//
+
+.cpu-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+}
+
+.cpu-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+}
+
+.cpu-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.cpu-kpi-value {
+  font-size: 1.4rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.cpu-kpi-sub {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+// Secondary KPI band — used for the "long tasks per page-load
+// phase" tiles below the headline TBT row. Same shape, slightly
+// smaller value text so it doesn't compete with the main KPIs.
+.cpu-kpis-secondary {
+  margin-top: -8px;
+  margin-bottom: 14px;
+
+  .cpu-kpi-value {
+    font-size: 1.1rem;
+  }
+}
+
+.cpu-section-heading {
+  font-size: 0.85rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 18px 0 8px 0;
+}
+
+.cpu-no-tasks {
+  color: $color--ok;
+  font-weight: $font--weight--medium;
+  margin: 0 0 1.5rem 0;
+  padding: 14px 16px;
+  background: $color--ok-bg;
+  border: 1px solid $color--ok-border;
+  border-radius: $radius--md;
+}
+
+//
+// Long-tasks-by-phase definition list
+//
+.cpu-phase-list {
+  display: grid;
+  grid-template-columns: minmax(200px, auto) auto;
+  column-gap: 16px;
+  row-gap: 6px;
+  margin: 0 0 1.5rem 0;
+  font-size: 0.95rem;
+
+  dt {
+    color: $color--text-secondary;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    display: inline-flex;
+    gap: 12px;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.cpu-phase-count {
+  color: $color--text;
+  font-weight: $font--weight--semibold;
+  min-width: 2.5em;
+  text-align: right;
+}
+
+.cpu-phase-time {
+  color: $color--text-muted;
+}
+
+//
+// First Input Delay card
+//
+.cpu-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 14px 16px;
+  margin-bottom: 1.5rem;
+}
+
+.cpu-card-header {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cpu-card-title {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+}
+
+.cpu-fi-meta {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 6px;
+  margin: 0;
+  font-size: 0.95rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+//
+// Bar lists for categories / events / per-request / per-tool
+//
+// The container owns the grid and rows are display: contents, so all
+// rows in a card share the same column tracks: the value column sizes
+// to the widest row and every bar track starts at the same x.
+.cpu-bars {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 2fr minmax(80px, auto);
+  gap: 5px 12px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.cpu-bar-row {
+  display: contents;
+  font-size: 0.9rem;
+}
+
+.cpu-bar-label {
+  color: $color--text-secondary;
+  word-break: break-word;
+}
+
+.cpu-bar-asset {
+  color: $color--text;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+}
+
+.cpu-bar-track {
+  height: 8px;
+  border-radius: $radius--sm;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  overflow: hidden;
+}
+
+.cpu-bar-fill {
+  display: block;
+  height: 100%;
+  background: $color--blue;
+}
+
+.cpu-bar-value {
+  text-align: right;
+  color: $color--text;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  white-space: nowrap;
+}
+
+
+//
+// Forced-reflow row meta — the "· 12 reflows · worst 16 ms" suffix
+// after the headline ms total in the CPU bar list.
+//
+.cpu-bar-sub {
+  color: $color--text-muted;
+  font-weight: $font--weight--regular;
+}
+
+.cpu-bar-anon {
+  color: $color--text-muted;
+  font-style: italic;
+}
+
+.cpu-truncate-note {
+  margin-top: 4px;
+  color: $color--text-muted;
+}
+
+// Install-site links in the timers table wrap code pills — the default
+// blue underline strikes through the pills and reads as clutter. Keep
+// the link quiet; hover tints it to show it's clickable.
+a.cpu-site-link {
+  color: $color--text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color--blue-dark;
+  }
+}
+
+//
+// Non-composited animation list — small inline pills, each a
+// property name + count. Wraps to a few lines on busy pages
+// rather than expanding into a tall table.
+//
+.cpu-anim-list {
+  list-style: none;
+  margin: 8px 0 1.5rem 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cpu-anim-prop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: $radius--pill;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  font-size: 0.85rem;
+
+  code {
+    font-family: $font--mono;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: $color--text;
+  }
+}
+
+.cpu-anim-prop-count {
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+  font-size: 0.78rem;
+}
+
+//
+// Top-offender callout — auto-derived "here is the answer" banner
+// at the top of the CPU tab. Pill-edged, slate background with a
+// brand-blue alert glyph on the left, two-line headline + detail.
+//
+.cpu-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  margin: 0 0 18px 0;
+  background: rgba(0, 149, 210, 0.06);
+  border: 1px solid rgba(0, 149, 210, 0.20);
+  border-radius: $radius--md;
+  box-shadow: $shadow--sm;
+}
+
+.cpu-callout-icon {
+  flex: 0 0 auto;
+  color: $color--blue;
+  margin-top: 1px;
+}
+
+.cpu-callout-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cpu-callout-headline {
+  font-size: 1rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  line-height: 1.4;
+  word-break: break-word;
+
+  a {
+    color: $color--blue;
+    text-decoration: none;
+    border-bottom: 1px dotted $color--blue;
+  }
+  a:hover { border-bottom-style: solid; }
+}
+
+.cpu-callout-detail {
+  margin-top: 4px;
+  font-size: 0.88rem;
+  color: $color--text-secondary;
+  font-variant-numeric: tabular-nums;
+}
+
+//
+// Stacked-segment "Where the time went" bar. Each category is a
+// flex item with `flex: <pct> 0 0`, so segment widths exactly map
+// to time share. Matches the WPT-derived palette used elsewhere in
+// the report so categories read consistently across views.
+//
+.cpu-cat-bar {
+  display: flex;
+  height: 22px;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  margin: 4px 0 14px 0;
+}
+
+.cpu-cat-seg {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+}
+
+.cpu-cat-seg--parseHTML            { background: rgb(130, 181, 252); }
+.cpu-cat-seg--styleLayout          { background: rgb(178, 234, 148); }
+.cpu-cat-seg--paintCompositeRender { background: rgb(196, 154, 232); }
+.cpu-cat-seg--scriptParseCompile   { background: rgb(254, 197, 132); }
+.cpu-cat-seg--scriptEvaluation     { background: rgb(245, 124, 80); }
+.cpu-cat-seg--garbageCollection    { background: rgb(33, 194, 162); }
+.cpu-cat-seg--other                { background: rgb(196, 196, 196); }
+
+.cpu-cat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cpu-cat-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.cpu-cat-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+.cpu-cat-name { color: $color--text; }
+.cpu-cat-value { color: $color--text; font-weight: $font--weight--medium; }
+.cpu-cat-pct { color: $color--text-muted; }
+
+// Remedy lines under the "what kind of work blocked" legend: one line
+// per kind that carried a meaningful share of blocking, routing to
+// the section that names the culprit selector/script/function.
+.cpu-kind-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.cpu-kind-action {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  .cpu-cat-swatch {
+    margin-top: 4px;
+  }
+}
+
+// The raw trace key next to the human category name in the
+// definitions fold - it is the name used in the JSON data and the
+// exported metrics.
+.cpu-cat-key {
+  color: $color--text-muted;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+//
+// Inline icon next to each h3 section heading on the CPU tab.
+// Stroke colour inherits the heading colour so light/dark themes
+// follow without per-icon overrides.
+//
+.cpu-h-icon {
+  vertical-align: -3px;
+  margin-right: 8px;
+  color: $color--text-muted;
+}
+
+// Category definitions inside the "What do these categories mean?"
+// fold — swatch + name on the dt so definitions map back to the bar.
+.cpu-cat-defs {
+  margin: 0;
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 2px 0;
+    font-weight: $font--weight--medium;
+    color: $color--text;
+  }
+
+  dd {
+    margin: 0 0 0 18px;
+    font-size: 0.92rem;
+  }
+}
+
+// "runs: x (n ms), y (m ms)" sub-line under orchestrator functions in
+// the slowest-functions table.
+.cpu-fn-callees {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: $color--text-muted;
+}

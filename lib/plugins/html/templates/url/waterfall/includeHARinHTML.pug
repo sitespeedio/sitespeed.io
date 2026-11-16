@@ -3,24 +3,17 @@
 //- specific run (the median run) in summaryPageHAR.
 //- Inline script tags breaks the output
 - dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
-- dahar = JSON.stringify(dahar.log).split('</script>').join('&lt;/script&gt;')
+//- Embedding JSON inside an outer `<script>` tag has a long history of
+//- script-tag-injection footguns: `</SCRIPT>` (case-insensitive),
+//- `<script src="...">` (with attrs), `<!--` flipping the HTML parser
+//- into script-data-escape state, etc. Rather than enumerating every
+//- form, escape every `<` and `>` in the JSON to their `\\u003c` /
+//- `\\u003e` Unicode escapes — valid JSON, decoded back to `<` / `>`
+//- by `JSON.parse`, and no substring the HTML parser can possibly
+//- misinterpret as a tag.
+- dahar = JSON.stringify(dahar).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')
 
-script(src= assetsPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
-  const outputHolderEl = document.getElementById("output");
-  const pageSelectorEl = document.getElementById("page-selector");
-  const legendHolderEl = document.getElementById("legend-holder");
-  const options = {
-    rowHeight: 23,
-    showAlignmentHelpers : false,
-    showIndicatorIcons: false,
-    showMimeTypeIcon: true,
-    leftColumnWidth: 30,
-    legendHolder: legendHolderEl,
-    selectedPage: #{harIndex},
-    pageSelector: pageSelectorEl
+  window.__waterfallBufferPromise = Promise.resolve(new TextEncoder().encode(JSON.stringify(!{dahar})));
 
-  };
-  
-  const perfCascadeSvg =  perfCascade.fromHar(!{dahar}, options);
-  outputHolderEl.appendChild(perfCascadeSvg);
+include ./_waterfallRender.pug

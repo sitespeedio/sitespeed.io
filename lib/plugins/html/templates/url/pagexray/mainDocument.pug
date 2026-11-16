@@ -1,0 +1,30 @@
+//- Main document response details, collected by browsertime whenever
+//- a HAR exists (zero config; sensitive headers are always removed):
+//- the final URL after redirects, the response status, the redirect
+//- count and the response headers. Handy for spotting cache status
+//- (x-cache/age), CDN pops and experiment enrollment (server-timing)
+//- without opening the HAR. The card is omitted on older browsertime
+//- data or with --skipHar. Cells carry `data-title` so the responsive
+//- mobile stack labels each value.
+if mainDocument
+  - const mainDocumentHeaders = Object.entries(mainDocument.headers || {})
+  a#main-document
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Main document
+      span.listing-card-meta status #{mainDocument.status} · #{h.plural(mainDocument.redirects, 'redirect')}
+    p.listing-card-help
+      a(href=mainDocument.url, title=mainDocument.url) #{mainDocument.url}
+    if mainDocumentHeaders.length > 0
+      .responsive
+        table(data-sortable)
+          thead
+            tr
+              th Header
+              th Value
+          tbody
+            each header in mainDocumentHeaders
+              tr
+                td(data-title='Header')
+                  code.server-timing-name #{header[0]}
+                td(data-title='Value') #{header[1]}

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-12-28T15:51:22.965Z</updated>
+    <updated>2026-11-12T14:47:04.301Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,17 +17,37 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 31.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1"/>
-        <updated>2023-12-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Hopefully removing &quot;rsd&quot; metrics in InfluxDB see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4039">#4039</a>.</li>
-</ul>
- <ul>
-<li>Fix showing sustainable metrics in pages page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4042">#4042</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 43.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#43.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#43.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-11-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- You can send Grafana and Graphite annotations without <code>--resultBaseURL</code>. Set <code>--graphite.annotationTitle</code> or <code>--graphite.annotationMessage</code> (or the <code>--grafana.*</code> versions) and the annotation is sent without links to the result. Use it when you keep the HTML report somewhere else, for example as a CI artifact #4922.<br>
+- Chrome 157, Firefox 160 and Edge 157 in the Docker container, and Node.js 26 in the full container #4927 #4945 #4947 #4951.<br>
+- Browsertime 29.1.0 #4942. Safari on iOS gets correct FCP, LCP, DOMContentLoaded and load for pages that send <code>Cross-Origin-Opener-Policy</code>. Before, these metrics were too low, so they will be higher after you upgrade. The iOS HAR now has the main document, and TTFB is no longer 0. Visual Metrics works with ffmpeg 9 and uses <code>python3</code> by default. With a small <code>--viewPort</code>, the video is no longer cut off on the right side. See the Browsertime changelog for all changes.<br>
+- Samsung Internet on Android. It is the second most used browser on Android. Choose it with <code>--android -b samsung</code>. Without <code>--android</code> you get an error that tells you to add it. See Running Samsung Internet #4953.<br>
+- Edge on Android now works with <code>--android -b edge</code>. Before, sitespeed.io started Edge without its Android package, so Browsertime could not find Edge on the phone. Each Edge test takes about 20 seconds longer, because Browsertime opens Edge once before the test so that Edge does not show its new tab page on top of the page. See Running Edge #4954.<br>
+- The Coach scores on the page summary now link to the matching section on the Coach tab, so you can see what lowered a score #4949.<br>
+- The release Docker images are built on native ARM64 runners instead of QEMU emulation, and the autobuild image is now also published for ARM64 #4929 #4932.<br>
+<br>
+<strong>Fixed</strong><br>
+- The compare plugin crashed with &quot;currentMetric.getValues is not a function&quot; when a plugin or script added extra metrics. Extra metrics are now compared in their own group, and extras that are not numbers (like the axe result) are skipped #4914.<br>
+- The compare plugin started <code>python</code>, which does not exist on most macOS and Linux installs. The statistics failed, and the run finished with an empty Compare tab. It now starts <code>python3</code> (<code>python</code> on Windows). You can still choose with the <code>PYTHON</code> environment variable. The Docker containers were not affected #4915.<br>
+- <code>--plugins.add</code> with comma-separated plugins did not register the options of the plugins, so a plugin like InfluxDB failed with a missing required option. Repeating <code>--plugins.add</code> already worked #4916.<br>
+- With <code>--s3.path</code> or <code>--gcs.path</code>, the links in annotations, Slack and Matrix pointed to the default folder instead of the folder you uploaded to #4917.<br>
+- The Third party tab was empty when you removed the coach plugin. The tab only needs the coach for the Third party web version #4918.<br>
+- When you repeated <code>--scriptInput.visualElements</code> to measure several elements, only the last element was used #4919.<br>
+- A network error or a response that was not JSON from the CrUx API stopped the run. Now it is logged as a CrUx error and the test continues #4920.<br>
+- Browser names are not case sensitive anymore, so <code>-b Chrome</code> works. A name that is not a supported browser now gives a clear error. Before, the name went to Browsertime and failed later #4921.<br>
+- An unknown <code>--browsertime.connectivity.engine</code> value (for example <code>tc</code>) was accepted, and the test ran without throttling. Now you get an error that lists the valid engines. Thanks Wen Castillo for the PR #4924.<br>
+- With npm 12, <code>npm ci</code> failed in a clone of sitespeed.io, because npm 12 does not read <code>npm-shrinkwrap.json</code>. The lockfile is now <code>package-lock.json</code>. The npm package still has an <code>npm-shrinkwrap.json</code>, so <code>npm install sitespeed.io</code> with npm 11 and older installs the dependency versions that we tested. npm 12 ignores that file and installs the newest matching versions. If you need the same versions on every run, use the Docker containers, see the installation documentation #4938.<br>
+- In the Docker container, the sudo rule for throttling allowed all of <code>tc</code> and <code>ip</code>, so any process in the container could become root. The rule now allows only the <code>tc</code> and <code>ip</code> commands that throttle uses. Throttling works as before #4934.<br>
+- The ARM64 Docker images had the AMD64 WebPageReplay binary, which only ran with emulation. They now get the ARM64 binary #4933.<br>
+- Every <code>--debug</code> run stopped with &quot;Debug mode do not work on Android&quot;, also on desktop. The debug page load timeout was also never used #4939.<br>
+- When a script failed after <code>measure.start()</code> but before the page had a URL, for example when a click did not find its element, the report lost all pages with &quot;TypeError: Invalid URL&quot;, also the steps that were measured. That measurement is now skipped, and its errors are reported on the page that was measured before it. Fixes #4078 #4925.<br>
+- When the browser could not start (for example a sandbox problem, a crashed Chrome or a driver that does not match), the log showed a TypeError from sitespeed.io after the real browser error. It looked like a sitespeed.io bug and hid the real cause. The report and error notifications got the same TypeError as a second error. Now you only get the browser error #4944.<br>
+- The Docker image no longer has build-essential. Nothing is compiled during the install anymore, so the image is smaller #4930.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -35,14 +55,19 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 31.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0"/>
-        <updated>2023-12-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The new version of Browsertime also fix the bug in Firefox 121 on Mac so you can start it.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.10.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.10.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.10.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-10-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Chrome 156, Firefox 158 and Edge 156 in the Docker container, and Browsertime 28.5.0 with Chromedriver and Edgedriver 156 #4913. In Browsertime, the URL under test is now escaped in the navigation script, so a URL with a quote, a backslash or a line break works. Loading a <code>.js</code> script does not overwrite an existing <code>package.json</code> in the folder of the script anymore. See the Browsertime changelog.<br>
+<br>
+<strong>Fixed</strong><br>
+- First Contentful Paint was missing from the Pages table, the summary box and the run page, and the run page lost its render-phase breakdown. Metric paths with bracket notation, like <code>paintTiming[&#39;first-contentful-paint&#39;]</code>, did not match anything after lodash.get was replaced. Configuration paths in the lodash style broke the same way #4910.<br>
+- When the coach was on (the default), the scripts that other plugins add with <code>browsertime.scripts</code> were lost, so third-party plugins did not get their data #4908.<br>
+- <code>--open</code> failed when the result path had spaces, and the shell interpreted special characters in the path #4912.<br>
+- The pre-warm run on iOS now uses the device set with <code>--safari.deviceUDID</code>. Before, with several devices or simulators, it could run on a different device than the test #4909.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -50,21 +75,16 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.11.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0"/>
-        <updated>2023-12-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded the Docker container to use Firefox 121 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4033">#4033</a>.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1931---2023-12-18">Browsertime 19.3.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4031">#4031</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Moved functionality from co2 to sitespeed.io see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4034">#4034</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.9.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.9.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.9.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-10-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Browsertime 28.4.0. On Linux, <code>--connectivity.throttle.localhost</code> now also sets a download limit. Use it for WebPageReplay tests, for example <code>--connectivity.engine throttle --connectivity.throttle.localhost --connectivity.rtt 100 --connectivity.down 5000</code>. A ready-made profile like <code>--connectivity.profile 3g</code> also uses its download limit. Throttle 6.2.0 sets the loopback MTU to 1500, like a real network. With the old MTU, WebPageReplay metrics were a full round trip apart from run to run. Localhost metrics can become lower and more stable after you upgrade. See the Browsertime changelog.<br>
+<br>
+<strong>Fixed</strong><br>
+- Updated WebPageReplay to the latest version from its new repository, together with its new inject script. The inject script changes the replayed HTML a little, so replay metrics can change after you upgrade #4907.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -72,14 +92,18 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.10.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0"/>
-        <updated>2023-12-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there&#39;s no siginificant change, else send the Cliffs delta to know how large the change is <a href="https://github.com/sitespeedio/sitespeed.io/pull/4030">#4030</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.8.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.8.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.8.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-10-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Chrome 154, Firefox 156 and Edge 153 in the Docker container #4893 #4903.<br>
+- New llms.txt and a guide for AI coding agents. Agents often use old flags and APIs. The guide shows the current way to do it #4901. The scripting docs do not show fixed sleeps or CommonJS anymore #4900.<br>
+<br>
+<strong>Fixed</strong><br>
+- Browsertime 28.3.1 #4905. With WebPageReplay, Chrome sent HTTP requests on port 80 to the internet. Now the replay server gets them. Pages with <code>http://</code> resources can show different metrics. Chrome does not connect to <code>mtalk.google.com</code> and <code>clients2.google.com</code> during tests anymore. Chrome 153 does not know <code>iPhone 6</code> for <code>--chrome.mobileEmulation.deviceName</code>. Use a newer device, for example <code>iPhone 12 Pro</code>. See the Browsertime changelog.<br>
+- Result page URLs use the <code>URL</code> API. Node deprecated <code>url.parse</code> #4904.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -87,20 +111,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.9.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0"/>
-        <updated>2023-12-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Edge 120 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4027">#4027</a>.</li>
-</ul>
- <ul>
-<li>Updated to Browsertime 19.2.0.</li>
-</ul>
- <ul>
-<li>For users of the +1 container Lighthouse has been upgraded to 11.4.0.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.7.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.7.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.7.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-09-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Chrome 152, Firefox 154 and Edge 151 in the Docker container #4891.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -108,17 +125,17 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.8.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0"/>
-        <updated>2023-12-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use Cliffs delta to know the size of the significant change <a href="https://github.com/sitespeedio/sitespeed.io/pull/4024">#4024</a>.</li>
-</ul>
- <ul>
-<li>Show if the graph has a siginficant change or not in the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4025">#4025</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.6.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-08-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Browsertime 28.3.0 #4887. Single page app journeys measure better: a route change that makes no network requests used to wait out the whole page-complete timeout and lose its HAR page, now it finishes on quiet time and keeps the page. INP is reported as the slowest (p98) interaction like the web-vitals library does, where a journey with a 500 ms and a 150 ms click used to report 150. Chrome&#39;s built-in list of disabled phone-home features (Translate and friends) is back in default runs after a duplicated switch had silently replaced it, soft-navigation LCP works again on Chromium 151+ and multi-page scripts no longer get render-blocking and LCP annotations on the wrong HAR page. New <code>cpuPerformance</code> field (Chrome 152+) with the browser&#39;s own coarse device rating, which helps explain why the same page measures differently on different machines. See the Browsertime changelog for the full list of fixes.<br>
+- Chrome 151 in the Docker container, and Chrome now runs natively in the arm64 image #4888.<br>
+<br>
+<strong>Fixed</strong><br>
+- Following a deep link to a Compare metric row (from the verdict card&#39;s jump chips or a shared <code>#chart-</code> URL) mangled the targeted row: the distribution strip collapsed into the delta column and the chip wrapped under the metric name. The old fixed-header anchor offset inserted an invisible spacer box that a CSS grid container counts as an extra first item, pushing every cell one column over. The offset now uses scroll-margin, which moves the scroll position without creating a box, so any targeted card that is a grid or flex container keeps its layout #4886.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -126,14 +143,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.7.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1"/>
-        <updated>2023-12-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The old settings for MannWhitneyU tests where confusing. We compared the the baseline is less than the current tests. This PR switched so we instead look if the current tests are greater than the baseline. We also added some better explaining text on result page<a href="https://github.com/sitespeedio/sitespeed.io/pull/4023">#4023</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.5.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- The Compare tab merged metrics with identical run values into one stacked row, which read as if before-FCP and before-LCP element counts were one metric when they are different measurements that happen to agree whenever FCP and LCP are the same paint, and the stacked names broke the name column mid-word. Every metric is its own row again and counts separately in the verdict; a row whose values match an earlier one carries a quiet &quot;same values as X&quot; tag instead, so identical numbers don&#39;t read as a rendering mistake. Direction words now follow the unit (higher/lower for counts and unitless metrics like CLS, slower/faster for times), since a &quot;slower&quot; chip on an element count read as a bug, and the about-the-statistics fold spells out what negligible, small, medium and large effect mean in plain text #4885.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -141,14 +157,19 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.7.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.0"/>
-        <updated>2023-11-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Show Axe individual issues on the page summary (not only on each individual run) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4019">#4019</a>. Thank you <a href="https://github.com/shaqb">shaqb</a> for pointing that out. The total number of issues is also sent to Graphite under <em>statistics.axe.violationIssues</em>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.5.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Every tested Compare row now shows how big the change is, not just how certain: the Hodges-Lehmann shift estimate with a 95% confidence interval (&quot;shift +7 (+4 to +9 ms)&quot;). A p-value kept being read as a size, but 21 fully separated runs give p = 1e-10 whether the shift is 1 ms or 100 ms. An interval away from zero is a real change of about that size, an interval straddling zero is noise no matter what the bare delta suggests. Added as a new additive field on the compare.pageSummary message, the graphite export is untouched #4882.<br>
+- Compare catches regressions that change run-to-run behaviour without moving the median. The rank test is blind to a metric whose median holds while the runs split into a fast and a slow group, for example a race sending a third of the iterations down a slow path. Every compared metric now also runs a two-sample Kolmogorov-Smirnov test over the whole distributions; it only surfaces when the rank test saw nothing, marking the row amber with &quot;spread changed&quot; and the change in the middle-80% span, and the verdict card lists it as possible intermittent behaviour rather than a regression. The new statisticalTestKS field is additive #4883.<br>
+- The Compare statistics explain themselves to engineers who are not statisticians: the setup strip carries a collapsed &quot;about the statistics&quot; fold naming every algorithm and what it contributes, the verdict card ends with a &quot;How to read the numbers&quot; primer, every p-value and effect line explains itself on hover and the spread verdict is worded from the data (&quot;spread changed&quot; when the median held, &quot;less steady&quot; when it moved but runs vary more) instead of citing test initials #4884.<br>
+<br>
+<strong>Fixed</strong><br>
+- The compare plugin skipped the statistical test whenever either sample had zero variance, reporting &quot;No variability&quot;. In a WebPageReplay lab the most deterministic metrics are constant within a session, so the guard suppressed exactly the clearest regressions: every run shifting cleanly from 303 ms to 310 ms was never tested while noisy metrics always were. Constant samples now reach Mann-Whitney (which handles them fine), only truly identical datasets are short-circuited. Also fixes the compare CLI option definitions: the only non-default Mann-Whitney method choice was misspelled so picking it crashed scipy, three choices carried leading spaces and one misspelled describe key kept its help text from rendering #4881.<br>
+- The Compare tab is honest about tiny, duplicate and hidden changes. A 0.0005 CLS shift rendered as &quot;0 → 0, Δ 0 (0 %)&quot; yet was flagged red as significantly slower; small values now keep two significant digits and a significant change whose medians display the same value gets an amber &quot;detectable, tiny&quot; tier so it cannot read as a regression. Before-FCP/before-LCP pairs with identical values merge into one row instead of rendering and counting twice (old #chart- anchors kept), runs piling on the same value render as counted pills instead of a single dot, the effect size gets its own line under a short verdict pill and a clear improvement under a one-sided test is called out as &quot;likely faster&quot; instead of &quot;no change&quot; #4880.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -156,21 +177,21 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0"/>
-        <updated>2023-11-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make sure browser cpu benchmark is included in the baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4015">#4015</a>.</li>
-</ul>
- <ul>
-<li>Fixed so baseline metrics is linked to graphs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4016">#4016</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix decimals on Google Web Vitals in baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4014">#4014</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.4.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.4.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Where the JavaScript and CSS bytes go: the Coverage tab opens with a plain-language lead and a treemap sized by bytes and tinted by unused share, so you can see at a glance which few files own most of the weight and how much never ran. Bundles with a module breakdown drill into a per-module treemap and back, the smallest files fold into one tile so nothing becomes an unclickable sliver#4875.<br>
+- Cumulative Layout Shift is now actionable: the card leads with a verdict naming the element that took the biggest share of the shift, when it fired and the fix that always applies (reserve space). Each shift shows its exact share of CLS, a score coloured by how dominant it is, its timing and its selector, and a cause line appears only where the markup proves one (an image or embed with no width and height, unmistakable ad markup), never a guess from a loose substring #4874.<br>
+- The Compare graphic shows run-to-run spread, not just the median: each series draws its middle-80% band (p10 to p90) behind the dots with a grey stripe marking where the two bands overlap, so a wide grey band means the shift sits inside run-to-run noise and a clean gap means it is real. Cliff&#39;s delta rides on every chip whether the change is significant or not, and the median percentage is shown only when the test calls the change real #4879.<br>
+- Firefox 153 and Edge 150 in the Docker container #4876.<br>
+<br>
+<strong>Fixed</strong><br>
+- A shared or bookmarked link to any Metrics-tab card opened on the default tab with the target hidden, so the card looked empty. Every Metrics-tab anchor now resolves to its tab so deep links land on the card they name #4874.<br>
+- The Cumulative Layout Shift list showed sub-0.01 shifts that printed as &quot;0.000&quot; and &quot;0% of CLS&quot;, a row that reads like a bug, and disagreed with the screenshot beside it, which only highlights shifts above 0.01. The list now shows shifts of 0.01 and up while smaller ones stay counted in the score and the verdict, and a page whose whole CLS is tiny movements gets an honest empty state pointing at the video #4878.<br>
+- The Coach Page info card was lopsided, stacking Document, DOM structure and Storage and connection in the left column while the right showed only a short Resource hints card. Storage and connection moved to the right column so the two end at roughly the same height, and the right column is no longer empty on pages that ship no resource hints #4872.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -178,14 +199,21 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0"/>
-        <updated>2023-11-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>The new compare plugin can now run without an id. The id will then be generated from the URL. If you don&#39;t give it an id, yoiu can only compare pages with the exact same URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/4013">#4013</a>.</li>
-</ul>
+        <title type="html"><![CDATA[sitespeed.io 42.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#42.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/sitespeed.io.png" type="image/png"/>
+        <updated>2026-07-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- The per-URL summary page leads with an action-first hero (what the user saw, the Coach score and the top fixes) instead of a box of numbers #4867.<br>
+- The CrUx tab opens with a Core Web Vitals verdict and draws the field-data breakdowns as donuts #4865.<br>
+- The Axe tab sorts violations worst-first, leads with a verdict and shows a real clean state when nothing failed #4866.<br>
+- The Coach Page info card groups the facts and explains each value in plain language #4870.<br>
+- Report composition donuts and cleanups #4871:<br>
+<br>
+<strong>Fixed</strong><br>
+- Score bands are inclusive at 80 and 90, so an exactly-80 score is no longer colored as a failure #4868.<br>
+- The summary hero&#39;s verdict phrases no longer look spaced out before their commas #4869.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

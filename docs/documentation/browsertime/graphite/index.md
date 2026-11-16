@@ -11,7 +11,9 @@ twitterdescription:
 ---
 
 # Send metrics to Graphite
-The easiest way to send metrics is to install [jq](https://stedolan.github.io/jq/) and use it to pick the values you wanna track. JQ helps you pick data from a JSON file.
+This page covers the standalone Browsertime CLI. If you run sitespeed.io, use the [built-in Graphite integration]({{site.baseurl}}/documentation/sitespeed.io/graphite/) instead — it ships dashboards and a lot more configuration.
+
+The easiest way to send metrics from Browsertime is to install [jq](https://stedolan.github.io/jq/) and use it to pick the values you want to track. jq helps you pick data from a JSON file.
 
 First you just run Browsertime. Here make sure we create the *browsertime.json* in a directory called tmp.
 

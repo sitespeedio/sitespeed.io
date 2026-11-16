@@ -7,7 +7,7 @@ block content
   - const downloadName = (daTitle + '-' + runNumber + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
 
   h1 Run #{runNumber} summary
-  h5.url
+  p.url
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
   include ../includes/pageRunInfo
@@ -16,189 +16,114 @@ block content
     b #{d.browsertime.run.title}
     p !{d.browsertime.run.description}
 
-  p
-    .large#pageNavigation All runs:&nbsp;
+  //- Run navigation: number-only chips (the current run highlighted)
+  //- plus the side-by-side comparison page — no Summary pill here, the
+  //- "Back to summary" button below already covers it. Keep the
+  //- #pageNavigation id — tabScripts.js forwards the active tab hash
+  //- when any link in it is clicked.
+  nav.run-nav#pageNavigation(aria-label='Runs')
+    span.run-nav-label Runs
+    ul.run-nav-chips
       each val, index in runPages
         - value = Number(index) + 1
-        if (runNumber === value)
-          span.label.normal.info #{value}
-        else
-          a(href='./' + value + '.html') #{value}
-        if (value !== Object.keys(runPages).length)
-          | &nbsp;-
-          |
+        li
+          if (runNumber === value)
+            span.run-nav-chip.run-nav-chip--current(aria-label='Run ' + value, aria-current='page') #{value}
+          else
+            a.run-nav-chip(href='./' + value + '.html', aria-label='Run ' + value) #{value}
+    span.run-nav-sep
+    a.run-nav-link(href='metrics.html') Side by side
 
   if d.browsertime && d.browsertime.run.errors  && d.browsertime.run.errors.length > 0
     .errors
       b Errors
       ul
         each error in d.browsertime.run.errors
-          li #{error} 
+          li #{error}
 
   .index-link
     a.button.button--primary(href=urlLink) Back to summary
+
+  //- The Rendering tab exists whenever there is a render story to tell:
+  //- video or filmstrip, this run's screenshots, render-blocking
+  //- requests from the HAR, or recalculate-style data from the Chrome
+  //- trace. The old #video, #filmstrip, #screenshots and
+  //- #requests-render-blocking anchors stay alive inside it (see
+  //- rendering/index.pug and the alias mapping in tabScripts.js).
+  - const hasRenderingMedia = !!(options.browsertime.video || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+  - const runRecalculateStyle = d.browsertime && d.browsertime.run && d.browsertime.run.renderBlocking ? d.browsertime.run.renderBlocking.recalculateStyle : undefined
+  //- The trace-derived CPU signals (forced reflows before first paint,
+  //- non-composited animations) can exist while the recalculate-style
+  //- data is empty — recalc needs an FCP/LCP event in the trace, the
+  //- other trace analyses don't — so they get their own gate clause.
+  //- Forced reflows only count when the run has an FCP: the why-section
+  //- windows them to before first paint and hides them otherwise.
+  - const runCpu = d.browsertime && d.browsertime.run ? d.browsertime.run.cpu : undefined
+  - const runCpuFcp = d.browsertime && d.browsertime.run && d.browsertime.run.timings && d.browsertime.run.timings.paintTiming ? d.browsertime.run.timings.paintTiming['first-contentful-paint'] : undefined
+  - const runCpuLcp = d.browsertime && d.browsertime.run && d.browsertime.run.timings && d.browsertime.run.timings.largestContentfulPaint ? d.browsertime.run.timings.largestContentfulPaint.renderTime : undefined
+  //- Reflows are windowed to the latest paint milestone (LCP can land
+  //- before FCP) — mirrors the why-section's prePaintReflows window.
+  - const runCpuPaintEnd = Math.max(runCpuFcp || 0, runCpuLcp || 0) || undefined
+  - const hasCpuRenderSignals = !!(runCpu && ((runCpuPaintEnd && runCpu.forcedReflows && runCpu.forcedReflows.filter(r => r.startTime < runCpuPaintEnd).reduce((total, r) => total + r.duration, 0) >= 10) || (runCpu.nonCompositedAnimations && runCpu.nonCompositedAnimations.length > 0) || (runCpu.frames && runCpu.frames.presented !== undefined)))
+  //- A slow server delays everything that renders after it, so a TTFB
+  //- past the Web Vitals good threshold (800 ms, same cutoff as the
+  //- why-section's ttfbSlow — keep in sync) earns the tab on its own.
+  - const runTtfbSlow = !!(d.browsertime && d.browsertime.run && d.browsertime.run.timings && d.browsertime.run.timings.ttfb && d.browsertime.run.timings.ttfb >= 800)
+  - const hasRendering = hasRenderingMedia || runTtfbSlow || !!(d.browsertime && d.browsertime.run && d.browsertime.run.screenshots && d.browsertime.run.screenshots.length > 0) || !!(d.pagexray && d.pagexray.run && d.pagexray.run.renderBlocking) || !!(runRecalculateStyle && (runRecalculateStyle.beforeFCP || runRecalculateStyle.beforeLCP)) || hasCpuRenderSignals
 
   include ./tabs.pug
 
   #tabSections
     section#summary-panel
       h2 Summary
+
+      //- Pull all values once up front so the markup below is just rendering.
+      - performanceScore = get(d, 'coach.run.advice.performance.score')
+      - totalTransferSize = get(d, 'pagexray.run.transferSize')
+      - totalContentSize = get(d, 'pagexray.run.contentSize')
+      - memory = get(d, 'browsertime.run.memory')
+      - powerConsumption = get(d, 'browsertime.run.cpuConsumption')
+      - requests = get(d, 'pagexray.run.requests')
+      - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime')
+      - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
+      - fullyLoaded = get(d, 'browsertime.run.fullyLoaded')
+      - fcp = get(d, 'browsertime.run.timings.paintTiming["first-contentful-paint"]')
+      - lcp = get(d, 'browsertime.run.timings.largestContentfulPaint.renderTime')
+      - cls = get(d, 'browsertime.run.pageinfo.cumulativeLayoutShift')
+      - inp = get(d, 'browsertime.run.timings.interactionToNextPaint')
+      - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
+      - mpFID = get(d, 'browsertime.run.cpu.longTasks.maxPotentialFid')
+      - longTasks = get(d, 'browsertime.run.cpu.longTasks.tasks')
+      - maxLongTask = get(d, 'browsertime.run.cpu.longTasks.durations.max')
+      - lastLongTask = get(d, 'browsertime.run.cpu.longTasks.lastLongTask')
+      - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
+      - speedIndex = get(d, 'browsertime.run.visualMetrics.SpeedIndex')
+      - visualComplete85 = get(d, 'browsertime.run.visualMetrics.VisualComplete85')
+      - visualComplete99 = get(d, 'browsertime.run.visualMetrics.VisualComplete99')
+      - lastVisualChange = get(d, 'browsertime.run.visualMetrics.LastVisualChange')
+
+      - const overviewIsMedian = false
+      include ../includes/_renderPhase
+
+      //- The run's fullyLoaded is a float — show it without decimals.
+      //- Convert after the render-phase bar so the bar keeps the exact
+      //- value for its proportions.
+      - if (fullyLoaded) fullyLoaded = Number(fullyLoaded.toFixed(0))
+
       .row
         .one-half.column
-          table
-            tr
-              th Metric
-              th Value
-            tr
-              th(colspan='2') Page metrics
-            - performanceScore = get(d, 'coach.run.advice.performance.score')
-            if performanceScore
-              tr
-                td Performance score
-                td #{performanceScore}
-            - totalTransferSize = get(d, 'pagexray.run.transferSize')
-            if totalTransferSize
-              tr
-                td Total page size
-                td #{h.size.format(totalTransferSize)}
-            - memory = get(d, 'browsertime.run.memory')
-            if memory
-              tr
-                td Memory
-                td #{h.size.format(memory)}
-            - requests = get(d, 'pagexray.run.requests')
-            if (requests)
-              tr
-                td Requests
-                td #{requests}
-            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
-            tr
-              th(colspan='2') Timing metrics
-            if ttfb
-              tr
-                td TTFB
-                td #{h.time.ms(ttfb)}
-            - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
-            if firstPaint
-              tr
-                td First Paint
-                td #{h.time.ms(firstPaint)} 
-            - fullyLoaded = get(d, 'browsertime.run.fullyLoaded') 
-            if fullyLoaded
-              tr
-                td Fully Loaded
-                td #{h.time.ms(fullyLoaded.toFixed(0))} 
-            - fcp = get(d, 'browsertime.run.timings.paintTiming["first-contentful-paint"]') 
-            - lcp = get(d, 'browsertime.run.timings.largestContentfulPaint.renderTime')
-            if lcp
-              tr
-                th(colspan='2') Google Web Vitals
-            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
-            if ttfb
-              tr
-                td TTFB
-                td #{h.time.ms(ttfb)}
-            if fcp
-              tr
-                td First Contentful Paint (FCP) 
-                td #{h.time.ms(fcp)}         
-            if lcp
-              tr
-                td Largest Contentful Paint (LCP) 
-                td #{h.time.ms(lcp)}
-            - cls = get(d, 'browsertime.run.pageinfo.cumulativeLayoutShift')
-            if cls || cls === 0
-                tr
-                  td Cumulative Layout Shift (CLS) 
-                  td #{cls.toFixed(2)}
-            - inp = get(d, 'browsertime.run.timings.interactionToNextPaint')
-            if inp
-              tr
-                td #{h.time.ms(inp)}
-            - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
-            if tbt  
-              tr
-                td Total Blocking Time
-                td #{h.time.ms(tbt)}
-            - mpFID = get(d, 'browsertime.run.cpu.longTasks.maxPotentialFid')
-            if mpFID
-              tr
-                td Max Potential FID
-                td #{h.time.ms(mpFID)}
-            - longTasks = get(d, 'browsertime.run.cpu.longTasks.tasks')
-            if longTasks
-              tr
-                th(colspan='2') CPU metrics
-              tr
-                td CPU long tasks
-                td #{longTasks}
-            - maxLongTask= get(d, 'browsertime.run.cpu.longTasks.durations.max') 
-            if maxLongTask 
-              tr
-                td CPU longest task duration
-                td #{h.time.ms(maxLongTask)}
-            - lastLongTask= get(d, 'browsertime.run.cpu.longTasks.lastLongTask') 
-            if lastLongTask 
-              tr
-                td CPU last long task happens at
-                td #{h.time.ms(lastLongTask)}
-
-            - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
-            if firstVisualChange
-              tr
-                th(colspan='2') Visual Metrics
-              tr
-                td First Visual Change
-                td #{h.time.ms(firstVisualChange)}
-            - speedIndex = get(d, 'browsertime.run.visualMetrics.SpeedIndex')
-            if speedIndex
-              tr
-                td Speed Index
-                td #{h.time.ms(speedIndex)}
-            - visualComplete85 = get(d, 'browsertime.run.visualMetrics.VisualComplete85')
-            if visualComplete85
-              tr
-                td Visual Complete 85%
-                td #{h.time.ms(visualComplete85)}
-            - visualComplete99 = get(d, 'browsertime.run.visualMetrics.VisualComplete99')
-            if visualComplete99
-              tr
-                td Visual Complete 99%
-                td #{h.time.ms(visualComplete99)}  
-            - lastVisualChange = get(d, 'browsertime.run.visualMetrics.LastVisualChange')
-            if lastVisualChange
-              tr
-                td Last Visual Change
-                td #{h.time.ms(lastVisualChange)}
-            if !d.browsertime && d.webpagetest
-              tr
-                th(colspan='2') WebPageTest
-              tr
-                td Render (first view)
-                td #{d.webpagetest.run.firstView.render}
-              tr
-                td Speed Index (first view)
-                td #{d.webpagetest.run.firstView.SpeedIndex}
-              tr
-                td Visual Complete 85% (first view)
-                td #{d.webpagetest.run.firstView.visualComplete85}
-              tr
-                td Last Visual Change (first view)
-                td #{d.webpagetest.run.firstView.lastVisualChange}
-              tr
-                td Requests
-                td #{d.webpagetest.run.firstView.requestsFull}
+          include ../includes/_metricsKpis
 
         .one-half.column
-            if !d.browsertime && d.webpagetest
-              - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
+          if hasScreenShots
+            - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
+            - const width = options.mobile ? 150 : '100%';
+            figure.shot-card
               a(href=screenshotName)
-                img.screenshot(src=screenshotName, alt='Screenshot')
-            else if hasScreenShots
-              - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
-              - const width = options.mobile ? 150 : '100%';
-              a(href=screenshotName)
-                img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+                img.iter-screenshot(src=screenshotName, width=width, alt='Screenshot')
+              figcaption
+                b Run #{iteration}
+                |  · after page complete
       .downloads
         include ./downloads.pug
         include ./tcpdump.pug
@@ -206,13 +131,9 @@ block content
       section#waterfall-panel
         include ../waterfall/index.pug
 
-    if options.browsertime.video
-      section#video-panel
-        include ../video/index.pug
-
-    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
-      section#filmstrip-panel
-        include ../filmstrip/index.pug        
+    if hasRendering
+      section#rendering-panel
+        include ../rendering/index.pug
 
     if d.coach && d.coach.run
       section#coach-panel
@@ -228,17 +149,13 @@ block content
 
     if options.cpu || (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks) || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime &&options.browsertime.enableProfileRun)
       section#cpu-panel
-        include ../cpu/index.pug     
-    
+        include ../cpu/index.pug
+
     if d.thirdparty && d.thirdparty.run
       section#thirdparty-panel
         include ../thirdparty/index.pug
 
-    if d.browsertime && d.browsertime.run
-      section#screeenshots-panel
-        include ../screenshots/index.pug
-
     each pageRun in pageRuns
-      - const panelName = pageRun.id + '-panel'
+      - panelName = pageRun.id + '-panel'
       section(id=panelName)
         p !{pugs[pageRun.id]}

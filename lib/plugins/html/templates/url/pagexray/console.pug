@@ -1,15 +1,19 @@
-h3 Console log
 if pageInfo.data.browsertime.console.length > 0
-    a#console-log
-    p The page logs the following messages to the console.
+  a#console-log
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Console log
+      - const consoleCount = pageInfo.data.browsertime.console.length
+      span.listing-card-meta #{consoleCount} #{consoleCount === 1 ? 'message' : 'messages'}
+    p.listing-card-help The page logs the following messages to the console.
     .responsive
-        table
+      table(data-sortable, id='consoleLog')
+        thead
+          tr
+            th Level
+            th Message
+        tbody
+          each consoleLog in pageInfo.data.browsertime.console
             tr
-                th Level
-                th Message     
-            each consoleLog in pageInfo.data.browsertime.console
-                tr
-                    td(data-title='Level') #{consoleLog.level} 
-                    td.url(data-title='Message') #{consoleLog.message}
-else 
-    p No console log messages.
+              td(data-title='Level') #{consoleLog.level}
+              td.url(data-title='Message') #{consoleLog.message}

@@ -1,6 +1,7 @@
 import test from 'ava';
-import dayjs from 'dayjs';
-import intel from 'intel';
+import timestamp from '../lib/support/time.js';
+import { getLogger } from '@sitespeed.io/log';
+// eslint-disable-next-line unicorn/no-named-default
 import { default as GraphitePlugin } from '../lib/plugins/graphite/index.js';
 
 import { GraphiteDataGenerator as DataGenerator } from '../lib/plugins/graphite/data-generator.js';
@@ -34,7 +35,7 @@ test(`Test dataGenerator`, t => {
     }
   });
 
-  const data = generator.dataFromMessage(message, dayjs());
+  const data = generator.dataFromMessage(message, timestamp());
   t.true(
     data[0].startsWith(
       'ns.pageSummary.sub_domain_com._foo_bar.gpsi.desktop.median 13'
@@ -73,7 +74,7 @@ test(`Test generate data in statsD format`, t => {
     },
     graphite: { statsd: true }
   });
-  const data = generator.dataFromMessage(message, dayjs());
+  const data = generator.dataFromMessage(message, timestamp());
   const statsDFormat = new RegExp(
     /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.(median|mean|min|p10|p90|p99|max):\d+\|ms$/
   );
@@ -92,7 +93,7 @@ test(`Use graphite interface by default`, async t => {
   const { messageMaker } = await import('../lib/support/messageMaker.js');
   const filterRegistry = await import('../lib/support/filterRegistry.js');
   const statsHelpers = await import('../lib/support/statsHelpers.js');
-  const context = { messageMaker, filterRegistry, intel, statsHelpers };
+  const context = { messageMaker, filterRegistry, getLogger, statsHelpers };
   const plugin = new GraphitePlugin(options, context);
   plugin.open(context, options);
   t.is(plugin.sender.facility, 'Graphite');

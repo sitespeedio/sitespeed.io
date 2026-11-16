@@ -1,0 +1,1071 @@
+//
+// METRICS CARDS — dark
+// ====================
+// Same shapes as the light variant; phase palette uses the brighter
+// 400-tier shades that read against the dark surface.
+//
+
+$loaf--work: #fbbf24;
+$loaf--render: #4ade80;
+$loaf--pre-layout: #38bdf8;
+$loaf--style-layout: #a78bfa;
+
+.loaf-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.loaf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.loaf-rank {
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  font-size: 0.95rem;
+}
+
+// When the frame happened ("at 1.2 s · before LCP") — quiet, next to
+// the rank so the card answers fix-now vs ignore at a glance.
+.loaf-when {
+  margin-left: 8px;
+  font-weight: $font--weight--regular;
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+// One-liner replacing full cards for frames without blocking time.
+.loaf-quiet-note {
+  color: $color--text-muted;
+  font-size: 0.9rem;
+}
+
+.loaf-bar {
+  display: flex;
+  width: 100%;
+  height: 14px;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  margin-bottom: 12px;
+}
+
+.loaf-bar-segment {
+  display: block;
+  height: 100%;
+
+  &.loaf-work { background: $loaf--work; }
+  &.loaf-render { background: $loaf--render; }
+  &.loaf-pre-layout { background: $loaf--pre-layout; }
+  &.loaf-style-layout { background: $loaf--style-layout; }
+}
+
+.loaf-legend {
+  list-style: none;
+  margin: 0 0 14px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.85rem;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+  }
+}
+
+.loaf-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  flex: 0 0 auto;
+
+  &.loaf-work { background: $loaf--work; }
+  &.loaf-render { background: $loaf--render; }
+  &.loaf-pre-layout { background: $loaf--pre-layout; }
+  &.loaf-style-layout { background: $loaf--style-layout; }
+}
+
+.loaf-legend-label {
+  color: $color--text-secondary;
+}
+
+.loaf-legend-value {
+  color: $color--text;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+}
+
+.loaf-script {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: $color--surface;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.loaf-script-url {
+  margin-bottom: 6px;
+  word-break: break-all;
+  font-family: $font--mono;
+  font-size: 0.85rem;
+}
+
+.loaf-script-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  row-gap: 4px;
+  margin: 0;
+  font-size: 0.85rem;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    word-break: break-word;
+  }
+}
+
+.loaf-no-scripts {
+  margin-top: 8px;
+  color: $color--text-muted;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+// Actionable additions: the overview strip, the cross-frame culprit
+// table and the collapsed per-frame script details.
+.loaf-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.loaf-overview-stat {
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  padding: 12px 16px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.loaf-overview-label {
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color--text-muted;
+}
+
+.loaf-overview-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  align-self: flex-start;
+}
+
+.loaf-overview-sub {
+  font-size: 0.8rem;
+  color: $color--text-muted;
+}
+
+.loaf-culprits-heading {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+.loaf-culprits {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-bottom: 22px;
+
+  th {
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: $font--weight--semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color--text-muted;
+    padding: 6px 12px 6px 0;
+    border-bottom: 1px solid $color--border-strong;
+  }
+
+  td {
+    padding: 7px 12px 7px 0;
+    border-bottom: 1px solid $color--border;
+    vertical-align: top;
+  }
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .loaf-culprit-script {
+    font-family: $font--mono;
+    font-size: 0.82rem;
+    word-break: break-all;
+  }
+}
+
+.loaf-3p {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: $radius--pill;
+  font-family: $base--font-family;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.03em;
+  color: $color--text-secondary;
+  background: $color--surface;
+  border: 1px solid $color--border-strong;
+  white-space: nowrap;
+}
+
+.loaf-scripts {
+  margin-top: 12px;
+
+  summary {
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: $font--weight--medium;
+    color: $color--text-secondary;
+    user-select: none;
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  .loaf-script {
+    margin-top: 10px;
+  }
+}
+
+
+.inp-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.inp-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $color--border;
+}
+
+.inp-latency {
+  font-size: 2.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  padding: 4px 14px;
+  border-radius: $radius--md;
+  line-height: 1.1;
+
+  &.ok {
+    color: $color--ok;
+    background: $color--ok-bg;
+    border: 1px solid $color--ok-border;
+  }
+  &.warning {
+    color: $color--warning;
+    background: $color--warning-bg;
+    border: 1px solid $color--warning-border;
+  }
+  &.error {
+    color: $color--error;
+    background: $color--error-bg;
+    border: 1px solid $color--error-border;
+  }
+}
+
+.inp-headline-sub {
+  color: $color--text-muted;
+  font-size: 0.95rem;
+}
+
+.inp-meta {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  margin: 0;
+  font-size: 0.95rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+
+    dt { margin-top: 4px; }
+  }
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    word-break: break-word;
+  }
+
+  code {
+    font-size: 0.85em;
+  }
+}
+
+//
+// LCP card — dark
+//
+$lcp--ttfb: #f87171;
+$lcp--resource-delay: #fbbf24;
+$lcp--resource-load: #38bdf8;
+$lcp--render-delay: #a78bfa;
+
+.lcp-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.lcp-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $color--border;
+}
+
+.lcp-render-time {
+  font-size: 2.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  padding: 4px 14px;
+  border-radius: $radius--md;
+  line-height: 1.1;
+
+  &.ok { color: $color--ok; background: $color--ok-bg; border: 1px solid $color--ok-border; }
+  &.warning { color: $color--warning; background: $color--warning-bg; border: 1px solid $color--warning-border; }
+  &.error { color: $color--error; background: $color--error-bg; border: 1px solid $color--error-border; }
+}
+
+.lcp-headline-sub {
+  color: $color--text-muted;
+  font-size: 0.95rem;
+}
+
+.lcp-phases-heading,
+.lcp-section-heading {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 14px 0 8px 0;
+}
+
+.lcp-bar {
+  display: flex;
+  width: 100%;
+  height: 14px;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  margin-bottom: 10px;
+}
+
+.lcp-bar-segment {
+  display: block;
+  height: 100%;
+  &.lcp-ttfb { background: $lcp--ttfb; }
+  &.lcp-resource-delay { background: $lcp--resource-delay; }
+  &.lcp-resource-load { background: $lcp--resource-load; }
+  &.lcp-render-delay { background: $lcp--render-delay; }
+}
+
+.lcp-legend {
+  list-style: none;
+  margin: 0 0 12px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.85rem;
+
+  li { display: inline-flex; align-items: center; gap: 6px; margin: 0; }
+}
+
+.lcp-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  flex: 0 0 auto;
+  &.lcp-ttfb { background: $lcp--ttfb; }
+  &.lcp-resource-delay { background: $lcp--resource-delay; }
+  &.lcp-resource-load { background: $lcp--resource-load; }
+  &.lcp-render-delay { background: $lcp--render-delay; }
+}
+
+.lcp-legend-label { color: $color--text-secondary; }
+.lcp-legend-value {
+  color: $color--text;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+}
+
+.lcp-meta {
+  display: grid;
+  grid-template-columns: minmax(160px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 6px;
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+
+    dt { margin-top: 4px; }
+  }
+
+  dt { color: $color--text-muted; font-weight: $font--weight--medium; }
+  dd { margin: 0; color: $color--text; word-break: break-word; }
+  code { font-size: 0.85em; }
+}
+
+.lcp-dompath {
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 10px 12px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 0.8rem;
+  font-family: $font--mono;
+  color: $color--text;
+  overflow-x: auto;
+}
+
+.lcp-screenshot {
+  max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  margin-bottom: 8px;
+}
+
+.lcp-element-image {
+  display: block;
+  max-width: 240px;
+  max-height: 180px;
+  width: auto;
+  height: auto;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  margin-bottom: 8px;
+  object-fit: contain;
+  background: $color--surface;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+    max-height: 220px;
+  }
+}
+
+//
+// CLS card — dark
+//
+.cls-card {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: $shadow--sm;
+}
+
+.cls-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $color--border;
+}
+
+.cls-score {
+  font-size: 2.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  padding: 4px 14px;
+  border-radius: $radius--md;
+  line-height: 1.1;
+
+  &.ok { color: $color--ok; background: $color--ok-bg; border: 1px solid $color--ok-border; }
+  &.warning { color: $color--warning; background: $color--warning-bg; border: 1px solid $color--warning-border; }
+  &.error { color: $color--error; background: $color--error-bg; border: 1px solid $color--error-border; }
+}
+
+.cls-headline-sub {
+  color: $color--text-muted;
+  font-size: 0.95rem;
+}
+
+.cls-no-shifts {
+  color: $color--text-muted;
+  font-style: italic;
+}
+
+.cls-section-heading {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 4px 0;
+}
+
+.cls-section-help {
+  color: $color--text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.cls-shifts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cls-shift {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  min-width: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  &:last-child { margin-bottom: 0; }
+}
+
+.cls-shift-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.cls-shift-rank {
+  color: $color--text-muted;
+  font-weight: $font--weight--medium;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  flex: 0 0 auto;
+}
+
+.cls-shift-score {
+  color: $color--text;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+  flex: 0 0 auto;
+}
+
+.cls-shift-tags {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  code {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 1em;
+  }
+}
+
+.cls-shift-dompath {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  padding: 8px 10px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+  font-family: $font--mono;
+  color: $color--text;
+  overflow-x: auto;
+  code {
+    white-space: inherit;
+    word-break: inherit;
+    overflow-wrap: inherit;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+}
+
+.cls-screenshot {
+  max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+  border-radius: $radius--sm;
+  border: 1px solid $color--border;
+  margin-bottom: 8px;
+}
+
+//
+// Render-phase gap bar — dark mirror of the light theme. Same layout,
+// dark surface/text colour tokens and a slightly stronger separator
+// between segments since the dark border alone reads as no-separator.
+//
+.render-phase {
+  margin-bottom: 18px;
+}
+
+.render-phase-body {
+  padding: 12px 14px 14px 14px;
+}
+
+.render-phase-bar {
+  display: flex;
+  height: 32px;
+  width: 100%;
+  border-radius: $radius--sm;
+  overflow: hidden;
+  border: 1px solid $color--border;
+  background: $color--surface;
+}
+
+.render-phase-segment {
+  background: var(--rp-color, $color--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 8px;
+  min-width: 0;
+  cursor: help;
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+  }
+}
+
+.render-phase-segment-label {
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.render-phase-legend {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 16px;
+
+  li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  strong {
+    color: $color--text;
+    font-weight: $font--weight--semibold;
+  }
+}
+
+// See light theme for alignment notes.
+.render-phase-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-top: -2px;
+}
+
+.render-phase-legend-meta {
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+}
+
+//
+// Web Vitals hero — dark mirror of the light theme. Same layout, just
+// using the dark surface/text/state colour tokens.
+//
+.web-vitals-hero {
+  margin-bottom: 18px;
+}
+
+.web-vitals-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 14px;
+}
+
+.web-vital {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px 12px 14px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+
+  &.web-vital--ok {
+    background: $color--ok-bg;
+    border-color: $color--ok-border;
+  }
+  &.web-vital--warning {
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+  }
+  &.web-vital--error {
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+}
+
+.web-vital-dot {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $color--text-muted;
+
+  .web-vital--ok & { background: $color--ok; }
+  .web-vital--warning & { background: #facc15; }
+  .web-vital--error & { background: $color--error; }
+}
+
+.web-vital-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.web-vital-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.web-vital-value {
+  font-size: 1.6rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: $color--text;
+}
+
+.web-vital-short {
+  font-family: $font--mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: $color--text-muted;
+  text-transform: uppercase;
+}
+
+.web-vital-name {
+  font-size: 0.9rem;
+  color: $color--text-secondary;
+  word-break: break-word;
+
+  a {
+    color: inherit;
+    border-bottom: 1px dotted $color--border;
+    text-decoration: none;
+  }
+  a:hover {
+    border-bottom-color: $color--text-muted;
+  }
+}
+
+.web-vital-status {
+  font-size: 0.78rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+
+  .web-vital--ok & { color: $color--ok; }
+  .web-vital--warning & { color: #facc15; }
+  .web-vital--error & { color: $color--error; }
+}
+
+// Lab / Field eyebrow label that prefixes the lab status word and the
+// CrUX field line, so the two measurements can't be confused.
+.web-vital-source {
+  font-size: 0.7rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+  margin-right: 6px;
+}
+
+// CrUX field p75 line below the lab status. Its own dot is coloured by
+// the field's own Web Vitals class, independent of the tile background
+// (which tracks the lab value).
+.web-vital-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: $color--text-secondary;
+}
+
+// Dot + value + status sit on one line; nowrap keeps the number and its
+// unit (e.g. "490 ms") together instead of breaking across lines.
+.web-vital-field-measure {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.web-vital-field-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: $color--text-muted;
+
+  &.web-vital-field-dot--ok { background: $color--ok; }
+  &.web-vital-field-dot--warning { background: #facc15; }
+  &.web-vital-field-dot--error { background: $color--error; }
+}
+
+.web-vital-field-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: $font--weight--medium;
+}
+
+.web-vital-field-status {
+  color: $color--text-muted;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+// Shown only when the lab classifies a Vital better than the field does
+// — i.e. the test conditions are rosier than what real users see.
+.web-vital-flag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border-radius: $radius--sm;
+  background: $color--warning-bg;
+  border: 1px solid $color--warning-border;
+  color: $color--warning;
+  font-size: 0.72rem;
+  font-weight: $font--weight--medium;
+  line-height: 1.4;
+}
+
+// Per-shift meta (share of CLS and when it fired) next to the score.
+.cls-shift-meta {
+  flex: 0 0 auto;
+  color: $color--text-muted;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+// One block per shifting element (a single shift can move several).
+.cls-shift-el + .cls-shift-el {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed $color--border;
+}
+
+// Honest note when Chrome could not attribute the shift to a live node.
+.cls-shift-unattributed {
+  margin: 6px 0 0;
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+// CLS verdict banner — names the dominant shift and the one fix that
+// always applies, tinted like the report's other verdicts.
+.cls-verdict {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: $radius--sm;
+  border: 1px solid $color--warning-border;
+  background: $color--warning-bg;
+}
+
+.cls-verdict--ok {
+  border-color: $color--ok-border;
+  background: $color--ok-bg;
+}
+
+.cls-verdict-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $color--warning;
+}
+
+.cls-verdict--ok .cls-verdict-dot {
+  background: $color--ok;
+}
+
+.cls-verdict-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: $color--text;
+}
+
+// Per-shift header: a big score coloured by how dominant the shift is,
+// with its share of CLS and when it fired alongside.
+.cls-shift-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cls-shift-score {
+  font-size: 1.4rem;
+}
+
+.cls-shift-score--major {
+  color: $color--error;
+}
+
+.cls-shift-score--mid {
+  color: $color--warning;
+}
+
+.cls-shift-headmeta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cls-shift-share {
+  font-size: 0.8rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+}
+
+.cls-shift-when {
+  font-size: 0.78rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+// Share bar — the shift's cut of CLS, coloured to match its score.
+.cls-shift-bar {
+  height: 6px;
+  margin: 9px 0 10px;
+  border-radius: 3px;
+  background: $color--surface-card;
+  overflow: hidden;
+}
+
+.cls-shift-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: $color--text-muted;
+}
+
+.cls-shift-bar-fill.cls-shift-score--major {
+  background: $color--error;
+}
+
+.cls-shift-bar-fill.cls-shift-score--mid {
+  background: $color--warning;
+}
+
+// Light cause read off the element (ad slot, unsized image, embed).
+.cls-shift-cause {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: $color--text-secondary;
+}

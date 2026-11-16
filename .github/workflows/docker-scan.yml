@@ -4,21 +4,35 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - name: Checkout code
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
+
       - name: Build an image from Dockerfile
-        run: |
-          docker buildx install
-          docker buildx build --load --platform linux/amd64 -t docker.io/sitespeedio/sitespeed.io:${{ github.sha }} .
-      
+        uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
+        with:
+          context: .
+          platforms: linux/amd64
+          load: true
+          tags: docker.io/sitespeedio/sitespeed.io:${{ github.sha }}
+          cache-from: type=gha,scope=full
+          cache-to: type=gha,scope=full,mode=max
+
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
         with:
           image-ref: 'docker.io/sitespeedio/sitespeed.io:${{ github.sha }}'
           format: 'table'

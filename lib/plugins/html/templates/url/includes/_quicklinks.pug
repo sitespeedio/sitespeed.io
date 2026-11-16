@@ -1,0 +1,10 @@
+//- Shared pill-row of jump links (styled as .listing-quicklinks in
+//- src/sass/*/components/listings.scss), replacing the old
+//- pipe-separated small-text strips. Callers build an array of
+//- {href, label} — keeping any conditions — and call +quicklinks(links).
+mixin quicklinks(links)
+  if links && links.length > 0
+    ul.listing-quicklinks
+      each link in links
+        li
+          a(href=link.href) #{link.label}

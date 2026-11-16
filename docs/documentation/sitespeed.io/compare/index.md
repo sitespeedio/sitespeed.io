@@ -13,7 +13,6 @@ twitterdescription: Use Mann Whitney U or Wilcox statistical methods to know if 
 # Compare - Statistical Methods for Regression Analysis
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 Sitespeed.io utilizes Mann Whitney U and Wilcoxon tests for detecting performance regressions.
@@ -21,27 +20,27 @@ Sitespeed.io utilizes Mann Whitney U and Wilcoxon tests for detecting performanc
 ## Why Mann Whitney U and Wilcoxon for Web Performance?
 
 * **Non-Parametric Nature**: Both tests are non-parametric, making them ideal for web performance data, which often doesn't follow a normal distribution. This means they can reliably analyze data with outliers or skewed distributions, common in web performance metrics.
-Sensitive to Subtle Changes: The Mann Whitney U test, used for comparing two independent samples, and the Wilcoxon test, suitable for paired data, are sensitive to even minor shifts in performance. This sensitivity is critical for early detection of regressions that might not significantly impact average values but could affect user experience.
+* **Sensitive to Subtle Changes**: The Mann Whitney U test, used for comparing two independent samples, and the Wilcoxon test, suitable for paired data, are sensitive to even minor shifts in performance. This sensitivity is critical for early detection of regressions that might not significantly impact average values but could affect user experience.
 * **Robust Against Variability**: Web performance metrics can be highly variable due to factors like network conditions, user behavior, and server load. These tests effectively handle this variability, providing a more accurate reflection of the true performance impact of changes.
 * **Clarity in Comparative Analysis**: Unlike simple average-based comparisons, these tests give a clearer picture of whether the observed performance differences are statistically significant. This clarity is essential for making informed decisions about optimizations and rollbacks.
 * **Actionable Insights**: By identifying statistically significant performance regressions, these tests provide actionable insights. They help in pinpointing specific changes that need attention, enabling targeted optimizations.
 
 Utilizing these tests through the compare plugin allows for a sophisticated approach to web performance analysis. For instance, after deploying a new feature or update, you can compare the new performance data against a baseline using these tests. If the tests indicate a significant performance drop, it's a strong signal that the recent changes have negatively impacted the site's speed.
 
-Looking at medians can make it hard to see small changes. This is an example where we look at first visual change for the Barack Obama page. You can see that the metrics goes up at one point but then sometimes it comes back.
+Looking at medians can make it hard to see small changes. This is an example where we look at first visual change for the Barack Obama page. You can see that the metric goes up at one point but then sometimes it comes back.
 ![Median graph]({{site.baseurl}}/img/median.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
-Looking for a signifacnt change help, this is the graph for the same metric when the change occured.
+Looking for a significant change helps. This is the graph for the same metric when the change occurred.
 ![Significant graphs]({{site.baseurl}}/img/significant.png){:loading="lazy"}
 {: .img-thumbnail}
 
 ## Prerequisites
-To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python -m pip install scipy`.  If you use our Docker containers this is already installed.
+To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python3 -m pip install scipy`.  If you use our Docker containers this is already installed. sitespeed.io runs `python3` (`python` on Windows). If your Python has another name or path, set it with the `PYTHON` environment variable, for example `PYTHON=/usr/local/bin/python3.12 sitespeed.io ...`.
 
 ## Save the baseline (save the world)
-By default tests run against a baseline test and look for regressions in the new test. That means that for your test to work you need to collect a baseline. You do that by adding `--compare.saveBaseline` to your test. And you also need to give your test an unique id. You do that by adding `--compare.id myId`. Adding those to your test will store the baseline on disk. By default that file is stored in your current directory. You can also change that by adding `--compare.baselinePath` to set the path to the file. That is useful in Docker if you want the file to be stores outside the container.
+By default, tests run against a baseline test and look for regressions in the new test. That means that for your test to work you need to collect a baseline. You do that by adding `--compare.saveBaseline` to your test. You also need to give your test a unique id, which you do by adding `--compare.id myId`. Adding those to your test will store the baseline on disk. By default that file is stored in your current directory. You can change that by adding `--compare.baselinePath` to set the path. That is useful in Docker if you want the file to be stored outside the container.
 
 To save a baseline using NodeJS:
 
@@ -49,10 +48,10 @@ To save a baseline using NodeJS:
 sitespeed.io https://www.sitespeed.io -n 21 --compare.saveBaseline --compare.id start_page
 ~~~
 
-Using Docker there's a new volume that you should use to mount where you want to save the baseline. `-v "$(pwd):/baseline"` will map your current directory to where you will store the baseline files. If you want to store them somewhere else then change what you map inside the container `-v "/somewhere/else:/baseline"`
+Using Docker, there's a new volume that you should mount where you want to save the baseline. `-v "$(pwd)":/baseline` will map your current directory to where you will store the baseline files. If you want to store them somewhere else, change what you map inside the container: `-v "/somewhere/else:/baseline"`.
 
 ~~~bash
-docker run -v "$(pwd):/baseline"  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.saveBaseline --compare.id start_page --compare.baselinePath /baseline
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.saveBaseline --compare.id start_page --compare.baselinePath /baseline
 ~~~
 
 The baseline file is a JSON file that contains all the raw data from Browsertime. 
@@ -62,52 +61,42 @@ The baseline file is a JSON file that contains all the raw data from Browsertime
 For your test to work, assign the same identification (id) to both your current test and the baseline test. This matching id is crucial for the test to correctly locate and compare with the baseline. Additionally, ensure that the number of iterations in your test matches that of the baseline. Remember, using a sufficiently large number of iterations is essential as it leads to more accurate and reliable results.
 
 ~~~bash
-sitespeed.io https://www.sitespeed.io -n 21 ---compare.id start_page
+sitespeed.io https://www.sitespeed.io -n 21 --compare.id start_page
 ~~~
 
 In Docker:
 ~~~bash
-docker run -v "$(pwd):/baseline"  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline
 ~~~
 
-You can also save a baseline for each and every test, so you always compare your last run with the run before that. That will automatically happen if you have the `--compare.saveBaseline`.
+You can also save a baseline for each and every test, so you always compare your last run with the run before. That will happen automatically if you have `--compare.saveBaseline`.
 
 ~~~bash
-docker run -v "$(pwd):/baseline"  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
 ~~~
 
 ## Results
 
-When you run your test, it will create a new tab in the HTML results. This tab will include **a results table** that shows various result data and **comparison graphs** that for each metric, shows graphs comparing the baseline (previous data) with the latest run.
+When you run your test it will create a new tab in the HTML results. The tab opens with the test setup on one line, a verdict ("2 of 24 metrics are significantly slower compared to the baseline") with chips that jump to the flagged metrics, and then one row per compared metric, grouped by area (timings, visual metrics, Google Web Vitals, CPU and so on).
 
-
-The result table looks something like this:
-
-![Compare result]({{site.baseurl}}/img/compare-table.jpg){:loading="lazy"}
+![Compare rows]({{site.baseurl}}/img/compare-rows.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-The columns:
-1. **Metric Name**: This column lists the names of the performance metrics that were tested. These could be timings for different events (like Time to First Byte, load event completion, first contentful paint, etc.), or CPU-related metrics (like total duration of CPU tasks, duration of the last long task, etc.).
-2. **Score (mannwhitneyu/wilcox)**: This column shows the Mann-Whitney U/Wilcox scores for the comparisons between baseline and current test runs for each metric. A lower score typically indicates more significant differences between the two groups being compared.
-3. **Baseline Mean**: The average (mean) value for the baseline test run for each metric.
-4. **Current Mean**: The average (mean) value for the current test run for each metric.
-5. **Baseline Median**: The median value for the baseline test run for each metric. The median is the middle value when all the results are ordered from lowest to highest.
-6. **Current Median**: The median value for the current test run for each metric.
-7. **Baseline Std Dev**: Standard deviation for the baseline test run for each metric. This measures the amount of variation from the average.
-8. **Current Std Dev**: Standard deviation for the current test run for each metric.
-9. **Significant Change?**: This column indicates whether the change between the baseline and current test runs is statistically significant for each metric.  If the change is statistically significant then we use [Cliffs Delta](https://en.wikipedia.org/wiki/Effect_size#Effect_size_for_ordinal_data) to know if the change is small, medium or large.
+Each row shows:
+1. **Metric name and p-value**: the metric that was tested and the score from the Mann-Whitney U/Wilcoxon test. A score below 0.05 means the difference is statistically significant. Every metric keeps its own row; when a metric happens to carry exactly the same measured values as an earlier one in the group (the before-FCP and before-LCP pairs do whenever FCP and LCP are the same paint), it is tagged *same values as X* so the matching numbers don't read as a rendering mistake.
+2. **The distribution strip**: every baseline run (orange) and every current run (blue) as dots on a shared value axis, with a taller tick marking each median. Baseline and current are independent samples, so the strip shows the two distributions directly: a real shift is visible as the two clusters separating. When many runs land on the same value they render as one dot carrying a count, so twenty runs at 303 ms no longer look like a single run. Hover a dot for the exact run value.
+3. **Median → median**: the baseline and current medians with the difference in absolute numbers and percent. When the medians show the same value but the runs differ (flaky CPU long tasks do this), the means are shown instead. Under it the estimated shift with a 95% confidence interval, for example "shift +7 (+4 to +9 ms)": the [Hodges-Lehmann estimate](https://en.wikipedia.org/wiki/Hodges%E2%80%93Lehmann_estimator), the median of all pairwise baseline versus current differences. The p-value tells you how consistent a change is, the shift interval tells you how big it is and how sure we are. A change is real and meaningful when the whole interval sits away from zero; an interval straddling zero is noise no matter what a single delta number suggests.
+4. **The verdict**: whether the change is statistically significant, with the effect size ([Cliff's Delta](https://en.wikipedia.org/wiki/Effect_size#Effect_size_for_ordinal_data): negligible, small, medium or large) on its own line under the chip. Significant rows are tinted by direction, regressions in red and improvements in green. A row that tests significant while both medians show the same value (a CLS that moves from 0 to 0.0005 in a few more runs, say) is marked amber instead: statistically detectable but too small to matter, and the headline verdict counts it separately. With a one-sided test an improvement can never be significant, so a large effect in the untested direction is called out as "likely faster". Metrics that count things instead of measuring time (render-blocking elements, long tasks, layout shift) read higher or lower instead of slower or faster. Every row is also checked with a two-sample [Kolmogorov-Smirnov test](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test), which compares the whole distributions: when the rank test sees no change but K-S does, the row is marked amber and the wording follows the data. "Spread changed" means the median held while the runs spread differently, "less steady" means the median moved but the runs also vary more and "runs changed" covers the rest, often an intermittent slow path. At 20-ish iterations it catches clear variance growth and bimodality, not subtle shape drift.
 
+The screenshots and video of the baseline and current runs live in the collapsed *Run setup* section above the verdict.
 
-And the compare graphs will look like this for every metric:
-
-![Compare graphs]({{site.baseurl}}/img/compare-graph.jpg){:loading="lazy"}
-{: .img-thumbnail}
+You don't need a statistics background to read the tab: the setup strip carries a collapsed *about the statistics* fold naming the algorithms (the rank test, Hodges-Lehmann, Cliff's delta and Kolmogorov-Smirnov) and what each contributes, the verdict card carries a collapsed *How to read the numbers* primer explaining p, shift, effect and the spread verdicts in plain language, and the p-value and effect lines on every row explain themselves on hover.
 
 ### Understanding Significant Changes
 
-In the results table, you'll see a list of all metrics with their corresponding scores.
+Every metric row carries its score (the p-value).
 
-If a score is below 0.05, it indicates a statistically significant difference between the baseline and the current data. By default we test if the current data is greater than the baseline. You can change that using `--compare.alternative`. You can test if it's smaller or if there are any difference between the two ('two-sided'). 
+If a score is below 0.05 it indicates a statistically significant difference between the baseline and the current data. By default we test if the current data is greater than the baseline. You can change that using `--compare.alternative`. You can test if it's smaller or if there is any difference between the two ('two-sided').
 
 If the score is below 0.05, it means that the changes observed in the metric are likely not due to chance.
 

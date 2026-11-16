@@ -1,0 +1,920 @@
+//
+// RENDERING — dark
+// ================
+// See the light variant for layout notes; this file mirrors that
+// structure with the dark theme's tokens.
+//
+
+.rendering-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: #000;
+  border-radius: $radius--sm;
+  overflow: hidden;
+}
+
+.rendering-video,
+.rendering-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 480px;
+}
+
+.rendering-video {
+  cursor: pointer;
+}
+
+.rendering-preview {
+  background: $color--white;
+  cursor: zoom-in;
+}
+
+//
+// Transport row — compact buttons, tighter than the page-level .button
+// so play / speed / step / jump fit on one line next to the clock.
+//
+
+.rendering-transport {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.rendering-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: $font--weight--medium;
+  line-height: 1;
+  color: $color--text;
+  background: $color--surface-card;
+  border: 1px solid $color--border-strong;
+  border-radius: $radius--sm;
+  cursor: pointer;
+  transition: background-color $motion--fast, border-color $motion--fast,
+    color $motion--fast;
+
+  &:hover {
+    background: $color--surface;
+    border-color: $color--text-secondary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color--blue;
+    outline-offset: 2px;
+  }
+
+  // Toggle state (the lightbox Diff button) — same treatment as the
+  // active speed button so pressed reads consistently.
+  &[aria-pressed='true'] {
+    color: $color--white;
+    background: $color--blue;
+    border-color: $color--blue;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+}
+
+.rendering-button--primary {
+  color: $color--white;
+  background: $color--blue;
+  border-color: $color--blue;
+
+  &:hover {
+    color: $color--white;
+    background: $color--blue-dark;
+    border-color: $color--blue-dark;
+  }
+}
+
+.rendering-speed--active {
+  color: $color--info;
+  background: $color--info-bg;
+  border-color: $color--blue;
+}
+
+.rendering-clock {
+  min-width: 76px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+}
+
+//
+// HUD — milestone chips that light up as playback passes them.
+//
+
+.rendering-hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.rendering-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-muted;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--pill;
+  cursor: pointer;
+  transition: background-color $motion--fast, border-color $motion--fast,
+    color $motion--fast;
+
+  &::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $color--border;
+  }
+
+  b {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.rendering-chip--passed {
+  color: $color--text;
+  background: $color--ok-bg;
+  border-color: $color--ok-border;
+
+  &::before {
+    background: $color--ok;
+  }
+}
+
+//
+// Milestone timeline — clickable flags over a scrubbable axis with a
+// playhead. Flags alternate into a lower lane when they would collide.
+//
+
+.rendering-timeline {
+  position: relative;
+  height: 82px;
+  margin-top: 18px;
+  user-select: none;
+}
+
+.rendering-axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48px;
+  height: 8px;
+  border-radius: 4px;
+  background: $color--border;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.rendering-axis-fill {
+  position: absolute;
+  left: 0;
+  top: 48px;
+  height: 8px;
+  width: 0;
+  border-radius: 4px 0 0 4px;
+  background: $color--blue;
+  pointer-events: none;
+}
+
+.rendering-playhead {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 2px;
+  height: 24px;
+  background: $color--text;
+  border-radius: 1px;
+  pointer-events: none;
+  translate: -50%;
+}
+
+.rendering-flag {
+  position: absolute;
+  top: 0;
+  translate: -50%;
+  text-align: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color--blue;
+    outline-offset: 2px;
+  }
+}
+
+.rendering-flag-label {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: $color--text-secondary;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+}
+
+.rendering-flag:hover .rendering-flag-label {
+  color: $color--white;
+  background: $color--blue-dark;
+  border-color: $color--blue-dark;
+}
+
+.rendering-flag-stem {
+  display: block;
+  width: 2px;
+  height: 16px;
+  margin: 2px auto 0;
+  background: $color--blue;
+  border-radius: 1px;
+}
+
+.rendering-flag--low {
+  top: 18px;
+
+  .rendering-flag-stem {
+    height: 8px;
+  }
+}
+
+// Long-task lane under the playback axis — when the main thread was
+// busy, the CPU half of "why did nothing change here". Bars past the
+// recording end are dropped in the template, a straddler clamps.
+.rendering-busy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 58px;
+  height: 4px;
+  pointer-events: none;
+}
+
+.rendering-busy-bar {
+  position: absolute;
+  top: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: $color--error;
+  opacity: 0.75;
+  pointer-events: auto;
+}
+
+.rendering-tick {
+  position: absolute;
+  top: 66px;
+  translate: -50%;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+}
+
+.rendering-download {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+//
+// Filmstrip — one horizontal chronological strip. Frame width is a
+// custom property so the zoom slider can resize every frame at once.
+//
+
+.rendering-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+
+  input {
+    margin: 0;
+  }
+}
+
+.rendering-strip-scroll {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.rendering-strip {
+  --rendering-frame-width: 104px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.rendering-frame {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 4px 4px 6px;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: $radius--sm;
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: var(--rendering-frame-width);
+    border: 1px solid $color--border;
+    border-radius: 4px;
+    background: $color--white;
+  }
+
+  &:hover {
+    background: $color--surface;
+  }
+}
+
+.rendering-frame--current {
+  border-color: $color--blue;
+  background: $color--blue-tint;
+}
+
+.rendering-frame-time {
+  margin-top: 5px;
+  font-size: 0.75rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+}
+
+// The dot marking a frame where the page changed visually.
+.rendering-frame--changed .rendering-frame-time::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background: $color--blue;
+  translate: 0 -1px;
+}
+
+.rendering-frame-pct {
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-muted;
+}
+
+.rendering-frame-zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: $color--text;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  cursor: zoom-in;
+  opacity: 0;
+  transition: opacity $motion--fast;
+}
+
+.rendering-frame:hover .rendering-frame-zoom,
+.rendering-frame-zoom:focus-visible {
+  opacity: 1;
+}
+
+.rendering-strip-help {
+  margin: 10px 0 0 0;
+  font-size: 0.8rem;
+  color: $color--text-muted;
+}
+
+//
+// Visual instability heatmap (browsertime --videoParams.filmstripDiff).
+//
+
+.rendering-instability {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+
+  img {
+    max-width: min(340px, 100%);
+    height: auto;
+    border: 1px solid $color--border;
+    border-radius: 4px;
+  }
+}
+
+.rendering-instability-notes {
+  flex: 1 1 280px;
+}
+
+//
+// Lightbox — dependency-free frame viewer.
+//
+
+.rendering-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.rendering-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.rendering-lightbox-figure {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 14px;
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  box-shadow: $shadow--lg;
+}
+
+.rendering-lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  background: $color--white;
+}
+
+// file:// fallback for the lightbox diff: canvas pixel access is
+// blocked there, so the current frame blends over the previous in
+// difference mode — amplified and inverted, identical pixels read
+// white and changes dark. Approximate by design (no threshold, no
+// counts); the canvas path stays primary on http(s).
+.rendering-lightbox-blend {
+  position: relative;
+  isolation: isolate;
+  filter: brightness(4) invert(1) grayscale(1);
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  img + img {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: difference;
+  }
+}
+
+.rendering-lightbox-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rendering-lightbox-meta {
+  margin-right: auto;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  color: $color--text-secondary;
+}
+
+.rendering-lightbox-original {
+  font-size: 0.85rem;
+}
+
+// Why-verdict: one tinted sentence that answers "why was rendering
+// delayed?" before the cards do. Two tones only — a warning names the
+// dominant cause, everything else is calm; no red, it is a summary,
+// not a grade.
+.rendering-verdict {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid $color--border;
+  border-radius: 10px;
+  padding: 13px 16px;
+  margin: 0 0 18px 0;
+
+  &--ok {
+    background: $color--ok-bg;
+    border-color: $color--ok-border;
+
+    .rendering-verdict-dot {
+      background: $color--ok;
+    }
+  }
+
+  &--warning {
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+
+    .rendering-verdict-dot {
+      background: $color--warning;
+    }
+  }
+}
+
+.rendering-verdict-dot {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 6px;
+  background: $color--border;
+}
+
+.rendering-verdict-text {
+  margin: 0;
+  font-size: 0.95rem;
+
+  b {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Render-blocking requests card (rendering/blocking.pug): one table
+// for every Chrome blocking status — a pill per row carries the
+// status, and the span column (only when the run's HAR gave us start
+// offsets) draws each download window on the paint clock.
+.rb-table td {
+  vertical-align: middle;
+}
+
+.rb-request-name {
+  font-weight: $font--weight--semibold;
+  // A request name can be long and unbreakable (a hashed bundle, a
+  // base64 path); unwrapped it stretches the column and scrolls the
+  // whole table. anywhere (not break-word) lets the column shrink.
+  overflow-wrap: anywhere;
+}
+
+.rb-request-more {
+  color: $color--text-muted;
+  font-weight: $font--weight--regular;
+  font-size: 0.85rem;
+}
+
+.rb-request-meta {
+  color: $color--text-muted;
+  font-size: 0.8rem;
+  margin-top: 1px;
+}
+
+.rb-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  border: 1px solid $color--border;
+  border-radius: 999px;
+  padding: 1px 8px;
+  margin-left: 8px;
+  vertical-align: 1px;
+  color: $color--text-secondary;
+
+  &--blocking {
+    color: $color--error;
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+
+  &--inbody {
+    color: $color--warning;
+    background: $color--warning-bg;
+    border-color: $color--warning-border;
+  }
+
+  &--maybe {
+    color: $color--text-secondary;
+    background: $color--surface;
+  }
+}
+
+.rb-row--quiet td {
+  color: $color--text-muted;
+
+  .rb-request-name {
+    font-weight: $font--weight--regular;
+  }
+}
+
+.rb-span-cell {
+  width: 38%;
+  min-width: 220px;
+}
+
+.rb-span {
+  position: relative;
+  height: 22px;
+}
+
+.rb-span-track {
+  position: absolute;
+  inset: 7px 0;
+  border-radius: 3px;
+  background: $color--surface;
+  border: 1px solid $color--border;
+}
+
+.rb-span-bar {
+  position: absolute;
+  top: 6px;
+  height: 10px;
+  border-radius: 3px;
+  background: $color--blue;
+
+  &--doc {
+    background: $color--border-strong;
+  }
+
+  &--inbody {
+    background: $color--warning;
+  }
+
+  &--maybe {
+    background: repeating-linear-gradient(
+      45deg,
+      $color--warning-border 0 4px,
+      $color--warning-bg 4px 8px
+    );
+    border: 1px solid $color--warning-border;
+  }
+
+  &--lcp {
+    background: $color--ok;
+  }
+
+  // Fonts are context, not blocking work — hollow tint so they never
+  // read as part of the critical path.
+  &--font {
+    background: $color--info-bg;
+    border: 1px solid $color--info-border;
+  }
+
+  // Clamped at the axis end because the request outlived the last
+  // paint — the fade says "continues", the row text says until when.
+  &--overflow {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    mask-image: linear-gradient(90deg, #000 70%, transparent);
+  }
+}
+
+// Positioned from the template: after the bar when there is room,
+// before it when the bar ends near the axis. The background chip keeps
+// the text readable if it ever has to sit on top of a bar.
+.rb-span-ms {
+  position: absolute;
+  top: -2px;
+  font-size: 0.7rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  background: $color--surface-card;
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+// FCP hairline through every bar row when LCP owns the axis end, so a
+// request reads against both paints; named by the FCP label on the
+// axis row below.
+.rb-span-fcpline {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  border-left: 1px dashed $color--border-strong;
+}
+
+.rb-axis-row td {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.rb-axis {
+  position: relative;
+  height: 20px;
+}
+
+.rb-axis-tick {
+  position: absolute;
+  top: 2px;
+  translate: -50%;
+  font-size: 0.7rem;
+  color: $color--text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.rb-axis-marklabel {
+  position: absolute;
+  top: 2px;
+  translate: -50%;
+  font-size: 0.7rem;
+  font-weight: $font--weight--semibold;
+  color: $color--text-secondary;
+  font-variant-numeric: tabular-nums;
+
+  &--end {
+    right: 0;
+    translate: 0;
+  }
+}
+
+.rb-empty {
+  border: 1px dashed $color--ok-border;
+  background: $color--ok-bg;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  margin: 0;
+
+  b {
+    color: $color--ok;
+  }
+}
+
+// Collapsed reference tables (the selector tables when the verdict says
+// they are not worth acting on). The summary is the only affordance —
+// keep it reading like a link, chevron included.
+.rendering-details {
+  margin: 0 0 18px 0;
+
+  > summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: $font--weight--semibold;
+    color: $color--text-secondary;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 7px;
+      font-size: 0.7rem;
+      transition: rotate 0.12s;
+    }
+
+    &:hover {
+      color: $color--text;
+    }
+  }
+
+  &[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  > summary + * {
+    margin-top: 12px;
+  }
+}
+
+// The construction half of the invalidation reasons — expected work,
+// quieted so the churn table above it reads as the finding.
+.invalidation-build {
+  opacity: 0.75;
+}
+
+// Plain-language reason label plus, on the reasons a developer can act
+// on, a muted one-line fix under it. The raw Chrome reason stays on the
+// label's title attribute for anyone who wants it.
+.invalidation-reason {
+  display: block;
+}
+
+.invalidation-reason-hint {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: $color--text-muted;
+  max-width: 52ch;
+}
+
+// Shown when the tab only has the why-section because the run had no
+// playback media.
+.rendering-nomedia {
+  margin: 0 0 18px 0;
+  font-size: 0.9rem;
+  color: $color--text-muted;
+}
+
+// A quiet one-line note in the why-section that cross-links to another
+// tab (e.g. main-thread animations pointing at the CPU tab).
+.rendering-why-note {
+  margin: 0 0 18px 0;
+  font-size: 0.9rem;
+  color: $color--text-muted;
+}
+
+// The foundation code style is nowrap, but Chrome's selector stats
+// produce very long selectors (:has()/:not() chains) — unwrapped they
+// push the metric columns behind a horizontal scroll.
+td.selector-cell code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+// Small heading above each recalculate-style tile row, so the tiles
+// can keep short labels (Events / Elements / ...) without repeating
+// the phase in every tile.
+.rendering-phase-heading {
+  margin: 14px 0 8px 0;
+  font-size: 0.8rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color--text-muted;
+}
+
+// Ranked list — a lead number, a name and a sub-line. Shared by the
+// "Scripts causing invalidations" and "Forced reflows before paint"
+// cards, replacing relative-width bars: the rows arrive pre-sorted, so a
+// bar scaled to the top row only pins the leader full-width and restates
+// the order — and for reflows the bar shouted the milliseconds the card
+// copy explicitly tells you to discount.
+.ranked-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ranked-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid $color--border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// Fixed width so leads align whether they are counts ("446") or
+// durations ("45 ms") — content-width leads would stagger the names.
+.ranked-lead {
+  flex: 0 0 4.5rem;
+  text-align: right;
+  font-size: 1.05rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+}
+
+.ranked-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ranked-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  code {
+    font-size: 0.82rem;
+  }
+}
+
+.ranked-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: $color--text-secondary;
+}

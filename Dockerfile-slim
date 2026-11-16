@@ -1,34 +1,44 @@
-FROM node:20.9.0-bookworm-slim
+FROM node:24.11.0-trixie-slim
 
-ARG TARGETPLATFORM=linux/amd64
+ARG TARGETPLATFORM
 
-ENV SITESPEED_IO_BROWSERTIME__DOCKER true
-ENV SITESPEED_IO_BROWSERTIME__VIDEO false
-ENV SITESPEED_IO_BROWSERTIME__BROWSER firefox
-ENV SITESPEED_IO_BROWSERTIME__VISUAL_METRICS false
-ENV SITESPEED_IO_BROWSERTIME__HEADLESS true
+ENV SITESPEED_IO_BROWSERTIME__DOCKER=true
+ENV SITESPEED_IO_BROWSERTIME__VIDEO=false
+ENV SITESPEED_IO_BROWSERTIME__BROWSER=firefox
+ENV SITESPEED_IO_BROWSERTIME__VISUAL_METRICS=false
+ENV SITESPEED_IO_BROWSERTIME__HEADLESS=true
 
-ENV PATH="/usr/local/bin:${PATH}"
-
-RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --no-install-suggests \
+        wget ca-certificates && \
+    install -d -m 0755 /etc/apt/keyrings && \
+    wget -qO /etc/apt/keyrings/packages.mozilla.org.asc https://packages.mozilla.org/apt/repo-signing-key.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" > /etc/apt/sources.list.d/mozilla.list && \
+    printf 'Package: *\nPin: origin packages.mozilla.org\nPin-Priority: 1000\n' > /etc/apt/preferences.d/mozilla && \
     apt-get update && \
-    apt-get install -y --no-install-recommends firefox tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
-    # Cleanup
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/* /tmp/* 
+    apt-get install -y --no-install-recommends --no-install-suggests \
+        firefox tcpdump iproute2 sudo && \
+    apt-get purge -y --auto-remove wget && \
+    rm -rf /var/lib/apt/lists/* /tmp/*
 
 # Install sitespeed.io
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN CHROMEDRIVER_SKIP_DOWNLOAD=true EGDEDRIVER_SKIP_DOWNLOAD=true npm install --production && npm cache clean --force && npm uninstall npm -g
-WORKDIR /usr/src/app
+# The driver packages have no install script. The slim image only has Firefox, so install only Geckodriver.
+RUN npm ci --omit=dev --omit=optional && \
+    node node_modules/@sitespeed.io/geckodriver/install.js && \
+    npm cache clean --force && \
+    rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
+
 COPY docker/scripts/start-slim.sh /start.sh
 
 # Allow all users to run commands needed by sitespeedio/throttle via sudo
 # See https://github.com/sitespeedio/throttle/blob/main/lib/tc.js
-RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/sudoers.d/tc
+# Allow only the subcommands that throttle uses. With all of tc or ip, a user
+# can read all files as root ("ip -batch FILE") or start a root shell
+# ("ip netns exec").
+RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc qdisc *, /usr/sbin/tc filter *, /usr/sbin/ip link *, /usr/sbin/ip route, /usr/sbin/route' > /etc/sudoers.d/tc
 
-ENTRYPOINT ["bash","/start.sh"]
+ENTRYPOINT ["/start.sh"]
 VOLUME /sitespeed.io
 WORKDIR /sitespeed.io

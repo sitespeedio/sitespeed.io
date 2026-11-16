@@ -1,0 +1,148 @@
+//
+// MISC STYLES
+// ===============
+// This is styles to be sorted into components
+//
+
+/** Labels */
+
+.label {
+ display: inline-flex;
+ align-items: center;
+ padding: 0.25em 0.75em;
+ font-size: 1rem;
+ font-weight: $font--weight--semibold;
+ line-height: 1.4;
+ color: #fff;
+ text-align: center;
+ white-space: nowrap;
+ vertical-align: baseline;
+ border-radius: $radius--pill;
+ letter-spacing: 0.01em;
+ font-variant-numeric: tabular-nums;
+}
+
+.normal {
+ font-size: 100%;
+}
+
+.ok {
+ background-color: $color--ok;
+}
+.warning {
+ background-color: $color--warning;
+}
+.error {
+ background-color: $color--error;
+}
+
+.info {
+ background-color: $color--blue;
+}
+
+// Solid warning pill — the `$color--warning` palette value is a
+// yellow/amber-700 that doubles as a foreground text colour elsewhere
+// in the report (warning labels in summary boxes, threshold pills inside
+// the metric tiles). On a solid pill against white text it reads as
+// orange-brown rather than yellow. Override the `.label.warning`
+// pairing specifically with a bright yellow-400 background and dark
+// yellow text so the warning state is unambiguously yellow without
+// touching the rest of the palette.
+.label.warning {
+ background-color: #facc15;
+ color: #422006;
+}
+
+ul.menu {
+ list-style: none;
+ font-size: 125%;
+ text-transform: uppercase;
+}
+
+.errors {
+ margin-bottom: 1.5rem;
+ background: $color--error-bg;
+ border: 1px solid $color--error-border;
+ border-radius: $radius--md;
+ padding: 1rem 1.25rem;
+ color: $color--text;
+
+ b {
+  color: $color--error;
+  font-weight: $font--weight--semibold;
+  display: block;
+  margin-bottom: 0.5rem;
+ }
+
+ ul {
+  margin-bottom: 0;
+ }
+}
+
+.subtableheader {
+ background: $color--surface;
+ color: $color--text-secondary;
+ font-weight: $font--weight--semibold;
+}
+
+// Secondary "from page" link in the assets table — small muted glyph+text
+// that opens the page detail for the asset's host page.
+a.from-page {
+ font-size: 0.85em;
+ color: $color--text-muted;
+ white-space: nowrap;
+
+ &:hover {
+  color: $color--blue;
+ }
+}
+
+/* Large */
+
+.large {
+ font-size: 1.333rem;
+ line-height: 1.8rem;
+}
+
+.hidden-small {
+ display: inline;
+}
+
+.url {
+ overflow-wrap: break-word;
+ word-wrap: break-word;
+ -webkit-hyphens: auto;
+ -ms-hyphens: auto;
+ -moz-hyphens: auto;
+ hyphens: auto;
+}
+
+// The page URL line under the h1 on the per-URL pages — visually a
+// small heading but marked up as a <p> so the heading outline doesn't
+// jump from h1 to h5.
+p.url {
+ margin: 1.5rem 0 1rem;
+ font-weight: $font--weight--medium;
+ line-height: 1.25;
+ letter-spacing: -0.01em;
+}
+
+// Marks sections whose data was collected in the single extra profile
+// run made by --enableProfileRun, not in the timed iterations. Readers
+// comparing numbers across sections need to know these came from a
+// different, instrumented run.
+.profile-run-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  border: 1px solid $color--info-border;
+  background: $color--info-bg;
+  color: $color--info;
+  font-size: 0.7rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+  cursor: help;
+}

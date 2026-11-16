@@ -10,7 +10,6 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 # Examples
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## sitespeed.io

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>testrunner-release-feed</id>
+    <title>testrunner release feed</title>
+    <updated>2025-10-22T21:28:22.870Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/testrunner.atom"/>
+    <subtitle>New releases and changelog feed of testrunner</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.2.1]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.1"/>
+        <updated>2025-10-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Tests running in the Docker container has the wrong path to the scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.2.0]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.2.0"/>
+        <updated>2025-10-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to sitespeed.io 38 <a href="https://github.com/sitespeedio/onlinetest/pull/158">#158</a></li>
+</ul>
+ <ul>
+<li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies (too many PRs).</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.1.0]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0"/>
+        <updated>2025-02-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to sitespeed.io 36 as default version <a href="https://github.com/sitespeedio/onlinetest/pull/134">#134</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Use latest version of sitespeed.io/logs <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
+</ul>
+ <ul>
+<li>Safer trap for WPR processes when running NodeJS Testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/139">#139</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.7]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7"/>
+        <updated>2025-02-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix to make sure WPR always is killed whatever happens <a href="https://github.com/sitespeedio/onlinetest/pull/131">#131</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.6]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.6</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.6"/>
+        <updated>2025-01-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable verbose logging from GUI <a href="https://github.com/sitespeedio/onlinetest/pull/130">#130</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.5]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.5</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.5"/>
+        <updated>2025-01-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure failing tests with a result is accessible <a href="https://github.com/sitespeedio/onlinetest/pull/126">#126</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.4]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.4</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.4"/>
+        <updated>2025-01-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Replace Intel log with @sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/117">#117</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.3]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.3</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.3"/>
+        <updated>2024-12-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix killing WebPageReplay correctly and correct path to WebPageReplay files <a href="https://github.com/sitespeedio/onlinetest/pull/108">#108</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.2]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.2</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.2"/>
+        <updated>2024-12-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix broken path to the WebPageReplay script when running as npm package and fix so you also can run desktop test using WebPageReplay when you use npm <a href="https://github.com/sitespeedio/onlinetest/pull/107">#107</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.1]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.1</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.1"/>
+        <updated>2024-12-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed the release flow so the Docker containers get the correct tag.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

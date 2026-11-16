@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>throttle-release-feed</id>
     <title>throttle release feed</title>
-    <updated>2022-07-02T06:51:22.655Z</updated>
+    <updated>2026-11-12T14:46:41.025Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,14 +16,85 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[throttle 6.2.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.2.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.2.0"/>
+        <updated>2026-10-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- On Linux, you can set a download limit on localhost: <code>throttle --rtt 200 --down 5000 --localhost</code>. The limit is for all traffic on loopback. Upload limits are not supported on localhost #116.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>--profile</code> together with <code>--localhost</code> throttled the network interface, not localhost. Now it uses the download and RTT of the profile on localhost #116.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 6.1.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.1.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.1.0"/>
+        <updated>2026-10-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- On Linux, <code>--localhost</code> now sets the loopback MTU to 1500, like a real network. With the default MTU (65536), WebPageReplay runs were a full round trip apart from run to run. <code>--stop --localhost</code> sets the MTU back to 65536. Localhost metrics can change after you upgrade #115.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 6.0.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.1"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Make throttle work on GitHub Actions again: Linux throttling no longer fails with &quot;Exclusivity flag on, cannot modify&quot; when another tool already holds the ingress qdisc slot on the interface. GitHub-hosted Actions runners now come with an eBPF network-monitoring agent that attaches a clsact qdisc to the default interface (other eBPF-based security agents do the same), and since only one ingress/clsact qdisc can exist per device, throttle&#39;s <code>tc qdisc add ... ingress</code> failed and took the whole measurement run down with it. The original code path is unchanged and runs first; only when it fails does throttle fall back to attaching its redirect filters to the existing qdisc (on the clsact ingress hook when needed), with explicit filter priorities so stop removes exactly its own filters and leaves the other tool&#39;s qdisc and filters untouched. #108.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 6.0.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#6.0.0"/>
+        <updated>2026-03-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Added IPv6 throttling support on macOS #94 and Linux #100.<br>
+- Apply packet loss also to the upload interface #69.<br>
+<br>
+<strong>Fixed</strong><br>
+- More robust detection of the default network interface on Linux, falling back to global IP address lookup when the default route is unavailable #104.<br>
+- Fixed README profile values for DSL and Edge to match actual code, and fixed Node.js API examples to use named imports.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 5.0.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1"/>
+        <updated>2024-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Smarter ifb0 handling on Linux #93.<br>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[throttle 5.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0"/>
         <updated>2022-07-02T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Changed</h3>
- <ul>
-<li>Dropped support for NodeJS 12 since it&#39;s unmaintaned.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Changed</strong><br>
+- Dropped support for NodeJS 12 since it&#39;s unmaintaned.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -35,10 +106,8 @@
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3"/>
         <updated>2022-06-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed <code>--version</code> so it actually shows the version again <a href="https://github.com/sitespeedio/throttle/pull/75">#75</a>.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Fixed <code>--version</code> so it actually shows the version again #75.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -50,10 +119,8 @@
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2"/>
         <updated>2022-06-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The E6 Module convertion in 4.0 broke version check (<code>--version</code>) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- The E6 Module convertion in 4.0 broke version check (<code>--version</code>) making installs failed. PR #74 is a temporaty fix for that.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -65,10 +132,8 @@
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1"/>
         <updated>2022-06-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -80,89 +145,11 @@
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0"/>
         <updated>2022-04-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dev dependencies to latest versions <a href="https://github.com/sitespeedio/throttle/pull/68">#68</a></li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>. You can read <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Sindre Sorhus ESM package guide</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 3.1.1]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1"/>
-        <updated>2022-04-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated minimist dependency.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 3.1.0]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0"/>
-        <updated>2021-12-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 3.0.0]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0"/>
-        <updated>2021-08-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Changed</h3>
- <ul>
-<li>When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.1.2]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2"/>
-        <updated>2021-07-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix breakage when multiple default routes are declared , thank you <a href="https://github.com/andyrichardson">Andy Richardson</a> for PR <a href="https://github.com/sitespeedio/throttle/pull/62">#62</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.1.1]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1"/>
-        <updated>2021-03-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>A better check for missing net-tools on Linux, thank you <a href="https://github.com/radum">Radu Micu</a> for the PR <a href="https://github.com/sitespeedio/throttle/pull/56">#56</a>.</li>
-</ul>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Updated dev dependencies to latest versions #68<br>
+<br>
+<strong>Changed</strong><br>
+- Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 #67. You can read Sindre Sorhus ESM package guide.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

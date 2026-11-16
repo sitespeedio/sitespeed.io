@@ -1,8 +1,8 @@
-import { resolve } from 'node:path';
+import path from 'node:path';
 import { readFileSync } from 'node:fs';
 
 import test from 'ava';
-import intel from 'intel';
+import { getLogger } from '@sitespeed.io/log';
 
 import { resultUrls } from '../lib/core/resultsStorage/resultUrls.js';
 import { messageMaker } from '../lib/support/messageMaker.js';
@@ -13,7 +13,7 @@ import { getSummary } from '../lib/plugins/slack/summary.js';
 import { fileURLToPath } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
-const coachRunPath = resolve(__dirname, 'fixtures', 'coach.run-0.json');
+const coachRunPath = path.resolve(__dirname, 'fixtures', 'coach.run-0.json');
 const coachRun = JSON.parse(readFileSync(coachRunPath, 'utf8'));
 
 import { DataCollector } from '../lib/plugins/slack/dataCollector.js';
@@ -23,7 +23,7 @@ const defaultContextFactory = (context = {}) => {
     {
       messageMaker,
       filterRegistry,
-      intel,
+      getLogger,
       statsHelpers,
       resultUrls: resultUrls('', {})
     },

@@ -98,15 +98,6 @@
          "seo": limit,
          "pwa": limit,
     },
-   "webpagetest": {
-         "SpeedIndex": limit,
-         "lastVisualChange": limit,
-         "render": limit,
-         "visualComplete": limit,
-         "visualComplete95": limit,
-         "TTFB": limit,
-         "fullyLoaded": limit,
-    },
    "gpsi": {
          "performance": limit,
          "accessibility": limit,

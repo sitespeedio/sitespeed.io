@@ -3,5 +3,8 @@
 !lib
 !package.json
 !LICENSE
-!npm-shrinkwrap.json
-!docker
+!package-lock.json
+!docker/adb
+!docker/scripts
+!tools/postinstall.js
+!docker/webpagereplay/

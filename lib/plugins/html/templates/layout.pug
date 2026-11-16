@@ -6,7 +6,10 @@ html(lang='en')
         title= pageTitle
         meta(name='description', content=pageDescription)
         meta(name='robots', content='noindex')
-        link(rel='stylesheet', href=assetsPath + 'css/index.min.css')
+        if options.html.darkMode
+          link(rel='stylesheet', href=assetsPath + 'css/index-dark.min.css')
+        else
+          link(rel='stylesheet', href=assetsPath + 'css/index-light.min.css')
         block inlineStyles
         style(type='text/css').
          #{css}
@@ -24,7 +27,3 @@ html(lang='en')
 
         include ./footer.pug
       script(src= assetsPath + 'js/sortable.min.js')
-      script(src= assetsPath + 'js/chartist.min.js')
-      script(src= assetsPath + 'js/chartist-plugin-axistitle.min.js')
-      script(src= assetsPath + 'js/chartist-plugin-tooltip.min.js')
-      script(src= assetsPath + 'js/chartist-plugin-legend.min.js')

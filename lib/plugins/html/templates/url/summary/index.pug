@@ -1,12 +1,14 @@
 extends ./layout.pug
 
 block content
+  include ../includes/_quicklinks
+
   - const d = pageInfo.data
   - const daTitle = daurlAlias ? daurlAlias : daurl
   - const downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
   h1 Page summary
 
-  h5.url
+  p.url
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
   include ../includes/pageRunInfo
@@ -22,17 +24,19 @@ block content
         each failureMessage in d.browsertime.pageSummary.failureMessages
           li #{failureMessage}
 
-  p
-    .large#pageNavigation All runs:&nbsp;
+  //- Run navigation: number-only chips so tests with 20+ runs stay on
+  //- one line, plus the side-by-side comparison page. Keep the
+  //- #pageNavigation id — tabScripts.js forwards the active tab hash
+  //- when any link in it is clicked.
+  nav.run-nav#pageNavigation(aria-label='Runs')
+    span.run-nav-label Runs
+    ul.run-nav-chips
       each val, index in runPages
         - value = Number(index) + 1
-        a(href='./' + value + '.html') #{value}
-        if (value === Object.keys(runPages).length)
-          | &nbsp;-
-          a(href='metrics.html') (side by side)
-        else 
-            | &nbsp;-
-            |  
+        li
+          a.run-nav-chip(href='./' + value + '.html', aria-label='Run ' + value) #{value}
+    span.run-nav-sep
+    a.run-nav-link(href='metrics.html') Side by side
 
   if pageInfo.errors
     .errors
@@ -42,228 +46,92 @@ block content
           each error in errors
             li #{error} 
               b (#{tool})
+  //- The Rendering tab exists whenever there is a render story to tell:
+  //- video or filmstrip, render-blocking requests from the HAR, or
+  //- recalculate-style data from the Chrome trace. The old #video,
+  //- #filmstrip and #requests-render-blocking anchors stay alive inside
+  //- it (see rendering/index.pug and the alias mapping in tabScripts.js).
+  - const hasRenderingMedia = !!(options.browsertime.video || options.browsertime.enableVideoRun || ((options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams && options.videoParams.createFilmstrip) || (options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots))
+  - const summaryRecalculateStyle = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.renderBlocking && d.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] ? d.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1].recalculateStyle : undefined
+  //- The trace-derived CPU signals (forced reflows before first paint,
+  //- non-composited animations) can exist while the recalculate-style
+  //- data is empty — recalc needs an FCP/LCP event in the trace, the
+  //- other trace analyses don't — so they get their own gate clause.
+  //- Forced reflows only count when the run has an FCP: the why-section
+  //- windows them to before first paint and hides them otherwise.
+  - const summaryCpu = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.cpu ? d.browsertime.pageSummary.cpu[medianRun.runIndex - 1] : undefined
+  - const summaryCpuTimings = d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.browserScripts && d.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] ? d.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].timings : undefined
+  - const summaryCpuFcp = summaryCpuTimings && summaryCpuTimings.paintTiming ? summaryCpuTimings.paintTiming['first-contentful-paint'] : undefined
+  - const summaryCpuLcp = summaryCpuTimings && summaryCpuTimings.largestContentfulPaint ? summaryCpuTimings.largestContentfulPaint.renderTime : undefined
+  //- Reflows are windowed to the latest paint milestone (LCP can land
+  //- before FCP) — mirrors the why-section's prePaintReflows window.
+  - const summaryCpuPaintEnd = Math.max(summaryCpuFcp || 0, summaryCpuLcp || 0) || undefined
+  - const hasCpuRenderSignals = !!(summaryCpu && ((summaryCpuPaintEnd && summaryCpu.forcedReflows && summaryCpu.forcedReflows.filter(r => r.startTime < summaryCpuPaintEnd).reduce((total, r) => total + r.duration, 0) >= 10) || (summaryCpu.nonCompositedAnimations && summaryCpu.nonCompositedAnimations.length > 0) || (summaryCpu.frames && summaryCpu.frames.presented !== undefined)))
+  //- A slow server delays everything that renders after it, so a TTFB
+  //- past the Web Vitals good threshold (800 ms, same cutoff as the
+  //- why-section's ttfbSlow — keep in sync) earns the tab on its own.
+  - const summaryTtfbSlow = !!(summaryCpuTimings && summaryCpuTimings.ttfb && summaryCpuTimings.ttfb >= 800)
+  - const hasRendering = hasRenderingMedia || summaryTtfbSlow || !!(d.pagexray && d.pagexray.pageSummary && d.pagexray.pageSummary.renderBlocking) || !!(summaryRecalculateStyle && (summaryRecalculateStyle.beforeFCP || summaryRecalculateStyle.beforeLCP)) || hasCpuRenderSignals
+
   include ./tabs.pug
 
   #tabSections
     section#summary-panel
-      small
-        | | 
-        a(href='#summary') Summary |
-        | &nbsp;|&nbsp;
-        if h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
-          a#browsertime-timing-statistics
-        if options.browsertime.tcpdump
-          a(href='#tcpdump') Download TCP dump
-          | &nbsp;|&nbsp;
-        if options.html.logDownloadLink
-          a(href='#downloads') Download log
-          | &nbsp;|&nbsp;
-        if options.browsertime.video
-          a(href='#downloads') Download Video
-          | &nbsp;|&nbsp;
-        if options.browsertime.chrome && options.browsertime.chrome.timeline
-          a(href='#downloads') Download Timeline Log
-          | &nbsp;|&nbsp;
-        if d.browsertime && d.browsertime.har
-          a(href='#downloads') Download HAR
-          | &nbsp;|&nbsp;
-        if options.browsertime.chrome && options.browsertime.chrome.collectConsoleLog
-          a(href='#downloads') Download Console Logs
-          | &nbsp;|&nbsp;
+      - const summaryLinks = []
+      - summaryLinks.push({href: '#summary', label: 'Summary'})
+      if h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
+        - summaryLinks.push({href: '#browsertime-timing-statistics', label: 'Timings summary'})
+      if options.browsertime.tcpdump
+        - summaryLinks.push({href: '#tcpdump', label: 'Download TCP dump'})
+      if options.html.logDownloadLink
+        - summaryLinks.push({href: '#downloads', label: 'Download log'})
+      if options.browsertime.video
+        - summaryLinks.push({href: '#downloads', label: 'Download Video'})
+      if options.browsertime.chrome && options.browsertime.chrome.timeline
+        - summaryLinks.push({href: '#downloads', label: 'Download Chrome trace'})
+      if d.browsertime && d.browsertime.har
+        - summaryLinks.push({href: '#downloads', label: 'Download HAR'})
+      if options.browsertime.chrome && options.browsertime.chrome.collectConsoleLog
+        - summaryLinks.push({href: '#downloads', label: 'Download Console Logs'})
+      +quicklinks(summaryLinks)
 
       a#summary
-      h2 Summary
-      .row
-        .one-half.column
-          table
-            tr
-              th Metric
-              th Value
-            - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
-            tr
-              th(colspan='2') Page metrics
-            if performanceScore
-              tr
-                td Performance Score
-                td #{performanceScore}
-            - totalTransferSize = get(d, 'pagexray.pageSummary.transferSize')
-            if totalTransferSize
-              tr
-                td Total Page Transfer Size
-                td #{h.size.format(totalTransferSize)}
-            - memory = get(d, 'browsertime.pageSummary.memory')
-            if memory
-              tr
-                td Memory
-                td #{h.size.format(memory)}
-            - requests = get(d, 'pagexray.pageSummary.requests')
-            if requests
-              tr
-                td Requests
-                td #{requests}
-            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
-            tr
-              th(colspan='2') Timing metrics
-            if ttfb
-              tr
-                td TTFB [median]
-                td #{h.time.ms(ttfb)}
-            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
-            if firstPaint
-              tr
-                td First Paint [median]
-                td #{h.time.ms(firstPaint)}  
-            - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
-            if fullyLoaded  
-              tr
-                td Fully Loaded [median]
-                td #{h.time.ms(fullyLoaded)}
-            - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
-            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
-            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
-            - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
-            if lcp
-              tr
-                th(colspan='2') Google Web Vitals     
-            if ttfb
-              tr
-                td TTFB [median]
-                td #{h.time.ms(ttfb)}
-            if fcp
-              tr
-                td First Contentful Paint (FCP) [median]
-                td #{h.time.ms(fcp)}         
-            if lcp
-              tr
-                td Largest Contentful Paint (LCP) [median]
-                td #{h.time.ms(lcp)}
-            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
-            if cls || cls === 0
-                tr
-                  td Cumulative Layout Shift (CLS) [median]
-                  td #{cls.toFixed(2)}
-            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
-            if inp
-                tr
-                  td Interaction To Next Paint (INP) [median]
-                  td #{h.time.ms(inp)}
-            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
-            if tbt  
-              tr
-                td Total Blocking Time [median]
-                td #{h.time.ms(tbt)}
-            - mpFID = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median')
-            if mpFID
-              tr
-                td Max Potential FID [median]
-                td #{h.time.ms(mpFID)}
-            - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
-            if longTasks
-              tr
-                th(colspan='2') CPU metrics
-              tr
-                td CPU long tasks [median]
-                td #{longTasks}
-            - maxLongTask= get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max') 
-            if maxLongTask 
-              tr
-                td CPU longest task duration
-                td #{h.time.ms(maxLongTask)}
-            - lastLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask.median') 
-            if lastLongTask 
-              tr
-                td CPU last long task happens at
-                td #{h.time.ms(lastLongTask)}
-            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
-            if firstVisualChange
-              tr
-                th(colspan='2') Visual Metrics
-              tr
-                td First Visual Change [median]
-                td #{h.time.ms(firstVisualChange)}
-            - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
-            if speedIndex
-              tr
-                td Speed Index [median]
-                td #{h.time.ms(speedIndex)}
-            - visualComplete85 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median')
-            if visualComplete85
-              tr
-                td Visual Complete 85% [median]
-                td #{h.time.ms(visualComplete85)}
-            - visualComplete99 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median')
-            if visualComplete99
-              tr
-                td Visual Complete 99% [median]
-                td #{h.time.ms(visualComplete99)}
-            - lastVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median')
-            if lastVisualChange
-              tr
-                td Last Visual Change [median]
-                td #{h.time.ms(lastVisualChange)}
-            - cruxFCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_contentful_paint.percentiles.p75');
-            if cruxFCP
-              tr
-                th(colspan='2') Chrome User Experience Report (CRUX)
-              tr
-                td First Contentful Paint [p75]
-                td #{h.time.ms(cruxFCP)}
-            - cruxLCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.largest_contentful_paint.percentiles.p75');
-            if cruxLCP
-              tr
-                td Largest Contentful Paint (LCP) [p75]
-                td #{h.time.ms(cruxLCP)}
-            - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75');
-            if cruxFID
-              tr
-                td First Input Delay (FID) [p75]
-                td #{h.time.ms(cruxFID)}
-            - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75');
-            if cruxCLS || cruxCLS === 0
-              tr
-                td Cumulative Layout Shift (CLS) [p75]
-                td #{Number(cruxCLS).toFixed(2)}
-            if !d.browsertime && d.webpagetest
-              tr
-                th(colspan='2') WebPageTest
-              tr
-                td Render (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.render}
-              tr
-                td Speed Index (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.SpeedIndex}
-              tr
-                td Visual Complete 85% (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.visualComplete85}
-              tr
-                td Last Visual Change (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.lastVisualChange}
-              tr
-                td Requests
-                td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
-            if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime
-              - const cruxMetrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
-              each name, key in cruxMetrics
-                if d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key]
-                  tr 
-                    td Fast #{name} (CrUx overall)
-                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
-                  tr 
-                    td Moderate #{name} (CrUx overall)
-                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
-                  tr 
-                    td Slow #{name} (CrUx overall)
-                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
-        .one-half.column
-            if hasScreenShots
-              - const width = options.mobile ? 150 : '100%';
-              - const screenshotNo = medianRun ? medianRun.runIndex : 1
-              - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
-              a(href=screenshotName)
-                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
-            else if !d.browsertime && d.webpagetest
-              a(href='data/screenshots/wpt-1-firstView.png')
-                img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
+
+      //- Pull all values once up front so the markup below is just rendering.
+      - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
+      - totalTransferSize = get(d, 'pagexray.pageSummary.transferSize')
+      - totalContentSize = get(d, 'pagexray.pageSummary.contentSize')
+      - memory = get(d, 'browsertime.pageSummary.memory')
+      - powerConsumption = get(d, 'browsertime.pageSummary.statistics.powerConsumption.median')
+      - requests = get(d, 'pagexray.pageSummary.requests')
+      - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
+      - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
+      - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
+      - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median')
+      //- LCP renderTime is 0 for cross-origin images without Timing-Allow-Origin,
+      //- so use max(renderTime, loadTime) like the Metrics tab, or it reads as 0.
+      - lcp = Math.max(get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median') || 0, get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.loadTime.median') || 0) || undefined
+      - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
+      - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
+      - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
+      - mpFID = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median')
+      - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
+      - maxLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max')
+      - lastLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask.median')
+      - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
+      - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
+      - visualComplete85 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median')
+      - visualComplete99 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median')
+      - lastVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median')
+      - cruxFCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_contentful_paint.percentiles.p75')
+      - cruxLCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.largest_contentful_paint.percentiles.p75')
+      - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75')
+      - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75')
+
+      include ./_summaryHero.pug
+
+      include ./_summaryCrux.pug
+
       include ./summaryBox.pug
 
       #downloads
@@ -275,13 +143,9 @@ block content
       section#waterfall-panel
         include ../waterfall/index.pug
 
-    if options.browsertime.video
-      section#video-panel
-        include ../video/index.pug
-
-    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
-      section#filmstrip-panel
-        include ../filmstrip/index.pug    
+    if hasRendering
+      section#rendering-panel
+        include ../rendering/index.pug
 
     if d.coach && d.coach.pageSummary
       section#coach-panel
@@ -295,7 +159,10 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime && options.browsertime.enableProfileRun)
+    //- Keep in sync with the CPU tab gate in ./tabs.pug — Chrome runs
+    //- always get the panel so the --enableProfileRun pointer is
+    //- discoverable.
+    if options.browser === 'chrome' || options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime && options.browsertime.enableProfileRun)
       section#cpu-panel
         include ../cpu/index.pug  
 

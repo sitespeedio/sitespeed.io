@@ -1,0 +1,40 @@
+//- Shared composition donut — a pure-CSS conic-gradient ring plus a
+//- legend, sorted largest-first. Lifted from the CrUX tab's
+//- compositionPie so the PageXray content-type breakdown and the
+//- third-party first-vs-third breakdown reuse the exact treatment.
+//- Slice colours come from the --comp-cat-* custom properties
+//- (components/composition.scss) so the inline gradient and the legend
+//- dots stay theme-aware; no charting dependency, works on file://.
+//- preserveOrder keeps the source order (and so the palette-by-index
+//- colour per slice) instead of sorting largest-first — used for the
+//- first-vs-third pair so each role keeps one fixed colour across the
+//- three donuts.
+mixin donutChart(items, preserveOrder)
+  - let dShown = (items || []).map(it => ({ label: it.label, value: Number(it.value) || 0, sub: it.sub })).filter(it => it.value > 0)
+  - if (!preserveOrder) dShown = dShown.sort((a, b) => b.value - a.value)
+  if dShown.length
+    - const dTotal = dShown.reduce((sum, it) => sum + it.value, 0) || 1
+    - let dAcc = 0
+    - const dStops = dShown.map((it, idx) => { const start = dAcc / dTotal * 100; dAcc += it.value; return 'var(--comp-cat-' + ((idx % 7) + 1) + ') ' + start.toFixed(3) + '% ' + (dAcc / dTotal * 100).toFixed(3) + '%'; })
+    .composition-pie
+      .composition-donut(style='background: conic-gradient(' + dStops.join(', ') + ')')
+      ul.composition-legend
+        each it, idx in dShown
+          - const pct = it.value / dTotal * 100
+          li.composition-key
+            span.composition-dot(class='comp-cat-' + ((idx % 7) + 1))
+            span.composition-name= it.label
+            if it.sub
+              span.composition-sub= it.sub
+            span.composition-pct #{pct < 1 ? pct.toFixed(2) : pct.toFixed(1)}%
+
+//- One captioned donut, ready to sit inside a .composition-grid. The
+//- total rides on the caption line (not inside the ring — the hole is
+//- too small to read a value in), so the caption doubles as the summary.
+mixin donutCell(caption, items, total, preserveOrder)
+  .composition-cell
+    p.composition-cap
+      span.composition-cap-label= caption
+      if total !== undefined
+        span.composition-cap-total= total
+    +donutChart(items, preserveOrder)

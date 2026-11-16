@@ -1,11 +1,32 @@
 if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== undefined
+  - const inpInfo = browsertime.pageinfo.interactionToNextPaintInfo
+  - const inpLatency = inpInfo.latency
+  - const inpLabel = (() => { if (inpLatency >= 500) return 'error'; if (inpLatency >= 200) return 'warning'; return 'ok'; })()
   a#interactionToNextPaint
   h3 Interaction to Next Paint
-  p Interaction to Next Paint (INP) is a metric that try to measure responsiveness. It's useful if you are testing user journeys Read more about 
+  p Interaction to Next Paint (INP) measures responsiveness: the time from a user interaction to the next painted frame. Read more about&nbsp;
     a(href='https://web.dev/inp/') Interaction to Next Paint
     | .
-  .row
-    p The measured latency was #{h.time.ms(browsertime.pageinfo.interactionToNextPaintInfo.latency)}. And the events that contributed to the latency was:
-      ul
-        each entry in browsertime.pageinfo.interactionToNextPaintInfo.entries
-          li #{entry.name} - #{h.time.ms(entry.duration)}
+  .inp-card
+    .inp-headline
+      span.inp-latency(class=inpLabel) #{h.time.ms(inpLatency)}
+      span.inp-headline-sub measured INP latency
+    dl.inp-meta
+      dt Event type
+      dd
+        code= inpInfo.eventType
+      if inpInfo.tagName
+        dt Element
+        dd
+          code &lt;#{inpInfo.tagName.toLowerCase()}&gt;
+      if inpInfo.className && typeof inpInfo.className === 'string'
+        dt Element class name
+        dd
+          code= inpInfo.className
+      if inpInfo.eventTarget
+        dt Event target
+        dd
+          code= inpInfo.eventTarget
+      if inpInfo.loadState
+        dt Page load state when fired
+        dd= inpInfo.loadState

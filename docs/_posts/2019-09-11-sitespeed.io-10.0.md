@@ -94,15 +94,7 @@ We have updated all the default dashboards, you [download them from here](https:
 
 
 ## Run your tests on Kubernetes
-One of the most asked question the last years has been how do we test using Kubernetes? The problem has been that there is no way to limit the connectivity. We fixed that by integrating [TSProxy](https://github.com/WPO-Foundation/tsproxy) (a Traffic-shaping SOCKS5 proxy built by [Patrick Meenan](https://twitter.com/patmeenan)). This is actually the second time we done it, but this time there's been a major fix on TSProxy that makes it work as it should on Linux.
-
-You need Python 2.7 to run TSProxy and you enable it like this:
-
-~~~bash
-sitespeed.io --browsertime.connectivity.engine tsproxy -c cable https://www.sitespeed.io/
-~~~
-
-Stay tuned for a more in depth follow up on running Sitespeed in Kubernetes or drop into [our slack](https://sitespeedio.herokuapp.com) and tell us about how you are running it!
+One of the most asked question the last years has been how do we test using Kubernetes? The problem has been that there is no way to limit the connectivity. You should try out the [bandwith plugin](https://www.cni.dev/plugins/current/meta/bandwidth/) that could help you with that.
 
 ## Breaking changes
 

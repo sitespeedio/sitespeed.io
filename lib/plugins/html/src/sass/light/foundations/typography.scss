@@ -1,0 +1,98 @@
+//
+// TYPOGRAPHY — light
+// ==================
+//
+
+html {
+ font-size: $base--font-size;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ text-rendering: optimizeLegibility;
+}
+
+body {
+ font-size: 1rem;
+ line-height: $base--line-height;
+ font-weight: $base--font-weight;
+ font-family: $base--font-family;
+ color: $color--text;
+ background-color: $color--surface;
+ font-feature-settings: "kern" 1;
+}
+
+//
+// HEADINGS
+//
+
+h1, h2, h3, h4, h5, h6 {
+ margin-top: 1.5rem;
+ margin-bottom: 1rem;
+ font-weight: $font--weight--semibold;
+ line-height: 1.25;
+ letter-spacing: -0.01em;
+ color: $color--text;
+}
+
+h1 { font-size: 2rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.625rem; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; font-weight: $font--weight--medium; }
+h6 { font-size: 0.875rem; font-weight: $font--weight--medium; text-transform: uppercase; letter-spacing: 0.04em; color: $color--text-muted; }
+
+p {
+ margin-top: 0;
+}
+
+//
+// LINKS
+//
+
+a {
+ color: $color--blue;
+ text-decoration-color: rgba(0, 149, 210, 0.4);
+ text-underline-offset: 2px;
+ transition: color $motion--fast;
+}
+
+a:hover {
+ color: $color--blue-dark;
+ text-decoration-color: $color--blue-dark;
+}
+
+pre, blockquote, dl, p {
+ margin-bottom: 1.5rem;
+}
+
+//
+// CODE
+//
+code {
+ padding: 0.15rem 0.4rem;
+ margin: 0 0.1rem;
+ font-size: 0.875em;
+ font-family: $font--mono;
+ white-space: nowrap;
+ background: $color--surface-card;
+ border: 1px solid $color--border;
+ border-radius: $radius--sm;
+ color: $color--text;
+}
+
+pre > code {
+ display: block;
+ padding: 1rem 1.25rem;
+ white-space: pre;
+ overflow: auto;
+ line-height: 1.5;
+}
+
+//
+// NUMERIC METRICS — tabular figures everywhere they show
+//
+.summarynumber,
+.metricNumber,
+table td,
+table th {
+ font-variant-numeric: tabular-nums;
+}

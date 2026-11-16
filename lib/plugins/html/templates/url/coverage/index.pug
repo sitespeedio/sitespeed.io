@@ -1,0 +1,517 @@
+- const coverage = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.coverage
+- const covRunIndex = medianRun ? medianRun.runIndex - 1 : 0
+//- Coverage from --enableProfileRun is a single side-run sample marked
+//- with source: 'profileRun' (js/css are objects, not per-iteration
+//- arrays). The array indexing with a [0] fallback keeps older
+//- browsertime data working.
+- const fromProfileRun = coverage && coverage.source === 'profileRun'
+- const jsCov = coverage && coverage.js ? (fromProfileRun ? coverage.js : (coverage.js[covRunIndex] || coverage.js[0])) : undefined
+- const cssCov = coverage && coverage.css ? (fromProfileRun ? coverage.css : (coverage.css[covRunIndex] || coverage.css[0])) : undefined
+- const jsFiles = jsCov && jsCov.files ? jsCov.files : []
+- const cssFiles = cssCov && cssCov.files ? cssCov.files : []
+- const MAX_ROWS = 25
+
+//- Use pagexray's first-party regex when available so the split lines up
+//- with the third-party tab. Falls back to "everything counts as
+//- first-party" when pagexray is disabled — the breakdown then just
+//- collapses to one bar, which is still honest.
+- let fpRegex
+- const fpRegexStr = pageInfo.data.pagexray && pageInfo.data.pagexray.pageSummary && pageInfo.data.pagexray.pageSummary.firstPartyRegEx
+- if (fpRegexStr) { try { fpRegex = new RegExp(fpRegexStr) } catch (e) { fpRegex = undefined } }
+- const docUrl = pageInfo.data.browsertime && pageInfo.data.browsertime.pageSummary && pageInfo.data.browsertime.pageSummary.info ? pageInfo.data.browsertime.pageSummary.info.url : undefined
+- function isFirstParty(url) {
+-   if (!url) return true
+-   if (docUrl && url === docUrl) return true
+-   if (!fpRegex) return true
+-   return fpRegex.test(url)
+- }
+- function splitParty(files) {
+-   let fp = 0, tp = 0
+-   for (const f of files) {
+-     if (isFirstParty(f.url)) fp += f.unusedBytes
+-     else tp += f.unusedBytes
+-   }
+-   return { fp, tp }
+- }
+- const jsSplit = splitParty(jsFiles)
+- const cssSplit = splitParty(cssFiles)
+
+//- Fold same-URL entries into a single row. V8 reports every inline
+//- <script> block as a separate scriptId — they all share the document
+//- URL, so cnet's 15+ inline scripts otherwise show up as 15 lookalike
+//- rows. Sum bytes, count occurrences, recompute unused-% from the sums
+//- (averaging the percentages would weight tiny scripts the same as
+//- large bundles).
+//- `modules` is browsertime's per-module breakdown of a bundled
+//- response (MediaWiki ResourceLoader batches), already sorted by
+//- unused bytes — carry it through so the row can expand into it.
+- function aggregateByUrl(files) {
+-   const map = new Map()
+-   for (const f of files) {
+-     //- Labeled inline sheets (MediaWiki TemplateStyles) share the
+-     //- document URL, so the label is the real identity — group by it
+-     //- so each template gets its own row instead of one merged blob.
+-     const key = f.label || f.url || ''
+-     const cur = map.get(key)
+-     if (cur) {
+-       cur.totalBytes += f.totalBytes
+-       cur.usedBytes += f.usedBytes
+-       cur.unusedBytes += f.unusedBytes
+-       cur.count += 1
+-       if (f.modules) cur.modules = cur.modules ? [...cur.modules, ...f.modules] : f.modules
+-       if (!cur.label && f.label) cur.label = f.label
+-     } else {
+-       map.set(key, { url: key, totalBytes: f.totalBytes, usedBytes: f.usedBytes, unusedBytes: f.unusedBytes, count: 1, modules: f.modules, label: f.label })
+-     }
+-   }
+-   const out = []
+-   for (const entry of map.values()) {
+-     entry.unusedPercent = entry.totalBytes > 0 ? (entry.unusedBytes / entry.totalBytes) * 100 : 0
+-     out.push(entry)
+-   }
+-   return out
+- }
+- const jsAgg = aggregateByUrl(jsFiles)
+- const cssAgg = aggregateByUrl(cssFiles)
+
+- const sevClass = (p) => p >= 70 ? 'cov-bar-fill--bad' : (p >= 40 ? 'cov-bar-fill--mid' : 'cov-bar-fill--ok')
+
+//- Squarified treemap layout, computed at build time so the picture is
+//- static (no client-side chart code, works from file://). Returns each
+//- item with x/y/w/h in the same units passed in; the card converts
+//- those to percentages of a fixed-aspect container. Standard squarify:
+//- greedily grow a row along the short side while the worst aspect ratio
+//- keeps improving, then lay the row out and recurse into what's left.
+- function tmSquarify(items, width, height) {
+-   const total = items.reduce((sum, it) => sum + it.size, 0)
+-   if (total <= 0) return []
+-   const scaled = items.map(it => Object.assign({}, it, { area: it.size / total * (width * height) }))
+-   const out = []
+-   let rect = { x: 0, y: 0, w: width, h: height }
+-   let row = []
+-   let i = 0
+-   const rowWorst = (candidate, side) => {
+-     const s = candidate.reduce((a, b) => a + b.area, 0)
+-     const mx = Math.max.apply(null, candidate.map(r => r.area))
+-     const mn = Math.min.apply(null, candidate.map(r => r.area))
+-     const len = s / side
+-     return Math.max(len * len * mx / (s * s), s * s / (len * len * mn))
+-   }
+-   const flush = (rowItems, side, horizontal) => {
+-     const s = rowItems.reduce((a, b) => a + b.area, 0)
+-     const len = s / side
+-     let off = 0
+-     for (const it of rowItems) {
+-       const frac = it.area / s
+-       if (horizontal) out.push(Object.assign({}, it, { x: rect.x, y: rect.y + off * rect.h, w: len, h: frac * rect.h }))
+-       else out.push(Object.assign({}, it, { x: rect.x + off * rect.w, y: rect.y, w: frac * rect.w, h: len }))
+-       off += frac
+-     }
+-   }
+-   while (i < scaled.length) {
+-     const side = Math.min(rect.w, rect.h)
+-     const candidate = row.concat([scaled[i]])
+-     if (row.length === 0 || rowWorst(row, side) >= rowWorst(candidate, side)) { row = candidate; i += 1 }
+-     else {
+-       const horizontal = rect.w >= rect.h
+-       const s = row.reduce((a, b) => a + b.area, 0)
+-       const len = s / side
+-       flush(row, side, horizontal)
+-       if (horizontal) rect = { x: rect.x + len, y: rect.y, w: rect.w - len, h: rect.h }
+-       else rect = { x: rect.x, y: rect.y + len, w: rect.w, h: rect.h - len }
+-       row = []
+-     }
+-   }
+-   if (row.length > 0) flush(row, Math.min(rect.w, rect.h), rect.w >= rect.h)
+-   return out
+- }
+
+//- Render an already-squarified tile set into a .cov-treemap. Tiles
+//- carry x/y/w/h (from tmSquarify) plus name/host/full/size/unused/pct/
+//- kind and, for a bundle that has a module breakdown, drillId — so the
+//- mixin needs nothing from the caller's block consts, only the global
+//- h. A drillable tile gets the click affordance and a data-drill target
+//- the toggle script reads.
+mixin covTreemapTiles(tiles)
+  .cov-treemap
+    each t in tiles
+      - const tmLeft = t.x / 940 * 100
+      - const tmTop = t.y / 480 * 100
+      - const tmWidth = t.w / 940 * 100
+      - const tmHeight = t.h / 480 * 100
+      - const tmTone = t.pct >= 70 ? 'cov-tm-tile--bad' : (t.pct >= 40 ? 'cov-tm-tile--mid' : 'cov-tm-tile--ok')
+      - const tmClass = tmTone + (t.drillId ? ' cov-tm-tile--drill' : '')
+      .cov-tm-tile(class=tmClass, data-drill=t.drillId || false, style='left: ' + tmLeft.toFixed(3) + '%; top: ' + tmTop.toFixed(3) + '%; width: ' + tmWidth.toFixed(3) + '%; height: ' + tmHeight.toFixed(3) + '%', title=(t.full || t.name) + (t.kind ? ' (' + t.kind + ')' : '') + ' — ' + h.size.format(t.size) + ' total, ' + h.size.format(t.unused) + ' unused (' + t.pct.toFixed(0) + '%)' + (t.drillId ? ' · click to see its modules' : ''))
+        span.cov-tm-name #{t.name}
+        if t.host
+          span.cov-tm-host #{t.host}
+        span.cov-tm-meta #{h.size.format(t.size)} · #{t.pct.toFixed(0)}% unused
+
+a#coverage
+h2
+  | Coverage
+  if fromProfileRun
+    span.profile-run-badge(title='Collected in the single extra profile run made by --enableProfileRun, not in the timed iterations the rest of this report is based on.') Profile run
+
+p
+  if fromProfileRun
+    | JavaScript and CSS coverage from the extra profile run made by&nbsp;
+    code --enableProfileRun
+    | , not from the timed iterations.
+  else
+    | JavaScript and CSS coverage collected on every timed iteration (
+    code --chrome.coverage
+    | ); shown here is the median iteration (run #{covRunIndex + 1}). Note that detailed coverage measurement slows down Chrome's JavaScript engine and can affect the timing metrics of the same runs.
+  |  For JS, Chrome tracks which blocks of each script actually ran: a byte is&nbsp;
+  em unused
+  | &nbsp;when the innermost block of code around it never ran. For CSS, Chrome records every selector that no element on the page matched during the iteration. Enable with&nbsp;
+  code --chrome.coverage
+  | &nbsp;on every run, or&nbsp;
+  code --enableProfileRun
+  | &nbsp;to keep the main run's timing metrics untouched. Unused bytes still cost network, parse and compile time for no benefit. Expand the section below for the full picture.
+
+details.cov-method
+  summary How is "unused" calculated?
+  .cov-method-body
+    p
+      | sitespeed.io drives Chrome's V8 profiler and CSS rule tracker via the DevTools Protocol, the same machinery the DevTools Coverage panel uses. The two columns are populated by two different mechanisms.
+    h4 JavaScript
+    p
+      | Browsertime calls&nbsp;
+      code Profiler.startPreciseCoverage
+      | &nbsp;with detailed (block-level) mode at the start of the iteration and&nbsp;
+      code Profiler.takePreciseCoverage
+      | &nbsp;at the end. V8 returns nested ranges per function: an outer range covering the function body and inner ranges for sub-blocks (if/else, switch arms, ternaries). Each range has an execution count. A byte is "used" if the innermost range that covers it has count > 0, "unused" if it has count = 0, so we catch both functions that never ran AND dead branches inside functions that did.
+    h4 CSS
+    p
+      | Browsertime calls&nbsp;
+      code CSS.startRuleUsageTracking
+      | &nbsp;at the start of the iteration and&nbsp;
+      code CSS.stopRuleUsageTracking
+      | &nbsp;at the end. Chrome returns a flat list of rule-text ranges with a&nbsp;
+      code used
+      | &nbsp;flag: a rule is "used" if at least one element on the page matched it during the iteration. Both inline&nbsp;
+      code &lt;style&gt;
+      | &nbsp;blocks and external stylesheets are included.
+    h4 What "this iteration" means
+    p
+      | Coverage reflects only what executed during this run. Code behind a button click stays unused unless the iteration clicked the button. The collection window opens before navigation and closes when&nbsp;
+      code measure.stop()
+      | &nbsp;is reached, so the only way to count interactions is to drive them between&nbsp;
+      code measure.start()
+      | &nbsp;and&nbsp;
+      code measure.stop()
+      | &nbsp;inside a&nbsp;
+      a(href='https://www.sitespeed.io/documentation/sitespeed.io/scripting/') navigation script
+      |  (pass a&nbsp;
+      code .js
+      | &nbsp;file as the input instead of a plain URL). Clicks, form fills and waits placed there all count toward "used".&nbsp;
+      code --preScript
+      | &nbsp;runs before the URL is loaded so it can't interact with the page being measured, and&nbsp;
+      code --postScript
+      | &nbsp;runs after coverage has already been collected, so neither helps here. Detailed coverage also tells V8 to skip some optimisations, which drifts timing metrics like LCP and TBT; that's why&nbsp;
+      code --enableProfileRun
+      | &nbsp;is the safer option for production measurement (it collects coverage in a separate iteration that doesn't count towards the medians).
+
+if !jsCov && !cssCov
+  .listing-card.cov-empty
+    p No coverage data was collected for this iteration.
+else
+  .cov-kpis
+    if jsCov
+      .cov-kpi
+        span.cov-kpi-label JS total
+        span.cov-kpi-value #{h.size.format(jsCov.totalBytes)}
+      .cov-kpi
+        span.cov-kpi-label JS unused
+        span.cov-kpi-value #{h.size.format(jsCov.unusedBytes)}
+      .cov-kpi
+        span.cov-kpi-label JS unused %
+        span.cov-kpi-value #{jsCov.unusedPercent.toFixed(1)}%
+    if cssCov
+      .cov-kpi
+        span.cov-kpi-label CSS total
+        span.cov-kpi-value #{h.size.format(cssCov.totalBytes)}
+      .cov-kpi
+        span.cov-kpi-label CSS unused
+        span.cov-kpi-value #{h.size.format(cssCov.unusedBytes)}
+      .cov-kpi
+        span.cov-kpi-label CSS unused %
+        span.cov-kpi-value #{cssCov.unusedPercent.toFixed(1)}%
+
+  //- Treemap: every JS and CSS file as one tile, sized by total bytes
+  //- and tinted by how much of it never ran. The visual overview the
+  //- sorted tables below cannot give at a glance: which few files own
+  //- the weight, and how large the dead-code blocks are next to each
+  //- other. Capped to the heaviest files with the remainder folded into
+  //- one tile, so a page with hundreds of scripts still lays out; the
+  //- meta line says how many were folded rather than dropping silently.
+  - const TM_MAX = 36
+  //- Tile label is the file NAME (h.assetName), never the full URL: a
+  //- narrow tile ellipsis-clips a long URL down to "https://www.gstati…"
+  //- which says nothing. The host goes on a second line to tell apart
+  //- the many generic names (main.js, index.js) third parties ship, and
+  //- the full URL stays in the hover title for the tiles too small to
+  //- read either.
+  - const tmName = f => f.label || (f.url && f.url !== docUrl ? h.assetName(f.url).name : 'inline')
+  - const tmHost = f => { try { return f.url && f.url !== docUrl ? new URL(f.url).hostname.replace(/^www\./, '') : '' } catch (e) { return '' } }
+  //- tmCap folds the small tail into one tile so it stays clickable.
+  //- A tile below `minShare` of the total bytes renders as an unhittable
+  //- sliver (2-9 px), and past `max` tiles the whole map gets fiddly, so
+  //- both the too-small and the overflow files collapse into one "N more"
+  //- tile named for how many it stands in for. A drillable bundle (has a
+  //- module breakdown) is always kept, even when small, so you can still
+  //- drop into it. The full per-file list stays in the table below.
+  - function tmCap(items, max, label, minShare) { const sorted = items.slice().sort((a, b) => b.size - a.size); const total = sorted.reduce((s, it) => s + it.size, 0); const floor = minShare ? total * minShare : 0; const keep = []; const fold = []; for (const it of sorted) { const drillable = !!(it.modules && it.modules.length > 0); if (keep.length < max && (drillable || it.size >= floor)) keep.push(it); else fold.push(it) } if (fold.length > 0) { const fSize = fold.reduce((s, it) => s + it.size, 0); const fUnused = fold.reduce((s, it) => s + it.unused, 0); keep.push({ name: fold.length + ' more ' + label, host: '', size: fSize, unused: fUnused, pct: fSize > 0 ? fUnused / fSize * 100 : 0, kind: '' }) } return keep }
+  - const tmAll = []
+  - for (const f of jsAgg) tmAll.push({ name: tmName(f), host: tmHost(f), full: f.url, size: f.totalBytes, unused: f.unusedBytes, pct: f.unusedPercent, kind: 'JS', modules: f.modules })
+  - for (const f of cssAgg) tmAll.push({ name: tmName(f), host: tmHost(f), full: f.url, size: f.totalBytes, unused: f.unusedBytes, pct: f.unusedPercent, kind: 'CSS', modules: f.modules })
+  - const tmShown = tmCap(tmAll, TM_MAX, 'files', 0.005)
+  //- A bundle that carries a per-module breakdown (MediaWiki
+  //- ResourceLoader batches) is drillable: give it an id so its modules
+  //- can be pre-rendered as their own treemap and shown by the toggle
+  //- script. Non-MediaWiki files have no module data, so no drill.
+  - let tmDrillCount = 0
+  - for (const t of tmShown) { if (t.modules && t.modules.length > 0) { t.drillId = 'cov-tm-drill-' + tmDrillCount; tmDrillCount++ } }
+  - const tmTiles = tmSquarify(tmShown, 940, 480)
+  //- Actionable lead: total shipped vs never-ran, then the single file
+  //- with the most dead bytes and, when it is a bundle we can see inside,
+  //- the module inside it that carries the most. Reads from the same
+  //- aggregated pools the treemap and table use, so no new collection.
+  - const covTotal = (jsCov ? jsCov.totalBytes : 0) + (cssCov ? cssCov.totalBytes : 0)
+  - const covUnused = (jsCov ? jsCov.unusedBytes : 0) + (cssCov ? cssCov.unusedBytes : 0)
+  - const covWaste = covTotal > 0 ? covUnused / covTotal : 0
+  - const covBiggest = jsAgg.concat(cssAgg).filter(f => f.unusedBytes > 0).sort((a, b) => b.unusedBytes - a.unusedBytes)[0]
+  - const covBiggestName = covBiggest ? (covBiggest.label || (covBiggest.url && covBiggest.url !== docUrl ? h.assetName(covBiggest.url).name : 'the inline code')) : undefined
+  - const covBiggestMod = covBiggest && covBiggest.modules && covBiggest.modules.length > 0 ? covBiggest.modules.slice().sort((a, b) => b.unusedBytes - a.unusedBytes)[0] : undefined
+  if tmTiles.length > 0
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Where the bytes go
+        span.listing-card-meta #{tmAll.length} #{tmAll.length === 1 ? 'file' : 'files'} · tile size is total bytes, tint is unused share
+      if covUnused > 0
+        .cov-verdict(class=covWaste >= 0.4 ? 'cov-verdict--warning' : 'cov-verdict--ok')
+          span.cov-verdict-dot
+          p.cov-verdict-text
+            b #{h.size.format(covTotal)} of script and style shipped, and #{h.size.format(covUnused)} of it never ran on this page.
+            if covBiggest
+              |  The biggest win is #{covBiggestName}: #{h.size.format(covBiggest.totalBytes)} delivered, #{h.size.format(covBiggest.unusedBytes)} unused
+              if covBiggestMod && covBiggestMod.unusedBytes > 0
+                | , and inside it #{covBiggestMod.name} alone ships #{h.size.format(covBiggestMod.unusedBytes)} of dead code.
+              else
+                | .
+      #coverage-treemap-root
+        .cov-tm-main
+          +covTreemapTiles(tmTiles)
+          .cov-tm-legend
+            span.cov-tm-legend-label Unused share
+            span.cov-tm-legend-item
+              i.cov-tm-sw.cov-tm-sw--ok
+              | under 40%
+            span.cov-tm-legend-item
+              i.cov-tm-sw.cov-tm-sw--mid
+              | 40 to 70%
+            span.cov-tm-legend-item
+              i.cov-tm-sw.cov-tm-sw--bad
+              | over 70%
+            if tmDrillCount > 0
+              span.cov-tm-legend-hint Click a bundle marked ⤢ to see its modules.
+        each t in tmShown
+          if t.drillId
+            - const modItems = t.modules.map(m => ({ name: m.name, host: '', full: undefined, size: m.totalBytes, unused: m.unusedBytes, pct: m.totalBytes > 0 ? m.unusedBytes / m.totalBytes * 100 : 0, kind: '' }))
+            - const modTiles = tmSquarify(tmCap(modItems, TM_MAX, 'modules', 0.005), 940, 480)
+            .cov-tm-drill(id=t.drillId, hidden)
+              .cov-tm-drill-head
+                button.cov-tm-back(type='button') ← All files
+                span.cov-tm-crumb #{t.name} · #{t.modules.length} #{t.modules.length === 1 ? 'module' : 'modules'}
+              +covTreemapTiles(modTiles)
+        script(type='text/javascript')
+          include ../includes/coverageTreemap.js
+
+  //- First-party vs third-party unused bytes. The actionable split:
+  //- first-party bundles are yours to fix; third-party waste needs a
+  //- vendor conversation (or removing the script).
+  if (jsCov && (jsSplit.fp || jsSplit.tp)) || (cssCov && (cssSplit.fp || cssSplit.tp))
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title Where the unused bytes live
+        if fpRegex
+          span.listing-card-meta first-party regex #{fpRegexStr}
+        else
+          span.listing-card-meta no first-party regex · counted as first-party
+      .cov-split
+        if jsCov && (jsSplit.fp || jsSplit.tp)
+          - const jsTotal = jsSplit.fp + jsSplit.tp
+          - const jsFpPct = jsTotal ? (jsSplit.fp / jsTotal * 100) : 0
+          - const jsTpPct = jsTotal ? (jsSplit.tp / jsTotal * 100) : 0
+          .cov-split-row
+            span.cov-split-label JS unused
+            .cov-split-track
+              if jsFpPct > 0
+                span.cov-split-fp(style='width: ' + jsFpPct.toFixed(2) + '%', title='First party: ' + h.size.format(jsSplit.fp))
+              if jsTpPct > 0
+                span.cov-split-tp(style='width: ' + jsTpPct.toFixed(2) + '%', title='Third party: ' + h.size.format(jsSplit.tp))
+            span.cov-split-value
+              span.cov-split-chip.cov-split-chip--fp First #{h.size.format(jsSplit.fp)}
+              span.cov-split-chip.cov-split-chip--tp Third #{h.size.format(jsSplit.tp)}
+        if cssCov && (cssSplit.fp || cssSplit.tp)
+          - const cssTotal = cssSplit.fp + cssSplit.tp
+          - const cssFpPct = cssTotal ? (cssSplit.fp / cssTotal * 100) : 0
+          - const cssTpPct = cssTotal ? (cssSplit.tp / cssTotal * 100) : 0
+          .cov-split-row
+            span.cov-split-label CSS unused
+            .cov-split-track
+              if cssFpPct > 0
+                span.cov-split-fp(style='width: ' + cssFpPct.toFixed(2) + '%', title='First party: ' + h.size.format(cssSplit.fp))
+              if cssTpPct > 0
+                span.cov-split-tp(style='width: ' + cssTpPct.toFixed(2) + '%', title='Third party: ' + h.size.format(cssSplit.tp))
+            span.cov-split-value
+              span.cov-split-chip.cov-split-chip--fp First #{h.size.format(cssSplit.fp)}
+              span.cov-split-chip.cov-split-chip--tp Third #{h.size.format(cssSplit.tp)}
+
+  if jsAgg.length > 0
+    - const jsSorted = jsAgg.slice().sort((a, b) => b.unusedBytes - a.unusedBytes).slice(0, MAX_ROWS)
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title JavaScript files
+        span.listing-card-meta showing #{jsSorted.length} of #{jsAgg.length} URLs (from #{jsFiles.length} scripts), sorted by unused bytes
+      .responsive
+        table.cov-table
+          thead
+            tr
+              th URL
+              th.number Total
+              th.number Used
+              th.number Unused
+              th.cov-bar Unused %
+          tbody
+            each f in jsSorted
+              - const inline = docUrl && f.url === docUrl
+              tr
+                td.cov-url
+                  if inline
+                    span.cov-inline (inline)
+                  else
+                    //- `label` is browsertime's stable name for bundled
+                    //- URLs (load.php[startup], …); the full URL stays
+                    //- in href/title.
+                    a(href=f.url, title=f.url) #{f.label || h.shortAsset(f.url, true)}
+                  if f.count > 1
+                    | &nbsp;
+                    span.cov-count #{f.count} scripts
+                td.number #{h.size.format(f.totalBytes)}
+                td.number #{h.size.format(f.usedBytes)}
+                td.number #{h.size.format(f.unusedBytes)}
+                td.cov-bar
+                  .cov-bar-track
+                    span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
+                  span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
+              //- Per-module breakdown for bundled responses (MediaWiki
+              //- ResourceLoader). Browsertime maps the coverage ranges
+              //- back to the modules inside the batch, so the row can
+              //- expand into which modules carry the unused bytes.
+              if f.modules && f.modules.length > 0
+                //- Every module in the bundle, worst first. The list lives
+                //- in a collapsed details, so a long bundle (70+ modules)
+                //- only expands when asked. Sort here rather than trust the
+                //- source order: aggregateByUrl concatenates the modules of
+                //- same-URL responses, so a merged bundle is not pre-sorted.
+                - const allModules = f.modules.slice().sort((a, b) => b.unusedBytes - a.unusedBytes)
+                tr.cov-modules-row
+                  td(colspan='5')
+                    details.cov-modules
+                      summary #{f.modules.length} #{f.modules.length === 1 ? 'module' : 'modules'} in this bundle, by unused bytes
+                      table.cov-table
+                        thead
+                          tr
+                            th Module
+                            th Version
+                            th.number Total
+                            th.number Used
+                            th.number Unused
+                            th.cov-bar Unused %
+                        tbody
+                          each m in allModules
+                            tr
+                              td.cov-url
+                                code= m.name
+                              td= m.version || '–'
+                              td.number #{h.size.format(m.totalBytes)}
+                              td.number #{h.size.format(m.usedBytes)}
+                              td.number #{h.size.format(m.unusedBytes)}
+                              td.cov-bar
+                                .cov-bar-track
+                                  span.cov-bar-fill(class=sevClass(m.unusedPercent), style='width: ' + m.unusedPercent.toFixed(2) + '%')
+                                span.cov-bar-value #{m.unusedPercent.toFixed(1)}%
+
+  if cssAgg.length > 0
+    - const cssSorted = cssAgg.slice().sort((a, b) => b.unusedBytes - a.unusedBytes).slice(0, MAX_ROWS)
+    .listing-card
+      .listing-card-header
+        h3.listing-card-title CSS files
+        span.listing-card-meta showing #{cssSorted.length} of #{cssAgg.length} URLs (from #{cssFiles.length} stylesheets), sorted by unused bytes
+      .responsive
+        table.cov-table
+          thead
+            tr
+              th URL
+              th.number Total
+              th.number Used
+              th.number Unused
+              th.cov-bar Unused %
+          tbody
+            each f in cssSorted
+              tr
+                td.cov-url
+                  if f.url
+                    a(href=f.url, title=f.url) #{f.label || h.shortAsset(f.url, true)}
+                  else
+                    span.cov-inline (inline stylesheet)
+                  if f.count > 1
+                    | &nbsp;
+                    span.cov-count #{f.count} stylesheets
+                td.number #{h.size.format(f.totalBytes)}
+                td.number #{h.size.format(f.usedBytes)}
+                td.number #{h.size.format(f.unusedBytes)}
+                td.cov-bar
+                  .cov-bar-track
+                    span.cov-bar-fill(class=sevClass(f.unusedPercent), style='width: ' + f.unusedPercent.toFixed(2) + '%')
+                  span.cov-bar-value #{f.unusedPercent.toFixed(1)}%
+
+  .listing-card.cov-advice
+    .listing-card-header
+      h3.listing-card-title What to do about unused bytes
+      span.listing-card-meta one iteration is a sample, not a verdict
+    p.listing-card-help
+      | A high unused-% on one run means this iteration loaded code that didn't get exercised, typical on first-load journeys before any user interaction. Drive the real flow by passing a&nbsp;
+      a(href='https://www.sitespeed.io/documentation/sitespeed.io/scripting/') navigation script
+      | &nbsp;as the input instead of a plain URL, with clicks and form fills placed between&nbsp;
+      code measure.start()
+      | &nbsp;and&nbsp;
+      code measure.stop()
+      | ; anything in that window counts toward "used". The advice below is for code that's still unused after a representative run.
+    .cov-advice-grid
+      div
+        h4 JavaScript
+        ul
+          li Route-split and lazy-load below-the-fold features with dynamic&nbsp;
+            code import()
+            | . Bundlers turn the import boundary into a separate chunk.
+          li Audit big bundles for dead exports, legacy polyfills, and feature flags that no longer ship; most modern bundlers tree-shake but only when imports are precise.
+          li Question third-party scripts. Tag managers, analytics SDKs and A/B test loaders often ship far more than the page uses and dominate the third-party column above.
+          li Move non-critical scripts to&nbsp;
+            code defer
+            | &nbsp;or&nbsp;
+            code async
+            |  so the parser doesn't block on code the page doesn't need yet.
+      div
+        h4 CSS
+        ul
+          li Strip selectors no shipped HTML matches: PurgeCSS, build-time scoping in your component framework, or your CSS-in-JS extractor.
+          li Drop legacy browser fallbacks if your target floor has moved (vendor prefixes, IE hacks, old flexbox syntax).
+          li Split route- or component-specific CSS so the home page doesn't carry the checkout's styles.
+          li Inline the critical-path CSS (above-the-fold) and lazy-load the rest with&nbsp;
+            code media=
+            | &nbsp;tricks or&nbsp;
+            code rel="preload"
+            | &nbsp;swaps.
