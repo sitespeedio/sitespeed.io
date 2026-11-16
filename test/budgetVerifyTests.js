@@ -49,3 +49,44 @@ test('Use the generic budget when there is no budget for the URL', t => {
   verify(message(), result, { budget: { timings: { firstPaint: 1000 } } });
   t.is(result.failing[url][0].limit, 1000);
 });
+
+const groups = {
+  docs: {
+    pages: ['docs', 'https://www.sitespeed.io/blog/'],
+    timings: { firstPaint: 2500 }
+  }
+};
+
+test('Use the budget for the group of the alias', t => {
+  const result = emptyResult();
+  verify(
+    message(),
+    result,
+    { budget: { timings: { firstPaint: 1000 } }, groups },
+    'docs'
+  );
+  t.is(result.working.docs[0].limit, 2500);
+});
+
+test('Use the budget for the alias before the budget for its group', t => {
+  const result = emptyResult();
+  verify(
+    message(),
+    result,
+    {
+      budget: { docs: { timings: { firstPaint: 1500 } } },
+      groups
+    },
+    'docs'
+  );
+  t.is(result.failing.docs[0].limit, 1500);
+});
+
+test('Use the generic budget for a page that is in no group', t => {
+  const result = emptyResult();
+  verify(message(), result, {
+    budget: { timings: { firstPaint: 1000 } },
+    groups
+  });
+  t.is(result.failing[url][0].limit, 1000);
+});

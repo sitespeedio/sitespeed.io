@@ -196,3 +196,20 @@ test.serial(`CLI should run Edge on Android with the Edge package`, async t => {
     process.argv = argv;
   }
 });
+
+test(`CLI should reject a page that is in two budget groups`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--budget.config',
+      JSON.stringify({
+        budget: {},
+        groups: { a: { pages: ['start'] }, b: { pages: ['start'] } }
+      }),
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('start is in more than one budget group'));
+});
