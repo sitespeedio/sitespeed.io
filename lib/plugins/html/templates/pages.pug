@@ -73,6 +73,9 @@ block content
               a.errors-chip(href=rootPath + 'errors.html') #{h.plural(testErrorCount, 'error')} during testing →
               span.listing-card-meta-sep ·
             | #{h.plural(pageCount, 'page')}
+            if options.csv && options.csv.enable
+              span.listing-card-meta-sep ·
+              a(href=rootPath + 'pages.csv', download) Download as CSV
             if hasVitals && pageCount > 1
               span.listing-card-meta-sep ·
               | worst first, click a column header to re-sort
