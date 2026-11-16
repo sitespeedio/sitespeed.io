@@ -40,6 +40,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
  * [CPU Benchmark](cpu-benchmark/) - benchmark the CPU that runs your browser and tests.
  * [Video](video/) - all that you can do with the video and filmstrip.
+ * [Waterfall](waterfall/) - what the colors, lines and markers in the waterfall mean.
  * [Axe](axe/) - run accessibility tests.
  * [Sustainable web plugin](sustainable/) - the sustainable web plugin helps you build greener, more sustainable websites and applications.
  * [Third party requests](thirdparty/) - keep track of those 3rd party scripts.
