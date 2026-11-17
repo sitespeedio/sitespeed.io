@@ -22,11 +22,13 @@ if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
   fi
 fi
 
+# exec so that a background job is the command itself: shutdown then
+# sends the signal to node, not to the shell around it
 run_as_host() {
   if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
-    HOME=/tmp chroot --skip-chdir --userspec="+${uid}:+${gid}" / "$@"
+    HOME=/tmp exec chroot --skip-chdir --userspec="+${uid}:+${gid}" / "$@"
   else
-    HOME=/tmp "$@"
+    HOME=/tmp exec "$@"
   fi
 }
 
@@ -39,9 +41,13 @@ function execNode(){
 export HOME=/tmp
 
 # Inspired by docker-selenium way of shutting down
+# sitespeed.io finishes the current iteration on SIGTERM, so exit with
+# its exit code
 function shutdown {
   kill -s SIGTERM ${PID}
-  wait $PID
+  local status=0
+  wait $PID || status=$?
+  exit $status
 }
 
 execNode --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO "$@" &

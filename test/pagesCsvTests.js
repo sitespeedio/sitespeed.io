@@ -61,3 +61,25 @@ test('Use the alias from the URL file when browsertime has none', t => {
   });
   t.true(csv.includes('https://www.sitespeed.io/documentation/,docs,512'));
 });
+
+test('Firefox CPU power is a column in Wh', t => {
+  const csv = pagesToCsv(
+    {
+      'https://www.sitespeed.io/': {
+        data: {
+          browsertime: {
+            pageSummary: {
+              statistics: { powerConsumption: { median: 0.000_42 } }
+            }
+          }
+        }
+      }
+    },
+    ['cpu.powerConsumption'],
+    friendlyNames
+  );
+  t.is(
+    csv,
+    'URL,Alias,Firefox CPU power (Wh)\nhttps://www.sitespeed.io/,,0.00042\n'
+  );
+});
