@@ -104,8 +104,10 @@ export default async function (context, commands) {
 Run it like this:
 
 ```bash
-sitespeed.io --preScript preScript-consent.mjs https://www.example.org/page1 https://www.example.org/page2
+sitespeed.io --multi --preScript preScript-consent.mjs https://www.example.org/page1 https://www.example.org/page2
 ```
+
+With `--multi` both pages are tested in the same browser, so the cookie is set once per iteration. Without it, each page gets its own browser and the preScript runs before each page.
 
 See the [Pre and post scripts]({{site.baseurl}}/documentation/sitespeed.io/scripting/pre-and-post-scripts/) tutorial for the full pattern.
 
