@@ -72,6 +72,17 @@ If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts
 ### Collect CPU profile
 You can collect all the good stuff from Firefox using the new Gecko Profiler. Enable it with ```--firefox.geckoProfiler``` and view the profile at [https://profiler.firefox.com](https://profiler.firefox.com). You can configure what to profile with ```--firefox.geckoProfilerParams.features``` and ```--firefox.geckoProfilerParams.threads```.
 
+### Measure CPU power
+Firefox can record how much energy the CPU uses while the page loads. It is part of the Gecko profiler, so you need to turn on the profiler with the *power* feature:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --firefox.powerConsumption --firefox.geckoProfiler --firefox.geckoProfilerParams.features "js,stackwalk,leaf,power" https://www.sitespeed.io/
+~~~
+
+The median is shown as *Firefox CPU power* in the result. To show it as a column on the pages page, add `--html.pageSummaryMetrics cpu.powerConsumption`. You can also use it in a [budget](/documentation/sitespeed.io/performance-budget/).
+
+Firefox records power only on hardware that it supports. In a virtual machine or a container on a machine without power counters, the log tells you that there are no power counters and no power is collected. The power of one page load is small, so test with many iterations and on the same machine if you compare runs.
+
 ### Record video
 Firefox has a built-in way to record a video of the screen. That way you don't need to use FFmpeg. Enable it with:
 
