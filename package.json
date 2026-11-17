@@ -3,7 +3,8 @@
   "type": "module",
   "bin": {
     "sitespeed.io": "./bin/sitespeed.js",
-    "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
+    "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js",
+    "sitespeed.io-compare": "./bin/compare.js"
   },
   "version": "43.0.0",
   "description": "sitespeed.io is an open-source tool for comprehensive web performance analysis, enabling you to test, monitor, and optimize your website’s speed using real browsers in various environments.",

@@ -75,6 +75,25 @@ You can also save a baseline for each and every test, so you always compare your
 docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
 ~~~
 
+## Compare two saved tests
+You can also compare two tests that you already ran, without running a new test. Save both tests with `--compare.saveBaseline` (give them different ids) and then compare the two files with `sitespeed.io-compare`:
+
+~~~bash
+sitespeed.io-compare start_page_before-1.json start_page_after-1.json --outputFolder compare-result
+~~~
+
+The first file is the baseline and the second file is the current test. This is useful when you want to compare two builds or two versions of your page that you tested at different times, or compare the same tests again with other statistical settings. You can use the same `--compare.*` options as in a test, for example `--compare.alternative two-sided`.
+
+The command writes two files in the output folder (*compare-result* by default):
+* *index.html* — the same compare page as the Compare tab in the HTML result. It has everything in one file, so you can open it from disk or send it to someone.
+* *compare.json* — the metrics and the statistics, if you want to use the result in a script.
+
+The command needs Python 3 with scipy, the same as the compare plugin. Set `PYTHON` if your Python 3 has another name. In Docker, Python and scipy are already installed:
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io --entrypoint node sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} /usr/src/app/bin/compare.js start_page_before-1.json start_page_after-1.json
+~~~
+
 ## Results
 
 When you run your test it will create a new tab in the HTML results. The tab opens with the test setup on one line, a verdict ("2 of 24 metrics are significantly slower compared to the baseline") with chips that jump to the flagged metrics, and then one row per compared metric, grouped by area (timings, visual metrics, Google Web Vitals, CPU and so on).
