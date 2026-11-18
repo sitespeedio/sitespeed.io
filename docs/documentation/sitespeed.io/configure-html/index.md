@@ -56,6 +56,9 @@ Or use a configuration json:
 
 Which metric can you use? It is the same setup as when you create a budget file. At the moment you can choose between [these metrics](#configurable-metrics).
 
+## Download the pages as CSV
+Add `--csv.enable` and sitespeed.io also writes a *pages.csv* file in the result folder, with one row for each tested page and the same metrics as the columns on the pages page. Use the **Download as CSV** link above the table, or pick up the file directly in your scripts. The values are raw numbers for spreadsheets: timings in milliseconds and sizes in bytes. A metric that was not collected for a page is an empty cell. Change the columns with `--html.pageSummaryMetrics` as above.
+
 
 
 [Let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if there are any metrics that you are missing!

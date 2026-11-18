@@ -1,10 +1,10 @@
-version: '3'
 services:
     grafana:
       image: grafana/grafana:12.2.0
       hostname: grafana
       depends_on:
         - graphite
+        - opensearch
       links:
         - graphite
       ports:
@@ -16,7 +16,7 @@ services:
         - GF_AUTH_ANONYMOUS_ENABLED=true
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_USERS_ALLOW_ORG_CREATE=false
-        - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel,grafana-opensearch-datasource
         - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/Welcome.json
       volumes:
         - grafana:/var/lib/grafana
@@ -38,12 +38,47 @@ services:
         - whisper:/opt/graphite/storage/whisper
         # Download an empty graphite.db from https://github.com/sitespeedio/sitespeed.io/tree/main/docker/graphite
         # - /absolute/path/to/graphite/graphite.db:/opt/graphite/storage/graphite.db
-        # 
+        #
         # And put the configuration files on your server, configure them as you need
         # Download from https://github.com/sitespeedio/docker-graphite-statsd/tree/main/conf/graphite
         # - /absolute/path/to/graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
         # - /absolute/path/to/graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         # - /absolute/path/to/graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
+    opensearch:
+      image: opensearchproject/opensearch:2
+      hostname: opensearch
+      environment:
+        - discovery.type=single-node
+        - DISABLE_SECURITY_PLUGIN=true
+        - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+      ports:
+        - "9200:9200"
+      volumes:
+        - opensearch:/usr/share/opensearch/data
+      healthcheck:
+        test: ["CMD", "curl", "-sf", "http://localhost:9200/_cluster/health"]
+        interval: 10s
+        timeout: 5s
+        retries: 20
+      restart: always
+    opensearch-setup:
+      image: curlimages/curl:latest
+      depends_on:
+        opensearch:
+          condition: service_healthy
+      volumes:
+        - ../docker/opensearch:/setup:ro
+      entrypoint: /bin/sh
+      command:
+        - -c
+        - |
+          for t in pagesummary run pagexray compare coach; do
+            curl -sf -X PUT "http://opensearch:9200/_index_template/sitespeed-$$t" \
+              -H 'Content-Type: application/json' \
+              -d "@/setup/index-template-$$t.json" && echo "Applied index template: sitespeed-$$t"
+          done
+      restart: "no"
 volumes:
     grafana:
     whisper:
+    opensearch:

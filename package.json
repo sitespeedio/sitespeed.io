@@ -3,9 +3,10 @@
   "type": "module",
   "bin": {
     "sitespeed.io": "./bin/sitespeed.js",
-    "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
+    "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js",
+    "sitespeed.io-compare": "./bin/compare.js"
   },
-  "version": "42.7.0",
+  "version": "43.0.0",
   "description": "sitespeed.io is an open-source tool for comprehensive web performance analysis, enabling you to test, monitor, and optimize your website’s speed using real browsers in various environments.",
   "keywords": [
     "performance",
@@ -62,6 +63,16 @@
   "engines": {
     "node": ">=22.0.0"
   },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "@serialport/bindings-cpp": false,
+    "cpu-features": false,
+    "esbuild": false,
+    "fsevents": false,
+    "node-hid": false,
+    "ssh2": false,
+    "usb": false
+  },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "ava": "6.4.1",
@@ -90,7 +101,7 @@
     "@slack/webhook": "7.0.6",
     "@tgwf/co2": "0.19.0",
     "axe-core": "4.11.4",
-    "browsertime": "28.3.0",
+    "browsertime": "29.1.0",
     "coach-core": "9.2.1",
     "fast-stats": "0.0.7",
     "import-global": "1.1.1",
@@ -101,6 +112,9 @@
   },
   "overrides": {
     "whatwg-url": "^14.0.0",
-    "form-data@2.5.2": "2.5.5"
+    "form-data@2.5.2": "2.5.5",
+    "pug-lint": {
+      "pug-attrs": "3.0.0"
+    }
   }
 }

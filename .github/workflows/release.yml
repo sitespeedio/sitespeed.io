@@ -20,7 +20,9 @@ name: Release
 #      building-docker-release.yml (Docker Hub release images) and
 #      building-docker-autobuild.yml / netlify.yml (autobuild image, docs
 #      deploy) on its own.
-#   7. Create a GitHub Release with the SBOMs attached as assets.
+#   7. Create a GitHub Release with the SBOMs attached as assets. The release
+#      notes are the CHANGELOG.md section of the version. Write that section
+#      ("## X.Y.Z - date") on main before you start the workflow.
 #
 # Failure semantics: if any step before "Publish to npm" fails, nothing is
 # pushed anywhere — the runner's local commits and tag are thrown away. If
@@ -96,6 +98,18 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
 
+      # Do this before the publish: when the section is missing, the release
+      # stops while nothing is pushed.
+      - name: Extract release notes from CHANGELOG.md
+        env:
+          VERSION: ${{ steps.bump.outputs.version }}
+        run: |
+          awk -v v="$VERSION" '/^## /{ if (found) exit; if ($2 == v) { found = 1; next } } found' CHANGELOG.md > "$RUNNER_TEMP/release-notes.md"
+          if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/release-notes.md"; then
+            echo "::error::CHANGELOG.md has no section for $VERSION. Add '## $VERSION - <date>' on main and run the release again."
+            exit 1
+          fi
+
       - name: Regenerate version-dependent docs and metadata
         env:
           VERSION: ${{ steps.bump.outputs.version }}
@@ -128,6 +142,20 @@ jobs:
           npm sbom --sbom-format=spdx > sbom.spdx.json
           npm sbom --sbom-format=cyclonedx > sbom.cdx.json
 
+      # npm never publishes package-lock.json. npm 11 and older install the
+      # exact dependency tree from a published npm-shrinkwrap.json (npm 12
+      # ignores it). Copy the lockfile after the commit steps, so that the
+      # copy is published but not committed. npm 12 does not pack the copy,
+      # so this step only works while the release runs npm 11. Fail the
+      # release if the copy is not in the package, so the change is not silent.
+      - name: Publish the lockfile as npm-shrinkwrap.json
+        run: |
+          cp package-lock.json npm-shrinkwrap.json
+          if ! npm pack --dry-run 2>&1 | grep -q npm-shrinkwrap.json; then
+            echo "npm $(npm --version) does not pack npm-shrinkwrap.json. Release with npm 11 or remove this step."
+            exit 1
+          fi
+
       - name: Publish to npm with provenance
         run: npm publish --provenance --access public
 
@@ -142,7 +170,7 @@ jobs:
         run: |
           gh release create "${{ steps.bump.outputs.tag }}" \
             --title "${{ steps.bump.outputs.version }}" \
-            --generate-notes \
+            --notes-file "$RUNNER_TEMP/release-notes.md" \
             sbom.spdx.json \
             sbom.cdx.json
 

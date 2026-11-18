@@ -59,7 +59,7 @@ Sitespeed.io has hundreds of options across many areas (browsers, video, Graphit
 * <code>sitespeed.io --help &lt;topic&gt;</code> shows only the options belonging to that topic. For example <code>--help chrome</code>, <code>--help firefox</code>, <code>--help graphite</code> or <code>--help video</code>.
 * <code>sitespeed.io --help-all</code> prints the complete reference (the same content as in the box above) and is what scripts and CI jobs should use if they want every option.
 
-The available topics are: <code>browser</code>, <code>video</code>, <code>firefox</code>, <code>chrome</code>, <code>edge</code>, <code>safari</code>, <code>android</code>, <code>screenshot</code>, <code>graphite</code>, <code>grafana</code>, <code>html</code>, <code>slack</code>, <code>s3</code>, <code>gcs</code>, <code>scp</code>, <code>rsync</code>, <code>matrix</code>, <code>budget</code>, <code>crux</code>, <code>sustainable</code>, <code>crawler</code>, <code>metrics</code>, <code>compare</code>, <code>api</code>, <code>plugins</code> and <code>text</code>.
+The available topics are: <code>browser</code>, <code>video</code>, <code>firefox</code>, <code>chrome</code>, <code>edge</code>, <code>safari</code>, <code>android</code>, <code>screenshot</code>, <code>graphite</code>, <code>grafana</code>, <code>html</code>, <code>slack</code>, <code>s3</code>, <code>gcs</code>, <code>scp</code>, <code>rsync</code>, <code>matrix</code>, <code>webhook</code>, <code>budget</code>, <code>crux</code>, <code>sustainable</code>, <code>crawler</code>, <code>metrics</code>, <code>compare</code>, <code>api</code>, <code>plugins</code> and <code>text</code>.
 
 To see only the Chrome options, for example:
 
@@ -149,6 +149,22 @@ When collecting timing metrics, it's good to test the URL more than once (defaul
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 5
+~~~
+
+### Stop a test early
+You can stop a test before all runs are done and still get the result. Send the signal SIGTERM or SIGINT to sitespeed.io. sitespeed.io then finishes the run that is going on, skips the runs and URLs that are left, and writes the report from the runs that finished. The first run always finishes. The exit code follows the normal rules, for example a failing budget gives exit code 1. If you send the signal again, sitespeed.io stops at once and does not write a report.
+
+* **Docker**: press Ctrl+C, or run `docker stop --time 300 <container>`. Give Docker more time than one run takes. With the default 10 seconds, Docker stops the container before the run is finished.
+* **Without Docker**: send SIGTERM to the sitespeed.io process, for example with `kill <pid>`. If you press Ctrl+C in a terminal, the signal also goes to the browser and the driver. The run that is going on then fails, and you get the report from the runs before it.
+
+If you use `--enableProfileRun` or `--enableVideoRun`, sitespeed.io still makes the extra run after you stop the test.
+
+This is useful when you test while something else runs and you do not know how long it takes, for example a load test:
+
+~~~bash
+docker run --name sitespeedio --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 1000 &
+./my-load-test.sh
+docker stop --time 300 sitespeedio
 ~~~
 
 ### Choose browser

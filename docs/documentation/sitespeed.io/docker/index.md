@@ -152,6 +152,10 @@ If you test many URLs or many runs at the same time you may get errors like `All
 docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 ```
 
+## Stop a test early
+
+Press Ctrl+C or use `docker stop --time 300 <container>` to stop a test after the run that is going on. You still get the report from the runs that finished. Read more in [Stop a test early]({{site.baseurl}}/documentation/sitespeed.io/configuration/#stop-a-test-early).
+
 ## Access localhost
 
 If you run a server locally on your machine and want to access it from sitespeed.io, you can do that easily on Mac and Windows with Docker 18.03 or later by using _host.docker.internal_.

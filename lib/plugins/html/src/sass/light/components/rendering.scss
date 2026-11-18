@@ -22,6 +22,10 @@
   max-height: 480px;
 }
 
+.rendering-video {
+  cursor: pointer;
+}
+
 .rendering-preview {
   background: $color--white;
   cursor: zoom-in;

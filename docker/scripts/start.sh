@@ -17,11 +17,13 @@ if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
   fi
 fi
 
+# exec so that a background job is the command itself: shutdown then
+# sends the signal to node, not to the shell around it
 run_as_host() {
   if [[ "$uid" -ne 0 && "$gid" -ne 0 ]]; then
-    HOME=/tmp chroot --skip-chdir --userspec="+${uid}:+${gid}" / "$@"
+    HOME=/tmp exec chroot --skip-chdir --userspec="+${uid}:+${gid}" / "$@"
   else
-    HOME=/tmp "$@"
+    HOME=/tmp exec "$@"
   fi
 }
 
@@ -90,11 +92,15 @@ function setupADB(){
 function runWebPageReplay() {
 
   # Inspired by docker-selenium way of shutting down
+  # sitespeed.io finishes the current iteration on SIGTERM, so stop it
+  # before the replay server and exit with its exit code. Do not wait for
+  # the replay server: SIGCHLD is blocked in a trap, so a second wait hangs.
   function shutdown {
-    kill -2 $replay_pid
-    wait $replay_pid
     kill -s SIGTERM ${PID}
-    wait $PID
+    local status=0
+    wait $PID || status=$?
+    kill -s SIGTERM $replay_pid
+    exit $status
   }
 
   LATENCY=${LATENCY:-100}
@@ -109,7 +115,8 @@ function runWebPageReplay() {
   record_pid=$!
   sleep $RECORD_WAIT
 
-  execNode $BROWSERTIME --browsertime.chrome.webPageReplayHostResolver --browsertime.chrome.webPageReplayHTTPPort $WPR_HTTP_PORT --browsertime.chrome.webPageReplayHTTPSPort $WPR_HTTPS_PORT --browsertime.chrome.webPageReplayRecord true --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts true --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
+  # In a subshell, since exec would replace this script
+  (execNode $BROWSERTIME --browsertime.chrome.webPageReplayHostResolver --browsertime.chrome.webPageReplayHTTPPort $WPR_HTTP_PORT --browsertime.chrome.webPageReplayHTTPSPort $WPR_HTTPS_PORT --browsertime.chrome.webPageReplayRecord true --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts true --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@")
   RESULT+=$?
 
   kill -2 $record_pid
@@ -152,9 +159,13 @@ function runWebPageReplay() {
 function runSitespeedio(){
 
   # Inspired by docker-selenium way of shutting down
+  # sitespeed.io finishes the current iteration on SIGTERM, so exit with
+  # its exit code
   function shutdown {
     kill -s SIGTERM ${PID}
-    wait $PID
+    local status=0
+    wait $PID || status=$?
+    exit $status
   }
 
   execNode --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO "$@" &

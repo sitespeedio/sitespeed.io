@@ -176,26 +176,22 @@ export default async function (context, commands) {
 
 This is a feature used by Mozilla and was created years ago. Nowadays you can probably just do everything in one script. 
 
-Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or *tearDown* function. These functions get the same arguments as the test itself. When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown* and *test* keys. This works for CommonJS files.
+Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or *tearDown* function. These functions get the same arguments as the test itself. Export the three functions as *setUp*, *tearDown* and *test*, and don't add a default export.
 
 Here's a minimal example:
 
 ```javascript
-async function setUp(context, commands) {
+export async function setUp(context, commands) {
   // do some useful set up
-};
+}
 
-async function perfTest(context, commands) {
+export async function test(context, commands) {
   // add your own code here
-};
+}
 
-async function tearDown(context, commands) {
+export async function tearDown(context, commands) {
   // do some cleanup here
-};
-
-module.exports = {
-  setUp: setUp,
-  tearDown: tearDown,
-  test: perfTest
-};
+}
 ```
+
+Legacy: older scripts declare the same three functions in CommonJS as `module.exports = { setUp, tearDown, test }`. That still works, but new scripts should use ES modules.

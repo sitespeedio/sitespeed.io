@@ -36,9 +36,13 @@ jobs:
       env:
         GECKODRIVER_SKIP_DOWNLOAD: true
     - name: Install ffmpeg
-      uses: AnimMouse/setup-ffmpeg@ae28d57dabbb148eff63170b6bf7f2b60062cbae # v1.2.3
+      # The action downloads the Windows build from BtbN/FFmpeg-Builds'
+      # rolling "latest" release, which only keeps the two newest release
+      # branches. When a branch drops out of it the download 404s and this
+      # job fails, so expect to bump this version every ~year.
+      uses: AnimMouse/setup-ffmpeg@178e0b4a408f06ce40d896c3cd79f50fa6f8b0c3 # v1.2.5
       with:
-        version: '7.1'
+        version: '8.1'
     - name: Set up Python
       uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
       with:

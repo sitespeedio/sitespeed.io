@@ -72,6 +72,17 @@ If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts
 ### Collect CPU profile
 You can collect all the good stuff from Firefox using the new Gecko Profiler. Enable it with ```--firefox.geckoProfiler``` and view the profile at [https://profiler.firefox.com](https://profiler.firefox.com). You can configure what to profile with ```--firefox.geckoProfilerParams.features``` and ```--firefox.geckoProfilerParams.threads```.
 
+### Measure CPU power
+Firefox can record how much energy the CPU uses while the page loads. It is part of the Gecko profiler, so you need to turn on the profiler with the *power* feature:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --firefox.powerConsumption --firefox.geckoProfiler --firefox.geckoProfilerParams.features "js,stackwalk,leaf,power" https://www.sitespeed.io/
+~~~
+
+The median is shown as *Firefox CPU power* in the result. To show it as a column on the pages page, add `--html.pageSummaryMetrics cpu.powerConsumption`. You can also use it in a [budget](/documentation/sitespeed.io/performance-budget/).
+
+Firefox records power only on hardware that it supports. In a virtual machine or a container on a machine without power counters, the log tells you that there are no power counters and no power is collected. The power of one page load is small, so test with many iterations and on the same machine if you compare runs.
+
 ### Record video
 Firefox has a built-in way to record a video of the screen. That way you don't need to use FFmpeg. Enable it with:
 
@@ -135,12 +146,8 @@ Collect Chrome's net log with ```--chrome.collectNetLog```. This is useful if yo
 ### Render blocking information
 If you use Chrome/Chromium you can get render-blocking information (which requests block rendering). To get that from sitespeed.io you need the Chrome timeline (and we collect that by default). If you want to make sure it's enabled, turn it on with the flag ```--chrome.timeline``` or ```--cpu```.
 
-You can see the blocking information in the waterfall. Requests that block have different coloring.
-![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-You can also click on the request and see the exact blocking info from Chrome.
-![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg){:loading="lazy"}
+You can see the blocking information in the [waterfall](/documentation/sitespeed.io/waterfall/). An orange circle with a cross marks each request that blocks rendering.
+![Render-blocking requests in the waterfall]({{site.baseurl}}/img/waterfall-render-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also see a summary on the Rendering tab (together with the video/filmstrip and the recalculate-style metrics). The tab opens with a verdict that says whether rendering was actually delayed and by what — the first byte, the render-blocking requests, or style and layout work — and the render-blocking requests card names each request (MediaWiki ResourceLoader load.php batches are named by their first module) and draws its download window on a timeline that ends at the last paint, so you can see what the paint waited for and what loaded after it. The document, the LCP resource and the latest web fonts join as quiet context rows — a font finishing after a paint is the classic reason text changed late. The timeline needs the run's HAR; without one (for example Safari) the card falls back to a plain table.
@@ -303,13 +310,11 @@ Packets will be written when the buffer is flushed. If you want to force packets
 ## WebDriver
 We use the WebDriver to drive the browser. We use [Chromedriver](https://developer.chrome.com/docs/chromedriver) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
 
-When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safaridriver. For Chrome, the ChromeDriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, upcoming developer versions, or on Android where that version hasn't been released yet.
+Browsertime downloads the latest released driver for Chrome, Edge and Firefox the first time a test needs it. Our Docker images already have the drivers installed. Safari comes bundled with Safaridriver. For Chrome, the ChromeDriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, upcoming developer versions, or on Android where that version hasn't been released yet.
 
-You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable: ```CHROMEDRIVER_VERSION=148.0.7355.0 npm install```
+You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install with an environment variable when you run the install script: ```CHROMEDRIVER_VERSION=148.0.7355.0 node node_modules/@sitespeed.io/chromedriver/install.js```
 
-You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
-
-If you don't want to install the drivers you can skip them with `CHROMEDRIVER_SKIP_DOWNLOAD=true`, `GECKODRIVER_SKIP_DOWNLOAD=true` and `EDGEDRIVER_SKIP_DOWNLOAD=true`.
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`. See [installation](/documentation/sitespeed.io/installation/) for how to install the drivers in advance.
 
 ## Navigation and how we run the test
 

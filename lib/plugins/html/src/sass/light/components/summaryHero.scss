@@ -48,6 +48,15 @@
   border-radius: $radius--md;
   border: 1px solid $color--border;
   background: $color--surface-card;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow $motion--med, transform $motion--med;
+
+  &:hover {
+    box-shadow: $shadow--md;
+    transform: translateY(-1px);
+  }
 
   // Same tinted good / needs-improvement / poor treatment as the Web
   // Vitals hero — soft tone tints, not big dark-green grade blocks.

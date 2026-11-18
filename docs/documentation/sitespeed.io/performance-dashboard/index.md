@@ -246,6 +246,8 @@ You send annotations by configuring the URL that will serve the HTML with the CL
 You can also modify the annotation, append your own text/HTML and add your own tags.
 Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you deem helpful to you. If needed, set a custom title with <code>--graphite.annotationTitle</code> instead of the default title that displays the number of runs of the test.
 
+If you don't store the HTML result where a browser can reach it (for example when the report is kept as a CI artifact), you can still send annotations without *resultBaseURL*: set <code>--graphite.annotationTitle</code> or <code>--graphite.annotationMessage</code> (or the <code>--grafana.*</code> versions) and the annotation is sent without links to the result.
+
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags don't collide with our internal tags.
 
 # Production Guidelines
