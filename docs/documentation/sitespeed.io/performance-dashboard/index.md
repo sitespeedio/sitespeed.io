@@ -82,28 +82,25 @@ Remember, these are simplified instructions. For a production setup, you would n
 We insert ready-made dashboards with our docker compose file using provisioning. You can check out the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
 
 Some of our dashboards use Grafana plugins. To make sure the dashboards work you need to install these plugins:
-* [marcusolsson-json-datasource](https://github.com/grafana/grafana-json-datasource)
+* [yesoreyeram-infinity-datasource](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/)
 * [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
 
 In our Docker file you can see something like this:
 
 ```
  environment:
-        - GF_INSTALL_PLUGINS=marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        - GF_PLUGINS_PREINSTALL_SYNC=yesoreyeram-infinity-datasource,marcusolsson-dynamictext-panel
         ...
 
 ```
 
+Earlier versions of the dashboards used the JSON API datasource (`marcusolsson-json-datasource`). Grafana recommends the Infinity datasource instead. If you upgrade, install the Infinity plugin and add an Infinity datasource with the UID `infinity`. Do not set a base URL on it. Our [datasource provisioning file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/datasources/infinity.yaml) does that for you.
+
 The *Page metrics* dashboard shows metadata like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and set up the dashboard to point to where you store the sitespeed.io result.
 
-In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots and videos in the dashboard.
+In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots, videos and metadata like how you configured your tests in the dashboard. The dashboards in our Docker compose setup are the same dashboards that run on [dashboard.sitespeed.io](https://dashboard.sitespeed.io), so *resulturl* is https://data.sitespeed.io. Change it to where you store your result.
 
 ![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-We also configure the JSON datasource to point to the same place. That way we can see metadata like how you configured your tests.
-
-![Configure the JSON datasource ]({{site.baseurl}}/img/json-api.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 If that is set up correctly, your dashboard will look something like this:
@@ -140,6 +137,8 @@ The dashboard looks something like this:
 
 And scroll down to see more, do not forget to click on the rows to expand and see all metrics.
 
+The timing tiles at the top show how much each metric changed from the start to the end of the time range. The *Failures and regressions* row shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows the metrics that had a significant change.
+
 ![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
@@ -152,7 +151,7 @@ This is an example dashboard for logging into Wikipedia. That user journey measu
 ![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-We also have examples for three-page user journeys.
+We also have examples for three-page user journeys: *Wikipedia Rabbit Hole* goes from the main Wikipedia page to two articles, on desktop and on emulated mobile.
 
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.

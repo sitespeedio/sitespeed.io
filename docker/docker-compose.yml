@@ -1,6 +1,6 @@
 services:
     grafana:
-      image: grafana/grafana:12.2.0
+      image: grafana/grafana:13.3.1
       hostname: grafana
       depends_on:
         - graphite
@@ -16,7 +16,7 @@ services:
         - GF_AUTH_ANONYMOUS_ENABLED=true
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_USERS_ALLOW_ORG_CREATE=false
-        - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel,grafana-opensearch-datasource
+        - GF_PLUGINS_PREINSTALL_SYNC=yesoreyeram-infinity-datasource,marcusolsson-dynamictext-panel,grafana-opensearch-datasource
         - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/Welcome.json
       volumes:
         - grafana:/var/lib/grafana
