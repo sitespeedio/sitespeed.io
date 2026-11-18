@@ -1,0 +1,41 @@
+{
+  "index_patterns": ["sitespeed-coach-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "plugins.index_state_management.policy_id": "sitespeed-default-retention"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp":  { "type": "date" },
+        "url":         { "type": "keyword" },
+        "group":       { "type": "keyword" },
+        "alias":       { "type": "keyword" },
+        "browser":     { "type": "keyword" },
+        "connectivity":{ "type": "keyword" },
+        "slug":        { "type": "keyword" },
+        "type":        { "type": "keyword" },
+        "resultUrl":   { "type": "keyword" },
+        "deviceType":  { "type": "keyword" },
+        "iterations":  { "type": "integer" },
+        "name":        { "type": "keyword" },
+        "score":        { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+        "performance":  { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+        "privacy":      { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+        "bestpractice": { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+        "info": {
+          "properties": {
+            "documentHeight":  { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "domElements":     { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "domDepth":        { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "iframes":         { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "scripts":         { "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } },
+            "localStorageSize":{ "properties": { "median": { "type": "float" }, "p90": { "type": "float" }, "rsd": { "type": "float" } } }
+          }
+        }
+      }
+    }
+  }
+}
