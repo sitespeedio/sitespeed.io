@@ -228,6 +228,23 @@ You can change where the data is stored by setting the <code>--outputFolder</cod
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder https://www.sitespeed.io/
 ~~~
 
+### Remove secrets from the HAR file
+The HAR file has every request and response header, so a test that logs in could store your tokens and session cookies in the result. That is a problem when you upload the result, for example to S3. By default sitespeed.io replaces the values of sensitive headers with `[REMOVED]`. It cleans Authorization, Proxy-Authorization and some API token headers like X-Api-Key and X-Auth-Token, and the value of every cookie. Cookie names and attributes like Domain are kept, because the Coach and PageXray use them to find third party cookies.
+
+If your site uses its own header for a secret, add the name with <code>--sensitiveHeader</code>. Repeat it for more headers:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --sensitiveHeader X-MyApp-Token --sensitiveHeader X-Session-Id https://www.sitespeed.io/
+~~~
+
+If you need the values, for example to debug a log in, turn off the cleaning:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --cleanSensitiveHeaders false https://www.sitespeed.io/
+~~~
+
+The Chrome performance log that you get with <code>--browsertime.chrome.collectPerfLog</code> is not cleaned. It has every header, so do not upload it.
+
 ### Configuration as JSON
 
 You can keep all your configuration in a JSON file and then pass it on to sitespeed.io, and override with CLI parameters. We use [yargs](https://github.com/yargs/yargs) for the CLI and configuration.
