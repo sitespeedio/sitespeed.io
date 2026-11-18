@@ -1504,7 +1504,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -1587,7 +1589,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -1670,7 +1674,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -1753,7 +1759,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -1872,7 +1880,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -1955,7 +1965,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -2038,7 +2050,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -2121,7 +2135,9 @@
           "values": false
         },
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "showPercentChange": true,
+        "percentChangeColorMode": "inverted"
       },
       "pluginVersion": "10.0.1",
       "targets": [
@@ -3429,6 +3445,282 @@
     },
     {
       "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 327,
+      "panels": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "description": "Number of tests in the time range that browsertime marked as failed.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A",
+                      "color": "transparent"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              },
+              "unit": "none",
+              "decimals": 0
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
+            "y": 48
+          },
+          "id": 328,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "10.0.1",
+          "targets": [
+            {
+              "datasource": {
+                "type": "graphite",
+                "uid": "graphite"
+              },
+              "refCount": 0,
+              "refId": "A",
+              "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.markedAsFailure, 'Failed tests')",
+              "textEditor": true
+            }
+          ],
+          "type": "stat",
+          "title": "Failed tests"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "description": "Number of metrics with a significant change in the last comparison against the baseline. Enable it with --compare.id.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A",
+                      "color": "transparent"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              },
+              "unit": "none",
+              "decimals": 0
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 6,
+            "y": 48
+          },
+          "id": 329,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "10.0.1",
+          "targets": [
+            {
+              "datasource": {
+                "type": "graphite",
+                "uid": "graphite"
+              },
+              "refCount": 0,
+              "refId": "A",
+              "target": "alias(sumSeries($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant), 'Significant changes')",
+              "textEditor": true
+            }
+          ],
+          "type": "stat",
+          "title": "Significant changes"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "description": "Each point is a metric where the compare plugin found a significant change against the baseline. Enable it with --compare.id.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "points",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 8,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 12,
+            "x": 12,
+            "y": 48
+          },
+          "id": 326,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "graphite",
+                "uid": "graphite"
+              },
+              "refCount": 0,
+              "refId": "A",
+              "target": "aliasByNode(removeBelowValue($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant, 1), 10, 11)",
+              "textEditor": true
+            }
+          ],
+          "title": "Metrics with a significant change",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Failures and regressions",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
       "datasource": {
         "type": "graphite",
         "uid": "E-Pn3IaGz"
@@ -3437,7 +3729,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 48
       },
       "id": 113,
       "panels": [
@@ -3450,7 +3742,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 49
           },
           "id": 300,
           "options": {
@@ -3528,7 +3820,7 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 50
+            "y": 51
           },
           "id": 106,
           "links": [],
@@ -3635,7 +3927,7 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 50
+            "y": 51
           },
           "id": 107,
           "links": [],
@@ -3742,7 +4034,7 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 50
+            "y": 51
           },
           "id": 108,
           "links": [],
@@ -3849,7 +4141,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 50
+            "y": 51
           },
           "id": 109,
           "links": [],
@@ -3911,7 +4203,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 58
+            "y": 59
           },
           "id": 246,
           "links": [],
@@ -3983,7 +4275,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 58
+            "y": 59
           },
           "id": 247,
           "links": [],
@@ -4038,7 +4330,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 49
       },
       "id": 284,
       "panels": [
@@ -4051,7 +4343,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 49
+            "y": 50
           },
           "id": 319,
           "options": {
@@ -4129,7 +4421,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 51
+            "y": 52
           },
           "id": 285,
           "links": [],
@@ -4240,7 +4532,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 51
+            "y": 52
           },
           "id": 286,
           "links": [],
@@ -4298,7 +4590,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 50
       },
       "id": 309,
       "panels": [
@@ -4311,7 +4603,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 60
+            "y": 61
           },
           "id": 310,
           "options": {
@@ -4335,7 +4627,7 @@
             "h": 2,
             "w": 12,
             "x": 0,
-            "y": 62
+            "y": 63
           },
           "id": 312,
           "options": {
@@ -4359,7 +4651,7 @@
             "h": 2,
             "w": 12,
             "x": 12,
-            "y": 62
+            "y": 63
           },
           "id": 313,
           "options": {
@@ -4383,7 +4675,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 64
+            "y": 65
           },
           "id": 311,
           "options": {
@@ -4407,7 +4699,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 64
+            "y": 65
           },
           "id": 314,
           "options": {
@@ -4436,7 +4728,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 51
       },
       "id": 199,
       "panels": [
@@ -4449,7 +4741,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 51
+            "y": 52
           },
           "id": 321,
           "options": {
@@ -4528,7 +4820,7 @@
             "h": 11,
             "w": 24,
             "x": 0,
-            "y": 53
+            "y": 54
           },
           "id": 201,
           "links": [],
@@ -4608,7 +4900,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 53
       },
       "id": 196,
       "panels": [
@@ -4675,7 +4967,7 @@
             "h": 11,
             "w": 24,
             "x": 0,
-            "y": 53
+            "y": 54
           },
           "id": 197,
           "links": [],
@@ -4755,7 +5047,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 53
+        "y": 54
       },
       "id": 256,
       "panels": [
@@ -4839,7 +5131,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 54
+            "y": 55
           },
           "id": 254,
           "links": [
@@ -4973,7 +5265,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 54
+            "y": 55
           },
           "id": 257,
           "links": [
@@ -5105,7 +5397,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 62
+            "y": 63
           },
           "id": 258,
           "links": [
@@ -5237,7 +5529,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 62
+            "y": 63
           },
           "id": 259,
           "links": [
@@ -5305,7 +5597,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 55
       },
       "id": 203,
       "panels": [
@@ -5371,7 +5663,7 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 55
+            "y": 56
           },
           "id": 204,
           "links": [],
@@ -5467,7 +5759,7 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 55
+            "y": 56
           },
           "id": 206,
           "links": [],
@@ -5562,7 +5854,7 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 55
+            "y": 56
           },
           "id": 205,
           "links": [],
@@ -5657,7 +5949,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 55
+            "y": 56
           },
           "id": 207,
           "links": [],
@@ -5704,7 +5996,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 56
       },
       "id": 264,
       "panels": [
@@ -5717,7 +6009,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 56
+            "y": 57
           },
           "id": 316,
           "options": {
@@ -5796,7 +6088,7 @@
             "h": 15,
             "w": 24,
             "x": 0,
-            "y": 58
+            "y": 59
           },
           "id": 270,
           "links": [],
@@ -5846,7 +6138,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 57
       },
       "id": 146,
       "panels": [
@@ -5888,7 +6180,7 @@
             "h": 4,
             "w": 6,
             "x": 0,
-            "y": 57
+            "y": 58
           },
           "id": 149,
           "links": [],
@@ -5961,7 +6253,7 @@
             "h": 4,
             "w": 5,
             "x": 6,
-            "y": 57
+            "y": 58
           },
           "id": 151,
           "links": [],
@@ -6034,7 +6326,7 @@
             "h": 4,
             "w": 4,
             "x": 11,
-            "y": 57
+            "y": 58
           },
           "id": 148,
           "links": [],
@@ -6107,7 +6399,7 @@
             "h": 4,
             "w": 4,
             "x": 15,
-            "y": 57
+            "y": 58
           },
           "id": 152,
           "links": [],
@@ -6180,7 +6472,7 @@
             "h": 4,
             "w": 5,
             "x": 19,
-            "y": 57
+            "y": 58
           },
           "id": 249,
           "links": [],
@@ -6253,7 +6545,7 @@
             "h": 4,
             "w": 5,
             "x": 0,
-            "y": 61
+            "y": 62
           },
           "id": 153,
           "links": [],
@@ -6327,7 +6619,7 @@
             "h": 4,
             "w": 4,
             "x": 5,
-            "y": 61
+            "y": 62
           },
           "id": 154,
           "links": [],
@@ -6400,7 +6692,7 @@
             "h": 4,
             "w": 3,
             "x": 9,
-            "y": 61
+            "y": 62
           },
           "id": 155,
           "links": [],
@@ -6473,7 +6765,7 @@
             "h": 4,
             "w": 4,
             "x": 12,
-            "y": 61
+            "y": 62
           },
           "id": 156,
           "links": [],
@@ -6546,7 +6838,7 @@
             "h": 4,
             "w": 4,
             "x": 16,
-            "y": 61
+            "y": 62
           },
           "id": 150,
           "links": [],
@@ -6619,7 +6911,7 @@
             "h": 4,
             "w": 4,
             "x": 20,
-            "y": 61
+            "y": 62
           },
           "id": 250,
           "links": [],
@@ -6667,7 +6959,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 58
       },
       "id": 220,
       "panels": [
@@ -6734,7 +7026,7 @@
             "h": 13,
             "w": 24,
             "x": 0,
-            "y": 58
+            "y": 59
           },
           "id": 221,
           "links": [],
@@ -6783,7 +7075,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 59
       },
       "id": 223,
       "panels": [
@@ -6796,7 +7088,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 59
+            "y": 60
           },
           "id": 317,
           "options": {
@@ -6856,7 +7148,7 @@
             "h": 5,
             "w": 5,
             "x": 0,
-            "y": 61
+            "y": 62
           },
           "id": 229,
           "links": [],
@@ -6932,7 +7224,7 @@
             "h": 5,
             "w": 6,
             "x": 5,
-            "y": 61
+            "y": 62
           },
           "id": 230,
           "links": [],
@@ -7012,7 +7304,7 @@
             "h": 5,
             "w": 6,
             "x": 11,
-            "y": 61
+            "y": 62
           },
           "id": 231,
           "links": [],
@@ -7092,7 +7384,7 @@
             "h": 5,
             "w": 7,
             "x": 17,
-            "y": 61
+            "y": 62
           },
           "id": 232,
           "links": [],
@@ -7191,7 +7483,7 @@
             "h": 6,
             "w": 5,
             "x": 0,
-            "y": 66
+            "y": 67
           },
           "id": 236,
           "links": [],
@@ -7291,7 +7583,7 @@
             "h": 6,
             "w": 6,
             "x": 5,
-            "y": 66
+            "y": 67
           },
           "id": 237,
           "links": [],
@@ -7390,7 +7682,7 @@
             "h": 6,
             "w": 6,
             "x": 11,
-            "y": 66
+            "y": 67
           },
           "id": 238,
           "links": [],
@@ -7489,7 +7781,7 @@
             "h": 6,
             "w": 7,
             "x": 17,
-            "y": 66
+            "y": 67
           },
           "id": 239,
           "links": [],
@@ -7539,7 +7831,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 60
       },
       "id": 96,
       "panels": [
@@ -7552,7 +7844,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 73
+            "y": 74
           },
           "id": 323,
           "options": {
@@ -7629,7 +7921,7 @@
             "h": 15,
             "w": 24,
             "x": 0,
-            "y": 75
+            "y": 76
           },
           "id": 81,
           "links": [],
@@ -7728,7 +8020,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 90
+            "y": 91
           },
           "id": 138,
           "links": [],
@@ -7776,7 +8068,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 60
+        "y": 61
       },
       "id": 140,
       "panels": [
@@ -7842,7 +8134,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 62
           },
           "id": 104,
           "links": [],
@@ -7903,7 +8195,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 62
       },
       "id": 252,
       "panels": [
@@ -7916,7 +8208,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 62
+            "y": 63
           },
           "id": 322,
           "options": {
@@ -8029,7 +8321,7 @@
             "h": 11,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 65
           },
           "id": 253,
           "links": [],
@@ -8080,7 +8372,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 63
       },
       "id": 214,
       "panels": [
@@ -8124,7 +8416,7 @@
             "h": 4,
             "w": 6,
             "x": 0,
-            "y": 61
+            "y": 62
           },
           "id": 215,
           "links": [],
@@ -8199,7 +8491,7 @@
             "h": 4,
             "w": 6,
             "x": 6,
-            "y": 61
+            "y": 62
           },
           "id": 216,
           "links": [],
@@ -8274,7 +8566,7 @@
             "h": 4,
             "w": 6,
             "x": 12,
-            "y": 61
+            "y": 62
           },
           "id": 217,
           "links": [],
@@ -8349,7 +8641,7 @@
             "h": 4,
             "w": 6,
             "x": 18,
-            "y": 61
+            "y": 62
           },
           "id": 218,
           "links": [],
@@ -8398,7 +8690,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 64
       },
       "id": 115,
       "panels": [
@@ -8411,7 +8703,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 62
+            "y": 63
           },
           "id": 318,
           "options": {
@@ -8490,7 +8782,7 @@
             "h": 15,
             "w": 12,
             "x": 0,
-            "y": 64
+            "y": 65
           },
           "id": 118,
           "links": [],
@@ -8660,7 +8952,7 @@
             "h": 15,
             "w": 12,
             "x": 12,
-            "y": 64
+            "y": 65
           },
           "id": 119,
           "links": [],
@@ -8760,7 +9052,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 79
+            "y": 80
           },
           "id": 120,
           "links": [],
@@ -8860,7 +9152,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 86
+            "y": 87
           },
           "id": 248,
           "links": [],
@@ -8910,7 +9202,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 65
       },
       "id": 269,
       "panels": [
@@ -8923,7 +9215,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 63
+            "y": 64
           },
           "id": 315,
           "options": {
@@ -9002,7 +9294,7 @@
             "h": 15,
             "w": 24,
             "x": 0,
-            "y": 65
+            "y": 66
           },
           "id": 265,
           "links": [],
@@ -9053,7 +9345,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 65
+        "y": 66
       },
       "id": 122,
       "panels": [
@@ -9137,7 +9429,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 64
+            "y": 65
           },
           "id": 124,
           "links": [
@@ -9271,7 +9563,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 64
+            "y": 65
           },
           "id": 126,
           "links": [
@@ -9406,7 +9698,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 72
+            "y": 73
           },
           "id": 128,
           "links": [
@@ -9540,7 +9832,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 72
+            "y": 73
           },
           "id": 130,
           "links": [
@@ -9655,7 +9947,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 80
+            "y": 81
           },
           "id": 179,
           "links": [
@@ -9713,7 +10005,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 67
       },
       "id": 234,
       "panels": [
@@ -9780,7 +10072,7 @@
             "h": 11,
             "w": 24,
             "x": 0,
-            "y": 65
+            "y": 66
           },
           "id": 235,
           "links": [],
@@ -9840,7 +10132,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 68
       },
       "id": 136,
       "panels": [
@@ -9962,7 +10254,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 67
+            "y": 68
           },
           "id": 142,
           "links": [],
@@ -10117,7 +10409,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 67
+            "y": 68
           },
           "id": 144,
           "links": [],
@@ -10217,7 +10509,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 77
+            "y": 78
           },
           "id": 134,
           "links": [],
@@ -10266,7 +10558,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 69
       },
       "id": 176,
       "panels": [
@@ -10334,7 +10626,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 69
+            "y": 70
           },
           "id": 178,
           "links": [],
@@ -10384,7 +10676,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 70
       },
       "id": 172,
       "panels": [
@@ -10452,7 +10744,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 70
+            "y": 71
           },
           "id": 111,
           "links": [],
@@ -10552,7 +10844,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 70
+            "y": 71
           },
           "id": 174,
           "links": [],
@@ -10602,7 +10894,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 71
       },
       "id": 261,
       "panels": [
@@ -10615,7 +10907,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 71
+            "y": 72
           },
           "id": 307,
           "options": {
@@ -10729,7 +11021,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 73
+            "y": 74
           },
           "id": 244,
           "links": [],
@@ -10886,7 +11178,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 87
+            "y": 88
           },
           "id": 267,
           "links": [],
@@ -10921,6 +11213,141 @@
           ],
           "title": "CPU benchmark stddev",
           "type": "timeseries"
+        },
+        {
+          "cacheTimeout": "",
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Heading"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "semi-dark-green",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "LastVisualChange"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#cca300",
+                      "mode": "fixed"
+                    }
+                  },
+                  {
+                    "id": "custom.fillBelowTo",
+                    "value": "FirstVisualChange"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 102
+          },
+          "id": 324,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "graphite",
+                "uid": "graphite"
+              },
+              "refCount": 0,
+              "refId": "A",
+              "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.browser.cpuBenchmark.rsd, 'relative stddev')",
+              "textEditor": true
+            }
+          ],
+          "title": "CPU benchmark relative stddev",
+          "type": "timeseries"
         }
       ],
       "title": "CPU benchmark variation",
@@ -10936,7 +11363,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 72
       },
       "id": 243,
       "panels": [
@@ -10949,7 +11376,7 @@
             "h": 2,
             "w": 24,
             "x": 0,
-            "y": 72
+            "y": 73
           },
           "id": 308,
           "options": {
@@ -11063,7 +11490,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 74
+            "y": 75
           },
           "id": 266,
           "links": [],
@@ -11220,7 +11647,7 @@
             "h": 14,
             "w": 24,
             "x": 0,
-            "y": 88
+            "y": 89
           },
           "id": 245,
           "links": [],
@@ -11254,6 +11681,141 @@
             }
           ],
           "title": "TTFB stddev",
+          "type": "timeseries"
+        },
+        {
+          "cacheTimeout": "",
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Heading"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "semi-dark-green",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "LastVisualChange"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#cca300",
+                      "mode": "fixed"
+                    }
+                  },
+                  {
+                    "id": "custom.fillBelowTo",
+                    "value": "FirstVisualChange"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 103
+          },
+          "id": 325,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "graphite",
+                "uid": "graphite"
+              },
+              "refCount": 0,
+              "refId": "A",
+              "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.ttfb.rsd, 'relative stddev')",
+              "textEditor": true
+            }
+          ],
+          "title": "TTFB relative stddev",
           "type": "timeseries"
         }
       ],
