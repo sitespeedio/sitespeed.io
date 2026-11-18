@@ -89,7 +89,7 @@ In our Docker file you can see something like this:
 
 ```
  environment:
-        - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource,marcusolsson-dynamictext-panel
+        - GF_PLUGINS_PREINSTALL_SYNC=yesoreyeram-infinity-datasource,marcusolsson-dynamictext-panel
         ...
 
 ```
