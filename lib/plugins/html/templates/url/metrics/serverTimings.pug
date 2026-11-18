@@ -1,15 +1,38 @@
-a#server-timings
-h3 Server timings
+//- Server-Timing entries reported by the page's response headers.
+//- Wrapped in the same .listing-card shell the other modernised pages
+//- use, with a count chip in the header. The original template had a
+//- malformed <thead>/<tr> structure; rebuilding it with a proper
+//- thead/tbody pair lets data-sortable do its job. The card is omitted
+//- entirely when no Server-Timing entries were sent — the empty-state
+//- placeholder added clutter on the majority of pages where the
+//- feature isn't wired up. Cells carry `data-title` so the responsive
+//- mobile stack labels each value, and the duration is rendered through
+//- `h.time.ms` so it shows up as "0 ms" like every other timing column
+//- elsewhere in the report.
 if timings.serverTimings && timings.serverTimings.length > 0
-    table
-        tr
-        th name
-        th duration
-        th description
-        each serverTiming in timings.serverTimings
+  - const serverTimingsCount = timings.serverTimings.length
+  a#server-timings
+  h3 Server timings
+  p Timing data the server chose to expose through Server-Timing response headers on the main document — typically backend time, cache status or experiment flags.
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Server timings
+      span.listing-card-meta #{serverTimingsCount} #{serverTimingsCount === 1 ? 'entry' : 'entries'}
+    .responsive
+      table(data-sortable)
+        thead
+          tr
+            th Name
+            th.number Duration
+            th Description
+        tbody
+          each serverTiming in timings.serverTimings
             tr
-                td #{serverTiming.name}
-                td #{serverTiming.duration}
-                td #{serverTiming.description}
-else
-    p There are no Server Timings.
+              td(data-title='Name')
+                code.server-timing-name #{serverTiming.name}
+              td.number(data-title='Duration', data-value=serverTiming.duration)= h.time.ms(serverTiming.duration)
+              td.server-timing-desc(data-title='Description')
+                if serverTiming.description
+                  | #{serverTiming.description}
+                else
+                  | –

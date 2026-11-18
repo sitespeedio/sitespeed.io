@@ -1,32 +1,59 @@
 //
-// SETTINGS
-// ========
-// Specific settings which can be changed to modify the basic look and
-// feel of the project with little effort.
+// SETTINGS — dark theme
+// =====================
+// Mirrors light theme tokens. Component files reference these names only.
 //
-// 1. COLOURS
+
+//
+// 1. CORE PALETTE
+//
+$color--blue: #0095d2; // sitespeed brand — kept consistent across themes
+$color--blue-dark: #0073a6;
+$color--blue-tint: rgba(0, 149, 210, 0.18);
+
+$color--white: #f1f5f9;
+$color--black: #0b1220; // page background
+$color--grey: #334155;
+
+// Surface / neutral scale
+$color--surface: #0b1220;
+$color--surface-card: #111a2e;
+$color--border: #1f2a44;
+$color--border-strong: #334155;
+
+// Text
+$color--text: #e2e8f0;
+$color--text-secondary: #cbd5e1;
+$color--text-muted: #94a3b8;
+
+// Status (chosen for AA contrast on dark surfaces)
+$color--ok: #4ade80;
+$color--ok-bg: rgba(74, 222, 128, 0.10);
+$color--ok-border: rgba(74, 222, 128, 0.32);
+$color--warning: #fbbf24;
+$color--warning-bg: rgba(251, 191, 36, 0.10);
+$color--warning-border: rgba(251, 191, 36, 0.32);
+$color--error: #f87171;
+$color--error-bg: rgba(248, 113, 113, 0.10);
+$color--error-border: rgba(248, 113, 113, 0.32);
+$color--info: $color--blue;
+$color--info-bg: $color--blue-tint;
+$color--info-border: rgba(0, 149, 210, 0.45);
+
+//
 // 2. TYPEFACES
-// 3. BASE STYLES
 //
 
-//
-// 1. COLOURS
-//
-$color--blue: #0095d2;
-$color--white: #ffffff;
-$color--grey: #e1e1e1;
-$color--black: #222222;
-
-//
-// 2. TYPEFACES
-//
-
-$font--versions: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
- Arial, sans-serif;
+$font--versions: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+ Roboto, "Helvetica Neue", Arial, sans-serif;
+$font--mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+ "Liberation Mono", monospace;
 
 $font--weight--light: 300;
 $font--weight--regular: 400;
-$font--weight--heavy: 800;
+$font--weight--medium: 500;
+$font--weight--semibold: 600;
+$font--weight--heavy: 700;
 
 //
 // 3. BASE STYLES
@@ -34,8 +61,23 @@ $font--weight--heavy: 800;
 
 $base--font-family: $font--versions;
 $base--font-weight: $font--weight--regular;
-$base--font-color: $color--white;
+$base--font-color: $color--text;
 $base--font-size: 100%;
-$base--line-height: 1.6;
+$base--line-height: 1.55;
 $base--spacing: 20px;
-$base--body-bg: $color--black;
+$base--body-bg: $color--surface;
+
+//
+// 4. RADIUS / SHADOW / MOTION
+//
+$radius--sm: 6px;
+$radius--md: 10px;
+$radius--lg: 14px;
+$radius--pill: 999px;
+
+$shadow--sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+$shadow--md: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+$shadow--lg: 0 4px 16px rgba(0, 0, 0, 0.45);
+
+$motion--fast: 120ms ease-out;
+$motion--med: 180ms ease-out;

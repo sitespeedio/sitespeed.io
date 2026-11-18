@@ -1,5 +1,5 @@
 import test from 'ava';
-import dayjs from 'dayjs';
+import timestamp from '../lib/support/time.js';
 import { getLogger } from '@sitespeed.io/log';
 // eslint-disable-next-line unicorn/no-named-default
 import { default as GraphitePlugin } from '../lib/plugins/graphite/index.js';
@@ -35,7 +35,7 @@ test(`Test dataGenerator`, t => {
     }
   });
 
-  const data = generator.dataFromMessage(message, dayjs());
+  const data = generator.dataFromMessage(message, timestamp());
   t.true(
     data[0].startsWith(
       'ns.pageSummary.sub_domain_com._foo_bar.gpsi.desktop.median 13'
@@ -74,7 +74,7 @@ test(`Test generate data in statsD format`, t => {
     },
     graphite: { statsd: true }
   });
-  const data = generator.dataFromMessage(message, dayjs());
+  const data = generator.dataFromMessage(message, timestamp());
   const statsDFormat = new RegExp(
     /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.(median|mean|min|p10|p90|p99|max):\d+\|ms$/
   );

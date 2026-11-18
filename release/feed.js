@@ -1,5 +1,11 @@
 import { Feed } from 'feed';
-import { readdirSync, statSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  readdirSync,
+  statSync,
+  readFileSync,
+  writeFileSync,
+  existsSync
+} from 'node:fs';
 import path from 'node:path';
 import parseChangelog from 'changelog-parser';
 import { marked } from 'marked';
@@ -80,72 +86,84 @@ function addItemToFeed(feed, item, tool) {
   });
 }
 
-function getResultAsHTML(result) {
-  let allData = '';
-  if (result.parsed) {
-    if (result.parsed.Added) {
-      allData += `<h3>Added</h3>\n`;
-      for (let added of result.parsed.Added) {
-        allData += ' ' + marked.parse(added);
-      }
-    }
-    if (result.parsed.Fixed) {
-      allData += `<h3>Fixed</h3>\n`;
-      for (let fixed of result.parsed.Fixed) {
-        allData += ' ' + marked.parse(fixed);
-      }
-    }
-
-    if (result.parsed.Changed) {
-      allData += `<h3>Changed</h3>\n`;
-      for (let changed of result.parsed.Changed) {
-        allData += ' ' + marked.parse(changed);
-      }
-    }
-
-    if (result.parsed['Breaking changes']) {
-      allData += `<h3>Breaking changes</h3>\n`;
-      for (let breaking of result.parsed['Breaking changes']) {
-        allData += ' ' + marked.parse(breaking);
-      }
-    }
-
-    if (result.parsed['Deprecated']) {
-      allData += `<h3>Deprecated</h3>\n`;
-      for (let deprecated of result.parsed['Deprecated']) {
-        allData += ' ' + marked.parse(deprecated);
-      }
-    }
-
-    if (result.parsed['Removed']) {
-      allData += `<h3>Removed</h3>\n`;
-      for (let removed of result.parsed['Removed']) {
-        allData += ' ' + marked.parse(removed);
-      }
-    }
-
-    if (result.parsed['Security']) {
-      allData += `<h3>Security</h3>\n`;
-      for (let security of result.parsed['Security']) {
-        allData += ' ' + marked.parse(security);
-      }
-    }
-
-    return allData;
-  }
+// Grafana's news panel sanitizes the description: <h3>, <ul>, <li>, <a> are
+// stripped/flattened, so block structure and links disappear. We render with
+// <strong> + <br> (which survive sanitization) and inline the PR number as
+// plain text instead of an <a> link.
+function bulletAsHTML(md) {
+  return marked
+    .parse(md)
+    .replaceAll(/<\/?(ul|li)>/g, '')
+    .replaceAll(/<a [^>]*>([^<]+)<\/a>/g, '$1')
+    .trim();
 }
+
+function getResultAsHTML(result) {
+  if (!result.parsed) return '';
+
+  const sections = [
+    ['Added', result.parsed.Added],
+    ['Fixed', result.parsed.Fixed],
+    ['Changed', result.parsed.Changed],
+    ['Breaking changes', result.parsed['Breaking changes']],
+    ['Deprecated', result.parsed['Deprecated']],
+    ['Removed', result.parsed['Removed']],
+    ['Security', result.parsed['Security']]
+  ];
+
+  return sections
+    .filter(([, items]) => items && items.length > 0)
+    .map(
+      ([title, items]) =>
+        `<strong>${title}</strong><br>\n` +
+        items.map(item => `- ${bulletAsHTML(item)}<br>\n`).join('')
+    )
+    .join('<br>\n');
+}
+
+// Where a tool's CHANGELOG.md lives, both on the maintainer's laptop (sibling
+// repos checked out next to this one) and on GitHub (used as a fallback when
+// the sibling isn't on disk, e.g. when this script runs from the release
+// workflow runner). The npm package `coach-core` lives in the
+// `sitespeedio/coach` repo, so the tool name and repo name diverge there.
+const changelogLocations = tool => {
+  if (tool === 'sitespeed.io') {
+    return {
+      local: './CHANGELOG.md',
+      remote:
+        'https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/CHANGELOG.md'
+    };
+  }
+  if (tool === 'server' || tool === 'testrunner') {
+    return {
+      local: `../onlinetest/${tool}/CHANGELOG.md`,
+      remote: `https://raw.githubusercontent.com/sitespeedio/onlinetest/main/${tool}/CHANGELOG.md`
+    };
+  }
+  const repo = tool === 'coach-core' ? 'coach' : tool;
+  return {
+    local: `../${tool}/CHANGELOG.md`,
+    remote: `https://raw.githubusercontent.com/sitespeedio/${repo}/main/CHANGELOG.md`
+  };
+};
 
 const getContent = async tool => {
   const content = [];
-  let changelog =
-    tool === 'sitespeed.io' ? './CHANGELOG.md' : '../' + tool + '/CHANGELOG.md';
-  if (tool === 'server' || tool === 'testrunner') {
-    changelog = `../onlinetest/${tool}/CHANGELOG.md`;
+  const { local, remote } = changelogLocations(tool);
+
+  let result;
+  if (existsSync(local)) {
+    result = await parseChangelog({ filePath: local, removeMarkdown: false });
+  } else {
+    const response = await fetch(remote);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch ${remote}: ${response.status} ${response.statusText}`
+      );
+    }
+    const text = await response.text();
+    result = await parseChangelog({ text, removeMarkdown: false });
   }
-  const result = await parseChangelog({
-    filePath: changelog,
-    removeMarkdown: false
-  });
 
   for (let index = 0; index < 10; index++) {
     // It's not unreleased

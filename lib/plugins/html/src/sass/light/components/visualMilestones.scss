@@ -1,0 +1,509 @@
+// ==========================
+// VISUAL MILESTONES — light
+// ==========================
+// The milestones card on the metrics page: headline stats, a milestone
+// timeline where the track fill encodes how rendered the page is, and
+// the exact values grouped by meaning. Markup lives in
+// templates/url/metrics/_visualMilestones.pug.
+//
+// Three colour families, shared with the dark theme (the set passes
+// colour-vision-deficiency validation on both surfaces): purple =
+// render progress, orange = content milestones, blue = perception
+// index. The two theme files differ only in the literals below.
+
+$vm--purple: #666eaf;
+$vm--orange: #de6240;
+$vm--blue: $color--blue;
+$vm--seg85: #dfe2f3;
+$vm--seg95: #bcc2e6;
+$vm--seg99: #939bd2;
+$vm--seg100: #666eaf;
+$vm--seg99-text: #ffffff;
+$vm--hatch: rgba(107, 114, 128, 0.16);
+$vm--tip-bg: rgba(17, 24, 39, 0.94);
+$vm--tip-text: #ffffff;
+
+.vm-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+
+  &.vm-dot--purple {
+    background: $vm--purple;
+  }
+  &.vm-dot--orange {
+    background: $vm--orange;
+  }
+  &.vm-dot--blue {
+    background: $vm--blue;
+  }
+}
+
+.vm-card a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted $color--border-strong;
+
+  &:hover {
+    border-bottom-color: $color--text-muted;
+  }
+}
+
+.vm-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.vm-stat {
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  padding: 12px 16px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vm-stat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color--text-muted;
+}
+
+.vm-stat-value {
+  font-size: 1.7rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.vm-stat-sub {
+  font-size: 0.8rem;
+  color: $color--text-muted;
+}
+
+// Narrow screens get a horizontally scrollable timeline instead of
+// colliding labels. Scrolling is only enabled below the breakpoint —
+// an always-on overflow container shows a permanent scrollbar in
+// Safari even when nothing overflows.
+.vm-timeline {
+  margin-top: 6px;
+}
+
+.vm-canvas {
+  position: relative;
+  margin: 0 8px;
+}
+
+@media (max-width: 900px) {
+  .vm-timeline {
+    overflow-x: auto;
+  }
+
+  .vm-canvas {
+    min-width: 640px;
+  }
+}
+
+// Upper lane: Speed Index and the content-milestone flags.
+.vm-upper {
+  position: relative;
+  height: 74px;
+}
+
+.vm-flag {
+  position: absolute;
+  bottom: 0;
+}
+
+.vm-flag-stem {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 62px;
+  border-radius: 1px;
+  background: $vm--orange;
+}
+
+// The two elevations occupy disjoint vertical bands (high labels at
+// 40-70px, low at 4-34px above the track) so overlapping flags never
+// print on top of each other.
+.vm-flag-label {
+  position: absolute;
+  bottom: 40px;
+  left: 8px;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.vm-flag-time {
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+}
+
+.vm-flag-names {
+  color: $color--text-secondary;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.vm-flag--low .vm-flag-stem {
+  height: 30px;
+}
+
+.vm-flag--low .vm-flag-label {
+  bottom: 4px;
+}
+
+// Flags on the right half anchor their label to the left of the stem so
+// it never runs off the card.
+.vm-flag--end .vm-flag-label {
+  left: auto;
+  right: 8px;
+  text-align: right;
+}
+
+// The track: fill level = how visually complete the page is. The hatch
+// shows through wherever nothing has been painted yet. Segments are
+// clipped by the track's rounded corners; the dots render on the
+// unclipped .vm-track-dots overlay so edge dots stay whole.
+.vm-track-wrap {
+  position: relative;
+}
+
+.vm-track-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  .vm-track-dot {
+    pointer-events: auto;
+  }
+}
+
+.vm-track {
+  position: relative;
+  height: 30px;
+  border: 1px solid $color--border;
+  border-radius: $radius--sm;
+  background: repeating-linear-gradient(
+    135deg,
+    $vm--hatch 0 1.5px,
+    transparent 1.5px 7px
+  );
+  overflow: hidden;
+}
+
+.vm-seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: $font--weight--semibold;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.vm-seg--blank {
+  background: $color--surface-card;
+
+  span {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+  }
+}
+
+.vm-seg--85 {
+  background: $vm--seg85;
+}
+
+.vm-seg--95 {
+  background: $vm--seg95;
+
+  span {
+    color: $color--text-secondary;
+  }
+}
+
+.vm-seg--99 {
+  background: $vm--seg99;
+
+  span {
+    color: $vm--seg99-text;
+  }
+}
+
+.vm-seg--100 {
+  background: $vm--seg100;
+
+  span {
+    color: $vm--seg99-text;
+  }
+}
+
+.vm-track-dot {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: $vm--purple;
+  border: 2px solid $color--surface-card;
+  cursor: default;
+
+  &.vm-track-dot--orange {
+    background: $vm--orange;
+  }
+
+  &.vm-track-dot--blue {
+    background: $vm--blue;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 2px;
+  }
+
+  &:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $vm--tip-bg;
+    color: $vm--tip-text;
+    font-size: 0.74rem;
+    font-weight: $font--weight--medium;
+    white-space: nowrap;
+    padding: 4px 9px;
+    border-radius: $radius--sm;
+    z-index: 5;
+  }
+
+  // Dots near the right edge anchor the tooltip leftwards so it stays
+  // inside the card.
+  &.vm-track-dot--edge:hover::after {
+    left: auto;
+    right: -4px;
+    transform: none;
+  }
+}
+
+// Lower lane: completeness ticks staggered on two rows.
+.vm-lower {
+  position: relative;
+  height: 76px;
+}
+
+.vm-tick {
+  position: absolute;
+  top: 0;
+}
+
+.vm-tick-stem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  background: $vm--purple;
+  opacity: 0.55;
+  border-radius: 1px;
+}
+
+.vm-tick-label {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 0.76rem;
+  left: -4px;
+
+  > span + span {
+    margin-left: 5px;
+  }
+}
+
+.vm-tick-time {
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+}
+
+.vm-tick-name {
+  color: $color--text-muted;
+}
+
+.vm-tick--r1 {
+  .vm-tick-stem {
+    height: 16px;
+  }
+  .vm-tick-label {
+    top: 18px;
+  }
+}
+
+.vm-tick--r2 {
+  .vm-tick-stem {
+    height: 42px;
+  }
+  .vm-tick-label {
+    top: 44px;
+  }
+}
+
+.vm-tick--end .vm-tick-label {
+  left: auto;
+  right: -4px;
+  text-align: right;
+}
+
+// Visual Readiness drawn as a bracket spanning first → last change.
+.vm-bracket-row {
+  position: relative;
+  height: 34px;
+  margin-top: 2px;
+}
+
+.vm-bracket {
+  position: absolute;
+  top: 8px;
+  height: 8px;
+  border-left: 2px solid $color--border-strong;
+  border-right: 2px solid $color--border-strong;
+  border-bottom: 2px solid $color--border-strong;
+  border-radius: 0 0 4px 4px;
+}
+
+.vm-bracket-label {
+  position: absolute;
+  top: 18px;
+  text-align: center;
+  font-size: 0.76rem;
+  color: $color--text-muted;
+
+  b {
+    color: $color--text-secondary;
+    font-variant-numeric: tabular-nums;
+    font-weight: $font--weight--semibold;
+    margin: 0 4px;
+  }
+}
+
+.vm-axis {
+  position: relative;
+  height: 20px;
+  border-top: 1px solid $color--border;
+  margin-top: 4px;
+
+  span {
+    position: absolute;
+    top: 3px;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: $color--text-muted;
+    font-variant-numeric: tabular-nums;
+
+    &:first-child {
+      transform: none;
+    }
+  }
+}
+
+// Bottom row: grouped exact values left, visual-progress chart right.
+// The chart reads best at half width; below the breakpoint the two
+// halves stack.
+.vm-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 32px;
+  margin-top: 14px;
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .vm-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vm-bottom--single {
+  grid-template-columns: 1fr;
+}
+
+// Exact values, grouped by family.
+.vm-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0 28px;
+}
+
+.vm-group-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color--text-muted;
+  margin: 6px 0 4px;
+}
+
+.vm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 5px 0;
+  border-bottom: 1px solid $color--border;
+  font-size: 0.86rem;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.vm-row-name {
+  color: $color--text-secondary;
+}
+
+.vm-row-value {
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+}
+
+// Visual Readiness is derived (last minus first change), not a moment —
+// mark it so it reads as a delta.
+.vm-row--derived {
+  .vm-row-name,
+  .vm-row-value {
+    color: $color--text-muted;
+  }
+
+  .vm-row-value::before {
+    content: 'Δ ';
+    font-weight: $font--weight--medium;
+  }
+}
+
+// The visual-progress chart lives in the card's right half; its title
+// mirrors the group titles so the halves read as one system.
+.vm-vp .vm-group-title {
+  margin-bottom: 10px;
+}

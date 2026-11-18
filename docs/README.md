@@ -1,10 +1,43 @@
 Documentation for sitespeed.io
 ================
 
-First make sure you have Bundler: <code>gem install bundler</code>
+The sitespeed.io documentation site, built with [Eleventy](https://www.11ty.dev).
 
-If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>
+Run locally
+-----------
 
-To run it locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>
+You need Node.js 20 or newer. From `docs/`:
 
-Checkout http://localhost:4000/
+    npm install
+    npm run serve
+
+Then open <http://localhost:8080/>.
+
+Build for production
+--------------------
+
+    npm run build
+
+Output goes to `docs/_site/`.
+
+Notes
+-----
+
+* Templates use Liquid (same syntax as the previous Jekyll setup).
+* Markdown is rendered by markdown-it with a small kramdown-IAL shim
+  (`docs/_lib/kramdown-block-attrs.js`) so the existing `{: .class}` /
+  `{:toc}` / `{:.no_toc}` syntax keeps working.
+* Posts live in `_posts/` (filename `YYYY-MM-DD-<slug>.md`); their
+  permalinks come from `_posts/_posts.11tydata.js`.
+* HTML output is minified by `html-minifier-terser`. CSS is gathered
+  via Eleventy's `addBundle('css')`, minified with Lightning CSS, and
+  inlined into `<style>`.
+* Code blocks are syntax-highlighted at build time with Prism via
+  `@11ty/eleventy-plugin-syntaxhighlight` — no client-side JS for
+  highlighting.
+* `<img>` elements pointing at local images are rewritten to
+  `<picture>` with AVIF + WebP + original-format sources by
+  `@11ty/eleventy-img`. Optimised assets land in `_site/img/_optimized/`.
+
+The first production build takes ~60 s because it processes ~600
+images. Local rebuilds use the cached output and finish in ~2 s.

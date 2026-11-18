@@ -5,48 +5,46 @@
 
 table {
   width: 100%;
-  margin-bottom: 2.5rem;
-  border-collapse: separate;
-  border-spacing: 1px;
-  background-color: #222;
+  margin-bottom: 2rem;
+  border-collapse: collapse;
+  background-color: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  overflow: hidden;
 }
 
 th,
 td {
-  padding: 4px 1rem;
+  padding: 10px 14px;
   vertical-align: top;
   text-align: left;
+  border-bottom: 1px solid $color--border;
 }
 
-th:first-child,
-td:first-child {
-  padding-left: 1rem;
+tbody tr:last-child td {
+  border-bottom: none;
 }
 
-th:last-child,
-td:last-child {
-  padding-right: 1rem;
-}
+tbody tr {
+  background: $color--surface-card;
+  transition: background-color $motion--fast;
 
-tr {
-  &:nth-child(odd) {
-    background: #333;
-    // background: lighten($color--black, 10%);
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
   }
-  &:nth-child(even) {
-    background: $color--black;
-  }
-  &.odd {
-    background: #333;
-    // background: lighten($color--black, 10%);
-  }
-  &.even {
-    background: $color--black;
+
+  &.odd, &.even {
+    background: $color--surface-card;
   }
 }
 
 th {
-  background: darken($color--blue, 20%);
+  background: $color--surface;
+  color: $color--text-secondary;
+  font-weight: $font--weight--semibold;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 td.number, th.number {
@@ -84,14 +82,34 @@ td.break {
 }
 
 td.extraheader {
-  font-weight: bold;
-  background: #004d6c;
+  font-weight: $font--weight--semibold;
+  background: $color--surface;
+  color: $color--text-secondary;
+}
+
+// Shared cell treatment for the report's data tables (assets, toplist,
+// detailed, domains) — same 0.95rem cells as .pages-table and
+// .timings-table so the data-heavy pages read as one system. Headers
+// keep the 0.875rem foundation size.
+.data-table {
+  td {
+    font-size: 0.95rem;
+  }
+
+  td.number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
 }
 
 /** Responsive tables, wrap them in a div
 * We use Chris Coyiers (old) hide the table
 * solution https://css-tricks.com/responsive-data-tables/
 */
+.responsive {
+  overflow-x: auto;
+}
+
 @media only screen and (max-width: 800px) {
   /* Force table to not be like tables anymore */
   .responsive table,

@@ -1,70 +1,275 @@
-- const seriesVisualProgress = [];
-- let oldPercent = -1;
-- let oldValue = -1;
-each eachRow in visualMetrics.VisualProgress
-  - const newValue = eachRow.timestamp
-  - const percent = eachRow.percent
-  //- Sometimes VisualMetrics report the same percentage multiple times after each other
-  // and since the original time is in ms we wanna remove entries on the same 0.1 s
-  if percent !== oldPercent &&  newValue !== oldValue
-    - oldPercent = percent
-    - oldValue = newValue
-    - seriesVisualProgress.push({x: newValue, y: percent})
-script(type='text/javascript').
-  document.addEventListener("DOMContentLoaded", function() {
-      const visualProgressChart = new Chartist.Line('#ct-visualprogress', {
-        series: [!{JSON.stringify(seriesVisualProgress)}],
-        }, {
-        classNames: {
-          label: 'ct-label ct-custom-label'
-        },
-        showArea: true,
-        showPoint: true,
-        chartPadding: {
-          top: 10,
-          right: 0,
-          bottom: 30,
-          left: 10
-        },
-        axisX: {
-          type: Chartist.AutoScaleAxis,
-          onlyInteger: false,
-        },
-        lineSmooth: Chartist.Interpolation.step({
-          postpone: true,
-          fillHoles: false
-        }),
-        axisY: {
-          onlyInteger: true
-        },
-        plugins: [
-          Chartist.plugins.ctAxisTitle({
-            axisX: {
-              axisTitle: 'Time (milliseconds)',
-              axisClass: 'ct-axis-title',
-              offset: {
-                x: 0,
-                y: 50
-              },
-              textAnchor: 'middle'
-            },
-            axisY: {
-              axisTitle: 'Visual progress %',
-              axisClass: 'ct-axis-title',
-              offset: {
-                x: 0,
-                y: -4
-              },
-              textAnchor: 'middle',
-              flipTitle: false
-            }
-            }),
-            Chartist.plugins.tooltip({
-              transformTooltipTextFnc: function(text) {
-                const m = text.split(',');
-                return m[0] + 's ' + m[1] + '%';
-              }
-            })
-          ]
-        });
-      });
+//- Visual-progress curve as a self-contained inline SVG, with optional
+//- filmstrip thumbnails along the X axis and vertical markers for
+//- FCP / LCP / VisualComplete85 drawn over the curve. Filmstrip + markers are
+//- additive — when the data isn't available (no `--video --visualMetrics`,
+//- no paint-timing entries) the chart degrades to just the curve.
+
+- const vpData = (visualMetrics && visualMetrics.VisualProgress) || []
+
+if vpData.length > 0
+  - const vpFilmstrip = (typeof filmstrip !== 'undefined' && filmstrip) || []
+  - const vpVideoIndex = medianRun ? medianRun.runIndex : iteration
+  - const vpFilmstripBase = 'data/filmstrip/' + vpVideoIndex + '/'
+  - const vpFrameLast = vpFilmstrip.length ? vpFilmstrip[vpFilmstrip.length - 1].time * 1000 : 0
+  - const vpMax = Math.max(vpData[vpData.length - 1].timestamp, vpFrameLast, 100)
+
+  //- Pick up to 8 evenly time-spaced frames so the strip stays readable
+  //- on dense runs that capture 60+ frames.
+  - let vpThumbs = []
+  - if (vpFilmstrip.length <= 8) { vpThumbs = vpFilmstrip.slice() }
+  - else { for (let i = 0; i < 8; i++) { vpThumbs.push(vpFilmstrip[Math.round(i * (vpFilmstrip.length - 1) / 7)]) } }
+
+  //- Step-after curve: VisualProgress samples are emitted only when the
+  //- similarity-to-final-frame percent changes, so the value between two
+  //- samples is the *previous* sample's percent — not a linear ramp to
+  //- the next one. Drawing straight lines between samples paints a
+  //- diagonal from (0, 0%) up to the first paint, which falsely suggests
+  //- the page was steadily rendering during a blank/orange period.
+  - let vpFill = 'M 0 100'
+  - let vpStroke = 'M 0 100'
+  - let vpLastY = '100.00'
+  - let vpLastPercent = 0
+  - for (let i = 0; i < vpData.length; i++) { const r = vpData[i]; const x = (r.timestamp / vpMax * 100).toFixed(2); const y = (100 - r.percent).toFixed(2); vpFill += ' L ' + x + ' ' + vpLastY + ' L ' + x + ' ' + y; vpStroke += ' L ' + x + ' ' + vpLastY + ' L ' + x + ' ' + y; vpLastY = y; vpLastPercent = r.percent }
+  - const vpFinalY = (100 - vpLastPercent).toFixed(2)
+  - vpFill += ' L 100 ' + vpFinalY + ' L 100 100 Z'
+  - vpStroke += ' L 100 ' + vpFinalY
+
+  //- Page-event markers — same palette the waterfall card uses.
+  - const vpMarkers = []
+  - if (timings.paintTiming && timings.paintTiming['first-contentful-paint']) { vpMarkers.push({label: 'FCP', value: timings.paintTiming['first-contentful-paint'], color: 'rgb(57, 230, 0)'}) }
+  - if (timings.largestContentfulPaint) { const lcp = Math.max(timings.largestContentfulPaint.loadTime || 0, timings.largestContentfulPaint.renderTime || 0); if (lcp > 0) vpMarkers.push({label: 'LCP', value: lcp, color: 'rgb(0, 128, 0)'}) }
+  - if (visualMetrics && visualMetrics.VisualComplete85 > 0) { vpMarkers.push({label: 'VC85', value: visualMetrics.VisualComplete85, color: 'rgb(216, 136, 223)'}) }
+
+  - const vpTicks = Array.from({length: 6}, (_, i) => ({ pct: i * 20, sec: (i * 20 / 100 * vpMax) / 1000 }))
+
+  //- Long Task entries — collected by Browsertime via the Long Task API
+  //- on Chrome/Edge. Each task has startTime + duration in ms (relative
+  //- to navigation start), so they slot straight onto the same timeline
+  //- as the visual-progress curve.
+  - const vpLongTasks = (browsertime && browsertime.pageinfo && browsertime.pageinfo.longTask) || []
+
+  //- Extended marker set surfaced ONLY in the scrubber popover (the
+  //- chart itself still draws just FCP / LCP / VC85 — drawing a dozen
+  //- vertical lines would be unreadable). The colour palette mirrors
+  //- the waterfall card so milestones read consistently across the
+  //- two views: greens for paint events, blues for the page lifecycle,
+  //- purples for visual milestones, yellows for user-defined marks.
+  - const vpScrubMarkers = vpMarkers.slice()
+  - const addMarker = (label, value, color) => { if (typeof value === 'number' && value > 0) vpScrubMarkers.push({label, value, color}) }
+  - if (timings.paintTiming && timings.paintTiming['first-paint']) addMarker('First Paint', timings.paintTiming['first-paint'], 'rgb(40, 188, 0)')
+  - if (timings.pageTimings && typeof timings.pageTimings.backEndTime === 'number') addMarker('TTFB', timings.pageTimings.backEndTime, 'rgb(0, 123, 132)')
+  - if (timings.domInteractive) addMarker('DOM Interactive', timings.domInteractive, 'rgb(255, 198, 26)')
+  - if (timings.domContentLoadedTime) addMarker('DOMContentLoaded', timings.domContentLoadedTime, 'rgb(216, 136, 223)')
+  - if (timings.loadEventEnd) addMarker('Load', timings.loadEventEnd, 'rgb(0, 0, 255)')
+  - if (visualMetrics) {
+  -   addMarker('First Visual Change', visualMetrics.FirstVisualChange, 'rgb(102, 110, 175)')
+  -   addMarker('Visual Readiness', visualMetrics.VisualReadiness, 'rgb(70, 165, 200)')
+  -   addMarker('Largest Image', visualMetrics.LargestImage, 'rgb(196, 154, 232)')
+  -   addMarker('Heading', visualMetrics.Heading, 'rgb(231, 111, 81)')
+  -   addMarker('Visual Complete 95%', visualMetrics.VisualComplete95, 'rgb(180, 90, 178)')
+  -   addMarker('Visual Complete 99%', visualMetrics.VisualComplete99, 'rgb(110, 76, 191)')
+  -   addMarker('Last Visual Change', visualMetrics.LastVisualChange, 'rgb(80, 130, 80)')
+  - }
+  - if (timings.userTimings && Array.isArray(timings.userTimings.marks)) timings.userTimings.marks.forEach(m => addMarker(m.name, m.startTime, 'rgb(255, 159, 28)'))
+
+  //- Serialise everything the scrubber needs as a single JSON blob.
+  //- Replace `<` so an embedded `</script>` substring (extremely
+  //- unlikely here but free insurance) can't break out of the tag.
+  - const vpScrubData = JSON.stringify({ max: vpMax, base: vpFilmstripBase, frames: vpFilmstrip.map(f => ({ t: Math.round(f.time * 1000), f: f.file })), progress: vpData.map(r => ({ t: r.timestamp, p: r.percent })), markers: vpScrubMarkers, longTasks: vpLongTasks.map(t => ({ s: Math.round(t.startTime), d: Math.round(t.duration) })) }).replace(/</g, '\\u003c')
+
+  .vp-chart
+    if vpThumbs.length > 0
+      .vp-thumbs
+        each frame in vpThumbs
+          - const left = (frame.time * 1000 / vpMax * 100).toFixed(2)
+          .vp-thumb(style='left: ' + left + '%')
+            a(href=vpFilmstripBase + frame.file, target='_blank', rel='noopener')
+              img(src=vpFilmstripBase + frame.file, alt='Visual progress at ' + frame.time + ' s', loading='lazy')
+            span.vp-thumb-time #{Number(frame.time).toFixed(1)}s
+    .vp-curve-wrap
+      svg.vp-svg(aria-hidden='true')&attributes({viewBox: '0 0 100 100', preserveAspectRatio: 'none'})
+        path.vp-fill(d=vpFill)
+        path.vp-stroke(d=vpStroke, fill='none')
+      each m in vpMarkers
+        - const mLeft = (m.value / vpMax * 100).toFixed(2)
+        .vp-marker(style='left: ' + mLeft + '%; --vp-marker-color: ' + m.color + ';')
+          span.vp-marker-label #{m.label}
+          span.vp-marker-time #{(m.value / 1000).toFixed(2)}s
+    if vpLongTasks.length > 0
+      .vp-longtask-lane(title=vpLongTasks.length + ' long tasks (≥50ms blocking the main thread)')
+        span.vp-longtask-lane-label Long tasks
+        //- The Long Task API keeps reporting until browsertime stops
+        //- collecting, which is after the last visual change — but the
+        //- lane's axis ends at vpMax and nothing clips it, so a task
+        //- starting past vpMax would paint outside the card. Drop those
+        //- (the CPU tab still lists every long task) and clamp a bar
+        //- straddling the edge to the end of the lane.
+        each task in vpLongTasks
+          if task.startTime < vpMax
+            - const ltLeft = task.startTime / vpMax * 100
+            - const ltWidth = Math.min(Math.max(0.4, task.duration / vpMax * 100), 100 - ltLeft).toFixed(2)
+            - const ltClass = task.duration >= 250 ? 'vp-longtask--severe' : (task.duration >= 100 ? 'vp-longtask--major' : 'vp-longtask--minor')
+            //- The Long Task API reports where the task ran as a raw
+            //- container type (window/iframe/embed) - translate it.
+            - const ltContainer = task.attribution && task.attribution[0] ? task.attribution[0].containerType : undefined
+            - const ltWhere = ltContainer ? (ltContainer === 'window' ? 'in the main page' : 'in an ' + ltContainer) : 'unknown origin'
+            .vp-longtask(class=ltClass, style='left: ' + ltLeft.toFixed(2) + '%; width: ' + ltWidth + '%;', title='Long task ' + task.duration.toFixed(0) + ' ms at ' + task.startTime.toFixed(0) + ' ms (' + ltWhere + ')')
+    .vp-axis
+      each tick in vpTicks
+        span.vp-axis-tick(style='left: ' + tick.pct + '%') #{tick.sec.toFixed(1)}s
+
+    //- Scrubber overlay — vertical playhead + popover preview that
+    //- syncs the filmstrip frame, visual-progress percent and any
+    //- page-event marker / long task firing at the cursor's time.
+    .vp-scrubber.is-hidden(aria-hidden='true')
+      .vp-scrubber-line
+      .vp-scrubber-popover
+        .vp-scrubber-frame-wrap
+          img.vp-scrubber-frame(alt='', loading='lazy')
+        .vp-scrubber-meta
+          span.vp-scrubber-time –
+          span.vp-scrubber-progress –
+        ul.vp-scrubber-events
+
+  script.vp-scrubber-data(type='application/json')!= vpScrubData
+  script.
+    (function () {
+      const chart = document.currentScript.closest('section, article, body').querySelector('.vp-chart');
+      if (!chart) return;
+      const dataEl = chart.parentElement.querySelector('.vp-scrubber-data');
+      if (!dataEl) return;
+      let data;
+      try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+      // The curve, axis ticks, thumbs and event markers all live inside
+      // .vp-curve-wrap, which has horizontal margins relative to the
+      // chart container. The X axis is the curve-wrap's width, NOT the
+      // chart's — using the chart rect for cursor→time math drags the
+      // popover time out of sync with what's drawn underneath.
+      const curveWrap = chart.querySelector('.vp-curve-wrap');
+      const scrubber = chart.querySelector('.vp-scrubber');
+      const line = chart.querySelector('.vp-scrubber-line');
+      const popover = chart.querySelector('.vp-scrubber-popover');
+      const frameImg = chart.querySelector('.vp-scrubber-frame');
+      const frameWrap = chart.querySelector('.vp-scrubber-frame-wrap');
+      const timeEl = chart.querySelector('.vp-scrubber-time');
+      const progressEl = chart.querySelector('.vp-scrubber-progress');
+      const eventsEl = chart.querySelector('.vp-scrubber-events');
+
+      // Most recent filmstrip frame at or before the cursor — what the
+      // page actually looked like at time T is whatever was last painted,
+      // not whichever frame is closest in absolute distance (frames are
+      // sorted by time; linear is fine for <60 entries).
+      function frameAt(timeMs) {
+        if (!data.frames.length) return null;
+        let result = data.frames[0];
+        for (let i = 0; i < data.frames.length; i++) {
+          if (data.frames[i].t <= timeMs) result = data.frames[i];
+          else break;
+        }
+        return result;
+      }
+
+      // Step-after lookup — samples mark the moments the percent changed,
+      // so any time between samples a and b holds a's value.
+      function progressAt(timeMs) {
+        const points = data.progress;
+        if (!points.length) return 0;
+        if (timeMs < points[0].t) return 0;
+        const last = points[points.length - 1];
+        if (timeMs >= last.t) return last.p;
+        for (let i = 0; i < points.length - 1; i++) {
+          const a = points[i], b = points[i + 1];
+          if (timeMs >= a.t && timeMs < b.t) return a.p;
+        }
+        return last.p;
+      }
+
+      // Markers within ±150ms of the cursor + any long task currently
+      // overlapping. Keeps the popover from going noisy when the user
+      // mouses far away from anything notable.
+      function eventsAt(timeMs) {
+        const out = [];
+        const window = 150;
+        for (const m of data.markers) {
+          if (Math.abs(m.value - timeMs) <= window) {
+            out.push({ label: m.label + ' · ' + (m.value / 1000).toFixed(2) + 's', color: m.color });
+          }
+        }
+        for (const t of data.longTasks) {
+          if (timeMs >= t.s && timeMs <= t.s + t.d) {
+            out.push({ label: 'Long task · ' + t.d + ' ms', color: 'rgb(255, 82, 62)' });
+          }
+        }
+        return out;
+      }
+
+      function show(clientX) {
+        const chartRect = chart.getBoundingClientRect();
+        const curveRect = (curveWrap || chart).getBoundingClientRect();
+        const xInChart = clientX - chartRect.left;
+        const xInCurve = clientX - curveRect.left;
+        if (xInChart < 0 || xInChart > chartRect.width) { hide(); return; }
+        const ratio = Math.max(0, Math.min(1, xInCurve / curveRect.width));
+        const timeMs = ratio * data.max;
+        scrubber.classList.remove('is-hidden');
+        scrubber.setAttribute('aria-hidden', 'false');
+        // Pixel-position the line in the chart's coordinate space so it
+        // tracks the curve's X axis, not the chart's full width.
+        const lineX = (curveRect.left - chartRect.left) + ratio * curveRect.width;
+        line.style.left = lineX + 'px';
+
+        const frame = frameAt(timeMs);
+        if (frame) {
+          frameImg.src = data.base + frame.f;
+          frameWrap.style.display = '';
+        } else {
+          frameImg.removeAttribute('src');
+          frameWrap.style.display = 'none';
+        }
+        timeEl.textContent = (timeMs / 1000).toFixed(2) + ' s';
+        progressEl.textContent = progressAt(timeMs).toFixed(0) + '% rendered';
+
+        // Reuse li elements when possible to avoid GC churn during
+        // rapid mousemove on long pages.
+        const events = eventsAt(timeMs);
+        while (eventsEl.children.length > events.length) eventsEl.lastChild.remove();
+        for (let i = 0; i < events.length; i++) {
+          let li = eventsEl.children[i];
+          if (!li) { li = document.createElement('li'); eventsEl.appendChild(li); }
+          li.textContent = events[i].label;
+          li.style.borderLeftColor = events[i].color || '#5b6370';
+        }
+        eventsEl.style.display = events.length ? '' : 'none';
+
+        // Position popover horizontally relative to the chart, clamped
+        // so it never spills past the card edges. The popover anchors to
+        // the playhead line, not the raw cursor, so it stays glued to
+        // whatever moment the rest of the UI is showing.
+        const popWidth = popover.offsetWidth || 200;
+        const margin = 6;
+        let popLeft = lineX - popWidth / 2;
+        if (popLeft < margin) popLeft = margin;
+        if (popLeft + popWidth > chartRect.width - margin) popLeft = chartRect.width - popWidth - margin;
+        popover.style.left = popLeft + 'px';
+      }
+
+      function hide() {
+        scrubber.classList.add('is-hidden');
+        scrubber.setAttribute('aria-hidden', 'true');
+      }
+
+      chart.addEventListener('mousemove', e => show(e.clientX));
+      chart.addEventListener('mouseleave', hide);
+      chart.addEventListener('touchstart', e => {
+        if (e.touches[0]) show(e.touches[0].clientX);
+      }, { passive: true });
+      chart.addEventListener('touchmove', e => {
+        if (e.touches[0]) {
+          show(e.touches[0].clientX);
+          e.preventDefault();
+        }
+      }, { passive: false });
+      chart.addEventListener('touchend', hide);
+      chart.addEventListener('touchcancel', hide);
+    })();

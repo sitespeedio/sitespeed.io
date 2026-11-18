@@ -12,7 +12,6 @@ twitterdescription: Learn more on how we work with privacy, COC and sustainabili
 # Important
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 ## How we work
@@ -69,4 +68,4 @@ SpeedCurve has a really low barrier of entry ... it's a bit of a evolution maybe
  <span>By Taylor Jones (IBM) on the podcast Toolsday http://www.toolsday.io/episodes/performance.html</span>
 </blockquote>
 
-Note: SpeedCurve is a paid service built on top on the Open Source tool  [WebPageTest](http://www.webpagetest.org/). If you love WebPageTest (we do!) you can [drive it](../documentation/sitespeed.io/webpagetest/) using sitespeed.io and collect the metrics and use it side by side with all the sitespeed.io metrics.
+Note: SpeedCurve is a paid service built on top on the what used to be Open Source tool [WebPageTest](http://www.webpagetest.org/).

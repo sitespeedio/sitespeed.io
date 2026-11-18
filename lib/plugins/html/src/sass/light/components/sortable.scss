@@ -1,17 +1,38 @@
 //
-// SORTABLE
-// ===============
+// SORTABLE TABLES — light
+// =======================
+// Headers in a `[data-sortable]` table are clickable to sort. The active
+// header gets a brand-tint background and a small ▲ / ▼ glyph indicating
+// direction. Removed the underline-on-text style — affordance is the
+// pointer cursor + subtle hover, which is less visually noisy on a wide
+// header row.
 //
 
-table[data-sortable] th {
-  &[data-sorted="true"] {
-    color: #3a87ad;
-    background: #d9edf7;
-    border-bottom-color: #bce8f1;
-  }
-  &:not([data-sortable="false"]) {
+table[data-sortable] {
+  th:not([data-sortable="false"]) {
     cursor: pointer;
-    color: $color--black;
-    text-decoration: underline;
+    user-select: none;
+    transition: background-color $motion--fast, color $motion--fast;
+  }
+
+  th:not([data-sortable="false"]):hover {
+    background-color: $color--blue-tint;
+    color: $color--text;
+  }
+
+  th[data-sorted="true"] {
+    color: $color--blue-dark;
+    background: $color--blue-tint;
+    border-bottom-color: $color--info-border;
+
+    &::after {
+      content: " ▾";
+      font-size: 0.85em;
+      margin-left: 4px;
+    }
+
+    &[data-sorted-direction="ascending"]::after {
+      content: " ▴";
+    }
   }
 }

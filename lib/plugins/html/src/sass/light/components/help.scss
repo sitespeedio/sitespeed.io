@@ -1,0 +1,73 @@
+//
+// HELP PAGE — light
+// =================
+// The help page is a long flat reference doc — sections wrapped in
+// .listing-card with a section heading and a stack of h5 + p entries
+// inside the "Timing metrics" card. The card shell handles the section
+// frame; this file styles the in-card definitions so the eye can group
+// each h5 with its description.
+//
+
+.help-page {
+  max-width: 880px;
+  margin: 0 auto;
+
+  // Each h5 + adjacent p is one "entry". Treat the h5 like a definition
+  // term and the following p like its description so the eye groups
+  // them together.
+  h5 {
+    margin: 18px 0 4px 0;
+    font-size: 1rem;
+    font-weight: $font--weight--semibold;
+    color: $color--text;
+    scroll-margin-top: 64px;
+  }
+
+  // First h5 inside a card sits flush with the card's content area.
+  .listing-card > h5:first-of-type {
+    margin-top: 0;
+  }
+
+  // Permalink-on-hover for entries with an id.
+  h5[id]::after {
+    content: '#';
+    margin-left: 8px;
+    color: $color--text-muted;
+    opacity: 0;
+    font-weight: $font--weight--medium;
+    transition: opacity $motion--fast;
+  }
+
+  h5[id]:hover::after {
+    opacity: 1;
+  }
+
+  p {
+    margin: 0 0 6px 0;
+    color: $color--text-secondary;
+    line-height: 1.6;
+  }
+
+  p code,
+  code {
+    font-family: $font--mono;
+    font-size: 0.9em;
+    padding: 1px 6px;
+    border: 1px solid $color--border;
+    border-radius: $radius--sm;
+    background: $color--surface;
+    color: $color--text;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  i {
+    font-family: $font--mono;
+    font-style: normal;
+    font-size: 0.9em;
+    padding: 1px 6px;
+    border-radius: $radius--sm;
+    background: $color--surface;
+    color: $color--text;
+  }
+}

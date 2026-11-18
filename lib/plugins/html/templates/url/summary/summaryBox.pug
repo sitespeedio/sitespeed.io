@@ -1,21 +1,70 @@
 
+//- Same cutoffs as pages.pug and the gwv*Class helpers in
+//- url/metrics/index.pug — keep them in sync so the dots here match
+//- the verdicts elsewhere in the report. Named sb* because the
+//- metrics tab (included later on this page) assigns the gwv* names.
+- const sbTtfbClass = (v) => v == null ? '' : (v >= 1800 ? 'error' : (v >= 800 ? 'warning' : 'ok'))
+- const sbFcpClass = (v) => v == null ? '' : (v >= 3000 ? 'error' : (v >= 1800 ? 'warning' : 'ok'))
+- const sbLcpClass = (v) => v == null ? '' : (v >= 4000 ? 'error' : (v >= 2500 ? 'warning' : 'ok'))
+- const sbClsClass = (v) => v == null ? '' : (v >= 0.25 ? 'error' : (v >= 0.1 ? 'warning' : 'ok'))
+- const sbTbtClass = (v) => v == null ? '' : (v >= 600 ? 'error' : (v >= 200 ? 'warning' : 'ok'))
+- const sbStatusLabel = (c) => c === 'ok' ? 'Good' : (c === 'warning' ? 'Needs improvement' : (c === 'error' ? 'Poor' : ''))
+
 mixin getUserTimings(path, name, metric, type)
-  - isSet = false
   if options.browsertime.iterations % 2 === 0 && type === 'median'
     td.number(data-title=type) #{metric[type]}
   else
+    - let utRun = -1
     each run, index in path
       each marks in run.timings.userTimings.marks
-          if (marks.name === name && Number(marks.startTime).toFixed(0) === Number(metric[type]).toFixed(0) && isSet === false)
-            - isSet = true
-            td.number(data-title=type)
-              a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[type])}
+          if (marks.name === name && Number(marks.startTime).toFixed(0) === Number(metric[type]).toFixed(0) && utRun === -1)
+            - utRun = index
+    if utRun > -1
+      td.number(data-title=type)
+        a(href='./' + (utRun+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[type])}
+    else
+      //- A mark can fire several times in one run (repeating ads) or
+      //- only in some runs, so the stats cover a different sample
+      //- count than the iterations and a computed median (average of
+      //- the two middle samples) matches no run. Always emit the cell
+      //- — dropping it shifts every later column left — just without
+      //- a run link.
+      td.number(data-title=type) #{h.time.ms(metric[type])}
 
-mixin getRow(name, object, path, runPath, metric, f)
+//- One "Runs agree?" cell: grades run-to-run agreement (half the
+//- min–max span as a share of the median), never speed, so it works
+//- for every metric without per-metric limits. identical = every run
+//- returned the same value; stable = the span stays within 10% of
+//- the median (±5%, what a controlled rig produces); varies = within
+//- 20% (±5–10%, ordinary run noise on shared/cloud hardware — quiet
+//- tone, not a verdict); anything wider means the runs genuinely
+//- disagree and the median alone hides it. The disagree pill carries
+//- the same ±N% so the reader sees HOW MUCH they disagree — except
+//- when the median is 0 (a flaky Total Blocking Time of 0/0/214 ms):
+//- a percentage of nothing means nothing, and the max column next
+//- door carries the value. Only renders with more than one iteration;
+//- a single-run table would read "identical" on every row.
+mixin agreeCell(min, median, max)
+  if options.browsertime.iterations > 1
+    - const span = max - min
+    - const spreadPct = median > 0 ? Math.max(1, Math.round((span / 2 / median) * 100)) : undefined
+    - let agreeTone = 'disagree'
+    - let agreeText = spreadPct ? 'runs disagree ±' + spreadPct + '%' : 'runs disagree'
+    - if (span === 0) { agreeTone = 'identical'; agreeText = 'identical' }
+    - else if (median > 0 && span <= median * 0.1) { agreeTone = 'stable'; agreeText = 'stable ±' + spreadPct + '%' }
+    - else if (median > 0 && span <= median * 0.2) { agreeTone = 'varies'; agreeText = 'varies ±' + spreadPct + '%' }
+    td.number(data-title='runs agree')
+      span.timings-agree(class='timings-agree--' + agreeTone)= agreeText
+
+mixin getRow(name, object, path, runPath, metric, f, toneClass)
   - const min = get(object, path + '.min')
   - const median = get(object, path + '.median')
   - const mean = get(object, path + '.mean')
   - const max = get(object, path + '.max')
+  //- Web Vitals rows pass a classifier so the median carries the same
+  //- status dot as the pages table.
+  - const tone = toneClass ? toneClass(median) : ''
+  - const tip = tone ? name + ' ' + f(median) + ' · ' + sbStatusLabel(tone) : ''
   if min || min === 0
     tr
       td(data-title='metric') #{name}
@@ -25,14 +74,19 @@ mixin getRow(name, object, path, runPath, metric, f)
           - isSet = true
           td.number(data-title='min')
             a(href='./' + (index+1) + '.html', title='Go to the run with the min ' + name) #{f(min)}
-        if options.browsertime.iterations % 2 === 0 
-          td #{f(median)}
+        if options.browsertime.iterations % 2 === 0
+          td.number(data-title='median')
+            if tone
+              span.pages-dot(class=tone, data-tip=tip, aria-label=tip)
+            | #{f(median)}
         else
           - isSet = false
           each run, index in runPath
             if (Number(median).toFixed(0) === Number(get(run, metric)).toFixed(0) && isSet === false)
               - isSet = true
               td.number(data-title='median')
+                if tone
+                  span.pages-dot(class=tone, data-tip=tip, aria-label=tip)
                 a(href='./' + (index+1) + '.html', title='Go to the run with the median ' + name) #{f(median)}
       td.number(data-title='mean') #{f(mean)}
       - isSet = false
@@ -41,56 +95,76 @@ mixin getRow(name, object, path, runPath, metric, f)
           - isSet = true
           td.number(data-title='max')
             a(href='./' + (index+1) + '.html', title='Go to the run with the max ' + name) #{f(max)}
+      +agreeCell(min, median, max)
            
+//- The Timings Summary is split into one card per metric family so each
+//- table stays short and scannable instead of one long table broken up by
+//- full-width header rows. All share the same columns and the getRow /
+//- getUserTimings / agreeCell mixins above; timingsGroup wraps the shared
+//- header + table chrome and takes the rows as block content.
+mixin timingsHead
+  thead
+    tr
+      th Metric
+      th.number Min
+      th.number.median Median
+      th.number Mean
+      th.number Max
+      if options.browsertime.iterations > 1
+        th.number Runs agree?
+
+mixin timingsGroup(title)
+  .listing-card.timings-group
+    .listing-card-header
+      h3.listing-card-title #{title}
+      span.listing-card-meta min · median · mean · max of #{h.plural(options.browsertime.iterations, 'run')}
+    .responsive
+      table.timings-table
+        +timingsHead
+        tbody
+          block
+
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
   a#browsertime-timing-statistics
-  h2 Timings Summary
+  p.summary-section-label Timings summary
   - timingMetrics = ['firstPaint', 'loadEventEnd']
-  .responsive
-    table
-      thead
+  - const hasMoreMetrics = timingMetrics.some((t) => { const v = h.get(pageInfo.data, 'browsertime.pageSummary.statistics.timings.' + t + '.min'); return v || v === 0 })
+
+  if btStatistics.timings && btStatistics.timings.pageTimings
+    +timingsGroup('Google Web Vitals')
+      +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms, sbTtfbClass)
+      +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms, sbLcpClass)
+      +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms, sbFcpClass)
+      +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop, sbClsClass)
+
+  if btStatistics.visualMetrics
+    +timingsGroup('Visual Metrics')
+      each visualMetric, name in btStatistics.visualMetrics
+        if name !== 'videoRecordingStart'
+          +getRow(h.metricName(name), pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
+
+  if btStatistics.cpu && btStatistics.cpu.longTasks
+    +timingsGroup('CPU')
+      +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.totalBlockingTime', h.time.ms, sbTbtClass)
+      +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.maxPotentialFid', h.time.ms)
+      +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.tasks', h.noop)
+      +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.durations.max', h.time.ms)
+      +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.lastLongTask', h.time.ms)
+
+  if hasMoreMetrics
+    +timingsGroup('More metrics')
+      each timing in timingMetrics
+        +getRow(h.metricName(timing), pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
+
+  if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
+    +timingsGroup('User Timing')
+      each userTimings, name in btStatistics.timings.userTimings.marks
         tr
-          th Metric
-          th.number min
-          th.number median
-          th.number mean
-          th.number max
-      if btStatistics.visualMetrics
-        tr 
-          td.extraheader(colspan='5') Visual Metrics
-        each visualMetric, name in btStatistics.visualMetrics
-          if name !== 'videoRecordingStart'
-            tr
-              +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
-      if btStatistics.timings && btStatistics.timings.pageTimings
-        tr 
-          td.extraheader(colspan='5') Google Web Vitals
-          +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
-          +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
-          +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
-          +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
-        tr 
-          td.extraheader(colspan='5') More metrics
-        each timing in timingMetrics
-          +getRow(timing, pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
-         
-      if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
-        tr 
-          td.extraheader(colspan='5') User Timing 
-        each userTimings, name in btStatistics.timings.userTimings.marks
-          tr
-            td(data-title= 'User Timing') #{name}
-            +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
-            +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
-            td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
-            +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
-      if btStatistics.cpu && btStatistics.cpu.longTasks
-        tr 
-          td.extraheader(colspan='5') CPU
-        +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.totalBlockingTime', h.time.ms)
-        +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.maxPotentialFid', h.time.ms)
-        +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.tasks', h.noop)
-        +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.durations.max', h.time.ms)
-        +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.lastLongTask', h.time.ms)
+          td(data-title= 'User Timing') #{name}
+          +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
+          +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
+          td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
+          +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
+          +agreeCell(userTimings.min, userTimings.median, userTimings.max)

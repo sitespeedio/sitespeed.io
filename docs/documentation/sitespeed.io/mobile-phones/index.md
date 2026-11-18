@@ -14,7 +14,6 @@ twitterdescription: Test your page using Android or iOS.
 ## Run tests on mobile phones
 {:.no_toc}
 
-* Lets place the TOC here
 {:toc}
 
 ## Test on Android
@@ -22,8 +21,7 @@ You can run your tests on Chrome on Android phones.
 
 ### Prerequisites
 
-We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
-try
+We normally recommend using our Docker containers when you run sitespeed.io/Browsertime. However, driving Android from Docker only works on a Linux host, since there's no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
 
 #### Desktop
 
@@ -32,14 +30,14 @@ If you don't use Docker you need to:
 - Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install --cask android-platform-tools</code>. On Linux run: `apt-get install android-tools-adb`
 
 #### On your phone
-You probably want to setup a new phone from scratch to have a dedicated device. When you start your phone for the first time, follow these instructions:
+You probably want to set up a new phone from scratch to have a dedicated device. When you start your phone for the first time, follow these instructions:
 
-- Make sure to say *no* to all data collection (on a new Android its something like 4-5 times you need to say no)
-- Setup a specific Google account that you use for testing
-- Update to latest Chrome in the Play Store (log in with your new user)
+- Make sure to say *no* to all data collection (on a new Android phone it's something like 4-5 times you need to say no).
+- Set up a specific Google account that you use for testing.
+- Update to the latest Chrome in the Play Store (log in with your new user).
 - Set volume to zero for Media/Alarm/Ring, and turn off the *Power up/down sound*. Turn off all sounds that you can!
-- Disable screen lock on your device (Set Screen Lock to *None*).
-- You probably also want to disable notifications from different update services. Do that under  _Settings_ and _Apps_, then choose the service and select _Notifications_ and toggle _Block All_ to _On_.
+- Disable screen lock on your device (set Screen Lock to *None*).
+- You probably also want to disable notifications from different update services. Do that under _Settings_ and _Apps_, then choose the service and select _Notifications_ and toggle _Block All_ to _On_.
 
 Next step is to prepare your phone to be used from a computer. To do that you need to enable Developer options:
 - Go to _About device_ (or _About phone_) in your settings, tap it, scroll down to the _Build number_, tap it seven (7) times to enable developer options.
@@ -51,7 +49,7 @@ Then in _Developer options_:
 
 You are almost ready!
 - Plug in your phone using the USB port on your desktop computer.
-- When you plugin your phone, click OK on the "Allow USB debugging?" popup.
+- When you plug in your phone, click OK on the "Allow USB debugging?" popup.
 
 ### Run
 
@@ -69,17 +67,17 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
-If your container cannot see the device, make sure that you do not have the adb server running on the host (stop it with `adb kill-server`). Your phone can only be atatched to one adb server at a time.
+If your container cannot see the device, make sure you do not have the adb server running on the host (stop it with `adb kill-server`). Your phone can only be attached to one adb server at a time.
 
 ### Connectivity
 
-If you run by default, the phone will use the current connection.
+By default, the phone will use the current connection.
 
 #### gnirehtet and Throttle
 
-You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
+You can use the connection of your desktop by reverse-tethering, and then set the connectivity on your desktop computer.
 
-It's easiest on you are on a Mac, install [gnirehtet](https://github.com/Genymobile/gnirehtet) using Homebrew: ```brew install gnirehtet``` and then run your tests like this:
+It's easiest if you are on a Mac, install [gnirehtet](https://github.com/Genymobile/gnirehtet) using Homebrew: ```brew install gnirehtet``` and then run your tests like this:
 
 ```bash
 sitespeed.io --android --video --visualMetrics --gnirehtet --connectivity.engine throttle -c 4g https://www.sitespeed.io
@@ -90,7 +88,7 @@ That will automatically start and stop gnirehtet. If you run with multiple devic
 2. Start throttle: ```throttle 4g```
 3. Start each test per device.
 
-Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
+Note: the first time you run gnirehtet you need to accept the VPN connection on your phone.
 
 #### Humble
 
@@ -110,18 +108,18 @@ And using Docker (remember: only works in Linux hosts):
 docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
-If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give out USB access and then run the container from that Docker machine.
+If you want to run Docker on Mac OS X, you can follow Appium's [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, giving out USB access, and then running the container from that Docker machine.
 
 ### Driving multiple phones from the same computer
 
-If you wanna drive multiple phones from one computer using Docker, you need to mount each USB port to the right Docker container.
+If you want to drive multiple phones from one computer using Docker, you need to mount each USB port to the right Docker container.
 
 You can do that with the `--device` Docker command:
 `--device=/dev/bus/usb/001/007`
 
-The first part is the bus and that will not change, but the second part _devnum_ changes if you unplug the device or restart,
+The first part is the bus and that will not change, but the second part _devnum_ changes if you unplug the device or restart.
 
-You need to know which phone are connected to which USB port.
+You need to know which phone is connected to which USB port.
 
 Here's an example on how you can get that automatically before you start the container, feeding the unique id (that you get from _lsusb_).
 
@@ -132,8 +130,8 @@ Here's an example on how you can get that automatically before you start the con
 ID=22b8:2e76
 LSUSB_OUTPUT=$(lsusb -d $ID)
 
-if [ -z “$LSUSB_OUTPUT” ]; then
- echo “Could not find the phone”
+if [ -z "$LSUSB_OUTPUT" ]; then
+ echo "Could not find the phone"
  exit;
 fi
 
@@ -146,7 +144,7 @@ echo $BUS/$DEV
 ```
 
 ### Running different versions of Chrome
-You can choose which Chrome version you want to run on your phone using `--chrome.android.package` to specify each versions package name. By default (just using  `--android` Chrome stable version is used):
+You can choose which Chrome version you want to run on your phone using `--chrome.android.package` to specify each version's package name. By default (just using `--android`), the Chrome stable version is used:
 
 * Chrome Stable - *com.android.chrome*
 * Chrome Beta - *com.chrome.beta*
@@ -155,7 +153,17 @@ You can choose which Chrome version you want to run on your phone using `--chrom
 * Chromium - *org.chromium.chrome*
 
 If you installed Chrome Canary on your phone and want to use it, then add `--chrome.android.package com.chrome.canary` to your run.
- Driving different versions needs different versions of the ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of the ChromeDriver. If you want to run other versions, you need to [download from the official ChromeDriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
+
+Driving different versions requires different versions of ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of ChromeDriver. If you want to run other versions, you need to [download from the Chrome for Testing page](https://googlechromelabs.github.io/chrome-for-testing/). Then you specify the version using `--chrome.chromedriverPath`.
+
+### Running Edge
+To test with Edge on your phone, run:
+
+```bash
+sitespeed.io --android -b edge https://www.sitespeed.io
+```
+
+Edge starts with no data for each test, the same as Chrome. With no data Edge shows its new tab page on top of the page, so before each test Browsertime opens Edge once with an error page that does not use the network. That makes each Edge test about 20 seconds longer.
 
 ### Collect trace log
 
@@ -174,9 +182,18 @@ sitespeed.io --android -b firefox https://www.sitespeed.io
 
 Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
 
+### Running Samsung Internet
+Samsung Internet is the second most used browser on Android. To test with it, run:
+
+```bash
+sitespeed.io --android -b samsung https://www.sitespeed.io
+```
+
+Samsung Internet is built on Chromium, so it uses ChromeDriver and the same options as Chrome. Samsung Internet starts with no data for each test, the same as Chrome. If the phone uses a dark theme, Samsung Internet shows web pages in dark mode, so turn off the dark theme on the phone first, for example with `adb shell cmd uimode night no`.
+
 
 ### Only run tests when battery temperature is below X
-You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Over heated mobile phones throttles the CPU so its good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
+You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Overheated mobile phones throttle the CPU, so it's good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
 
 Use `--androidBatteryTemperatureLimit` to set a minimum battery temperature limit before you start your test on your Android phone. Temperature is in [Celsius](https://en.wikipedia.org/wiki/Celsius).
 
@@ -187,7 +204,7 @@ sitespeed.io --android --androidBatteryTemperatureLimit 32 https://www.sitespeed
 ```
 
 ### Run on a rooted device
-You can run on fresh Android device or on a rooted device. If you use rooted device and you use a Moto G5 or a Pixel 2 it will be configured for as stable performance as possible if you add `--androidRooted` to your run. We follow [Mozillas setup](https://dxr.mozilla.org/mozilla-central/source/testing/raptor/raptor/performance_tuning.py) best practise to do that. Make sure you only do that for a phone that you have dedicated to performance tests, since it will be kept in that performance state after the tests.
+You can run on a fresh Android device or on a rooted device. If you use a rooted device and you use a Moto G5 or a Pixel 2, it will be configured for as stable performance as possible if you add `--androidRooted` to your run. We follow [Mozilla's setup](https://dxr.mozilla.org/mozilla-central/source/testing/raptor/raptor/performance_tuning.py) best practice to do that. Make sure you only do this for a phone that you have dedicated to performance tests, since it will be kept in that performance state after the tests.
 
 ### Power usage testing
 You can run power usage tests on your webpage with android. To do so, you would need to provide the `--androidPower true` option:
@@ -219,11 +236,11 @@ Results from this are gathered into the `android.power` entry in the browsertime
 * full-screen: The total screen power used during the test (not specific to the application).
 * wifi: The total wifi power used by the application.
 * full-wifi: The total wifi power used during the test (not specific to the application).
-* proportional: The proportionally smeared power usage portion of the application (power usage of background applications that are propotionally attributed to all open applications).
+* proportional: The proportionally smeared power usage portion of the application (power usage of background applications that are proportionally attributed to all open applications).
 
 ### Debug logs on the phone
 
-If something seems broken and you don't get any good logs from sitespeed.io you can check the log on the phone. 
+If something seems broken and you don't get any good logs from sitespeed.io, you can check the log on the phone.
 
 ```bash
 adb logcat
@@ -237,56 +254,66 @@ adb logcat | grep chromium
 
 ## Test on iOS
 
-You can run your tests on Safari on iOS.
+You can run your tests on Safari on iOS over USB. As of sitespeed.io 40 (Browsertime 27) this gets you HAR, video and visual metrics — the previous limitations are gone.
 
 ### Prerequisites
 
-To be able to test you need latest OS X on your Mac computer and iOS on your phone (or iPad).
+To be able to test you need the latest macOS on your Mac computer and a recent iOS on your phone (or iPad).
 
 #### Desktop
 
 Run your test using npm (instead of Docker).
 
-*SafariDriver* the driver that drives Safari is bundled in OS X. But to be able to use it you need to enable it with:
+*SafariDriver* — the driver that drives Safari — is bundled in macOS. But to be able to use it you need to enable it with:
 
 ```bash
 safaridriver --enable
 ```
 
+For HAR capture, install `ios_webkit_debug_proxy`:
+
+```bash
+brew install ios-webkit-debug-proxy
+```
+
+Browsertime starts and stops `iwdp` automatically once it's installed and exits with a clear error if it isn't.
+
+For video + visual metrics, install `ffmpeg` (`brew install ffmpeg`). The CoreMediaIO screen-capture helper that pipes frames to ffmpeg is bundled with Browsertime — the device is woken into screen-capture mode automatically, no manual QuickTime step required.
+
 #### On your phone
 
 On Safari you need to enable **Remote Automation** to be able to drive it with WebDriver. To do this, toggle the setting in *Settings → Safari → Advanced → Remote Automation*.
 
-Plug in the phone into your machine and *trust the host* and make sure that your phone is unlocked when you run your tests.
+Plug the phone into your Mac, *trust the host*, and make sure that your phone is unlocked when you run your tests.
 
-Your phone needs to be unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you save energy.
+Your phone needs to stay unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you save energy.
 
 If you have any problems, make sure to read the [WebKit blog post about setting up your phone for Selenium](https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/).
 
 ### Run
 
-You are now ready to test using your phone (you need to remove the Coach, Safari on iOS has some kind of issue with running large JavaScript blobs, see [#1275](https://github.com/sitespeedio/browsertime/issues/1275)):
+You are now ready to test using your phone:
 
 ```bash
-sitespeed.io -b safari --safari.ios --plugins.remove coach https://www.sitespeed.io 
+sitespeed.io -b safari --safari.ios https://www.sitespeed.io
 ```
 
+Add `--safari.includeResponseBodies` if you want response bodies in the HAR. Add `--video --visualMetrics` to record video and compute visual metrics (these are on by default in sitespeed.io's Docker image; on a plain npm install make sure ffmpeg is on your PATH).
+
 ### Limitations
-At the moment there are a couple of limitations running Safari:
+At the moment there are a couple of remaining limitations running Safari on iOS:
 
-* No HAR file
-* No videos (see the work in [#1598](https://github.com/sitespeedio/browsertime/issues/1598)).
-* No way to set request headers
-* No built in setting connectivity
+* No way to set request headers.
+* No built-in connectivity throttling — use [Humble](/documentation/humble/) or an external network shaper.
 
-You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
+macOS Safari (not iOS) still has the older Limitations: no HAR, no cookie/request-header support — see the [Safari section in browsers]({{site.baseurl}}/documentation/sitespeed.io/browsers/#safari).
 
 ## Test on iOS simulator
-You can use the iOS simulator to test run tests on different iOS devices. This works good if you use one of the new M1 Macs since it will then have the same CPU as an iPhone.
+You can use the iOS simulator to run tests on different iOS devices. This works well if you use one of the new M1 Macs, since it will then have the same CPU as an iPhone.
 
-To get it running you should have a Mac Mini M1 and Xcode installed. Checkout the [install instructions for Mac](https://www.sitespeed.io/documentation/sitespeed.io/installation/#mac).
+To get it running you should have a Mac Mini M1 and Xcode installed. Check out the [install instructions for Mac](https://www.sitespeed.io/documentation/sitespeed.io/installation/#mac).
 
-To run your test you need to sepcify the Safari deviceUDID = choosing what kind of device to use. You can list all your availible devices using `xcrun simctl list devices`.
+To run your test you need to specify the Safari deviceUDID, choosing what kind of device to use. You can list all your available devices using `xcrun simctl list devices`.
 
 Then run your test:
 ```bash
@@ -301,9 +328,9 @@ You can use the desktop browser and emulate mobile browsers. If you use Chrome y
 sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4"
 ```
 
-You can see the list of different device names in Chrome devtools. Click on *Edit*.
+You can see the list of different device names in Chrome DevTools. Click on *Edit*.
 
-![Emulated mobile phones in Chrome devtools]({{site.baseurl}}/img/devtoolsEmulatedMobile.png)
+![Emulated mobile phones in Chrome DevTools]({{site.baseurl}}/img/devtoolsEmulatedMobile.png)
 {: .img-thumbnail-center}
 
 And then you can see the full list.
