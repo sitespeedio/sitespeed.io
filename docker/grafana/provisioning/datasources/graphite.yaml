@@ -24,7 +24,7 @@ datasources:
     # <string> Sets a custom UID to reference this
     # data source in other parts of the configuration.
     # If not specified, Grafana generates one.
-    uid:
+    uid: graphite
     # <string> Sets the data source's URL, including the
     # port.
     url: http://graphite:80
