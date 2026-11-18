@@ -2427,7 +2427,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasByNode($namespace.$path.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.durations.max, 3, 4)"
+              "target": "aliasByNode($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.durations.max, 4, 5)"
             }
           ],
           "thresholds": [],
@@ -2513,7 +2513,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasByNode($namespace.$path.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 3, 4)"
+              "target": "aliasByNode($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 4, 5)"
             }
           ],
           "thresholds": [],
@@ -2599,7 +2599,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasByNode($namespace.$path.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.beforeFirstPaint.tasks.median, 3, 4)"
+              "target": "aliasByNode($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.beforeFirstPaint.tasks.median, 4, 5)"
             }
           ],
           "thresholds": [],

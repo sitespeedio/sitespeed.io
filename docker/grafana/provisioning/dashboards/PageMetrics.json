@@ -1169,7 +1169,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1251,7 +1252,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1333,7 +1335,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1451,7 +1454,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1466,11 +1470,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 2000
+                "value": 1800
               },
               {
                 "color": "red",
-                "value": 4000
+                "value": 3000
               }
             ]
           },
@@ -1533,7 +1537,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1615,7 +1620,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1697,7 +1703,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1712,11 +1719,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 300
+                "value": 200
               },
               {
                 "color": "red",
-                "value": 500
+                "value": 600
               }
             ]
           },
@@ -1815,7 +1822,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1830,11 +1838,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 1000
+                "value": 1800
               },
               {
                 "color": "red",
-                "value": 2000
+                "value": 3000
               }
             ]
           },
@@ -1897,7 +1905,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1912,11 +1921,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 1000
+                "value": 2500
               },
               {
                 "color": "red",
-                "value": 2000
+                "value": 4000
               }
             ]
           },
@@ -1979,7 +1988,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -1994,11 +2004,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 1000
+                "value": 2500
               },
               {
                 "color": "red",
-                "value": 2000
+                "value": 4000
               }
             ]
           },
@@ -2061,7 +2071,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2076,11 +2087,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 1000
+                "value": 2500
               },
               {
                 "color": "red",
-                "value": 2000
+                "value": 4000
               }
             ]
           },
@@ -2143,7 +2154,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2292,7 +2304,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2370,7 +2383,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2452,7 +2466,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2534,7 +2549,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2652,7 +2668,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2734,7 +2751,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2816,7 +2834,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -2898,7 +2917,8 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "text": "N/A"
+                  "text": "N/A",
+                  "color": "transparent"
                 }
               },
               "type": "special"
@@ -4580,138 +4600,6 @@
     },
     {
       "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 51
-      },
-      "id": 274,
-      "panels": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "gridPos": {
-            "h": 2,
-            "w": 24,
-            "x": 0,
-            "y": 74
-          },
-          "id": 320,
-          "options": {
-            "code": {
-              "language": "plaintext",
-              "showLineNumbers": false,
-              "showMiniMap": false
-            },
-            "content": "Main document timings is the timings for downloading the main HTML page.",
-            "mode": "markdown"
-          },
-          "pluginVersion": "10.0.1",
-          "type": "text"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "ms"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 15,
-            "w": 24,
-            "x": 0,
-            "y": 76
-          },
-          "id": 276,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "lastNotNull",
-                "range"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "graphite",
-                "uid": "graphite"
-              },
-              "refId": "A",
-              "target": "aliasByNode($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.mainDocumentTimings.*.$function, 12)"
-            }
-          ],
-          "title": "Main document timings",
-          "type": "timeseries"
-        }
-      ],
-      "title": "Main document timings",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
       "datasource": {
         "type": "graphite",
         "uid": "E-Pn3IaGz"
@@ -5973,7 +5861,18 @@
               "color": {
                 "mode": "thresholds"
               },
-              "mappings": [],
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A",
+                      "color": "transparent"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6039,7 +5938,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6111,7 +6011,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6183,7 +6084,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6255,7 +6157,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6327,7 +6230,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6400,7 +6304,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6472,7 +6377,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6544,7 +6450,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6616,7 +6523,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6688,7 +6596,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6915,7 +6824,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -6994,7 +6904,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -7069,7 +6980,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -7083,12 +6995,12 @@
                     "value": null
                   },
                   {
-                    "color": "yellow",
-                    "value": 100
+                    "color": "#EAB839",
+                    "value": 200
                   },
                   {
                     "color": "red",
-                    "value": 300
+                    "value": 600
                   }
                 ]
               },
@@ -7148,7 +7060,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -8187,7 +8100,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -8197,15 +8111,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 2000
-                  },
-                  {
-                    "color": "red",
-                    "value": 4000
+                    "color": "blue",
+                    "value": null
                   }
                 ]
               },
@@ -8268,7 +8175,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -8278,15 +8186,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 2000
-                  },
-                  {
-                    "color": "red",
-                    "value": 4000
+                    "color": "blue",
+                    "value": null
                   }
                 ]
               },
@@ -8349,7 +8250,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -8359,15 +8261,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 2000
-                  },
-                  {
-                    "color": "red",
-                    "value": 4000
+                    "color": "blue",
+                    "value": null
                   }
                 ]
               },
@@ -8430,7 +8325,8 @@
                   "options": {
                     "match": "null",
                     "result": {
-                      "text": "N/A"
+                      "text": "N/A",
+                      "color": "transparent"
                     }
                   },
                   "type": "special"
@@ -8440,15 +8336,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 2000
-                  },
-                  {
-                    "color": "red",
-                    "value": 4000
+                    "color": "blue",
+                    "value": null
                   }
                 ]
               },
@@ -9698,7 +9587,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.fullyLoaded.$function, '24h'), '7d'), 'One week earlier')",
+              "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.fullyLoaded.$function, '24h'), '7d'), 'One week earlier')",
               "textEditor": false
             }
           ],
