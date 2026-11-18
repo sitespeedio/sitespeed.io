@@ -784,7 +784,7 @@
           "source": "url",
           "format": "table",
           "parser": "backend",
-          "url": "/$testname/$base.$path.$group.$page.$browser.$connectivity.json",
+          "url": "$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.json",
           "url_options": {
             "method": "GET"
           },
