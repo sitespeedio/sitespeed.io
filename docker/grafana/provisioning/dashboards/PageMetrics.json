@@ -11462,18 +11462,18 @@
       {
         "hide": 2,
         "name": "resulturl",
-        "query": "https://changeme.example.org",
+        "query": "https://data.sitespeed.io",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "https://changeme.example.org",
-          "text": "https://changeme.example.org",
+          "value": "https://data.sitespeed.io",
+          "text": "https://data.sitespeed.io",
           "selected": false
         },
         "options": [
           {
-            "value": "https://changeme.example.org",
-            "text": "https://changeme.example.org",
+            "value": "https://data.sitespeed.io",
+            "text": "https://data.sitespeed.io",
             "selected": false
           }
         ]

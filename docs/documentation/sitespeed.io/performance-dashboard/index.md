@@ -98,7 +98,7 @@ Earlier versions of the dashboards used the JSON API datasource (`marcusolsson-j
 
 The *Page metrics* dashboard shows metadata like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and set up the dashboard to point to where you store the sitespeed.io result.
 
-In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots, videos and metadata like how you configured your tests in the dashboard.
+In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots, videos and metadata like how you configured your tests in the dashboard. The dashboards in our Docker compose setup are the same dashboards that run on [dashboard.sitespeed.io](https://dashboard.sitespeed.io), so *resulturl* is https://data.sitespeed.io. Change it to where you store your result.
 
 ![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
 {: .img-thumbnail}
@@ -149,7 +149,7 @@ This is an example dashboard for logging into Wikipedia. That user journey measu
 ![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-We also have examples for three-page user journeys.
+We also have examples for three-page user journeys: *Wikipedia Rabbit Hole* goes from the main Wikipedia page to two articles, on desktop and on emulated mobile.
 
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
