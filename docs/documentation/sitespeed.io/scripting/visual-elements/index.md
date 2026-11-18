@@ -50,6 +50,14 @@ sitespeed.io https://www.sitespeed.io/ \
 
 Each `name:selector` pair is a separate `--scriptInput.visualElements` flag — pass as many as you need. The names show up in the HTML report exactly as you typed them.
 
+## Elements inside web components and iframes
+
+A CSS selector does not look inside a web component (a shadow root) or an iframe. Browsertime therefore also looks in open shadow roots and in iframes from the same origin as the page, also when they are nested. This works for `--scriptInput.visualElements` selectors and for elements with an `elementtiming` attribute. For an element in an iframe, Browsertime uses its position on the page, and the parts that the iframe does not show are not used.
+
+The browser reports Element Timing entries in each iframe on its own. Browsertime also collects them from iframes from the same origin, and changes the times so that they start from when the page started, like the other metrics.
+
+Browsertime cannot reach elements in a closed shadow root or in an iframe from another origin, for example an ad or a third-party widget. The browser does not let a page read inside them.
+
 ## Pattern 3: read element timings in your script
 
 Sometimes you want the timing inside your script — to log it, gate a step on it, or attach it as a [custom metric]({{site.baseurl}}/documentation/sitespeed.io/scripting/custom-metrics/). The Element Timing API is exposed via PerformanceObserver, so:
