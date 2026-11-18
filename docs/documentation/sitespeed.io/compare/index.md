@@ -126,5 +126,7 @@ If you see a result marked as no test conducted, it means the analysis couldn’
 ## Alert on data in Graphite
 The actual score is automatically sent to Graphite for each metric, which makes it possible to create alert rules in Grafana to alert on regressions. Documentation on how to do that will come soon.
 
+For each metric, sitespeed.io sends the p-value as `compare.metrics.<group>.<metric>.statisticalTestU` and `compare.metrics.<group>.<metric>.isSignificant`, which is 1 when the change is significant and 0 when it is not. The *Failures and regressions* row in our [Page metrics dashboard]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#page-metrics) shows them.
+
 
 If you use `--copyLatestFilesToBase`, the information about the latest test that you see in Grafana also tells you the date of the baseline that the test was compared with. The JSON file next to the latest screenshot gets a `compare.baseline` field with that date.
