@@ -94,18 +94,13 @@ In our Docker file you can see something like this:
 
 ```
 
-Earlier versions of the dashboards used the JSON API datasource (`marcusolsson-json-datasource`). Grafana recommends the Infinity datasource instead. If you upgrade, install the Infinity plugin, add an Infinity datasource with the name and UID `infinity`, and set its base URL to the same URL that your JSON API datasource used. Our [datasource provisioning file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/datasources/infinity.yaml) does that for you.
+Earlier versions of the dashboards used the JSON API datasource (`marcusolsson-json-datasource`). Grafana recommends the Infinity datasource instead. If you upgrade, install the Infinity plugin and add an Infinity datasource with the UID `infinity`. Do not set a base URL on it. Our [datasource provisioning file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/datasources/infinity.yaml) does that for you.
 
 The *Page metrics* dashboard shows metadata like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and set up the dashboard to point to where you store the sitespeed.io result.
 
-In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots and videos in the dashboard.
+In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots, videos and metadata like how you configured your tests in the dashboard.
 
 ![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-We also set the base URL of the Infinity datasource (under *URL, Headers & Params*) to the same place. That way we can see metadata like how you configured your tests.
-
-![Configure the Infinity datasource]({{site.baseurl}}/img/infinity.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 If that is set up correctly, your dashboard will look something like this:

@@ -17,8 +17,7 @@ datasources:
   - name: infinity
     # <string, required> Sets the data source type.
     type: yesoreyeram-infinity-datasource
+    # The dashboards use this UID. They get the full URL from their
+    # resulturl variable, so do not set a base URL here.
     uid: infinity
-    # Set this to where you store the sitespeed.io result. The dashboards
-    # read the latest test from there.
-    url: https://changeme.example.com
     editable: true
