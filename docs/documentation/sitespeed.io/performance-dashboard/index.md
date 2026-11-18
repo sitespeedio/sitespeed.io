@@ -82,17 +82,19 @@ Remember, these are simplified instructions. For a production setup, you would n
 We insert ready-made dashboards with our docker compose file using provisioning. You can check out the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
 
 Some of our dashboards use Grafana plugins. To make sure the dashboards work you need to install these plugins:
-* [marcusolsson-json-datasource](https://github.com/grafana/grafana-json-datasource)
+* [yesoreyeram-infinity-datasource](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/)
 * [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
 
 In our Docker file you can see something like this:
 
 ```
  environment:
-        - GF_INSTALL_PLUGINS=marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource,marcusolsson-dynamictext-panel
         ...
 
 ```
+
+Earlier versions of the dashboards used the JSON API datasource (`marcusolsson-json-datasource`). Grafana recommends the Infinity datasource instead. If you upgrade, install the Infinity plugin, add an Infinity datasource with the name and UID `infinity`, and set its base URL to the same URL that your JSON API datasource used. Our [datasource provisioning file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/datasources/infinity.yaml) does that for you.
 
 The *Page metrics* dashboard shows metadata like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and set up the dashboard to point to where you store the sitespeed.io result.
 
@@ -101,9 +103,9 @@ In our example dashboard we serve our content from https://data.sitespeed.io, so
 ![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
-We also configure the JSON datasource to point to the same place. That way we can see metadata like how you configured your tests.
+We also set the base URL of the Infinity datasource (under *URL, Headers & Params*) to the same place. That way we can see metadata like how you configured your tests.
 
-![Configure the JSON datasource ]({{site.baseurl}}/img/json-api.jpg){:loading="lazy"}
+![Configure the Infinity datasource]({{site.baseurl}}/img/infinity.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 If that is set up correctly, your dashboard will look something like this:

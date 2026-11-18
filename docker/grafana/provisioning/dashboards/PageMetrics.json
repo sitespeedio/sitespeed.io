@@ -9,12 +9,12 @@
       "pluginName": "Graphite"
     },
     {
-      "name": "json-api",
-      "label": "JSON API",
+      "name": "infinity",
+      "label": "Infinity",
       "description": "",
       "type": "datasource",
-      "pluginId": "marcusolsson-json-datasource",
-      "pluginName": "JSON API"
+      "pluginId": "yesoreyeram-infinity-datasource",
+      "pluginName": "Infinity"
     },
     {
       "name": "VAR_BASE",
@@ -60,9 +60,9 @@
     },
     {
       "type": "datasource",
-      "id": "marcusolsson-json-datasource",
-      "name": "JSON API",
-      "version": "1.3.6"
+      "id": "yesoreyeram-infinity-datasource",
+      "name": "Infinity",
+      "version": "3.11.1"
     },
     {
       "type": "panel",
@@ -751,8 +751,8 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "json-api"
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "infinity"
       },
       "gridPos": {
         "h": 4,
@@ -776,33 +776,36 @@
       },
       "targets": [
         {
-          "cacheDurationSeconds": 300,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "json-api"
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "infinity"
           },
-          "experimentalGroupByField": "*",
-          "fields": [
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "url": "/$testname/$base.$path.$group.$page.$browser.$connectivity.json",
+          "url_options": {
+            "method": "GET"
+          },
+          "columns": [
             {
-              "jsonPath": "description  ",
-              "language": "jsonata",
-              "name": "description"
+              "selector": "description",
+              "text": "description",
+              "type": "string"
             },
             {
-              "jsonPath": "title",
-              "language": "jsonata",
-              "name": "title"
+              "selector": "title",
+              "text": "title",
+              "type": "string"
             },
             {
-              "jsonPath": "friendlyHTML",
-              "language": "jsonata",
-              "name": "friendlyHTML"
+              "selector": "friendlyHTML",
+              "text": "friendlyHTML",
+              "type": "string"
             }
           ],
-          "method": "GET",
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/$testname/$base.$path.$group.$page.$browser.$connectivity.json"
+          "refId": "A"
         }
       ],
       "title": "Meta data for the test",

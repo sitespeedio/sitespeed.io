@@ -2,8 +2,11 @@
 apiVersion: 1
 
 # List of data sources to delete from the database.
+# json-api is the JSON API data source that Infinity replaces.
 deleteDatasources:
   - name: json-api
+    orgId: 1
+  - name: infinity
     orgId: 1
 
 # List of data sources to insert/update depending on what's
@@ -11,8 +14,11 @@ deleteDatasources:
 datasources:
   # <string, required> Sets the name you use to refer to
   # the data source in panels and queries.
-  - name: json-api
+  - name: infinity
     # <string, required> Sets the data source type.
-    type: marcusolsson-json-datasource
+    type: yesoreyeram-infinity-datasource
+    uid: infinity
+    # Set this to where you store the sitespeed.io result. The dashboards
+    # read the latest test from there.
     url: https://changeme.example.com
     editable: true
