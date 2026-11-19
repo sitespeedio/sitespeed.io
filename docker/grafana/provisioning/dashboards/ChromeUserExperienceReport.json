@@ -330,7 +330,8 @@
                   "viz": false
                 }
               },
-              "mappings": []
+              "mappings": [],
+              "unit": "percent"
             },
             "overrides": []
           },
@@ -369,7 +370,7 @@
             {
               "refCount": 0,
               "refId": "A",
-              "target": "aliasByNode($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.ROUND_TRIP_TIME_MS.high, 10)",
+              "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.ROUND_TRIP_TIME_MS.high, 100), 10)",
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
@@ -524,7 +525,8 @@
                     "value": 80
                   }
                 ]
-              }
+              },
+              "unit": "percent"
             },
             "overrides": []
           },
@@ -555,7 +557,7 @@
             {
               "refCount": 0,
               "refId": "A",
-              "target": "aliasByNode($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.ROUND_TRIP_TIME_MS.high, 10)",
+              "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.ROUND_TRIP_TIME_MS.high, 100), 10)",
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
@@ -1961,7 +1963,7 @@
             "uid": "graphite"
           },
           "refId": "A",
-          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Cumulative Layout Shift')",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Time To First Byte')",
           "textEditor": false
         }
       ],
@@ -5098,7 +5100,7 @@
             "uid": "graphite"
           },
           "refId": "A",
-          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Cumulative Layout Shift')",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Time To First Byte')",
           "textEditor": false
         }
       ],
@@ -6374,7 +6376,7 @@
             "uid": "graphite"
           },
           "refId": "A",
-          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Cumulative Layout Shift')",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Interaction to next paint')",
           "textEditor": false
         }
       ],
@@ -7138,7 +7140,7 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Cumulative Layout Shift')",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Interaction to next paint')",
           "textEditor": false
         }
       ],

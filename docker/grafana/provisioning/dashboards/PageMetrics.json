@@ -5193,7 +5193,7 @@
                       },
                       "spec": {
                         "refCount": 0,
-                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.sustainable.totalCO2.$function, 'Total C02')",
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.sustainable.totalCO2.$function, 'Total CO2')",
                         "textEditor": true
                       }
                     },
@@ -5955,7 +5955,7 @@
         "kind": "Panel",
         "spec": {
           "id": 228,
-          "title": "Page Vitals",
+          "title": "Latest test",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6003,7 +6003,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Screenshot, video, size, requests and DOM elements from the latest test."
         }
       },
       "panel-229": {
@@ -7790,7 +7791,7 @@
         "kind": "Panel",
         "spec": {
           "id": 253,
-          "title": "Visual Metrics [$function]",
+          "title": "Delta TTFB [$function]",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -8389,7 +8390,7 @@
         "spec": {
           "id": 270,
           "title": "Navigation Timings  [$function]",
-          "description": "Metrics collected from theNavigation Timing API",
+          "description": "Metrics collected from the Navigation Timing API",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -10101,7 +10102,7 @@
                   "showLineNumbers": false,
                   "showMiniMap": false
                 },
-                "content": "Transfer size is the size over the wire when the data is transfered to the browser (hopefully compressed). Content size is the size unpacked in the browser. ",
+                "content": "Transfer size is the size over the wire when the data is transferred to the browser (hopefully compressed). Content size is the size unpacked in the browser. ",
                 "mode": "markdown"
               },
               "fieldConfig": {
@@ -10641,7 +10642,7 @@
                   "showLineNumbers": false,
                   "showMiniMap": false
                 },
-                "content": "Variation over time in the in CPU benchmark metric (how long time it takes to run a JavaScript loop). Use this metric to make sure the CPU speed is constant over time.",
+                "content": "Variation over time in the CPU benchmark metric (the time it takes to run a JavaScript loop). Use this metric to make sure the CPU speed is constant over time.",
                 "mode": "markdown"
               },
               "fieldConfig": {
@@ -10929,7 +10930,7 @@
                   "showLineNumbers": false,
                   "showMiniMap": false
                 },
-                "content": "Data that is collected using the [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API) (the same data as you can collect from real users. Use it to compare changes in data from our real users.",
+                "content": "Data that is collected using the [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API) (the same data as you can collect from real users). Use it to compare changes in data from our real users.",
                 "mode": "markdown"
               },
               "fieldConfig": {
@@ -11037,7 +11038,7 @@
                   "showLineNumbers": false,
                   "showMiniMap": false
                 },
-                "content": "Keep track of the number of element that is affected by recalcualte style before first contentful paint and largest contentful paint.",
+                "content": "Keep track of the number of elements that need style recalculation before first contentful paint and largest contentful paint.",
                 "mode": "markdown"
               },
               "fieldConfig": {
@@ -11145,7 +11146,7 @@
                   "showLineNumbers": false,
                   "showMiniMap": false
                 },
-                "content": "Data collected from the Chrome trace log whgere we can see where the browser spends it time creating the page.",
+                "content": "Data collected from the Chrome trace log, where we can see where the browser spends its time creating the page.",
                 "mode": "markdown"
               },
               "fieldConfig": {
@@ -16404,7 +16405,7 @@
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
-                        "title": "Elements that needs recalculate style before ... [Chrome only, enable with --cpu]",
+                        "title": "Elements that need style recalculation before FCP and LCP [Chrome only, enable with --cpu]",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
@@ -17356,13 +17357,13 @@
       {
         "title": "Leaderboard",
         "type": "link",
-        "url": "/d/000000060",
+        "url": "/d/000000060?var-namespace=${base}&var-path=${path}&var-testname=${testname}&var-domains=${group}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}",
         "icon": "dashboard",
         "tooltip": "Compare the pages in this test",
         "tags": [],
         "asDropdown": false,
         "targetBlank": false,
-        "includeVars": true,
+        "includeVars": false,
         "keepTime": true
       },
       {
