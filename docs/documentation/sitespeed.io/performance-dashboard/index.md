@@ -157,18 +157,9 @@ The Page metrics dashboard uses the dashboard format of Grafana 13 (dynamic dash
 ![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
-## User Journeys example dashboards
+## User journey dashboard
 
 The [User journey](https://dashboard.sitespeed.io/d/sitespeedio-user-journey/user-journey) dashboard works for every user journey (scripted test) without changes. Choose the test with *path*, *testname* and *domain*, and the dashboard shows one row for each page: the screenshot and video from the last run, the timings, the Google Web Vitals, the number of requests and the transfer size. Use *page* to show only some of the pages. The order of the rows is alphabetical, not the order of the pages in your script.
-
-We also have a couple of example dashboards made for one user journey each. When you import those dashboards into Grafana you need to add the Grafana variables that match your tests.
-
-This is an example dashboard for logging into Wikipedia. That user journey measures four pages.
-
-![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-We also have examples for three-page user journeys: *Wikipedia Rabbit Hole* goes from the main Wikipedia page to two articles, on desktop and on emulated mobile.
 
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
