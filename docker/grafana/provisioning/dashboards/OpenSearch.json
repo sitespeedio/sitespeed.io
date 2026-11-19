@@ -42,7 +42,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.lcp.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -53,7 +53,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.lcp.p90", "id": "3", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "B",
           "timeField": "@timestamp"
         }
@@ -92,7 +92,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "googleWebVitals.cls.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -130,7 +130,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "googleWebVitals.inp.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -167,7 +167,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.ttfb.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -178,7 +178,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.ttfb.p90", "id": "3", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "B",
           "timeField": "@timestamp"
         }
@@ -208,7 +208,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.fcp.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -238,7 +238,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.fullyLoaded.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -249,7 +249,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "timings.fullyLoaded.p90", "id": "3", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "B",
           "timeField": "@timestamp"
         }
@@ -286,7 +286,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "visualMetrics.speedIndex.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -316,7 +316,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "visualMetrics.firstVisualChange.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -327,7 +327,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "visualMetrics.lastVisualChange.median", "id": "3", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "B",
           "timeField": "@timestamp"
         }
@@ -357,7 +357,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "visualMetrics.perceptualSpeedIndex.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -394,7 +394,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "transferSize.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp",
           "index": "sitespeed-pagexray-*"
@@ -426,7 +426,7 @@
           ],
           "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
           "metrics": [{ "field": "requests.median", "id": "1", "settings": {}, "type": "avg" }],
-          "query": "url:\"$url\" AND browser:\"$browser\" AND connectivity:\"$connectivity\" AND deviceType:\"$deviceType\"",
+          "query": "url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "refId": "A",
           "timeField": "@timestamp",
           "index": "sitespeed-pagexray-*"
@@ -461,6 +461,7 @@
         "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
         "definition": "{\"find\": \"terms\", \"field\": \"browser\"}",
         "hide": 0,
+        "allValue": "*",
         "includeAll": true,
         "label": "Browser",
         "multi": false,
@@ -476,6 +477,7 @@
         "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
         "definition": "{\"find\": \"terms\", \"field\": \"connectivity\"}",
         "hide": 0,
+        "allValue": "*",
         "includeAll": true,
         "label": "Connectivity",
         "multi": false,
@@ -491,6 +493,7 @@
         "datasource": { "type": "grafana-opensearch-datasource", "uid": "sitespeed-opensearch" },
         "definition": "{\"find\": \"terms\", \"field\": \"deviceType\"}",
         "hide": 0,
+        "allValue": "*",
         "includeAll": true,
         "label": "Device type",
         "multi": false,

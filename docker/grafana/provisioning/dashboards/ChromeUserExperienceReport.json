@@ -9601,7 +9601,7 @@
         "spec": {
           "id": 74,
           "title": "Navigation types",
-          "description": "How real users came to the page: a normal navigation, a reload, back or forward, the back/forward cache, a prerender or a restore. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
+          "description": "How real users came to the page: a normal navigation, a reload, back or forward, the back/forward cache, a prerender or a restore. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key). CrUX leaves out a metric when it has too few samples, so this panel can be empty for a page with little traffic.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -10333,7 +10333,7 @@
         "spec": {
           "id": 82,
           "title": "LCP element types",
-          "description": "The type of element that was the largest contentful paint for real users: an image or text. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
+          "description": "The type of element that was the largest contentful paint for real users: an image or text. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key). CrUX leaves out a metric when it has too few samples, so this panel can be empty for a page with little traffic.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -10416,7 +10416,7 @@
         "spec": {
           "id": 83,
           "title": "LCP element types",
-          "description": "The type of element that was the largest contentful paint for real users: an image or text. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
+          "description": "The type of element that was the largest contentful paint for real users: an image or text. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key). CrUX leaves out a metric when it has too few samples, so this panel can be empty for a page with little traffic.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -10763,7 +10763,7 @@
         "spec": {
           "id": 87,
           "title": "Navigation types",
-          "description": "How real users came to the page: a normal navigation, a reload, back or forward, the back/forward cache, a prerender or a restore. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
+          "description": "How real users came to the page: a normal navigation, a reload, back or forward, the back/forward cache, a prerender or a restore. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key). CrUX leaves out a metric when it has too few samples, so this panel can be empty for a page with little traffic.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -10879,7 +10879,7 @@
         "spec": {
           "id": 88,
           "title": "LCP element",
-          "description": "The type of element that was the largest contentful paint for real users: an image or text. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
+          "description": "The type of element that was the largest contentful paint for real users: an image or text. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key). CrUX leaves out a metric when it has too few samples, so this panel can be empty for a page with little traffic.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -11657,8 +11657,8 @@
                                 "kind": "GridLayoutItem",
                                 "spec": {
                                   "x": 0,
-                                  "y": 43,
-                                  "width": 6,
+                                  "y": 0,
+                                  "width": 8,
                                   "height": 8,
                                   "element": {
                                     "kind": "ElementReference",
@@ -11669,9 +11669,9 @@
                               {
                                 "kind": "GridLayoutItem",
                                 "spec": {
-                                  "x": 6,
-                                  "y": 43,
-                                  "width": 6,
+                                  "x": 8,
+                                  "y": 0,
+                                  "width": 16,
                                   "height": 8,
                                   "element": {
                                     "kind": "ElementReference",
@@ -11682,10 +11682,10 @@
                               {
                                 "kind": "GridLayoutItem",
                                 "spec": {
-                                  "x": 12,
-                                  "y": 43,
-                                  "width": 6,
-                                  "height": 8,
+                                  "x": 0,
+                                  "y": 8,
+                                  "width": 12,
+                                  "height": 9,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-48"
@@ -11695,10 +11695,10 @@
                               {
                                 "kind": "GridLayoutItem",
                                 "spec": {
-                                  "x": 18,
-                                  "y": 43,
-                                  "width": 6,
-                                  "height": 8,
+                                  "x": 12,
+                                  "y": 8,
+                                  "width": 12,
+                                  "height": 9,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-68"
