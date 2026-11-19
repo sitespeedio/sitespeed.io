@@ -58,7 +58,7 @@
   "links": [],
   "panels": [
     {
-      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"/d/9NDMzFfMk/page-metrics\">page timing dashboard</a> or checkout what the <a href=\"https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html\">HTML result</a> looks like.\n",
+      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"/d/9NDMzFfMk/page-metrics\">page timing dashboard</a> and turn on <i>Go to result</i> there to open the HTML result of a test.\n",
       "datasource": "graphite",
       "description": "",
       "fieldConfig": {
@@ -230,6 +230,86 @@
       ],
       "title": "Sitespeed.io releases",
       "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "Each line is a test (path and test name). Green means that the test sent metrics to Graphite at that time, and the number is how many pages it tested.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "No test",
+                  "color": "transparent"
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 7,
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": false,
+        "rowHeight": 0.8,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "groupByNodes(isNonNull(sitespeed_io.*.*.pageSummary.*.*.*.*.browsertime.statistics.timings.ttfb.median), 'sum', 1, 2)",
+          "textEditor": true
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "Tests the last 24 hours",
+      "type": "state-timeline"
     }
   ],
   "schemaVersion": 25,
