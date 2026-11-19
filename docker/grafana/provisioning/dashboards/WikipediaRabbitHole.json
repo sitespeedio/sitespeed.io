@@ -95,7 +95,7 @@
       },
       "id": 2,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page1.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page1.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page1.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page1.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "9.0.4",
@@ -126,7 +126,7 @@
       },
       "id": 4,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page2.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page2.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page2.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page2.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "9.0.4",
@@ -157,7 +157,7 @@
       },
       "id": 3,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page3.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page3.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page3.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page3.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "9.0.4",
@@ -197,7 +197,7 @@
           },
           "id": 44,
           "options": {
-            "content": "<a href=\"$resulturl/$testname/$domain.$page1.largestContentfulPaint.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page1.largestContentfulPaint.$browser.$connectivity.jpg\"></a>",
+            "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page1.largestContentfulPaint.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page1.largestContentfulPaint.$browser.$connectivity.jpg\"></a>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -227,7 +227,7 @@
           },
           "id": 45,
           "options": {
-            "content": "<a href=\"$resulturl/$testname/$domain.$page2.largestContentfulPaint.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page2.largestContentfulPaint.$browser.$connectivity.jpg\"></a>",
+            "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page2.largestContentfulPaint.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page2.largestContentfulPaint.$browser.$connectivity.jpg\"></a>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -257,7 +257,7 @@
           },
           "id": 46,
           "options": {
-            "content": "<a href=\"$resulturl/$testname/$domain.$page3.largestContentfulPaint.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page3.largestContentfulPaint.$browser.$connectivity.jpg\"></a>",
+            "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page3.largestContentfulPaint.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page3.largestContentfulPaint.$browser.$connectivity.jpg\"></a>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -301,7 +301,7 @@
           },
           "id": 49,
           "options": {
-            "content": "<a href=\"$resulturl/$testname/$domain.$page1.layoutShift.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page1.layoutShift.$browser.$connectivity.jpg\"></a>",
+            "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page1.layoutShift.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page1.layoutShift.$browser.$connectivity.jpg\"></a>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -331,7 +331,7 @@
           },
           "id": 50,
           "options": {
-            "content": "<a href=\"$resulturl/$testname/$domain.$page2.layoutShift.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page2.layoutShift.$browser.$connectivity.jpg\"></a>",
+            "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page2.layoutShift.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page2.layoutShift.$browser.$connectivity.jpg\"></a>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -361,7 +361,7 @@
           },
           "id": 51,
           "options": {
-            "content": "<a href=\"$resulturl/$testname/$domain.$page3.layoutShift.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page3.layoutShift.$browser.$connectivity.jpg\"></a>",
+            "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page3.layoutShift.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page3.layoutShift.$browser.$connectivity.jpg\"></a>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -409,7 +409,7 @@
           },
           "id": 14,
           "options": {
-            "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page1.$browser.$connectivity.mp4\"></video>",
+            "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page1.$browser.$connectivity.mp4\"></video>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -438,7 +438,7 @@
           },
           "id": 15,
           "options": {
-            "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page2.$browser.$connectivity.mp4\"></video>\n",
+            "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page2.$browser.$connectivity.mp4\"></video>\n",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
@@ -467,7 +467,7 @@
           },
           "id": 16,
           "options": {
-            "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page3.$browser.$connectivity.mp4\"></video>",
+            "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page3.$browser.$connectivity.mp4\"></video>",
             "mode": "html"
           },
           "pluginVersion": "9.0.4",
