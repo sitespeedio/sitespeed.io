@@ -124,7 +124,11 @@ If the score is below 0.05, it means that the changes observed in the metric are
 If you see a result marked as no test conducted, it means the analysis couldn’t be done. This usually happens when the data samples are too similar or don't show enough variation to conduct a meaningful analysis.
 
 ## Alert on data in Graphite
-The actual score is automatically sent to Graphite for each metric, which makes it possible to create alert rules in Grafana to alert on regressions. Documentation on how to do that will come soon.
+The actual score is automatically sent to Graphite for each metric, which makes it possible to create alert rules in Grafana to alert on regressions.
+
+The [Grafana in our Docker Compose setup]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#using-docker-compose) has an alert rule for that: *Page got slower* (in *Alerting* > *Alert rules*, folder *sitespeed.io*). Grafana checks it every 5 minutes. When the last comparison of a page in the last 2 hours has metrics that got significantly slower, the rule fires once for each page. The label `name` tells you the page (path, test name, domain, page, browser and connectivity) and the value is the number of metrics that got slower. The rule is in [docker/grafana/provisioning/alerting/regressions.yaml](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/alerting/regressions.yaml). If you use another namespace than `sitespeed_io` (`--graphite.namespace`), change the query there.
+
+To get a message when the rule fires, add a [contact point](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/manage-contact-points/) in Grafana (for example Slack or email) and use it in the default notification policy.
 
 For each metric, sitespeed.io sends the p-value as `compare.metrics.<group>.<metric>.statisticalTestU` and the effect as `compare.metrics.<group>.<metric>.isSignificant`. When the change is significant (the p-value is below 0.05), *isSignificant* is the effect size (Cliff's delta, from -1 to 1): above 0 the metric is higher than the baseline, so it got slower, and below 0 it got faster. When the change is not significant, it is 0. The *Failures and regressions* row in the *Regressions* tab of our [Page metrics dashboard]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#page-metrics) shows them.
 
