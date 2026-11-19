@@ -1,77 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "graphite",
-      "label": "graphite",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "graphite",
-      "pluginName": "Graphite"
-    },
-    {
-      "name": "VAR_BASE",
-      "type": "constant",
-      "label": "base",
-      "value": "sitespeed_io",
-      "description": ""
-    },
-    {
-      "name": "VAR_PATH",
-      "type": "constant",
-      "label": "path",
-      "value": "desktopUserJourney",
-      "description": ""
-    },
-    {
-      "name": "VAR_RESULTURL",
-      "type": "constant",
-      "label": "resulturl",
-      "value": "https://s3.amazonaws.com/results.sitespeed.io",
-      "description": ""
-    },
-    {
-      "name": "VAR_TESTNAME",
-      "type": "constant",
-      "label": "testname",
-      "value": "loginWikipedia",
-      "description": ""
-    },
-    {
-      "name": "VAR_DOMAIN",
-      "type": "constant",
-      "label": "domain",
-      "value": "en_wikipedia_org",
-      "description": ""
-    },
-    {
-      "name": "VAR_PAGE1",
-      "type": "constant",
-      "label": "page1",
-      "value": "LoginPage",
-      "description": ""
-    },
-    {
-      "name": "VAR_PAGE2",
-      "type": "constant",
-      "label": "page2",
-      "value": "LoggedIn",
-      "description": ""
-    },
-    {
-      "name": "VAR_PAGE3",
-      "type": "constant",
-      "label": "page3",
-      "value": "_wiki_Barack_Obama",
-      "description": ""
-    },
-    {
-      "name": "VAR_PAGE4",
-      "type": "constant",
-      "label": "page4",
-      "value": "_wiki_President_of_the_United_States",
-      "description": ""
-    }
-  ],
   "__elements": [],
   "__requires": [
     {
@@ -109,7 +36,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -187,7 +117,7 @@
       },
       "id": 2,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page1.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page1.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page1.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page1.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -213,7 +143,7 @@
       },
       "id": 42,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page2.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page2.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page2.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page2.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -239,7 +169,7 @@
       },
       "id": 43,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page3.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page3.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page3.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page3.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -266,7 +196,7 @@
       },
       "id": 44,
       "options": {
-        "content": "<a href=\"$resulturl/$testname/$domain.$page4.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$domain.$page4.$browser.$connectivity.jpg\"></a>",
+        "content": "<a href=\"$resulturl/$testname/$base.$path.$domain.$page4.$browser.$connectivity.jpg\">\n<img src=\"$resulturl/$testname/$base.$path.$domain.$page4.$browser.$connectivity.jpg\"></a>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -309,7 +239,7 @@
       },
       "id": 14,
       "options": {
-        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page1.$browser.$connectivity.mp4\"></video>",
+        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page1.$browser.$connectivity.mp4\"></video>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -334,7 +264,7 @@
       },
       "id": 45,
       "options": {
-        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page2.$browser.$connectivity.mp4\"></video>",
+        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page2.$browser.$connectivity.mp4\"></video>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -359,7 +289,7 @@
       },
       "id": 46,
       "options": {
-        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page3.$browser.$connectivity.mp4\"></video>",
+        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page3.$browser.$connectivity.mp4\"></video>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -384,7 +314,7 @@
       },
       "id": 47,
       "options": {
-        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$domain.$page4.$browser.$connectivity.mp4\"></video>",
+        "content": "<video controls width=\"100%\"src=\"$resulturl/$testname/$base.$path.$domain.$page4.$browser.$connectivity.mp4\"></video>",
         "mode": "html"
       },
       "pluginVersion": "8.3.3",
@@ -2479,18 +2409,18 @@
       {
         "hide": 2,
         "name": "path",
-        "query": "${VAR_PATH}",
+        "query": "desktop",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_PATH}",
-          "text": "${VAR_PATH}",
+          "value": "desktop",
+          "text": "desktop",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_PATH}",
-            "text": "${VAR_PATH}",
+            "value": "desktop",
+            "text": "desktop",
             "selected": false
           }
         ]
@@ -2609,18 +2539,18 @@
       {
         "hide": 2,
         "name": "testname",
-        "query": "${VAR_TESTNAME}",
+        "query": "loginWikipedia",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_TESTNAME}",
-          "text": "${VAR_TESTNAME}",
+          "value": "loginWikipedia",
+          "text": "loginWikipedia",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_TESTNAME}",
-            "text": "${VAR_TESTNAME}",
+            "value": "loginWikipedia",
+            "text": "loginWikipedia",
             "selected": false
           }
         ]
@@ -2628,18 +2558,18 @@
       {
         "hide": 2,
         "name": "domain",
-        "query": "${VAR_DOMAIN}",
+        "query": "en_wikipedia_org",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_DOMAIN}",
-          "text": "${VAR_DOMAIN}",
+          "value": "en_wikipedia_org",
+          "text": "en_wikipedia_org",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_DOMAIN}",
-            "text": "${VAR_DOMAIN}",
+            "value": "en_wikipedia_org",
+            "text": "en_wikipedia_org",
             "selected": false
           }
         ]
@@ -2647,18 +2577,18 @@
       {
         "hide": 2,
         "name": "page1",
-        "query": "${VAR_PAGE1}",
+        "query": "LoginPage",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_PAGE1}",
-          "text": "${VAR_PAGE1}",
+          "value": "LoginPage",
+          "text": "LoginPage",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_PAGE1}",
-            "text": "${VAR_PAGE1}",
+            "value": "LoginPage",
+            "text": "LoginPage",
             "selected": false
           }
         ]
@@ -2666,18 +2596,18 @@
       {
         "hide": 2,
         "name": "page2",
-        "query": "${VAR_PAGE2}",
+        "query": "LoggedIn",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_PAGE2}",
-          "text": "${VAR_PAGE2}",
+          "value": "LoggedIn",
+          "text": "LoggedIn",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_PAGE2}",
-            "text": "${VAR_PAGE2}",
+            "value": "LoggedIn",
+            "text": "LoggedIn",
             "selected": false
           }
         ]
@@ -2685,18 +2615,18 @@
       {
         "hide": 2,
         "name": "page3",
-        "query": "${VAR_PAGE3}",
+        "query": "_wiki_Barack_Obama",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_PAGE3}",
-          "text": "${VAR_PAGE3}",
+          "value": "_wiki_Barack_Obama",
+          "text": "_wiki_Barack_Obama",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_PAGE3}",
-            "text": "${VAR_PAGE3}",
+            "value": "_wiki_Barack_Obama",
+            "text": "_wiki_Barack_Obama",
             "selected": false
           }
         ]
@@ -2704,18 +2634,18 @@
       {
         "hide": 2,
         "name": "page4",
-        "query": "${VAR_PAGE4}",
+        "query": "_wiki_President_of_the_United_States",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_PAGE4}",
-          "text": "${VAR_PAGE4}",
+          "value": "_wiki_President_of_the_United_States",
+          "text": "_wiki_President_of_the_United_States",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_PAGE4}",
-            "text": "${VAR_PAGE4}",
+            "value": "_wiki_President_of_the_United_States",
+            "text": "_wiki_President_of_the_United_States",
             "selected": false
           }
         ]

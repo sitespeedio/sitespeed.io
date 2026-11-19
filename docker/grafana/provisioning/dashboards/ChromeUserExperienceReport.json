@@ -1,21 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_GRAPHITE",
-      "label": "graphite",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "graphite",
-      "pluginName": "Graphite"
-    },
-    {
-      "name": "VAR_BASE",
-      "type": "constant",
-      "label": "sitespeed_io",
-      "value": "sitespeed_io_crux",
-      "description": ""
-    }
-  ],
   "__elements": {},
   "__requires": [
     {
@@ -160,7 +143,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -217,7 +200,7 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             }
           ],
@@ -227,7 +210,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -284,7 +267,7 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             }
           ],
@@ -333,7 +316,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -390,13 +373,13 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             },
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "hide": false,
               "refCount": 0,
@@ -407,7 +390,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "hide": false,
               "refCount": 0,
@@ -422,7 +405,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -479,7 +462,7 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             }
           ],
@@ -489,7 +472,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -576,13 +559,13 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             },
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "hide": false,
               "refCount": 0,
@@ -593,7 +576,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "hide": false,
               "refCount": 0,
@@ -648,7 +631,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -705,7 +688,7 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             }
           ],
@@ -715,7 +698,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "fieldConfig": {
             "defaults": {
@@ -799,7 +782,7 @@
               "textEditor": false,
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               }
             }
           ],
@@ -824,7 +807,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "description": "",
           "fieldConfig": {
@@ -884,7 +867,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refId": "A",
               "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Interaction to next paint')",
@@ -897,7 +880,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "description": "",
           "fieldConfig": {
@@ -970,7 +953,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "A",
@@ -980,7 +963,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "B",
@@ -990,7 +973,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "C",
@@ -1004,7 +987,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "description": "",
           "fieldConfig": {
@@ -1258,7 +1241,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "A",
@@ -1268,7 +1251,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "B",
@@ -1278,7 +1261,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "C",
@@ -1293,7 +1276,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "description": "",
           "fieldConfig": {
@@ -1547,7 +1530,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "A",
@@ -1557,7 +1540,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "B",
@@ -1567,7 +1550,7 @@
             {
               "datasource": {
                 "type": "graphite",
-                "uid": "${DS_GRAPHITE}"
+                "uid": "graphite"
               },
               "refCount": 0,
               "refId": "C",
@@ -1599,7 +1582,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -1659,7 +1642,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Time To First Byte')",
@@ -1671,7 +1654,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -1731,7 +1714,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
@@ -1743,7 +1726,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -1803,7 +1786,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
@@ -1815,7 +1798,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -1875,7 +1858,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
@@ -1887,7 +1870,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -1975,7 +1958,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Cumulative Layout Shift')",
@@ -1988,7 +1971,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -2076,7 +2059,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
@@ -2089,7 +2072,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -2177,7 +2160,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
@@ -2190,7 +2173,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -2278,7 +2261,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
@@ -2291,7 +2274,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -2364,7 +2347,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -2374,7 +2357,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -2384,7 +2367,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -2398,7 +2381,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -2471,7 +2454,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -2481,7 +2464,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -2491,7 +2474,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -2505,7 +2488,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -2578,7 +2561,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -2588,7 +2571,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -2598,7 +2581,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -2612,7 +2595,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -2685,7 +2668,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -2695,7 +2678,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -2705,7 +2688,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -2719,7 +2702,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -2974,7 +2957,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -2984,7 +2967,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -2994,7 +2977,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -3009,7 +2992,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -3264,7 +3247,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -3274,7 +3257,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -3284,7 +3267,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -3299,7 +3282,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -3554,7 +3537,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -3564,7 +3547,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -3574,7 +3557,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -3589,7 +3572,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -3844,7 +3827,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -3854,7 +3837,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -3864,7 +3847,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -3879,7 +3862,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -4134,7 +4117,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -4144,7 +4127,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -4154,7 +4137,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -4169,7 +4152,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -4424,7 +4407,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -4434,7 +4417,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -4444,7 +4427,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -4459,7 +4442,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -4714,7 +4697,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -4724,7 +4707,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -4734,7 +4717,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -4749,7 +4732,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -5004,7 +4987,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -5014,7 +4997,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -5024,7 +5007,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -5052,7 +5035,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -5112,7 +5095,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Cumulative Layout Shift')",
@@ -5124,7 +5107,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -5184,7 +5167,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
@@ -5196,7 +5179,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -5256,7 +5239,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
@@ -5268,7 +5251,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -5328,7 +5311,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
@@ -5340,7 +5323,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -5413,7 +5396,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -5423,7 +5406,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -5433,7 +5416,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -5447,7 +5430,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -5520,7 +5503,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -5530,7 +5513,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -5540,7 +5523,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -5554,7 +5537,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -5627,7 +5610,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -5637,7 +5620,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -5647,7 +5630,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -5661,7 +5644,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -5734,7 +5717,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -5744,7 +5727,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -5754,7 +5737,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -5768,7 +5751,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -5873,7 +5856,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -5883,7 +5866,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -5893,7 +5876,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -5908,7 +5891,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -6013,7 +5996,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -6023,7 +6006,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -6033,7 +6016,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -6048,7 +6031,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -6153,7 +6136,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -6163,7 +6146,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -6173,7 +6156,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -6188,7 +6171,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -6293,7 +6276,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -6303,7 +6286,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -6313,7 +6296,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -6328,7 +6311,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -6388,7 +6371,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Cumulative Layout Shift')",
@@ -6400,7 +6383,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -6473,7 +6456,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -6483,7 +6466,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -6493,7 +6476,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -6507,7 +6490,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "description": "",
       "fieldConfig": {
@@ -6612,7 +6595,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -6622,7 +6605,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "B",
@@ -6632,7 +6615,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "C",
@@ -6660,7 +6643,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -6747,7 +6730,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
@@ -6761,7 +6744,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -6848,7 +6831,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
@@ -6862,7 +6845,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -6949,7 +6932,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "$base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75",
@@ -6963,7 +6946,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -7050,7 +7033,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refId": "A",
           "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
@@ -7064,7 +7047,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -7151,7 +7134,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -7166,7 +7149,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -7253,7 +7236,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           },
           "refCount": 0,
           "refId": "A",
@@ -7268,7 +7251,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -7356,7 +7339,7 @@
           "textEditor": false,
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           }
         }
       ],
@@ -7367,7 +7350,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -7455,7 +7438,7 @@
           "textEditor": false,
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           }
         }
       ],
@@ -7466,7 +7449,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
+        "uid": "graphite"
       },
       "fieldConfig": {
         "defaults": {
@@ -7555,7 +7538,7 @@
           "textEditor": false,
           "datasource": {
             "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
+            "uid": "graphite"
           }
         }
       ],
@@ -7572,18 +7555,18 @@
         "hide": 2,
         "label": "sitespeed_io",
         "name": "base",
-        "query": "${VAR_BASE}",
+        "query": "sitespeed_io_crux",
         "skipUrlSync": true,
         "type": "constant",
         "current": {
-          "value": "${VAR_BASE}",
-          "text": "${VAR_BASE}",
+          "value": "sitespeed_io_crux",
+          "text": "sitespeed_io_crux",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_BASE}",
-            "text": "${VAR_BASE}",
+            "value": "sitespeed_io_crux",
+            "text": "sitespeed_io_crux",
             "selected": false
           }
         ]
@@ -7592,7 +7575,7 @@
         "current": {},
         "datasource": {
           "type": "graphite",
-          "uid": "${DS_GRAPHITE}"
+          "uid": "graphite"
         },
         "definition": "$base.*",
         "includeAll": false,
@@ -7607,7 +7590,7 @@
         "current": {},
         "datasource": {
           "type": "graphite",
-          "uid": "${DS_GRAPHITE}"
+          "uid": "graphite"
         },
         "definition": "$base.$path.*",
         "includeAll": false,
@@ -7622,7 +7605,7 @@
         "current": {},
         "datasource": {
           "type": "graphite",
-          "uid": "${DS_GRAPHITE}"
+          "uid": "graphite"
         },
         "definition": "$base.$path.$testname.pageSummary.*",
         "includeAll": false,
@@ -7638,7 +7621,7 @@
         "current": {},
         "datasource": {
           "type": "graphite",
-          "uid": "${DS_GRAPHITE}"
+          "uid": "graphite"
         },
         "definition": "$base.$path.$testname.pageSummary.$group.*",
         "includeAll": false,
@@ -7653,7 +7636,7 @@
         "current": {},
         "datasource": {
           "type": "graphite",
-          "uid": "${DS_GRAPHITE}"
+          "uid": "graphite"
         },
         "definition": "$base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.*",
         "includeAll": false,
