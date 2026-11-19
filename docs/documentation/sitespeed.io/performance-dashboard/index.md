@@ -152,14 +152,14 @@ Some rows need a configuration, for example the CPU rows need `--cpu` (Chrome an
 
 The links *Leaderboard* and *Chrome User Experience Report* at the top open these dashboards for the same time range.
 
-The Page metrics dashboard uses the dashboard format of Grafana 13 (dynamic dashboards), because older formats cannot have tabs or hide rows and panels without data. If you use an older Grafana version, use the [Page metrics dashboard for Grafana before 13](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/dashboards-before-grafana-13/PageMetrics.json). It has the same metrics but shows all rows and panels on one page.
+The Page metrics, Leaderboard, Chrome User Experience Report and User journey dashboards use the dashboard format of Grafana 13 (dynamic dashboards), because older formats cannot have tabs or hide rows and panels without data. They need Grafana 13 or later.
 
 ![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
 ## User journey dashboard
 
-The [User journey](https://dashboard.sitespeed.io/d/sitespeedio-user-journey/user-journey) dashboard works for every user journey (scripted test) without changes. Choose the test with *path*, *testname* and *domain*, and the dashboard shows one row for each page: the screenshot and video from the last run, the timings, the Google Web Vitals, the number of requests and the transfer size. Use *page* to show only some of the pages. The order of the rows is alphabetical, not the order of the pages in your script.
+The [User journey](https://dashboard.sitespeed.io/d/sitespeedio-user-journey/user-journey) dashboard works for every user journey (scripted test) without changes. Choose the test with *path*, *testname* and *domain*, and the dashboard shows one tab for each page: the screenshot and video from the last run, the timings, the Google Web Vitals, the number of requests and the transfer size. Use *page* to show only some of the pages. The order of the tabs is alphabetical, not the order of the pages in your script.
 
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.

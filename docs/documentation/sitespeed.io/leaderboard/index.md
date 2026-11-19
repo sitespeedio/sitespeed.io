@@ -24,7 +24,7 @@ The dashboard lists the pages that you test, with the fastest/best URL first (ye
 
 But you really should try out our demo at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000060/leaderboard) to really get a feel for it. The dashboard is generic and will work out of the box. But you can also modify it!
 
-The current version compares Google Web Vitals, visual metrics, how the page is built, CPU time spent metrics, and how many 3rd parties are used. Each bar is the average over the time range you pick in Grafana. Click a bar to open that page in the *Page metrics* dashboard.
+The current version compares Google Web Vitals, visual metrics, how the page is built, CPU time spent metrics, and how many 3rd parties are used. Each tab has a table with one row for each page, and each value is the average over the time range you pick in Grafana. Click a column header to sort the pages, and a page to open it in the *Page metrics* dashboard.
 
 You can (and should) of course edit/change your own version of the dashboard:
 * You can configure the red/yellow/green limits for each dashboard

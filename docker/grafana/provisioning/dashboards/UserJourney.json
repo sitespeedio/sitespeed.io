@@ -1,1006 +1,1451 @@
 {
-  "annotations": {
-    "list": [
+  "apiVersion": "dashboard.grafana.app/v2",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "sitespeedio-user-journey"
+  },
+  "spec": {
+    "annotations": [
       {
-        "builtIn": 1,
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
-        "type": "dashboard"
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "datasource",
+            "version": "v0",
+            "datasource": {
+              "name": "grafana"
+            },
+            "spec": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
+            }
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "builtIn": true,
+          "legacyOptions": {
+            "type": "dashboard"
+          }
+        }
       },
       {
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "enable": false,
-        "iconColor": "rgb(96, 255, 103)",
-        "limit": 100,
-        "name": "Go to result",
-        "showIn": 0,
-        "tags": "$base $path $group $page $browser $connectivity $testname",
-        "target": {
-          "fromAnnotations": true,
-          "queryType": "tags",
-          "tags": [
-            "$base",
-            "$path",
-            "$group",
-            "$page",
-            "$browser",
-            "$connectivity",
-            "$testname"
-          ]
-        },
-        "type": "alert"
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "fromAnnotations": true,
+              "queryType": "tags",
+              "tags": [
+                "$base",
+                "$path",
+                "$group",
+                "$page",
+                "$browser",
+                "$connectivity",
+                "$testname"
+              ]
+            }
+          },
+          "enable": false,
+          "hide": false,
+          "iconColor": "rgb(96, 255, 103)",
+          "name": "Go to result",
+          "legacyOptions": {
+            "limit": 100,
+            "showIn": 0,
+            "tags": "$base $path $group $page $browser $connectivity $testname",
+            "type": "alert"
+          }
+        }
       },
       {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "#8AB8FF",
-        "limit": 100,
-        "name": "sitespeed.io",
-        "showIn": 0,
-        "tags": [
-          "sitespeed.io"
-        ],
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "sitespeed.io"
-          ],
-          "type": "tags"
-        },
-        "type": "tags"
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "datasource",
+            "version": "v0",
+            "datasource": {
+              "name": "grafana"
+            },
+            "spec": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [
+                "sitespeed.io"
+              ],
+              "type": "tags"
+            }
+          },
+          "enable": true,
+          "hide": false,
+          "iconColor": "#8AB8FF",
+          "name": "sitespeed.io",
+          "legacyOptions": {
+            "limit": 100,
+            "showIn": 0,
+            "tags": [
+              "sitespeed.io"
+            ],
+            "type": "tags"
+          }
+        }
       },
       {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": false,
-        "iconColor": "red",
-        "name": "Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": true,
-          "tags": [
-            "alert"
-          ],
-          "type": "tags"
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "datasource",
+            "version": "v0",
+            "datasource": {
+              "name": "grafana"
+            },
+            "spec": {
+              "limit": 100,
+              "matchAny": true,
+              "tags": [
+                "alert"
+              ],
+              "type": "tags"
+            }
+          },
+          "enable": false,
+          "hide": false,
+          "iconColor": "red",
+          "name": "Alerts"
         }
       }
-    ]
-  },
-  "description": "One row for each page in a scripted user journey.",
-  "editable": true,
-  "fiscalYearStartMonth": 0,
-  "graphTooltip": 1,
-  "links": [
-    {
-      "asDropdown": false,
-      "icon": "dashboard",
-      "includeVars": false,
-      "keepTime": true,
-      "tags": [],
-      "targetBlank": false,
-      "title": "Page metrics",
-      "tooltip": "All metrics for one page",
-      "type": "link",
-      "url": "/d/9NDMzFfMk"
-    }
-  ],
-  "panels": [
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 1,
-      "options": {
-        "content": "Each page in the user journey gets its own row. Choose the test with <i>path</i>, <i>testname</i> and <i>domain</i>. The screenshot and video are from the last run and need <code>--copyLatestFilesToBase</code> and <code>--copyLatestFilesToBaseGraphiteNamespace</code>, see <a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/#how-to-get-the-latest-video-screenshot-visible-in-grafana\">the documentation</a>.",
-        "mode": "html"
-      },
-      "title": "",
-      "type": "text"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 2
-      },
-      "id": 2,
-      "panels": [],
-      "repeat": "page",
-      "repeatDirection": "h",
-      "title": "$page",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 0,
-        "y": 3
-      },
-      "id": 3,
-      "options": {
-        "content": "<a href=\"$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.$screenshottype\"><img src=\"$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.$screenshottype\" width=\"100%\"></a>",
-        "mode": "html"
-      },
-      "title": "Screenshot",
-      "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 6,
-        "y": 3
-      },
-      "id": 4,
-      "options": {
-        "content": "<video controls width=\"100%\" src=\"$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.mp4\"></video>",
-        "mode": "html"
-      },
-      "title": "Video",
-      "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
-      },
-      "description": "The $function of the runs in each test.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "drawStyle": "line",
-            "lineWidth": 2,
-            "fillOpacity": 0,
-            "showPoints": "never",
-            "spanNulls": true,
-            "axisPlacement": "auto",
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
+    ],
+    "cursorSync": "Crosshair",
+    "description": "One tab for each page in a scripted user journey.",
+    "editable": true,
+    "elements": {
+      "panel-1": {
+        "kind": "Panel",
+        "spec": {
+          "id": 1,
+          "title": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "min": 0,
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 3
-      },
-      "id": 5,
-      "options": {
-        "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "lastNotNull"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 'TTFB')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "B",
-          "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, 'First Contentful Paint')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "C",
-          "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'Largest Contentful Paint')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "D",
-          "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, 'Speed Index')",
-          "textEditor": true
-        }
-      ],
-      "title": "Timings",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "type": "special",
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "",
+            "spec": {
               "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A",
-                  "color": "transparent"
-                }
+                "content": "Each page in the user journey gets its own tab. Choose the test with <i>path</i>, <i>testname</i> and <i>domain</i>. The screenshot and video are from the last run and need <code>--copyLatestFilesToBase</code> and <code>--copyLatestFilesToBaseGraphiteNamespace</code>, see <a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/#how-to-get-the-latest-video-screenshot-visible-in-grafana\">the documentation</a>.",
+                "mode": "html"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
               }
             }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 1800
-              },
-              {
-                "color": "red",
-                "value": 3000
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 13
-      },
-      "id": 6,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function",
-          "textEditor": true
+          }
         }
-      ],
-      "title": "First Contentful Paint",
-      "type": "stat",
-      "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds."
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
+      "panel-10": {
+        "kind": "Panel",
+        "spec": {
+          "id": 10,
+          "title": "Requests",
+          "description": "Total number of requests for the page.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.pagexray.requests",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
           },
-          "mappings": [
-            {
-              "type": "special",
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "",
+            "spec": {
               "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A",
-                  "color": "transparent"
-                }
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "none",
+                  "mappings": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "N/A",
+                          "color": "transparent"
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "text"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
               }
             }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 2500
-              },
-              {
-                "color": "red",
-                "value": 4000
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 13
-      },
-      "id": 7,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function",
-          "textEditor": true
+          }
         }
-      ],
-      "title": "Largest Contentful Paint",
-      "type": "stat",
-      "description": "Largest contentful paint: when the browser paints the largest image or text block in the viewport. Good is below 2.5 seconds."
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
+      "panel-11": {
+        "kind": "Panel",
+        "spec": {
+          "id": 11,
+          "title": "Transfer size",
+          "description": "Transfer size: the size of all requests over the network, often compressed.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.pagexray.transferSize",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
           },
-          "decimals": 3,
-          "mappings": [
-            {
-              "type": "special",
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "",
+            "spec": {
               "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A",
-                  "color": "transparent"
-                }
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "bytes",
+                  "mappings": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "N/A",
+                          "color": "transparent"
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "text"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
               }
             }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.1
-              },
-              {
-                "color": "red",
-                "value": 0.25
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 13
-      },
-      "id": 8,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function",
-          "textEditor": true
+          }
         }
-      ],
-      "title": "Cumulative Layout Shift",
-      "type": "stat",
-      "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1."
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
+      "panel-3": {
+        "kind": "Panel",
+        "spec": {
+          "id": 3,
+          "title": "Screenshot",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
           },
-          "mappings": [
-            {
-              "type": "special",
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "",
+            "spec": {
               "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A",
-                  "color": "transparent"
-                }
-              }
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+                "content": "<a href=\"$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.$screenshottype\"><img src=\"$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.$screenshottype\" width=\"100%\"></a>",
+                "mode": "html"
               },
-              {
-                "color": "#EAB839",
-                "value": 200
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-4": {
+        "kind": "Panel",
+        "spec": {
+          "id": 4,
+          "title": "Video",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "",
+            "spec": {
+              "options": {
+                "content": "<video controls width=\"100%\" src=\"$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.mp4\"></video>",
+                "mode": "html"
               },
-              {
-                "color": "red",
-                "value": 600
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 13
-      },
-      "id": 9,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function",
-          "textEditor": true
-        }
-      ],
-      "title": "Total Blocking Time",
-      "type": "stat",
-      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "type": "special",
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A",
-                  "color": "transparent"
-                }
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
               }
             }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 16,
-        "y": 13
-      },
-      "id": 10,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.pagexray.requests",
-          "textEditor": true
+          }
         }
-      ],
-      "title": "Requests",
-      "type": "stat",
-      "description": "Total number of requests for the page."
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "graphite"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "type": "special",
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A",
-                  "color": "transparent"
+      "panel-5": {
+        "kind": "Panel",
+        "spec": {
+          "id": 5,
+          "title": "Timings",
+          "description": "The $function of the runs in each test.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 'TTFB')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, 'First Contentful Paint')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'Largest Contentful Paint')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, 'Speed Index')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
                 }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisPlacement": "auto",
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "lineWidth": 2,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
               }
             }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 20,
-        "y": 13
-      },
-      "id": 11,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "graphite"
-          },
-          "refId": "A",
-          "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.pagexray.transferSize",
-          "textEditor": true
+          }
         }
-      ],
-      "title": "Transfer size",
-      "type": "stat",
-      "description": "Transfer size: the size of all requests over the network, often compressed."
-    }
-  ],
-  "refresh": "",
-  "schemaVersion": 38,
-  "tags": [
-    "sitespeed.io",
-    "journey"
-  ],
-  "templating": {
-    "list": [
-      {
-        "hide": 2,
-        "label": "sitespeed_io",
-        "name": "base",
-        "query": "sitespeed_io",
-        "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "sitespeed_io",
-          "text": "sitespeed_io",
-          "selected": false
-        },
-        "options": [
+      },
+      "panel-6": {
+        "kind": "Panel",
+        "spec": {
+          "id": 6,
+          "title": "First Contentful Paint",
+          "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "mappings": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "N/A",
+                          "color": "transparent"
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      },
+                      {
+                        "value": 1800,
+                        "color": "#EAB839"
+                      },
+                      {
+                        "value": 3000,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-7": {
+        "kind": "Panel",
+        "spec": {
+          "id": 7,
+          "title": "Largest Contentful Paint",
+          "description": "Largest contentful paint: when the browser paints the largest image or text block in the viewport. Good is below 2.5 seconds.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "mappings": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "N/A",
+                          "color": "transparent"
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      },
+                      {
+                        "value": 2500,
+                        "color": "#EAB839"
+                      },
+                      {
+                        "value": 4000,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-8": {
+        "kind": "Panel",
+        "spec": {
+          "id": 8,
+          "title": "Cumulative Layout Shift",
+          "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "none",
+                  "decimals": 3,
+                  "mappings": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "N/A",
+                          "color": "transparent"
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      },
+                      {
+                        "value": 0.1,
+                        "color": "#EAB839"
+                      },
+                      {
+                        "value": 0.25,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-9": {
+        "kind": "Panel",
+        "spec": {
+          "id": 9,
+          "title": "Total Blocking Time",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "mappings": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "N/A",
+                          "color": "transparent"
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      },
+                      {
+                        "value": 200,
+                        "color": "#EAB839"
+                      },
+                      {
+                        "value": 600,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "kind": "RowsLayout",
+      "spec": {
+        "rows": [
           {
-            "value": "sitespeed_io",
-            "text": "sitespeed_io",
-            "selected": false
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "",
+              "collapse": false,
+              "hideHeader": true,
+              "layout": {
+                "kind": "GridLayout",
+                "spec": {
+                  "items": [
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 24,
+                        "height": 2,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "",
+              "collapse": false,
+              "hideHeader": true,
+              "layout": {
+                "kind": "TabsLayout",
+                "spec": {
+                  "tabs": [
+                    {
+                      "kind": "TabItem",
+                      "spec": {
+                        "title": "$page",
+                        "repeat": {
+                          "mode": "variable",
+                          "value": "page"
+                        },
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 6,
+                                  "height": 10,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-3"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 6,
+                                  "y": 0,
+                                  "width": 6,
+                                  "height": 10,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-4"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 12,
+                                  "y": 0,
+                                  "width": 12,
+                                  "height": 10,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-5"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 10,
+                                  "width": 4,
+                                  "height": 4,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-6"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 4,
+                                  "y": 10,
+                                  "width": 4,
+                                  "height": 4,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-7"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 8,
+                                  "y": 10,
+                                  "width": 4,
+                                  "height": 4,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-8"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 12,
+                                  "y": 10,
+                                  "width": 4,
+                                  "height": 4,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-9"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 16,
+                                  "y": 10,
+                                  "width": 4,
+                                  "height": 4,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-10"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 20,
+                                  "y": 10,
+                                  "width": 4,
+                                  "height": 4,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-11"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
           }
         ]
-      },
+      }
+    },
+    "links": [
       {
-        "current": {
-          "text": "desktop",
-          "value": "desktop"
-        },
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "definition": "",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "path",
-        "options": [],
-        "query": "$base.*",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query",
-        "useTags": false
-      },
+        "title": "Page metrics",
+        "type": "link",
+        "icon": "dashboard",
+        "tooltip": "All metrics for one page",
+        "url": "/d/9NDMzFfMk",
+        "tags": [],
+        "asDropdown": false,
+        "targetBlank": false,
+        "includeVars": false,
+        "keepTime": true
+      }
+    ],
+    "liveNow": false,
+    "preload": false,
+    "tags": [
+      "sitespeed.io",
+      "journey"
+    ],
+    "timeSettings": {
+      "from": "now-7d",
+      "to": "now",
+      "autoRefresh": "",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "hideTimepicker": false,
+      "fiscalYearStartMonth": 0
+    },
+    "title": "User journey",
+    "variables": [
       {
-        "current": {
-          "text": "userJourney",
-          "value": "userJourney"
-        },
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "definition": "$base.$path.*",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "testname",
-        "options": [],
-        "query": "$base.$path.*",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "text": "en_wikipedia_org",
-          "value": "en_wikipedia_org"
-        },
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "definition": "$base.$path.$testname.pageSummary.*",
-        "hide": 0,
-        "includeAll": false,
-        "label": "domain",
-        "multi": false,
-        "name": "group",
-        "options": [],
-        "query": "$base.$path.$testname.pageSummary.*",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "definition": "$base.$path.$testname.pageSummary.$group.*",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "page",
-        "options": [],
-        "query": "$base.$path.$testname.pageSummary.$group.*",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query",
-        "useTags": false,
-        "description": "The pages in the user journey. Each page gets its own row."
-      },
-      {
-        "current": {},
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "definition": "$base.$path.$testname.pageSummary.$group.*.*",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "browser",
-        "options": [],
-        "query": "$base.$path.$testname.pageSummary.$group.*.*",
-        "refresh": 1,
-        "regex": "chrome|firefox|safari|edge",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {},
-        "datasource": {
-          "type": "graphite",
-          "uid": "graphite"
-        },
-        "definition": "$base.$path.$testname.pageSummary.$group.*.$browser.*",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "connectivity",
-        "options": [],
-        "query": "$base.$path.$testname.pageSummary.$group.*.$browser.*",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "auto": false,
-        "auto_count": 30,
-        "auto_min": "10s",
-        "current": {
-          "selected": false,
-          "text": "median",
-          "value": "median"
-        },
-        "hide": 0,
-        "name": "function",
-        "options": [
-          {
-            "selected": false,
-            "text": "min",
-            "value": "min"
+        "kind": "ConstantVariable",
+        "spec": {
+          "name": "base",
+          "query": "sitespeed_io",
+          "current": {
+            "text": "sitespeed_io",
+            "value": "sitespeed_io"
           },
-          {
-            "selected": false,
-            "text": "mean",
-            "value": "mean"
+          "label": "sitespeed_io",
+          "hide": "hideVariable",
+          "skipUrlSync": false
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "path",
+          "current": {
+            "text": "desktop",
+            "value": "desktop"
           },
-          {
-            "selected": true,
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.*"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "testname",
+          "current": {
+            "text": "userJourney",
+            "value": "userJourney"
+          },
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.*"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "$base.$path.*",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "group",
+          "current": {
+            "text": "en_wikipedia_org",
+            "value": "en_wikipedia_org"
+          },
+          "label": "domain",
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.$testname.pageSummary.*"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "$base.$path.$testname.pageSummary.*",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "page",
+          "current": {
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "description": "The pages in the user journey. Each page gets its own tab.",
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.$testname.pageSummary.$group.*"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "$base.$path.$testname.pageSummary.$group.*",
+          "options": [],
+          "multi": true,
+          "includeAll": true,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "browser",
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.$testname.pageSummary.$group.*.*"
+            }
+          },
+          "regex": "chrome|firefox|safari|edge",
+          "sort": "disabled",
+          "definition": "$base.$path.$testname.pageSummary.$group.*.*",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "connectivity",
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.$testname.pageSummary.$group.*.$browser.*"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "$base.$path.$testname.pageSummary.$group.*.$browser.*",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "IntervalVariable",
+        "spec": {
+          "name": "function",
+          "query": "min, mean,median,p90,max,stddev",
+          "current": {
             "text": "median",
             "value": "median"
           },
-          {
-            "selected": false,
-            "text": "p90",
-            "value": "p90"
-          },
-          {
-            "selected": false,
-            "text": "max",
-            "value": "max"
-          },
-          {
-            "selected": false,
-            "text": "stddev",
-            "value": "stddev"
-          }
-        ],
-        "query": "min, mean,median,p90,max,stddev",
-        "queryValue": "",
-        "refresh": 2,
-        "skipUrlSync": false,
-        "type": "interval"
+          "options": [
+            {
+              "selected": false,
+              "text": "min",
+              "value": "min"
+            },
+            {
+              "selected": false,
+              "text": "mean",
+              "value": "mean"
+            },
+            {
+              "selected": true,
+              "text": "median",
+              "value": "median"
+            },
+            {
+              "selected": false,
+              "text": "p90",
+              "value": "p90"
+            },
+            {
+              "selected": false,
+              "text": "max",
+              "value": "max"
+            },
+            {
+              "selected": false,
+              "text": "stddev",
+              "value": "stddev"
+            }
+          ],
+          "auto": false,
+          "auto_min": "10s",
+          "auto_count": 30,
+          "refresh": "onTimeRangeChanged",
+          "hide": "dontHide",
+          "skipUrlSync": false
+        }
       },
       {
-        "hide": 2,
-        "name": "resulturl",
-        "query": "https://data.sitespeed.io",
-        "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "https://data.sitespeed.io",
-          "text": "https://data.sitespeed.io",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "https://data.sitespeed.io",
+        "kind": "ConstantVariable",
+        "spec": {
+          "name": "resulturl",
+          "query": "https://data.sitespeed.io",
+          "current": {
             "text": "https://data.sitespeed.io",
-            "selected": false
-          }
-        ]
+            "value": "https://data.sitespeed.io"
+          },
+          "hide": "hideVariable",
+          "skipUrlSync": false
+        }
       },
       {
-        "hide": 2,
-        "name": "screenshottype",
-        "query": "jpg",
-        "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "jpg",
-          "text": "jpg",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "jpg",
+        "kind": "ConstantVariable",
+        "spec": {
+          "name": "screenshottype",
+          "query": "jpg",
+          "current": {
             "text": "jpg",
-            "selected": false
-          }
-        ]
+            "value": "jpg"
+          },
+          "hide": "hideVariable",
+          "skipUrlSync": false
+        }
       }
-    ]
-  },
-  "time": {
-    "from": "now-7d",
-    "to": "now"
-  },
-  "timepicker": {},
-  "timezone": "",
-  "title": "User journey",
-  "uid": "sitespeedio-user-journey",
-  "version": 1
+    ],
+    "preferences": {
+      "layout": {
+        "kind": "GridLayout",
+        "spec": {
+          "items": []
+        }
+      }
+    }
+  }
 }
