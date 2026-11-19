@@ -55,7 +55,7 @@
   "links": [],
   "panels": [
     {
-      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://twitter.com/SiteSpeedio\">Twitter</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"https://dashboard.sitespeed.io/d/000000059/page-timing-metrics\">page timing dashboard</a> or checkout what the <a href=\"https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html\">HTML result</a> looks like.\n",
+      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"/d/9NDMzFfMk/page-metrics\">page timing dashboard</a> or checkout what the <a href=\"https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html\">HTML result</a> looks like.\n",
       "datasource": "graphite",
       "description": "",
       "fieldConfig": {
@@ -166,7 +166,7 @@
       "id": 6,
       "options": {
         "afterRender": "",
-        "content": "{{#each data.[0]}}\n<h3><a href=\"{{link}}\" target=\"_blank\">{{title}}</a></h3>\n<p><em>{{date pubDate 'D MMMM YYYY'}}</em></p>\n{{{description}}}\n<hr>\n{{/each}}",
+        "content": "{{#each data.[0]}}\n<h3><a href=\"{{link}}\" target=\"_blank\">{{title}}</a></h3>\n<p><em>{{date pubDate 'D MMMM YYYY'}}</em></p>\n{{releaseNotes description}}\n<hr>\n{{/each}}",
         "contentPartials": [],
         "defaultContent": "The query didn't return any results.",
         "editor": {
@@ -175,9 +175,9 @@
         },
         "editors": [],
         "externalStyles": [],
-        "helpers": "",
+        "helpers": "// The feed has \"- \" items, because the Grafana news panel removes lists.\n// Show the items as a list.\ncontext.handlebars.registerHelper('releaseNotes', notes => {\n  const html = notes\n    .split('\\n')\n    .map(line => (line.startsWith('- ') ? '<li>' + line.slice(2).replace(/<br>$/, '') + '</li>' : line))\n    .join('\\n')\n    .replaceAll(/((?:<li>.*<\\/li>\\n)+)/g, '<ul>\\n$1</ul>\\n');\n  return new context.handlebars.SafeString(html);\n});\n",
         "renderMode": "data",
-        "styles": "",
+        "styles": "li {\n  margin-bottom: 8px;\n}",
         "wrap": false
       },
       "pluginVersion": "6.2.0",
