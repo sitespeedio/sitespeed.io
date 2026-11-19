@@ -16,7 +16,7 @@ twitterdescription: The web performance leaderboard.
 
 {:toc}
 
-The [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard) is the easiest way to compare how you are doing against your competition. To get it going you need [Grafana](https://grafana.com) (6.2 or later) and Graphite. If you don't have that already, you can follow the instructions in [performance dashboard documentation](/documentation/sitespeed.io/performance-dashboard/#using-docker-compose). And to run your tests, you should follow [our example](https://github.com/sitespeedio/dashboard.sitespeed.io).
+The [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard) is the easiest way to compare how you are doing against your competition. To get it going you need [Grafana](https://grafana.com) (13 or later) and Graphite. If you don't have that already, you can follow the instructions in [performance dashboard documentation](/documentation/sitespeed.io/performance-dashboard/#using-docker-compose). And to run your tests, you should follow [our example](https://github.com/sitespeedio/dashboard.sitespeed.io).
 
 The dashboard lists the pages that you test, with the fastest/best URL first (yes, it is a leaderboard!). It looks like this:
 ![Leaderboard example]({{site.baseurl}}/img/leaderboard-example.png)
@@ -24,7 +24,7 @@ The dashboard lists the pages that you test, with the fastest/best URL first (ye
 
 But you really should try out our demo at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000060/leaderboard) to really get a feel for it. The dashboard is generic and will work out of the box. But you can also modify it!
 
-The current version compares visual metrics, how the page is built, CPU time spent metrics, and how many 3rd parties are used.
+The current version compares Google Web Vitals, visual metrics, how the page is built, CPU time spent metrics, and how many 3rd parties are used. Each bar is the average over the time range you pick in Grafana. Click a bar to open that page in the *Page metrics* dashboard.
 
 You can (and should) of course edit/change your own version of the dashboard:
 * You can configure the red/yellow/green limits for each dashboard

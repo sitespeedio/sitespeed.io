@@ -81,16 +81,446 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": "graphite",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
       },
+      "id": 80,
+      "panels": [],
+      "title": "Google Web Vitals [$function, average over the time range]",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "When the first text or image is painted. Good is below 1.8 seconds.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 4000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1800
+              },
+              {
+                "color": "red",
+                "value": 3000
+              }
+            ]
+          },
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 81,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "values": true,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.firstContentfulPaint.$function, 'average')), 4, 5)",
+          "textEditor": true
+        }
+      ],
+      "title": "First Contentful Paint",
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "When the largest image or text block in the viewport is painted. Good is below 2.5 seconds.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 5000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2500
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 82,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "values": true,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.largestContentfulPaint.$function, 'average')), 4, 5)",
+          "textEditor": true
+        }
+      ],
+      "title": "Largest Contentful Paint",
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "How much content moves around while the page loads. Good is below 0.1.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 3,
+          "mappings": [],
+          "max": 0.35,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.1
+              },
+              {
+                "color": "red",
+                "value": 0.25
+              }
+            ]
+          },
+          "unit": "none",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "id": 83,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "values": true,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 'average')), 4, 5)",
+          "textEditor": true
+        }
+      ],
+      "title": "Cumulative Layout Shift",
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "Time when long tasks block the main thread between First Contentful Paint and the end of the test. Good is below 200 ms.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 800,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 200
+              },
+              {
+                "color": "red",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 15
+      },
+      "id": 84,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "values": true,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 'average')), 4, 5)",
+          "textEditor": true
+        }
+      ],
+      "title": "Total Blocking Time",
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "datasource": "graphite",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
       "id": 33,
       "panels": [],
-      "title": "Visual Metrics  [$function]",
+      "title": "Visual Metrics [$function, average over the time range]",
       "type": "row"
     },
     {
@@ -123,15 +553,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 1
+        "y": 30
       },
       "id": 30,
       "links": [],
@@ -139,11 +589,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -152,14 +602,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, 'average'),4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, 'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "First Visual Change",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -191,15 +661,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 1
+        "y": 30
       },
       "id": 59,
       "links": [],
@@ -207,11 +697,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -220,14 +710,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Largest image",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -259,15 +769,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 44
       },
       "id": 31,
       "links": [],
@@ -275,11 +805,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -288,14 +818,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Speed Index",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -327,15 +877,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 44
       },
       "id": 60,
       "links": [],
@@ -343,11 +913,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -356,14 +926,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Visual Readiness",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -372,7 +962,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 58
       },
       "id": 11,
       "panels": [
@@ -383,7 +973,7 @@
             "h": 15,
             "w": 12,
             "x": 0,
-            "y": 30
+            "y": 59
           },
           "id": 12,
           "links": [],
@@ -453,7 +1043,7 @@
             "h": 15,
             "w": 12,
             "x": 12,
-            "y": 30
+            "y": 59
           },
           "id": 14,
           "links": [],
@@ -523,7 +1113,7 @@
             "h": 15,
             "w": 12,
             "x": 0,
-            "y": 45
+            "y": 74
           },
           "id": 1,
           "links": [],
@@ -593,7 +1183,7 @@
             "h": 15,
             "w": 12,
             "x": 12,
-            "y": 45
+            "y": 74
           },
           "id": 13,
           "links": [],
@@ -667,11 +1257,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 59
       },
       "id": 40,
       "panels": [],
-      "title": "CPU  [$function]",
+      "title": "CPU [$function, average over the time range]",
       "type": "row"
     },
     {
@@ -704,15 +1294,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 31
+        "y": 60
       },
       "id": 41,
       "links": [],
@@ -720,11 +1330,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -733,14 +1343,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.categories.scriptEvaluation.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.categories.scriptEvaluation.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "CPU time spent script evaluation",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -772,15 +1402,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 60
       },
       "id": 42,
       "links": [],
@@ -788,11 +1438,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -801,14 +1451,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.categories.paintCompositeRender.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.categories.paintCompositeRender.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "CPU time spent render",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -817,7 +1487,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 74
       },
       "id": 78,
       "panels": [
@@ -851,15 +1521,35 @@
                   }
                 ]
               },
-              "unit": "massg"
+              "unit": "massg",
+              "links": [
+                {
+                  "title": "Open ${__data.fields.Field} in Page metrics",
+                  "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+                  "oneClick": true
+                }
+              ]
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Mean"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__data.fields.Field}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 14,
             "w": 12,
             "x": 0,
-            "y": 46
+            "y": 75
           },
           "id": 79,
           "links": [],
@@ -867,11 +1557,11 @@
             "displayMode": "lcd",
             "orientation": "horizontal",
             "reduceOptions": {
+              "values": true,
               "calcs": [
-                "mean"
+                "lastNotNull"
               ],
-              "fields": "",
-              "values": false
+              "fields": ""
             },
             "showUnfilled": true
           },
@@ -879,17 +1569,37 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.sustainable.co2PerPageView.$function, 'average'),4, 5)",
+              "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.sustainable.co2PerPageView.$function, 'average')), 4, 5)",
               "textEditor": true
             }
           ],
           "timeFrom": null,
           "timeShift": null,
           "title": "Estimated carbon emission per page view",
-          "type": "bargauge"
+          "type": "bargauge",
+          "transformations": [
+            {
+              "id": "reduce",
+              "options": {
+                "reducers": [
+                  "mean"
+                ],
+                "mode": "seriesToRows",
+                "includeTimeField": false
+              }
+            },
+            {
+              "id": "extractFields",
+              "options": {
+                "source": "Field",
+                "format": "regexp",
+                "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+              }
+            }
+          ]
         }
       ],
-      "title": "Carbon emission (enable with --sustainable.enable)",
+      "title": "Carbon emission (enable with --sustainable.enable) (average over the time range)",
       "type": "row"
     },
     {
@@ -899,11 +1609,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 75
       },
       "id": 62,
       "panels": [],
-      "title": "Technical metrics  [$function]",
+      "title": "Technical metrics [$function, average over the time range]",
       "type": "row"
     },
     {
@@ -936,15 +1646,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 47
+        "y": 76
       },
       "id": 64,
       "links": [],
@@ -952,11 +1682,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -965,14 +1695,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.loadEventEnd.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.loadEventEnd.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Load Event End",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -1004,15 +1754,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 47
+        "y": 76
       },
       "id": 63,
       "links": [],
@@ -1020,11 +1790,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -1033,14 +1803,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.fullyLoaded.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.timings.fullyLoaded.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Fully Loaded",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -1049,7 +1839,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 90
       },
       "id": 66,
       "panels": [
@@ -1060,7 +1850,7 @@
             "h": 15,
             "w": 12,
             "x": 0,
-            "y": 62
+            "y": 91
           },
           "id": 67,
           "links": [],
@@ -1130,7 +1920,7 @@
             "h": 15,
             "w": 12,
             "x": 12,
-            "y": 62
+            "y": 91
           },
           "id": 68,
           "links": [],
@@ -1204,11 +1994,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 91
       },
       "id": 44,
       "panels": [],
-      "title": "JavaScript  [$function]",
+      "title": "JavaScript [$function, average over the time range]",
       "type": "row"
     },
     {
@@ -1241,15 +2031,35 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "decbytes",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 63
+        "y": 92
       },
       "id": 45,
       "links": [],
@@ -1257,11 +2067,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -1270,14 +2080,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.contentTypes.javascript.transferSize,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.contentTypes.javascript.transferSize,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "JavaScript Transfer Size",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -1309,15 +2139,35 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "decbytes",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 63
+        "y": 92
       },
       "id": 46,
       "links": [],
@@ -1325,11 +2175,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -1338,14 +2188,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.contentTypes.javascript.contentSize,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.contentTypes.javascript.contentSize,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "JavaScript Content Size",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": false,
@@ -1354,11 +2224,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 77
+        "y": 106
       },
       "id": 35,
       "panels": [],
-      "title": "Requests and size ",
+      "title": "Requests and size (average over the time range)",
       "type": "row"
     },
     {
@@ -1394,7 +2264,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 78
+        "y": 107
       },
       "id": 37,
       "links": [],
@@ -1464,7 +2334,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 88
+        "y": 117
       },
       "id": 38,
       "links": [],
@@ -1503,11 +2373,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 98
+        "y": 127
       },
       "id": 70,
       "panels": [],
-      "title": "Requests and size bars",
+      "title": "Requests and size bars (average over the time range)",
       "type": "row"
     },
     {
@@ -1542,15 +2412,35 @@
                 "value": 100
               }
             ]
-          }
+          },
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 99
+        "y": 128
       },
       "id": 71,
       "links": [],
@@ -1558,11 +2448,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -1571,14 +2461,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.requests,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.requests,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Total number of requests",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -1613,15 +2523,35 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "decbytes",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 99
+        "y": 128
       },
       "id": 72,
       "links": [],
@@ -1629,11 +2559,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -1642,14 +2572,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.transferSize,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.pagexray.transferSize,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Total page transfer size (over the wire)",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -1658,7 +2608,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 113
+        "y": 142
       },
       "id": 7,
       "panels": [
@@ -1668,7 +2618,7 @@
             "h": 16,
             "w": 12,
             "x": 0,
-            "y": 100
+            "y": 129
           },
           "id": 3,
           "links": [],
@@ -1737,7 +2687,7 @@
             "h": 16,
             "w": 12,
             "x": 12,
-            "y": 100
+            "y": 129
           },
           "id": 4,
           "links": [],
@@ -1811,7 +2761,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 114
+        "y": 143
       },
       "id": 74,
       "panels": [
@@ -1841,15 +2791,35 @@
                   }
                 ]
               },
-              "unit": "none"
+              "unit": "none",
+              "links": [
+                {
+                  "title": "Open ${__data.fields.Field} in Page metrics",
+                  "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+                  "oneClick": true
+                }
+              ]
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Mean"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__data.fields.Field}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 14,
             "w": 12,
             "x": 0,
-            "y": 101
+            "y": 130
           },
           "id": 75,
           "links": [],
@@ -1857,11 +2827,11 @@
             "displayMode": "lcd",
             "orientation": "horizontal",
             "reduceOptions": {
+              "values": true,
               "calcs": [
-                "mean"
+                "lastNotNull"
               ],
-              "fields": "",
-              "values": false
+              "fields": ""
             },
             "showUnfilled": true
           },
@@ -1869,14 +2839,34 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.axe.violations.critical.$function, 'average'),4, 5)",
+              "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.axe.violations.critical.$function, 'average')), 4, 5)",
               "textEditor": true
             }
           ],
           "timeFrom": null,
           "timeShift": null,
           "title": "Axe critical violations",
-          "type": "bargauge"
+          "type": "bargauge",
+          "transformations": [
+            {
+              "id": "reduce",
+              "options": {
+                "reducers": [
+                  "mean"
+                ],
+                "mode": "seriesToRows",
+                "includeTimeField": false
+              }
+            },
+            {
+              "id": "extractFields",
+              "options": {
+                "source": "Field",
+                "format": "regexp",
+                "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+              }
+            }
+          ]
         },
         {
           "cacheTimeout": "",
@@ -1908,15 +2898,35 @@
                   }
                 ]
               },
-              "unit": "none"
+              "unit": "none",
+              "links": [
+                {
+                  "title": "Open ${__data.fields.Field} in Page metrics",
+                  "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+                  "oneClick": true
+                }
+              ]
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Mean"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__data.fields.Field}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 14,
             "w": 12,
             "x": 12,
-            "y": 101
+            "y": 130
           },
           "id": 76,
           "links": [],
@@ -1924,11 +2934,11 @@
             "displayMode": "lcd",
             "orientation": "horizontal",
             "reduceOptions": {
+              "values": true,
               "calcs": [
-                "mean"
+                "lastNotNull"
               ],
-              "fields": "",
-              "values": false
+              "fields": ""
             },
             "showUnfilled": true
           },
@@ -1936,17 +2946,37 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.axe.violations.serious.$function, 'average'),4, 5)",
+              "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.axe.violations.serious.$function, 'average')), 4, 5)",
               "textEditor": true
             }
           ],
           "timeFrom": null,
           "timeShift": null,
           "title": "Axe serious violations",
-          "type": "bargauge"
+          "type": "bargauge",
+          "transformations": [
+            {
+              "id": "reduce",
+              "options": {
+                "reducers": [
+                  "mean"
+                ],
+                "mode": "seriesToRows",
+                "includeTimeField": false
+              }
+            },
+            {
+              "id": "extractFields",
+              "options": {
+                "source": "Field",
+                "format": "regexp",
+                "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+              }
+            }
+          ]
         }
       ],
-      "title": "Axe violations",
+      "title": "Axe violations (average over the time range)",
       "type": "row"
     },
     {
@@ -1956,11 +2986,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 115
+        "y": 144
       },
       "id": 48,
       "panels": [],
-      "title": "CPU Long Task  [$function]",
+      "title": "CPU Long Task [$function, average over the time range]",
       "type": "row"
     },
     {
@@ -2003,15 +3033,35 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 116
+        "y": 145
       },
       "id": 49,
       "links": [],
@@ -2019,11 +3069,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -2032,14 +3082,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Number of CPU Long Tasks (average)",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -2071,15 +3141,35 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 116
+        "y": 145
       },
       "id": 50,
       "links": [],
@@ -2087,11 +3177,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -2100,14 +3190,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.durations.max,'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.cpu.longTasks.durations.max,'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Longest long task",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -2116,7 +3226,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 130
+        "y": 159
       },
       "id": 18,
       "panels": [
@@ -2126,7 +3236,7 @@
             "h": 15,
             "w": 8,
             "x": 0,
-            "y": 73
+            "y": 102
           },
           "id": 19,
           "links": [],
@@ -2194,7 +3304,7 @@
             "h": 15,
             "w": 8,
             "x": 8,
-            "y": 73
+            "y": 102
           },
           "id": 20,
           "links": [],
@@ -2262,7 +3372,7 @@
             "h": 15,
             "w": 8,
             "x": 16,
-            "y": 73
+            "y": 102
           },
           "id": 21,
           "links": [],
@@ -2335,11 +3445,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 131
+        "y": 160
       },
       "id": 52,
       "panels": [],
-      "title": "Third parties  [$function]",
+      "title": "Third parties [$function, average over the time range]",
       "type": "row"
     },
     {
@@ -2382,15 +3492,35 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 132
+        "y": 161
       },
       "id": 53,
       "links": [],
@@ -2398,11 +3528,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -2411,14 +3541,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.total.$function, 'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.total.$function, 'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Third party request",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -2450,15 +3600,35 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percent",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 132
+        "y": 161
       },
       "id": 54,
       "links": [],
@@ -2466,11 +3636,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -2479,14 +3649,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.percentage.$function, 'average'), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.thirdparty.requests.percentage.$function, 'average')), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "% third party request",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "collapsed": false,
@@ -2495,11 +3685,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 146
+        "y": 175
       },
       "id": 56,
       "panels": [],
-      "title": "Score",
+      "title": "Score (average over the time range)",
       "type": "row"
     },
     {
@@ -2532,15 +3722,35 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 147
+        "y": 176
       },
       "id": 57,
       "links": [],
@@ -2548,11 +3758,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -2561,14 +3771,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.coach.advice.performance.score, 'average', true),4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.coach.advice.performance.score, 'average', true)), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Performance score",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     },
     {
       "cacheTimeout": "",
@@ -2600,15 +3830,35 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "links": [
+            {
+              "title": "Open ${__data.fields.Field} in Page metrics",
+              "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}",
+              "oneClick": true
+            }
+          ]
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mean"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__data.fields.Field}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 147
+        "y": 176
       },
       "id": 58,
       "links": [],
@@ -2616,11 +3866,11 @@
         "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
+          "values": true,
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "fields": ""
         },
         "showUnfilled": true,
         "text": {}
@@ -2629,14 +3879,34 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.coach.advice.privacy.score, 'average', true),4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.coach.advice.privacy.score, 'average', true)), 4, 5)",
           "textEditor": true
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Privacy score",
-      "type": "bargauge"
+      "type": "bargauge",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/(?<group>[^.]+)\\.(?<page>[^.]+)/"
+          }
+        }
+      ]
     }
   ],
   "schemaVersion": 27,
