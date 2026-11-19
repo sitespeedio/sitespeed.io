@@ -242,6 +242,8 @@ You can send annotations to Graphite to mark when a run happens, so you can go f
 
 You send annotations by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
+The HTML result is uploaded when all pages in the run are tested. If you upload it with S3, GCS, scp or rsync, sitespeed.io sends the annotations after the upload, so the link in an annotation always works. The metrics are sent to Graphite as soon as each page is tested, and each annotation is placed at the time its page was tested.
+
 You can also modify the annotation, append your own text/HTML and add your own tags.
 Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you deem helpful to you. If needed, set a custom title with <code>--graphite.annotationTitle</code> instead of the default title that displays the number of runs of the test.
 
