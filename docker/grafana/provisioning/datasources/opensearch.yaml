@@ -9,11 +9,25 @@ datasources:
     url: http://opensearch:9200
     isDefault: false
     jsonData:
-      database: sitespeed-pagesummary-*,sitespeed-pagexray-*
+      database: sitespeed-pagesummary-*,sitespeed-pagexray-*,sitespeed-compare-*
       timeField: "@timestamp"
       version: "2.0.0"
       flavor: opensearch
       logMessageField: message
       logLevelField: level
+    version: 1
+    editable: true
+  - name: OpenSearch runs
+    type: grafana-opensearch-datasource
+    access: proxy
+    orgId: 1
+    uid: sitespeed-opensearch-runs
+    url: http://opensearch:9200
+    isDefault: false
+    jsonData:
+      database: sitespeed-run-*
+      timeField: "@timestamp"
+      version: "2.0.0"
+      flavor: opensearch
     version: 1
     editable: true
