@@ -16040,7 +16040,7 @@
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
-                        "title": "CPU Long Tasks [Chrome only, enable with --cpu]",
+                        "title": "CPU Long Tasks [Chrome only]",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
@@ -16411,9 +16411,9 @@
                               {
                                 "kind": "ConditionalRenderingVariable",
                                 "spec": {
-                                  "variable": "data_cpu",
+                                  "variable": "data_cpuCategories",
                                   "operator": "equals",
-                                  "value": "cpu"
+                                  "value": "categories"
                                 }
                               }
                             ]
@@ -17823,6 +17823,38 @@
           "regex": "",
           "sort": "disabled",
           "definition": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": false,
+          "description": "Is there data from this tool for the page? Used to show or hide rows."
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "data_cpuCategories",
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "hide": "hideVariable",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": true,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu.categories",
           "options": [],
           "multi": false,
           "includeAll": false,
