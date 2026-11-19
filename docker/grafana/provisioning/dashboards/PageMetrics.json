@@ -5694,7 +5694,18 @@
             }
           ],
           "title": "First Contentful Paint (FCP)",
-          "type": "timeseries"
+          "type": "timeseries",
+          "transformations": [
+            {
+              "id": "regression",
+              "options": {
+                "modelType": "linear",
+                "predictionCount": 100,
+                "xFieldName": "Time",
+                "yFieldName": "FCP"
+              }
+            }
+          ]
         },
         {
           "datasource": {
@@ -5790,7 +5801,18 @@
             }
           ],
           "title": "Cumulative Layout Shift (CLS)",
-          "type": "timeseries"
+          "type": "timeseries",
+          "transformations": [
+            {
+              "id": "regression",
+              "options": {
+                "modelType": "linear",
+                "predictionCount": 100,
+                "xFieldName": "Time",
+                "yFieldName": "CLS"
+              }
+            }
+          ]
         },
         {
           "datasource": {
@@ -5885,7 +5907,18 @@
             }
           ],
           "title": "Largest Contentful Paint (LCP)",
-          "type": "timeseries"
+          "type": "timeseries",
+          "transformations": [
+            {
+              "id": "regression",
+              "options": {
+                "modelType": "linear",
+                "predictionCount": 100,
+                "xFieldName": "Time",
+                "yFieldName": "LCP"
+              }
+            }
+          ]
         },
         {
           "datasource": {
@@ -5980,7 +6013,18 @@
             }
           ],
           "title": "Total Blocking Time (TBT)",
-          "type": "timeseries"
+          "type": "timeseries",
+          "transformations": [
+            {
+              "id": "regression",
+              "options": {
+                "modelType": "linear",
+                "predictionCount": 100,
+                "xFieldName": "Time",
+                "yFieldName": "TBT"
+              }
+            }
+          ]
         }
       ],
       "title": "Google Web Vitals history",
