@@ -4,7 +4,7 @@
         <title>coach release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of coach</description>
-        <lastBuildDate>Thu, 12 Nov 2026 14:46:41 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Nov 2026 19:57:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -48,7 +48,7 @@
             <guid isPermaLink="false">https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0</guid>
             <pubDate>Wed, 11 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Changed</strong><br>
-- We moved out the core functionality to coach-core. This makes it easy to use the Coach in your own code.<br>
+- We moved out the core functionality to <a href="https://github.com/sitespeedio/coach-core">coach-core</a>. This makes it easy to use the Coach in your own code.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
