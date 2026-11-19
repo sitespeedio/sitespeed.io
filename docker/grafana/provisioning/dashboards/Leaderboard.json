@@ -710,7 +710,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(removeEmptySeries(sortBy($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function,'average')), 4, 5)",
+          "target": "aliasByNode(removeEmptySeries(sortBy(removeBelowValue($namespace.$path.$testname.pageSummary.$domains.$pages.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function, 1), 'average')), 4, 5)",
           "textEditor": true
         }
       ],
