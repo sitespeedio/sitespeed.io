@@ -183,7 +183,7 @@
                   "spec": {
                     "options": {
                       "renameByName": {
-                        "name\\metric": "Page"
+                        "name\\metric": "Name"
                       }
                     }
                   }
@@ -193,9 +193,27 @@
                   "group": "extractFields",
                   "spec": {
                     "options": {
-                      "source": "Page",
+                      "source": "Name",
                       "format": "regexp",
                       "regExp": "/^(?<group>[^.]+)\\.(?<page>.+)$/"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "indexByName": {
+                        "group": 0,
+                        "page": 1,
+                        "Name": 2,
+                        "Time to First Byte": 3,
+                        "First Contentful Paint": 4,
+                        "Largest Contentful Paint": 5,
+                        "Cumulative Layout Shift": 6,
+                        "Total Blocking Time": 7
+                      }
                     }
                   }
                 }
@@ -258,14 +276,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Time to first byte: the time from the start of the navigation until the browser gets the first byte of the HTML. Good is below 800 ms."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Time to first byte: the time from the start of the navigation until the browser gets the first byte of the HTML. Good is below 800 ms."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 2000
                       }
                     ]
                   },
@@ -300,14 +328,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "When the first text or image is painted. Good is below 1.8 seconds."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "When the first text or image is painted. Good is below 1.8 seconds."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 4000
                       }
                     ]
                   },
@@ -342,14 +380,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "When the largest image or text block in the viewport is painted. Good is below 2.5 seconds."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "When the largest image or text block in the viewport is painted. Good is below 2.5 seconds."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 5000
                       }
                     ]
                   },
@@ -388,14 +436,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "How much content moves around while the page loads. Good is below 0.1."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "How much content moves around while the page loads. Good is below 0.1."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 0.35
                       }
                     ]
                   },
@@ -430,14 +488,36 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Time when long tasks block the main thread between First Contentful Paint and the end of the test. Good is below 200 ms."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Time when long tasks block the main thread between First Contentful Paint and the end of the test. Good is below 200 ms."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 800
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Name"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hidden",
+                        "value": true
                       }
                     ]
                   },
@@ -448,8 +528,12 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
+                        "id": "displayName",
+                        "value": "Domain"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 180
                       }
                     ]
                   },
@@ -460,29 +544,21 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "Page"
-                    },
-                    "properties": [
+                        "id": "displayName",
+                        "value": "Page"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 240
+                      },
                       {
                         "id": "links",
                         "value": [
                           {
-                            "title": "Open ${__data.fields.Page} in Page metrics",
+                            "title": "Open ${__data.fields.page} in Page metrics",
                             "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}"
                           }
                         ]
-                      },
-                      {
-                        "id": "custom.width",
-                        "value": 300
                       }
                     ]
                   }
@@ -623,7 +699,7 @@
                   "spec": {
                     "options": {
                       "renameByName": {
-                        "name\\metric": "Page"
+                        "name\\metric": "Name"
                       }
                     }
                   }
@@ -633,9 +709,26 @@
                   "group": "extractFields",
                   "spec": {
                     "options": {
-                      "source": "Page",
+                      "source": "Name",
                       "format": "regexp",
                       "regExp": "/^(?<group>[^.]+)\\.(?<page>.+)$/"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "indexByName": {
+                        "group": 0,
+                        "page": 1,
+                        "Name": 2,
+                        "First Visual Change": 3,
+                        "Speed Index": 4,
+                        "Largest Image": 5,
+                        "Visual Readiness": 6
+                      }
                     }
                   }
                 }
@@ -698,14 +791,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The first visual change is when something for the first time is painted within the current viewport. It is calculated by analyzing a video recording of the screen."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The first visual change is when something for the first time is painted within the current viewport. It is calculated by analyzing a video recording of the screen."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 3000
                       }
                     ]
                   },
@@ -740,14 +843,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation [here](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index)."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation [here](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index)."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 8000
                       }
                     ]
                   },
@@ -782,14 +895,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The largest image is the time when the largest image within the viewport is painted and on its final position. It is calculated by analyzing a video recording of the screen."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The largest image is the time when the largest image within the viewport is painted and on its final position. It is calculated by analyzing a video recording of the screen."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 10000
                       }
                     ]
                   },
@@ -824,14 +947,36 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Visual readiness is the time between the first visual change and the last visual change within the viewport. It is calculated by analyzing a video recording of the screen."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Visual readiness is the time between the first visual change and the last visual change within the viewport. It is calculated by analyzing a video recording of the screen."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 10000
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Name"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hidden",
+                        "value": true
                       }
                     ]
                   },
@@ -842,8 +987,12 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
+                        "id": "displayName",
+                        "value": "Domain"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 180
                       }
                     ]
                   },
@@ -854,29 +1003,21 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "Page"
-                    },
-                    "properties": [
+                        "id": "displayName",
+                        "value": "Page"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 240
+                      },
                       {
                         "id": "links",
                         "value": [
                           {
-                            "title": "Open ${__data.fields.Page} in Page metrics",
+                            "title": "Open ${__data.fields.page} in Page metrics",
                             "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}"
                           }
                         ]
-                      },
-                      {
-                        "id": "custom.width",
-                        "value": 300
                       }
                     ]
                   }
@@ -1351,7 +1492,7 @@
                   "spec": {
                     "options": {
                       "renameByName": {
-                        "name\\metric": "Page"
+                        "name\\metric": "Name"
                       }
                     }
                   }
@@ -1361,9 +1502,24 @@
                   "group": "extractFields",
                   "spec": {
                     "options": {
-                      "source": "Page",
+                      "source": "Name",
                       "format": "regexp",
                       "regExp": "/^(?<group>[^.]+)\\.(?<page>.+)$/"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "indexByName": {
+                        "group": 0,
+                        "page": 1,
+                        "Name": 2,
+                        "Load Event End": 3,
+                        "Fully Loaded": 4
+                      }
                     }
                   }
                 }
@@ -1426,14 +1582,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Load Event End is when the load event end event fires in the Navigation Timing API"
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Load Event End is when the load event end event fires in the Navigation Timing API"
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 15000
                       }
                     ]
                   },
@@ -1468,14 +1634,36 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Fully loaded time when the last of all assets is downloaded on the page."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Fully loaded time when the last of all assets is downloaded on the page."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 20000
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Name"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hidden",
+                        "value": true
                       }
                     ]
                   },
@@ -1486,8 +1674,12 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
+                        "id": "displayName",
+                        "value": "Domain"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 180
                       }
                     ]
                   },
@@ -1498,29 +1690,21 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "Page"
-                    },
-                    "properties": [
+                        "id": "displayName",
+                        "value": "Page"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 240
+                      },
                       {
                         "id": "links",
                         "value": [
                           {
-                            "title": "Open ${__data.fields.Page} in Page metrics",
+                            "title": "Open ${__data.fields.page} in Page metrics",
                             "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}"
                           }
                         ]
-                      },
-                      {
-                        "id": "custom.width",
-                        "value": 300
                       }
                     ]
                   }
@@ -1847,7 +2031,7 @@
                   "spec": {
                     "options": {
                       "renameByName": {
-                        "name\\metric": "Page"
+                        "name\\metric": "Name"
                       }
                     }
                   }
@@ -1857,9 +2041,26 @@
                   "group": "extractFields",
                   "spec": {
                     "options": {
-                      "source": "Page",
+                      "source": "Name",
                       "format": "regexp",
                       "regExp": "/^(?<group>[^.]+)\\.(?<page>.+)$/"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "indexByName": {
+                        "group": 0,
+                        "page": 1,
+                        "Name": 2,
+                        "Long tasks": 3,
+                        "Longest long task": 4,
+                        "Script evaluation": 5,
+                        "Rendering": 6
+                      }
                     }
                   }
                 }
@@ -1926,14 +2127,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The average number of CPU Long Tasks per page. A CPU long Task is by default a CPU task that takes longer than 50 ms to run. This metrics is Chrome only at the moment."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The average number of CPU Long Tasks per page. A CPU long Task is by default a CPU task that takes longer than 50 ms to run. This metrics is Chrome only at the moment."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 8
                       }
                     ]
                   },
@@ -1968,14 +2179,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "This is the longest CPU task for each page (if they are over 50 ms long). This metrics is Chrome only at the moment."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "This is the longest CPU task for each page (if they are over 50 ms long). This metrics is Chrome only at the moment."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 1000
                       }
                     ]
                   },
@@ -2010,14 +2231,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "CPU time spent evaluating JavaScript. Calculated using [Tracium](https://github.com/aslushnikov/tracium). This is a Chrome only metric at the moment."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "CPU time spent evaluating JavaScript. Calculated using [Tracium](https://github.com/aslushnikov/tracium). This is a Chrome only metric at the moment."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 2500
                       }
                     ]
                   },
@@ -2052,14 +2283,36 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "CPU time spent rendering the page. Calculated using [Tracium](https://github.com/aslushnikov/tracium). This is a Chrome only metric at the moment."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "CPU time spent rendering the page. Calculated using [Tracium](https://github.com/aslushnikov/tracium). This is a Chrome only metric at the moment."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 800
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Name"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hidden",
+                        "value": true
                       }
                     ]
                   },
@@ -2070,8 +2323,12 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
+                        "id": "displayName",
+                        "value": "Domain"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 180
                       }
                     ]
                   },
@@ -2082,29 +2339,21 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "Page"
-                    },
-                    "properties": [
+                        "id": "displayName",
+                        "value": "Page"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 240
+                      },
                       {
                         "id": "links",
                         "value": [
                           {
-                            "title": "Open ${__data.fields.Page} in Page metrics",
+                            "title": "Open ${__data.fields.page} in Page metrics",
                             "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}"
                           }
                         ]
-                      },
-                      {
-                        "id": "custom.width",
-                        "value": 300
                       }
                     ]
                   }
@@ -2559,7 +2808,7 @@
                   "spec": {
                     "options": {
                       "renameByName": {
-                        "name\\metric": "Page"
+                        "name\\metric": "Name"
                       }
                     }
                   }
@@ -2569,9 +2818,28 @@
                   "group": "extractFields",
                   "spec": {
                     "options": {
-                      "source": "Page",
+                      "source": "Name",
                       "format": "regexp",
                       "regExp": "/^(?<group>[^.]+)\\.(?<page>.+)$/"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "indexByName": {
+                        "group": 0,
+                        "page": 1,
+                        "Name": 2,
+                        "Requests": 3,
+                        "Transfer size": 4,
+                        "JavaScript transfer size": 5,
+                        "JavaScript content size": 6,
+                        "Third-party requests": 7,
+                        "Third-party requests (%)": 8
+                      }
                     }
                   }
                 }
@@ -2637,14 +2905,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Total number of requests for the full page."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Total number of requests for the full page."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 500
                       }
                     ]
                   },
@@ -2682,14 +2960,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Total page weight (compressed over the wire)."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Total page weight (compressed over the wire)."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 5000000
                       }
                     ]
                   },
@@ -2724,14 +3012,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Transfer size of this content type: the size over the network, often compressed."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Transfer size of this content type: the size over the network, often compressed."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 2000000
                       }
                     ]
                   },
@@ -2766,14 +3064,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The JavaScript size unpacked."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The JavaScript size unpacked."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 6000000
                       }
                     ]
                   },
@@ -2812,14 +3120,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Third party requests are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Third party requests are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 200
                       }
                     ]
                   },
@@ -2854,14 +3172,36 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Third party % are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Third party % are calculated using the [Third party web](https://github.com/patrickhulce/third-party-web) library."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Name"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hidden",
+                        "value": true
                       }
                     ]
                   },
@@ -2872,8 +3212,12 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
+                        "id": "displayName",
+                        "value": "Domain"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 180
                       }
                     ]
                   },
@@ -2884,29 +3228,21 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "Page"
-                    },
-                    "properties": [
+                        "id": "displayName",
+                        "value": "Page"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 240
+                      },
                       {
                         "id": "links",
                         "value": [
                           {
-                            "title": "Open ${__data.fields.Page} in Page metrics",
+                            "title": "Open ${__data.fields.page} in Page metrics",
                             "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}"
                           }
                         ]
-                      },
-                      {
-                        "id": "custom.width",
-                        "value": 300
                       }
                     ]
                   }
@@ -3252,7 +3588,7 @@
                   "spec": {
                     "options": {
                       "renameByName": {
-                        "name\\metric": "Page"
+                        "name\\metric": "Name"
                       }
                     }
                   }
@@ -3262,9 +3598,27 @@
                   "group": "extractFields",
                   "spec": {
                     "options": {
-                      "source": "Page",
+                      "source": "Name",
                       "format": "regexp",
                       "regExp": "/^(?<group>[^.]+)\\.(?<page>.+)$/"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "indexByName": {
+                        "group": 0,
+                        "page": 1,
+                        "Name": 2,
+                        "Coach performance score": 3,
+                        "Coach privacy score": 4,
+                        "Axe critical": 5,
+                        "Axe serious": 6,
+                        "CO2 per page view": 7
+                      }
                     }
                   }
                 }
@@ -3331,14 +3685,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The performance score (0-100) calculated by the [Coach](https://www.sitespeed.io/documentation/coach/) using performance best practices."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The performance score (0-100) calculated by the [Coach](https://www.sitespeed.io/documentation/coach/) using performance best practices."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
                       }
                     ]
                   },
@@ -3377,14 +3741,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The privacy score (0-100) calculated by the [Coach](https://www.sitespeed.io/documentation/coach/) using user privacy best practices."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The privacy score (0-100) calculated by the [Coach](https://www.sitespeed.io/documentation/coach/) using user privacy best practices."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
                       }
                     ]
                   },
@@ -3419,14 +3793,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 20
                       }
                     ]
                   },
@@ -3465,14 +3849,24 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 20
                       }
                     ]
                   },
@@ -3507,14 +3901,36 @@
                         }
                       },
                       {
+                        "id": "description",
+                        "value": "The estimated carbon emission is calculated using the sustainable web plugin, developed together with the Green Web Foundation."
+                      },
+                      {
                         "id": "custom.cellOptions",
                         "value": {
-                          "type": "color-text"
+                          "type": "gauge",
+                          "mode": "basic",
+                          "valueDisplayMode": "text"
                         }
                       },
                       {
-                        "id": "description",
-                        "value": "The estimated carbon emission is calculated using the sustainable web plugin, developed together with the Green Web Foundation."
+                        "id": "min",
+                        "value": 0
+                      },
+                      {
+                        "id": "max",
+                        "value": 15
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Name"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hidden",
+                        "value": true
                       }
                     ]
                   },
@@ -3525,8 +3941,12 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
+                        "id": "displayName",
+                        "value": "Domain"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 180
                       }
                     ]
                   },
@@ -3537,29 +3957,21 @@
                     },
                     "properties": [
                       {
-                        "id": "custom.hidden",
-                        "value": true
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "Page"
-                    },
-                    "properties": [
+                        "id": "displayName",
+                        "value": "Page"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 240
+                      },
                       {
                         "id": "links",
                         "value": [
                           {
-                            "title": "Open ${__data.fields.Page} in Page metrics",
+                            "title": "Open ${__data.fields.page} in Page metrics",
                             "url": "/d/9NDMzFfMk?${path:queryparam}&var-testname=${testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${browser}&var-connectivity=${connectivity}&var-function=${function}&${__url_time_range}"
                           }
                         ]
-                      },
-                      {
-                        "id": "custom.width",
-                        "value": 300
                       }
                     ]
                   }
