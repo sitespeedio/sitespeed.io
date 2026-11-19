@@ -137,7 +137,11 @@ The dashboard looks something like this:
 
 And scroll down to see more, do not forget to click on the rows to expand and see all metrics.
 
-The timing tiles at the top show how much each metric changed from the start to the end of the time range. The graphs in the *Google Web Vitals history* row also show a trendline, so you can see if a metric gets better or worse over the time range. The *Failures and regressions* row shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows the metrics that had a significant change.
+The timing tiles at the top show how much each metric changed from the start to the end of the time range. The graphs in the *Google Web Vitals history* row also show a trendline, so you can see if a metric gets better or worse over the time range. The *Failures and regressions* row shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower or faster in the last comparison, which metrics they are, and the changes over time.
+
+Some rows need a configuration, for example the CPU rows need `--cpu`, the carbon emission row needs `--sustainable.enable` and the regression panels need `--compare.id`. In those rows, a panel without data is not shown, so you only see the panels for the data you collect. A row without data still shows its title, and its description if it has one.
+
+The Page metrics dashboard uses the dashboard format of Grafana 13 (dynamic dashboards), because older formats cannot hide panels without data. If you use an older Grafana version, use the [Page metrics dashboard for Grafana before 13](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/dashboards-before-grafana-13/PageMetrics.json). It has the same panels but shows all of them.
 
 ![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
 {: .img-thumbnail }
