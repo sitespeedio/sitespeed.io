@@ -127,7 +127,7 @@ If you choose one of the values in a template, the rest will be populated. You c
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page metrics
-You should use these as example dashboards to inspire what you can do. We try to squeeze all the data into these dashboards and you can view those by expanding each row.
+You should use these as example dashboards to inspire what you can do. We try to squeeze all the data into these dashboards.
 
 The [page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics) shows metrics for a specific URL/page.
 
@@ -135,13 +135,22 @@ The dashboard looks something like this:
 ![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
-And scroll down to see more, do not forget to click on the rows to expand and see all metrics.
+The dashboard has tabs: *Overview*, *Google Web Vitals*, *Timings*, *Size and requests*, *CPU*, *Quality*, *Test stability* and *Regressions*. Grafana only gets the data for a tab when you open it, so the dashboard loads faster than when all rows were on one page.
 
-The timing tiles at the top show how much each metric changed from the start to the end of the time range. The graphs in the *Google Web Vitals history* row also show a trendline, so you can see if a metric gets better or worse over the time range. The *Failures and regressions* row shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower or faster in the last comparison, which metrics they are, and the changes over time.
+The timing tiles in the overview show how much each metric changed from the start to the end of the time range. The *Google Web Vitals* tab starts with a status strip, where each metric is green (good), yellow (needs improvement) or red (poor) over time, using the limits from Google. Each graph has the same colors in the background and shows:
+* each test (the median of the runs, or what you choose in *function*), with a band from the fastest to the slowest run, so you can see if a change is bigger than the difference between runs.
+* the average of the last 24 hours and the same average one week earlier.
+* a trendline, so you can see if a metric gets better or worse over the time range.
 
-Some rows need a configuration, for example the CPU rows need `--cpu`, the carbon emission row needs `--sustainable.enable` and the regression panels need `--compare.id`. In those rows, a panel without data is not shown, so you only see the panels for the data you collect. A row without data still shows its title, and its description if it has one.
+If you also collect [Chrome User Experience Report]({{site.baseurl}}/documentation/sitespeed.io/crux/) data with `--crux.key` in the same test, the tab shows your lab metrics and the field metrics (75th percentile) from real Chrome users in the same graph.
 
-The Page metrics dashboard uses the dashboard format of Grafana 13 (dynamic dashboards), because older formats cannot hide panels without data. If you use an older Grafana version, use the [Page metrics dashboard for Grafana before 13](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/dashboards-before-grafana-13/PageMetrics.json). It has the same panels but shows all of them.
+The *Regressions* tab shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower or faster in the last comparison, which metrics they are, and the changes over time.
+
+Some rows need a configuration, for example the CPU rows need `--cpu` (Chrome and Edge), the axe rows need `--axe.enable`, the carbon emission row needs `--sustainable.enable` and the regression panels need `--compare.id`. The dashboard only shows a row when the test has data for it, and the *CPU* tab only when there is CPU data. In the rows, a panel without data is not shown, so you only see the panels for the data you collect.
+
+The links *Leaderboard* and *Chrome User Experience Report* at the top open these dashboards for the same time range.
+
+The Page metrics dashboard uses the dashboard format of Grafana 13 (dynamic dashboards), because older formats cannot have tabs or hide rows and panels without data. If you use an older Grafana version, use the [Page metrics dashboard for Grafana before 13](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/dashboards-before-grafana-13/PageMetrics.json). It has the same metrics but shows all rows and panels on one page.
 
 ![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
 {: .img-thumbnail }
