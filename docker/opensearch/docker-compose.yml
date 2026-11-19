@@ -1,6 +1,6 @@
 services:
   opensearch:
-    image: opensearchproject/opensearch:2
+    image: opensearchproject/opensearch:2.19.7
     environment:
       - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
