@@ -58,6 +58,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "Largest contentful paint: when the browser paints the largest image or text block in the viewport. Good is below 2.5 seconds.",
       "title": "Largest Contentful Paint (LCP)",
       "type": "timeseries"
     },
@@ -96,6 +97,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1.",
       "title": "Cumulative Layout Shift (CLS)",
       "type": "timeseries"
     },
@@ -133,6 +135,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "Interaction to next paint: the time from a user interaction until the browser paints the next frame. A test only has this metric if the test script interacts with the page.",
       "title": "Interaction to Next Paint (INP)",
       "type": "timeseries"
     },
@@ -180,6 +183,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "Time to first byte: the time from the start of the navigation until the browser gets the first byte of the HTML. It includes redirects, DNS, connect and the server time.",
       "title": "Time to First Byte (TTFB)",
       "type": "timeseries"
     },
@@ -209,6 +213,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds.",
       "title": "First Contentful Paint (FCP)",
       "type": "timeseries"
     },
@@ -249,6 +254,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "When the last request of the page has finished, from the HAR file. Third-party requests that load late make this number change much.",
       "title": "Fully Loaded",
       "type": "timeseries"
     },
@@ -285,6 +291,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "Speed index: the average time when the content in the viewport is visible. Lower is better. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
       "title": "Speed Index",
       "type": "timeseries"
     },
@@ -325,6 +332,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "First visual change: when something is painted in the viewport for the first time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
       "title": "Visual Change",
       "type": "timeseries"
     },
@@ -354,6 +362,7 @@
           "timeField": "@timestamp"
         }
       ],
+      "description": "Perceptual speed index: like Speed index, but it uses how similar each frame is to the last frame. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
       "title": "Perceptual Speed Index",
       "type": "timeseries"
     },
@@ -391,6 +400,7 @@
           "index": "sitespeed-pagexray-*"
         }
       ],
+      "description": "Transfer size: the size of all requests over the network, often compressed.",
       "title": "Transfer Size",
       "type": "timeseries"
     },
@@ -422,6 +432,7 @@
           "index": "sitespeed-pagexray-*"
         }
       ],
+      "description": "Total number of requests for the page.",
       "title": "Requests",
       "type": "timeseries"
     }

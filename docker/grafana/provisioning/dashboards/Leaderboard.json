@@ -1845,7 +1845,7 @@
       "panels": [
         {
           "datasource": "graphite",
-          "description": "",
+          "description": "When the load event ends: when the browser has downloaded and run all the resources in the HTML.",
           "gridPos": {
             "h": 15,
             "w": 12,
@@ -1915,7 +1915,7 @@
         },
         {
           "datasource": "graphite",
-          "description": "",
+          "description": "When the last request of the page has finished, from the HAR file. Third-party requests that load late make this number change much.",
           "gridPos": {
             "h": 15,
             "w": 12,
@@ -2004,7 +2004,7 @@
     {
       "cacheTimeout": "",
       "datasource": "graphite",
-      "description": "",
+      "description": "Transfer size of this content type: the size over the network, often compressed.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2679,7 +2679,8 @@
             }
           ],
           "title": "Requests",
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Total number of requests for the page."
         },
         {
           "datasource": "graphite",
@@ -2748,7 +2749,8 @@
             }
           ],
           "title": "Total transfer size",
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Transfer size: the size of all requests over the network, often compressed."
         }
       ],
       "title": "Requests and size history",
@@ -2768,7 +2770,7 @@
         {
           "cacheTimeout": "",
           "datasource": "graphite",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2871,7 +2873,7 @@
         {
           "cacheTimeout": "",
           "datasource": "graphite",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3296,7 +3298,8 @@
             }
           ],
           "title": "Longest CPU Long Tasks",
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "The longest long task. During a long task, the browser cannot respond to user input. Chrome only."
         },
         {
           "datasource": "graphite",
@@ -3364,7 +3367,8 @@
             }
           ],
           "title": "Number of CPU Long Tasks",
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
         },
         {
           "datasource": "graphite",
@@ -3432,7 +3436,8 @@
             }
           ],
           "title": "Number of CPU Long Tasks before First Paint",
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Number of long tasks (50 ms or more) before first paint. Chrome only."
         }
       ],
       "title": "CPU Long Task history",
@@ -3913,7 +3918,8 @@
   "style": "dark",
   "tags": [
     "leaderboard",
-    "pages"
+    "pages",
+    "sitespeed.io"
   ],
   "templating": {
     "list": [
@@ -4164,5 +4170,6 @@
   "timezone": "",
   "title": "Leaderboard",
   "uid": "000000060",
-  "version": 2
+  "version": 2,
+  "description": "Compare the pages in a test. Click a bar to open the page in Page metrics."
 }

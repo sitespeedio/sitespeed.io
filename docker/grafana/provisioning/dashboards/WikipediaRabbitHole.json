@@ -621,7 +621,8 @@
           "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.$function, 11)"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "First visual change: when something is painted in the viewport for the first time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics)."
     },
     {
       "datasource": {
@@ -722,7 +723,8 @@
           "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.$function, 11)"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "First visual change: when something is painted in the viewport for the first time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics)."
     },
     {
       "datasource": {
@@ -823,7 +825,8 @@
           "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.$function, 11)"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "First visual change: when something is painted in the viewport for the first time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics)."
     },
     {
       "collapsed": true,
@@ -927,7 +930,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds."
         },
         {
           "datasource": {
@@ -1021,7 +1025,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds."
         },
         {
           "datasource": {
@@ -1115,7 +1120,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.googleWebVitals.ttfb.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds."
         },
         {
           "datasource": {
@@ -1189,7 +1195,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1."
         },
         {
           "datasource": {
@@ -1263,7 +1270,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1."
         },
         {
           "datasource": {
@@ -1337,7 +1345,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.googleWebVitals.cumulativeLayoutShift.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1."
         },
         {
           "datasource": {
@@ -1411,7 +1420,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
         },
         {
           "datasource": {
@@ -1485,7 +1495,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
         },
         {
           "datasource": {
@@ -1559,7 +1570,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.googleWebVitals.totalBlockingTime.$function, 11)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
         }
       ],
       "title": "Google Web Vitals",
@@ -1657,7 +1669,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'Total Blocking Time')"
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -1725,7 +1738,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Long Tasks')"
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
     },
     {
       "datasource": {
@@ -1793,7 +1807,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'Total Blocking Time')"
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -1861,7 +1876,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Long Tasks')"
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
     },
     {
       "datasource": {
@@ -1929,7 +1945,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'Total Blocking Time')"
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -1997,7 +2014,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Long Tasks')"
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
     },
     {
       "collapsed": false,
@@ -2095,7 +2113,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'Total Blocking Time')"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -2167,7 +2186,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Long Tasks')"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
     },
     {
       "datasource": {
@@ -2239,7 +2259,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'Total Blocking Time')"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -2311,7 +2332,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Long Tasks')"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
     },
     {
       "datasource": {
@@ -2383,7 +2405,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.cpu.longTasks.totalBlockingTime.$function, 'Total Blocking Time')"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -2455,7 +2478,8 @@
           "target": "alias($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.browsertime.statistics.cpu.longTasks.tasks.$function, 'Long Tasks')"
         }
       ],
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only."
     },
     {
       "collapsed": true,
@@ -2542,7 +2566,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page1.$browser.$connectivity.pagexray.contentTypes.*.transferSize, 10)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Transfer size for each content type: the size over the network, often compressed."
         },
         {
           "datasource": {
@@ -2615,7 +2640,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page2.$browser.$connectivity.pagexray.contentTypes.*.transferSize, 10)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Transfer size for each content type: the size over the network, often compressed."
         },
         {
           "datasource": {
@@ -2688,7 +2714,8 @@
               "target": "aliasByNode($base.$path.$testname.pageSummary.$domain.$page3.$browser.$connectivity.pagexray.contentTypes.*.transferSize, 10)"
             }
           ],
-          "type": "timeseries"
+          "type": "timeseries",
+          "description": "Transfer size for each content type: the size over the network, often compressed."
         }
       ],
       "targets": [
@@ -2706,7 +2733,11 @@
   ],
   "schemaVersion": 36,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "sitespeed.io",
+    "journey",
+    "example"
+  ],
   "templating": {
     "list": [
       {
@@ -2910,5 +2941,6 @@
   "title": "Wikipedia Rabbit Hole",
   "uid": "d-pdqGBGz",
   "version": 7,
-  "weekStart": ""
+  "weekStart": "",
+  "description": "Example user journey: click through Wikipedia pages on desktop."
 }

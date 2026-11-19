@@ -261,7 +261,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Size of the JavaScript heap at the end of the test. Chrome only."
         }
       },
       "panel-106": {
@@ -393,7 +394,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Transfer size of this content type: the size over the network, often compressed."
         }
       },
       "panel-107": {
@@ -524,7 +526,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Transfer size of this content type: the size over the network, often compressed."
         }
       },
       "panel-108": {
@@ -655,7 +658,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Transfer size of this content type: the size over the network, often compressed."
         }
       },
       "panel-109": {
@@ -766,7 +770,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Content size of this content type: the size after the browser uncompressed it."
         }
       },
       "panel-111": {
@@ -774,7 +779,7 @@
         "spec": {
           "id": 111,
           "title": "Console error and warnings",
-          "description": "",
+          "description": "Number of errors and warnings in the browser console.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -1667,7 +1672,7 @@
         "spec": {
           "id": 128,
           "title": "TTFB/Server response time",
-          "description": "",
+          "description": "Time to first byte: the time from the start of the navigation until the browser gets the first byte of the HTML. It includes redirects, DNS, connect and the server time.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -1817,7 +1822,7 @@
         "spec": {
           "id": 130,
           "title": "Fully Loaded",
-          "description": "",
+          "description": "When the last request of the page has finished, from the HAR file. Third-party requests that load late make this number change much.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -2351,7 +2356,8 @@
                 ]
               }
             }
-          }
+          },
+          "description": "Number of third-party requests for each category (for example analytics or ads). Categories come from the third-party-web project."
         }
       },
       "panel-144": {
@@ -2520,7 +2526,8 @@
                 ]
               }
             }
-          }
+          },
+          "description": "Number of third-party tools for each category (for example analytics or ads). Categories come from the third-party-web project."
         }
       },
       "panel-148": {
@@ -2709,7 +2716,7 @@
         "spec": {
           "id": 150,
           "title": "",
-          "description": "",
+          "description": "Size of the data that the page stores in local storage.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -2800,7 +2807,7 @@
         "spec": {
           "id": 151,
           "title": "",
-          "description": "",
+          "description": "Number of domains that the page downloads from.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -2891,7 +2898,7 @@
         "spec": {
           "id": 152,
           "title": "",
-          "description": "",
+          "description": "Number of cookies for the page.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -3964,7 +3971,7 @@
         "spec": {
           "id": 188,
           "title": "Axe critical violations",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4116,7 +4123,7 @@
         "spec": {
           "id": 191,
           "title": "",
-          "description": "",
+          "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4218,7 +4225,7 @@
         "spec": {
           "id": 192,
           "title": "",
-          "description": "",
+          "description": "Largest contentful paint: when the browser paints the largest image or text block in the viewport. Good is below 2.5 seconds.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4320,7 +4327,7 @@
         "spec": {
           "id": 193,
           "title": "",
-          "description": "",
+          "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4422,7 +4429,7 @@
         "spec": {
           "id": 194,
           "title": "",
-          "description": "",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4524,7 +4531,7 @@
         "spec": {
           "id": 197,
           "title": "Axe violations",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4875,7 +4882,7 @@
         "spec": {
           "id": 210,
           "title": "Axe serious violations",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -4975,7 +4982,7 @@
         "spec": {
           "id": 211,
           "title": "Axe moderate violations",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5075,7 +5082,7 @@
         "spec": {
           "id": 212,
           "title": "Axe minor violations",
-          "description": "",
+          "description": "Accessibility violations found by axe-core, by impact. Enable with --axe.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5175,7 +5182,7 @@
         "spec": {
           "id": 215,
           "title": "",
-          "description": "",
+          "description": "Estimated CO2 for all page views in the test. Enable with --sustainable.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5267,7 +5274,7 @@
         "spec": {
           "id": 216,
           "title": "",
-          "description": "",
+          "description": "Estimated CO2 for one page view. Enable with --sustainable.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5359,7 +5366,7 @@
         "spec": {
           "id": 217,
           "title": "",
-          "description": "",
+          "description": "Estimated CO2 for the first-party data of one page view. Enable with --sustainable.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5451,7 +5458,7 @@
         "spec": {
           "id": 218,
           "title": "",
-          "description": "",
+          "description": "Estimated CO2 for the third-party data of one page view. Enable with --sustainable.enable.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5647,7 +5654,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Number of requests for each content type."
         }
       },
       "panel-224": {
@@ -5655,7 +5663,7 @@
         "spec": {
           "id": 224,
           "title": "",
-          "description": "",
+          "description": "Transfer size: the size of all requests over the network, often compressed.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5756,7 +5764,7 @@
         "spec": {
           "id": 225,
           "title": "",
-          "description": "",
+          "description": "Total number of requests for the page.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -5856,7 +5864,7 @@
         "spec": {
           "id": 226,
           "title": "",
-          "description": "",
+          "description": "Number of elements in the DOM. Many elements make style and layout slower.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6012,7 +6020,7 @@
         "spec": {
           "id": 229,
           "title": "",
-          "description": "",
+          "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6109,7 +6117,7 @@
         "spec": {
           "id": 230,
           "title": "",
-          "description": "",
+          "description": "Number of long tasks (50 ms or more) before first contentful paint. These tasks delay the first paint. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6202,7 +6210,7 @@
         "spec": {
           "id": 231,
           "title": "",
-          "description": "",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6299,7 +6307,7 @@
         "spec": {
           "id": 232,
           "title": "",
-          "description": "",
+          "description": "The longest long task. During a long task, the browser cannot respond to user input. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6396,7 +6404,7 @@
         "spec": {
           "id": 235,
           "title": "Cookies",
-          "description": "",
+          "description": "Number of cookies set by third-party domains.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6531,7 +6539,7 @@
         "spec": {
           "id": 236,
           "title": "CPU Long Tasks",
-          "description": "",
+          "description": "Number of long tasks (50 ms or more) on the main thread. During a long task, the browser cannot respond to user input. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6646,7 +6654,7 @@
         "spec": {
           "id": 237,
           "title": "CPU Long Tasks Before FCP",
-          "description": "",
+          "description": "Number of long tasks (50 ms or more) before first contentful paint. These tasks delay the first paint. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6761,7 +6769,7 @@
         "spec": {
           "id": 238,
           "title": "Total Blocking Time",
-          "description": "",
+          "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6875,7 +6883,7 @@
         "spec": {
           "id": 239,
           "title": "Longest Long Task",
-          "description": "",
+          "description": "The longest long task. During a long task, the browser cannot respond to user input. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -6989,7 +6997,7 @@
         "spec": {
           "id": 244,
           "title": "CPU benchmark",
-          "description": "",
+          "description": "The time it takes to run a fixed JavaScript loop in the browser. If this changes, the speed of the test machine changed, and all CPU metrics change too.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -7177,7 +7185,7 @@
         "spec": {
           "id": 245,
           "title": "TTFB stddev",
-          "description": "",
+          "description": "Standard deviation of time to first byte between the runs, in ms.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -7403,7 +7411,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Content size for each content type: the size after the browser uncompressed it."
         }
       },
       "panel-247": {
@@ -7489,7 +7498,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Transfer size for each content type: the size over the network, often compressed."
         }
       },
       "panel-248": {
@@ -7610,7 +7620,7 @@
         "spec": {
           "id": 249,
           "title": "",
-          "description": "",
+          "description": "Number of cookies set by third-party domains.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -7932,7 +7942,8 @@
                 ]
               }
             }
-          }
+          },
+          "description": "Visual metrics minus time to first byte. When the server time changes much between runs, these metrics show if the front end changed."
         }
       },
       "panel-265": {
@@ -7940,7 +7951,7 @@
         "spec": {
           "id": 265,
           "title": "Main document timings [$function]",
-          "description": "",
+          "description": "Timings for the download of the HTML document: DNS, connect, TLS, server time and download.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -8054,7 +8065,7 @@
         "spec": {
           "id": 266,
           "title": "TTFB",
-          "description": "",
+          "description": "Time to first byte: the time from the start of the navigation until the browser gets the first byte of the HTML. It includes redirects, DNS, connect and the server time.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -8242,7 +8253,7 @@
         "spec": {
           "id": 267,
           "title": "CPU benchmark stddev",
-          "description": "",
+          "description": "Standard deviation of the CPU benchmark between the runs, in ms.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -8598,7 +8609,7 @@
         "spec": {
           "id": 280,
           "title": "First visual change",
-          "description": "",
+          "description": "First visual change: when something is painted in the viewport for the first time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -8752,7 +8763,7 @@
         "spec": {
           "id": 281,
           "title": "Time to first byte",
-          "description": "",
+          "description": "Time to first byte: the time from the start of the navigation until the browser gets the first byte of the HTML. It includes redirects, DNS, connect and the server time.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -8906,7 +8917,7 @@
         "spec": {
           "id": 282,
           "title": "CPU benchmark",
-          "description": "",
+          "description": "The time it takes to run a fixed JavaScript loop in the browser. If this changes, the speed of the test machine changed, and all CPU metrics change too.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -9060,7 +9071,7 @@
         "spec": {
           "id": 283,
           "title": "Largest Contentful Paint",
-          "description": "",
+          "description": "Largest contentful paint: when the browser paints the largest image or text block in the viewport. Good is below 2.5 seconds.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -9340,7 +9351,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Number of elements that the browser must recalculate style for before first and largest contentful paint. Many elements delay the paint. Chrome only, enable with --cpu."
         }
       },
       "panel-286": {
@@ -9474,7 +9486,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Time the browser spends recalculating style before first and largest contentful paint. Chrome only, enable with --cpu."
         }
       },
       "panel-287": {
@@ -9538,7 +9551,7 @@
         "spec": {
           "id": 288,
           "title": "",
-          "description": "",
+          "description": "First visual change: when something is painted in the viewport for the first time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -9640,7 +9653,7 @@
         "spec": {
           "id": 289,
           "title": "",
-          "description": "",
+          "description": "When the largest heading in the viewport is painted. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -9742,7 +9755,7 @@
         "spec": {
           "id": 290,
           "title": "",
-          "description": "",
+          "description": "When the largest image in the viewport is painted. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -9844,7 +9857,7 @@
         "spec": {
           "id": 291,
           "title": "",
-          "description": "",
+          "description": "Last visual change: when the viewport changes for the last time. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -9982,7 +9995,7 @@
         "spec": {
           "id": 299,
           "title": "Last long task",
-          "description": "",
+          "description": "When the last long task ends. After that, the main thread can respond to user input fast. Chrome only.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -10278,7 +10291,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Transfer size: the size of all requests over the network, often compressed."
         }
       },
       "panel-304": {
@@ -10390,7 +10404,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Total number of requests for the page."
         }
       },
       "panel-305": {
@@ -10502,7 +10517,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Number of elements in the DOM. Many elements make style and layout slower."
         }
       },
       "panel-306": {
@@ -10614,7 +10630,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Number of domains that the page downloads from."
         }
       },
       "panel-307": {
@@ -11162,7 +11179,7 @@
         "spec": {
           "id": 324,
           "title": "CPU benchmark relative stddev",
-          "description": "",
+          "description": "Relative standard deviation of the CPU benchmark between the runs. Use it to make sure the test machine has the same CPU speed in all runs.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -11310,7 +11327,7 @@
         "spec": {
           "id": 325,
           "title": "TTFB relative stddev",
-          "description": "",
+          "description": "Relative standard deviation of time to first byte between the runs. A high value means that the server response time changes much between runs, and that other metrics can change because of it.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -12419,7 +12436,8 @@
                 ]
               }
             }
-          }
+          },
+          "description": "Time to first byte and the visual metrics: when the first byte of the HTML arrives and when the content in the viewport is painted. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics)."
         }
       },
       "panel-81": {
@@ -12531,7 +12549,8 @@
                 "overrides": []
               }
             }
-          }
+          },
+          "description": "Time the browser main thread spends on each type of work: parsing HTML, running scripts, style and layout and painting. Chrome only, enable with --cpu."
         }
       },
       "panel-335": {
@@ -17381,7 +17400,10 @@
     ],
     "liveNow": false,
     "preload": false,
-    "tags": [],
+    "tags": [
+      "sitespeed.io",
+      "page"
+    ],
     "timeSettings": {
       "timezone": "browser",
       "from": "now-7d",
@@ -17880,6 +17902,7 @@
           "items": []
         }
       }
-    }
+    },
+    "description": "All metrics for one page: Google Web Vitals, timings, size, CPU, quality and regressions."
   }
 }
