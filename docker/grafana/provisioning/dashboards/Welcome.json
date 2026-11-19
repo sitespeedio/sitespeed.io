@@ -314,7 +314,9 @@
   ],
   "schemaVersion": 25,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "sitespeed.io"
+  ],
   "templating": {
     "list": []
   },
@@ -338,5 +340,6 @@
   "timezone": "",
   "title": "Welcome to sitespeed.io",
   "uid": "3zStduRGk",
-  "version": 6
+  "version": 6,
+  "description": "Start page: the latest tests, the dashboards and sitespeed.io releases."
 }

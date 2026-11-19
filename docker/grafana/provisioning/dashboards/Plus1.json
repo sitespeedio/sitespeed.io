@@ -175,7 +175,8 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "GPSI Score",
-      "type": "stat"
+      "type": "stat",
+      "description": "The score (0-100) from Google PageSpeed Insights."
     },
     {
       "datasource": "graphite",
@@ -247,7 +248,8 @@
         }
       ],
       "title": "GPSI Score",
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "The score (0-100) from Google PageSpeed Insights."
     },
     {
       "collapsed": false,
@@ -266,7 +268,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "First contentful paint for real users at the 75th percentile: 75% of the visits were this fast or faster. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "fieldConfig": {
         "defaults": {
           "displayName": "First Contentful Paint",
@@ -333,7 +335,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Largest contentful paint for real users at the 75th percentile: 75% of the visits were this fast or faster. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "fieldConfig": {
         "defaults": {
           "displayName": "Largest Contentful Paint",
@@ -400,7 +402,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "First input delay from Google PageSpeed Insights. Google replaced First input delay with Interaction to next paint in 2024, so this metric is not updated any more.",
       "fieldConfig": {
         "defaults": {
           "displayName": "First Input Delay",
@@ -467,7 +469,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Cumulative layout shift for real users at the 75th percentile: 75% of the visits were this fast or faster. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "fieldConfig": {
         "defaults": {
           "displayName": "Cumulative Layout Shift",
@@ -532,7 +534,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor first contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 7,
         "w": 6,
@@ -661,7 +663,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor largest contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -789,7 +791,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "First input delay from Google PageSpeed Insights. Google replaced First input delay with Interaction to next paint in 2024, so this metric is not updated any more.",
       "gridPos": {
         "h": 7,
         "w": 6,
@@ -917,7 +919,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor cumulative layout shift. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 7,
         "w": 6,
@@ -1045,7 +1047,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor first contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -1147,7 +1149,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor largest contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -1249,7 +1251,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "First input delay from Google PageSpeed Insights. Google replaced First input delay with Interaction to next paint in 2024, so this metric is not updated any more.",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -1351,7 +1353,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor cumulative layout shift. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -1467,7 +1469,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor first contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -1595,7 +1597,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor largest contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -1723,7 +1725,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "First input delay from Google PageSpeed Insights. Google replaced First input delay with Interaction to next paint in 2024, so this metric is not updated any more.",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -1851,7 +1853,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor cumulative layout shift. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -1979,7 +1981,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor first contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 11,
         "w": 6,
@@ -2080,7 +2082,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor largest contentful paint. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 11,
         "w": 6,
@@ -2181,7 +2183,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "First input delay from Google PageSpeed Insights. Google replaced First input delay with Interaction to next paint in 2024, so this metric is not updated any more.",
       "gridPos": {
         "h": 11,
         "w": 6,
@@ -2282,7 +2284,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Share of real-user visits with a good, needs improvement or poor cumulative layout shift. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key).",
       "gridPos": {
         "h": 11,
         "w": 6,
@@ -2475,7 +2477,8 @@
         }
       ],
       "title": "Loading experience percentile",
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "First input delay from Google PageSpeed Insights. Google replaced First input delay with Interaction to next paint in 2024, so this metric is not updated any more."
     },
     {
       "datasource": "graphite",
@@ -2545,7 +2548,8 @@
         }
       ],
       "title": "Loading experience percentile",
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": "Cumulative layout shift for real users at the 75th percentile: 75% of the visits were this fast or faster. 28 days of data from real Chrome users (Chrome User Experience Report, enable with --crux.key)."
     },
     {
       "collapsed": false,
@@ -2564,7 +2568,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "fieldConfig": {
         "defaults": {
           "displayName": "First Contentful Paint",
@@ -2631,7 +2635,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "fieldConfig": {
         "defaults": {
           "displayName": "Largest Contentful Paint",
@@ -2698,7 +2702,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -2764,7 +2768,7 @@
     {
       "cacheTimeout": null,
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "fieldConfig": {
         "defaults": {
           "displayName": "Cumulative Layout Shift",
@@ -2843,7 +2847,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "The Lighthouse score (0-100) for each category.",
       "gridPos": {
         "h": 13,
         "w": 24,
@@ -2930,7 +2934,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -3000,7 +3004,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -3070,7 +3074,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -3140,7 +3144,7 @@
     },
     {
       "datasource": "graphite",
-      "description": "",
+      "description": "Metrics from a Lighthouse test.",
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -3211,7 +3215,10 @@
   ],
   "schemaVersion": 27,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "sitespeed.io",
+    "lighthouse"
+  ],
   "templating": {
     "list": [
       {
@@ -3385,5 +3392,6 @@
   "timezone": "",
   "title": "Plus1",
   "uid": "abRtVXRGk",
-  "version": 7
+  "version": 7,
+  "description": "Google PageSpeed Insights and Lighthouse data from the Plus1 image."
 }

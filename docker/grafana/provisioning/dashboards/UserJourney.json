@@ -88,7 +88,7 @@
       }
     ]
   },
-  "description": "Every page in a user journey (a scripted test) in one dashboard.",
+  "description": "One row for each page in a scripted user journey.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
@@ -353,7 +353,8 @@
         }
       ],
       "title": "First Contentful Paint",
-      "type": "stat"
+      "type": "stat",
+      "description": "First contentful paint: when the browser paints the first text or image. Good is below 1.8 seconds."
     },
     {
       "datasource": {
@@ -431,7 +432,8 @@
         }
       ],
       "title": "Largest Contentful Paint",
-      "type": "stat"
+      "type": "stat",
+      "description": "Largest contentful paint: when the browser paints the largest image or text block in the viewport. Good is below 2.5 seconds."
     },
     {
       "datasource": {
@@ -510,7 +512,8 @@
         }
       ],
       "title": "Cumulative Layout Shift",
-      "type": "stat"
+      "type": "stat",
+      "description": "Cumulative layout shift: how much the content moves while the page loads. Good is below 0.1."
     },
     {
       "datasource": {
@@ -588,7 +591,8 @@
         }
       ],
       "title": "Total Blocking Time",
-      "type": "stat"
+      "type": "stat",
+      "description": "Total blocking time: the sum of the time over 50 ms of each long task between first contentful paint and the end of the test. Good is below 200 ms. Chrome only."
     },
     {
       "datasource": {
@@ -658,7 +662,8 @@
         }
       ],
       "title": "Requests",
-      "type": "stat"
+      "type": "stat",
+      "description": "Total number of requests for the page."
     },
     {
       "datasource": {
@@ -728,12 +733,16 @@
         }
       ],
       "title": "Transfer size",
-      "type": "stat"
+      "type": "stat",
+      "description": "Transfer size: the size of all requests over the network, often compressed."
     }
   ],
   "refresh": "",
   "schemaVersion": 38,
-  "tags": [],
+  "tags": [
+    "sitespeed.io",
+    "journey"
+  ],
   "templating": {
     "list": [
       {

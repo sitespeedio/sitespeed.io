@@ -81,6 +81,8 @@ Remember, these are simplified instructions. For a production setup, you would n
 ### Pre-made example dashboards
 We insert ready-made dashboards with our docker compose file using provisioning. You can check out the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
 
+Hover the (i) next to a dashboard name or a panel title to see what it shows and which option you need to collect the data.
+
 Some of our dashboards use Grafana plugins. To make sure the dashboards work you need to install these plugins:
 * [yesoreyeram-infinity-datasource](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/)
 * [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
