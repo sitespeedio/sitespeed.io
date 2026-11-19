@@ -16,7 +16,7 @@ services:
         - GF_AUTH_ANONYMOUS_ENABLED=true
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_USERS_ALLOW_ORG_CREATE=false
-        - GF_PLUGINS_PREINSTALL_SYNC=yesoreyeram-infinity-datasource,marcusolsson-dynamictext-panel,grafana-opensearch-datasource
+        - GF_PLUGINS_PREINSTALL_SYNC=yesoreyeram-infinity-datasource@4.1.6,marcusolsson-dynamictext-panel@6.3.1,grafana-opensearch-datasource@2.33.1
         - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/Welcome.json
       volumes:
         - grafana:/var/lib/grafana
@@ -28,6 +28,8 @@ services:
     graphite:
       image: sitespeedio/graphite:1.1.10-5
       hostname: graphite
+      # Anyone who can reach these ports can send or read metrics.
+      # On a public server, allow only your test machines to reach them.
       ports:
         - "2003:2003"
         - "8080:80"
@@ -46,12 +48,13 @@ services:
         # - /absolute/path/to/graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         # - /absolute/path/to/graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     opensearch:
-      image: opensearchproject/opensearch:2
+      image: opensearchproject/opensearch:2.19.7
       hostname: opensearch
       environment:
         - discovery.type=single-node
         - DISABLE_SECURITY_PLUGIN=true
         - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+      # The security plugin is off, so anyone who can reach this port can read and change the data.
       ports:
         - "9200:9200"
       volumes:
@@ -63,7 +66,7 @@ services:
         retries: 20
       restart: always
     opensearch-setup:
-      image: curlimages/curl:latest
+      image: curlimages/curl:8.23.0
       depends_on:
         opensearch:
           condition: service_healthy
