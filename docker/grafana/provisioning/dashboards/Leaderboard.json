@@ -54,31 +54,28 @@
   "iteration": 1612787019283,
   "links": [
     {
-      "icon": "external link",
+      "title": "Page metrics",
+      "type": "link",
+      "url": "/d/9NDMzFfMk",
+      "icon": "dashboard",
+      "tooltip": "Metrics for one page",
+      "tags": [],
+      "asDropdown": false,
+      "targetBlank": false,
       "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "page timings"
-      ],
-      "type": "dashboards"
+      "keepTime": true
     },
     {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "page summary"
-      ],
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "site summary"
-      ],
-      "type": "dashboards"
+      "title": "Chrome User Experience Report",
+      "type": "link",
+      "url": "/d/t_bhsNGMk",
+      "icon": "dashboard",
+      "tooltip": "Field data from real Chrome users",
+      "tags": [],
+      "asDropdown": false,
+      "targetBlank": false,
+      "includeVars": false,
+      "keepTime": true
     }
   ],
   "panels": [
@@ -1426,7 +1423,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total number or requests",
+      "title": "Total number of requests",
       "type": "stat"
     },
     {
