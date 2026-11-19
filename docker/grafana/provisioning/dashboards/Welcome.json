@@ -166,12 +166,12 @@
       "id": 6,
       "options": {
         "afterRender": "",
-        "content": "{{#each data.[0]}}\n## [{{title}}]({{link}})\n*{{pubDate}}*\n\n{{{description}}}\n\n---\n{{/each}}",
+        "content": "{{#each data.[0]}}\n<h3><a href=\"{{link}}\" target=\"_blank\">{{title}}</a></h3>\n<p><em>{{date pubDate 'D MMMM YYYY'}}</em></p>\n{{{description}}}\n<hr>\n{{/each}}",
         "contentPartials": [],
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
-          "language": "markdown"
+          "language": "html"
         },
         "editors": [],
         "externalStyles": [],
@@ -197,7 +197,7 @@
             {
               "selector": "pubDate",
               "text": "pubDate",
-              "timestampFormat": "02 Jan 06 15:04 MST",
+              "timestampFormat": "Mon, 02 Jan 2006 15:04:05 MST",
               "type": "timestamp"
             },
             {
@@ -215,7 +215,7 @@
           "global_query_id": "",
           "parser": "backend",
           "refId": "A",
-          "root_selector": "rss.channel.item",
+          "root_selector": "rss.channel.item[[0..4]]",
           "source": "url",
           "type": "xml",
           "url": "https://www.sitespeed.io/feed/rss.xml",
