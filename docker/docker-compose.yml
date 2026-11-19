@@ -22,6 +22,7 @@ services:
         - grafana:/var/lib/grafana
         - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
         - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+        - ./grafana/provisioning/alerting:/etc/grafana/provisioning/alerting
         - ./grafana/provisioning/dashboards:/var/lib/grafana/dashboards
       restart: always
     graphite:
