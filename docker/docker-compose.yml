@@ -65,23 +65,6 @@ services:
         timeout: 5s
         retries: 20
       restart: always
-    opensearch-setup:
-      image: curlimages/curl:8.23.0
-      depends_on:
-        opensearch:
-          condition: service_healthy
-      volumes:
-        - ../docker/opensearch:/setup:ro
-      entrypoint: /bin/sh
-      command:
-        - -c
-        - |
-          for t in pagesummary run pagexray compare coach; do
-            curl -sf -X PUT "http://opensearch:9200/_index_template/sitespeed-$$t" \
-              -H 'Content-Type: application/json' \
-              -d "@/setup/index-template-$$t.json" && echo "Applied index template: sitespeed-$$t"
-          done
-      restart: "no"
 volumes:
     grafana:
     whisper:

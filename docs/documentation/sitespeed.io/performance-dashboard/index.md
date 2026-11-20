@@ -186,7 +186,9 @@ You can also send the results to [OpenSearch](https://opensearch.org) with `--op
 * Show which metrics changed in a [comparison](/documentation/sitespeed.io/compare/).
 * Filter on any field, for example the test name (`--slug`).
 
-Our [Docker compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) starts OpenSearch, adds the index templates and provisions the data sources. OpenSearch in that file has no login, so do not let anyone except your test servers reach port 9200.
+Our [Docker compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) starts OpenSearch and provisions the data sources. OpenSearch in that file has no login, so do not let anyone except your test servers reach port 9200.
+
+When sitespeed.io starts, it adds the index templates and the retention policies to OpenSearch. The user that sitespeed.io logs in with must be allowed to change them. sitespeed.io deletes the summary indices after 90 days (`--opensearch.retentionDays`) and the run indices after 7 days (`--opensearch.runRetentionDays`). A template that you changed in OpenSearch stays, until a new sitespeed.io version comes with a new version of that template. A new template is only used for the indices that OpenSearch creates after it, and sitespeed.io creates a new index every day.
 
 
 ## Whatever you want
