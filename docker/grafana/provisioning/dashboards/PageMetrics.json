@@ -11694,8 +11694,10 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
-                  "placement": "right",
-                  "showLegend": true
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Max",
+                  "sortDesc": true
                 },
                 "tooltip": {
                   "mode": "single",
@@ -11810,8 +11812,10 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
-                  "placement": "right",
-                  "showLegend": true
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Max",
+                  "sortDesc": true
                 },
                 "tooltip": {
                   "mode": "single",
@@ -19900,7 +19904,26 @@
                                     }
                                   }
                                 }
-                              },
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "RowsLayoutRow",
+                      "spec": {
+                        "title": "",
+                        "collapse": false,
+                        "hideHeader": true,
+                        "layout": {
+                          "kind": "AutoGridLayout",
+                          "spec": {
+                            "maxColumnCount": 1,
+                            "columnWidthMode": "standard",
+                            "rowHeightMode": "custom",
+                            "rowHeight": 720,
+                            "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
                                 "spec": {
