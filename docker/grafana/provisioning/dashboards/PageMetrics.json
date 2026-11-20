@@ -17090,6 +17090,42 @@
             }
           }
         }
+      },
+      "panel-353": {
+        "kind": "Panel",
+        "spec": {
+          "id": 353,
+          "title": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "10.0.1",
+            "spec": {
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "The [compare plugin](https://www.sitespeed.io/documentation/sitespeed.io/compare/) compares each test with a baseline (a saved earlier test) and sends the result here. Without compare data this tab only shows failed tests.\n\nTo get data:\n* Run every test with the same `--compare.id` and the same number of iterations. Use many iterations (for example 21): with few runs only large changes are significant.\n* Save a baseline with `--compare.saveBaseline`. Add it to every test to compare with the test before, or only now and then to compare with a fixed baseline, for example every Sunday.\n* Keep the baseline file between tests: set the folder with `--compare.baselinePath` and mount it when you run in Docker.\n* The plugin needs Python with scipy. The Docker container has it.",
+                "mode": "markdown"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
       }
     },
     "layout": {
@@ -19720,6 +19756,34 @@
                 "kind": "RowsLayout",
                 "spec": {
                   "rows": [
+                    {
+                      "kind": "RowsLayoutRow",
+                      "spec": {
+                        "title": "",
+                        "collapse": false,
+                        "hideHeader": true,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 24,
+                                  "height": 6,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-353"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
