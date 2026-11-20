@@ -36,8 +36,6 @@ jobs:
           'until curl -sf http://localhost:9200/_cluster/health | grep -q "\"status\":\"green\"\|\"status\":\"yellow\""; do
             echo "Waiting for OpenSearch..."; sleep 3
           done'
-    - name: Apply OpenSearch index templates
-      run: docker/opensearch/setup.sh http://localhost:9200
     - name: Run test with OpenSearch
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --opensearch.host 127.0.0.1 --xvfb
     - name: Run test with OpenSearch including runs
