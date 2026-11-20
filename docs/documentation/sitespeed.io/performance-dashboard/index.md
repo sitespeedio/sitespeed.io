@@ -184,7 +184,8 @@ You can also send the results to [OpenSearch](https://opensearch.org) with `--op
 * Group the results by any field when you look at them, for example by browser.
 * Keep every run, not only the median, and show how the runs are spread (add `--opensearch.includeRuns`).
 * Show which metrics changed in a [comparison](/documentation/sitespeed.io/compare/).
-* Filter on any field, for example the test name (`--slug`).
+* Keep two tests of the same URL apart, for example a WebPageReplay test and a first-view test: give each test its own `--slug` and pick it in the *Test* dropdown.
+* Filter on any other field, for example the group.
 
 Our [Docker compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) starts OpenSearch and provisions the data sources. OpenSearch in that file has no login, so do not let anyone except your test servers reach port 9200.
 
