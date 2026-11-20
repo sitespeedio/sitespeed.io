@@ -1,0 +1,53 @@
+# Alert when the compare plugin finds that a page got significantly slower.
+# The test needs --compare.id, see
+# https://www.sitespeed.io/documentation/sitespeed.io/compare/
+apiVersion: 1
+
+groups:
+  - orgId: 1
+    name: sitespeed.io regressions
+    folder: sitespeed.io
+    interval: 5m
+    rules:
+      - uid: sitespeedio-regression
+        title: Page got slower
+        condition: C
+        data:
+          # Number of metrics per page where the last comparison was
+          # significantly slower (isSignificant is the effect size, above 0
+          # is slower)
+          - refId: A
+            relativeTimeRange:
+              from: 7200
+              to: 0
+            datasourceUid: graphite
+            model:
+              refId: A
+              target: "groupByNodes(filterSeries(sitespeed_io.*.*.pageSummary.*.*.*.*.compare.metrics.*.*.isSignificant, 'last', '>', 0), 'count', 1, 2, 4, 5, 6, 7)"
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              refId: B
+              type: reduce
+              expression: A
+              reducer: max
+              settings:
+                mode: dropNN
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              refId: C
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator:
+                    type: gt
+                    params:
+                      - 0
+        noDataState: OK
+        execErrState: Error
+        for: 0s
+        annotations:
+          summary: A page got significantly slower
+          description: "{{ $value }} metrics got significantly slower than the baseline. Open the Regressions tab in the Page metrics dashboard to see which ones."
+        isPaused: false

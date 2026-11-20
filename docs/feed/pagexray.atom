@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>pagexray-release-feed</id>
     <title>pagexray release feed</title>
-    <updated>2026-07-29T05:05:47.850Z</updated>
+    <updated>2026-11-19T19:57:27.114Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -23,24 +23,24 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/pagexray.png" type="image/png"/>
         <updated>2026-05-14T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
-- CLI can now read a HAR from stdin: <code>pagexray -</code> or piping into <code>pagexray</code> with no path argument #131.<br>
-- CLI prints a friendly error to stderr and exits 1 when the file is missing or the input isn&#39;t valid JSON (previously threw a raw Node stack trace) #131.<br>
-- README updated to drop the long-removed <code>cookieStats</code> example block and document fields added across 3.x / 4.x (<code>fullyLoaded</code>, <code>afterOnLoad</code>, <code>afterOnContentLoad</code>, <code>renderBlocking</code>, <code>googleWebVitals</code>, <code>cpu</code>, <code>firstPartyRegEx</code>) #130.<br>
+- CLI can now read a HAR from stdin: <code>pagexray -</code> or piping into <code>pagexray</code> with no path argument <a href="https://github.com/sitespeedio/pagexray/pull/131">#131</a>.<br>
+- CLI prints a friendly error to stderr and exits 1 when the file is missing or the input isn&#39;t valid JSON (previously threw a raw Node stack trace) <a href="https://github.com/sitespeedio/pagexray/pull/131">#131</a>.<br>
+- README updated to drop the long-removed <code>cookieStats</code> example block and document fields added across 3.x / 4.x (<code>fullyLoaded</code>, <code>afterOnLoad</code>, <code>afterOnContentLoad</code>, <code>renderBlocking</code>, <code>googleWebVitals</code>, <code>cpu</code>, <code>firstPartyRegEx</code>) <a href="https://github.com/sitespeedio/pagexray/pull/130">#130</a>.<br>
 <br>
 <strong>Fixed</strong><br>
-- Classify <code>HTTP/3</code> / <code>HTTP/3.0</code> connections as <code>h3</code> (previously only the lowercase <code>h3</code> / <code>h3-29</code> shorthand was recognised — the canonical form fell through to <code>h1</code>) #128.<br>
-- Parse <code>Cache-Control</code> directives case-insensitively (RFC 7234 §5.2). <code>Max-Age=42</code> is now read as 42 instead of 0, and <code>No-Cache</code> / <code>No-Store</code> are honoured #128.<br>
-- Replace the deprecated <code>url.parse</code> (Node DEP0169) with the WHATWG <code>URL</code> parser in <code>getHostname</code> #128.<br>
-- Stop throwing in <code>getDocumentRequests</code> when a page has no matching entries — return an empty array instead #128.<br>
-- <code>missingCompression</code> was flagging every large text asset, including gzipped ones, because <code>headers.flatten</code> wraps values in arrays and the encoding check compared the array to a string. Unwrap before comparing, accept compound codings (<code>br, gzip</code>), and recognise <code>zstd</code> #129.<br>
-- Match the <code>Domain=</code> cookie attribute case-insensitively (RFC 6265 §5.2) so third-party cookies set with lowercase <code>domain=</code> are detected #129.<br>
-- Recognise common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, ...) in <code>getMainDomain</code> so the auto-generated first-party regex isn&#39;t wrong for non-<code>.co.uk</code> country domains #129.<br>
-- <code>defaultContentTypes</code> now includes <code>favicon</code> so every page has a consistent shape (matches the example in the README) #129.<br>
-- <code>xml</code> is now considered for <code>missingCompression</code> reporting #129.<br>
-- <code>engines.node</code> bumped from <code>&gt;=8.9.0</code> to <code>&gt;=22.0.0</code> (the current Node.js LTS), and the GitHub Actions matrix now runs on Node 22 + 24 #132, #133.<br>
-- Test runner switched from Mocha + Chai to AVA, matching the rest of the sitespeed.io / browsertime ecosystem. Test helpers no longer depend on bluebird or lodash #133.<br>
-- ESLint upgraded from 8 to 9 with the new flat config (<code>eslint.config.js</code> replaces <code>.eslintrc.json</code> and <code>.eslintignore</code>) #133.<br>
-- All devDependencies bumped to current major versions: prettier 3, browserify 17, browserify-banner 2, @babel/core + preset-env 7.29, jsdoc 4. The abandoned <code>uglify-es</code> is replaced by <code>terser</code>, and <code>mkdirp</code> is dropped in favour of native <code>fs.mkdirSync({recursive:true})</code> in the browserify script #133.<br>
+- Classify <code>HTTP/3</code> / <code>HTTP/3.0</code> connections as <code>h3</code> (previously only the lowercase <code>h3</code> / <code>h3-29</code> shorthand was recognised — the canonical form fell through to <code>h1</code>) <a href="https://github.com/sitespeedio/pagexray/pull/128">#128</a>.<br>
+- Parse <code>Cache-Control</code> directives case-insensitively (RFC 7234 §5.2). <code>Max-Age=42</code> is now read as 42 instead of 0, and <code>No-Cache</code> / <code>No-Store</code> are honoured <a href="https://github.com/sitespeedio/pagexray/pull/128">#128</a>.<br>
+- Replace the deprecated <code>url.parse</code> (Node DEP0169) with the WHATWG <code>URL</code> parser in <code>getHostname</code> <a href="https://github.com/sitespeedio/pagexray/pull/128">#128</a>.<br>
+- Stop throwing in <code>getDocumentRequests</code> when a page has no matching entries — return an empty array instead <a href="https://github.com/sitespeedio/pagexray/pull/128">#128</a>.<br>
+- <code>missingCompression</code> was flagging every large text asset, including gzipped ones, because <code>headers.flatten</code> wraps values in arrays and the encoding check compared the array to a string. Unwrap before comparing, accept compound codings (<code>br, gzip</code>), and recognise <code>zstd</code> <a href="https://github.com/sitespeedio/pagexray/pull/129">#129</a>.<br>
+- Match the <code>Domain=</code> cookie attribute case-insensitively (RFC 6265 §5.2) so third-party cookies set with lowercase <code>domain=</code> are detected <a href="https://github.com/sitespeedio/pagexray/pull/129">#129</a>.<br>
+- Recognise common two-label public suffixes (<code>.co.jp</code>, <code>.com.br</code>, <code>.com.au</code>, ...) in <code>getMainDomain</code> so the auto-generated first-party regex isn&#39;t wrong for non-<code>.co.uk</code> country domains <a href="https://github.com/sitespeedio/pagexray/pull/129">#129</a>.<br>
+- <code>defaultContentTypes</code> now includes <code>favicon</code> so every page has a consistent shape (matches the example in the README) <a href="https://github.com/sitespeedio/pagexray/pull/129">#129</a>.<br>
+- <code>xml</code> is now considered for <code>missingCompression</code> reporting <a href="https://github.com/sitespeedio/pagexray/pull/129">#129</a>.<br>
+- <code>engines.node</code> bumped from <code>&gt;=8.9.0</code> to <code>&gt;=22.0.0</code> (the current Node.js LTS), and the GitHub Actions matrix now runs on Node 22 + 24 <a href="https://github.com/sitespeedio/pagexray/pull/132">#132</a>, <a href="https://github.com/sitespeedio/pagexray/pull/133">#133</a>.<br>
+- Test runner switched from Mocha + Chai to AVA, matching the rest of the sitespeed.io / browsertime ecosystem. Test helpers no longer depend on bluebird or lodash <a href="https://github.com/sitespeedio/pagexray/pull/133">#133</a>.<br>
+- ESLint upgraded from 8 to 9 with the new flat config (<code>eslint.config.js</code> replaces <code>.eslintrc.json</code> and <code>.eslintignore</code>) <a href="https://github.com/sitespeedio/pagexray/pull/133">#133</a>.<br>
+- All devDependencies bumped to current major versions: prettier 3, browserify 17, browserify-banner 2, @babel/core + preset-env 7.29, jsdoc 4. The abandoned <code>uglify-es</code> is replaced by <code>terser</code>, and <code>mkdirp</code> is dropped in favour of native <code>fs.mkdirSync({recursive:true})</code> in the browserify script <a href="https://github.com/sitespeedio/pagexray/pull/133">#133</a>.<br>
 <br>
 <strong>Changed</strong><br>
 - Node.js 22 is minumium.<br>
@@ -71,7 +71,7 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/pagexray.png" type="image/png"/>
         <updated>2023-08-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Added a safer header check #125.<br>
+- Added a safer header check <a href="https://github.com/sitespeedio/pagexray/pull/125">#125</a>.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -85,8 +85,8 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/pagexray.png" type="image/png"/>
         <updated>2023-08-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- If the meta section from a HAR file from Browsertime was missing, we didn&#39;t catch that. Fixed in #124.<br>
-- Update to latest minimist #122.<br>
+- If the meta section from a HAR file from Browsertime was missing, we didn&#39;t catch that. Fixed in <a href="https://github.com/sitespeedio/pagexray/pull/124">#124</a>.<br>
+- Update to latest minimist <a href="https://github.com/sitespeedio/pagexray/pull/122">#122</a>.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -100,7 +100,7 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/pagexray.png" type="image/png"/>
         <updated>2022-05-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Fixed</strong><br>
-- Added missing SSL timings to the time per domain #117<br>
+- Added missing SSL timings to the time per domain <a href="https://github.com/sitespeedio/pagexray/pull/117">#117</a><br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -128,7 +128,7 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/pagexray.png" type="image/png"/>
         <updated>2022-02-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types #109.<br>
+- Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types <a href="https://github.com/sitespeedio/pagexray/pull/109">#109</a>.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -156,7 +156,7 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/pagexray.png" type="image/png"/>
         <updated>2021-06-02T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Added</strong><br>
-- Include request method per asset #105.<br>
+- Include request method per asset <a href="https://github.com/sitespeedio/pagexray/pull/105">#105</a>.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>

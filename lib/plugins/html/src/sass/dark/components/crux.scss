@@ -116,6 +116,12 @@ $crux--poor: $color--error;
   line-height: 1.05;
 }
 
+.crux-section-note {
+  margin: 8px 0 0 0;
+  font-size: 0.82rem;
+  color: $color--text-muted;
+}
+
 .crux-section-heading {
   font-size: 0.85rem;
   font-weight: $font--weight--semibold;

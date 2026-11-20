@@ -59,7 +59,7 @@ Sitespeed.io has hundreds of options across many areas (browsers, video, Graphit
 * <code>sitespeed.io --help &lt;topic&gt;</code> shows only the options belonging to that topic. For example <code>--help chrome</code>, <code>--help firefox</code>, <code>--help graphite</code> or <code>--help video</code>.
 * <code>sitespeed.io --help-all</code> prints the complete reference (the same content as in the box above) and is what scripts and CI jobs should use if they want every option.
 
-The available topics are: <code>browser</code>, <code>video</code>, <code>firefox</code>, <code>chrome</code>, <code>edge</code>, <code>safari</code>, <code>android</code>, <code>screenshot</code>, <code>graphite</code>, <code>grafana</code>, <code>html</code>, <code>slack</code>, <code>s3</code>, <code>gcs</code>, <code>scp</code>, <code>rsync</code>, <code>matrix</code>, <code>budget</code>, <code>crux</code>, <code>sustainable</code>, <code>crawler</code>, <code>metrics</code>, <code>compare</code>, <code>api</code>, <code>plugins</code> and <code>text</code>.
+The available topics are: <code>browser</code>, <code>video</code>, <code>firefox</code>, <code>chrome</code>, <code>edge</code>, <code>safari</code>, <code>android</code>, <code>screenshot</code>, <code>graphite</code>, <code>grafana</code>, <code>html</code>, <code>slack</code>, <code>s3</code>, <code>gcs</code>, <code>scp</code>, <code>rsync</code>, <code>matrix</code>, <code>webhook</code>, <code>budget</code>, <code>crux</code>, <code>sustainable</code>, <code>crawler</code>, <code>metrics</code>, <code>compare</code>, <code>api</code>, <code>plugins</code> and <code>text</code>.
 
 To see only the Chrome options, for example:
 
@@ -151,6 +151,22 @@ When collecting timing metrics, it's good to test the URL more than once (defaul
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 5
 ~~~
 
+### Stop a test early
+You can stop a test before all runs are done and still get the result. Send the signal SIGTERM or SIGINT to sitespeed.io. sitespeed.io then finishes the run that is going on, skips the runs and URLs that are left, and writes the report from the runs that finished. The first run always finishes. The exit code follows the normal rules, for example a failing budget gives exit code 1. If you send the signal again, sitespeed.io stops at once and does not write a report.
+
+* **Docker**: press Ctrl+C, or run `docker stop --time 300 <container>`. Give Docker more time than one run takes. With the default 10 seconds, Docker stops the container before the run is finished.
+* **Without Docker**: send SIGTERM to the sitespeed.io process, for example with `kill <pid>`. If you press Ctrl+C in a terminal, the signal also goes to the browser and the driver. The run that is going on then fails, and you get the report from the runs before it.
+
+If you use `--enableProfileRun` or `--enableVideoRun`, sitespeed.io still makes the extra run after you stop the test.
+
+This is useful when you test while something else runs and you do not know how long it takes, for example a load test:
+
+~~~bash
+docker run --name sitespeedio --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 1000 &
+./my-load-test.sh
+docker stop --time 300 sitespeedio
+~~~
+
 ### Choose browser
 Choose which browser to use (default is Chrome):
 
@@ -211,6 +227,23 @@ You can change where the data is stored by setting the <code>--outputFolder</cod
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder https://www.sitespeed.io/
 ~~~
+
+### Remove secrets from the HAR file
+The HAR file has every request and response header, so a test that logs in could store your tokens and session cookies in the result. That is a problem when you upload the result, for example to S3. By default sitespeed.io replaces the values of sensitive headers with `[REMOVED]`. It cleans Authorization, Proxy-Authorization and some API token headers like X-Api-Key and X-Auth-Token, and the value of every cookie. Cookie names and attributes like Domain are kept, because the Coach and PageXray use them to find third party cookies.
+
+If your site uses its own header for a secret, add the name with <code>--sensitiveHeader</code>. Repeat it for more headers:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --sensitiveHeader X-MyApp-Token --sensitiveHeader X-Session-Id https://www.sitespeed.io/
+~~~
+
+If you need the values, for example to debug a log in, turn off the cleaning:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --cleanSensitiveHeaders false https://www.sitespeed.io/
+~~~
+
+The Chrome performance log that you get with <code>--browsertime.chrome.collectPerfLog</code> is not cleaned. It has every header, so do not upload it.
 
 ### Configuration as JSON
 

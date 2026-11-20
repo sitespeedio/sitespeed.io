@@ -4,7 +4,7 @@
         <title>compare release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of compare</description>
-        <lastBuildDate>Wed, 29 Jul 2026 05:05:47 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Nov 2026 19:57:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -36,7 +36,7 @@
 - First/third party support — PageXray now auto-detects the host page&#39;s<br>
 <br>
 <strong>Changed</strong><br>
-- Build tooling moved to Vite. The build output<br>
+- Build tooling moved to <a href="https://vitejs.dev/">Vite</a>. The build output<br>
 - Styling rewritten in plain CSS (Sass dropped) with a small design-token<br>
 - Templates rewritten as plain JS template literals (Template7 dropped).<br>
 - Upgraded PageXray to 4.x.<br>
@@ -53,12 +53,12 @@
             <guid isPermaLink="false">https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</guid>
             <pubDate>Wed, 28 Nov 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
-- Added support for using Github gists see #34.<br>
+- Added support for using Github gists see <a href="https://github.com/sitespeedio/compare/issues/34">#34</a>.<br>
 - Added support for using a config file to configure which HARs to test.<br>
 - Added support for copy/paste directly you HAR, configuration file or a gist URL or id.<br>
 - Refactor the CSS into Sass, development build process now uses BrowserSync.<br>
 - Service worker added for offline support. Workbox is used to achieve this.<br>
-- Added support for showing changes in request/responses if you compare the same page #63.<br>
+- Added support for showing changes in request/responses if you compare the same page <a href="https://github.com/sitespeedio/compare/pull/63">#63</a>.<br>
 <br>
 <strong>Changed</strong><br>
 - New internal structure and use the new configuration object all the way.<br>
@@ -137,10 +137,10 @@
             <guid isPermaLink="false">https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.3.0</guid>
             <pubDate>Fri, 30 Mar 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[<strong>Added</strong><br>
-- Automatically load the HAR files if both files are given in the URL . Thanks Ivru for the PR #15.<br>
+- Automatically load the HAR files if both files are given in the URL . Thanks <a href="https://github.com/Ivru">Ivru</a> for the PR <a href="https://github.com/sitespeedio/compare/pull/15">#15</a>.<br>
 - You can automatically load one HAR file by adding ?har1=URL&amp;compare=1 as the full URL.<br>
 - Updated to PageXray 2.2.1<br>
-- You can now drag and drop one HAR file with multiple pages and compare the pages with each others #16.<br>
+- You can now drag and drop one HAR file with multiple pages and compare the pages with each others <a href="https://github.com/sitespeedio/compare/issues/16">#16</a>.<br>
 ]]></description>
             <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>

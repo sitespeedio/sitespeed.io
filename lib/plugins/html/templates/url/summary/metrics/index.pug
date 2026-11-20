@@ -38,6 +38,7 @@ block content
         .listing-card-header
             h3.listing-card-title Side by side
             span.listing-card-meta #{h.plural(runPages.length, 'run')}
+        p.listing-card-help Every metric for every run, with statistics over all runs. Click a value to open that run. Median is the middle value when the runs are sorted, so one slow run does not move it. Mean is the average, and one outlier pulls it. Stddev (standard deviation) is how far the runs typically land from the mean, in the unit of the metric. RSD (relative standard deviation) is the stddev as a percentage of the mean, so you can compare the noise of metrics with different units: a low RSD means the runs agree, a high RSD means the metric is noisy and you need more runs to trust a change.
         .responsive
             table.timings-table.sidebyside-table
                 thead

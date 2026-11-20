@@ -34,11 +34,26 @@ C:\Users\Vicky> docker pull sitespeedio/sitespeed.io
 C:\Users\Vicky> docker run --rm -v ${pwd}:/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
-That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
+That will write the result to `sitespeed-result/www.sitespeed.io/<date-and-time>/` in the current directory. Open `index.html` in that folder to see the HTML report. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
 
 ## Using Node.js
 
 Requires additional software like FFmpeg and Python dependencies.
+
+### Pin the versions of all dependencies
+sitespeed.io pins its own dependencies to exact versions, but the dependencies of those dependencies can resolve to newer versions within their ranges. With npm 11 and older, `npm install sitespeed.io` installs the exact dependency tree that we tested, from the `npm-shrinkwrap.json` in the package. npm 12 ignores that file, so with npm 12 you get the newest matching versions.
+
+If you need the same versions on every run, use our Docker containers. They are built from our lockfile. If you install with npm, install sitespeed.io in its own project:
+
+~~~bash
+mkdir sitespeed && cd sitespeed
+npm init -y
+npm install --save-exact sitespeed.io
+~~~
+
+Commit `package.json` and `package-lock.json`, install with `npm ci` and run with `npx sitespeed.io https://www.sitespeed.io`. Your lockfile then pins the versions that were the newest when you installed, not the versions that we tested.
+
+To not install dependency versions that were published in the last days, set `min-release-age` in your `.npmrc` (npm 11.10 or later). For example `min-release-age=7` skips versions that are newer than seven days.
 
 ### Installation steps for Apple Mac M1
 
@@ -234,32 +249,24 @@ On your Mac, use "VNC Viewer" and use *raspberrypi.local* as the hostname. You w
 sitespeed.io https://www.sitespeed.io --android -n 1 --video --visualMetrics
 ~~~
 
-### Skip installing ChromeDriver/GeckoDriver/EdgeDriver
-If you don't want to install ChromeDriver, EdgeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
+### ChromeDriver/GeckoDriver/EdgeDriver
+Installing sitespeed.io does not download ChromeDriver, EdgeDriver or GeckoDriver. Browsertime downloads the driver the first time a test needs it, into the `vendor` folder of the driver package in `node_modules`. The machine that runs the test must then be able to reach the download host and write to `node_modules`.
 
-Skip installing ChromeDriver:
-
-~~~bash
-CHROMEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
-~~~
-
-Skip installing GeckoDriver:
+If you build your own Docker or CI image, or the test machine has no internet access, install the drivers after `npm install`:
 
 ~~~bash
-GECKODRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
+node node_modules/@sitespeed.io/chromedriver/install.js
+node node_modules/@sitespeed.io/geckodriver/install.js
+node node_modules/@sitespeed.io/edgedriver/install.js
 ~~~
 
-Skip installing EdgeDriver:
-
-~~~bash
-EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
-~~~
+For a global install, run the scripts from the `node_modules` folder of the global install (`npm root -g`).
 
 ### Updating ChromeDriver/GeckoDriver/EdgeDriver
 
 When using Docker, the browser and driver are bundled with the correct versions. If you install everything yourself, you may need to update driver versions.
 
-You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install when you install sitespeed.io with an environment variable:
-```CHROMEDRIVER_VERSION=131.0.6778.85 npm install ```
+You can download ChromeDriver yourself from [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and use ```--chrome.chromedriverPath``` to help Browsertime find it. You can also choose which version to install with an environment variable when you run the install script:
+```CHROMEDRIVER_VERSION=131.0.6778.85 node node_modules/@sitespeed.io/chromedriver/install.js```
 
-You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`. To use an Edgedriver or Geckodriver that you already have, use `--edge.edgedriverPath` or `--firefox.geckodriverPath`.

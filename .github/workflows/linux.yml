@@ -26,6 +26,7 @@ jobs:
           content-signature-2.cdn.mozilla.net:443
           dl-ssl.google.com:443
           dl.google.com:80
+          dl.google.com:443
           download-installer.cdn.mozilla.net:443
           download.mozilla.org:443
           esm.ubuntu.com:443
@@ -57,10 +58,9 @@ jobs:
       run: npm ci
     - name: Install Chrome
       run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo apt-get update
-        sudo apt-get --only-upgrade install google-chrome-stable
+        sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
         google-chrome --version
     - name: Install dependencies
       run: |

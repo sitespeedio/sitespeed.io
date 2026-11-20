@@ -5,7 +5,11 @@
 
 import test from 'ava';
 
-import { cliffsDelta, hodgesLehmann } from '../lib/plugins/compare/helper.js';
+import {
+  cliffsDelta,
+  hodgesLehmann,
+  getMetrics
+} from '../lib/plugins/compare/helper.js';
 
 test('cliffsDelta is 0 for identical samples', t => {
   t.is(cliffsDelta([1, 2, 3], [1, 2, 3]), 0);
@@ -52,4 +56,22 @@ test('hodgesLehmann averages the two middle differences on even counts', t => {
 
 test('hodgesLehmann returns undefined for empty samples', t => {
   t.is(hodgesLehmann([], [1, 2]), undefined);
+});
+
+test('getMetrics groups numeric extras under extras and skips objects', t => {
+  const metrics = getMetrics({
+    extras: [
+      { myMetric: 10, axe: { violations: [] } },
+      { myMetric: 12, axe: { violations: [] } }
+    ],
+    browserScripts: [],
+    fullyLoaded: [],
+    visualMetrics: [],
+    googleWebVitals: [],
+    cpu: [],
+    renderBlocking: []
+  });
+  t.deepEqual(Object.keys(metrics.extras), ['myMetric']);
+  t.deepEqual(metrics.extras.myMetric.getValues(), [10, 12]);
+  t.is(metrics.myMetric, undefined);
 });

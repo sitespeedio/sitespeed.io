@@ -57,3 +57,159 @@ test(`CLI should silently ignore the removed summary boxes options`, async t => 
     'Should not validate the removed summary boxes options'
   );
 });
+
+test(`CLI should reject an unknown connectivity engine`, async t => {
+  let stderr = '';
+  let exitCode = 0;
+  try {
+    await runSitespeed([
+      '--browsertime.connectivity.engine',
+      'tc',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+    exitCode = error.code;
+  }
+  t.not(exitCode, 0, 'Should exit with error code');
+  t.true(stderr.includes('Unknown connectivity engine "tc"'));
+});
+
+test(`CLI should reject debug mode on Android`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed(['--debug', '--android', 'https://www.sitespeed.io']);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('Debug mode do not work on Android'));
+});
+
+test(`CLI should reject a sustainable country without the swd model`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--sustainable.country',
+      'SWE',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('--sustainable.country only works with'));
+});
+
+test(`CLI should reject an unknown sustainable country`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--sustainable.model',
+      'swd',
+      '--sustainable.country',
+      'IN',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('IN is not a country or region'));
+});
+
+test(`CLI should reject Samsung Internet without Android`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed(['-b', 'samsung', 'https://www.sitespeed.io']);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('Samsung Internet only works on Android'));
+});
+
+test.serial(
+  `CLI should run Samsung Internet on Android with the Chrome code`,
+  async t => {
+    const argv = process.argv;
+    process.argv = [
+      'node',
+      'sitespeed.js',
+      '--android',
+      '-b',
+      'samsung',
+      'https://www.sitespeed.io'
+    ];
+    try {
+      const { parseCommandLine } = await import('../lib/cli/cli.js');
+      const { options } = await parseCommandLine();
+      t.is(options.browsertime.browser, 'chrome');
+      t.is(
+        options.browsertime.chrome.android.package,
+        'com.sec.android.app.sbrowser'
+      );
+    } finally {
+      process.argv = argv;
+    }
+  }
+);
+
+test.serial(
+  `CLI should accept debug mode on desktop and raise the timeouts`,
+  async t => {
+    const argv = process.argv;
+    process.argv = [
+      'node',
+      'sitespeed.js',
+      '--debug',
+      'https://www.sitespeed.io'
+    ];
+    try {
+      const { parseCommandLine } = await import('../lib/cli/cli.js');
+      const { options } = await parseCommandLine();
+      t.is(options.browsertime.timeouts.pageLoad, 2_147_483_647);
+      t.is(options.browsertime.timeouts.script, 2_147_483_647);
+      t.is(options.browsertime.timeouts.pageCompleteCheck, 2_147_483_647);
+    } finally {
+      process.argv = argv;
+    }
+  }
+);
+
+test.serial(`CLI should run Edge on Android with the Edge package`, async t => {
+  const argv = process.argv;
+  process.argv = [
+    'node',
+    'sitespeed.js',
+    '--android',
+    '-b',
+    'edge',
+    'https://www.sitespeed.io'
+  ];
+  try {
+    const { parseCommandLine } = await import('../lib/cli/cli.js');
+    const { options } = await parseCommandLine();
+    t.is(options.browsertime.browser, 'edge');
+    t.is(options.browsertime.chrome.android.package, 'com.microsoft.emmx');
+    t.is(
+      options.browsertime.chrome.android.activity,
+      'com.microsoft.ruby.Main'
+    );
+  } finally {
+    process.argv = argv;
+  }
+});
+
+test(`CLI should reject a page that is in two budget groups`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--budget.config',
+      JSON.stringify({
+        budget: {},
+        groups: { a: { pages: ['start'] }, b: { pages: ['start'] } }
+      }),
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('start is in more than one budget group'));
+});

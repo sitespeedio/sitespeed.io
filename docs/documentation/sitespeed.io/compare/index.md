@@ -37,7 +37,7 @@ Looking for a significant change helps. This is the graph for the same metric wh
 {: .img-thumbnail}
 
 ## Prerequisites
-To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python -m pip install scipy`.  If you use our Docker containers this is already installed.
+To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python3 -m pip install scipy`.  If you use our Docker containers this is already installed. sitespeed.io runs `python3` (`python` on Windows). If your Python has another name or path, set it with the `PYTHON` environment variable, for example `PYTHON=/usr/local/bin/python3.12 sitespeed.io ...`.
 
 ## Save the baseline (save the world)
 By default, tests run against a baseline test and look for regressions in the new test. That means that for your test to work you need to collect a baseline. You do that by adding `--compare.saveBaseline` to your test. You also need to give your test a unique id, which you do by adding `--compare.id myId`. Adding those to your test will store the baseline on disk. By default that file is stored in your current directory. You can change that by adding `--compare.baselinePath` to set the path. That is useful in Docker if you want the file to be stored outside the container.
@@ -75,6 +75,25 @@ You can also save a baseline for each and every test, so you always compare your
 docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
 ~~~
 
+## Compare two saved tests
+You can also compare two tests that you already ran, without running a new test. Save both tests with `--compare.saveBaseline` (give them different ids) and then compare the two files with `sitespeed.io-compare`:
+
+~~~bash
+sitespeed.io-compare start_page_before-1.json start_page_after-1.json --outputFolder compare-result
+~~~
+
+The first file is the baseline and the second file is the current test. This is useful when you want to compare two builds or two versions of your page that you tested at different times, or compare the same tests again with other statistical settings. You can use the same `--compare.*` options as in a test, for example `--compare.alternative two-sided`.
+
+The command writes two files in the output folder (*compare-result* by default):
+* *index.html* — the same compare page as the Compare tab in the HTML result. It has everything in one file, so you can open it from disk or send it to someone.
+* *compare.json* — the metrics and the statistics, if you want to use the result in a script.
+
+The command needs Python 3 with scipy, the same as the compare plugin. Set `PYTHON` if your Python 3 has another name. In Docker, Python and scipy are already installed:
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io --entrypoint node sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} /usr/src/app/bin/compare.js start_page_before-1.json start_page_after-1.json
+~~~
+
 ## Results
 
 When you run your test it will create a new tab in the HTML results. The tab opens with the test setup on one line, a verdict ("2 of 24 metrics are significantly slower compared to the baseline") with chips that jump to the flagged metrics, and then one row per compared metric, grouped by area (timings, visual metrics, Google Web Vitals, CPU and so on).
@@ -105,5 +124,13 @@ If the score is below 0.05, it means that the changes observed in the metric are
 If you see a result marked as no test conducted, it means the analysis couldn’t be done. This usually happens when the data samples are too similar or don't show enough variation to conduct a meaningful analysis.
 
 ## Alert on data in Graphite
-The actual score is automatically sent to Graphite for each metric, which makes it possible to create alert rules in Grafana to alert on regressions. Documentation on how to do that will come soon.
+The actual score is automatically sent to Graphite for each metric, which makes it possible to create alert rules in Grafana to alert on regressions.
 
+The [Grafana in our Docker Compose setup]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#using-docker-compose) has an alert rule for that: *Page got slower* (in *Alerting* > *Alert rules*, folder *sitespeed.io*). Grafana checks it every 5 minutes. When the last comparison of a page in the last 2 hours has metrics that got significantly slower, the rule fires once for each page. The label `name` tells you the page (path, test name, domain, page, browser and connectivity) and the value is the number of metrics that got slower. The rule is in [docker/grafana/provisioning/alerting/regressions.yaml](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/alerting/regressions.yaml). If you use another namespace than `sitespeed_io` (`--graphite.namespace`), change the query there.
+
+To get a message when the rule fires, add a [contact point](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/manage-contact-points/) in Grafana (for example Slack or email) and use it in the default notification policy.
+
+For each metric, sitespeed.io sends the p-value as `compare.metrics.<group>.<metric>.statisticalTestU` and the effect as `compare.metrics.<group>.<metric>.isSignificant`. When the change is significant (the p-value is below 0.05), *isSignificant* is the effect size (Cliff's delta, from -1 to 1): above 0 the metric is higher than the baseline, so it got slower, and below 0 it got faster. When the change is not significant, it is 0. The *Regressions* tab of our [Page metrics dashboard]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#page-metrics) shows them.
+
+
+If you use `--copyLatestFilesToBase`, the information about the latest test that you see in Grafana also tells you the date of the baseline that the test was compared with. The JSON file next to the latest screenshot gets a `compare.baseline` field with that date.

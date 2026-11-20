@@ -39,9 +39,7 @@ The screenshot is generated after the page has finished loading. If the largest 
 If you have a hard time identifying the element in the screenshot, you can change the colour of the highlighting with `--browsertime.screenshotLCPColor blue`.
 
 
-If the largest contentful paint is an image you can also see that highlighted in the waterfall.
-![Highlighted LCP]({{site.baseurl}}/img/lcp-waterfall.jpg){:loading="lazy"}
-{: .img-thumbnail}
+In the [waterfall](/documentation/sitespeed.io/waterfall/), the dashed green line marks the largest contentful paint, so you can see which requests finished before it.
 ### Cumulative Layout Shift (CLS)
 
 The [layout shift API](https://wicg.github.io/layout-instability/) helps you find the DOM elements that shift on the screen and degrade the user experience.

@@ -88,13 +88,13 @@ function addItemToFeed(feed, item, tool) {
 
 // Grafana's news panel sanitizes the description: <h3>, <ul>, <li>, <a> are
 // stripped/flattened, so block structure and links disappear. We render with
-// <strong> + <br> (which survive sanitization) and inline the PR number as
-// plain text instead of an <a> link.
+// <strong> + <br> and "- " in front of each item, so the items stay apart as
+// text. Keep the <a> links: the news panel shows their text, and other
+// readers need the link to know which repository a #number is in.
 function bulletAsHTML(md) {
   return marked
     .parse(md)
     .replaceAll(/<\/?(ul|li)>/g, '')
-    .replaceAll(/<a [^>]*>([^<]+)<\/a>/g, '$1')
     .trim();
 }
 
