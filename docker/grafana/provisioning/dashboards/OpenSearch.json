@@ -2,7 +2,7 @@
   "annotations": {
     "list": []
   },
-  "description": "Test results stored in OpenSearch: the latest tests with links to their results, grouping by any field, every run and the significant changes from compare, and the trends for one URL. Enable with --opensearch.host.",
+  "description": "Test results for one URL stored in OpenSearch: the latest tests with links to their results, the results per browser, every run, the significant changes from compare and the trends. Enable with --opensearch.host.",
   "editable": true,
   "graphTooltip": 1,
   "id": null,
@@ -13,7 +13,7 @@
       "title": "",
       "options": {
         "mode": "markdown",
-        "content": "OpenSearch stores every test as a document with text fields, so this dashboard can do what Graphite cannot: **list the tests with a link to each HTML result**, **group by any field when you query** (URL, browser, test name) without a fixed metric path, **keep every run** and not only the median, and **show which metrics changed** in a comparison. Use *Filters* to filter on any field, for example `slug` or `group`."
+        "content": "Choose a URL. OpenSearch stores every test as a document with text fields, so for that URL this dashboard can do what Graphite cannot: **list the tests with a link to each HTML result**, **group the results by any field when you query**, for example by browser, **keep every run** and not only the median, and **show which metrics changed** in a comparison. Use *Filters* to filter on any field, for example `slug` or `group`. To compare pages, use the Leaderboard."
       },
       "id": 200,
       "gridPos": {
@@ -25,7 +25,7 @@
     },
     {
       "type": "row",
-      "title": "Latest tests",
+      "title": "Latest tests for $url",
       "collapsed": false,
       "panels": [],
       "id": 201,
@@ -39,7 +39,7 @@
     {
       "type": "table",
       "title": "Latest tests",
-      "description": "One row for each test, newest first. Click a URL to open its HTML result (needs --resultBaseURL). Graphite only stores numbers, so it cannot keep the URL, the test name or the link.",
+      "description": "One row for each test of the URL, newest first. Click the URL to open the HTML result of that test (needs --resultBaseURL). Graphite only stores numbers, so it cannot keep the test name or the link.",
       "datasource": {
         "type": "grafana-opensearch-datasource",
         "uid": "sitespeed-opensearch"
@@ -50,7 +50,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "sitespeed-opensearch"
           },
-          "query": "type:pageSummary AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
+          "query": "type:pageSummary AND url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "metrics": [
             {
               "id": "1",
@@ -268,7 +268,7 @@
     },
     {
       "type": "row",
-      "title": "Compare pages and browsers",
+      "title": "Browsers for $url",
       "collapsed": false,
       "panels": [],
       "id": 203,
@@ -277,97 +277,6 @@
         "w": 24,
         "x": 0,
         "y": 13
-      }
-    },
-    {
-      "type": "bargauge",
-      "title": "Median LCP per URL",
-      "description": "The average of the LCP medians for each URL in the time range, slowest first. OpenSearch groups the documents by URL when you query; with Graphite you need the right namespace for each URL.",
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "sitespeed-opensearch"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "sitespeed-opensearch"
-          },
-          "query": "type:pageSummary AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
-          "metrics": [
-            {
-              "id": "1",
-              "type": "avg",
-              "field": "googleWebVitals.lcp.median",
-              "settings": {}
-            }
-          ],
-          "bucketAggs": [
-            {
-              "id": "2",
-              "type": "terms",
-              "field": "url",
-              "settings": {
-                "size": "20",
-                "order": "desc",
-                "orderBy": "1",
-                "min_doc_count": "1"
-              }
-            }
-          ],
-          "refId": "A",
-          "timeField": "@timestamp"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "ms",
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 2500
-              },
-              {
-                "color": "red",
-                "value": 4000
-              }
-            ]
-          },
-          "color": {
-            "mode": "thresholds"
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "displayMode": "basic",
-        "orientation": "horizontal",
-        "namePlacement": "top",
-        "showUnfilled": true,
-        "valueMode": "color",
-        "text": {
-          "titleSize": 14,
-          "valueSize": 18
-        },
-        "reduceOptions": {
-          "values": true,
-          "calcs": [],
-          "fields": ""
-        }
-      },
-      "id": 204,
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 14
       }
     },
     {
@@ -444,14 +353,14 @@
       "id": 205,
       "gridPos": {
         "h": 10,
-        "w": 12,
-        "x": 12,
+        "w": 24,
+        "x": 0,
         "y": 14
       }
     },
     {
       "type": "row",
-      "title": "Every run (enable with --opensearch.includeRuns)",
+      "title": "Every run for $url (enable with --opensearch.includeRuns)",
       "collapsed": false,
       "panels": [],
       "id": 206,
@@ -626,7 +535,7 @@
     },
     {
       "type": "row",
-      "title": "Significant changes (enable with --compare.id or --compare.saveBaseline)",
+      "title": "Significant changes for $url (enable with --compare.id or --compare.saveBaseline)",
       "collapsed": false,
       "panels": [],
       "id": 209,
@@ -651,7 +560,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "sitespeed-opensearch"
           },
-          "query": "type:compare AND anySignificant:true AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
+          "query": "type:compare AND anySignificant:true AND url:\"$url\" AND browser:$browser AND connectivity:$connectivity AND deviceType:$deviceType",
           "metrics": [
             {
               "id": "1",

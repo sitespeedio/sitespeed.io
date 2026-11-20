@@ -176,10 +176,10 @@ Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/cru
 {: .img-thumbnail}
 
 ## OpenSearch
-You can also send the results to [OpenSearch](https://opensearch.org) with `--opensearch.host`. Graphite stores numbers on a fixed path. OpenSearch stores every test as a document with text fields, so the *OpenSearch* dashboard can do what the Graphite dashboards cannot:
+You can also send the results to [OpenSearch](https://opensearch.org) with `--opensearch.host`. Graphite stores numbers on a fixed path. OpenSearch stores every test as a document with text fields, so for the URL you choose, the *OpenSearch* dashboard can do what the Graphite dashboards cannot:
 
 * List the latest tests with a link to each HTML result (needs `--resultBaseURL`).
-* Group the results by any field when you look at them, for example the median LCP per URL or per browser, without a namespace for each.
+* Group the results by any field when you look at them, for example by browser.
 * Keep every run, not only the median, and show how the runs are spread (add `--opensearch.includeRuns`).
 * Show which metrics changed in a [comparison](/documentation/sitespeed.io/compare/).
 * Filter on any field, for example the test name (`--slug`).
