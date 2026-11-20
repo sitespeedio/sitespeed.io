@@ -148,7 +148,7 @@ If you also collect [Chrome User Experience Report]({{site.baseurl}}/documentati
 
 The *Visual metrics* tab shows the metrics from the video (First Visual Change, Speed Index, Largest Image, Largest Heading, the visual Largest Contentful Paint and Last Visual Change) the same way as the Google Web Vitals, and when the page is 85, 95 and 99% visually complete. The tab only shows when the test records a video.
 
-The *Regressions* tab shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower or faster in the last comparison, which metrics they are, and the changes over time.
+The *Regressions* tab shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower in the last comparison, which metrics they are and how large the effect is (small, medium or large), and the changes over time. A link opens the comparison in the latest HTML result, where you see the medians and every run (needs `--copyLatestFilesToBase`). Faster metrics only show when there are any: by default compare only looks for regressions, add `--compare.alternative two-sided` to also find improvements.
 
 Some rows need a configuration, for example the CPU rows need `--cpu` (Chrome and Edge), the axe rows need `--axe.enable`, the carbon emission row needs `--sustainable.enable` and the regression panels need `--compare.id`. The dashboard only shows a row when the test has data for it, and the *CPU* tab only when there is CPU data. In the rows, a panel without data is not shown, so you only see the panels for the data you collect.
 

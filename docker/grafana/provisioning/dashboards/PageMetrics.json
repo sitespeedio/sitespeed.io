@@ -11271,8 +11271,8 @@
         "kind": "Panel",
         "spec": {
           "id": 330,
-          "title": "Changed in the last comparison",
-          "description": "The metrics with a significant change in the last comparison. The effect is Cliff's delta from the compare plugin: above 0 the metric got slower than the baseline, below 0 faster. Enable compare with --compare.id.",
+          "title": "Slower in the last comparison",
+          "description": "The metrics that got significantly slower in the last comparison with the baseline, and how much. The effect is Cliff's delta from the compare plugin: small from 0.147, medium from 0.33 and large from 0.474. Open the comparison in the HTML result to see the medians and every run. Enable compare with --compare.id or --compare.saveBaseline.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -11290,7 +11290,7 @@
                       },
                       "spec": {
                         "refCount": 0,
-                        "target": "aliasByNode(filterSeries($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant, 'last', '!=', 0), 10, 11)",
+                        "target": "aliasByNode(filterSeries($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant, 'last', '>', 0), 10, 11)",
                         "textEditor": true
                       }
                     },
@@ -11373,10 +11373,6 @@
                         }
                       },
                       {
-                        "id": "decimals",
-                        "value": 2
-                      },
-                      {
                         "id": "color",
                         "value": {
                           "mode": "thresholds"
@@ -11388,14 +11384,68 @@
                           "mode": "absolute",
                           "steps": [
                             {
-                              "color": "green"
+                              "color": "text",
+                              "value": null
+                            },
+                            {
+                              "color": "#EAB839",
+                              "value": 0.147
+                            },
+                            {
+                              "color": "orange",
+                              "value": 0.33
                             },
                             {
                               "color": "red",
-                              "value": 0
+                              "value": 0.474
                             }
                           ]
                         }
+                      },
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "type": "range",
+                            "options": {
+                              "from": 0,
+                              "to": 0.147,
+                              "result": {
+                                "text": "negligible"
+                              }
+                            }
+                          },
+                          {
+                            "type": "range",
+                            "options": {
+                              "from": 0.147,
+                              "to": 0.33,
+                              "result": {
+                                "text": "small"
+                              }
+                            }
+                          },
+                          {
+                            "type": "range",
+                            "options": {
+                              "from": 0.33,
+                              "to": 0.474,
+                              "result": {
+                                "text": "medium"
+                              }
+                            }
+                          },
+                          {
+                            "type": "range",
+                            "options": {
+                              "from": 0.474,
+                              "to": 1,
+                              "result": {
+                                "text": "large"
+                              }
+                            }
+                          }
+                        ]
                       }
                     ]
                   }
@@ -11409,8 +11459,8 @@
         "kind": "Panel",
         "spec": {
           "id": 331,
-          "title": "Regressions",
-          "description": "Number of metrics that got significantly slower in the last comparison with the baseline. Enable compare with --compare.id.",
+          "title": "Slower metrics",
+          "description": "The number of metrics that got significantly slower in the last comparison with the baseline. Enable compare with --compare.id or --compare.saveBaseline.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -11484,7 +11534,7 @@
                     "steps": [
                       {
                         "value": null,
-                        "color": "text"
+                        "color": "green"
                       },
                       {
                         "value": 1,
@@ -11506,8 +11556,8 @@
         "kind": "Panel",
         "spec": {
           "id": 332,
-          "title": "Improvements",
-          "description": "Number of metrics that got significantly faster in the last comparison with the baseline. Enable compare with --compare.id.",
+          "title": "Faster metrics",
+          "description": "The number of metrics that got significantly faster in the last comparison. Only shows when there are some: the default one-sided test only looks for regressions, use --compare.alternative two-sided to also find improvements.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -11525,7 +11575,7 @@
                       },
                       "spec": {
                         "refCount": 0,
-                        "target": "alias(sumSeries(countSeries(filterSeries($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant, 'last', '<', 0)), scale(countSeries($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant), 0)), 'Metrics')",
+                        "target": "alias(sumSeries(countSeries(filterSeries($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.compare.metrics.*.*.isSignificant, 'last', '<', 0))), 'Metrics')",
                         "textEditor": true
                       }
                     },
@@ -11581,10 +11631,6 @@
                     "steps": [
                       {
                         "value": null,
-                        "color": "text"
-                      },
-                      {
-                        "value": 1,
                         "color": "green"
                       }
                     ]
@@ -11603,8 +11649,8 @@
         "kind": "Panel",
         "spec": {
           "id": 333,
-          "title": "Regressions",
-          "description": "Each point is a comparison where the metric got significantly slower. The effect is Cliff's delta from the compare plugin: above 0 the metric got slower than the baseline, below 0 faster. Enable compare with --compare.id.",
+          "title": "Slower metrics over time",
+          "description": "Each point is a comparison where the metric got significantly slower. The effect is Cliff's delta from the compare plugin: small from 0.147, medium from 0.33 and large from 0.474. Enable compare with --compare.id or --compare.saveBaseline.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -11719,8 +11765,8 @@
         "kind": "Panel",
         "spec": {
           "id": 334,
-          "title": "Improvements",
-          "description": "Each point is a comparison where the metric got significantly faster. The effect is Cliff's delta from the compare plugin: above 0 the metric got slower than the baseline, below 0 faster. Enable compare with --compare.id.",
+          "title": "Faster metrics over time",
+          "description": "Each point is a comparison where the metric got significantly faster (below 0). Only shows when there are some, see Faster metrics.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -16965,6 +17011,85 @@
             }
           }
         }
+      },
+      "panel-352": {
+        "kind": "Panel",
+        "spec": {
+          "id": 352,
+          "title": "Last comparison",
+          "description": "The date of the baseline that the latest test was compared with, and a link to the comparison in the HTML result: the medians, every run and the statistics. Needs --copyLatestFilesToBase.",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "yesoreyeram-infinity-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "infinity"
+                      },
+                      "spec": {
+                        "columns": [
+                          {
+                            "selector": "result",
+                            "text": "result",
+                            "type": "string"
+                          },
+                          {
+                            "selector": "compare.baseline",
+                            "text": "baseline",
+                            "type": "string"
+                          }
+                        ],
+                        "format": "table",
+                        "parser": "backend",
+                        "source": "url",
+                        "type": "json",
+                        "url": "$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.json",
+                        "url_options": {
+                          "method": "GET"
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "marcusolsson-dynamictext-panel",
+            "version": "",
+            "spec": {
+              "options": {
+                "content": "{{#each data}}\n{{#if baseline}}\nThe latest test was compared with the baseline from **{{baseline}}**.\n\n[Open the comparison in the HTML result]({{result}}#compare)\n{{else}}\nThe latest test was not compared with a baseline.\n{{/if}}\n{{/each}}",
+                "defaultContent": "There is no latest test for this page.",
+                "editor": {
+                  "format": "auto",
+                  "height": 200,
+                  "language": "markdown"
+                },
+                "editors": [],
+                "everyRow": false,
+                "helpers": "",
+                "styles": ""
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
       }
     },
     "layout": {
@@ -19598,7 +19723,7 @@
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
-                        "title": "Failures and regressions",
+                        "title": "Did the page get slower?",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
@@ -19622,6 +19747,30 @@
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-331"
+                                  },
+                                  "conditionalRendering": {
+                                    "kind": "ConditionalRenderingGroup",
+                                    "spec": {
+                                      "visibility": "show",
+                                      "condition": "and",
+                                      "items": [
+                                        {
+                                          "kind": "ConditionalRenderingData",
+                                          "spec": {
+                                            "value": true
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "AutoGridLayoutItem",
+                                "spec": {
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-352"
                                   },
                                   "conditionalRendering": {
                                     "kind": "ConditionalRenderingGroup",
