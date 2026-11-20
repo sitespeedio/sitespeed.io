@@ -1,6 +1,6 @@
-FROM sitespeedio/webbrowsers:chrome-146.0-firefox-148.0-edge-146.0
+FROM sitespeedio/webbrowsers:chrome-158.0-firefox-160.0-edge-157.0-20261118
 
-ARG TARGETPLATFORM=linux/amd64
+ARG TARGETPLATFORM
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB=true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER=true
@@ -12,10 +12,12 @@ COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-RUN sudo apt-get update && sudo apt-get install libnss3-tools \
-    net-tools \
-    build-essential \
-    iproute2 -y && \
+RUN sudo apt-get update && \
+    sudo apt-get install -y --no-install-recommends \
+        libnss3-tools \
+        net-tools \
+        iproute2 && \
+    sudo rm -rf /var/lib/apt/lists/* && \
     mkdir -p $HOME/.pki/nssdb && \
     certutil -d $HOME/.pki/nssdb -N
 
@@ -27,13 +29,21 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
-COPY npm-shrinkwrap.json /usr/src/app/
+COPY package-lock.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
-RUN npm install --production && npm cache clean --force
+# The driver packages have no install script. Install the drivers now, so that a test does not download them.
+# On ARM64, Chromedriver is in the base image and Edge is not available.
+RUN npm ci --omit=dev && \
+    node node_modules/@sitespeed.io/geckodriver/install.js && \
+    if [ "$(uname -m)" = "x86_64" ]; then \
+      node node_modules/@sitespeed.io/chromedriver/install.js && \
+      node node_modules/@sitespeed.io/edgedriver/install.js; \
+    fi && \
+    npm cache clean --force && \
+    rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
 COPY ./bin/ /usr/src/app/bin/
 COPY ./lib/ /usr/src/app/lib/
-RUN rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
 COPY docker/scripts/start.sh /start.sh
 
@@ -44,7 +54,10 @@ ADD docker/adb/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
 # Allow all users to run commands needed by sitespeedio/throttle via sudo
 # See https://github.com/sitespeedio/throttle/blob/main/lib/tc.js
-RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/sudoers.d/tc
+# Allow only the subcommands that throttle uses. With all of tc or ip, a user
+# can read all files as root ("ip -batch FILE") or start a root shell
+# ("ip netns exec").
+RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc qdisc *, /usr/sbin/tc filter *, /usr/sbin/ip link *, /usr/sbin/ip route, /usr/sbin/route' > /etc/sudoers.d/tc
 
 ENTRYPOINT ["/start.sh"]
 VOLUME /sitespeed.io

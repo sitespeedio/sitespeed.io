@@ -1,0 +1,71 @@
+//
+// BUDGET — dark
+// ==============
+// Per-URL groups on the performance budget page: a header row with the
+// page link and a pass/fail pill, then a metric/value/limit/verdict
+// table where failing rows are error-tinted.
+//
+
+.budget-group {
+  margin: 0 0 18px 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.budget-group-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+  margin: 0 0 8px 0;
+}
+
+.budget-group-url {
+  font-weight: $font--weight--semibold;
+  overflow-wrap: anywhere;
+}
+
+// The full URL behind an alias — supporting detail under the alias link.
+.budget-group-alias {
+  color: $color--text-muted;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.budget-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: $radius--pill;
+  font-size: 0.72rem;
+  font-weight: $font--weight--semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  &--fail {
+    color: $color--error;
+    background: $color--error-bg;
+    border-color: $color--error-border;
+  }
+
+  &--pass {
+    color: $color--ok;
+    background: $color--ok-bg;
+    border-color: $color--ok-border;
+  }
+}
+
+.budget-table {
+  margin-bottom: 0;
+}
+
+// Failing rows carry the error tint on hover too — same specificity
+// trick as tr.errors-row (components import after foundations).
+tbody tr.budget-row--failing,
+tbody tr.budget-row--failing:hover {
+  background: $color--error-bg;
+}

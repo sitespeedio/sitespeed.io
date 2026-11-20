@@ -13,7 +13,6 @@ twitterdescription: Configuration for Browsertime.
 # Configuration
 {:.no_toc}
 
-* Let's place the TOC here
 {:toc}
 
 # Configuration
@@ -23,5 +22,5 @@ Browsertime is highly configurable, let's check it out!
 You have the following options when running Browsertime within docker (run <code>docker run sitespeedio/browsertime --help</code> to get the list on your command line):
 
 ~~~shell
-{% include_relative config.md %}
+{% include_relative "config.md" %}
 ~~~

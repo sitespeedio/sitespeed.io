@@ -1,21 +1,35 @@
 //
-// SORTABLE
-// ===============
+// SORTABLE TABLES — dark
+// ======================
+// See light variant for behaviour notes. Dark version uses the brand-tint
+// rgba so it pops against the slate surface.
 //
 
-table[data-sortable] th {
-  &[data-sorted="true"] {
-    color: $color--white;
-    background: lighten($color--blue, 10%);
-    // background: #215169;
-    // background: #d9edf7;
-    border-bottom-color: #215169;
-  }
-  &:not([data-sorted="false"]) {
+table[data-sortable] {
+  th:not([data-sortable="false"]) {
     cursor: pointer;
-    color: $color--white;
-    background: $color--blue;
-    // background: #215169;
-    text-decoration: underline;
+    user-select: none;
+    transition: background-color $motion--fast, color $motion--fast;
+  }
+
+  th:not([data-sortable="false"]):hover {
+    background-color: $color--blue-tint;
+    color: $color--text;
+  }
+
+  th[data-sorted="true"] {
+    color: $color--blue;
+    background: $color--blue-tint;
+    border-bottom-color: $color--info-border;
+
+    &::after {
+      content: " ▾";
+      font-size: 0.85em;
+      margin-left: 4px;
+    }
+
+    &[data-sorted-direction="ascending"]::after {
+      content: " ▴";
+    }
   }
 }

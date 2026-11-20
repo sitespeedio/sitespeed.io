@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>coach-core-release-feed</id>
     <title>coach-core release feed</title>
-    <updated>2025-08-31T14:30:33.326Z</updated>
+    <updated>2026-11-19T19:57:27.113Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,20 +17,13 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
-        <title type="html"><![CDATA[coach-core 8.1.2]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.2"/>
-        <updated>2025-08-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Don&#39;t check svg images in avoidScalingImages check, thank you <a href="https://github.com/M-arcus">Marcus Müller</a> for PR <a href="https://github.com/sitespeedio/coach-core/pull/129">#129</a>.</li>
-</ul>
- <ul>
-<li>Add zstd to encoding check, thank you <a href="https://github.com/M-arcus">Marcus Müller</a> for PR <a href="https://github.com/sitespeedio/coach-core/pull/128">#128</a>.</li>
-</ul>
- <ul>
-<li>Make sure we use wappalyzer that is MIT <a href="https://github.com/sitespeedio/coach-core/pull/133">#133</a>.</li>
-</ul>
+        <title type="html"><![CDATA[coach-core 7.0.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2021-12-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Updated to use latest Coach core and Browertime.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -38,14 +31,17 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 8.1.1]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1"/>
-        <updated>2024-12-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix broken minified release.</li>
-</ul>
+        <title type="html"><![CDATA[coach-core 6.4.3]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2021-10-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Added</strong><br>
+- Updated to use latest Browsertime with latest Chromedriver<br>
+- Updated Docker container to use latest Chrome/Firefox<br>
+- Use Browsertime 11.0.0<br>
+- Use Coach-code 6.0<br>
+- Use latest Firefox and Chrome<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -53,21 +49,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 8.1.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0"/>
-        <updated>2024-12-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use latest data from <a href="https://github.com/enthec/webappanalyzer">https://github.com/enthec/webappanalyzer</a> <a href="https://github.com/sitespeedio/coach-core/pull/114">#114</a>.</li>
-</ul>
- <ul>
-<li>Use third part web 0.26.2 <a href="https://github.com/sitespeedio/coach-core/pull/113">#113</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Update dev dependencies  <a href="https://github.com/sitespeedio/coach-core/pull/115">#115</a>,  <a href="https://github.com/sitespeedio/coach-core/pull/116">#116</a> and <a href="https://github.com/sitespeedio/coach-core/pull/117">#117</a>.</li>
-</ul>
+        <title type="html"><![CDATA[coach-core 5.0.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#5.0.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#5.0.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2020-03-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Changed</strong><br>
+- We moved out the core functionality to <a href="https://github.com/sitespeedio/coach-core">coach-core</a>. This makes it easy to use the Coach in your own code.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -75,14 +63,24 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 8.0.2]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2"/>
-        <updated>2023-08-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Another update to PageXray with a safer HTTP header check.</li>
-</ul>
+        <title type="html"><![CDATA[coach-core 4.5.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.5.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.5.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2020-02-20T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 4.4.1]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.4.1</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.4.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2020-02-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<strong>Fixed</strong><br>
+- Upgraded to Browsertime 8.0.1<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -90,114 +88,44 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 8.0.1]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1"/>
-        <updated>2023-08-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated PageXray.</li>
-</ul>
-]]></summary>
+        <title type="html"><![CDATA[coach-core 4.4.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.4.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.4.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2020-02-05T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 8.0.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0"/>
-        <updated>2023-08-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Expose third party web and wappalyzer versions <a href="https://github.com/sitespeedio/coach-core/pull/111">#111</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Wappalyzer 6.10.66 <a href="https://github.com/sitespeedio/coach-core/pull/110">#110</a>.</li>
-</ul>
- <ul>
-<li>Updated third party web 0.24.0 <a href="https://github.com/sitespeedio/coach-core/pull/108">#108</a>.</li>
-</ul>
- <ul>
-<li>Fix correct LCP attribute <a href="https://github.com/sitespeedio/coach-core/pull/107">#107</a>.</li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Remove advice about disableFLoCHeader <a href="https://github.com/sitespeedio/coach-core/pull/106">#106</a>.</li>
-</ul>
-]]></summary>
+        <title type="html"><![CDATA[coach-core 4.3.1]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.3.1</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.3.1"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2020-01-10T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 7.2.1]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1"/>
-        <updated>2023-06-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Catch if local storage or session storage isn&#39;t accessible.</li>
-</ul>
-]]></summary>
+        <title type="html"><![CDATA[coach-core 4.3.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.3.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.3.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2019-12-12T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 7.2.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0"/>
-        <updated>2023-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to third party web 0.23.0. <a href="https://github.com/sitespeedio/coach-core/pull/98">#98</a>.</li>
-</ul>
- <ul>
-<li>Upgraded to latest wappalyzer <a href="https://github.com/sitespeedio/coach-core/pull/100">#100</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure to skip advice if Chrome is missing FCP <a href="https://github.com/sitespeedio/coach-core/pull/95">#95</a>.</li>
-</ul>
- <ul>
-<li>Update dev dependencies</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.1.3]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.3</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.3"/>
-        <updated>2023-02-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed exporting to work with ESM modules too.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.1.2]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.2</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.2"/>
-        <updated>2022-05-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to PageXray 4.4.2 and Third Party Web 0.17.1.</li>
-</ul>
-]]></summary>
+        <title type="html"><![CDATA[coach-core 4.2.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.2.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#4.2.0"/>
+        <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
+        <updated>2019-11-02T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

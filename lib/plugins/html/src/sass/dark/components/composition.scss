@@ -1,0 +1,128 @@
+//
+// Composition donuts — shared conic-gradient rings used by the PageXray
+// content-type breakdown and the third-party first-vs-third breakdown.
+// Same recipe as the CrUX tab's donut (components/crux): a ring with the
+// centre punched out to the card surface, plus a legend. The categorical
+// palette is exposed as --comp-cat-* custom properties so the inline
+// gradient and the legend dots read one theme-aware source; no charting
+// dependency, works on file://. The palette is brightened for the dark
+// surface, matching the CrUX dark donut.
+//
+.composition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px 26px;
+  align-items: start;
+  margin-bottom: 4px;
+
+  --comp-cat-1: #60a5fa; // blue
+  --comp-cat-2: #fbbf24; // amber
+  --comp-cat-3: #34d399; // green
+  --comp-cat-4: #f472b6; // magenta
+  --comp-cat-5: #a78bfa; // violet
+  --comp-cat-6: #22d3ee; // cyan
+  --comp-cat-7: #94a3b8; // slate
+}
+
+// Caption carries the total (the ring's hole is too small to read a
+// value in): a quiet uppercase label followed by the total in the text
+// colour so it reads as the headline number for the donut.
+.composition-cap {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0 0 10px;
+}
+
+.composition-cap-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color--text-secondary;
+}
+
+.composition-cap-total {
+  font-size: 0.95rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  color: $color--text;
+}
+
+.composition-pie {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.composition-donut {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  border: 1px solid $color--border;
+
+  // Punch the centre out to a ring against the card surface.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 27%;
+    border-radius: 50%;
+    background: $color--surface-card;
+  }
+}
+
+.composition-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 140px;
+  min-width: 140px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.composition-key {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.composition-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: 0 0 auto;
+}
+
+.composition-name {
+  color: $color--text-secondary;
+}
+
+// Optional per-slice detail (e.g. "67 req · 4 tools") between the label
+// and the share, muted so the category name and share read first.
+.composition-sub {
+  margin-left: 8px;
+  color: $color--text-muted;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.composition-pct {
+  margin-left: auto;
+  padding-left: 12px;
+  color: $color--text;
+  font-variant-numeric: tabular-nums;
+}
+
+.comp-cat-1 { background: var(--comp-cat-1); }
+.comp-cat-2 { background: var(--comp-cat-2); }
+.comp-cat-3 { background: var(--comp-cat-3); }
+.comp-cat-4 { background: var(--comp-cat-4); }
+.comp-cat-5 { background: var(--comp-cat-5); }
+.comp-cat-6 { background: var(--comp-cat-6); }
+.comp-cat-7 { background: var(--comp-cat-7); }

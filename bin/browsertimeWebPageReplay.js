@@ -2,15 +2,13 @@
 
 import { readFileSync } from 'node:fs';
 
-import merge from 'lodash.merge';
-import set from 'lodash.set';
-import get from 'lodash.get';
+import { get, set, merge } from '../lib/support/objectPath.js';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
 import { BrowsertimeEngine, configureLogging } from 'browsertime';
 
-import { getURLs } from '../lib/cli/util.js';
+import { getURLs, hasScriptInput } from '../lib/cli/util.js';
 import { findUpSync } from '../lib/support/fileUtil.js';
 
 import {config as browsertimeConfig} from '../lib/plugins/browsertime/index.js';
@@ -217,10 +215,12 @@ async function runBrowsertime() {
   }
 
   const engine = new BrowsertimeEngine(btOptions);
-  const urls = parsed.argv.multi ? parsed.argv._ : getURLs(parsed.argv._);
+  // Auto-detect scripts so --multi is not required (still works explicitly).
+  const isMulti = parsed.argv.multi || hasScriptInput(parsed.argv._);
+  const urls = isMulti ? parsed.argv._ : getURLs(parsed.argv._);
 
   try {
-    await testURLs(engine, urls,  parsed.argv.multi);
+    await testURLs(engine, urls, isMulti);
   } catch (e) {
     console.error('Could not run ' + e);
     process.exit(1);

@@ -3,18 +3,19 @@
 /*eslint no-console: 0*/
 
 import { writeFileSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { platform } from 'node:os';
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { EventEmitter } from 'node:events';
 
-import merge from 'lodash.merge';
-import ora from 'ora';
+import { merge } from '../lib/support/objectPath.js';
+import ora from '../lib/support/spinner.js';
 
 import { parseCommandLine } from '../lib/cli/cli.js';
 import { run } from '../lib/sitespeed.js';
 import { addTest, waitAndGetResult, get } from '../lib/api/send.js';
+import { stopAfterCurrentIteration } from '../lib/plugins/browsertime/analyzer.js';
 
 // This is due to CDP do no have (or has it) a way to remove listeners
 // and default 10 is quite small number.
@@ -42,6 +43,11 @@ async function api(options) {
     );
     apiOptions.api.scripting = scripting.toString();
     apiOptions.api.scriptingName = path.basename(options._[0]);
+    // options.multi may have been auto-detected from the script file
+    // (so the user did not need to pass --multi). Propagate it to the
+    // remote API so older servers that rely on the explicit flag still
+    // treat this as a multi/script run.
+    apiOptions.multi = true;
   }
 
   if (apiOptions.mobile) {
@@ -143,6 +149,23 @@ async function start() {
   if (options.api && options.api.hostname && !options.disableAPI) {
     api(options);
   } else {
+    // The first signal lets the test finish the iteration that runs now and
+    // write the report. A second signal stops at once. Keep the listener:
+    // signal-exit (from execa) kills the process when it is the only
+    // listener left for a signal.
+    let stopping = false;
+    const onSignal = signal => {
+      if (stopping) {
+        process.removeListener('SIGINT', onSignal);
+        process.removeListener('SIGTERM', onSignal);
+        process.kill(process.pid, signal);
+        return;
+      }
+      stopping = true;
+      stopAfterCurrentIteration();
+    };
+    process.on('SIGINT', onSignal);
+    process.on('SIGTERM', onSignal);
     try {
       const result = await run(options);
 
@@ -158,9 +181,9 @@ async function start() {
       }
 
       if ((options.open || options.o) && platform() === 'darwin') {
-        execSync('open ' + result.localPath + '/index.html');
+        execFileSync('open', [path.join(result.localPath, 'index.html')]);
       } else if ((options.open || options.o) && platform() === 'linux') {
-        execSync('xdg-open ' + result.localPath + '/index.html');
+        execFileSync('xdg-open', [path.join(result.localPath, 'index.html')]);
       }
 
       // If one of the URLs is marked as a failure in Browsertime

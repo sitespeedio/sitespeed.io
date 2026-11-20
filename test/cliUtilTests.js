@@ -1,6 +1,8 @@
 import {
+  classifyInput,
   getURLs,
   getAliases,
+  hasScriptInput,
   pluginDefaults,
   registerPluginOptions
 } from '../lib/cli/util.js';
@@ -42,6 +44,46 @@ test(`getAliases should extract aliases`, t => {
     aliases['https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/'],
     undefined
   );
+});
+
+test(`classifyInput recognises HTTP(S) URLs`, t => {
+  t.is(classifyInput('https://www.sitespeed.io'), 'url');
+  t.is(classifyInput('http://example.com/path'), 'url');
+  t.is(classifyInput('   https://x.com   '), 'url');
+});
+
+test(`classifyInput recognises script files by extension`, t => {
+  t.is(classifyInput('test/prepostscripts/multi.js'), 'script');
+  t.is(classifyInput('test/prepostscripts/multiWindows.cjs'), 'script');
+});
+
+test(`classifyInput recognises URL-list files by content`, t => {
+  t.is(classifyInput('test/fixtures/sitespeed-urls.txt'), 'urls-file');
+  t.is(classifyInput('test/fixtures/sitespeed-urls-aliases.txt'), 'urls-file');
+});
+
+test(`hasScriptInput is true when any argument is a script`, t => {
+  t.true(
+    hasScriptInput(['https://www.sitespeed.io', 'test/prepostscripts/multi.js'])
+  );
+  t.false(
+    hasScriptInput([
+      'https://www.sitespeed.io',
+      'test/fixtures/sitespeed-urls.txt'
+    ])
+  );
+});
+
+test(`getURLs ignores script files mixed with URLs`, t => {
+  const urls = getURLs([
+    'https://www.sitespeed.io',
+    'test/prepostscripts/multi.js',
+    'test/fixtures/sitespeed-urls.txt'
+  ]);
+  t.is(urls[0], 'https://www.sitespeed.io');
+  t.is(urls[1], 'https://www.sitespeed.io');
+  t.is(urls[4], 'https://www.sitespeed.io/faq');
+  t.is(urls.length, 5);
 });
 
 test(`pluginDefaults should yield an empty object for invalid values`, t => {

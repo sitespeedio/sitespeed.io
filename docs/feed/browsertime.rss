@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Sat, 24 Jan 2026 14:04:22 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Nov 2026 19:57:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,163 +17,213 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[browsertime 26.3.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.1</guid>
-            <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Reverting back to bidi-har 0.0.18. There where error/failures either in bidi har or in combination with browsertime in the latest release <a href="https://github.com/sitespeedio/browsertime/pull/2360">#2360</a></li>
-</ul>
+            <title><![CDATA[browsertime 29.4.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.4.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.4.0</guid>
+            <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- <code>--scriptInput.visualElements</code> selectors now also find elements inside open shadow roots. Pages built with web components keep their elements there, so before you could not get Visual Metrics for those elements. Browsertime only looks in shadow roots when the normal lookup finds nothing, so selectors that worked before give the same result. Closed shadow roots cannot be reached from the page. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/2653">#2653</a> <a href="https://github.com/sitespeedio/browsertime/pull/2664">#2664</a>.<br>
+- Visual elements and Element Timing now also work inside iframes from the same origin, also nested ones. Before, apps built from iframes got no visual elements and no Element Timing entries from them. An element in an iframe gets its position on the page, and the Element Timing entries get times from when the page started, like the other metrics. Iframes from another origin cannot be reached, because the browser does not allow it. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/2652">#2652</a> <a href="https://github.com/sitespeedio/browsertime/pull/2665">#2665</a>.<br>
+- Use <code>--sensitiveHeader</code> to clean more headers in the HAR file than the ones <code>--cleanSensitiveHeaders</code> cleans, for example your own auth header. Add it more than once to clean more headers. It turns on <code>--cleanSensitiveHeaders</code> <a href="https://github.com/sitespeedio/browsertime/pull/2663">#2663</a>.<br>
+- Updated the Docker image to Chrome 158 and bumped <code>chromedriver</code> to 158 <a href="https://github.com/sitespeedio/browsertime/pull/2666">#2666</a> <a href="https://github.com/sitespeedio/browsertime/pull/2667">#2667</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>--cleanSensitiveHeaders</code> replaced the whole value of the Cookie and Set-Cookie headers, also the cookie names and the Domain attribute. PageXray and the Coach read them from these headers, so every cookie was counted as first party and the third party cookie advice passed for every page. Now only the cookie values are removed. The cookie lists in the HAR also kept the cookie values, so the secrets were still in the file. Those values are now removed too <a href="https://github.com/sitespeedio/browsertime/pull/2662">#2662</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 26.3.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.3.0</guid>
-            <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Get response bodies in the HAR for Firefox. Thank you <a href="https://github.com/juliandescottes">Julian Descottes</a> and the rest of the Mozilla team that made this possible in bidi-har-export. Added in <a href="https://github.com/sitespeedio/browsertime/pull/2359">#2359</a>. The Firefox HAR has missed this functionality since we did the switch to bidi-har.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Restructure server timings so the timing name does not get lost for InfluxDB/Graphite. Thank you <a href="https://github.com/TimOldenburg">Tim Oldenburg</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2358">#2358</a>.</li>
-</ul>
- <ul>
-<li>Add Simpleperf app_profiler options and use <code>--android.simpleperf</code>. Thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2352">#2352</a></li>
-</ul>
+            <title><![CDATA[browsertime 29.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.3.0</guid>
+            <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- A pre or post script now gets the URL that is tested as <code>context.url</code>. Before, a script had no way to know which page it ran for, so when it failed you could not log which page had the problem. With scripting the value is undefined, because there your script decides the URLs. Fixes <a href="https://github.com/sitespeedio/sitespeed.io/issues/4274">sitespeed.io #4274</a> <a href="https://github.com/sitespeedio/browsertime/pull/2660">#2660</a>.<br>
+- Tools that use the engine can now stop a test after the iteration that runs with <code>stopAfterCurrentIteration()</code>. Before, the only way to end a long test early was to kill it, and that threw away every iteration that had finished. The remaining iterations are skipped and the result, including the HAR, is built from the iterations that finished. The first iteration always runs, so the result is never empty. sitespeed.io uses this to stop a test on SIGTERM/SIGINT and still make the report (<a href="https://github.com/sitespeedio/sitespeed.io/issues/3808">sitespeed.io #3808</a>) <a href="https://github.com/sitespeedio/browsertime/pull/2659">#2659</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>--firefox.powerConsumption</code> failed on machines where Firefox has no power counters, for example most virtual machines and containers. The power calculation threw an error, and that also stopped the Gecko profile from being gzipped. Browsertime now logs that there are no power counters and continues, and it does not report 0 Wh as if it was measured <a href="https://github.com/sitespeedio/browsertime/pull/2661">#2661</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 26.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.2.0</guid>
-            <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated Chromedriver and Edgedriver to 143 <a href="https://github.com/sitespeedio/browsertime/pull/2354">#2354</a> and<a href="https://github.com/sitespeedio/browsertime/pull/2355">#2355</a>.</li>
-</ul>
- <ul>
-<li>Updated webdriver to 4.39.0 <a href="https://github.com/sitespeedio/browsertime/pull/2356">#2356</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Try to tune the XVFB handling to make it safer that xvfb is always stopped <a href="https://github.com/sitespeedio/browsertime/pull/2353">#2353</a>.</li>
-</ul>
+            <title><![CDATA[browsertime 29.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.2.0</guid>
+            <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Updated the Docker image to Chrome 157 / Firefox 160 / Edge 157 and bumped <code>chromedriver</code> and <code>edgedriver</code> to 157 <a href="https://github.com/sitespeedio/browsertime/pull/2655">#2655</a> <a href="https://github.com/sitespeedio/browsertime/pull/2656">#2656</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 26.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.1.0</guid>
-            <pubDate>Thu, 11 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 146 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2351">#2351</a>.</li>
-</ul>
- <ul>
-<li>Chrome 143 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2350">#2350</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure the user in the Docker container has the correct user rights <a href="https://github.com/sitespeedio/browsertime/pull/2349">#2349</a>.</li>
-</ul>
+            <title><![CDATA[browsertime 29.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.1.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.1.0</guid>
+            <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Samsung Internet on Android. It is the second most used browser on Android, but Browsertime could not test it: Chromedriver only finds the DevTools socket of Chrome by itself, and Samsung Internet reads its flags from its own file. Browsertime now gives Chromedriver the socket name and writes the flags to that file. Choose it with <code>-b samsung</code>, for example <code>browsertime --android -b samsung https://www.sitespeed.io --video --visualMetrics</code>. Samsung Internet starts with no data for each test, the same as Chrome, and the <code>--disable-help-ux</code> flag stops its welcome screen. If the phone uses a dark theme, Samsung Internet shows web pages in dark mode, so turn off the dark theme on the phone first, for example with <code>adb shell cmd uimode night no</code> <a href="https://github.com/sitespeedio/browsertime/pull/2621">#2621</a> <a href="https://github.com/sitespeedio/browsertime/pull/2645">#2645</a> <a href="https://github.com/sitespeedio/browsertime/pull/2646">#2646</a>.<br>
+- Edge on Android now works, for example <code>browsertime --android -b edge https://www.sitespeed.io --video --visualMetrics</code>. It never did before: Chromedriver could not find its DevTools socket, Edge never got our flags, and the page often loaded in a background tab that Edge does not paint. Edge starts with no data for each test, the same as Chrome. With no data Edge shows its new tab page on top of the page, so before each test Browsertime opens Edge once with an error page that does not use the network. That makes each Edge test about 20 seconds longer <a href="https://github.com/sitespeedio/browsertime/pull/2622">#2622</a> <a href="https://github.com/sitespeedio/browsertime/pull/2647">#2647</a>.<br>
+- <code>--firefox.collectMozLog</code> now works on Android. The MOZ log settings never reached Firefox on the phone, and the log pointed to a folder on the computer. The log is now written on the phone and copied to the result folder after each run, with the same names as on desktop. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/2127">#2127</a> <a href="https://github.com/sitespeedio/browsertime/pull/2616">#2616</a>.<br>
+- On Android, a system dialog, the lock screen or another app in front of the browser stops the browser from painting. The test then measured a page that was never shown, or hung for minutes with &quot;the navigation never happened&quot;, and nothing told you why. Browsertime now checks which window has the focus before each measurement and gives an error that names the window. Turn the check off with <code>--android.verifyForeground false</code> <a href="https://github.com/sitespeedio/browsertime/pull/2619">#2619</a>.<br>
+- When a script fails, the error now includes the file, line number and code of the line in your script, also when the error comes from inside a Browsertime command. Before, you only got a message like &quot;Cannot read properties of undefined (reading &#39;run&#39;)&quot; and had to guess which command was wrong. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/2248">#2248</a> <a href="https://github.com/sitespeedio/browsertime/pull/2612">#2612</a>.<br>
+- Smoke tests for real phones: <code>npm run test:android</code> and a test for Safari on a connected iPhone run each feature once and report which ones work. Several Android features had been broken for a long time without anyone noticing, and the iOS test found the bugs in the iOS HAR and TTFB that are fixed in this release <a href="https://github.com/sitespeedio/browsertime/pull/2620">#2620</a> <a href="https://github.com/sitespeedio/browsertime/pull/2636">#2636</a> <a href="https://github.com/sitespeedio/browsertime/pull/2643">#2643</a>.<br>
+- Firefox on Wayland (without an X server) is now tested in CI, with video and Visual Metrics from the Firefox window recorder <a href="https://github.com/sitespeedio/browsertime/pull/2611">#2611</a>.<br>
+- Updated the Docker image to Firefox 159 <a href="https://github.com/sitespeedio/browsertime/pull/2603">#2603</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Safari on iOS: FCP, LCP, DOMContentLoaded and load were too low, and could come before TTFB, for pages that send <code>Cross-Origin-Opener-Policy</code>. Safari moves such a page to a new process when the response arrives, and starts the timeline of the page there, several hundred milliseconds after the navigation started. Browsertime now measures how late the timeline starts, adds that to those metrics and saves the offset as <code>safariTimeOriginOffset</code>. Pages without <code>Cross-Origin-Opener-Policy</code> are not changed. If you test such a page on iOS, these metrics will be higher after you upgrade <a href="https://github.com/sitespeedio/browsertime/pull/2644">#2644</a>.<br>
+- Safari on iOS: the HAR missed the main document on every page, and <code>onContentLoad</code> and <code>onLoad</code> could be negative. Safari loads the document again in a new process, and Browsertime only started to record the network there after the document request was gone <a href="https://github.com/sitespeedio/browsertime/pull/2637">#2637</a>.<br>
+- Safari on iOS: TTFB and the back end time were always 0, because Safari reports no network times in the navigation timing when it moves a navigation to a new process. Browsertime now takes TTFB from the main document in the HAR when that happens <a href="https://github.com/sitespeedio/browsertime/pull/2638">#2638</a>.<br>
+- Safari on iOS: the receive time of the main document in the HAR was negative, often around -300 ms. WebKit gives the request phases from <code>fetchStart</code>, and Browsertime used <code>startTime</code> as the base <a href="https://github.com/sitespeedio/browsertime/pull/2641">#2641</a>.<br>
+- Safari on iOS: the HAR had the same priority and connection 0 for every request, and only some of the request headers. Browsertime now uses the values WebKit sends when a request finishes, so you can see which requests got a high or low priority and which ones shared a connection <a href="https://github.com/sitespeedio/browsertime/pull/2642">#2642</a>.<br>
+- Safari on iOS: a test sometimes failed with &quot;No inspectable Safari pages found&quot; without a retry, because ios_webkit_debug_proxy can answer before it has the pages from the iPhone. Browsertime now waits until there is a Safari page to connect to <a href="https://github.com/sitespeedio/browsertime/pull/2639">#2639</a>.<br>
+- Visual Metrics got no frames with ffmpeg 9, because ffmpeg 9 removed <code>-vsync</code>. The Firefox window recorder had the same problem. Browsertime now uses <code>-fps_mode</code>, and <code>-vsync</code> only for an ffmpeg that does not know <code>-fps_mode</code> <a href="https://github.com/sitespeedio/browsertime/pull/2614">#2614</a>.<br>
+- Visual Metrics now uses <code>python3</code> by default on macOS and Linux and falls back to <code>python</code>. Many systems only have <code>python3</code>, so Visual Metrics failed until you set the <code>PYTHON</code> environment variable. Windows keeps <code>python</code> first. <code>PYTHON</code> still overrides both <a href="https://github.com/sitespeedio/browsertime/pull/2626">#2626</a>.<br>
+- With a small <code>--viewPort</code> such as 360x640, desktop Chrome and Firefox make the window about 500px wide anyway, but the video was recorded at the requested size, so the right part of the page was cut off in the video and the filmstrip. Browsertime now records the size the browser really uses. Mobile emulation is not changed. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1222">#1222</a> <a href="https://github.com/sitespeedio/browsertime/pull/2624">#2624</a>.<br>
+- The LCP screenshot could highlight a different element than the one the LCP metric reports, if the page got a new LCP candidate between the two. The screenshot is now taken after the metrics and uses the same entry. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1910">#1910</a> <a href="https://github.com/sitespeedio/browsertime/pull/2623">#2623</a>.<br>
+- With <code>--videoParams.convert false</code> the video stayed in a format that the Windows video player and web browsers cannot play. The video is now always written in a format every player can show, at no extra cost. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1903">#1903</a> <a href="https://github.com/sitespeedio/browsertime/pull/2613">#2613</a>.<br>
+- A stopwatch stopped with <code>stopAndAdd()</code> between <code>measure.start()</code> and <code>measure.stop()</code> gave its time to the previous page, or was dropped on the first page. Metrics added during a measurement now belong to that measurement. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1983">#1983</a> <a href="https://github.com/sitespeedio/browsertime/pull/2606">#2606</a>.<br>
+- Browsertime now uses the same rule as sitespeed.io for Unicode letters in result folder names. Before, an alias like &quot;café&quot; put the HTML report and the video, filmstrip and screenshots in different folders. If you use Browsertime without sitespeed.io and have non-ASCII aliases, your folder names will change <a href="https://github.com/sitespeedio/browsertime/pull/2607">#2607</a>.<br>
+- In some cloud and serverless containers the first loopback address is not 127.0.0.1, so Chrome, Edge and Firefox never started. Browsertime now always connects to the driver on 127.0.0.1. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1820">#1820</a> <a href="https://github.com/sitespeedio/browsertime/pull/2605">#2605</a>.<br>
+- <code>--debug</code> did not raise the page load timeout, because the timeout was set under a misspelled key, so a slow page still timed out in a debug session. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1962">#1962</a> <a href="https://github.com/sitespeedio/browsertime/pull/2608">#2608</a>.<br>
+- Every run with the Gecko profiler was about 2.5 seconds slower than needed, because Browsertime slept three seconds after it started the profiler. It now waits until Firefox says that the profiler runs, and keeps the old delay for older Firefox versions or when you set <code>geckoProfilerSettleTime</code>. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1857">#1857</a> <a href="https://github.com/sitespeedio/browsertime/pull/2610">#2610</a>.<br>
+- With the Gecko profiler and the default video recording, all VisualProgress timestamps in the profile were null, so the Firefox Profiler could not show the visual progress track. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1746">#1746</a> <a href="https://github.com/sitespeedio/browsertime/pull/2609">#2609</a>.<br>
+- Android: <code>--chrome.collectNetLog</code> always gave an empty file, and <code>--firefox.memoryReport</code> stopped the test when you used <code>--android</code> without the Firefox package <a href="https://github.com/sitespeedio/browsertime/pull/2617">#2617</a>.<br>
+- Android: the Firefox window recorder never worked since Android 11, because Firefox cannot write to the root of the sdcard. The test also hung for two minutes before it failed. The frames now go to the Firefox app folder <a href="https://github.com/sitespeedio/browsertime/pull/2618">#2618</a>.<br>
+- Android: a Chrome snackbar covered the bottom of the orange start frame, so Visual Metrics used a viewport about 12% too short. Firefox 153 and later showed onboarding screens that blocked the test <a href="https://github.com/sitespeedio/browsertime/pull/2615">#2615</a>.<br>
+- Android: on Android 13 and later, Firefox asked for the notification permission, and the dialog covered the page during the test <a href="https://github.com/sitespeedio/browsertime/pull/2628">#2628</a> <a href="https://github.com/sitespeedio/browsertime/pull/2629">#2629</a>.<br>
+- Android: Browsertime now talks to the phone only through the <code>adb</code> binary. This removes adbkit and nine packages that came with it, including node-forge. Shell commands now also finish before Browsertime goes on, so for example the netlog file is there when Chrome starts <a href="https://github.com/sitespeedio/browsertime/pull/2630">#2630</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 26.0.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.1</guid>
-            <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Remove extra console.log entry :)</li>
-</ul>
+            <title><![CDATA[browsertime 29.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.0.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#29.0.0</guid>
+            <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- <code>--firefox.env</code> is now shown in the help. You use it to set extra environment variables for Firefox. It was hidden while old Geckodriver versions did not support it. Thanks <a href="https://github.com/animalan">Abhishek Nimalan</a> for the PR <a href="https://github.com/sitespeedio/browsertime/pull/2492">#2492</a>.<br>
+- Updated to selenium-webdriver 4.51.0 and yargs 18.2.0 <a href="https://github.com/sitespeedio/browsertime/pull/2584">#2584</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Total Blocking Time is now measured per soft navigation. The document stays the same during a soft navigation, so the long tasks from earlier routes were also counted. TBT grew with every step of a user journey, and later pages failed budgets because of the work of earlier pages. Long tasks now use only the measured soft navigation, the same way CLS already did. TBT for soft navigations can be lower after you upgrade <a href="https://github.com/sitespeedio/browsertime/pull/2586">#2586</a>.<br>
+- Loading a <code>.js</code> or <code>.ts</code> user script failed on Windows with <code>ERR_UNSUPPORTED_ESM_URL_SCHEME</code>. The script is now loaded through a file URL. Thanks <a href="https://github.com/FurkanKra">FurkanKra</a> for the PR <a href="https://github.com/sitespeedio/browsertime/pull/2570">#2570</a>.<br>
+- A failed iteration (for example when the BiDi connection to Firefox stopped) logged &quot;There is an page without an URL in the HAR&quot;. The empty placeholder page for the failed run is now skipped when fully loaded is calculated <a href="https://github.com/sitespeedio/browsertime/pull/2563">#2563</a>.<br>
+- Each Chrome or Edge run left about 2.5 MB in the system temp folder, because Selenium stopped Chromedriver before it removed the temporary profile. When you ran many tests on the same machine or in the same container, the disk filled up. Chromedriver and the browser now get their own temp folder for each run, and Browsertime deletes it when the browser stops <a href="https://github.com/sitespeedio/browsertime/pull/2587">#2587</a>.<br>
+- With <code>--chrome.enableChromeDriverLog</code> (or <code>-vv</code>), a script with more than one measurement crashed the run and no result was written. The driver log is now gzipped once per iteration after the driver has stopped, so you get the full log for each iteration. Edge now also finds its own <code>edgedriver.log</code> <a href="https://github.com/sitespeedio/browsertime/pull/2588">#2588</a>.<br>
+- Updated to Chrome HAR 2.0.0. It removes the tough-cookie dependency and fixes cookie expiry dates, headers after redirects, duplicated headers and extra pages from iframes. The URLs in the HAR are now exactly the URLs that Chrome sent (before, characters like <code>|</code> and <code>{</code> were escaped), so HAR files can differ a little after you upgrade <a href="https://github.com/sitespeedio/browsertime/pull/2591">#2591</a>.<br>
+- The ARM64 Docker image had the AMD64 WebPageReplay binary, which only ran with emulation. It now gets the ARM64 binary <a href="https://github.com/sitespeedio/browsertime/pull/2590">#2590</a>.<br>
+- npm warned about the native build scripts of the optional USB power profiling dependencies on every install, and npm 12 blocks them. The scripts are now denied: the modules ship prebuilt binaries, so power profiling keeps working <a href="https://github.com/sitespeedio/browsertime/pull/2592">#2592</a>.<br>
+- Perceptual Speed Index (<code>--visualMetricsPerceptual</code>) no longer needs pyssim. Visual metrics now calculates SSIM with Numpy and Pillow, which it already needs, so you have one Python package less to install. The values do not change. If you installed pyssim only for Browsertime, you can remove it <a href="https://github.com/sitespeedio/browsertime/pull/2593">#2593</a>.<br>
+- On macOS, a video recording waited forever without an error when a temporary video file was left from an earlier run, for example after a failed test. ffmpeg asked whether to overwrite the file and nobody answered. ffmpeg now overwrites it, as it already did on Linux and Windows. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/1566">#1566</a> <a href="https://github.com/sitespeedio/browsertime/pull/2598">#2598</a>.<br>
+- Chrome mobile emulation with <code>--chrome.mobileEmulation.width</code>, <code>--chrome.mobileEmulation.height</code> and <code>--chrome.mobileEmulation.pixelRatio</code> now works. Chromedriver only reads these values inside <code>deviceMetrics</code>, so before they were ignored and the page was tested at the desktop size. If you used these options, your metrics can change after you upgrade. An unknown <code>--chrome.mobileEmulation.deviceName</code> now stops the run at once with a message that tells you what to use, instead of three failed browser starts. The warning for a viewport narrower than about 500px now suggests a device that Chrome knows, and Firefox gives the same warning <a href="https://github.com/sitespeedio/browsertime/pull/2600">#2600</a>.<br>
+- The Firefox log line &quot;CPU / Power usage&quot; now says &quot;Firefox CPU time&quot; and the unit (ms). The value is the CPU time from Firefox&#39;s own telemetry and it is collected on every run, so the old text made it look like every run was a power test. Fixes <a href="https://github.com/sitespeedio/browsertime/issues/2073">#2073</a> <a href="https://github.com/sitespeedio/browsertime/pull/2599">#2599</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 26.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#26.0.0</guid>
-            <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgrade to support NodeJS 24 without warnings, include NodeJS 24 in the Docker container, and base the Docker container on Ubuntu 24.04. To make this work I needed to upgrade the Jimp library and then we lost the settings for png screenshots <code>--screenshotParams.png.compressionLevel</code>   <a href="https://github.com/sitespeedio/browsertime/pull/2342">#2342</a>.</li>
-</ul>
+            <title><![CDATA[browsertime 28.5.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.5.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.5.0</guid>
+            <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Updated the Docker image to Chrome 156 / Firefox 158 / Edge 156 and bumped <code>chromedriver</code> and <code>edgedriver</code> to 156 <a href="https://github.com/sitespeedio/browsertime/pull/2583">#2583</a> <a href="https://github.com/sitespeedio/browsertime/pull/2585">#2585</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Updated WebPageReplay in the Docker image to the latest version from its new repository, together with its new inject script. The replay server prepares the injected HTML once when the archive loads, not on every request. The inject script also gives every page the same <code>navigator.connection</code> and <code>navigator.onLine</code> values, so pages that adapt to the connection behave the same in every run. Replayed metrics can change after you upgrade <a href="https://github.com/sitespeedio/browsertime/pull/2578">#2578</a>.<br>
+- The URL under test is now escaped in the navigation script. A URL with a quote, a backslash or a line break broke navigation, and a crafted URL could run its own script in the page <a href="https://github.com/sitespeedio/browsertime/pull/2582">#2582</a>.<br>
+- Loading a <code>.js</code> script as CommonJS overwrote and then deleted an existing <code>package.json</code> in the folder of the script. Browsertime now only creates and removes its own temporary file <a href="https://github.com/sitespeedio/browsertime/pull/2579">#2579</a>.<br>
+- The browser was not stopped after a failed iteration when Browsertime ran without connectivity settings, for example when used as a library <a href="https://github.com/sitespeedio/browsertime/pull/2580">#2580</a>.<br>
+- The pre-warm run on iOS now uses the device set with <code>--safari.deviceUDID</code>. Before, with several devices or simulators, it could run on a different device than the test <a href="https://github.com/sitespeedio/browsertime/pull/2581">#2581</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.4.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.4.0</guid>
-            <pubDate>Sun, 02 Nov 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Chromedriver 142 <a href="https://github.com/sitespeedio/browsertime/pull/2335">#2335</a>.</li>
-</ul>
+            <title><![CDATA[browsertime 28.4.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.4.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.4.0</guid>
+            <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- On Linux, you can set a download limit with <code>--connectivity.throttle.localhost</code>, for example for WebPageReplay tests: <code>--connectivity.engine throttle --connectivity.throttle.localhost --connectivity.rtt 100 --connectivity.down 5000</code>. The limit is for all loopback traffic. A ready-made profile (like <code>--connectivity.profile 3g</code>) together with <code>--connectivity.throttle.localhost</code> now also uses the download limit of the profile <a href="https://github.com/sitespeedio/browsertime/pull/2577">#2577</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Updated to Throttle 6.2.0. On Linux, <code>--connectivity.throttle.localhost</code> now sets the loopback MTU to 1500, like a real network. With the old MTU (65536), WebPageReplay metrics were a full round trip apart from run to run. Localhost metrics can change (become lower and more stable) after you upgrade <a href="https://github.com/sitespeedio/browsertime/pull/2576">#2576</a> <a href="https://github.com/sitespeedio/browsertime/pull/2577">#2577</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.3.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.1</guid>
-            <pubDate>Fri, 24 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Better handling of closing XVFB <a href="https://github.com/sitespeedio/browsertime/pull/2332">#2332</a>.</li>
-</ul>
- <ul>
-<li>Firefox: Disable quicksuggest <a href="https://github.com/sitespeedio/browsertime/pull/2333">#2333</a>.</li>
-</ul>
+            <title><![CDATA[browsertime 28.3.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.1</guid>
+            <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- WebPageReplay runs sent plain HTTP requests to the real internet instead of the replay server. The <code>--host-resolver-rules</code> value carried literal quotes, and Chrome drops any rule it cannot parse, so the port 80 mapping was silently lost. Pages with <code>http://</code> resources measured with WebPageReplay can change now that those requests are replayed. The same quotes made Chrome skip the first and last host of the built-in phone-home block list on runs without WebPageReplay <a href="https://github.com/sitespeedio/browsertime/pull/2572">#2572</a>.<br>
+- The built-in phone-home hosts are blocked without opening a connection. They were mapped to 127.0.0.1, so Chrome still connected locally: a local server on that port received Chrome&#39;s background requests, and under WebPageReplay the recorder forwarded them to the real host. Now the name lookup fails inside Chrome (<code>^NOTFOUND</code>) <a href="https://github.com/sitespeedio/browsertime/pull/2573">#2573</a>.<br>
+- Chrome no longer keeps a push messaging connection to <code>mtalk.google.com</code> open during tests. It opened on every browser start, even with <code>--disable-background-networking</code>, and with WebPageReplay it went to the real internet on port 5228 while the page was measured <a href="https://github.com/sitespeedio/browsertime/pull/2574">#2574</a>.<br>
+- Chrome&#39;s network time check (<code>http://clients2.google.com/time/1/current</code>) is disabled. It ran on every browser start, outside the page under test <a href="https://github.com/sitespeedio/browsertime/pull/2575">#2575</a>.<br>
+- Updated the Docker image to Chrome 153 / Firefox 155 / Edge 153 <a href="https://github.com/sitespeedio/browsertime/pull/2569">#2569</a>.<br>
+- Bumped <code>chromedriver</code> and <code>edgedriver</code> to 153 and <code>geckodriver</code> to 0.37.1 <a href="https://github.com/sitespeedio/browsertime/pull/2567">#2567</a> <a href="https://github.com/sitespeedio/browsertime/pull/2568">#2568</a>. Chrome 153 removed the old iPhone 4 to iPhone X entries from its device list, so <code>--chrome.mobileEmulation.deviceName &#39;iPhone 6&#39;</code> now fails with &quot;must be a valid device&quot;. The help text now suggests <code>iPhone 12 Pro</code>.<br>
+- Dropped the <code>serve</code> dev dependency. The test suite already had a static file server, and <code>serve</code> added about 90 packages to every contributor and CI install <a href="https://github.com/sitespeedio/browsertime/pull/2564">#2564</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.3.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.3.0</guid>
-            <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make it possible to strip cookie and auth headers in the HAR file for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2329">#2329</a> and Chrome <a href="https://github.com/sitespeedio/browsertime/pull/2330">#2330</a>. Use <code>--cleanSensitiveHeaders</code> to remove a <a href="https://github.com/sitespeedio/browsertime/blob/main/lib/support/har/index.js#L11-L24">couple of headers</a>.</li>
-</ul>
- <ul>
-<li>Firefox 144 <a href="https://github.com/sitespeedio/browsertime/pull/2331">#2331</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated developer dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2326">#2326</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2327">#2327</a>.</li>
-</ul>
- <ul>
-<li>Updated log dependency <a href="https://github.com/sitespeedio/b23272327rowsertime/pull/2328">#2328</a></li>
-</ul>
+            <title><![CDATA[browsertime 28.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.3.0</guid>
+            <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>cpuPerformance</code> field in <code>browserScripts.browser</code> (Chrome 152+): the browser&#39;s own coarse device rating (1 to 4) from <code>navigator.cpuPerformance</code>. Helps explain why the same page measures differently on different machines <a href="https://github.com/sitespeedio/browsertime/pull/2540">#2540</a>.<br>
+- SPA route changes that make no requests are now measured: the page-complete check finishes on quiet time instead of waiting out the whole timeout, and the HAR page is no longer lost. Closes #2001 <a href="https://github.com/sitespeedio/browsertime/pull/2550">#2550</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- INP is now the slowest (p98) interaction, like web-vitals reports it. With more than one interaction the fastest was picked, so a journey with 500 ms and 150 ms clicks reported 150 <a href="https://github.com/sitespeedio/browsertime/pull/2556">#2556</a>.<br>
+- Chrome&#39;s built-in list of disabled features was accidentally replaced by a later duplicated switch, so default runs kept Translate and other phone-home features enabled. User-supplied feature flags are now merged with the built-in list <a href="https://github.com/sitespeedio/browsertime/pull/2557">#2557</a>.<br>
+- Firefox <code>--block</code> and <code>--appendToUserAgent</code> were silently ignored unless <code>--requestheader</code> was also set <a href="https://github.com/sitespeedio/browsertime/pull/2542">#2542</a>.<br>
+- Soft-navigation LCP works again on Chromium 151+, where the API changed; older versions keep working <a href="https://github.com/sitespeedio/browsertime/pull/2538">#2538</a>.<br>
+- Edge runs using <code>--proxy.*</code> crashed on a broken import <a href="https://github.com/sitespeedio/browsertime/pull/2543">#2543</a>.<br>
+- A timeout in the page complete check escalated to a failed URL instead of logging and continuing to measure as documented <a href="https://github.com/sitespeedio/browsertime/pull/2544">#2544</a>.<br>
+- One video failing visual-metrics analysis gave all later pages in the iteration metrics from the wrong video and failed the whole iteration <a href="https://github.com/sitespeedio/browsertime/pull/2545">#2545</a>.<br>
+- Request header values containing a colon (like Referer URLs) were truncated at the first colon <a href="https://github.com/sitespeedio/browsertime/pull/2546">#2546</a>.<br>
+- Installs without the optional jimp dependency saved every screenshot twice <a href="https://github.com/sitespeedio/browsertime/pull/2547">#2547</a>.<br>
+- Recorded videos are now actually removed from Android devices; a doubled file path made cleanup silently fail on every run <a href="https://github.com/sitespeedio/browsertime/pull/2548">#2548</a>.<br>
+- The documented <code>commands.wait</code> byId, byXpath and bySelector commands are visible to TypeScript users again. Closes #2495 <a href="https://github.com/sitespeedio/browsertime/pull/2549">#2549</a>.<br>
+- Navigations with no network activity (cached pages, SPA routes) waited out the full timeout in the network idle check instead of finishing on idle time. Leftover CDP listeners are also cleaned up <a href="https://github.com/sitespeedio/browsertime/pull/2552">#2552</a>.<br>
+- Firefox log and gecko profile post-processing was not awaited, so results could be handed over mid-write and a failure crashed the process <a href="https://github.com/sitespeedio/browsertime/pull/2553">#2553</a>.<br>
+- When no viewport could be detected, the video was cropped to a sliver and produced garbage visual metrics; it is now analysed uncropped instead <a href="https://github.com/sitespeedio/browsertime/pull/2554">#2554</a>.<br>
+- Scripts measuring more than one page per iteration got <code>_renderBlocking</code> and <code>_isLCP</code> annotations on the wrong HAR page <a href="https://github.com/sitespeedio/browsertime/pull/2551">#2551</a>.<br>
+- <code>--android</code> swallowed the argument after it, so <code>browsertime --android url</code> dropped the URL and <code>--android false</code> still enabled Android <a href="https://github.com/sitespeedio/browsertime/pull/2560">#2560</a>.<br>
+- With <code>--chrome.timeline</code>, one page load failing mid-trace made every remaining iteration fail <a href="https://github.com/sitespeedio/browsertime/pull/2558">#2558</a>.<br>
+- The scripting stopWatch only worked as a single-use timer: <code>watch.start()</code> always threw, and so did stopping the same watch twice. Both work now <a href="https://github.com/sitespeedio/browsertime/pull/2559">#2559</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 25.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#25.2.0</guid>
-            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome/Chromedriver/Edge/Edgedriver 141, Firefox 143 <a href="https://github.com/sitespeedio/browsertime/pull/2325">#2325</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2323">#2323</a>.</li>
-</ul>
- <ul>
-<li>Updated webdriver and bidi-har <a href="https://github.com/sitespeedio/browsertime/pull/2322">#2322</a>.</li>
-</ul>
- <ul>
-<li>Added simpleperf and perfetto support for Android, thank you <a href="https://github.com/animalan">Abhishek Nimalan</a> for PR  <a href="https://github.com/sitespeedio/browsertime/pull/2315">#2315</a>.</li>
-</ul>
+            <title><![CDATA[browsertime 28.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#28.2.0</guid>
+            <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>videoParams.noiseTolerance</code>: a percentage of a frame&#39;s pixels that is allowed to differ before duplicate-frame elimination still treats the frame as unchanged. Browsers re-rasterize a visually-done page long after it settles, leaving invisible sub-pixel noise on glyph edges that the default handful-of-pixels tolerance counts as real change, inflating Last Visual Change, VisualComplete95/99 and Speed Index. Off by default <a href="https://github.com/sitespeedio/browsertime/pull/2528">#2528</a>.<br>
+- New <code>videoParams.filmstripDiff</code> frame diffs: writes <code>diff_&lt;ms&gt;.png</code> next to each filmstrip frame (the frame dimmed with every changed pixel painted red, using the same per-pixel threshold report UIs use at runtime) plus a Frame Diffs metric. Report UIs cannot read frame pixels from <code>file://</code> results, so an exact &quot;what changed in this frame&quot; view was impossible exactly where people debug local results. Off by default <a href="https://github.com/sitespeedio/browsertime/pull/2531">#2531</a>.<br>
+- Visual instability heatmap: the same <code>videoParams.filmstripDiff</code> run now also writes one <code>instability.png</code> showing how many times each pixel changed across the video (amber for changed once, deep red for ten or more), plus a Frame Instability summary in the JSON. Answers &quot;which parts of the page keep changing&quot;, so invisible re-rasterization noise can be told apart from a genuinely restless element <a href="https://github.com/sitespeedio/browsertime/pull/2533">#2533</a>.<br>
+- <code>cpu.styleInvalidations</code> (Chrome only) now splits every reason, trigger and source at first paint: new <code>afterFirstPaint</code> counts and <code>styleRecalcsAfterFirstPaint</code> / <code>layoutInvalidationsAfterFirstPaint</code> totals separate building the page from churn on a page the user is already looking at. The fields only exist when the trace carried the FCP event, so absent means unknown rather than zero <a href="https://github.com/sitespeedio/browsertime/pull/2530">#2530</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Visual metrics no longer require OpenCV and pyssim unless the metrics that need them are requested: OpenCV is only used by <code>--contentful</code> and pyssim only by <code>--perceptual</code>, so a default install now runs on just ffmpeg, Numpy and Pillow. The Docker image keeps installing everything so both metrics keep working there <a href="https://github.com/sitespeedio/browsertime/pull/2535">#2535</a>.<br>
+- <code>VisualComplete99</code> is now reset when the page repaints backward. Two copy-paste typos reset <code>VisualComplete95</code> twice and never reset <code>VisualComplete99</code>, so on a page that reaches 100%, repaints backward and then recovers, <code>VisualComplete99</code> could report a time earlier than <code>VisualComplete95</code> (99% complete before 95%, which cannot happen) <a href="https://github.com/sitespeedio/browsertime/pull/2537">#2537</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
     </channel>

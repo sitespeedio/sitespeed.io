@@ -1,0 +1,241 @@
+//
+// ITERATION SUMMARY — dark
+// ========================
+//
+
+.iter-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px 0;
+  list-style: none;
+  padding: 0;
+}
+
+.iter-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  background: $color--surface-card;
+
+  &.ok { background: $color--ok-bg; border-color: $color--ok-border; color: $color--ok; }
+  &.warning { background: $color--warning-bg; border-color: $color--warning-border; color: $color--warning; }
+  &.error { background: $color--error-bg; border-color: $color--error-border; color: $color--error; }
+  &.info { background: $color--info-bg; border-color: $color--info-border; color: $color--info; }
+}
+
+.iter-kpi-label {
+  font-size: 0.75rem;
+  font-weight: $font--weight--medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.iter-kpi-value {
+  font-size: 1.5rem;
+  font-weight: $font--weight--semibold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.iter-group {
+  background: $color--surface-card;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: box-shadow $motion--med;
+  &[open] { box-shadow: $shadow--sm; }
+}
+
+.iter-group-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  transition: background-color $motion--fast;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { display: none; }
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid $color--text-muted;
+    border-bottom: 2px solid $color--text-muted;
+    transform: rotate(45deg);
+    margin-left: auto;
+    transition: transform $motion--fast;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.iter-group[open] > .iter-group-summary::after {
+  transform: rotate(225deg);
+}
+
+.iter-group-title {
+  font-weight: $font--weight--semibold;
+  color: $color--text;
+  font-size: 1rem;
+}
+
+.iter-group-list {
+  margin: 0;
+  padding: 8px 14px 14px 14px;
+  border-top: 1px solid $color--border;
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  column-gap: 16px;
+  row-gap: 6px;
+
+  dt {
+    color: $color--text-muted;
+    font-weight: $font--weight--medium;
+    font-size: 0.95rem;
+  }
+
+  dd {
+    margin: 0;
+    color: $color--text;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+}
+
+.iter-screenshot {
+  border-radius: $radius--md;
+  border: 1px solid $color--border;
+  max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+}
+
+//
+// Summary overview card — the stat grid that replaced the old stacked
+// metric-group boxes (values lead, labels whisper, groups are quiet
+// subheads inside ONE card). The CrUx block still renders as an
+// .iter-group card below it, so those styles stay too.
+//
+.overview-card {
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  box-shadow: $shadow--sm;
+  padding: 4px 20px 16px;
+  margin-bottom: 14px;
+}
+
+.overview-group {
+  padding: 16px 0 4px;
+}
+
+.overview-group + .overview-group {
+  border-top: 1px solid $color--border;
+}
+
+.overview-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+
+  h3 {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: $font--weight--heavy;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color--text-secondary;
+  }
+
+  small {
+    font-size: 0.72rem;
+    color: $color--text-muted;
+  }
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px 18px;
+}
+
+.overview-stat {
+  min-width: 0;
+
+  b {
+    display: block;
+    font-size: 1.28rem;
+    font-weight: $font--weight--heavy;
+    letter-spacing: -0.4px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+
+    small {
+      font-size: 0.8rem;
+      font-weight: $font--weight--semibold;
+      color: $color--text-secondary;
+      letter-spacing: 0;
+    }
+  }
+
+  > span {
+    display: block;
+    font-size: 0.74rem;
+    color: $color--text-muted;
+    margin-top: 1px;
+  }
+}
+
+//
+// Screenshot card: frames the screenshot and captions WHICH run it
+// shows. The img keeps .iter-screenshot for the portrait height cap;
+// the card supplies the frame, so the img's own border goes.
+//
+.shot-card {
+  margin: 0;
+  border: 1px solid $color--border;
+  border-radius: $radius--md;
+  background: $color--surface-card;
+  box-shadow: $shadow--sm;
+  overflow: hidden;
+
+  a {
+    display: flex;
+    justify-content: center;
+  }
+
+  .iter-screenshot {
+    border: 0;
+    border-radius: 0;
+    display: block;
+  }
+
+  figcaption {
+    padding: 9px 14px;
+    font-size: 0.75rem;
+    color: $color--text-muted;
+    border-top: 1px solid $color--border;
+
+    b {
+      color: $color--text-secondary;
+      font-weight: $font--weight--semibold;
+    }
+  }
+}

@@ -3,7 +3,7 @@
 !lib
 !package.json
 !LICENSE
-!npm-shrinkwrap.json
+!package-lock.json
 !docker/adb
 !docker/scripts
 !tools/postinstall.js

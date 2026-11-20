@@ -11,19 +11,56 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js
-      uses: actions/setup-node@v4
+    - name: Harden Runner
+      uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
       with:
-        node-version: '22.x'
+        egress-policy: block
+        allowed-endpoints: >
+          accounts.google.com:443
+          android.clients.google.com:443
+          api.thegreenwebfoundation.org:443
+          archive.mozilla.org:443
+          auth.docker.io:443
+          azure.archive.ubuntu.com:80
+          clients2.google.com:80
+          content-signature-2.cdn.mozilla.net:443
+          dl-ssl.google.com:443
+          dl.google.com:80
+          dl.google.com:443
+          download-installer.cdn.mozilla.net:443
+          download.mozilla.org:443
+          esm.ubuntu.com:443
+          files.pythonhosted.org:443
+          firefox-settings-attachments.cdn.mozilla.net:443
+          firefox.settings.services.mozilla.com:443
+          github.com:443
+          motd.ubuntu.com:443
+          msedgedriver.microsoft.com:443
+          mtalk.google.com:5228
+          nodejs.org:443
+          packages.microsoft.com:443
+          production.cloudflare.docker.com:443
+          production.cloudfront.docker.com:443
+          pypi.org:443
+          registry-1.docker.io:443
+          registry.npmjs.org:443
+          release-assets.githubusercontent.com:443
+          results-receiver.actions.githubusercontent.com:443
+          storage.googleapis.com:443
+          www.google.com:443
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - name: Use Node.js
+      uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
+      with:
+        node-version: '24.x'
+        cache: 'npm'
     - name: Install sitespeed.io
       run: npm ci
     - name: Install Chrome
       run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo apt-get update
-        sudo apt-get --only-upgrade install google-chrome-stable
+        sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
         google-chrome --version
     - name: Install dependencies
       run: |
@@ -31,7 +68,7 @@ jobs:
           python -m pip install --user scipy
           python -m pip show scipy
     - name: Install Firefox
-      uses: browser-actions/setup-firefox@latest
+      uses: browser-actions/setup-firefox@fcf821c621167805dd63a29662bd7cb5676c81a8 # latest
       #with:
       #  firefox-version: '94.0'
     - name: Setup environment
@@ -46,25 +83,25 @@ jobs:
       run: (serve test/data/html/ -l 3001&)
     - name: Test old budget
       run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3001/simple/
-    - name: Test new budget file with junit 
+    - name: Test new budget file with junit
       run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output junit http://127.0.0.1:3001/simple/#heybaberia
-    - name: Test new budget file with tap 
+    - name: Test new budget file with tap
       run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output tap http://127.0.0.1:3001/simple/#heybaberia
-    - name: Test new budget file with json 
+    - name: Test new budget file with json
       run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output json http://127.0.0.1:3001/simple/#heybaberia
     - name: Use AXE
       run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb http://127.0.0.1:3001/simple/
     - name: Use Fireefox with --mobile
       run: bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 http://127.0.0.1:3001/simple/ --sustainable.enable --xvfb
-    - name: Test --multi  
-      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3001/simple/ test/prepostscripts/postSample.js --xvfb --browsertime.cjs
-    - name: Test --multi and --tcpdump  
+    - name: Test script auto-detection with mixed inputs
+      run: bin/sitespeed.js -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3001/simple/ test/prepostscripts/postSample.js --xvfb --browsertime.cjs
+    - name: Test --multi and --tcpdump
       run: bin/sitespeed.js --multi -n 1 http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ --tcpdump --xvfb --browsertime.cjs
-    - name: Test --multi with one file 
-      run: bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js --xvfb --browsertime.cjs
+    - name: Test script auto-detection with one file
+      run: bin/sitespeed.js -n 3 test/prepostscripts/multi.js --xvfb --browsertime.cjs
     - name: Test setting HTML output pageSummaries
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance --xvfb
-    - name: Test setting HTML output summary boxes 
+    - name: Test setting HTML output summary boxes
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint --xvfb
     - name: Run test with Graphite
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --graphite.host 127.0.0.1 --xvfb

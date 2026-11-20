@@ -4,7 +4,7 @@
         <title>onlinetest release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of onlinetest</description>
-        <lastBuildDate>Sat, 24 Jan 2026 14:04:22 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Nov 2026 19:57:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,156 +12,148 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/onlinetest.rss" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[onlinetest 2.0.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#2.0.0</guid>
-            <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Docker containers now uses NodeJS 24 <a href="https://github.com/sitespeedio/onlinetest/pull/173">#173</a>.</li>
-</ul>
- <ul>
-<li>German translations, thank you <a href="https://github.com/WBT112">Tobi</a> for PR <a href="https://github.com/sitespeedio/onlinetest/pull/174">#174</a>.</li>
-</ul>
- <ul>
-<li>Translations: Arabic, Bengali, Spanish, French, Hindi, Portuguese, Russian, Urdu, Simplified Chinese thank you <a href="https://github.com/WBT112">Tobi</a> for PR <a href="https://github.com/sitespeedio/onlinetest/pull/181">#181</a>.</li>
-</ul>
- <ul>
-<li>Basic Auth for admin now uses .env file and will warn in the logs if no auth is setup <a href="https://github.com/sitespeedio/onlinetest/pull/205">#205</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure the configuratiomn (nconf) is never accessed before configuration files is read <a href="https://github.com/sitespeedio/onlinetest/pull/177">#177</a>.</li>
-</ul>
- <ul>
-<li>Bump Postgres to latest version <a href="https://github.com/sitespeedio/onlinetest/pull/172">#172</a></li>
-</ul>
- <ul>
-<li>Fix correct path to scripting file <a href="https://github.com/sitespeedio/onlinetest/pull/167">#167</a>.</li>
-</ul>
- <ul>
-<li>Update to sitespeed.io 39 <a href="https://github.com/sitespeedio/onlinetest/pull/171">#171</a>.</li>
-</ul>
- <ul>
-<li>Use Trixie as base image <a href="https://github.com/sitespeedio/onlinetest/pull/185">#185</a>.</li>
-</ul>
- <ul>
-<li>Simplify how we do releases <a href="https://github.com/sitespeedio/onlinetest/pull/206">#206</a></li>
-</ul>
- <ul>
-<li>The webserver port was hardcoded, fixed in <a href="https://github.com/sitespeedio/onlinetest/pull/204">#204</a>.</li>
-</ul>
- <ul>
-<li>Renamed the default yaml files for server and testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/199">#199</a></li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Rename defaulLocale configuration to locale <a href="https://github.com/sitespeedio/onlinetest/pull/178">#178</a>. If you used <code>localization:defaultLocale</code> that is now <code>localization:locale</code>.</li>
-</ul>
- <ul>
-<li>Updated minio to latest release. There are some changes on startup so check the PR and update your docker compose accordingly <a href="https://github.com/sitespeedio/onlinetest/pull/163">#163</a>.</li>
-</ul>
- <ul>
-<li>Switched to default use Redis instead of KeyDB since Redis is Open Source again <a href="https://github.com/sitespeedio/onlinetest/pull/169">#169</a>.</li>
-</ul>
- <ul>
-<li>Reworked the docker compose files <a href="https://github.com/sitespeedio/onlinetest/pull/200">#200</a> <a href="https://github.com/sitespeedio/onlinetest/pull/202">#202</a> <a href="https://github.com/sitespeedio/onlinetest/pull/203">#203</a></li>
-</ul>
- <ul>
-<li>Always use .env if it exists for both the server and the testrunner (and the compose files) <a href="https://github.com/sitespeedio/onlinetest/pull/190">#190</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 6.2.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.2.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.2.0</guid>
+            <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Changed</strong><br>
+- The server and testrunner Docker images now use Node.js 26 <a href="https://github.com/sitespeedio/onlinetest/pull/295">#295</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.7.1]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.1</guid>
-            <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for the search qyuery parameter <a href="https://github.com/sitespeedio/onlinetest/pull/162">#162</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 6.1.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.1.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.1.0</guid>
+            <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- The compare page no longer allows inline scripts. It now uses the same Content Security Policy as the rest of the web GUI, which closes the exception from <a href="https://github.com/sitespeedio/onlinetest/pull/284">#284</a> <a href="https://github.com/sitespeedio/onlinetest/pull/294">#294</a>.<br>
+- In compare, every run after the first lost its connect and SSL bars in the waterfall, and some filmstrip frames showed as broken images <a href="https://github.com/sitespeedio/onlinetest/pull/294">#294</a>.<br>
+- Opening compare with one test now compares its runs, instead of showing the start page with the URL filled in <a href="https://github.com/sitespeedio/onlinetest/pull/294">#294</a>.<br>
+- Browsers got new JavaScript and CSS only when the server version changed. A build with changed files and the same version, like a branch under test or a patched install, kept serving cached old files, and the new pages ran against old JavaScript. The cache buster is now a hash of the JavaScript and CSS content <a href="https://github.com/sitespeedio/onlinetest/pull/292">#292</a>.<br>
+<br>
+<strong>Changed</strong><br>
+- Updated the vendored compare app. When both tests have several runs of the same URL, compare uses all runs and marks a change only when a Mann-Whitney U test says it is significant and it is 2% or more. Video, filmstrip, visual progress and waterfall follow one timeline, unchanged metrics are folded, and you can draw on the waterfall and save it as an image <a href="https://github.com/sitespeedio/onlinetest/pull/294">#294</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.7.0]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.7.0</guid>
-            <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated dependencies (too many PRs).</li>
-</ul>
- <ul>
-<li>Update to NodeJS 22 <a href="https://github.com/sitespeedio/onlinetest/pull/155">#155</a></li>
-</ul>
+            <title><![CDATA[onlinetest 6.0.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.0.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#6.0.0</guid>
+            <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- The server removes old test data from PostgreSQL once a day. Every test stored its HAR and browsertime result in the database forever, so the database grew without limit, while the result files in SeaweedFS already expire after 30 days. <code>retention.days</code> sets how many days to keep (0 keeps everything) and <code>retention.remove</code> is <code>test</code> (the default) to remove the whole test or <code>data</code> to keep the test in search and clear only the HAR and the browsertime result. The server removes data in small batches and never removes a test that waits or runs <a href="https://github.com/sitespeedio/onlinetest/pull/289">#289</a>.<br>
+- <code>disableScripting</code> has a new value <code>gui</code>, which is the default: scripting tests are off in the web GUI and on through the API. <code>true</code> turns them off everywhere and <code>false</code> turns them on everywhere. The server checks the setting for every test that it gets, so a request sent outside the web form cannot get around it. A value of <code>false</code> in <code>.env</code> now overrides the default in <code>server.yaml</code> <a href="https://github.com/sitespeedio/onlinetest/pull/286">#286</a>.<br>
+- The production docs show how to back up and restore PostgreSQL, and how to upgrade to a new major version, with the steps for 6.0.<br>
+<br>
+<strong>Fixed</strong><br>
+- New installs got version 3.8.0 of the server and testrunner, from May 2026, without the security fixes in 4.x and 5.0, because <code>.env.example</code> and the README still pointed at version 3. They now point at the current major version, and the release script keeps them up to date <a href="https://github.com/sitespeedio/onlinetest/pull/290">#290</a>.<br>
+- <code>deploy/update.sh</code> did not give <code>.env</code> to Docker Compose. Newer Docker Compose versions only read <code>.env</code> next to the compose file, so the image tags were empty and the update stopped with <code>invalid reference format</code>.<br>
+- Pages that do not exist are answered with 404 instead of 400 <a href="https://github.com/sitespeedio/onlinetest/pull/287">#287</a>.<br>
+- The server closes its Redis connection after it publishes a message, instead of keeping a new connection open for each message <a href="https://github.com/sitespeedio/onlinetest/pull/288">#288</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.6.5]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.5</guid>
-            <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>And another fix for script names <a href="https://github.com/sitespeedio/onlinetest/pull/146">#146</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 5.0.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#5.0.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#5.0.0</guid>
+            <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>disableScripting</code> setting (or <code>DISABLESCRIPTING=true</code> in <code>.env</code>) that turns off scripting tests. A scripting test runs Node.js code where sitespeed.io runs, so on a public instance anyone who can add a test can run code there. With the setting on, the server rejects scripting tests from the web form, the API and reruns, and the form does not show the scripting tab. It is off by default <a href="https://github.com/sitespeedio/onlinetest/pull/282">#282</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Result storage uses <a href="https://github.com/seaweedfs/seaweedfs">SeaweedFS</a> instead of MinIO. The MinIO community edition is archived, gets no security patches and its images are not on Docker Hub or quay.io anymore, so a new install could not start <a href="https://github.com/sitespeedio/onlinetest/issues/215">#215</a>. SeaweedFS is Apache-2 licensed and does what MinIO did for us: S3 uploads from the testrunner, public read access to results and a 30 day expiry. The S3 API is still on port 9000, the <code>MINIO_USER</code>/<code>MINIO_PASSWORD</code> variables are the same and result URLs do not change. MinIO compressed html/css/js on disk; SeaweedFS does not, so results use more disk <a href="https://github.com/sitespeedio/onlinetest/pull/270">#270</a>.<br>
+- The storage container restarts automatically (<code>restart: always</code>) like Redis and PostgreSQL, so result links work again after a host reboot <a href="https://github.com/sitespeedio/onlinetest/pull/270">#270</a>.<br>
+- The API did not need a key by default, so anyone who could reach the server could add tests and choose the Docker image and the sitespeed.io configuration, including options that the web GUI blocks. The API now only accepts tests when a key is set <a href="https://github.com/sitespeedio/onlinetest/pull/278">#278</a>.<br>
+- The scripting test name was used as-is in the file path on the testrunner. A name with <code>../</code> or an absolute path could write the script outside the job folder, and the public form could do this without a key. Only the base name is used now <a href="https://github.com/sitespeedio/onlinetest/pull/276">#276</a>.<br>
+- The page shown while a test waits or runs added the test name and the job logs as HTML. A scripting test could use them to run JavaScript for everyone who opened its link. They are now added as text <a href="https://github.com/sitespeedio/onlinetest/pull/279">#279</a>.<br>
+- The server sent the browser to the result URL from the test&#39;s result file without a check. A test can change that file, so it could make the running page open a <code>javascript:</code> URL. Only http and https result URLs are followed now <a href="https://github.com/sitespeedio/onlinetest/pull/280">#280</a>.<br>
+- All JavaScript in the web GUI loads from <code>/js</code>, so the Content Security Policy no longer allows inline scripts or inline event handlers, and HTML injection cannot run JavaScript. The vendored compare app keeps the old policy on <code>/compare/</code> until the compare project removes its inline code <a href="https://github.com/sitespeedio/onlinetest/pull/284">#284</a>.<br>
+- Results are served from the same origin as onlinetest, and a scripting test can put its own HTML and JavaScript in its result. Caddy now sends a <code>Content-Security-Policy: sandbox</code> header with all results, so each result page gets its own origin and cannot act on the onlinetest site. The sitespeed.io report works the same in the sandbox <a href="https://github.com/sitespeedio/onlinetest/pull/283">#283</a>.<br>
+- Updated Express to 5.3.0 and the other server and testrunner dependencies to their latest minor and patch versions. This fixes the known advisories in <code>proxy-addr</code>, <code>path-to-regexp</code>, <code>body-parser</code> and <code>qs</code> <a href="https://github.com/sitespeedio/onlinetest/pull/277">#277</a>, <a href="https://github.com/sitespeedio/onlinetest/pull/281">#281</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.6.4]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.4</guid>
-            <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Another fix for showing the script name <a href="https://github.com/sitespeedio/onlinetest/pull/145">#145</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 4.0.2]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.2</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.2</guid>
+            <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Pull the MinIO images from <code>quay.io</code> instead of Docker Hub. MinIO removed its images from Docker Hub after archiving the community edition, so a fresh <code>docker compose up</code> could no longer start result storage. The quay.io mirror still serves the same pinned releases, and no <code>.env</code> changes are needed. This keeps 4.x deployable until result storage moves to SeaweedFS <a href="https://github.com/sitespeedio/onlinetest/pull/270">#270</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.6.3]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</guid>
-            <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Show only the script name and not the full path <a href="https://github.com/sitespeedio/onlinetest/pull/144">#144</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 4.0.1]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.1</guid>
+            <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Fixed</strong><br>
+- Compare page now renders screenshots, the filmstrip and the run video when the HAR points at a different sitespeed.io result server (e.g. wikiperformance comparing HARs that live on wikimedia.sitespeed.io). The helmet CSP only allowed <code>&#39;self&#39;</code> for images and — via the inherited <code>default-src</code> — for video, so the cross-origin URLs the HAR carries in <code>_meta.screenshot</code> / <code>_meta.filmstrip[].file</code> / <code>_meta.video</code> were blocked and the slots came up empty. <code>img-src</code> now also allows any <code>https:</code> origin and a new <code>media-src</code> does the same for video <a href="https://github.com/sitespeedio/onlinetest/pull/269">#269</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.6.3]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.3</guid>
-            <pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL <a href="https://github.com/sitespeedio/onlinetest/pull/142">#142</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 4.0.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#4.0.0</guid>
+            <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- New <code>failed_reason TEXT</code> and <code>finished_date TIMESTAMP</code> columns on <code>sitespeed_io_test_runs</code>. <code>failed_reason</code> is populated from three paths the DB previously knew nothing about: Bull&#39;s <code>global:failed</code> event (the testrunner threw), the queue-down submit path in <code>add-test.js</code> (Redis unreachable when the test was queued), and the result-queue path when sitespeed.io itself exits non-zero (testrunner now sends <code>Test runner exited with code N: &lt;last line of stderr&gt;</code>, capped at 500 chars). <code>finished_date</code> is stamped on every terminal transition, so end-to-end duration can be derived as <code>finished_date - added_date</code> and run duration as <code>finished_date - run_date</code> (which is the browsertime <em>start</em> timestamp, not finish) <a href="https://github.com/sitespeedio/onlinetest/pull/264">#264</a>.<br>
+- <code>server/database/migrations/</code> directory establishes the convention for schema changes against existing deployments — <code>setup.sql</code> only runs on a fresh Postgres data dir, so live databases need ALTERs applied separately. Each migration ships with a <code>.sh</code> helper (<code>check</code> / <code>backup</code> / <code>dry-run</code> / <code>apply</code> / <code>verify</code> / <code>rollback</code>) that runs <code>psql</code> inside the compose Postgres container, plus a README documenting the manual path. Existing deployments must run <code>001-add-failure-fields.sh apply</code> before rolling the server forward <a href="https://github.com/sitespeedio/onlinetest/pull/264">#264</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.6.2]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.2</guid>
-            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Another label fix.</li>
-</ul>
+            <title><![CDATA[onlinetest 3.8.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.8.0</guid>
+            <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Default sitespeed.io Docker image bumped from 40 to 41 in <code>.env.example</code>. The README &quot;Update sitespeed.io version&quot; snippets now reference 41 / 42 as the current and next-major tags.<br>
+- Vendored compare bundle rolled to pagexray 5.0.0 (HTTP/3 detection, case-insensitive <code>Cache-Control</code> directives, <code>missingCompression</code> over-count fix). The bundle shrinks from ~28 KB to ~17 KB thanks to pagexray&#39;s switch from uglify-es to terser <a href="https://github.com/sitespeedio/onlinetest/pull/262">#262</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- <code>/admin</code> &quot;failed&quot; pill is now a real health signal: it counts failed test runs in the last 24 h from Postgres instead of Bull&#39;s <code>getJobCounts()</code>, which was capped by <code>removeOnFail</code> and only decayed on a successful retry — so the pill accumulated weeks of stale failures and shouted &quot;13 failed&quot; next to activity cards that correctly showed 0 in 24 h <a href="https://github.com/sitespeedio/onlinetest/pull/261">#261</a>.<br>
+- Compare cookie list no longer renders domains like <code>.example.com\nUIDR=...</code> when a HAR concatenates multiple <code>Set-Cookie</code> response headers into one newline-joined value — the next cookie&#39;s name was leaking into the previous cookie&#39;s <code>Domain=</code> attribute. Picked up via the pagexray bump <a href="https://github.com/sitespeedio/onlinetest/pull/262">#262</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
         </item>
         <item>
-            <title><![CDATA[onlinetest 1.6.1]]></title>
-            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</link>
-            <guid>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#1.6.1</guid>
-            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
-</ul>
+            <title><![CDATA[onlinetest 3.7.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.7.0</guid>
+            <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Per-queue 24 h sparkline on each <code>/admin</code> queue row, independently scaled so low- and high-traffic queues both show shape <a href="https://github.com/sitespeedio/onlinetest/pull/256">#256</a>.<br>
+- Subtle motion on <code>/admin</code>: one-time staggered bar-chart entrance, refresh-indicator pulse, and tweened number rollups when totals change. All honour <code>prefers-reduced-motion</code> <a href="https://github.com/sitespeedio/onlinetest/pull/256">#256</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Queue defaults bumped to <code>removeOnComplete: 50 / removeOnFail: 100 / attempts: 2</code>; code-level fallbacks aligned with the yaml <a href="https://github.com/sitespeedio/onlinetest/pull/255">#255</a>.<br>
+- Internal queues (<code>testrunners</code>, <code>result</code>) no longer listed on <code>/admin</code> — they had no failures, no sparkline, and an inert Empty button <a href="https://github.com/sitespeedio/onlinetest/pull/258">#258</a>.<br>
+- Refresh indicator on <code>/admin</code> now sits in a fixed-width column so the version pill can&#39;t shift sideways each tick <a href="https://github.com/sitespeedio/onlinetest/pull/258">#258</a>.<br>
+- Testrunner setup duplicated on restart — registration was concatenating old + new instead of deduping <a href="https://github.com/sitespeedio/onlinetest/pull/257">#257</a>.<br>
+- Multi-type setups on one location (e.g. desktop + emulatedMobile) collapsed into the last entry after a restart; dedupe now keys on full setup identity, not just queue name <a href="https://github.com/sitespeedio/onlinetest/pull/259">#259</a>.<br>
 ]]></description>
+            <author>Sitespeed.io</author>
+        </item>
+        <item>
+            <title><![CDATA[onlinetest 3.6.0]]></title>
+            <link>https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0</link>
+            <guid isPermaLink="false">https://github.com/sitespeedio/onlinetest/blob/main/CHANGELOG.md#3.6.0</guid>
+            <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[<strong>Added</strong><br>
+- Activity stats on <code>/admin</code>: totals for the last 24 hours and 7 days plus a stacked bar chart of tests per hour over the last 24 h (completed / failed / other). Pure server-rendered SVG, cached for 60 s so the auto-refresh doesn&#39;t beat on Postgres <a href="https://github.com/sitespeedio/onlinetest/pull/252">#252</a>.<br>
+<br>
+<strong>Fixed</strong><br>
+- Hide the Failed count for the internal <code>testrunners</code> and <code>result</code> queues — the number was unactionable because the queues don&#39;t appear in Recent failures <a href="https://github.com/sitespeedio/onlinetest/pull/251">#251</a>.<br>
+- Age labels in Recent failures now graduate to <code>d</code>/<code>mo</code> past 48 h instead of shouting <code>12608h ago</code> <a href="https://github.com/sitespeedio/onlinetest/pull/251">#251</a>.<br>
+- Long URLs no longer push the <code>/search/</code> results table past its container and shove the page off-centre. URL cells now wrap at any character; the form has <code>overflow-x: auto</code> as a safety net <a href="https://github.com/sitespeedio/onlinetest/pull/253">#253</a>.<br>
+]]></description>
+            <author>Sitespeed.io</author>
         </item>
     </channel>
 </rss>

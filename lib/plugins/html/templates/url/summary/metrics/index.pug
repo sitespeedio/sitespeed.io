@@ -1,12 +1,26 @@
 extends ../layout.pug
 
 block content
-    h1 Metrics  per run
     - const daTitle = daurlAlias ? daurlAlias : daurl
-    h5.url
+    h1 Metrics per run
+    p.url
         a(href=daurl) #{decodeURIComponent(daTitle)}
 
     include ../../includes/pageRunInfo
+
+    //- Run navigation: number-only chips, with this side-by-side page
+    //- as the highlighted current pill. Keep the #pageNavigation id —
+    //- it is the same navigation row as on the summary and run pages.
+    nav.run-nav#pageNavigation(aria-label='Runs')
+        span.run-nav-label Runs
+        ul.run-nav-chips
+            each val, index in runPages
+                - value = Number(index) + 1
+                li
+                    a.run-nav-chip(href='./' + value + '.html', aria-label='Run ' + value) #{value}
+        span.run-nav-sep
+        a.run-nav-link(href='index.html') Summary
+        span.run-nav-link.run-nav-link--current(aria-current='page') Side by side
 
     - const tools = ['browsertime', 'pagexray']
     - const metrics = {};
@@ -16,50 +30,51 @@ block content
     -    }
     - }
 
-    - const categoryNames = {googleWebVitals: "Google Web Vitals", timings: "Timing metrics", cpu: "CPU metrics", browser: 'Browser metrics', pageinfo: "Page metrics", thirdParty: "Third Party metrics", firstParty: "First Party metrics"}
+    - const categoryNames = {googleWebVitals: "Google Web Vitals", timings: "Timing metrics", cpu: "CPU metrics", browser: 'Browser metrics', pageinfo: "Page metrics", visualMetrics: "Visual Metrics", thirdParty: "Third Party metrics", firstParty: "First Party metrics"}
     - const noCategory = ['requests','transferSize', 'contentSize']
+    - const columnCount = runPages.length + 5
 
-    h3 Side by side
-    .responsive
-        .test(style='overflow-x:auto;')
-            table
-                tr
-                    - let run = 1
-                    th Metric
-                    each page in runPages
-                        th
-                            b #{run}
-                            - run++
-                    th Median
-                    th Mean
-                    th stddev
-                    th rsd
-                each tool in Object.keys(metrics)
-                    - let category = ''
-                    each metricType in Object.keys(metrics[tool])
-                        - if (category !== metricType) {
-                            - if (noCategory.indexOf(metricType) === -1) {
-                                - category = metricType   
-                                tr 
-                                    th(colspan=runPages.length + 5) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
-                            - } else {
-                                - category = metricType 
+    .listing-card
+        .listing-card-header
+            h3.listing-card-title Side by side
+            span.listing-card-meta #{h.plural(runPages.length, 'run')}
+        p.listing-card-help Every metric for every run, with statistics over all runs. Click a value to open that run. Median is the middle value when the runs are sorted, so one slow run does not move it. Mean is the average, and one outlier pulls it. Stddev (standard deviation) is how far the runs typically land from the mean, in the unit of the metric. RSD (relative standard deviation) is the stddev as a percentage of the mean, so you can compare the noise of metrics with different units: a low RSD means the runs agree, a high RSD means the metric is noisy and you need more runs to trust a change.
+        .responsive
+            table.timings-table.sidebyside-table
+                thead
+                    tr
+                        th Metric
+                        each page, index in runPages
+                            th.number Run #{Number(index) + 1}
+                        th.number Median
+                        th.number Mean
+                        th.number Stddev
+                        th.number RSD
+                tbody
+                    each tool in Object.keys(metrics)
+                        - let category = ''
+                        each metricType in Object.keys(metrics[tool])
+                            - if (category !== metricType) {
+                                - if (noCategory.indexOf(metricType) === -1) {
+                                    - category = metricType
+                                    tr
+                                        td.extraheader(colspan=columnCount) #{categoryNames[metricType] ? categoryNames[metricType] : h.metricName(metricType)}
+                                - } else {
+                                    - category = metricType
+                                - }
                             - }
-                        - }
-                        each metric in Object.keys(metrics[tool][metricType])
-                            - const friendly = metrics[tool][metricType][metric]
-                            - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
-                            if (m !== 'notused') 
-                                tr
-                                    td 
-                                        b #{friendly.name}
-                                    - let pageIndex = 1
-                                    each page in runPages
-                                        td 
-                                            a(href=pageIndex + '.html') #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
-                                            - pageIndex++
-                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
-                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
-                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.stddev', ''))}
-                                    - rsd = get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.rsd', '')
-                                    td #{rsd !== '' ? Number(rsd).toFixed(2) + ' %' : 'N/A'}  
+                            each metric in Object.keys(metrics[tool][metricType])
+                                - const friendly = metrics[tool][metricType][metric]
+                                - const m = get(runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
+                                if (m !== 'notused')
+                                    tr
+                                        td(data-title='metric') #{friendly.name}
+                                        each page, index in runPages
+                                            - const runValue = get(page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path))
+                                            td.number(data-title='run ' + (Number(index) + 1))
+                                                a(href='./' + (Number(index) + 1) + '.html', title='Go to run ' + (Number(index) + 1)) #{friendly.format(runValue)}
+                                        td.number(data-title='median') #{friendly.format(get(mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
+                                        td.number(data-title='mean') #{friendly.format(get(mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
+                                        td.number(data-title='stddev') #{friendly.format(get(mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.stddev', ''))}
+                                        - const rsd = get(mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.rsd', '')
+                                        td.number(data-title='rsd') #{rsd !== '' ? Number(rsd).toFixed(2) + ' %' : 'N/A'}

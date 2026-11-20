@@ -1,44 +1,61 @@
 - const wappalyserVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.wappalyzerVersion : pageInfo.data.coach.pageSummary.wappalyzerVersion;
 - const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion;
+- const webappanalyzerVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.webappanalyzerVersion : pageInfo.data.coach.pageSummary.webappanalyzerVersion;
+- const webappanalyzerSyncedAt = webappanalyzerVersion && webappanalyzerVersion.syncedAt ? webappanalyzerVersion.syncedAt : '2024-12-27';
 
 a#technology
-h2 Technologies used to build the page.
-p
-  | Data collected using 
-  a(href='https://github.com/dochne/wappalyzer') Wappalyzer
-  |  version #{wappalyserVersion}. With updated code from 
-  a(href='https://github.com/enthec/webappanalyzer') Webappanalyzer 
-  | 2024-12-27. Use 
+h2 Technologies used to build the page
+
+p.small
+  | Data collected using
+  |
+  a(href='https://github.com/sitespeedio/coach-core') Coach-core
+  |  version #{wappalyserVersion}. With updated code from
+  |
+  a(href='https://github.com/enthec/webappanalyzer') Webappanalyzer
+  |  #{webappanalyzerSyncedAt}. Use
+  |
   code --browsertime.firefox.includeResponseBodies html
-  | or 
+  |  or
+  |
   code --browsertime.chrome.includeResponseBodies html
-  | to help Wappalyzer find more information about technologies used.
+  |  to help Wappalyzer find more information about technologies used.
 
 if advice.info.technology && advice.info.technology.length > 0
-    table
-        tr
-            th Technology
-            th Confidence
-            th Category
-        each tech in advice.info.technology
-            tr
-                td 
-                    a(href=tech.website)= `${tech.name} ${tech.version}`
-                td #{tech.confidence}
-                td 
-                    each category in tech.categories
-                        | #{category.name}
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Detected technologies
+      span.listing-card-meta #{advice.info.technology.length} #{advice.info.technology.length === 1 ? 'technology' : 'technologies'}
+    ul.tech-list
+      each tech in advice.info.technology
+        li.tech-card
+          .tech-card-header
+            a.tech-name(href=tech.website) #{tech.name}
+            if tech.version
+              span.tech-version #{tech.version}
+            span.tech-confidence
+              span.tech-confidence-label Confidence
+              span.tech-confidence-value #{tech.confidence}
+          if tech.categories && tech.categories.length > 0
+            .tech-categories
+              each category in tech.categories
+                span.tech-category #{category.name}
 else
-    p Wappalyzer didn't find any information.
+  p Wappalyzer didn't find any information.
 
-if (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
-    p Data collected using 
-        a(href='https://github.com/patrickhulce/third-party-web') Third Party Web #{thirdPartyWebVersion} 
-
-    table 
-        each data, category in advice.info.thirdparty.toolsByCategory
-            tr
-                th #{h.cap(category)}
-            each requests, tool in data
-                tr
-                    td #{tool}
+if advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0
+  - const tpToolCount = Object.values(advice.info.thirdparty.toolsByCategory).reduce((s, tools) => s + Object.keys(tools).length, 0)
+  .listing-card
+    .listing-card-header
+      h3.listing-card-title Third-party tools
+      span.listing-card-meta #{tpToolCount} #{tpToolCount === 1 ? 'tool' : 'tools'}
+    p.listing-card-help Data collected using&nbsp;
+      a(href='https://github.com/patrickhulce/third-party-web') Third Party Web
+      | &nbsp;version #{thirdPartyWebVersion}.
+    .tp-tool-categories
+      each tools, category in advice.info.thirdparty.toolsByCategory
+        .tp-tool-cat
+          span.tp-tool-cat-name #{h.cap(category)}
+          ul.tp-tool-cat-list
+            each requests, tool in tools
+              li #{tool}
