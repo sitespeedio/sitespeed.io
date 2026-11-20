@@ -9,7 +9,7 @@ datasources:
     url: http://opensearch:9200
     isDefault: false
     jsonData:
-      database: sitespeed-pagesummary-*,sitespeed-pagexray-*,sitespeed-compare-*
+      database: sitespeed-pagesummary-*,sitespeed-pagexray-*,sitespeed-compare-*,sitespeed-coach-*
       timeField: "@timestamp"
       version: "2.0.0"
       flavor: opensearch
