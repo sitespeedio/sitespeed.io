@@ -1190,7 +1190,7 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
-                  "placement": "right",
+                  "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
@@ -1826,7 +1826,7 @@
                     "max"
                   ],
                   "displayMode": "table",
-                  "placement": "right",
+                  "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
@@ -9694,7 +9694,7 @@
         "kind": "Panel",
         "spec": {
           "id": 299,
-          "title": "Last long task",
+          "title": "",
           "description": "When the last long task ends. After that, the main thread can respond to user input fast. Chrome only.",
           "links": [],
           "data": {
@@ -9736,7 +9736,7 @@
               "options": {
                 "colorMode": "background",
                 "graphMode": "none",
-                "justifyMode": "auto",
+                "justifyMode": "center",
                 "orientation": "auto",
                 "reduceOptions": {
                   "calcs": [
@@ -18755,15 +18755,16 @@
                         "title": "CPU Details [Chrome only, enable with --cpu]",
                         "collapse": false,
                         "layout": {
-                          "kind": "AutoGridLayout",
+                          "kind": "GridLayout",
                           "spec": {
-                            "maxColumnCount": 2,
-                            "columnWidthMode": "standard",
-                            "rowHeightMode": "standard",
                             "items": [
                               {
-                                "kind": "AutoGridLayoutItem",
+                                "kind": "GridLayoutItem",
                                 "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 24,
+                                  "height": 2,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-323"
@@ -18771,50 +18772,28 @@
                                 }
                               },
                               {
-                                "kind": "AutoGridLayoutItem",
+                                "kind": "GridLayoutItem",
                                 "spec": {
+                                  "x": 0,
+                                  "y": 2,
+                                  "width": 12,
+                                  "height": 14,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-81"
-                                  },
-                                  "conditionalRendering": {
-                                    "kind": "ConditionalRenderingGroup",
-                                    "spec": {
-                                      "visibility": "show",
-                                      "condition": "and",
-                                      "items": [
-                                        {
-                                          "kind": "ConditionalRenderingData",
-                                          "spec": {
-                                            "value": true
-                                          }
-                                        }
-                                      ]
-                                    }
                                   }
                                 }
                               },
                               {
-                                "kind": "AutoGridLayoutItem",
+                                "kind": "GridLayoutItem",
                                 "spec": {
+                                  "x": 12,
+                                  "y": 2,
+                                  "width": 12,
+                                  "height": 14,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-138"
-                                  },
-                                  "conditionalRendering": {
-                                    "kind": "ConditionalRenderingGroup",
-                                    "spec": {
-                                      "visibility": "show",
-                                      "condition": "and",
-                                      "items": [
-                                        {
-                                          "kind": "ConditionalRenderingData",
-                                          "spec": {
-                                            "value": true
-                                          }
-                                        }
-                                      ]
-                                    }
                                   }
                                 }
                               }
@@ -18846,15 +18825,16 @@
                         "title": "Elements that need style recalculation before FCP and LCP [Chrome only, enable with --cpu]",
                         "collapse": false,
                         "layout": {
-                          "kind": "AutoGridLayout",
+                          "kind": "GridLayout",
                           "spec": {
-                            "maxColumnCount": 2,
-                            "columnWidthMode": "standard",
-                            "rowHeightMode": "standard",
                             "items": [
                               {
-                                "kind": "AutoGridLayoutItem",
+                                "kind": "GridLayoutItem",
                                 "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 24,
+                                  "height": 2,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-319"
@@ -18862,50 +18842,28 @@
                                 }
                               },
                               {
-                                "kind": "AutoGridLayoutItem",
+                                "kind": "GridLayoutItem",
                                 "spec": {
+                                  "x": 0,
+                                  "y": 2,
+                                  "width": 12,
+                                  "height": 10,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-285"
-                                  },
-                                  "conditionalRendering": {
-                                    "kind": "ConditionalRenderingGroup",
-                                    "spec": {
-                                      "visibility": "show",
-                                      "condition": "and",
-                                      "items": [
-                                        {
-                                          "kind": "ConditionalRenderingData",
-                                          "spec": {
-                                            "value": true
-                                          }
-                                        }
-                                      ]
-                                    }
                                   }
                                 }
                               },
                               {
-                                "kind": "AutoGridLayoutItem",
+                                "kind": "GridLayoutItem",
                                 "spec": {
+                                  "x": 12,
+                                  "y": 2,
+                                  "width": 12,
+                                  "height": 10,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-286"
-                                  },
-                                  "conditionalRendering": {
-                                    "kind": "ConditionalRenderingGroup",
-                                    "spec": {
-                                      "visibility": "show",
-                                      "condition": "and",
-                                      "items": [
-                                        {
-                                          "kind": "ConditionalRenderingData",
-                                          "spec": {
-                                            "value": true
-                                          }
-                                        }
-                                      ]
-                                    }
                                   }
                                 }
                               }
