@@ -102,6 +102,35 @@ If you use aliases for URLs, you can use those instead:
 }
 ~~~
 
+#### Budgets for groups of pages
+If different parts of your site need different budgets, put the pages in groups. Each group has a `pages` array with the URLs or aliases in the group, and the budget for the group. The groups are next to `budget`, not inside it:
+
+~~~json
+{
+  "budget": {
+    "timings": {
+      "SpeedIndex": 1000
+    }
+  },
+  "groups": {
+    "checkout": {
+      "pages": ["cart", "payment", "https://shop.example.com/confirm"],
+      "timings": {
+        "SpeedIndex": 1500
+      }
+    },
+    "articles": {
+      "pages": ["article", "frontpage"],
+      "timings": {
+        "SpeedIndex": 2000
+      }
+    }
+  }
+}
+~~~
+
+A page in a group gets the generic budget, then the budget for its group, and then the budget for its own URL or alias. When the same metric is in more than one of them, the last one wins. A page can only be in one group: if it is in two groups, sitespeed.io stops before the test starts.
+
 #### User Timing API metrics
 You can use User Timing API metrics in your budget. Both marks and measurements will be picked up under the name *usertimings*. Sitespeed.io will first look for a mark with that name, and if it doesn't exist it will look for a measurement.
 
@@ -277,6 +306,8 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 And, if the budget fails, the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
+
+If a page could not be tested (for example the browser did not start or no Android phone was connected), there is no data to check the budget against. The page is then reported as an error: an `<error>` test case in JUnit XML, a `not ok` line in TAP and an error row in the HTML budget page. The exit status is > 0, so your CI job fails instead of passing with zero checks.
 
 ### JUnit XML
 You can output a JUnit XML file from the budget result like this:

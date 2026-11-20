@@ -1,0 +1,72 @@
+{
+  "index_patterns": ["sitespeed-compare-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "plugins.index_state_management.policy_id": "sitespeed-default-retention"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp":        { "type": "date" },
+        "url":               { "type": "keyword" },
+        "group":             { "type": "keyword" },
+        "alias":             { "type": "keyword" },
+        "browser":           { "type": "keyword" },
+        "connectivity":      { "type": "keyword" },
+        "slug":              { "type": "keyword" },
+        "type":              { "type": "keyword" },
+        "resultUrl":         { "type": "keyword" },
+        "deviceType":        { "type": "keyword" },
+        "iterations":        { "type": "integer" },
+        "name":              { "type": "keyword" },
+        "baselineTimestamp": { "type": "keyword" },
+        "anySignificant":    { "type": "boolean" },
+        "significantMetrics":{ "type": "keyword" },
+        "timings": {
+          "properties": {
+            "ttfb":        { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "fcp":         { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "fullyLoaded": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "loadEventEnd":{ "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } }
+          }
+        },
+        "visualMetrics": {
+          "properties": {
+            "speedIndex":           { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "perceptualSpeedIndex": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "firstVisualChange":    { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "lastVisualChange":     { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "contentfulSpeedIndex": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } }
+          }
+        },
+        "googleWebVitals": {
+          "properties": {
+            "lcp": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "cls": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "inp": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "fid": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } }
+          }
+        },
+        "cpu": {
+          "properties": {
+            "totalDuration": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "tasks":         { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "lastLongTask":  { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "beforeFCP":     { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "beforeLCP":     { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } }
+          }
+        },
+        "renderBlocking": {
+          "properties": {
+            "beforeFCPms":       { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "beforeLCPms":       { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "beforeFCPelements": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } },
+            "beforeLCPelements": { "properties": { "isSignificant": { "type": "boolean" }, "cliffsDelta": { "type": "float" }, "pValue": { "type": "float" }, "currentMedian": { "type": "float" }, "baselineMedian": { "type": "float" } } }
+          }
+        }
+      }
+    }
+  }
+}

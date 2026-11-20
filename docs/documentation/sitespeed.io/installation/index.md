@@ -34,7 +34,7 @@ C:\Users\Vicky> docker pull sitespeedio/sitespeed.io
 C:\Users\Vicky> docker run --rm -v ${pwd}:/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
-That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
+That will write the result to `sitespeed-result/www.sitespeed.io/<date-and-time>/` in the current directory. Open `index.html` in that folder to see the HTML report. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
 
 ## Using Node.js
 

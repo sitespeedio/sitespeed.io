@@ -18,6 +18,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
 ## Get started
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
+ * [Tutorials](tutorials/) - step-by-step tutorials, start with testing your first page and reading the report.
  * [Web performance testing in practice](web-performance-testing-in-practice/) - start here if you are new to synthetic testing.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
  * [Using AI coding agents](ai-coding-agents/) - get your coding agent to write current scripts and command lines.
@@ -40,6 +41,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
  * [CPU Benchmark](cpu-benchmark/) - benchmark the CPU that runs your browser and tests.
  * [Video](video/) - all that you can do with the video and filmstrip.
+ * [Waterfall](waterfall/) - what the colors, lines and markers in the waterfall mean.
  * [Axe](axe/) - run accessibility tests.
  * [Sustainable web plugin](sustainable/) - the sustainable web plugin helps you build greener, more sustainable websites and applications.
  * [Third party requests](thirdparty/) - keep track of those 3rd party scripts.
@@ -62,6 +64,7 @@ Sitespeed.io is the complete toolbox for testing the web performance of your web
 ## Reporting & alerts
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [Matrix](matrix/) - send messages to your Matrix client.
+ * [Webhook](webhook/) - send a JSON summary of each run to any URL.
  * [Configure HTML output](configure-html/) - change the default HTML output.
 
 ## For contributors

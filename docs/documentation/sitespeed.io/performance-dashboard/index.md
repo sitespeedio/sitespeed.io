@@ -81,29 +81,28 @@ Remember, these are simplified instructions. For a production setup, you would n
 ### Pre-made example dashboards
 We insert ready-made dashboards with our docker compose file using provisioning. You can check out the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
 
+Hover the (i) next to a dashboard name or a panel title to see what it shows and which option you need to collect the data.
+
 Some of our dashboards use Grafana plugins. To make sure the dashboards work you need to install these plugins:
-* [marcusolsson-json-datasource](https://github.com/grafana/grafana-json-datasource)
+* [yesoreyeram-infinity-datasource](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/)
 * [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
 
 In our Docker file you can see something like this:
 
 ```
  environment:
-        - GF_INSTALL_PLUGINS=marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        - GF_PLUGINS_PREINSTALL_SYNC=yesoreyeram-infinity-datasource@4.1.6,marcusolsson-dynamictext-panel@6.3.1
         ...
 
 ```
 
+Earlier versions of the dashboards used the JSON API datasource (`marcusolsson-json-datasource`). Grafana recommends the Infinity datasource instead. If you upgrade, install the Infinity plugin and add an Infinity datasource with the UID `infinity`. Do not set a base URL on it. Our [datasource provisioning file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/grafana/provisioning/datasources/infinity.yaml) does that for you.
+
 The *Page metrics* dashboard shows metadata like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and set up the dashboard to point to where you store the sitespeed.io result.
 
-In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots and videos in the dashboard.
+In our example dashboard we serve our content from https://data.sitespeed.io, so we configure the variable *resulturl* for the dashboard to point there. That way we will see screenshots, videos and metadata like how you configured your tests in the dashboard. The dashboards in our Docker compose setup are the same dashboards that run on [dashboard.sitespeed.io](https://dashboard.sitespeed.io), so *resulturl* is https://data.sitespeed.io. Change it to where you store your result.
 
 ![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-We also configure the JSON datasource to point to the same place. That way we can see metadata like how you configured your tests.
-
-![Configure the JSON datasource ]({{site.baseurl}}/img/json-api.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 If that is set up correctly, your dashboard will look something like this:
@@ -130,7 +129,7 @@ If you choose one of the values in a template, the rest will be populated. You c
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page metrics
-You should use these as example dashboards to inspire what you can do. We try to squeeze all the data into these dashboards and you can view those by expanding each row.
+You should use these as example dashboards to inspire what you can do. We try to squeeze all the data into these dashboards.
 
 The [page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics) shows metrics for a specific URL/page.
 
@@ -138,21 +137,31 @@ The dashboard looks something like this:
 ![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
-And scroll down to see more, do not forget to click on the rows to expand and see all metrics.
+The dashboard has tabs: *Overview*, *Google Web Vitals*, *Visual metrics*, *Timings*, *Size and requests*, *CPU*, *Quality*, *Test stability* and *Regressions*. Grafana only gets the data for a tab when you open it, so the dashboard loads faster than when all rows were on one page.
+
+The timing tiles in the overview show how much each metric changed from the start to the end of the time range. The *Google Web Vitals* tab starts with a status strip, where each metric is green (good), yellow (needs improvement) or red (poor) over time, using the limits from Google. Each graph has the same colors in the background and shows:
+* each test (the median of the runs, or what you choose in *function*), with a band from the fastest to the slowest run, so you can see if a change is bigger than the difference between runs.
+* the average of the last 24 hours and the same average one week earlier.
+* a trendline, so you can see if a metric gets better or worse over the time range.
+
+If you also collect [Chrome User Experience Report]({{site.baseurl}}/documentation/sitespeed.io/crux/) data with `--crux.key` in the same test, the tab shows your lab metrics and the field metrics (75th percentile) from real Chrome users in the same graph.
+
+The *Visual metrics* tab shows the metrics from the video (First Visual Change, Speed Index, Largest Image, Largest Heading, the visual Largest Contentful Paint and Last Visual Change) the same way as the Google Web Vitals, and when the page is 85, 95 and 99% visually complete. The tab only shows when the test records a video.
+
+The *Regressions* tab shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower in the last comparison, which metrics they are and how large the effect is (small, medium or large), and the changes over time. A link opens the comparison in the latest HTML result, where you see the medians and every run (needs `--copyLatestFilesToBase`). Faster metrics only show when there are any: by default compare only looks for regressions, add `--compare.alternative two-sided` to also find improvements.
+
+Some rows need a configuration, for example the CPU rows need `--cpu` (Chrome and Edge), the axe rows need `--axe.enable`, the carbon emission row needs `--sustainable.enable` and the regression panels need `--compare.id`. The dashboard only shows a row when the test has data for it, and the *CPU* tab only when there is CPU data. In the rows, a panel without data is not shown, so you only see the panels for the data you collect.
+
+The links *Leaderboard* and *Chrome User Experience Report* at the top open these dashboards for the same time range.
+
+The Page metrics, Leaderboard, Chrome User Experience Report and User journey dashboards use the dashboard format of Grafana 13 (dynamic dashboards), because older formats cannot have tabs or hide rows and panels without data. They need Grafana 13 or later.
 
 ![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
-## User Journeys example dashboards
+## User journey dashboard
 
-We have a couple of example dashboards on how to add your own user journey dashboards. When you import those dashboards into Grafana you need to add the Grafana variables that match your tests.
-
-This is an example dashboard for logging into Wikipedia. That user journey measures four pages.
-
-![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-We also have examples for three-page user journeys.
+The [User journey](https://dashboard.sitespeed.io/d/sitespeedio-user-journey/user-journey) dashboard works for every user journey (scripted test) without changes. Choose the test with *path*, *testname* and *domain*, and the dashboard shows one tab for each page: the screenshot and video from the last run, the timings, the Google Web Vitals, the number of requests and the transfer size. Use *page* to show only some of the pages. The order of the tabs is alphabetical, not the order of the pages in your script.
 
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
@@ -167,6 +176,17 @@ Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/cru
 
 ![CruX]({{site.baseurl}}/img/crux-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
+
+## OpenSearch
+You can also send the results to [OpenSearch](https://opensearch.org) with `--opensearch.host`. Graphite stores numbers on a fixed path. OpenSearch stores every test as a document with text fields, so for the URL you choose, the *OpenSearch* dashboard can do what the Graphite dashboards cannot:
+
+* List the latest tests with a link to each HTML result (needs `--resultBaseURL`).
+* Group the results by any field when you look at them, for example by browser.
+* Keep every run, not only the median, and show how the runs are spread (add `--opensearch.includeRuns`).
+* Show which metrics changed in a [comparison](/documentation/sitespeed.io/compare/).
+* Filter on any field, for example the test name (`--slug`).
+
+Our [Docker compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) starts OpenSearch, adds the index templates and provisions the data sources. OpenSearch in that file has no login, so do not let anyone except your test servers reach port 9200.
 
 
 ## Whatever you want
@@ -184,18 +204,19 @@ You can configure all the thresholds (green/yellow/red) so that they match your 
 To get the screenshot and video visible in Grafana you need to:
 * Set a `--resultBaseURL` and the value needs to match the Grafana variable *resulturl*.
 * Set `--copyLatestFilesToBase true`. That will make a copy of the last screenshot and video in the base directory so it can be found by Grafana.
+* Set `--copyLatestFilesToBaseGraphiteNamespace true`. That adds your Graphite namespace (`--graphite.namespace`) first in the file name, the way our dashboards expect it.
 * Add a testname/slug to your test with `--slug`.
 * Make sure that the screenshot content type `--screenshot.type` matches the *screenshottype* variable in Grafana. By default the screenshot type is *png*.
 
 If you add all that it should work.
 
 In the Grafana panel the path to the screenshot is generated by:
-`$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype`
+`$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.$screenshottype`
 
 And the video:
-`$resulturl/$testname/$group.$page.$browser.$connectivity.mp4`
+`$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.mp4`
 
-If you can't see the screenshot or the video you can debug it by either inspecting the HTML in Grafana, checking the network log in DevTools (to see if the full URL is correct), or adding `<div>$resulturl/$testname/$group.$page.$browser.$connectivity.$screenshottype</div>` to the panel so you can see the generated URL.
+If you can't see the screenshot or the video you can debug it by either inspecting the HTML in Grafana, checking the network log in DevTools (to see if the full URL is correct), or adding `<div>$resulturl/$testname/$base.$path.$group.$page.$browser.$connectivity.$screenshottype</div>` to the panel so you can see the generated URL.
 
 ## Set up your own user journey dashboard
 
@@ -242,6 +263,8 @@ Now you have the result on S3 or GCS and you're almost done. You should also con
 You can send annotations to Graphite to mark when a run happens, so you can go from the dashboard to any HTML-results page.
 
 You send annotations by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
+
+The HTML result is uploaded when all pages in the run are tested. If you upload it with S3, GCS, scp or rsync, sitespeed.io sends the annotations after the upload, so the link in an annotation always works. The metrics are sent to Graphite as soon as each page is tested, and each annotation is placed at the time its page was tested.
 
 You can also modify the annotation, append your own text/HTML and add your own tags.
 Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you deem helpful to you. If needed, set a custom title with <code>--graphite.annotationTitle</code> instead of the default title that displays the number of runs of the test.

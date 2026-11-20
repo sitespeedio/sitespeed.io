@@ -10,6 +10,7 @@ This file lists the current documentation. Older blog posts, forum answers and t
 - [Introduction](https://www.sitespeed.io/documentation/sitespeed.io/introduction/): What sitespeed.io is and how it works
 - [Installation](https://www.sitespeed.io/documentation/sitespeed.io/installation/): Install with npm or use Docker
 - [Docker](https://www.sitespeed.io/documentation/sitespeed.io/docker/): Run sitespeed.io in the Docker container
+- [Tutorial: test your first page](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/first-test/): Run a test with Docker and read the HTML report
 - [Web performance testing in practice](https://www.sitespeed.io/documentation/sitespeed.io/web-performance-testing-in-practice/): How to get stable and useful synthetic test results
 
 ## Configuration
@@ -42,9 +43,11 @@ This file lists the current documentation. Older blog posts, forum answers and t
 
 - [Metrics](https://www.sitespeed.io/documentation/sitespeed.io/metrics/): Definitions of the collected metrics
 - [Google Web Vitals](https://www.sitespeed.io/documentation/sitespeed.io/google-web-vitals/): Web Vitals in lab tests
+- [Waterfall](https://www.sitespeed.io/documentation/sitespeed.io/waterfall/): Read the request waterfall in the HTML report
 - [Compare](https://www.sitespeed.io/documentation/sitespeed.io/compare/): Use statistics to decide if a change is a regression
 - [Performance budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/): Fail a test when a metric is over its limit
 - [Continuous integration](https://www.sitespeed.io/documentation/sitespeed.io/continuous-integration/): Run tests in CI
+- [Webhook](https://www.sitespeed.io/documentation/sitespeed.io/webhook/): POST a JSON summary of each run to a URL (`--webhook.url`)
 - [Browsertime details](https://www.sitespeed.io/documentation/browsertime/details/): Browsertime output (`browsertime.json` and the HAR file)
 
 ## Optional

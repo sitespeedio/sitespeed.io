@@ -63,3 +63,5 @@ If you want to avoid having over-complicated CLI parameters, you should use the 
 The Axe tests are run as a [postScript](/documentation/sitespeed.io/scripting/pre-and-post-scripts/).
 
 Running Axe will add some extra run time per test. How much extra time it takes depends on your page and the server running the browser.
+
+The accessibility of a page is almost always the same in all runs. If you test with many iterations, add `--axe.firstRunOnly` and Axe runs only in the first iteration. That saves the Axe time in all other iterations. The axe tab then shows the result from that one run.

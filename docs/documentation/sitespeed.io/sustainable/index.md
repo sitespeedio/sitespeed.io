@@ -80,6 +80,16 @@ By default the hosting data (knowing whether a host is green) is collected from 
 
 You can also disable the hosting match (all hosts will be treated as grey hosting) with `--sustainable.disableHosting`.
 
+#### Use the electricity of a country
+
+By default the CO2 is calculated with the global average carbon intensity of electricity. The electricity in different countries has a very different carbon intensity. For the same page, the CO2 in Norway is about a third of the global average and in India it is more than the global average. If you know where your users are, use `--sustainable.country` with the ISO 3166 alpha-3 code of the country:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --sustainable.enable --sustainable.model swd --sustainable.modelVersion 4 --sustainable.country SWE
+~~~
+
+The country is used for all parts of the calculation: the device, the network and the data centre. You can also use a region, for example `EU`. The data is the yearly average from [CO2.js](https://developers.thegreenwebfoundation.org/co2js/data/), which also lists all codes. The country only works with the `swd` model, because the `1byte` model does not use grid intensity. The Sustainable Web tab in the result shows which country was used.
+
 ## How it works
 
 ### Short version

@@ -39,7 +39,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -55,7 +58,7 @@
   "links": [],
   "panels": [
     {
-      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://twitter.com/SiteSpeedio\">Twitter</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"https://dashboard.sitespeed.io/d/000000059/page-timing-metrics\">page timing dashboard</a> or checkout what the <a href=\"https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html\">HTML result</a> looks like.\n",
+      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"/d/9NDMzFfMk/page-metrics\">page timing dashboard</a> and turn on <i>Go to result</i> there to open the HTML result of a test.\n",
       "datasource": "graphite",
       "description": "",
       "fieldConfig": {
@@ -81,7 +84,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 18,
+        "h": 6,
         "w": 13,
         "x": 0,
         "y": 0
@@ -134,11 +137,186 @@
       "timeShift": null,
       "title": "Installed dashboards",
       "type": "dashlist"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "infinity"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 13,
+        "x": 0,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "afterRender": "",
+        "content": "{{#each data.[0]}}\n<h3><a href=\"{{link}}\" target=\"_blank\">{{title}}</a></h3>\n<p><em>{{date pubDate 'D MMMM YYYY'}}</em></p>\n{{releaseNotes description}}\n<hr>\n{{/each}}",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "html"
+        },
+        "editors": [],
+        "externalStyles": [],
+        "helpers": "// The feed has \"- \" items, because the Grafana news panel removes lists.\n// Show the items as a list.\ncontext.handlebars.registerHelper('releaseNotes', notes => {\n  const html = notes\n    .split('\\n')\n    .map(line => (line.startsWith('- ') ? '<li>' + line.slice(2).replace(/<br>$/, '') + '</li>' : line))\n    .join('\\n')\n    .replaceAll(/((?:<li>.*<\\/li>\\n)+)/g, '<ul>\\n$1</ul>\\n');\n  return new context.handlebars.SafeString(html);\n});\n",
+        "renderMode": "data",
+        "styles": "li {\n  margin-bottom: 8px;\n}",
+        "wrap": false
+      },
+      "pluginVersion": "6.2.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "title",
+              "text": "title",
+              "type": "string"
+            },
+            {
+              "selector": "link",
+              "text": "link",
+              "type": "string"
+            },
+            {
+              "selector": "pubDate",
+              "text": "pubDate",
+              "timestampFormat": "Mon, 02 Jan 2006 15:04:05 MST",
+              "type": "timestamp"
+            },
+            {
+              "selector": "description",
+              "text": "description",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "infinity"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "rss.channel.item[[0..4]]",
+          "source": "url",
+          "type": "xml",
+          "url": "https://www.sitespeed.io/feed/rss.xml",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Sitespeed.io releases",
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "Each line is a test (path and test name). Green means that the test sent metrics to Graphite at that time, and the number is how many pages it tested.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "No test",
+                  "color": "transparent"
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 7,
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": false,
+        "rowHeight": 0.8,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "groupByNodes(isNonNull(sitespeed_io.*.*.pageSummary.*.*.*.*.browsertime.statistics.timings.ttfb.median), 'sum', 1, 2)",
+          "textEditor": true
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "Tests the last 24 hours",
+      "type": "state-timeline"
     }
   ],
   "schemaVersion": 25,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "sitespeed.io"
+  ],
   "templating": {
     "list": []
   },
@@ -162,5 +340,6 @@
   "timezone": "",
   "title": "Welcome to sitespeed.io",
   "uid": "3zStduRGk",
-  "version": 6
+  "version": 6,
+  "description": "Start page: the latest tests, the dashboards and sitespeed.io releases."
 }

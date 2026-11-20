@@ -85,6 +85,36 @@ test(`CLI should reject debug mode on Android`, async t => {
   t.true(stderr.includes('Debug mode do not work on Android'));
 });
 
+test(`CLI should reject a sustainable country without the swd model`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--sustainable.country',
+      'SWE',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('--sustainable.country only works with'));
+});
+
+test(`CLI should reject an unknown sustainable country`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--sustainable.model',
+      'swd',
+      '--sustainable.country',
+      'IN',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('IN is not a country or region'));
+});
+
 test(`CLI should reject Samsung Internet without Android`, async t => {
   let stderr = '';
   try {
@@ -165,4 +195,21 @@ test.serial(`CLI should run Edge on Android with the Edge package`, async t => {
   } finally {
     process.argv = argv;
   }
+});
+
+test(`CLI should reject a page that is in two budget groups`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--budget.config',
+      JSON.stringify({
+        budget: {},
+        groups: { a: { pages: ['start'] }, b: { pages: ['start'] } }
+      }),
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('start is in more than one budget group'));
 });

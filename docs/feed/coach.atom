@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>coach-release-feed</id>
     <title>coach release feed</title>
-    <updated>2026-11-12T14:46:41.025Z</updated>
+    <updated>2026-11-19T19:57:27.113Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -55,7 +55,7 @@
         <link rel="enclosure" href="https://www.sitespeed.io/img/logos/coach.png" type="image/png"/>
         <updated>2020-03-11T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<strong>Changed</strong><br>
-- We moved out the core functionality to coach-core. This makes it easy to use the Coach in your own code.<br>
+- We moved out the core functionality to <a href="https://github.com/sitespeedio/coach-core">coach-core</a>. This makes it easy to use the Coach in your own code.<br>
 ]]></summary>
         <author>
             <name>Sitespeed.io</name>
