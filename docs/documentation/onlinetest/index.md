@@ -504,10 +504,10 @@ Depending on your needs you can deploy the online test on one server or use mult
 
 3. **Start the server, dependencies and one testrunner:**
 
-   ```bash
-   sudo modprobe ifb numifbs=1
-   docker compose -f docker-compose.dependencies.yml -f docker-compose.server.yml -f docker-compose.testrunner.yml up -d
-  ```
+    ```bash
+    sudo modprobe ifb numifbs=1
+    docker compose -f docker-compose.dependencies.yml -f docker-compose.server.yml -f docker-compose.testrunner.yml up -d
+    ```
 
 ## Multiple servers
 
