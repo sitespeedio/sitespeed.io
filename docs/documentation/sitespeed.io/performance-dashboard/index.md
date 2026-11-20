@@ -137,7 +137,7 @@ The dashboard looks something like this:
 ![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
 {: .img-thumbnail }
 
-The dashboard has tabs: *Overview*, *Google Web Vitals*, *Timings*, *Size and requests*, *CPU*, *Quality*, *Test stability* and *Regressions*. Grafana only gets the data for a tab when you open it, so the dashboard loads faster than when all rows were on one page.
+The dashboard has tabs: *Overview*, *Google Web Vitals*, *Visual metrics*, *Timings*, *Size and requests*, *CPU*, *Quality*, *Test stability* and *Regressions*. Grafana only gets the data for a tab when you open it, so the dashboard loads faster than when all rows were on one page.
 
 The timing tiles in the overview show how much each metric changed from the start to the end of the time range. The *Google Web Vitals* tab starts with a status strip, where each metric is green (good), yellow (needs improvement) or red (poor) over time, using the limits from Google. Each graph has the same colors in the background and shows:
 * each test (the median of the runs, or what you choose in *function*), with a band from the fastest to the slowest run, so you can see if a change is bigger than the difference between runs.
@@ -145,6 +145,8 @@ The timing tiles in the overview show how much each metric changed from the star
 * a trendline, so you can see if a metric gets better or worse over the time range.
 
 If you also collect [Chrome User Experience Report]({{site.baseurl}}/documentation/sitespeed.io/crux/) data with `--crux.key` in the same test, the tab shows your lab metrics and the field metrics (75th percentile) from real Chrome users in the same graph.
+
+The *Visual metrics* tab shows the metrics from the video (First Visual Change, Speed Index, Largest Image, Largest Heading, the visual Largest Contentful Paint and Last Visual Change) the same way as the Google Web Vitals, and when the page is 85, 95 and 99% visually complete. The tab only shows when the test records a video.
 
 The *Regressions* tab shows how many tests failed. If you [compare your tests against a baseline]({{site.baseurl}}/documentation/sitespeed.io/compare/), it also shows how many metrics got slower or faster in the last comparison, which metrics they are, and the changes over time.
 

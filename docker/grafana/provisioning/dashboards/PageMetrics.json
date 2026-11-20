@@ -1367,306 +1367,6 @@
           }
         }
       },
-      "panel-124": {
-        "kind": "Panel",
-        "spec": {
-          "id": 124,
-          "title": "First Visual Change",
-          "description": "The Visual Metrics are collected by recording and analysing a video of the screen.",
-          "links": [],
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "query": {
-                      "kind": "DataQuery",
-                      "group": "graphite",
-                      "version": "v0",
-                      "datasource": {
-                        "name": "graphite"
-                      },
-                      "spec": {
-                        "refCount": 0,
-                        "target": "aliasByNode(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, '24h'), 11)",
-                        "textEditor": false
-                      }
-                    },
-                    "refId": "B",
-                    "hidden": false
-                  }
-                },
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "query": {
-                      "kind": "DataQuery",
-                      "group": "graphite",
-                      "version": "v0",
-                      "datasource": {
-                        "name": "graphite"
-                      },
-                      "spec": {
-                        "refCount": 0,
-                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, '24h'), '7d'), 'One week earlier')",
-                        "textEditor": false
-                      }
-                    },
-                    "refId": "A",
-                    "hidden": false
-                  }
-                }
-              ],
-              "transformations": [],
-              "queryOptions": {}
-            }
-          },
-          "vizConfig": {
-            "kind": "VizConfig",
-            "group": "timeseries",
-            "version": "8.3.3",
-            "spec": {
-              "options": {
-                "legend": {
-                  "calcs": [
-                    "min",
-                    "max",
-                    "lastNotNull"
-                  ],
-                  "displayMode": "table",
-                  "placement": "bottom",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "mode": "single",
-                  "sort": "none"
-                }
-              },
-              "fieldConfig": {
-                "defaults": {
-                  "unit": "ms",
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "value": null,
-                        "color": "green"
-                      },
-                      {
-                        "value": 80,
-                        "color": "red"
-                      }
-                    ]
-                  },
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "drawStyle": "line",
-                    "fillOpacity": 10,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "lineInterpolation": "linear",
-                    "lineWidth": 3,
-                    "pointSize": 5,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "showPoints": "never",
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "none"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  }
-                },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byRegexp",
-                      "options": "/earlier/"
-                    },
-                    "properties": [
-                      {
-                        "id": "custom.fillOpacity",
-                        "value": 0
-                      },
-                      {
-                        "id": "custom.lineWidth",
-                        "value": 3
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
-      "panel-126": {
-        "kind": "Panel",
-        "spec": {
-          "id": 126,
-          "title": "Speed Index",
-          "description": "The Visual Metrics are collected by recording and analysing a video of the screen.",
-          "links": [],
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "query": {
-                      "kind": "DataQuery",
-                      "group": "graphite",
-                      "version": "v0",
-                      "datasource": {
-                        "name": "graphite"
-                      },
-                      "spec": {
-                        "refCount": 0,
-                        "target": "aliasByNode(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), 11)",
-                        "textEditor": false
-                      }
-                    },
-                    "refId": "B",
-                    "hidden": false
-                  }
-                },
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "query": {
-                      "kind": "DataQuery",
-                      "group": "graphite",
-                      "version": "v0",
-                      "datasource": {
-                        "name": "graphite"
-                      },
-                      "spec": {
-                        "refCount": 0,
-                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), '7d'), 'One week earlier')",
-                        "textEditor": false
-                      }
-                    },
-                    "refId": "A",
-                    "hidden": false
-                  }
-                }
-              ],
-              "transformations": [],
-              "queryOptions": {}
-            }
-          },
-          "vizConfig": {
-            "kind": "VizConfig",
-            "group": "timeseries",
-            "version": "8.3.3",
-            "spec": {
-              "options": {
-                "legend": {
-                  "calcs": [
-                    "min",
-                    "max",
-                    "lastNotNull"
-                  ],
-                  "displayMode": "table",
-                  "placement": "bottom",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "mode": "single",
-                  "sort": "none"
-                }
-              },
-              "fieldConfig": {
-                "defaults": {
-                  "unit": "ms",
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "value": null,
-                        "color": "green"
-                      },
-                      {
-                        "value": 80,
-                        "color": "red"
-                      }
-                    ]
-                  },
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "drawStyle": "line",
-                    "fillOpacity": 10,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "lineInterpolation": "linear",
-                    "lineWidth": 3,
-                    "pointSize": 5,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "showPoints": "never",
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "none"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  }
-                },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byRegexp",
-                      "options": "/earlier/"
-                    },
-                    "properties": [
-                      {
-                        "id": "custom.fillOpacity",
-                        "value": 0
-                      },
-                      {
-                        "id": "custom.lineWidth",
-                        "value": 3
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
       "panel-128": {
         "kind": "Panel",
         "spec": {
@@ -14696,6 +14396,2575 @@
             }
           }
         }
+      },
+      "panel-344": {
+        "kind": "Panel",
+        "spec": {
+          "id": 344,
+          "title": "First Visual Change",
+          "description": "When something is painted in the viewport for the first time. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.FirstVisualChange.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-345": {
+        "kind": "Panel",
+        "spec": {
+          "id": 345,
+          "title": "Speed Index",
+          "description": "The average time when the content in the viewport is visible. Lower is better. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-346": {
+        "kind": "Panel",
+        "spec": {
+          "id": 346,
+          "title": "Largest Image",
+          "description": "When the largest image in the viewport is painted. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestImage.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-347": {
+        "kind": "Panel",
+        "spec": {
+          "id": 347,
+          "title": "Largest Heading",
+          "description": "When the largest heading in the viewport is painted. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.Heading.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.Heading.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.Heading.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.Heading.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.Heading.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-348": {
+        "kind": "Panel",
+        "spec": {
+          "id": 348,
+          "title": "Largest Contentful Paint (visual)",
+          "description": "When the largest contentful paint element is painted in the video. Empty when the element moved out of the viewport after it was painted, for example by a layout shift. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LargestContentfulPaint.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-349": {
+        "kind": "Panel",
+        "spec": {
+          "id": 349,
+          "title": "Last Visual Change",
+          "description": "When the viewport changes for the last time. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.LastVisualChange.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-350": {
+        "kind": "Panel",
+        "spec": {
+          "id": 350,
+          "title": "Visual Readiness",
+          "description": "The time from the first to the last visual change. A long time means the page keeps changing after it starts to render. Each test is the $function of the runs and the band shows the fastest and slowest run. The thick line is the average of the last 24 hours, the dashed line is the same average one week earlier and the dotted line is the trend over the time range. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.$function, 'Each test')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.min), 'Fastest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(interpolate($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.max), 'Slowest run')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.$function, '24h'), 'Last 24 hours')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "refCount": 0,
+                        "target": "alias(timeShift(movingAverage($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualReadiness.$function, '24h'), '7d'), 'One week earlier')",
+                        "textEditor": true
+                      }
+                    },
+                    "refId": "E",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "regression",
+                  "spec": {
+                    "options": {
+                      "modelType": "linear",
+                      "predictionCount": 100,
+                      "xFieldName": "Time",
+                      "yFieldName": "Each test"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.3.1",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": null,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 1,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true,
+                    "lineInterpolation": "linear",
+                    "axisPlacement": "auto",
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Fastest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Slowest run"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "blue"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 0
+                      },
+                      {
+                        "id": "custom.fillBelowTo",
+                        "value": "Fastest run"
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 25
+                      },
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Last 24 hours"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "purple"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 3
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "One week earlier"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "orange"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dash",
+                          "dash": [
+                            10,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Linear regression Each test"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Trend"
+                      },
+                      {
+                        "id": "color",
+                        "value": {
+                          "mode": "fixed",
+                          "fixedColor": "text"
+                        }
+                      },
+                      {
+                        "id": "custom.lineWidth",
+                        "value": 2
+                      },
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "fill": "dot",
+                          "dash": [
+                            0,
+                            10
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-351": {
+        "kind": "Panel",
+        "spec": {
+          "id": 351,
+          "title": "Visual complete [$function]",
+          "description": "When 85%, 95% and 99% of the viewport looks like the final page. Collected from a video of the screen (on by default in the Docker container, else enable with --visualMetrics).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualComplete85.$function, '85%')"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualComplete95.$function, '95%')"
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "graphite",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "graphite"
+                      },
+                      "spec": {
+                        "target": "alias($base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.VisualComplete99.$function, '99%')"
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "",
+            "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "min",
+                    "max",
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "min": 0,
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "lineWidth": 2,
+                    "fillOpacity": 0,
+                    "showPoints": "never",
+                    "spanNulls": true
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
       }
     },
     "layout": {
@@ -15297,6 +17566,235 @@
             }
           },
           {
+            "kind": "TabItem",
+            "spec": {
+              "title": "Visual metrics",
+              "conditionalRendering": {
+                "kind": "ConditionalRenderingGroup",
+                "spec": {
+                  "visibility": "show",
+                  "condition": "or",
+                  "items": [
+                    {
+                      "kind": "ConditionalRenderingVariable",
+                      "spec": {
+                        "variable": "data_visualMetrics",
+                        "operator": "equals",
+                        "value": "visualMetrics"
+                      }
+                    }
+                  ]
+                }
+              },
+              "layout": {
+                "kind": "RowsLayout",
+                "spec": {
+                  "rows": [
+                    {
+                      "kind": "RowsLayoutRow",
+                      "spec": {
+                        "title": "Visual metrics",
+                        "collapse": false,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-344"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 12,
+                                  "y": 0,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-345"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 12,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-346"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 12,
+                                  "y": 12,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-347"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 24,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-348"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 12,
+                                  "y": 24,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-349"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "RowsLayoutRow",
+                      "spec": {
+                        "title": "Visual progress",
+                        "collapse": false,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-351"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 12,
+                                  "y": 0,
+                                  "width": 12,
+                                  "height": 12,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-350"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "RowsLayoutRow",
+                      "spec": {
+                        "title": "First visual change history",
+                        "collapse": false,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 24,
+                                  "height": 6,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-179"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "RowsLayoutRow",
+                      "spec": {
+                        "title": "Delta TTFB",
+                        "collapse": false,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 24,
+                                  "height": 2,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-322"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "x": 0,
+                                  "y": 2,
+                                  "width": 24,
+                                  "height": 11,
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-253"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
             "kind": "TabsLayoutTab",
             "spec": {
               "title": "Timings",
@@ -15396,33 +17894,7 @@
                                 "kind": "GridLayoutItem",
                                 "spec": {
                                   "x": 0,
-                                  "y": -2,
-                                  "width": 12,
-                                  "height": 8,
-                                  "element": {
-                                    "kind": "ElementReference",
-                                    "name": "panel-124"
-                                  }
-                                }
-                              },
-                              {
-                                "kind": "GridLayoutItem",
-                                "spec": {
-                                  "x": 12,
-                                  "y": -2,
-                                  "width": 12,
-                                  "height": 8,
-                                  "element": {
-                                    "kind": "ElementReference",
-                                    "name": "panel-126"
-                                  }
-                                }
-                              },
-                              {
-                                "kind": "GridLayoutItem",
-                                "spec": {
-                                  "x": 0,
-                                  "y": 6,
+                                  "y": 0,
                                   "width": 12,
                                   "height": 8,
                                   "element": {
@@ -15435,25 +17907,12 @@
                                 "kind": "GridLayoutItem",
                                 "spec": {
                                   "x": 12,
-                                  "y": 6,
+                                  "y": 0,
                                   "width": 12,
                                   "height": 8,
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-130"
-                                  }
-                                }
-                              },
-                              {
-                                "kind": "GridLayoutItem",
-                                "spec": {
-                                  "x": 0,
-                                  "y": 14,
-                                  "width": 24,
-                                  "height": 5,
-                                  "element": {
-                                    "kind": "ElementReference",
-                                    "name": "panel-179"
                                   }
                                 }
                               }
@@ -15534,46 +17993,6 @@
                                   "element": {
                                     "kind": "ElementReference",
                                     "name": "panel-270"
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "kind": "RowsLayoutRow",
-                      "spec": {
-                        "title": "Delta TTFB",
-                        "collapse": false,
-                        "layout": {
-                          "kind": "GridLayout",
-                          "spec": {
-                            "items": [
-                              {
-                                "kind": "GridLayoutItem",
-                                "spec": {
-                                  "x": 0,
-                                  "y": 0,
-                                  "width": 24,
-                                  "height": 2,
-                                  "element": {
-                                    "kind": "ElementReference",
-                                    "name": "panel-322"
-                                  }
-                                }
-                              },
-                              {
-                                "kind": "GridLayoutItem",
-                                "spec": {
-                                  "x": 0,
-                                  "y": 2,
-                                  "width": 24,
-                                  "height": 11,
-                                  "element": {
-                                    "kind": "ElementReference",
-                                    "name": "panel-253"
                                   }
                                 }
                               }
@@ -17823,6 +20242,38 @@
           "regex": "",
           "sort": "disabled",
           "definition": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cpu",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": false,
+          "description": "Is there data from this tool for the page? Used to show or hide rows."
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "data_visualMetrics",
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "hide": "hideVariable",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": true,
+          "query": {
+            "kind": "DataQuery",
+            "group": "graphite",
+            "version": "v0",
+            "datasource": {
+              "name": "graphite"
+            },
+            "spec": {
+              "__legacyStringValue": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics"
+            }
+          },
+          "regex": "",
+          "sort": "disabled",
+          "definition": "$base.$path.$testname.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics",
           "options": [],
           "multi": false,
           "includeAll": false,
