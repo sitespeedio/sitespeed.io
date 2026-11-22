@@ -58,7 +58,7 @@
   "links": [],
   "panels": [
     {
-      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nSitespeed.io is a <a href=\"https://www.sitespeed.io/documentation/\">set of Open Source tools</a> that makes it easy to monitor and measure the performance of your web site.\n</p>\n<p>If you don't know what you can do with sitespeed.io, you should look at the <a href=\"/d/9NDMzFfMk/page-metrics\">page timing dashboard</a> and turn on <i>Go to result</i> there to open the HTML result of a test.\n",
+      "content": "<h1>Welcome to sitespeed.io</h1>\n<p>\n<a href=\"https://www.sitespeed.io/\">sitespeed.io</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/\">Documentation</a> | \n<a href=\"https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/\">Setup your own dashboard</a> | \n<a href=\"https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md\">Changelog</a> | \n<a href=\"https://opencollective.com/sitespeedio\">Open Collective</a>\n</p>\n\n<p>\nStart with the <a href=\"/d/000000060/leaderboard\">Leaderboard</a> to compare your pages, and click a page to open it in <a href=\"/d/9NDMzFfMk/page-metrics\">Page metrics</a>. There, turn on <i>Go to result</i> and click a marker on a graph to open the HTML result of that test.\n</p>\n<p>\n<i>Pages that got slower</i> below lists the pages where the last comparison with the baseline found metrics that got significantly slower. You need to <a href=\"https://www.sitespeed.io/documentation/sitespeed.io/compare/\">compare your tests</a> to get them.\n</p>\n",
       "datasource": "graphite",
       "description": "",
       "fieldConfig": {
@@ -84,7 +84,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 13,
         "x": 0,
         "y": 0
@@ -114,7 +114,7 @@
       },
       "folderId": null,
       "gridPos": {
-        "h": 18,
+        "h": 8,
         "w": 11,
         "x": 13,
         "y": 0
@@ -162,9 +162,9 @@
       },
       "gridPos": {
         "h": 13,
-        "w": 13,
+        "w": 24,
         "x": 0,
-        "y": 6
+        "y": 24
       },
       "id": 6,
       "options": {
@@ -278,7 +278,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 15
       },
       "id": 7,
       "options": {
@@ -310,6 +310,204 @@
       "timeFrom": "24h",
       "title": "Tests the last 24 hours",
       "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "Pages where the last comparison in the last 24 hours found metrics that got significantly slower than the baseline (the same query as the Page got slower alert rule). Click a page to open its Regressions tab.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "filterable": false
+          },
+          "noValue": "No page got slower in its last comparison"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "include",
+                "names": [
+                  "path",
+                  "testname"
+                ]
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Page"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Open the Regressions tab",
+                    "url": "/d/9NDMzFfMk?var-path=${__data.fields.path}&var-testname=${__data.fields.testname}&var-group=${__data.fields.group}&var-page=${__data.fields.page}&var-browser=${__data.fields.browser}&var-connectivity=${__data.fields.connectivity}&dtab=regressions"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Browser"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Connectivity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Slower metrics"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 13,
+        "x": 0,
+        "y": 8
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "Slower metrics",
+            "desc": true
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "groupByNodes(filterSeries(sitespeed_io.*.*.pageSummary.*.*.*.*.compare.metrics.*.*.isSignificant, 'last', '>', 0), 'count', 1, 2, 4, 5, 6, 7)",
+          "textEditor": true
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "Pages that got slower",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "lastNotNull"
+            ],
+            "mode": "seriesToRows",
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Field",
+            "format": "regexp",
+            "regExp": "/^(?<path>[^.]+)\\.(?<testname>[^.]+)\\.(?<group>[^.]+)\\.(?<page>[^.]+)\\.(?<browser>[^.]+)\\.(?<connectivity>[^.]+)$/"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Field": true
+            },
+            "indexByName": {
+              "page": 0,
+              "Last *": 1,
+              "group": 2,
+              "browser": 3,
+              "connectivity": 4,
+              "path": 5,
+              "testname": 6
+            },
+            "renameByName": {
+              "page": "Page",
+              "group": "Domain",
+              "browser": "Browser",
+              "connectivity": "Connectivity",
+              "Last *": "Slower metrics"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "description": "Alerts that fire now. The Page got slower rule fires when the last comparison of a page found metrics that got significantly slower.",
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 13,
+        "y": 8
+      },
+      "id": 9,
+      "options": {
+        "alertInstanceLabelFilter": "",
+        "alertName": "",
+        "dashboardAlerts": false,
+        "groupBy": [],
+        "groupMode": "default",
+        "maxItems": 10,
+        "showInactiveAlerts": false,
+        "sortOrder": 1,
+        "stateFilter": {
+          "error": true,
+          "firing": true,
+          "noData": false,
+          "normal": false,
+          "pending": true
+        },
+        "viewMode": "list"
+      },
+      "title": "Alerts",
+      "type": "alertlist"
     }
   ],
   "schemaVersion": 25,
@@ -341,5 +539,5 @@
   "title": "Welcome to sitespeed.io",
   "uid": "3zStduRGk",
   "version": 6,
-  "description": "Start page: the latest tests, the dashboards and sitespeed.io releases."
+  "description": "Start page: the pages that got slower, the alerts, the latest tests, the dashboards and sitespeed.io releases."
 }
