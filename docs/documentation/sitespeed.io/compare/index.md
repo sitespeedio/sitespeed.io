@@ -134,3 +134,24 @@ For each metric, sitespeed.io sends the p-value as `compare.metrics.<group>.<met
 
 
 If you use `--copyLatestFilesToBase`, the information about the latest test that you see in Grafana also tells you the date of the baseline that the test was compared with. The JSON file next to the latest screenshot gets a `compare.baseline` field with that date.
+
+## Find regressions over time
+The compare plugin compares the runs of one test with the runs of a baseline. That works when you have many runs (20 or more) and a stable setup, for example [WebPageReplay]({{site.baseurl}}/documentation/sitespeed.io/webpagereplay/). When you test a live site with a few runs, the runs of one test share the same network, server load and version of the page. Then the normal changes from one day to the next look like regressions, and every fourth test or so has a metric that is "significantly slower".
+
+The trend plugin uses another method for that case. After each test it saves the median of each metric for the page. Then it compares the medians of the last 4 tests with the medians of the 28 tests before, with the Mann-Whitney U test. A metric is slower when the test is clear (the p-value is below 0.01) and the change is big enough to matter: at least `--trend.minChangePercent` (default 10%) and at least `--trend.minChangeValue` (default 100, milliseconds for timings). One slow test does not move the median of 4 tests, so the plugin finds changes that last, not single slow tests.
+
+The plugin starts to compare when it has 32 tests of a page. If you test 4 times a day, that is after 8 days. The history is one file for each page in `--trend.path`. Without that option the plugin uses `--compare.baselinePath`, so the history is next to your baselines, and without both it uses the current folder.
+
+You must keep that folder between tests. If you run in Docker, mount a folder from your machine and set `--trend.path` to it, like in the example below. Without a mounted folder, the history is in the container and is lost when the test ends, so the plugin never gets to 32 tests. If the log says `now 1` after every test, the history is lost between your tests.
+
+```bash
+docker run -v "$(pwd)":/trend sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 5 --trend.enable --trend.path /trend
+```
+
+By default the plugin follows Largest Contentful Paint and First Contentful Paint. Choose other metrics with `--trend.metrics`, as the path in the statistics of the browsertime page summary, for example `--trend.metrics googleWebVitals.largestContentfulPaint --trend.metrics visualMetrics.SpeedIndex`. Lower values must be better. On a live site, metrics like Total Blocking Time, Cumulative Layout Shift and TTFB change much from test to test, so they give alerts that are not real.
+
+For WebPageReplay tests, use a smaller minimum change, for example `--trend.minChangePercent 2 --trend.minChangeValue 10`. In a replay setup, 5 to 11 runs for each test are enough.
+
+Like the compare plugin, the trend plugin needs Python with scipy. The Docker containers have it.
+
+For each metric, the plugin sends `trend.metrics.<group>.<metric>.isSlower` (1 when the metric got slower, else 0) and `trend.metrics.<group>.<metric>.change` (the change of the median in percent) to Graphite.
