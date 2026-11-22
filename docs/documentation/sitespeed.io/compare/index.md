@@ -140,7 +140,7 @@ The compare plugin compares the runs of one test with the runs of a baseline. Th
 
 The trend plugin uses another method for that case. After each test it saves the median of each metric for the page. Then it compares the medians of the last 4 tests with the medians of the 28 tests before, with the Mann-Whitney U test. A metric is slower when the test is clear (the p-value is below 0.01) and the change is big enough to matter: at least `--trend.minChangePercent` (default 10%) and at least `--trend.minChangeValue` (default 100, milliseconds for timings). One slow test does not move the median of 4 tests, so the plugin finds changes that last, not single slow tests.
 
-The plugin starts to compare when it has 32 tests of a page. If you test 4 times a day, that is after 8 days. Keep the history between tests: it is one file for each page in `--trend.path` (default the current folder).
+The plugin starts to compare when it has 32 tests of a page. If you test 4 times a day, that is after 8 days. Keep the history between tests: it is one file for each page in `--trend.path`. Without that option the plugin uses `--compare.baselinePath`, so the history is next to your baselines, and without both it uses the current folder.
 
 ```bash
 docker run -v "$(pwd)":/trend sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 5 --trend.enable --trend.path /trend

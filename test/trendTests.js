@@ -104,6 +104,39 @@ test('Graphite gets isSlower and change for each page', t => {
   t.deepEqual(lines, [`${prefix}.isSlower 1 0`, `${prefix}.change 21 0`]);
 });
 
+test('Without --trend.path the history goes to --compare.baselinePath', async t => {
+  const folder = mkdtempSync(path.join(tmpdir(), 'trend-'));
+  const options = {
+    browser: 'chrome',
+    browsertime: { connectivity: {} },
+    compare: { baselinePath: folder },
+    trend: { metrics: [LCP], minChangePercent: 10, minChangeValue: 100 }
+  };
+  const context = {
+    messageMaker: () => ({ make: () => {} }),
+    getLogger: () => {},
+    filterRegistry: { registerFilterForType: () => {} }
+  };
+  const plugin = new TrendPlugin(options, context, {});
+  await plugin.open(context, options);
+  await plugin.processMessage({
+    type: 'browsertime.pageSummary',
+    url: 'https://www.sitespeed.io/',
+    group: 'www.sitespeed.io',
+    data: {
+      info: { timestamp: 0 },
+      statistics: {
+        googleWebVitals: { largestContentfulPaint: { median: 1000 } }
+      }
+    }
+  });
+  await plugin.processMessage({ type: 'sitespeedio.summarize' });
+  const history = JSON.parse(
+    readFileSync(path.join(folder, 'www.sitespeed.io-chrome-trend.json'))
+  );
+  t.is(history.tests.length, 1);
+});
+
 test('The plugin saves the history and sends the trend for each page', async t => {
   const folder = mkdtempSync(path.join(tmpdir(), 'trend-'));
   const messages = [];
