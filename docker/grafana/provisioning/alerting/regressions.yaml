@@ -49,5 +49,5 @@ groups:
         for: 0s
         annotations:
           summary: A page got significantly slower
-          description: "{{ $value }} metrics got significantly slower than the baseline. Open the Regressions tab in the Page metrics dashboard to see which ones."
+          description: "{{ $values.B.Value }} metrics got significantly slower than the baseline. Open the Regressions tab in the Page metrics dashboard to see which ones."
         isPaused: false
