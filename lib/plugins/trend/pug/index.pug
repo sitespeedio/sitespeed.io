@@ -1,0 +1,99 @@
+- const trend = pageInfo.data.trend.pageSummary
+- const tests = trend.tests || []
+- const followed = trend.followed || []
+- const missing = trend.missing || []
+- const required = trend.required
+- const currentCount = trend.currentTests
+- const baselineCount = required - currentCount
+- const enough = tests.length >= required
+- const isTime = metric => !/cumulativeLayoutShift/.test(metric)
+- const format = (metric, value) => value === undefined ? '–' : isTime(metric) ? h.time.ms(Math.round(value)) : h.decimals(value)
+- const label = metric => h.metricName(metric.split('.').pop())
+- const day = timestamp => String(timestamp).slice(0, 16).replace('T', ' ')
+- const rows = followed.filter(metric => !missing.includes(metric) || tests.some(test => test.values[metric] !== undefined)).map(metric => ({ metric, verdict: get(trend.metrics, metric) }))
+- const slower = rows.filter(row => row.verdict && row.verdict.isSlower === 1)
+- const hasVerdict = rows.some(row => row.verdict)
+- const first = tests.length > 0 ? day(tests[0].timestamp) : undefined
+- const baselineStart = enough ? day(tests[0].timestamp) : undefined
+- const currentStart = enough ? day(tests[required - currentCount].timestamp) : undefined
+
+.cmp-verdict
+  if tests.length === 0
+    .cmp-verdict-line
+      b This test has none of the metrics that the trend follows.
+    .cmp-verdict-sub Missing: #{missing.map(label).join(', ')}. Check --trend.metrics, or if the browser measures these metrics.
+  else if !hasVerdict && enough
+    .cmp-verdict-line
+      b The page has the #{required} tests that the trend needs, but the statistics did not run.
+    .cmp-verdict-sub The trend needs Python with scipy, like the compare plugin. The log tells what went wrong.
+  else if !hasVerdict
+    .cmp-verdict-line
+      b This is test #{tests.length} of the #{required} tests that the trend needs.
+    .cmp-verdict-sub The trend compares the last #{currentCount} tests of this page with the #{baselineCount} tests before, so it starts to compare after #{h.plural(required - tests.length, 'more test')}. The first test in the history is from #{first}.
+  else if slower.length > 0
+    .cmp-verdict-line
+      b #{slower.map(row => label(row.metric) + ' got ' + Math.round(row.verdict.change) + '% slower').join(', ')}
+    .cmp-verdict-sub The last #{currentCount} tests (from #{currentStart}) compared with the #{baselineCount} tests before (from #{baselineStart}).
+  else
+    .cmp-verdict-line
+      b No metric got slower
+    .cmp-verdict-sub The last #{currentCount} tests (from #{currentStart}) compared with the #{baselineCount} tests before (from #{baselineStart}).
+  if missing.length > 0 && tests.length > 0
+    .cmp-verdict-sub This test has no #{missing.map(label).join(', ')}, so it does not count for that metric.
+
+if tests.length > 0
+  .cmp-card
+    .cmp-card-header
+      h2.cmp-card-title Median of each test
+      span.cmp-run-timestamp #{h.plural(tests.length, 'test')} since #{first}
+    each row in rows
+      - const values = tests.map(test => test.values[row.metric])
+      - const measured = values.filter(value => value !== undefined)
+      - const max = Math.max(...measured)
+      - const min = Math.min(...measured)
+      //- Start the bars below the lowest test, not at 0, so a shift of a
+      //- few percent is visible. The exact values are in the hover titles.
+      - const low = max > min ? Math.max(0, min - (max - min)) : 0
+      - const slow = row.verdict && row.verdict.isSlower === 1
+      .cmp-metric(class=slow ? 'cmp-metric--significant cmp-metric--error' : '')
+        .cmp-metric-name
+          b= label(row.metric)
+          small= row.metric
+        .cmp-metric-strip
+          svg.trend-chart(viewBox=`0 0 ${required * 10} 100`, preserveAspectRatio='none', role='img', aria-label=`${label(row.metric)} for each test`)
+            each value, index in values
+              if value !== undefined
+                - const height = max > low ? 8 + ((value - low) / (max - low)) * 88 : 96
+                - const kind = !enough ? 'history' : index >= required - currentCount ? 'current' : 'baseline'
+                rect(class=`trend-bar--${kind}`, x=index * 10 + 1.5, y=100 - height, width=7, height=height)
+                  title #{day(tests[index].timestamp)}: #{format(row.metric, value)}
+        .cmp-metric-delta(class=slow ? '' : 'cmp-metric-delta--quiet')
+          if row.verdict
+            b
+              | #{format(row.metric, row.verdict.baselineMedian)}
+              span.cmp-arrow  →
+              |  #{format(row.metric, row.verdict.currentMedian)}
+            small #{row.verdict.change >= 0 ? '+' : ''}#{Math.round(row.verdict.change)}% · p #{row.verdict.pValue.toPrecision(2)}
+          else
+            b= format(row.metric, values.at(-1))
+            small this test
+        .cmp-metric-chip
+          if slow
+            span.cmp-chip.cmp-chip--error slower
+          else if row.verdict
+            span.cmp-chip.cmp-chip--neutral no change
+          else
+            span.cmp-chip.cmp-chip--neutral #{tests.length} of #{required}
+    .cmp-legend
+      if enough
+        span
+          span.cmp-swatch.cmp-swatch--baseline
+          | The #{baselineCount} tests before
+        span
+          span.cmp-swatch.cmp-swatch--current
+          | The last #{currentCount} tests
+      else
+        span
+          span.cmp-swatch.trend-swatch--history
+          | The tests so far, oldest to the left
+      span A test is slower when the medians differ clearly (p below 0.01) and by at least #{options.trend.minChangePercent}% and #{options.trend.minChangeValue} (ms for timings).
