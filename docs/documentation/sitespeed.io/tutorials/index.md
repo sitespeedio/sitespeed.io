@@ -18,5 +18,6 @@ Each tutorial takes you step by step from nothing to a working result. It tells 
 
 * [Test your first page and read the report](first-test/) - run your first test with Docker, open the HTML report and learn what it tells you. About 10 minutes.
 * [Find out if a change made your page slower](find-a-regression/) - save a baseline, test again after a change and let the Compare tab tell you what got slower and how sure it is. About 20 minutes.
+* [Monitor your pages with Grafana](monitor-with-grafana/) - start Graphite and Grafana with Docker Compose, send your tests there, read the dashboards and get an alert when a page gets slower. About 30 minutes.
 
 To write tests that click, log in or test several pages, see the [scripting tutorials](/documentation/sitespeed.io/scripting/#tutorials).
