@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -102,6 +102,31 @@ test('Graphite gets isSlower and change for each page', t => {
   const prefix =
     'sitespeed_io.desktop.firstViewDocker.pageSummary.en_wikipedia_org._wiki_Sweden.chrome.4g.trend.metrics.googleWebVitals.largestContentfulPaint';
   t.deepEqual(lines, [`${prefix}.isSlower 1 0`, `${prefix}.change 21 0`]);
+});
+
+test('A test without the followed metrics is not saved', async t => {
+  // For example Safari before it reported googleWebVitals
+  const folder = mkdtempSync(path.join(tmpdir(), 'trend-'));
+  const options = {
+    browser: 'safari',
+    browsertime: { connectivity: {} },
+    trend: { path: folder, metrics: [LCP] }
+  };
+  const context = {
+    messageMaker: () => ({ make: () => {} }),
+    getLogger: () => {},
+    filterRegistry: { registerFilterForType: () => {} }
+  };
+  const plugin = new TrendPlugin(options, context, {});
+  await plugin.open(context, options);
+  await plugin.processMessage({
+    type: 'browsertime.pageSummary',
+    url: 'https://www.sitespeed.io/',
+    group: 'www.sitespeed.io',
+    data: { info: { timestamp: 0 }, statistics: { timings: {} } }
+  });
+  await plugin.processMessage({ type: 'sitespeedio.summarize' });
+  t.false(existsSync(path.join(folder, 'www.sitespeed.io-safari-trend.json')));
 });
 
 test('Without --trend.path the history goes to --compare.baselinePath', async t => {

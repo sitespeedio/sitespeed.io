@@ -150,7 +150,7 @@ You must keep that folder between tests. If you run in Docker, mount a folder fr
 docker run -v "$(pwd)":/trend sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 5 --trend.enable --trend.path /trend
 ```
 
-By default the plugin follows Largest Contentful Paint and First Contentful Paint. Choose other metrics with `--trend.metrics`, as the path in the statistics of the browsertime page summary, for example `--trend.metrics googleWebVitals.largestContentfulPaint --trend.metrics visualMetrics.SpeedIndex`. Lower values must be better. On a live site, metrics like Total Blocking Time, Cumulative Layout Shift and TTFB change much from test to test, so they give alerts that are not real.
+By default the plugin follows Largest Contentful Paint and First Contentful Paint. Choose other metrics with `--trend.metrics`, as the path in the statistics of the browsertime page summary, for example `--trend.metrics googleWebVitals.largestContentfulPaint --trend.metrics visualMetrics.SpeedIndex`. Lower values must be better. If a test does not have a metric, for example because the browser does not measure it, the log says so and the test does not count for that metric. On a live site, metrics like Total Blocking Time, Cumulative Layout Shift and TTFB change much from test to test, so they give alerts that are not real.
 
 For WebPageReplay tests, use a smaller minimum change, for example `--trend.minChangePercent 2 --trend.minChangeValue 10`. In a replay setup, 5 to 11 runs for each test are enough.
 
