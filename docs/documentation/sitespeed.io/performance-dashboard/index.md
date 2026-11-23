@@ -286,16 +286,16 @@ To run this in production (=not on your local dev machine) you should make some 
 1. Always run sitespeed.io on a stand-alone instance
     - This avoids causing discrepancies in results, due to things like competing resources or network traffic. Then you just run sitespeed.io with docker run ...
     - Run Grafana/Graphite on another server instance (only docker compose for Graphite/Grafana).
-2. Change the default user and password for Grafana.
-3. Change the default [user and password for Graphite](https://hub.docker.com/r/sitespeedio/graphite/).
-4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
-5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf) to set how long you want to store your metrics.
-6. *MAX_CREATES_PER_MINUTE* is usually quite low by default in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it if you want to.
-7. Make sure you disabled tags in Graphite using **ENABLE_TAGS = False**, see [example](https://github.com/sitespeedio/docker-graphite-statsd/commit/b78d8fc05af290dae95a0586e575675ac849190d#diff-0c326c4f02797b088fc566e64fbfe2162390f52f2fec1483ec3a413a7f11c910).
-8. Map the Graphite volume to a physical directory outside of the Docker container to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db) file by browser or by CLI: `wget https://github.com/sitespeedio/sitespeed.io/raw/main/docker/graphite/graphite.db`):
+2. Change the default user and password for Grafana. They are in the Docker Compose file, which everyone can read on GitHub.
+3. Only open the ports that your test machine needs, and only to that machine. Graphite and OpenSearch do not ask for a password in our setup, so anyone who reaches them can send and read metrics, and in OpenSearch also delete data. The test machine needs port 2003 (metrics) and 8080 (annotations) on Graphite, and 9200 only if you use the [OpenSearch plugin](#opensearch). Grafana reaches Graphite and OpenSearch inside the Docker network, so it does not need these ports. If you run the tests on the same server, remove the ports from the Docker Compose file.
+4. Docker opens the ports that a container publishes also when your firewall (for example ufw) blocks them. Block them in the `DOCKER-USER` chain, see [Docker with iptables](https://docs.docker.com/engine/network/firewall-iptables/) in the Docker documentation.
+5. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
+6. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf) to set how long you want to store your metrics.
+7. *MAX_CREATES_PER_MINUTE* is usually quite low by default in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it if you want to.
+8. Make sure you disabled tags in Graphite using **ENABLE_TAGS = False**, see [example](https://github.com/sitespeedio/docker-graphite-statsd/commit/b78d8fc05af290dae95a0586e575675ac849190d#diff-0c326c4f02797b088fc566e64fbfe2162390f52f2fec1483ec3a413a7f11c910).
+9. Map the Graphite volume to a physical directory outside of the Docker container to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db) file by browser or by CLI: `wget https://github.com/sitespeedio/sitespeed.io/raw/main/docker/graphite/graphite.db`):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
-9. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
 10. Optional: disable anonymous user access in Grafana.
 
 ## System Requirements / Memory & CPU
