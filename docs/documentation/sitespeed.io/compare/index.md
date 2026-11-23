@@ -58,7 +58,7 @@ The baseline file is a JSON file that contains all the raw data from Browsertime
 
 ## Run your test
 
-For your test to work, assign the same identification (id) to both your current test and the baseline test. This matching id is crucial for the test to correctly locate and compare with the baseline. Additionally, ensure that the number of iterations in your test matches that of the baseline. Remember, using a sufficiently large number of iterations is essential as it leads to more accurate and reliable results.
+For your test to work, assign the same identification (id) to both your current test and the baseline test. This matching id is crucial for the test to correctly locate and compare with the baseline. Additionally, ensure that the number of iterations in your test matches that of the baseline. Remember, using a sufficiently large number of iterations is essential as it leads to more accurate and reliable results. The plugin warns when you use less than 20 iterations. When you replay the page with [WebPageReplay]({{site.baseurl}}/documentation/sitespeed.io/webpagereplay/) (our Docker container adds `--replay` then), the runs are close to each other and it only warns below 10 iterations.
 
 ~~~bash
 sitespeed.io https://www.sitespeed.io -n 21 --compare.id start_page
