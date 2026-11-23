@@ -1,0 +1,16 @@
+//
+// Trend tab — one bar for each test, coloured like the baseline and
+// current series of the Compare tab. Rows, chips and legend reuse the
+// compare classes, so this file only has the bars.
+//
+.trend-chart {
+  display: block;
+  width: 100%;
+  height: 48px;
+}
+
+.trend-bar--baseline { fill: $cmp--baseline; }
+.trend-bar--current { fill: $cmp--current; }
+.trend-bar--history { fill: $color--border-strong; }
+
+.trend-swatch--history { background: $color--border-strong; }

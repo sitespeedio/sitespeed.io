@@ -156,4 +156,6 @@ For WebPageReplay tests, use a smaller minimum change, for example `--trend.minC
 
 Like the compare plugin, the trend plugin needs Python with scipy. The Docker containers have it.
 
+The HTML result of each page gets a *Trend* tab. It shows the median of each test as a bar, the 28 tests before and the last 4 tests in two colours, and if a metric got slower. Before the page has 32 tests, the tab tells which test this is (for example "This is test 5 of the 32 tests that the trend needs") and when the first test in the history ran.
+
 For each metric, the plugin sends `trend.metrics.<group>.<metric>.isSlower` (1 when the metric got slower, else 0) and `trend.metrics.<group>.<metric>.change` (the change of the median in percent) to Graphite.

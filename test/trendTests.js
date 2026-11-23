@@ -4,10 +4,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import test from 'ava';
+import pug from 'pug';
 
 import TrendPlugin from '../lib/plugins/trend/index.js';
 import { GraphiteDataGenerator } from '../lib/plugins/graphite/data-generator.js';
 import * as filterRegistry from '../lib/support/filterRegistry.js';
+import * as helpers from '../lib/support/helpers/index.js';
+import { get } from '../lib/support/objectPath.js';
 import {
   addTest,
   getWindows,
@@ -74,7 +77,9 @@ test('Graphite gets isSlower and change for each page', t => {
     getLogger: () => {},
     filterRegistry
   };
-  const plugin = new TrendPlugin(options, context, {});
+  const plugin = new TrendPlugin(options, context, {
+    postMessage: async () => {}
+  });
   plugin.open(context, options);
   const message = filterRegistry.filterMessage({
     type: 'trend.pageSummary',
@@ -117,7 +122,9 @@ test('A test without the followed metrics is not saved', async t => {
     getLogger: () => {},
     filterRegistry: { registerFilterForType: () => {} }
   };
-  const plugin = new TrendPlugin(options, context, {});
+  const plugin = new TrendPlugin(options, context, {
+    postMessage: async () => {}
+  });
   await plugin.open(context, options);
   await plugin.processMessage({
     type: 'browsertime.pageSummary',
@@ -142,7 +149,9 @@ test('Without --trend.path the history goes to --compare.baselinePath', async t 
     getLogger: () => {},
     filterRegistry: { registerFilterForType: () => {} }
   };
-  const plugin = new TrendPlugin(options, context, {});
+  const plugin = new TrendPlugin(options, context, {
+    postMessage: async () => {}
+  });
   await plugin.open(context, options);
   await plugin.processMessage({
     type: 'browsertime.pageSummary',
@@ -217,11 +226,68 @@ test('The plugin saves the history and sends the trend for each page', async t =
     readFileSync(path.join(folder, 'www.sitespeed.io-chrome-trend.json'))
   );
   t.is(history.tests.length, BASELINE_TESTS + CURRENT_TESTS);
-  // The first message comes with the test that fills the windows
-  t.is(messages.length, 1);
-  t.is(messages[0].type, 'trend.pageSummary');
-  t.is(
-    messages[0].data.metrics.googleWebVitals.largestContentfulPaint.isSlower,
-    0
-  );
+  // A message for every test, so the HTML can show the history, and the
+  // verdict from the test that fills the windows
+  t.is(messages.length, BASELINE_TESTS + CURRENT_TESTS);
+  t.deepEqual(messages[0].data.metrics, {});
+  t.is(messages[0].data.tests.length, 1);
+  const last = messages.at(-1);
+  t.is(last.type, 'trend.pageSummary');
+  t.is(last.data.tests.length, BASELINE_TESTS + CURRENT_TESTS);
+  t.is(last.data.metrics.googleWebVitals.largestContentfulPaint.isSlower, 0);
+});
+
+function renderTab(pageSummary) {
+  return pug.compileFile(
+    path.join(__dirname, '..', 'lib', 'plugins', 'trend', 'pug', 'index.pug')
+  )({
+    pageInfo: { data: { trend: { pageSummary } } },
+    options: { trend: { minChangePercent: 10, minChangeValue: 100 } },
+    h: helpers,
+    get
+  });
+}
+
+test('The Trend tab tells which test this is until there are enough', t => {
+  const html = renderTab({
+    metrics: {},
+    tests: [
+      { timestamp: '2026-11-20T10:00:00+01:00', values: { [LCP]: 900 } },
+      { timestamp: '2026-11-20T16:00:00+01:00', values: { [LCP]: 950 } }
+    ],
+    missing: [],
+    followed: [LCP],
+    required: BASELINE_TESTS + CURRENT_TESTS,
+    currentTests: CURRENT_TESTS
+  });
+  t.regex(html, /This is test 2 of the 32 tests that the trend needs/);
+  t.regex(html, /starts to compare after 30 more tests/);
+  t.regex(html, /The first test in the history is from 2026-11-20 10:00/);
+});
+
+test('The Trend tab names the metric that got slower', t => {
+  const tests = Array.from({ length: 32 }, (_, index) => ({
+    timestamp: `2026-11-${String(10 + Math.floor(index / 4)).padStart(2, '0')}T10:00:00+01:00`,
+    values: { [LCP]: index < 28 ? 1000 : 1200 }
+  }));
+  const html = renderTab({
+    metrics: {
+      googleWebVitals: {
+        largestContentfulPaint: {
+          isSlower: 1,
+          change: 20,
+          pValue: 0.0001,
+          baselineMedian: 1000,
+          currentMedian: 1200
+        }
+      }
+    },
+    tests,
+    missing: [],
+    followed: [LCP],
+    required: BASELINE_TESTS + CURRENT_TESTS,
+    currentTests: CURRENT_TESTS
+  });
+  t.regex(html, /Largest contentful paint got 20% slower/);
+  t.regex(html, /cmp-chip--error">slower/);
 });
