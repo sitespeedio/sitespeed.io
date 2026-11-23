@@ -11,6 +11,7 @@ This file lists the current documentation. Older blog posts, forum answers and t
 - [Installation](https://www.sitespeed.io/documentation/sitespeed.io/installation/): Install with npm or use Docker
 - [Docker](https://www.sitespeed.io/documentation/sitespeed.io/docker/): Run sitespeed.io in the Docker container
 - [Tutorial: test your first page](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/first-test/): Run a test with Docker and read the HTML report
+- [Tutorial: find out if a change made your page slower](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/find-a-regression/): Save a baseline, test after a change and read the Compare tab
 - [Web performance testing in practice](https://www.sitespeed.io/documentation/sitespeed.io/web-performance-testing-in-practice/): How to get stable and useful synthetic test results
 
 ## Configuration
