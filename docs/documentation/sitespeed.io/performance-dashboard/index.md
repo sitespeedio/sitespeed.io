@@ -64,7 +64,7 @@ Before you start, make sure you have the following installed:
 
    To push data for the page metric dashboard (the most important dashboard) you can run a test like this:
    ```bash
-   sitespeed.io https://www.sitespeed.io -n 1 --slug myTest --graphite.host 127.0.0.1
+   sitespeed.io https://www.sitespeed.io -n 1 --slug myTest --graphite.host 127.0.0.1 --graphite.addSlugToKey true
    ```
 
 5. **Access Grafana**

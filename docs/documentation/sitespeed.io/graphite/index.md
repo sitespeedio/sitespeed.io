@@ -40,9 +40,9 @@ pattern = ^sitespeed_io\.
 retentions = 30m:40d
 ~~~
 
-Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 40 days.
+Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite stores one value every 30 minutes, for 40 days.
 
-Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current configuration, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Statsd has some really [good documentation](https://github.com/statsd/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
+Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current configuration, if you test the same URL more than once in the same 30 minutes, only the last test is kept. But if you know you only run once an hour, you could increase the setting. Statsd has some really [good documentation](https://github.com/statsd/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
 
 
 In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger miss match between the annotation and when the actual metric got into Graphite. If you are sending metrics to Graphite on a per iteration basis the subsequent runs may be discarded as they arrive within the time frame. Below is an example taking in closer to real-time metrics and falling back to the default retentions.
