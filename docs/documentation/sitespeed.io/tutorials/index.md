@@ -17,5 +17,6 @@ twitterdescription: Step-by-step tutorials for sitespeed.io.
 Each tutorial takes you step by step from nothing to a working result. It tells you what you need before you start and how long it takes. You can do them in any order.
 
 * [Test your first page and read the report](first-test/) - run your first test with Docker, open the HTML report and learn what it tells you. About 10 minutes.
+* [Find out if a change made your page slower](find-a-regression/) - save a baseline, test again after a change and let the Compare tab tell you what got slower and how sure it is. About 20 minutes.
 
 To write tests that click, log in or test several pages, see the [scripting tutorials](/documentation/sitespeed.io/scripting/#tutorials).
