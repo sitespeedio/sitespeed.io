@@ -75,6 +75,18 @@ You can also save a baseline for each and every test, so you always compare your
 docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
 ~~~
 
+If you test your pages many times a day, it is better to keep the same baseline for some days. Then one slow test does not become the baseline for the next test. Add `--compare.baselineMaxAge 7` instead of `--compare.saveBaseline`: the test is compared with the baseline, and when the baseline is older than 7 days (or there is no baseline), the test becomes the new baseline. You do not need a schedule that adds `--compare.saveBaseline` once a week, and if a test fails on that day, the next test saves the baseline instead.
+
+~~~bash
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.baselineMaxAge 7
+~~~
+
+To renew the baseline only on some days, add `--compare.baselineDays`. For example, `--compare.baselineMaxAge 6 --compare.baselineDays saturday,sunday` renews the baseline with the first test on Saturday. If all tests on Saturday fail, the first test on Sunday renews it. The day is the local time of the computer that runs the test: in Docker that is UTC, unless you set the time zone (for example `-e TZ=Europe/Stockholm`). Without a baseline, the first test is saved whatever the day.
+
+Choose the days with care. Many sites change less on weekends, which makes the weekend good for a baseline when you replay the page with [WebPageReplay](/documentation/sitespeed.io/webpagereplay/). But when you test a live site, servers and networks often have less traffic on weekends, so a weekend baseline can be faster than the weekdays, and the compare plugin then finds small slowdowns that only come from weekday traffic. For live sites, use a weekday for the baseline.
+
+Use the same number of runs as in the baseline. If you change the number of runs, the tests are compared with a baseline with another number of runs until the baseline gets too old.
+
 ## Compare two saved tests
 You can also compare two tests that you already ran, without running a new test. Save both tests with `--compare.saveBaseline` (give them different ids) and then compare the two files with `sitespeed.io-compare`:
 
