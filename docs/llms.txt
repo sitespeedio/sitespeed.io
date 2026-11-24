@@ -13,6 +13,7 @@ This file lists the current documentation. Older blog posts, forum answers and t
 - [Tutorial: test your first page](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/first-test/): Run a test with Docker and read the HTML report
 - [Tutorial: find out if a change made your page slower](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/find-a-regression/): Save a baseline, test after a change and read the Compare tab
 - [Tutorial: monitor your pages with Grafana](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/monitor-with-grafana/): Docker Compose with Graphite and Grafana, the dashboards and the regression alert
+- [Tutorial: stop your page from getting heavier in CI](https://www.sitespeed.io/documentation/sitespeed.io/tutorials/budget-in-ci/): Why timing metrics are hard to test in CI, and a budget for size, requests, Coach scores and axe in GitHub Actions
 - [Web performance testing in practice](https://www.sitespeed.io/documentation/sitespeed.io/web-performance-testing-in-practice/): How to get stable and useful synthetic test results
 
 ## Configuration
