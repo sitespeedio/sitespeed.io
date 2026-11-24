@@ -11,7 +11,12 @@ def perform_test(test_type, baseline, current, **kwargs):
     # a clean shift (all runs 303 ms -> all runs 310 ms) is the strongest
     # possible signal. The old has_variability guard skipped the test
     # whenever either sample was constant, which suppressed exactly those.
-    if baseline == current:
+    # Samples with the same single value are also identical when the
+    # number of runs is different: Mann-Whitney then gives a NaN p-value,
+    # which is not valid JSON and loses the comparison of all metrics.
+    if baseline == current or (
+        len(set(baseline)) == 1 and set(baseline) == set(current)
+    ):
         return None, "Datasets are identical"
     if (len(baseline) != len(current)) and test_type == 'wilcoxon':
         return None, "Datasets have different lengths"
