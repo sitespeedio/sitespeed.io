@@ -42,6 +42,9 @@ jobs:
         with:
           platforms: linux/${{ matrix.arch.platform }}
           provenance: false
+          # The version is the last release for every build from main, so the
+          # commit tells which code the image has
+          labels: org.opencontainers.image.revision=${{ github.sha }}
           outputs: type=image,name=sitespeedio/sitespeed.io-autobuild,push-by-digest=true,name-canonical=true,push=true
       -
         name: Save the digest
