@@ -85,6 +85,8 @@ To renew the baseline only on some days, add `--compare.baselineDays`. For examp
 
 Choose the days with care. Many sites change less on weekends, which makes the weekend good for a baseline when you replay the page with [WebPageReplay](/documentation/sitespeed.io/webpagereplay/). But when you test a live site, servers and networks often have less traffic on weekends, so a weekend baseline can be faster than the weekdays, and the compare plugin then finds small slowdowns that only come from weekday traffic. For live sites, use a weekday for the baseline.
 
+A test where a run failed, had errors or is missing is never saved as the baseline, also not with `--compare.saveBaseline`. The log then says *Will not save … as the baseline*, and the next test that works saves it instead.
+
 Use the same number of runs as in the baseline. If you change the number of runs, the tests are compared with a baseline with another number of runs until the baseline gets too old.
 
 ## Compare two saved tests
