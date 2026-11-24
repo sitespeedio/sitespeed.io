@@ -1,6 +1,7 @@
 import test from 'ava';
 
 import {
+  isCompleteTest,
   shouldSaveBaseline,
   toWeekdays
 } from '../lib/plugins/compare/index.js';
@@ -54,4 +55,16 @@ test('baselineDays accepts a list and any case', t => {
   t.deepEqual(toWeekdays('Saturday, sunday'), ['saturday', 'sunday']);
   t.deepEqual(toWeekdays(['saturday', 'sunday']), ['saturday', 'sunday']);
   t.deepEqual(toWeekdays(), []);
+});
+
+test('A test with failed or missing runs is not complete', t => {
+  const runs = {
+    markedAsFailure: 0,
+    errors: [[], [], []],
+    timestamps: [1, 2, 3]
+  };
+  t.true(isCompleteTest(runs, 3));
+  t.false(isCompleteTest({ ...runs, markedAsFailure: 1 }, 3));
+  t.false(isCompleteTest({ ...runs, errors: [[], ['Timeout'], []] }, 3));
+  t.false(isCompleteTest({ ...runs, timestamps: [1, 2] }, 3));
 });
