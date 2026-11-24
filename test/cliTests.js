@@ -115,6 +115,36 @@ test(`CLI should reject an unknown sustainable country`, async t => {
   t.true(stderr.includes('IN is not a country or region'));
 });
 
+test(`CLI should reject baseline days without a maximum age`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--compare.baselineDays',
+      'sunday',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('--compare.baselineDays only works together with'));
+});
+
+test(`CLI should reject an unknown baseline day`, async t => {
+  let stderr = '';
+  try {
+    await runSitespeed([
+      '--compare.baselineMaxAge',
+      '6',
+      '--compare.baselineDays',
+      'saturday,sundag',
+      'https://www.sitespeed.io'
+    ]);
+  } catch (error) {
+    stderr = error.stderr;
+  }
+  t.true(stderr.includes('sundag is not a day'));
+});
+
 test(`CLI should reject Samsung Internet without Android`, async t => {
   let stderr = '';
   try {
