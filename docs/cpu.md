@@ -8,4 +8,5 @@ eleventyExcludeFromCollections: true
 <a href="https://www.sitespeed.io/"><img src="{{site.baseurl}}/img/powerpuffsitespeed.io.png" class="cent"></a></div>
 
 
-<script src="{{site.baseurl}}/js/cpu-benchmark.js" defer></script>
+{% js "cpu" %}{% include js/cpu-benchmark.js %}{% endjs %}
+<script src="{% getBundleFileUrl "js", "cpu" %}" defer></script>

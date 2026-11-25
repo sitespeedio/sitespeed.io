@@ -63,5 +63,6 @@
 
 	</div>
 
-	<script src="{{site.baseurl}}/js/user-timing-footer.js" defer></script>
+	{% js "footer" %}{% include js/user-timing-footer.js %}{% endjs %}
+	<script src="{% getBundleFileUrl "js", "footer" %}" defer></script>
 </footer>
