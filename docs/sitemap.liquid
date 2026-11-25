@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 {%- for p in collections.all -%}
 {%- if p.url -%}
     <url>
-        <loc>http://sitespeed.io{{ p.url }}</loc>
+        <loc>{{ site.url }}{{ p.url }}</loc>
         {%- if p.url contains 'release-notes' %}
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
