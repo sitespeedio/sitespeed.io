@@ -37,5 +37,11 @@
     </div>
   </div>
 </nav>
-<script src="{{site.baseurl}}/js/user-timing-header.js"></script>
-{% if site.christmas %}<script src="{{site.baseurl}}/js/snow.js" async></script>{% endif %}
+{% js "header" %}{% include js/user-timing-header.js %}{% endjs %}
+<script src="{% getBundleFileUrl "js", "header" %}"></script>
+{% if site.christmas %}
+{% js "snow" %}{% include js/snow.js %}{% endjs %}
+{% js "christmas-music" %}{% include js/christmas-music.js %}{% endjs %}
+{% js "christmas-surprises" %}{% include js/christmas-surprises.js %}{% endjs %}
+<script src="{% getBundleFileUrl "js", "snow" %}" data-music="{% getBundleFileUrl "js", "christmas-music" %}" data-surprises="{% getBundleFileUrl "js", "christmas-surprises" %}" async></script>
+{% endif %}

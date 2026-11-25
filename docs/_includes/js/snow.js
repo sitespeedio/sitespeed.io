@@ -18,6 +18,8 @@ let musicButton;
 let musicOn = false;
 let musicPlaying = false;
 let musicPosition = 0;
+// The file names are content hashes, so the page tells where the files are
+const scriptUrls = document.currentScript.dataset;
 
 function makeSnow() {
   const element = document.createElement('div');
@@ -142,9 +144,9 @@ function setMusicButton() {
   musicButton.setAttribute('aria-pressed', String(musicPlaying));
 }
 
-function loadScript(name, ready) {
+function loadScript(url, ready) {
   const script = document.createElement('script');
-  script.src = '/js/' + name;
+  script.src = url;
   if (ready) {
     script.addEventListener('load', ready);
   }
@@ -156,7 +158,7 @@ function loadMusic(ready) {
   if (window.christmasMusic) {
     ready();
   } else {
-    loadScript('christmas-music.js', ready);
+    loadScript(scriptUrls.music, ready);
   }
 }
 
@@ -254,7 +256,7 @@ function letItSnow(event) {
     goOnWithMusic(event);
   }
   // The surprises are in their own file, loaded when the page is used
-  loadScript('christmas-surprises.js');
+  loadScript(scriptUrls.surprises);
 }
 
 const lastSnow = readSnowTime();

@@ -154,6 +154,11 @@ export default function (eleventyConfig) {
     ]
   });
 
+  // Same as the CSS bundle: the file name is a hash of the content, so
+  // the JS can be cached as immutable. Pages pick a bucket so that a
+  // script that must run at a fixed place in the page keeps its place.
+  eleventyConfig.addBundle('js', { toFileDirectory: 'js' });
+
   // ---- Images ----------------------------------------------------------
   // Scan rendered HTML for <img> elements that point at local images and
   // rewrite them as <picture> with AVIF + WebP + original-format sources.
@@ -197,9 +202,7 @@ export default function (eleventyConfig) {
     'feed',
     'logo',
     '.well-known',
-    'testcases',
-    'js',
-    'css'
+    'testcases'
   ]) {
     eleventyConfig.addPassthroughCopy(dir);
   }

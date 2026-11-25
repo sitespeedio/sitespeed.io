@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="theme-color" content="#0095d2">
         <title>{{ title }}</title>
-        <link rel="stylesheet" href="{{site.baseurl}}/css/404.css">
+        {% css %}{% include css/404.css %}{% endcss %}
+        <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
     </head>
     <body>
         {{ content }}
