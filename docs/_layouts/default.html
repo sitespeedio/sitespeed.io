@@ -44,6 +44,7 @@
 	{% css %}{% include css/default.css %}{% endcss %}
 	{% css %}{% include css/prism-1.15.css %}{% endcss %}
 	{% css %}{% include css/code-copy.css %}{% endcss %}
+	{% if site.christmas %}{% css %}{% include css/christmas.css %}{% endcss %}{% endif %}
 	<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
 	<script src="{{site.baseurl}}/js/user-timings.js"></script>
 	<script src="{{site.baseurl}}/js/copy.js" defer></script>
