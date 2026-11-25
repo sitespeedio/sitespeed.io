@@ -12,4 +12,5 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 <div id="search"></div>
 
 <script src="{{ site.baseurl }}/pagefind/pagefind-ui.js"></script>
-<script src="{{ site.baseurl }}/js/search-init.js" defer></script>
+{% js "search" %}{% include js/search-init.js %}{% endjs %}
+<script src="{% getBundleFileUrl "js", "search" %}" defer></script>

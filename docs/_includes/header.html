@@ -37,4 +37,5 @@
     </div>
   </div>
 </nav>
-<script src="{{site.baseurl}}/js/user-timing-header.js"></script>
+{% js "header" %}{% include js/user-timing-header.js %}{% endjs %}
+<script src="{% getBundleFileUrl "js", "header" %}"></script>
