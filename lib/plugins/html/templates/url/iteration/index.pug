@@ -41,6 +41,14 @@ block content
         each error in d.browsertime.run.errors
           li #{error}
 
+  //- Same limit as the warning that browsertime logs
+  - const runCpuStability = d.browsertime && d.browsertime.run && d.browsertime.run.server ? d.browsertime.run.server.cpuStability : undefined
+  if runCpuStability && (runCpuStability.stealPercent >= 5 || runCpuStability.throttleCount > 0)
+    - const cpuReasons = [runCpuStability.stealPercent >= 5 ? runCpuStability.stealPercent + '% steal time: other virtual machines on the host used the CPU' : '', runCpuStability.throttleCount > 0 ? runCpuStability.throttleCount + ' thermal throttling events: the CPU slowed down because it was too hot' : ''].filter(Boolean)
+    .errors.errors--warning
+      b The CPU of the test machine was not stable in this run
+      p #{cpuReasons.join('. ')}. The timings of this run can be slower than the page really is.
+
   .index-link
     a.button.button--primary(href=urlLink) Back to summary
 

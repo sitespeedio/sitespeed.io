@@ -79,6 +79,19 @@ ul.menu {
  }
 }
 
+.errors--warning {
+ background: $color--warning-bg;
+ border-color: $color--warning-border;
+
+ b {
+  color: $color--warning;
+ }
+
+ p {
+  margin-bottom: 0;
+ }
+}
+
 .subtableheader {
  background: $color--surface;
  color: $color--text-secondary;

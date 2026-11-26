@@ -31,6 +31,25 @@ Here's an example of what the variation looks like running on a Moto G4 running 
 {: .img-thumbnail}
 
 
+## CPU stability (Linux)
+The benchmark runs after the page has loaded, so it cannot see what happened to the CPU while the page was measured. On Linux, Browsertime also reads two numbers from the kernel during each run:
+
+* **Steal time**: the share of CPU time that the hypervisor gave to other virtual machines on the same host. On a cloud server with noisy neighbours this goes up, and the browser gets less CPU.
+* **Thermal throttling events**: how many times the CPU slowed down because it was too hot. Only Intel CPUs on real hardware report this, so on most virtual machines you only get steal time.
+
+You find both in the *Test machine CPU* card in the timings summary of each page. A run with 5% steal time or more, or with any throttling, shows a warning on its run page. The timings of that run can be slower than the page really is.
+
+The metrics are also sent to Graphite for the page summary. They are sent for each run only when you add `run` to `--graphite.messages` and turn off the limited run data with `--browsertime.limitedRunData false`:
+
+~~~
+<namespace>.pageSummary.<page>.<browser>.<connectivity>.browsertime.statistics.server.cpuStability.stealPercent.median
+<namespace>.pageSummary.<page>.<browser>.<connectivity>.browsertime.statistics.server.cpuStability.throttleCount.median
+<namespace>.run.<page>.<browser>.<connectivity>.browsertime.server.cpuStability.stealPercent
+<namespace>.run.<page>.<browser>.<connectivity>.browsertime.server.cpuStability.throttleCount
+~~~
+
+Graph steal time next to your timings: when a timing goes up at the same time as steal time, the machine was slow, not the page.
+
 ## Test page
 We also have a special test page you can use to see the benchmark on your own browser/computer/device without running sitespeed.io. Access the page
 [https://www.sitespeed.io/cpu.html](https://www.sitespeed.io/cpu.html) and look at the benchmark metric.
