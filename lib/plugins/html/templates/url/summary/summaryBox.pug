@@ -56,7 +56,7 @@ mixin agreeCell(min, median, max)
     td.number(data-title='runs agree')
       span.timings-agree(class='timings-agree--' + agreeTone)= agreeText
 
-mixin getRow(name, object, path, runPath, metric, f, toneClass)
+mixin getRow(name, object, path, runPath, metric, f, toneClass, noAgree)
   - const min = get(object, path + '.min')
   - const median = get(object, path + '.median')
   - const mean = get(object, path + '.mean')
@@ -95,7 +95,11 @@ mixin getRow(name, object, path, runPath, metric, f, toneClass)
           - isSet = true
           td.number(data-title='max')
             a(href='./' + (index+1) + '.html', title='Go to the run with the max ' + name) #{f(max)}
-      +agreeCell(min, median, max)
+      if noAgree
+        if options.browsertime.iterations > 1
+          td.number(data-title='runs agree')
+      else
+        +agreeCell(min, median, max)
            
 //- The Timings Summary is split into one card per metric family so each
 //- table stays short and scannable instead of one long table broken up by
@@ -152,6 +156,13 @@ if btStatistics
       +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.tasks', h.noop)
       +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.durations.max', h.time.ms)
       +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.lastLongTask', h.time.ms)
+
+  //- Linux only. The agreement column grades the spread against the
+  //- median, which says nothing when the median steal time is near 0.
+  if btStatistics.server && btStatistics.server.cpuStability
+    +timingsGroup('Test machine CPU')
+      +getRow('CPU steal time', pageInfo, 'data.browsertime.pageSummary.statistics.server.cpuStability.stealPercent', pageInfo.data.browsertime.pageSummary.server.cpuStability, 'stealPercent', h.percent, undefined, true)
+      +getRow('Thermal throttling events', pageInfo, 'data.browsertime.pageSummary.statistics.server.cpuStability.throttleCount', pageInfo.data.browsertime.pageSummary.server.cpuStability, 'throttleCount', h.noop, undefined, true)
 
   if hasMoreMetrics
     +timingsGroup('More metrics')

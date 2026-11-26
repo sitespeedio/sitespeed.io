@@ -5,6 +5,10 @@ import { getLogger } from '@sitespeed.io/log';
 import { default as GraphitePlugin } from '../lib/plugins/graphite/index.js';
 
 import { GraphiteDataGenerator as DataGenerator } from '../lib/plugins/graphite/data-generator.js';
+import { filterMetrics } from '../lib/support/metricsFilter.js';
+import { metricsPageSummary } from '../lib/plugins/browsertime/default/metricsPageSummary.js';
+import { metricsRun } from '../lib/plugins/browsertime/default/metricsRun.js';
+import { metricsRunLimited } from '../lib/plugins/browsertime/default/metricsRunLimited.js';
 
 test(`Test dataGenerator`, t => {
   const message = {
@@ -97,4 +101,51 @@ test(`Use graphite interface by default`, async t => {
   const plugin = new GraphitePlugin(options, context);
   plugin.open(context, options);
   t.is(plugin.sender.facility, 'Graphite');
+});
+
+test(`CPU stability reaches Graphite for page summaries and full run data`, t => {
+  const generator = new DataGenerator('ns', false, {
+    _: ['filename'],
+    browser: 'chrome',
+    browsertime: { connectivity: { profile: 'native' } }
+  });
+  const toGraphite = (type, data, filter) =>
+    generator
+      .dataFromMessage(
+        { type, data: filterMetrics(data, filter), url: 'https://a.b/' },
+        timestamp()
+      )
+      .map(line => line.split(' ').slice(0, 2).join(' '));
+
+  const cpuStability = { stealPercent: 6.5, throttleCount: 2 };
+  t.deepEqual(
+    toGraphite(
+      'browsertime.pageSummary',
+      {
+        statistics: {
+          server: { cpuStability: { stealPercent: { median: 6.5 } } }
+        }
+      },
+      metricsPageSummary
+    ),
+    [
+      'ns.pageSummary.a_b._.chrome.native.browsertime.statistics.server.cpuStability.stealPercent.median 6.5'
+    ]
+  );
+  t.deepEqual(
+    toGraphite('browsertime.run', { server: { cpuStability } }, metricsRun),
+    [
+      'ns.run.a_b._.chrome.native.browsertime.server.cpuStability.stealPercent 6.5',
+      'ns.run.a_b._.chrome.native.browsertime.server.cpuStability.throttleCount 2'
+    ]
+  );
+  // The limited run data is the default and is kept small on purpose
+  t.deepEqual(
+    toGraphite(
+      'browsertime.run',
+      { server: { cpuStability } },
+      metricsRunLimited
+    ),
+    []
+  );
 });
