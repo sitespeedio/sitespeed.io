@@ -2,7 +2,7 @@
   <div class="darkblue nav">
     <div class="grid">
       <div class="logo">
-        <a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" elementtiming="header-logo" decoding="async" fetchpriority="high" loading="eager" eleventy:widths="200,324" sizes="168px" /></a>
+        <a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/img/{% if site.christmas %}sitespeed-logo-christmas.png{% else %}sitespeed-logo-2c.png{% endif %}" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" elementtiming="header-logo" decoding="async" fetchpriority="high" loading="eager" eleventy:widths="200,324" sizes="168px" /></a>
       </div>
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
       <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
@@ -39,3 +39,9 @@
 </nav>
 {% js "header" %}{% include js/user-timing-header.js %}{% endjs %}
 <script src="{% getBundleFileUrl "js", "header" %}"></script>
+{% if site.christmas %}
+{% js "snow" %}{% include js/snow.js %}{% endjs %}
+{% js "christmas-music" %}{% include js/christmas-music.js %}{% endjs %}
+{% js "christmas-surprises" %}{% include js/christmas-surprises.js %}{% endjs %}
+<script src="{% getBundleFileUrl "js", "snow" %}" data-music="{% getBundleFileUrl "js", "christmas-music" %}" data-surprises="{% getBundleFileUrl "js", "christmas-surprises" %}" async></script>
+{% endif %}

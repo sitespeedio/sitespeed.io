@@ -55,6 +55,7 @@
 	{% css %}{% include css/default.css %}{% endcss %}
 	{% css %}{% include css/prism-1.15.css %}{% endcss %}
 	{% css %}{% include css/code-copy.css %}{% endcss %}
+	{% if site.christmas %}{% css %}{% include css/christmas.css %}{% endcss %}{% endif %}
 	<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
 	{% js %}{% include js/copy.js %}{% endjs %}
 	<script src="{% getBundleFileUrl "js" %}" defer></script>
@@ -66,8 +67,12 @@
 		<div class="white">
 			<div class="grid">
 				<div class="col-1-2">
+					{% if site.christmas %}
+					<img src="{{site.baseurl}}/img/logo-christmas.png" class="christmas-logo" alt="The sitespeed.io cat dressed as Santa Claus" width="375" height="442" elementtiming="logo" fetchpriority="high" decoding="async" loading="eager">
+					{% else %}
 					{% capture logo %}{% include index/logo.md %}{% endcapture %}
 					{{ logo | markdownify }}
+					{% endif %}
 				</div>
 				<div class="col-1-2">
 					<section>

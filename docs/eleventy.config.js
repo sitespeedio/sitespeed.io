@@ -281,7 +281,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData('site', {
     baseurl: '',
     url: SITE_URL,
-    time: new Date()
+    time: new Date(),
+    // Santa logo and snow. Turn off after the holidays
+    christmas: true
   });
 
   return {
